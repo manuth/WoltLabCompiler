@@ -1,0 +1,49 @@
+{
+  "name": "woltlab-compiler",
+  "version": "0.0.0",
+  "description": "A compiler for WoltLab-Package Archives and WoltLab-Package Components",
+  "author": "Manuel Thalmann <m@nuth.ch>",
+  "license": "MIT",
+  "keywords": [
+    "WoltLab",
+    "wsc",
+    "WoltLab Suite Core",
+    "wcf",
+    "WoltLab Community Framework",
+    "Compiler",
+    "TypeScript"
+  ],
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manuth/WoltLabCompiler.git"
+  },
+  "bugs": {
+    "url": "https://github.com/manuth/WoltLabCompiler/issues"
+  },
+  "homepage": "https://github.com/manuth/WoltLabCompiler#readme",
+  "scripts": {
+    "build": "tsc -p .",
+    "rebuild": "npm run clean && npm run build",
+    "watch": "tsc -p . --watch",
+    "clean": "rimraf ./lib",
+    "lint": "tslint -p ./ -t verbose",
+    "test": "mocha",
+    "prepare": "npm run rebuild"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/mocha": "^5.2.5",
+    "@types/node": "^10.12.12",
+    "mocha": "^5.2.0",
+    "rimraf": "^2.6.2",
+    "tslint": "^5.11.0",
+    "typescript": "^3.2.1",
+    "typescript-tslint-plugin": "^0.1.2"
+  }
+}
