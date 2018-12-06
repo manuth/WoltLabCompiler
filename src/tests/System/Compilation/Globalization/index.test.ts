@@ -3,4 +3,5 @@ suite(
     () =>
     {
         require("./LocalizationFileCompiler.test");
+        require("./LocalizationSetCompiler.test");
     });

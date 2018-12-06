@@ -2,10 +2,9 @@ import * as assert from "assert";
 import * as FileSystem from "fs-extra";
 import * as Path from "path";
 import { TempDirectory } from "temp-filesystem";
-import { LocalizationInstructionCompiler } from "../../../../System/Compilation/PackageSystem/Instructions/LocalizationInstructionCompiler";
+import { LocalizationSetCompiler } from "../../../../System/Compilation/Globalization/LocalizationSetCompiler";
 import { ILocalization } from "../../../../System/Globalization/ILocalization";
 import { TranslationInstruction } from "../../../../System/PackageSystem/Instructions/Globalization/TranslationInstruction";
-import { Package } from "../../../../System/PackageSystem/Package";
 
 suite(
     "LocalizationInstructionCompiler",
@@ -13,8 +12,7 @@ suite(
     {
         let locales: string[];
         let tempDir: TempDirectory;
-        let compiler: LocalizationInstructionCompiler;
-        let localizationDir: string;
+        let compiler: LocalizationSetCompiler;
 
         suiteSetup(
             () =>
@@ -27,15 +25,6 @@ suite(
                 {
                     localization[locale] = "example";
                 }
-
-                let $package: Package = new Package(
-                    {
-                        Identifier: "test",
-                        DisplayName: {},
-                        InstallSet: {
-                            Instructions: []
-                        }
-                    });
 
                 let instruction: TranslationInstruction = new TranslationInstruction(
                     {
@@ -50,10 +39,8 @@ suite(
                         ]
                     });
 
-                $package.InstallSet.push(instruction);
-                compiler = new LocalizationInstructionCompiler(instruction);
+                compiler = new LocalizationSetCompiler(instruction.GetMessages());
                 compiler.DestinationPath = tempDir.FullName;
-                localizationDir = compiler.DestinationFileName;
             });
 
         suiteTeardown(
@@ -77,7 +64,7 @@ suite(
                     "Checking whether all the expected files exist...",
                     async () =>
                     {
-                        let files: string[] = await FileSystem.readdir(localizationDir);
+                        let files: string[] = await FileSystem.readdir(tempDir.FullName);
 
                         assert.strictEqual(
                             files.every(

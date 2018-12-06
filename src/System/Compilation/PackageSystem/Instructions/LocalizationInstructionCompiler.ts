@@ -1,7 +1,7 @@
-import { TempFile } from "temp-filesystem";
+import { TempDirectory } from "temp-filesystem";
 import UPath = require("upath");
 import { ILocalizationInstruction } from "../../../PackageSystem/Instructions/Globalization/ILocalizationInstruction";
-import { LocalizationFileCompiler } from "../../Globalization/LocalizationFileCompiler";
+import { LocalizationSetCompiler } from "../../Globalization/LocalizationSetCompiler";
 import { InstructionCompiler } from "./InstructionCompiler";
 
 /**
@@ -41,16 +41,16 @@ export class LocalizationInstructionCompiler extends InstructionCompiler<ILocali
 
     protected async Compile(): Promise<void>
     {
-        let messages: { [locale: string]: { [category: string]: { [key: string]: string } } } = this.Item.GetMessages();
+        let messages = this.Item.GetMessages();
 
-        for (let locale in messages)
+        if (Object.keys(messages).length > 0)
         {
-            let tempFile: TempFile = new TempFile();
-            let compiler: LocalizationFileCompiler = new LocalizationFileCompiler([locale, messages[locale]]);
-            compiler.DestinationPath = tempFile.FullName;
+            let tempDir: TempDirectory = new TempDirectory();
+            let compiler = new LocalizationSetCompiler(this.Item.GetMessages());
+            compiler.DestinationPath = tempDir.FullName;
             await compiler.Execute();
-            await this.CopyTemplate(tempFile.FullName, this.MakePackagePath(this.Item.DestinationRoot, this.Item.TranslationDirectory, `${locale}.xml`));
-            tempFile.Dispose();
+            await this.CopyTemplate(tempDir.FullName, this.MakePackagePath(this.Item.DestinationRoot, this.Item.TranslationDirectory));
+            tempDir.Dispose();
         }
     }
 }

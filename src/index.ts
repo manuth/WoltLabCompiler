@@ -5,6 +5,7 @@ export { EventListenerFileCompiler } from "./System/Compilation/Events/EventList
 export { ListenerFileCompiler } from "./System/Compilation/Events/ListenerFileCompiler";
 export { TemplateListenerFileCompiler } from "./System/Compilation/Events/TemplateListenerFileCompiler";
 export { LocalizationFileCompiler } from "./System/Compilation/Globalization/LocalizationFileCompiler";
+export { LocalizationSetCompiler } from "./System/Compilation/Globalization/LocalizationSetCompiler";
 export { ImportFileCompiler } from "./System/Compilation/ImportFileCompiler";
 export { NamedObjectDeletionFileCompiler } from "./System/Compilation/NamedObjectDeletionFileCompiler";
 export { ObjectDeletionFileCompiler } from "./System/Compilation/ObjectDeletionFileCompiler";
