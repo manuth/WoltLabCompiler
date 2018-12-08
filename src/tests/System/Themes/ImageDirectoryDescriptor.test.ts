@@ -36,11 +36,11 @@ suite(
             () =>
             {
                 test(
-                    'Checking whether the `FileName`-property is set to "images.tar" when no filename is specified...',
+                    'Checking whether the `FileName`-property is set to "images.tar" when no filename is specified…',
                     () => assert.strictEqual(imageDirectory.FileName, "images.tar"));
 
                 test(
-                    "Checking whether the `FileName`-property is set properly when a filename is specified...",
+                    "Checking whether the `FileName`-property is set properly when a filename is specified…",
                     () => assert.strictEqual(customImageDirectory.FileName, customFileName));
             });
 
@@ -49,11 +49,11 @@ suite(
             () =>
             {
                 test(
-                    "Checking whether `DestinationRoot` is set to `Source` when no destination-root is specified...",
+                    "Checking whether `DestinationRoot` is set to `Source` when no destination-root is specified…",
                     () => assert.strictEqual(imageDirectory.DestinationRoot, imageDirectory.Source));
 
                 test(
-                    "Checking whether `DestinationRoot` is set properly when a destination-root is specified...",
+                    "Checking whether `DestinationRoot` is set properly when a destination-root is specified…",
                     () => assert.strictEqual(customImageDirectory.DestinationRoot, customDestination));
             });
     });

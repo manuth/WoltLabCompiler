@@ -64,7 +64,7 @@ suite(
                     () =>
                     {
                         test(
-                            "Checking whether the compiler can be executed...",
+                            "Checking whether the compiler can be executed…",
                             async () =>
                             {
                                 await compiler.Execute();
@@ -72,7 +72,7 @@ suite(
                     });
 
                 suite(
-                    "Checking the integrity of the file...",
+                    "Checking the integrity of the file…",
                     () =>
                     {
                         let importEditor: XMLEditor;
@@ -82,7 +82,7 @@ suite(
                             () =>
                             {
                                 test(
-                                    "Checking whether the content of the compiled file is valid xml...",
+                                    "Checking whether the content of the compiled file is valid xml…",
                                     async () =>
                                     {
                                         let document: Document = new DOMParser().parseFromString((await FileSystem.readFile(tempFile.FullName)).toString());
@@ -91,7 +91,7 @@ suite(
                             });
 
                         suite(
-                            "Checking the integrity of the emoji...",
+                            "Checking the integrity of the emoji…",
                             () =>
                             {
                                 let emojiEditor: XMLEditor;
@@ -116,7 +116,7 @@ suite(
                                     });
 
                                 test(
-                                    "Checking whether the emoji is present...",
+                                    "Checking whether the emoji is present…",
                                     () =>
                                     {
                                         assert.strictEqual(importEditor.HasTag(emojiTag, true), true);
@@ -124,7 +124,7 @@ suite(
                                     });
 
                                 test(
-                                    "Checking the integrity of the meta-data...",
+                                    "Checking the integrity of the meta-data…",
                                     () =>
                                     {
                                         assert.strictEqual(emojiEditor.HasAttribute(nameAttribute, `:${name}:`), true);

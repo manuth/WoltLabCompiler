@@ -37,11 +37,11 @@ suite(
             });
 
         suite(
-            "Checking whether instructions automatically are pushed to the `InstructionSet`, when...",
+            "Checking whether instructions automatically are pushed to the `InstructionSet`, when…",
             () =>
             {
                 test(
-                    "...the `Collection`-member of an instruction is set...",
+                    "…the `Collection`-member of an instruction is set…",
                     () =>
                     {
                         instruction.Collection = instructionSet;
@@ -49,7 +49,7 @@ suite(
                     });
 
                 test(
-                    "...the `Collection`-member of an instruction is overwritten by another `InstructionSet`...",
+                    "…the `Collection`-member of an instruction is overwritten by another `InstructionSet`…",
                     () =>
                     {
                         instruction.Collection = null;
@@ -57,7 +57,7 @@ suite(
                     });
 
                 test(
-                    "...pushing an instruction to the `InstructionSet`...",
+                    "…pushing an instruction to the `InstructionSet`…",
                     () =>
                     {
                         instructionSet.push(instruction);
@@ -65,7 +65,7 @@ suite(
                     });
 
                 test(
-                    "...popping an instruction from the `InstructionSet`...",
+                    "…popping an instruction from the `InstructionSet`…",
                     () =>
                     {
                         instructionSet.pop();

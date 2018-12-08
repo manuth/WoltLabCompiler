@@ -224,7 +224,7 @@ suite(
                     () =>
                     {
                         test(
-                            "Checking whether the compiler can be executed...",
+                            "Checking whether the compiler can be executed…",
                             async () =>
                             {
                                 await compiler.Execute();
@@ -232,7 +232,7 @@ suite(
                     });
 
                 suite(
-                    "Checking the integrity of the compiled file...",
+                    "Checking the integrity of the compiled file…",
                     () =>
                     {
                         let $package: XMLEditor;
@@ -252,7 +252,7 @@ suite(
                                     });
 
                                 test(
-                                    "Checking whether the content of the content of the document is valid xml...",
+                                    "Checking whether the content of the content of the document is valid xml…",
                                     async () =>
                                     {
                                         let document: Document = new DOMParser().parseFromString((await FileSystem.readFile(tempFile.FullName)).toString());
@@ -260,14 +260,14 @@ suite(
                                     });
 
                                 test(
-                                    "Checking whether the name of the document-element tag is correct...",
+                                    "Checking whether the name of the document-element tag is correct…",
                                     () =>
                                     {
                                         assert.strictEqual($package.TagName, rootTag);
                                     });
 
                                 test(
-                                    "Checking whether the identifier is correct...",
+                                    "Checking whether the identifier is correct…",
                                     () =>
                                     {
                                         assert.strictEqual($package.HasAttribute(identifierAttribute, identifier), true);
@@ -275,11 +275,11 @@ suite(
                             });
 
                         suite(
-                            "Checking the package-metadata...",
+                            "Checking the package-metadata…",
                             () =>
                             {
                                 suite(
-                                    "Checking the package-information...",
+                                    "Checking the package-information…",
                                     () =>
                                     {
                                         let packageInfo: XMLEditor;
@@ -297,7 +297,7 @@ suite(
                                                     });
 
                                                 test(
-                                                    "Checking whether the package-information is present...",
+                                                    "Checking whether the package-information is present…",
                                                     () =>
                                                     {
                                                         assert.strictEqual($package.HasTag(packageInfoTag, true), true);
@@ -306,7 +306,7 @@ suite(
                                             });
 
                                         suite(
-                                            "Checking the meta-data...",
+                                            "Checking the meta-data…",
                                             () =>
                                             {
                                                 let nameTag: string;
@@ -326,7 +326,7 @@ suite(
                                                     });
 
                                                 test(
-                                                    "Checking the integrity of the display-name...",
+                                                    "Checking the integrity of the display-name…",
                                                     () =>
                                                     {
                                                         for (let editor of packageInfo.GetChildrenByTag(nameTag))
@@ -348,7 +348,7 @@ suite(
                                                     });
 
                                                 test(
-                                                    "Checking the integrity of the description...",
+                                                    "Checking the integrity of the description…",
                                                     () =>
                                                     {
                                                         for (let editor of packageInfo.GetChildrenByTag(descriptionTag))
@@ -370,14 +370,14 @@ suite(
                                                     });
 
                                                 test(
-                                                    "Checking whether the version is correct...",
+                                                    "Checking whether the version is correct…",
                                                     () =>
                                                     {
                                                         assert.strictEqual(packageInfo.HasText(versionTag, version), true);
                                                     });
 
                                                 test(
-                                                    "Checking whether the date is correct...",
+                                                    "Checking whether the date is correct…",
                                                     () =>
                                                     {
                                                         assert.strictEqual(new Date(packageInfo.GetText(dateTag)).getTime(), date.getTime());
@@ -404,7 +404,7 @@ suite(
                                                     });
 
                                                 test(
-                                                    "Checking whether the author-information is present...",
+                                                    "Checking whether the author-information is present…",
                                                     () =>
                                                     {
                                                         assert.strictEqual($package.HasTag(authorInfoTag, true), true);
@@ -413,7 +413,7 @@ suite(
                                             });
 
                                         suite(
-                                            "Checking the meta-data...",
+                                            "Checking the meta-data…",
                                             () =>
                                             {
                                                 let nameTag: string;
@@ -427,14 +427,14 @@ suite(
                                                     });
 
                                                 test(
-                                                    "Checking whether the name is correct...",
+                                                    "Checking whether the name is correct…",
                                                     () =>
                                                     {
                                                         authorInfo.HasText(nameTag, author);
                                                     });
 
                                                 test(
-                                                    "Checking whether the homepage is correct...",
+                                                    "Checking whether the homepage is correct…",
                                                     () =>
                                                     {
                                                         authorInfo.HasText(urlTag, homePage);
@@ -443,7 +443,7 @@ suite(
                                     });
 
                                 suite(
-                                    "Checking the required packages...",
+                                    "Checking the required packages…",
                                     () =>
                                     {
                                         let packages: XMLEditor;
@@ -461,7 +461,7 @@ suite(
                                                     });
 
                                                 test(
-                                                    "Checking whether the list of the required packages is present...",
+                                                    "Checking whether the list of the required packages is present…",
                                                     () =>
                                                     {
                                                         assert.strictEqual($package.HasTag(requiredPackagesTag, true), true);
@@ -470,7 +470,7 @@ suite(
                                             });
 
                                         suite(
-                                            "Checking the meta-data...",
+                                            "Checking the meta-data…",
                                             () =>
                                             {
                                                 let requiredPackageTag: string;
@@ -484,7 +484,7 @@ suite(
                                                     });
 
                                                 test(
-                                                    "Checking whether the tag-names are correct...",
+                                                    "Checking whether the tag-names are correct…",
                                                     () =>
                                                     {
                                                         assert.strictEqual(
@@ -493,7 +493,7 @@ suite(
                                                     });
 
                                                 test(
-                                                    "Checking whether all required packages are serialized correctly...",
+                                                    "Checking whether all required packages are serialized correctly…",
                                                     () =>
                                                     {
                                                         for (let requiredPackage of requiredPackages)
@@ -513,7 +513,7 @@ suite(
                                     });
 
                                 suite(
-                                    "Checking conflicting packages...",
+                                    "Checking conflicting packages…",
                                     () =>
                                     {
                                         let packages: XMLEditor;
@@ -531,7 +531,7 @@ suite(
                                                     });
 
                                                 test(
-                                                    "Checking whether the list of conflicting packages is present...",
+                                                    "Checking whether the list of conflicting packages is present…",
                                                     () =>
                                                     {
                                                         assert.strictEqual($package.HasTag(conflictingPackagesTag, true), true);
@@ -540,7 +540,7 @@ suite(
                                             });
 
                                         suite(
-                                            "Checking the meta-data...",
+                                            "Checking the meta-data…",
                                             () =>
                                             {
                                                 let confligtingPackageTag: string;
@@ -554,7 +554,7 @@ suite(
                                                     });
 
                                                 test(
-                                                    "Checking whether the tag-names are correct...",
+                                                    "Checking whether the tag-names are correct…",
                                                     () =>
                                                     {
                                                         assert.strictEqual(
@@ -563,7 +563,7 @@ suite(
                                                     });
 
                                                 test(
-                                                    "Checking whether all conflicting packages are serialized correctly...",
+                                                    "Checking whether all conflicting packages are serialized correctly…",
                                                     () =>
                                                     {
                                                         for (let conflictingPackage of conflictingPackages)
@@ -582,7 +582,7 @@ suite(
                                     });
 
                                 suite(
-                                    "Checking optional packages...",
+                                    "Checking optional packages…",
                                     () =>
                                     {
                                         let packages: XMLEditor;
@@ -600,7 +600,7 @@ suite(
                                                     });
 
                                                 test(
-                                                    "Checking whether the list of optional packages is present...",
+                                                    "Checking whether the list of optional packages is present…",
                                                     () =>
                                                     {
                                                         assert.strictEqual($package.HasTag(optionalPackagesTag, true), true);
@@ -609,7 +609,7 @@ suite(
                                             });
 
                                         suite(
-                                            "Checking the meta-data...",
+                                            "Checking the meta-data…",
                                             () =>
                                             {
                                                 let optionalPackageTag: string;
@@ -623,7 +623,7 @@ suite(
                                                     });
 
                                                 test(
-                                                    "Checking whether the tag-names are correct...",
+                                                    "Checking whether the tag-names are correct…",
                                                     () =>
                                                     {
                                                         assert.strictEqual(
@@ -632,7 +632,7 @@ suite(
                                                     });
 
                                                 test(
-                                                    "Checking whether all optional packages are serialized correctly...",
+                                                    "Checking whether all optional packages are serialized correctly…",
                                                     () =>
                                                     {
                                                         for (let optionalPackage of optionalPackages)
@@ -651,7 +651,7 @@ suite(
                                     });
 
                                 suite(
-                                    "Checking the compatibility-section...",
+                                    "Checking the compatibility-section…",
                                     () =>
                                     {
                                         let compatibilityTag: string;
@@ -665,7 +665,7 @@ suite(
                                             });
 
                                         test(
-                                            "Checking whether the compatibility-information looks like expected...",
+                                            "Checking whether the compatibility-information looks like expected…",
                                             () =>
                                             {
                                                 assert.strictEqual($package.HasTag(compatibilityTag, true), true);
@@ -676,7 +676,7 @@ suite(
                                     });
 
                                 suite(
-                                    "Checking the instruction-sets...",
+                                    "Checking the instruction-sets…",
                                     () =>
                                     {
                                         let instructionLists: XMLEditor[];
@@ -719,7 +719,7 @@ suite(
                                             });
 
                                         suite(
-                                            "Checking the integrity of the install-set...",
+                                            "Checking the integrity of the install-set…",
                                             () =>
                                             {
                                                 let installSetEditor: XMLEditor;
@@ -729,7 +729,7 @@ suite(
                                                     () =>
                                                     {
                                                         test(
-                                                            "Checking whether the install-set is present...",
+                                                            "Checking whether the install-set is present…",
                                                             () =>
                                                             {
                                                                 let filtered: XMLEditor[] = instructionLists.filter(
@@ -741,11 +741,11 @@ suite(
                                                     });
 
                                                 suite(
-                                                    "Checking the integrity of the meta-data...",
+                                                    "Checking the integrity of the meta-data…",
                                                     () =>
                                                     {
                                                         test(
-                                                            "Checking whether the set is serialized correctly...",
+                                                            "Checking whether the set is serialized correctly…",
                                                             () =>
                                                             {
                                                                 validateInstructionSet(installSet, installSetEditor);
@@ -754,15 +754,15 @@ suite(
                                             });
 
                                         suite(
-                                            "Checking the integrity of the update-sets...",
+                                            "Checking the integrity of the update-sets…",
                                             () =>
                                             {
                                                 suite(
-                                                    "Checking the integrity of the meta-data...",
+                                                    "Checking the integrity of the meta-data…",
                                                     () =>
                                                     {
                                                         test(
-                                                            "Checking whether all sets are serialized correctly...",
+                                                            "Checking whether all sets are serialized correctly…",
                                                             () =>
                                                             {
                                                                 for (let updateSet of updateSets)

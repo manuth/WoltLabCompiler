@@ -57,7 +57,7 @@ suite(
                     () =>
                     {
                         test(
-                            "Checking whether the compiler can be executed...",
+                            "Checking whether the compiler can be executed…",
                             async () =>
                             {
                                 await compiler.Execute();
@@ -65,7 +65,7 @@ suite(
                     });
 
                 suite(
-                    "Checking the integrity of the compiled file...",
+                    "Checking the integrity of the compiled file…",
                     () =>
                     {
                         let editor: XMLEditor;
@@ -75,7 +75,7 @@ suite(
                             () =>
                             {
                                 test(
-                                    "Checking whether the content of the file is valid xml...",
+                                    "Checking whether the content of the file is valid xml…",
                                     async () =>
                                     {
                                         let document: Document = new DOMParser().parseFromString((await FileSystem.readFile(tempFile.FullName)).toString());
@@ -84,7 +84,7 @@ suite(
                             });
 
                         suite(
-                            "Checking the integrity of the event-listener...",
+                            "Checking the integrity of the event-listener…",
                             () =>
                             {
                                 let eventListenerEditor: XMLEditor;
@@ -103,7 +103,7 @@ suite(
                                     });
 
                                 test(
-                                    "Checking whether the event-listener is present...",
+                                    "Checking whether the event-listener is present…",
                                     () =>
                                     {
                                         assert.strictEqual(editor.GetElementsByTag(listenerTag).length, 1);
@@ -111,7 +111,7 @@ suite(
                                     });
 
                                 test(
-                                    "Checking the integrity of the meta-data...",
+                                    "Checking the integrity of the meta-data…",
                                     () =>
                                     {
                                         assert.strictEqual(eventListenerEditor.HasText(eventClassTag, className), true);

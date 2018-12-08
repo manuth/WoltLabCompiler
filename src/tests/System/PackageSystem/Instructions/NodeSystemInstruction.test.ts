@@ -84,14 +84,14 @@ suite(
             () =>
             {
                 test(
-                    "Checking whether object-ids are queried correctly...",
+                    "Checking whether object-ids are queried correctly…",
                     () =>
                     {
                         assert.strictEqual(id in instruction.ObjectsByID, true);
                     });
 
                 test(
-                    "Checking whether the objects are assigned to the ids correctly...",
+                    "Checking whether the objects are assigned to the ids correctly…",
                     () =>
                     {
                         assert.strictEqual(instruction.ObjectsByID[id], idNode);

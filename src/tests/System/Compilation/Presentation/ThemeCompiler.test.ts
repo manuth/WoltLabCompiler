@@ -66,21 +66,21 @@ suite(
             () =>
             {
                 test(
-                    "Checking whether themes can be compiled without an error...",
+                    "Checking whether themes can be compiled without an error…",
                     async () =>
                     {
                         await compiler.Execute();
                     });
 
                 test(
-                    "Checking whether the theme-metadata exists...",
+                    "Checking whether the theme-metadata exists…",
                     async () =>
                     {
                         assert.strictEqual(await FileSystem.pathExists(tempDir.MakePath("style.xml")), true);
                     });
 
                 test(
-                    "Checking whether the variable-file exists...",
+                    "Checking whether the variable-file exists…",
                     async () =>
                     {
                         assert.strictEqual(await FileSystem.pathExists(tempDir.MakePath(variableFileName)), true);

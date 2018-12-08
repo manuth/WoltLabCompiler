@@ -49,28 +49,28 @@ suite(
                     });
 
                 test(
-                    "Checking whether the locale is present...",
+                    "Checking whether the locale is present…",
                     () =>
                     {
                         assert.strictEqual(locale in translations, true);
                     });
 
                 test(
-                    `Checking whether the \`${optionCategory}\`-category is present...`,
+                    `Checking whether the \`${optionCategory}\`-category is present…`,
                     () =>
                     {
                         assert.strictEqual(optionCategory in translations[locale], true);
                     });
 
                 test(
-                    `Checking whether the \`${optionCategory}.${errorCategory}.${messageName}\`-message is present...`,
+                    `Checking whether the \`${optionCategory}.${errorCategory}.${messageName}\`-message is present…`,
                     () =>
                     {
                         assert.strictEqual(`${optionCategory}.${errorCategory}.${messageName}` in translations[locale][optionCategory], true);
                     });
 
                 test(
-                    `Checking whether the \`${optionCategory}.${errorCategory}.${messageName}\`-message has the expected value...`,
+                    `Checking whether the \`${optionCategory}.${errorCategory}.${messageName}\`-message has the expected value…`,
                     () =>
                     {
                         assert.strictEqual(translations[locale][optionCategory][`${optionCategory}.${errorCategory}.${messageName}`], messageValue);

@@ -34,7 +34,7 @@ suite(
             () =>
             {
                 test(
-                    "Checking whether a new instance can be initialized...",
+                    "Checking whether a new instance can be initialized…",
                     () =>
                     {
                         editorElement = XML.CreateDocument(editorTag).documentElement;
@@ -47,7 +47,7 @@ suite(
             () =>
             {
                 test(
-                    "Checking whether the name of the tag is correct...",
+                    "Checking whether the name of the tag is correct…",
                     () =>
                     {
                         assert.strictEqual(editor.TagName, editorTag);
@@ -59,7 +59,7 @@ suite(
             () =>
             {
                 test(
-                    "Checking whether the element of the editor is correct...",
+                    "Checking whether the element of the editor is correct…",
                     () =>
                     {
                         assert.strictEqual(editor.Element === editorElement, true);
@@ -81,7 +81,7 @@ suite(
                     });
 
                 test(
-                    "Checking whether the ParentNode is correct...",
+                    "Checking whether the ParentNode is correct…",
                     () =>
                     {
                         assert.strictEqual(child.ParentNode === parent.Element, true);
@@ -93,7 +93,7 @@ suite(
             () =>
             {
                 test(
-                    "Checking whether the `Document`-property is a document-node...",
+                    "Checking whether the `Document`-property is a document-node…",
                     () =>
                     {
                         assert.strictEqual(temp.Document.nodeType, temp.Element.DOCUMENT_NODE);
@@ -120,7 +120,7 @@ suite(
                     });
 
                 test(
-                    "Checking whether the children are correct...",
+                    "Checking whether the children are correct…",
                     () =>
                     {
                         assert.strictEqual(parent.ChildNodes.length, children.length);
@@ -145,7 +145,7 @@ suite(
                     });
 
                 test(
-                    "Checking whether elements are created correctly...",
+                    "Checking whether elements are created correctly…",
                     () =>
                     {
                         let element: XMLEditor = editor.CreateElement(tagName);
@@ -153,7 +153,7 @@ suite(
                     });
 
                 test(
-                    "Checking whether elements can be pre-processed...",
+                    "Checking whether elements can be pre-processed…",
                     () =>
                     {
                         let content = "hello world";
@@ -177,7 +177,7 @@ suite(
                     });
 
                 test(
-                    "Checking whether elements are created correctly...",
+                    "Checking whether elements are created correctly…",
                     () =>
                     {
                         let element: XMLEditor = editor.CreateCDATAElement(tagName, content);
@@ -187,7 +187,7 @@ suite(
                     });
 
                 test(
-                    "Checking whether elements can be pre-processed...",
+                    "Checking whether elements can be pre-processed…",
                     () =>
                     {
                         let element: XMLEditor = editor.CreateCDATAElement(
@@ -218,7 +218,7 @@ suite(
                     });
 
                 test(
-                    "Checking whether elements are created correctly...",
+                    "Checking whether elements are created correctly…",
                     () =>
                     {
                         let element: XMLEditor = editor.CreateTextElement(tagName, content);
@@ -228,7 +228,7 @@ suite(
                     });
 
                 test(
-                    "Checking whether elements can be pre-processed...",
+                    "Checking whether elements can be pre-processed…",
                     () =>
                     {
                         let element: XMLEditor = editor.CreateTextElement(
@@ -261,7 +261,7 @@ suite(
                     });
 
                 test(
-                    "Checking whether `XMLEditor`-instances can be added...",
+                    "Checking whether `XMLEditor`-instances can be added…",
                     () =>
                     {
                         parent.Add(child);
@@ -269,7 +269,7 @@ suite(
                     });
 
                 test(
-                    "Checking whether `Node`-instances can be added...",
+                    "Checking whether `Node`-instances can be added…",
                     () =>
                     {
                         let node: Node;
@@ -295,7 +295,7 @@ suite(
                     });
 
                 test(
-                    "Checking whether elements can be added...",
+                    "Checking whether elements can be added…",
                     () =>
                     {
                         parent.AddElement(tagName, (childNode: XMLEditor) => child = childNode);
@@ -326,14 +326,14 @@ suite(
                     });
 
                 test(
-                    "Checking whether inserting elements in inexistent-indexes causes an error...",
+                    "Checking whether inserting elements in inexistent-indexes causes an error…",
                     () =>
                     {
                         assert.throws(() => parent.Insert(1, newElement));
                     });
 
                 test(
-                    "Checking whether items can be inserted into an empty element...",
+                    "Checking whether items can be inserted into an empty element…",
                     () =>
                     {
                         let index = 0;
@@ -342,7 +342,7 @@ suite(
                     });
 
                 test(
-                    "Checking whether items can be inserted at the end inside the element...",
+                    "Checking whether items can be inserted at the end inside the element…",
                     () =>
                     {
                         let index = parent.ChildNodes.length;
@@ -351,7 +351,7 @@ suite(
                     });
 
                 test(
-                    "Checking whether items can be inserted anywhere inside the childnode-list...",
+                    "Checking whether items can be inserted anywhere inside the childnode-list…",
                     () =>
                     {
                         let index: number = Math.floor(Math.random() * parent.ChildNodes.length);
@@ -380,7 +380,7 @@ suite(
                     });
 
                 test(
-                    "Checking whether the children are queried correctly...",
+                    "Checking whether the children are queried correctly…",
                     () =>
                     {
                         let randomTag = tags[Math.floor(Math.random() * tags.length)];
@@ -411,7 +411,7 @@ suite(
                     });
 
                 test(
-                    "Checking whether the elements are queried correctly...",
+                    "Checking whether the elements are queried correctly…",
                     () =>
                     {
                         let randomTag = tags[Math.floor(Math.random() * tags.length)];
@@ -438,14 +438,14 @@ suite(
                     });
 
                 test(
-                    "Checking whether querying text from inexistent children throws an error...",
+                    "Checking whether querying text from inexistent children throws an error…",
                     () =>
                     {
                         assert.throws(() => parent.GetText(textTag));
                     });
 
                 test(
-                    "Checking whether querying text works correctly...",
+                    "Checking whether querying text works correctly…",
                     () =>
                     {
                         parent.AddTextElement(textTag, textContent);
@@ -468,14 +468,14 @@ suite(
                     });
 
                 test(
-                    "Checking whether querying inexistent attributes throws an exception...",
+                    "Checking whether querying inexistent attributes throws an exception…",
                     () =>
                     {
                         assert.throws(() => attributeEditor.GetAttribute(attributeName));
                     });
 
                 test(
-                    "Checking whether attributes are queried correctly...",
+                    "Checking whether attributes are queried correctly…",
                     () =>
                     {
                         let value = "test";
@@ -501,7 +501,7 @@ suite(
                     });
 
                 test(
-                    "Checking whether the value is set correctly...",
+                    "Checking whether the value is set correctly…",
                     () =>
                     {
                         attributeEditor.SetAttribute(attributeName, attributeValue);
@@ -531,7 +531,7 @@ suite(
                     });
 
                 test(
-                    "Checking whether the method acts as expected...",
+                    "Checking whether the method acts as expected…",
                     () =>
                     {
                         assert.strictEqual(attributeEditor.HasAttribute(attributeName), true);
@@ -565,7 +565,7 @@ suite(
                     });
 
                 test(
-                    "Checking whether the method acts as expected...",
+                    "Checking whether the method acts as expected…",
                     () =>
                     {
                         assert.strictEqual(textEditor.HasText(null, text), true);
@@ -595,7 +595,7 @@ suite(
                     });
 
                 test(
-                    "Checking whether the method acts as expected...",
+                    "Checking whether the method acts as expected…",
                     () =>
                     {
                         assert.strictEqual(tagEditor.HasTag(tag), true);

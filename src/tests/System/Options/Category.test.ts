@@ -120,7 +120,7 @@ suite(
                     });
 
                 test(
-                    "Checking whether sub-nodes can be found by their ID...",
+                    "Checking whether sub-nodes can be found by their ID…",
                     () =>
                     {
                         assert.strictEqual(categoryID in objects, true);
@@ -128,7 +128,7 @@ suite(
                     });
 
                 test(
-                    "Checking whether options can be found by their ID...",
+                    "Checking whether options can be found by their ID…",
                     () =>
                     {
                         assert.strictEqual(optionID in objects, true);

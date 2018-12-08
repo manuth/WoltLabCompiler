@@ -122,7 +122,7 @@ suite(
                     () =>
                     {
                         test(
-                            "Checking whether the compiler can be executed...",
+                            "Checking whether the compiler can be executed…",
                             async () =>
                             {
                                 await compiler.Execute();
@@ -130,7 +130,7 @@ suite(
                     });
 
                 suite(
-                    "Checking the integrity of the compiled file...",
+                    "Checking the integrity of the compiled file…",
                     () =>
                     {
                         let rootTag: string;
@@ -147,7 +147,7 @@ suite(
                             () =>
                             {
                                 test(
-                                    "Checking whether the content of the document is valid xml...",
+                                    "Checking whether the content of the document is valid xml…",
                                     async () =>
                                     {
                                         let document: Document = new DOMParser().parseFromString((await FileSystem.readFile(tempFile.FullName)).toString());
@@ -155,7 +155,7 @@ suite(
                                     });
 
                                 test(
-                                    "Checking whether the name of the root-tag is correct...",
+                                    "Checking whether the name of the root-tag is correct…",
                                     () =>
                                     {
                                         assert.strictEqual(rootEditor.TagName, rootTag);
@@ -163,7 +163,7 @@ suite(
                             });
 
                         suite(
-                            "Checking the theme-metadata...",
+                            "Checking the theme-metadata…",
                             () =>
                             {
                                 let generalTag: string;
@@ -186,7 +186,7 @@ suite(
                                     () =>
                                     {
                                         test(
-                                            "Checking whether the general meta-data is present...",
+                                            "Checking whether the general meta-data is present…",
                                             () =>
                                             {
                                                 assert.strictEqual(rootEditor.HasTag(generalTag, true), true);
@@ -194,7 +194,7 @@ suite(
                                             });
 
                                         test(
-                                            "Checking whether the author meta-data is present...",
+                                            "Checking whether the author meta-data is present…",
                                             () =>
                                             {
                                                 assert.strictEqual(rootEditor.HasTag(authorTag, true), true);
@@ -202,7 +202,7 @@ suite(
                                             });
 
                                         test(
-                                            "Checking whether the files meta-data is present...",
+                                            "Checking whether the files meta-data is present…",
                                             () =>
                                             {
                                                 assert.strictEqual(rootEditor.HasTag(filesTag, true), true);
@@ -211,7 +211,7 @@ suite(
                                     });
 
                                 suite(
-                                    "Testing general metadata...",
+                                    "Testing general metadata…",
                                     () =>
                                     {
                                         let nameTag: string;
@@ -245,7 +245,7 @@ suite(
                                             });
 
                                         test(
-                                            "Checking the integrity of the name...",
+                                            "Checking the integrity of the name…",
                                             () =>
                                             {
                                                 for (let editor of generalEditor.GetChildrenByTag(nameTag))
@@ -260,14 +260,14 @@ suite(
                                             });
 
                                         test(
-                                            "Checking whether the version is correct...",
+                                            "Checking whether the version is correct…",
                                             () =>
                                             {
                                                 assert.strictEqual(generalEditor.HasText(versionTag, version), true);
                                             });
 
                                         test(
-                                            "Checking whether the date is correct...",
+                                            "Checking whether the date is correct…",
                                             () =>
                                             {
                                                 assert.strictEqual(generalEditor.HasTag(dateTag, true), true);
@@ -275,7 +275,7 @@ suite(
                                             });
 
                                         test(
-                                            "Checking whether the localized description is correct...",
+                                            "Checking whether the localized description is correct…",
                                             () =>
                                             {
                                                 for (let editor of generalEditor.GetChildrenByTag(descriptionTag))
@@ -290,42 +290,42 @@ suite(
                                             });
 
                                         test(
-                                            "Checking whether the license is correct...",
+                                            "Checking whether the license is correct…",
                                             () =>
                                             {
                                                 assert.strictEqual(generalEditor.HasText(licenseTag, license), true);
                                             });
 
                                         test(
-                                            "Checking whether the package-name is correct...",
+                                            "Checking whether the package-name is correct…",
                                             () =>
                                             {
                                                 assert.strictEqual(generalEditor.HasText(packageTag, packageName), true);
                                             });
 
                                         test(
-                                            "Checking whether the api-version is correct...",
+                                            "Checking whether the api-version is correct…",
                                             () =>
                                             {
                                                 assert.strictEqual(generalEditor.HasText(apiTag, "3.1"), true);
                                             });
 
                                         test(
-                                            "Checking whether the thumbnail is correct...",
+                                            "Checking whether the thumbnail is correct…",
                                             () =>
                                             {
                                                 assert.strictEqual(generalEditor.HasText(thumbnailTag, thumbnail), true);
                                             });
 
                                         test(
-                                            "Checking whether the high-resolution thumbnail is correct...",
+                                            "Checking whether the high-resolution thumbnail is correct…",
                                             () =>
                                             {
                                                 assert.strictEqual(generalEditor.HasText(highResThumbnailTag, highResThumbnail), true);
                                             });
 
                                         test(
-                                            "Checking whether the cover-photo is correct...",
+                                            "Checking whether the cover-photo is correct…",
                                             () =>
                                             {
                                                 assert.strictEqual(generalEditor.HasText(coverPhotoTag, coverPhoto), true);
@@ -333,7 +333,7 @@ suite(
                                     });
 
                                 suite(
-                                    "Testing the integrity of the author-metadata...",
+                                    "Testing the integrity of the author-metadata…",
                                     () =>
                                     {
                                         let authorNameTag: string;
@@ -347,14 +347,14 @@ suite(
                                             });
 
                                         test(
-                                            "Checking whether the name of the author is correct...",
+                                            "Checking whether the name of the author is correct…",
                                             () =>
                                             {
                                                 assert.strictEqual(authorEditor.HasText(authorNameTag, author.Name), true);
                                             });
 
                                         test(
-                                            "Checking whether the website of the author is correct...",
+                                            "Checking whether the website of the author is correct…",
                                             () =>
                                             {
                                                 assert.strictEqual(authorEditor.HasText(authorURLTag, author.URL), true);
@@ -362,7 +362,7 @@ suite(
                                     });
 
                                 suite(
-                                    "Testing the integrity of the metadata of the files...",
+                                    "Testing the integrity of the metadata of the files…",
                                     () =>
                                     {
                                         let variablesTag: string;
@@ -378,14 +378,14 @@ suite(
                                             });
 
                                         test(
-                                            "Checking whether the variables-file is correct...",
+                                            "Checking whether the variables-file is correct…",
                                             () =>
                                             {
                                                 assert.strictEqual(filesEditor.HasText(variablesTag, variableFileName), true);
                                             });
 
                                         test(
-                                            "Checking whether the image-descriptor is correct...",
+                                            "Checking whether the image-descriptor is correct…",
                                             () =>
                                             {
                                                 assert.strictEqual(filesEditor.HasTag(imageTag, true), true);

@@ -181,7 +181,7 @@ suite(
                     () =>
                     {
                         test(
-                            "Checking whether the compiler can be executed...",
+                            "Checking whether the compiler can be executed…",
                             async () =>
                             {
                                 await compiler.Execute();
@@ -189,7 +189,7 @@ suite(
                     });
 
                 suite(
-                    "Checking the integrity of the compiled file...",
+                    "Checking the integrity of the compiled file…",
                     () =>
                     {
                         let importEditor: XMLEditor;
@@ -206,7 +206,7 @@ suite(
                             () =>
                             {
                                 test(
-                                    "Checking whether the content is valid xml...",
+                                    "Checking whether the content is valid xml…",
                                     async () =>
                                     {
                                         let document = new DOMParser().parseFromString((await FileSystem.readFile(tempFile.FullName)).toString());
@@ -215,7 +215,7 @@ suite(
                             });
 
                         suite(
-                            "Checking the integrity of the category-list to import...",
+                            "Checking the integrity of the category-list to import…",
                             () =>
                             {
                                 let categoriesEditor: XMLEditor;
@@ -233,7 +233,7 @@ suite(
                                             });
 
                                         test(
-                                            "Checking whether the category-list is present...",
+                                            "Checking whether the category-list is present…",
                                             () =>
                                             {
                                                 assert.strictEqual(importEditor.HasTag(categoriesTag, true), true);
@@ -242,7 +242,7 @@ suite(
                                     });
 
                                 suite(
-                                    "Checking the integrity of the categories...",
+                                    "Checking the integrity of the categories…",
                                     () =>
                                     {
                                         let categories: XMLEditor[];
@@ -271,7 +271,7 @@ suite(
                                                     });
 
                                                 test(
-                                                    "Checking whether any category is present...",
+                                                    "Checking whether any category is present…",
                                                     () =>
                                                     {
                                                         assert.strictEqual(categoriesEditor.HasTag(categoryTag), true);
@@ -279,7 +279,7 @@ suite(
                                                     });
 
                                                 test(
-                                                    "Checking whether only the expected categories are present...",
+                                                    "Checking whether only the expected categories are present…",
                                                     () =>
                                                     {
                                                         categories.every(
@@ -291,7 +291,7 @@ suite(
                                             });
 
                                         suite(
-                                            "Checking the integrity of root-categories...",
+                                            "Checking the integrity of root-categories…",
                                             () =>
                                             {
                                                 let categoryEditor: XMLEditor;
@@ -316,11 +316,11 @@ suite(
                                                     });
 
                                                 suite(
-                                                    "Checking the integrity of the meta-data...",
+                                                    "Checking the integrity of the meta-data…",
                                                     () =>
                                                     {
                                                         test(
-                                                            "Checking the parent of the category...",
+                                                            "Checking the parent of the category…",
                                                             () =>
                                                             {
                                                                 if (!isNullOrUndefined(section))
@@ -334,7 +334,7 @@ suite(
                                                             });
 
                                                         test(
-                                                            "Checking the show-order of the category...",
+                                                            "Checking the show-order of the category…",
                                                             () =>
                                                             {
                                                                 if (!isNullOrUndefined(rootShowOrder))
@@ -348,7 +348,7 @@ suite(
                                                             });
 
                                                         test(
-                                                            'Checking whether the "options"-property is correct...',
+                                                            'Checking whether the "options"-property is correct…',
                                                             () =>
                                                             {
                                                                 if (rootEnableOptions.length > 0)
@@ -360,7 +360,7 @@ suite(
                                             });
 
                                         suite(
-                                            "Checking the integrity of sub-categories...",
+                                            "Checking the integrity of sub-categories…",
                                             () =>
                                             {
                                                 let categoryEditor: XMLEditor;
@@ -370,7 +370,7 @@ suite(
                                                     () =>
                                                     {
                                                         test(
-                                                            "Checking whether the sub-category is present..",
+                                                            "Checking whether the sub-category is present…",
                                                             () =>
                                                             {
                                                                 let filtered = categories.filter(
@@ -385,11 +385,11 @@ suite(
                                                     });
 
                                                 suite(
-                                                    "Checking the integrity of the meta-data...",
+                                                    "Checking the integrity of the meta-data…",
                                                     () =>
                                                     {
                                                         test(
-                                                            "Checking the parent of the category...",
+                                                            "Checking the parent of the category…",
                                                             () =>
                                                             {
                                                                 if (!isNullOrUndefined(section))
@@ -403,7 +403,7 @@ suite(
                                                             });
 
                                                         test(
-                                                            "Checking the show-order of the category...",
+                                                            "Checking the show-order of the category…",
                                                             () =>
                                                             {
                                                                 if (!isNullOrUndefined(showOrder))
@@ -417,7 +417,7 @@ suite(
                                                             });
 
                                                         test(
-                                                            'Checking whether the "options"-property is correct...',
+                                                            'Checking whether the "options"-property is correct…',
                                                             () =>
                                                             {
                                                                 if (enableOptions.length > 0)
@@ -431,7 +431,7 @@ suite(
                             });
 
                         suite(
-                            "Checking the integrity of the option-list to import...",
+                            "Checking the integrity of the option-list to import…",
                             () =>
                             {
                                 let optionsEditor: XMLEditor;
@@ -449,7 +449,7 @@ suite(
                                             });
 
                                         test(
-                                            "Checking whether the option-list is present...",
+                                            "Checking whether the option-list is present…",
                                             () =>
                                             {
                                                 assert.strictEqual(importEditor.HasTag(optionsTag, true), true);
@@ -458,7 +458,7 @@ suite(
                                     });
 
                                 suite(
-                                    "Checking the integrity of the options...",
+                                    "Checking the integrity of the options…",
                                     () =>
                                     {
                                         let optionEditor: XMLEditor;
@@ -476,7 +476,7 @@ suite(
                                                     });
 
                                                 test(
-                                                    "Checking whether exactly one option is present...",
+                                                    "Checking whether exactly one option is present…",
                                                     () =>
                                                     {
                                                         assert.strictEqual(optionsEditor.HasTag(optionTag, true), true);
@@ -485,7 +485,7 @@ suite(
                                             });
 
                                         suite(
-                                            "Checking the meta-data...",
+                                            "Checking the meta-data…",
                                             () =>
                                             {
                                                 let categoryTag: string;
@@ -511,49 +511,49 @@ suite(
                                                     });
 
                                                 test(
-                                                    "Checking whether the name is correct...",
+                                                    "Checking whether the name is correct…",
                                                     () =>
                                                     {
                                                         assert.strictEqual(optionEditor.HasAttribute(nameAttribute, option.Name), true);
                                                     });
 
                                                 test(
-                                                    "Checking whether the category is correct...",
+                                                    "Checking whether the category is correct…",
                                                     () =>
                                                     {
                                                         assert.strictEqual(optionEditor.HasText(categoryTag, categoryNode.FullName), true);
                                                     });
 
                                                 test(
-                                                    "Checking whether the type is correct...",
+                                                    "Checking whether the type is correct…",
                                                     () =>
                                                     {
                                                         assert.strictEqual(optionEditor.HasText(typeTag, option.Type), true);
                                                     });
 
                                                 test(
-                                                    "Checking whether the default value is correct...",
+                                                    "Checking whether the default value is correct…",
                                                     () =>
                                                     {
                                                         assert.strictEqual(optionEditor.HasText(defaultValueTag, `${option.DefaultValue}`), true);
                                                     });
 
                                                 test(
-                                                    "Checking whether the show-order is correct...",
+                                                    "Checking whether the show-order is correct…",
                                                     () =>
                                                     {
                                                         assert.strictEqual(optionEditor.HasText(showOrderTag, option.ShowOrder.toString()), true);
                                                     });
 
                                                 test(
-                                                    "Checking whether the validation-pattern is correct...",
+                                                    "Checking whether the validation-pattern is correct…",
                                                     () =>
                                                     {
                                                         assert.strictEqual(optionEditor.HasText(patternTag, option.ValidationPattern.source), true);
                                                     });
 
                                                 test(
-                                                    "Checking whether the items are correct...",
+                                                    "Checking whether the items are correct…",
                                                     () =>
                                                     {
                                                         assert.strictEqual(optionEditor.HasTag(itemsTag, true), true);
@@ -567,14 +567,14 @@ suite(
                                                     });
 
                                                 test(
-                                                    "Checking whether the dependent options are correct...",
+                                                    "Checking whether the dependent options are correct…",
                                                     () =>
                                                     {
                                                         assert.strictEqual(optionEditor.GetText(optionsTag), option.Options.join(","));
                                                     });
 
                                                 test(
-                                                    'Checking whether the "enableoptions" property is correct...',
+                                                    'Checking whether the "enableoptions" property is correct…',
                                                     () =>
                                                     {
                                                         assert.strictEqual(optionEditor.GetText(enableOptionsTag), option.EnableOptions.join(","));

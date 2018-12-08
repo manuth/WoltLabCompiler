@@ -55,24 +55,24 @@ suite(
             });
 
         suite(
-            "Testing scss-files without import-statements...",
+            "Testing scss-files without import-statements…",
             () =>
             {
                 test(
-                    "Checking whether expected variable is present...",
+                    "Checking whether expected variable is present…",
                     () => assert.strictEqual(var1Name in variablesWithoutImport, true));
 
                 test(
-                    "Checking whether the value of the expected variable is correct...",
+                    "Checking whether the value of the expected variable is correct…",
                     () => assert.strictEqual(variablesWithoutImport[var1Name], var1Value));
             });
 
         suite(
-            "Testing scss-files with import-statements...",
+            "Testing scss-files with import-statements…",
             () =>
             {
                 test(
-                    "Checking whether the expected variables are present...",
+                    "Checking whether the expected variables are present…",
                     () =>
                     {
                         assert.strictEqual(var2Name in variablesWithImport, true);
@@ -80,21 +80,21 @@ suite(
                     });
 
                 test(
-                    "Checking whether variables imported variables are not present...",
+                    "Checking whether variables imported variables are not present…",
                     () =>
                     {
                         assert.strictEqual(var1Name in variablesWithImport, false);
                     });
 
                 test(
-                    "Checking whether independent variables have the correct value...",
+                    "Checking whether independent variables have the correct value…",
                     () =>
                     {
                         assert.strictEqual(variablesWithImport[var2Name], var2Value);
                     });
 
                 test(
-                    "Checking whether variables which depend on imports have the correct value...",
+                    "Checking whether variables which depend on imports have the correct value…",
                     () =>
                     {
                         assert.strictEqual(variablesWithImport[var3Name], var1Value);

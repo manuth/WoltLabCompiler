@@ -55,7 +55,7 @@ suite(
             () =>
             {
                 test(
-                    "Checking whether the `FullName`-property is built correctly...",
+                    "Checking whether the `FullName`-property is built correctly…",
                     () =>
                     {
                         nodeA.Parent = nodeB;
@@ -70,11 +70,11 @@ suite(
             () =>
             {
                 suite(
-                    "Checking whether the `Parent`-property is automatically set properly, when...",
+                    "Checking whether the `Parent`-property is automatically set properly, when…",
                     () =>
                     {
                         test(
-                            "...setting the `Parent`-property...",
+                            "…setting the `Parent`-property…",
                             () =>
                             {
                                 nodeA.Parent = nodeB;
@@ -82,7 +82,7 @@ suite(
                             });
 
                         test(
-                            "...adding the node to another node's `Nodes`-array...",
+                            "…adding the node to another node's `Nodes`-array…",
                             () =>
                             {
                                 nodeC.Nodes.push(nodeA);
@@ -96,11 +96,11 @@ suite(
             () =>
             {
                 suite(
-                    "Checking whether the `Nodes`-property is automatically set properly, when...",
+                    "Checking whether the `Nodes`-property is automatically set properly, when…",
                     () =>
                     {
                         test(
-                            "...setting the `Parent`-property of another node...",
+                            "…setting the `Parent`-property of another node…",
                             () =>
                             {
                                 nodeB.Parent = nodeA;
@@ -110,7 +110,7 @@ suite(
                             });
 
                         test(
-                            "...adding another node to the `Nodes`-array...",
+                            "…adding another node to the `Nodes`-array…",
                             () =>
                             {
                                 nodeA.Nodes.push(nodeC);
@@ -126,7 +126,7 @@ suite(
             () =>
             {
                 test(
-                    "Checking whether `GetAllNodes()` gets all nodes recursively...",
+                    "Checking whether `GetAllNodes()` gets all nodes recursively…",
                     () =>
                     {
                         nodeA.Parent = nodeB;
@@ -158,7 +158,7 @@ suite(
                     });
 
                 test(
-                    "Checking whether the node returns itself if an ID is assigned...",
+                    "Checking whether the node returns itself if an ID is assigned…",
                     () =>
                     {
                         assert.strictEqual(id in idNode.GetObjects(), true);
@@ -166,7 +166,7 @@ suite(
                     });
 
                 test(
-                    "Checking whether nodes with IDs are recognized correctly if they are nested deeply...",
+                    "Checking whether nodes with IDs are recognized correctly if they are nested deeply…",
                     () =>
                     {
                         let rootNode: MyNode = new MyNode(

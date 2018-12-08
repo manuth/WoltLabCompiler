@@ -72,21 +72,21 @@ suite(
             () =>
             {
                 test(
-                    "Checking whether the instruction can be compiled...",
+                    "Checking whether the instruction can be compiled…",
                     async () =>
                     {
                         await compiler.Execute();
                     });
 
                 test(
-                    "Checking whether the archive has been created...",
+                    "Checking whether the archive has been created…",
                     async () =>
                     {
                         assert.strictEqual(await FileSystem.pathExists(archiveFileName), true);
                     });
 
                 test(
-                    "Checking whether the archive can be extracted...",
+                    "Checking whether the archive can be extracted…",
                     async () =>
                     {
                         await tar.extract(
@@ -97,7 +97,7 @@ suite(
                     });
 
                 test(
-                    "Checking whether all files are present inside the archive...",
+                    "Checking whether all files are present inside the archive…",
                     async () =>
                     {
                         let files: string[] = [];
@@ -158,21 +158,21 @@ suite(
                     });
 
                 test(
-                    "Checking whether the `application`-attribute is not present if the `Application` is not specified...",
+                    "Checking whether the `application`-attribute is not present if the `Application` is not specified…",
                     () =>
                     {
                         assert.strictEqual(normalDocument.documentElement.hasAttribute("application"), false);
                     });
 
                 test(
-                    "Checking whether the `application`-attribute is present if the `Application` is specified...",
+                    "Checking whether the `application`-attribute is present if the `Application` is specified…",
                     () =>
                     {
                         assert.strictEqual(applicationDocument.documentElement.hasAttribute("application"), true);
                     });
 
                 test(
-                    "Checking whether the `application`-attribute is correct...",
+                    "Checking whether the `application`-attribute is correct…",
                     () =>
                     {
                         assert.strictEqual(applicationDocument.documentElement.getAttribute("application"), application);

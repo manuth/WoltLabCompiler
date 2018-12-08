@@ -61,7 +61,7 @@ suite(
                     () =>
                     {
                         test(
-                            "Checking whether the compiler can be executed...",
+                            "Checking whether the compiler can be executed…",
                             async () =>
                             {
                                 await compiler.Execute();
@@ -69,7 +69,7 @@ suite(
                     });
 
                 suite(
-                    "Checking the integrity of the compiled file...",
+                    "Checking the integrity of the compiled file…",
                     () =>
                     {
                         let editor: XMLEditor;
@@ -79,7 +79,7 @@ suite(
                             () =>
                             {
                                 test(
-                                    "Checking whether the file is a valid xml-file...",
+                                    "Checking whether the file is a valid xml-file…",
                                     async () =>
                                     {
                                         let document: Document = new DOMParser().parseFromString((await FileSystem.readFile(tempFile.FullName)).toString());
@@ -106,7 +106,7 @@ suite(
                                             });
 
                                         test(
-                                            "Checking whether the option exists...",
+                                            "Checking whether the option exists…",
                                             () =>
                                             {
                                                 assert.strictEqual(editor.GetElementsByTag(optionTag).length, 1);
@@ -115,7 +115,7 @@ suite(
                                     });
 
                                 suite(
-                                    "Checking the integrity of the meta-data...",
+                                    "Checking the integrity of the meta-data…",
                                     () =>
                                     {
                                         let userValueTag: string;
@@ -133,7 +133,7 @@ suite(
                                             });
 
                                         test(
-                                            "Checking whether the default values are correct...",
+                                            "Checking whether the default values are correct…",
                                             () =>
                                             {
                                                 assert.strictEqual(optionEditor.HasText(userValueTag, `${option.UserDefaultValue}`), true);
@@ -142,7 +142,7 @@ suite(
                                             });
 
                                         test(
-                                            "Checking whether the registered-restriction is correct...",
+                                            "Checking whether the registered-restriction is correct…",
                                             () =>
                                             {
                                                 assert.strictEqual(optionEditor.HasText(registeredTag, option.RegisteredOnly ? "1" : "0"), true);

@@ -50,7 +50,7 @@ suite(
                     });
 
                 suite(
-                    "Copying files...",
+                    "Copying files…",
                     () =>
                     {
                         let sourceFile: TempFile;
@@ -71,7 +71,7 @@ suite(
                             });
 
                         test(
-                            "Checking whether ejs-strings are replaced when copying the file to a new location...",
+                            "Checking whether ejs-strings are replaced when copying the file to a new location…",
                             async () =>
                             {
                                 await FileSystem.writeFile(sourceFile.FullName, ejsString);
@@ -80,7 +80,7 @@ suite(
                             });
 
                         test(
-                            "Checking whether ejs-strings are replaced when overwriting the source-file...",
+                            "Checking whether ejs-strings are replaced when overwriting the source-file…",
                             async () =>
                             {
                                 await FileSystem.writeFile(sourceFile.FullName, ejsString);
@@ -90,7 +90,7 @@ suite(
                     });
 
                 suite(
-                    "Copying directories...",
+                    "Copying directories…",
                     () =>
                     {
                         let sourceDir: TempDirectory;
@@ -120,7 +120,7 @@ suite(
                             });
 
                         test(
-                            "Checking whether normal files are copied correctly...",
+                            "Checking whether normal files are copied correctly…",
                             async () =>
                             {
                                 await FileSystem.writeFile(sourceDir.MakePath(fileName), ejsString);
@@ -129,7 +129,7 @@ suite(
                             });
 
                         test(
-                            "Checking whether hidden files are copied correctly...",
+                            "Checking whether hidden files are copied correctly…",
                             async () =>
                             {
                                 await FileSystem.writeFile(sourceDir.MakePath(hiddenFileName), ejsString);
@@ -138,7 +138,7 @@ suite(
                             });
 
                         test(
-                            "Checking whether variables are replaced correctly when overwriting the source-files...",
+                            "Checking whether variables are replaced correctly when overwriting the source-files…",
                             async () =>
                             {
                                 await FileSystem.writeFile(sourceDir.MakePath(hiddenFileName), ejsString);
@@ -161,7 +161,7 @@ suite(
                     });
 
                 test(
-                    "Checking whether destination-paths are built correctly...",
+                    "Checking whether destination-paths are built correctly…",
                     () =>
                     {
                         assert.strictEqual(Path.join(compiler.DestinationPath, ...path), compiler["MakeDestinationPath"](...path));
@@ -202,7 +202,7 @@ suite(
                     });
 
                 test(
-                    "Checking whether files are compressed correctly...",
+                    "Checking whether files are compressed correctly…",
                     async () =>
                     {
                         let testDir: TempDirectory = new TempDirectory();

@@ -54,14 +54,14 @@ suite(
             () =>
             {
                 test(
-                    "Checking whether the item can be compiled...",
+                    "Checking whether the item can be compiled…",
                     async () =>
                     {
                         await compiler.Execute();
                     });
 
                 test(
-                    "Checking whether all the expected files exist...",
+                    "Checking whether all the expected files exist…",
                     async () =>
                     {
                         let files: string[] = await FileSystem.readdir(tempDir.FullName);

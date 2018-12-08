@@ -43,28 +43,28 @@ suite(
                 let document: Document;
 
                 test(
-                    "Checking whether the compiler can be executed...",
+                    "Checking whether the compiler can be executed…",
                     async () =>
                     {
                         await compiler.Execute();
                     });
 
                 test(
-                    "Checking whether the compiled file exists...",
+                    "Checking whether the compiled file exists…",
                     async () =>
                     {
                         assert.strictEqual(await FileSystem.pathExists(tempFile.FullName), true);
                     });
 
                 test(
-                    "Checking whether the compiled xml-file can be parsed...",
+                    "Checking whether the compiled xml-file can be parsed…",
                     async () =>
                     {
                         document = new DOMParser().parseFromString((await FileSystem.readFile(tempFile.FullName)).toString());
                     });
 
                 test(
-                    "Checking whether a processing-instruction for `xml` is present...",
+                    "Checking whether a processing-instruction for `xml` is present…",
                     () =>
                     {
                         assert.strictEqual(document.childNodes[0].nodeType, document.PROCESSING_INSTRUCTION_NODE);
@@ -72,7 +72,7 @@ suite(
                     });
 
                 test(
-                    "Checking whether the root-tag is set correct...",
+                    "Checking whether the root-tag is set correct…",
                     () =>
                     {
                         assert.strictEqual(document.documentElement.tagName, rootTag);

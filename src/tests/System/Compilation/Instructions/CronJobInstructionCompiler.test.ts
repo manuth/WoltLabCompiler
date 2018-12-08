@@ -69,14 +69,14 @@ suite(
             () =>
             {
                 test(
-                    "Checking whether the instruction can be compiled without an error...",
+                    "Checking whether the instruction can be compiled without an error…",
                     async () =>
                     {
                         await compiler.Execute();
                     });
 
                 test(
-                    "Checking whether the expected file exists...",
+                    "Checking whether the expected file exists…",
                     async () =>
                     {
                         assert.strictEqual(await FileSystem.pathExists(fileName), true);

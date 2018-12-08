@@ -27,7 +27,7 @@ suite(
             () =>
             {
                 test(
-                    "Checking whether the filename is set to the name of the theme if no filename is specified...",
+                    "Checking whether the filename is set to the name of the theme if no filename is specified…",
                     () =>
                     {
                         assert.strictEqual(Path.parse(themeInstruction.FileName).name, ThemeName);

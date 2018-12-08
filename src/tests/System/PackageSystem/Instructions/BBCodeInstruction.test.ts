@@ -37,7 +37,7 @@ suite(
             () =>
             {
                 test(
-                    "Checking whether `TranslationDirectory` is set to `bbcode` if no directory is specified...",
+                    "Checking whether `TranslationDirectory` is set to `bbcode` if no directory is specified…",
                     () =>
                     {
                         assert.strictEqual(bbCodeInstruction.TranslationDirectory, "bbcode");
@@ -58,28 +58,28 @@ suite(
                     });
 
                 test(
-                    "Checking whether an entry for the locale of the translations are present...",
+                    "Checking whether an entry for the locale of the translations are present…",
                     () =>
                     {
                         assert.strictEqual(locale in translations, true);
                     });
 
                 test(
-                    `Checking whether the \`${category}\`-category is present...`,
+                    `Checking whether the \`${category}\`-category is present…`,
                     () =>
                     {
                         assert.strictEqual(category in translations[locale], true);
                     });
 
                 test(
-                    `Checking whether the \`${category}.${bbCode.Name}\` translation is present...`,
+                    `Checking whether the \`${category}.${bbCode.Name}\` translation is present…`,
                     () =>
                     {
                         assert.strictEqual(`${category}.${bbCode.Name}` in translations[locale][category], true);
                     });
 
                 test(
-                    `Checking whether the translation of \`${category}.${bbCode.Name}\` is correct...`,
+                    `Checking whether the translation of \`${category}.${bbCode.Name}\` is correct…`,
                     () =>
                     {
                         assert.equal(translations[locale][category][`${category}.${bbCode.Name}`], localization[locale]);
