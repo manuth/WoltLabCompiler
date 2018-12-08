@@ -38,14 +38,14 @@ suite(
             });
 
         test(
-            "Checking whether the compiler can be executed...",
+            "Checking whether the compiler can be executed…",
             async () =>
             {
                 await compiler.Execute();
             });
 
         test(
-            "Checking whether the compiled file exists...",
+            "Checking whether the compiled file exists…",
             async () =>
             {
                 assert.strictEqual(await FileSystem.pathExists(fileName), true);

@@ -64,7 +64,7 @@ suite(
                     () =>
                     {
                         test(
-                            "Checking whether the compiler can be executed...",
+                            "Checking whether the compiler can be executed…",
                             async () =>
                             {
                                 await compiler.Execute();
@@ -72,7 +72,7 @@ suite(
                     });
 
                 suite(
-                    "Checking the integrity of the compiled file...",
+                    "Checking the integrity of the compiled file…",
                     () =>
                     {
                         let editor: XMLEditor;
@@ -82,7 +82,7 @@ suite(
                             () =>
                             {
                                 test(
-                                    "Checking whether the file is a valid xml-file...",
+                                    "Checking whether the file is a valid xml-file…",
                                     async () =>
                                     {
                                         let document: Document = new DOMParser().parseFromString((await FileSystem.readFile(tempFile.FullName)).toString());
@@ -109,7 +109,7 @@ suite(
                                             });
 
                                         test(
-                                            "Checking whether the option exists...",
+                                            "Checking whether the option exists…",
                                             () =>
                                             {
                                                 assert.strictEqual(editor.GetElementsByTag(optionTag).length, 1);
@@ -118,7 +118,7 @@ suite(
                                     });
 
                                 suite(
-                                    "Checking the integrity of the meta-data...",
+                                    "Checking the integrity of the meta-data…",
                                     () =>
                                     {
                                         let requiredTag: string;
@@ -140,21 +140,21 @@ suite(
                                             });
 
                                         test(
-                                            'Checking whether the "Required"-property is correct...',
+                                            'Checking whether the "Required"-property is correct…',
                                             () =>
                                             {
                                                 assert.strictEqual(optionEditor.HasText(requiredTag, option.Required ? "1" : "0"), true);
                                             });
 
                                         test(
-                                            'Checking whether the "AskOnRegistration"-property is correct...',
+                                            'Checking whether the "AskOnRegistration"-property is correct…',
                                             () =>
                                             {
                                                 assert.strictEqual(optionEditor.HasText(registrationTag, option.AskOnRegistration ? "1" : "0"), true);
                                             });
 
                                         test(
-                                            "Checking whether the permissions are set correctly...",
+                                            "Checking whether the permissions are set correctly…",
                                             () =>
                                             {
                                                 assert.strictEqual(optionEditor.HasText(editTag, option.EditPermissions.toString()), true);
@@ -162,14 +162,14 @@ suite(
                                             });
 
                                         test(
-                                            'Checking whether the "Searchable"-property is correct...',
+                                            'Checking whether the "Searchable"-property is correct…',
                                             () =>
                                             {
                                                 assert.strictEqual(optionEditor.HasText(searchableTag, option.Searchable ? "1" : "0"), true);
                                             });
 
                                         test(
-                                            "Checking whether the output-class is correct...",
+                                            "Checking whether the output-class is correct…",
                                             () =>
                                             {
                                                 assert.strictEqual(optionEditor.HasText(outputTag, option.OutputClass), true);

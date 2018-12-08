@@ -21,7 +21,7 @@ suite(
                     });
 
                 test(
-                    "Checking whether the `Node`-property is set correctly after initializing a new `NodeItem`...",
+                    "Checking whether the `Node`-property is set correctly after initializing a new `NodeItem`…",
                     () =>
                     {
                         assert.strictEqual(node.Item.Node, node);

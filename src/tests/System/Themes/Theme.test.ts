@@ -161,7 +161,7 @@ suite(
             () =>
             {
                 test(
-                    "Checking whether the `Author`-property equals the author of the package if no author is specified...",
+                    "Checking whether the `Author`-property equals the author of the package if no author is specified…",
                     () =>
                     {
                         assert.strictEqual(theme.Author.Name, author.Name);
@@ -174,7 +174,7 @@ suite(
             () =>
             {
                 test(
-                    "Checking whether the `CustomScss`-property equals the content of the scss-file...",
+                    "Checking whether the `CustomScss`-property equals the content of the scss-file…",
                     () => assert.strictEqual(theme.CustomScss, customScss));
             });
 
@@ -195,18 +195,18 @@ suite(
                     });
 
                 suite(
-                    "Testing whether special scss-variables are added to `ScssOverride`...",
+                    "Testing whether special scss-variables are added to `ScssOverride`…",
                     () =>
                     {
                         test(
-                            "Checking whether special scss-variables written in scss are added...",
+                            "Checking whether special scss-variables written in scss are added…",
                             () =>
                             {
                                 assert.strictEqual(theme.ScssOverride.indexOf(`$${specialScssVariable.Name}: ${specialScssVariable.Input};`) >= 0, true);
                             });
 
                         test(
-                            "Checking whether special scss-variables written in json are added...",
+                            "Checking whether special scss-variables written in json are added…",
                             () =>
                             {
                                 assert.strictEqual(theme.ScssOverride.indexOf(`$${specialJsonVariable.Name}: ${specialJsonVariable.Input};`) >= 0, true);
@@ -231,18 +231,18 @@ suite(
                     });
 
                 suite(
-                    "Testing whether normal variables are added to to `Variables`...",
+                    "Testing whether normal variables are added to to `Variables`…",
                     () =>
                     {
                         test(
-                            "Checking whether variables written in scss are added...",
+                            "Checking whether variables written in scss are added…",
                             () =>
                             {
                                 assert.strictEqual(scssVariable.Name in theme.Variables, true);
                             });
 
                         test(
-                            "Checking whether variables written in json are added...",
+                            "Checking whether variables written in json are added…",
                             () =>
                             {
                                 assert.strictEqual(jsonVariable.Name in theme.Variables, true);
@@ -250,7 +250,7 @@ suite(
                     });
 
                 suite(
-                    "Testing whether normal variables are parsed correctly...",
+                    "Testing whether normal variables are parsed correctly…",
                     () =>
                     {
                         for (let variable of variables)
@@ -258,7 +258,7 @@ suite(
                             if (!variable.Special)
                             {
                                 test(
-                                    `Checking whether "${variable.Input}" is parsed correctly (expecting "${variable.Output}")...`,
+                                    `Checking whether "${variable.Input}" is parsed correctly (expecting "${variable.Output}")…`,
                                     () =>
                                     {
                                         assert.strictEqual(theme.Variables[variable.Name], variable.Output);

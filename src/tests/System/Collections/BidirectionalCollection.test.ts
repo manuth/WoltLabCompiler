@@ -52,7 +52,7 @@ suite(
             });
 
         test(
-            "Checking whether the parent is set automatically...",
+            "Checking whether the parent is set automatically…",
             () =>
             {
                 collection.push(child);
@@ -60,7 +60,7 @@ suite(
             });
 
         test(
-            "Checking whether the parent is unset automatically...",
+            "Checking whether the parent is unset automatically…",
             () =>
             {
                 collection.pop();

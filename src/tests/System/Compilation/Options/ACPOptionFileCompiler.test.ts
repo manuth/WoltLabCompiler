@@ -60,7 +60,7 @@ suite(
                     () =>
                     {
                         test(
-                            "Checking whether the compiler can be executed...",
+                            "Checking whether the compiler can be executed…",
                             async () =>
                             {
                                 await compiler.Execute();
@@ -68,7 +68,7 @@ suite(
                     });
 
                 suite(
-                    "Checking the integrity of the compiled file...",
+                    "Checking the integrity of the compiled file…",
                     () =>
                     {
                         let editor: XMLEditor;
@@ -78,7 +78,7 @@ suite(
                             () =>
                             {
                                 test(
-                                    "Checking whether the file is a valid xml-file...",
+                                    "Checking whether the file is a valid xml-file…",
                                     async () =>
                                     {
                                         let document: Document = new DOMParser().parseFromString((await FileSystem.readFile(tempFile.FullName)).toString());
@@ -87,7 +87,7 @@ suite(
                             });
 
                         suite(
-                            "Checking the integrity of the option...",
+                            "Checking the integrity of the option…",
                             () =>
                             {
                                 let optionEditor: XMLEditor;
@@ -105,7 +105,7 @@ suite(
                                             });
 
                                         test(
-                                            "Checking whether the option exists...",
+                                            "Checking whether the option exists…",
                                             () =>
                                             {
                                                 assert.strictEqual(editor.GetElementsByTag(optionTag).length, 1);
@@ -114,7 +114,7 @@ suite(
                                     });
 
                                 suite(
-                                    "Checking the integrity of the meta-data...",
+                                    "Checking the integrity of the meta-data…",
                                     () =>
                                     {
                                         let visibleTag: string;
@@ -130,21 +130,21 @@ suite(
                                             });
 
                                         test(
-                                            "Checking whether the visibility is set correctly...",
+                                            "Checking whether the visibility is set correctly…",
                                             () =>
                                             {
                                                 assert.strictEqual(optionEditor.HasText(visibleTag, option.Visible ? "0" : "1"), true);
                                             });
 
                                         test(
-                                            "Checking whether the localization-support is set correctly...",
+                                            "Checking whether the localization-support is set correctly…",
                                             () =>
                                             {
                                                 assert.strictEqual(optionEditor.HasText(localizableTag, option.Localizable ? "1" : "0"), true);
                                             });
 
                                         test(
-                                            "Checking whether the localization-requirement is set correctly...",
+                                            "Checking whether the localization-requirement is set correctly…",
                                             () =>
                                             {
                                                 assert.strictEqual(optionEditor.HasText(forceLocalizationTag, option.ForceLocalization ? "1" : "0"), true);

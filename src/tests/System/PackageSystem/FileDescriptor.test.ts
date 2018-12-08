@@ -41,7 +41,7 @@ suite(
             });
 
         suite(
-            "Checking whether absolute paths are handled correctly...",
+            "Checking whether absolute paths are handled correctly…",
             () =>
             {
                 let tempFile: TempFile;
@@ -60,14 +60,14 @@ suite(
                     });
 
                 test(
-                    "Checking whether the `Source` points to the correct file...",
+                    "Checking whether the `Source` points to the correct file…",
                     async () =>
                     {
                         assert.strictEqual((await FileSystem.readFile(fileDescriptor.Source)).toString(), content);
                     });
 
                 test(
-                    "Checking whether the `FileName` automatically is set to the basename of the source if no filename is specified...",
+                    "Checking whether the `FileName` automatically is set to the basename of the source if no filename is specified…",
                     () =>
                     {
                         assert.strictEqual(fileDescriptor.FileName, Path.basename(fileName));
@@ -75,7 +75,7 @@ suite(
             });
 
         suite(
-            "Checking whether relative paths are handled correctly...",
+            "Checking whether relative paths are handled correctly…",
             () =>
             {
                 let relativeFile: string;
@@ -89,14 +89,14 @@ suite(
                     });
 
                 test(
-                    "Checking whether `Source` points to the correct file...",
+                    "Checking whether `Source` points to the correct file…",
                     async () =>
                     {
                         assert.strictEqual((await FileSystem.readFile(fileDescriptor.Source)).toString(), content);
                     });
 
                 test(
-                    "Checking whether `Source` points to the correct file even if the working directory is changed...",
+                    "Checking whether `Source` points to the correct file even if the working directory is changed…",
                     async () =>
                     {
                         let tempDir: TempDirectory = new TempDirectory();
@@ -109,7 +109,7 @@ suite(
                     });
 
                 test(
-                    "Checking whether `FileName` is set to the relative path if no filename is specified...",
+                    "Checking whether `FileName` is set to the relative path if no filename is specified…",
                     () =>
                     {
                         assert.strictEqual(fileDescriptor.FileName, Path.normalize(fileName));
@@ -117,7 +117,7 @@ suite(
             });
 
         suite(
-            "Checking whether relative paths outside of the current directory are handled correctly...",
+            "Checking whether relative paths outside of the current directory are handled correctly…",
             () =>
             {
                 let current: string;
@@ -143,14 +143,14 @@ suite(
                     });
 
                 test(
-                    "Checking whether `Source` points to the correct file...",
+                    "Checking whether `Source` points to the correct file…",
                     async () =>
                     {
                         assert.strictEqual((await FileSystem.readFile(fileDescriptor.Source)).toString(), content);
                     });
 
                 test(
-                    "Checking whether `FileName` is set to the basename of the path if no filename is specified...",
+                    "Checking whether `FileName` is set to the basename of the path if no filename is specified…",
                     () =>
                     {
                         assert.strictEqual(fileDescriptor.FileName, Path.basename(fileName));

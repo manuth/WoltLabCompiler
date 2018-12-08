@@ -54,28 +54,28 @@ suite(
             () =>
             {
                 test(
-                    "Checking whether an entry for the locale of the translations is present...",
+                    "Checking whether an entry for the locale of the translations is present…",
                     () =>
                     {
                         assert.strictEqual(locale in translations, true);
                     });
 
                 test(
-                    "Checking whether categories are created correctly...",
+                    "Checking whether categories are created correctly…",
                     () =>
                     {
                         assert.strictEqual(category in translations[locale], true);
                     });
 
                 test(
-                    "Checking whether keys are created correctly...",
+                    "Checking whether keys are created correctly…",
                     () =>
                     {
                         assert.strictEqual(`${category}.${messageName}` in translations[locale][category], true);
                     });
 
                 test(
-                    "Checking whether translations are created correctly...",
+                    "Checking whether translations are created correctly…",
                     () =>
                     {
                         assert.strictEqual(translations[locale][category][`${category}.${messageName}`], messageValue);

@@ -29,7 +29,7 @@ suite(
             () =>
             {
                 test(
-                    "Checking whether the option-type can be set to an `OptionType` correctly...",
+                    "Checking whether the option-type can be set to an `OptionType` correctly…",
                     () =>
                     {
                         let value = OptionType.TextArea;
@@ -38,7 +38,7 @@ suite(
                     });
 
                 test(
-                    "Checking whether the option-type can be set to a string...",
+                    "Checking whether the option-type can be set to a string…",
                     () =>
                     {
                         let value = "foo";

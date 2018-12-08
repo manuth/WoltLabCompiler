@@ -53,21 +53,21 @@ suite(
             () =>
             {
                 test(
-                    "Checking whether the component can be compiled...",
+                    "Checking whether the component can be compiled…",
                     async () =>
                     {
                         await compiler.Execute();
                     });
 
                 test(
-                    "Checking whether the compiled file exists...",
+                    "Checking whether the compiled file exists…",
                     async () =>
                     {
                         assert.strictEqual(await FileSystem.pathExists(tempFile.FullName), true);
                     });
 
                 test(
-                    "Checking whether the EJS-variable has been replaced...",
+                    "Checking whether the EJS-variable has been replaced…",
                     async () =>
                     {
                         let document = new DOMParser().parseFromString((await FileSystem.readFile(tempFile.FullName)).toString());

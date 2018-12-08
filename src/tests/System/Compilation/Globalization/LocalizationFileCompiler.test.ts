@@ -74,14 +74,14 @@ suite(
                     () =>
                     {
                         test(
-                            "Checking whether the item can be compiled...",
+                            "Checking whether the item can be compiled…",
                             async () =>
                             {
                                 await compiler.Execute();
                             });
 
                         test(
-                            "Checking whether the expected file exists...",
+                            "Checking whether the expected file exists…",
                             async () =>
                             {
                                 assert.strictEqual(await FileSystem.pathExists(tempFile.FullName), true);
@@ -89,7 +89,7 @@ suite(
                     });
 
                 suite(
-                    "Testing the integrity of the compiled file...",
+                    "Testing the integrity of the compiled file…",
                     () =>
                     {
                         let document: Document;
@@ -107,25 +107,25 @@ suite(
                             });
 
                         suite(
-                            "Testing the XML-Document...",
+                            "Testing the XML-Document…",
                             () =>
                             {
                                 test(
-                                    "Checking whether the tag-name is correct...",
+                                    "Checking whether the tag-name is correct…",
                                     () =>
                                     {
                                         assert.strictEqual(rootEditor.TagName, rootTag);
                                     });
 
                                 test(
-                                    "Checking whether the language is specified...",
+                                    "Checking whether the language is specified…",
                                     () =>
                                     {
                                         assert.strictEqual(rootEditor.HasAttribute(languageAttribute), true);
                                     });
 
                                 test(
-                                    "Checking whether the language is specified correctly...",
+                                    "Checking whether the language is specified correctly…",
                                     () =>
                                     {
                                         assert.strictEqual(rootEditor.GetAttribute(languageAttribute), locale);
@@ -133,7 +133,7 @@ suite(
                             });
 
                         suite(
-                            "Checking the integrity of the categories...",
+                            "Checking the integrity of the categories…",
                             () =>
                             {
                                 let categoryTag: string;
@@ -152,7 +152,7 @@ suite(
                                     () =>
                                     {
                                         test(
-                                            "Checking whether the category exists...",
+                                            "Checking whether the category exists…",
                                             () =>
                                             {
                                                 assert.strictEqual(rootEditor.HasTag(categoryTag, true), true);
@@ -160,7 +160,7 @@ suite(
                                             });
 
                                         test(
-                                            "Checking whether the integrity of the name of the category...",
+                                            "Checking whether the integrity of the name of the category…",
                                             () =>
                                             {
                                                 assert.strictEqual(categoryEditor.HasAttribute(nameAttribute, category), true);
@@ -168,7 +168,7 @@ suite(
                                     });
 
                                 suite(
-                                    "Checking the integrity of the translations...",
+                                    "Checking the integrity of the translations…",
                                     () =>
                                     {
                                         let itemTag: string;
@@ -181,7 +181,7 @@ suite(
                                             });
 
                                         test(
-                                            "Checking whether the translation exists...",
+                                            "Checking whether the translation exists…",
                                             () =>
                                             {
                                                 assert.strictEqual(categoryEditor.HasTag(itemTag, true), true);
@@ -189,14 +189,14 @@ suite(
                                             });
 
                                         test(
-                                            "Checking whether the integrity of the name of the translation...",
+                                            "Checking whether the integrity of the name of the translation…",
                                             () =>
                                             {
                                                 assert.strictEqual(itemEditor.HasAttribute(nameAttribute, `${category}.${messageName}`), true);
                                             });
 
                                         test(
-                                            "Checking the integrity of the text of the translation...",
+                                            "Checking the integrity of the text of the translation…",
                                             () =>
                                             {
                                                 assert.strictEqual(itemEditor.TextContent, messageValue);

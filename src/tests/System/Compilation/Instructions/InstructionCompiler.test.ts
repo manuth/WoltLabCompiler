@@ -80,7 +80,7 @@ suite(
             () =>
             {
                 test(
-                    "Checking whether the item can be compiled...",
+                    "Checking whether the item can be compiled…",
                     async () =>
                     {
                         await compiler.Execute();
@@ -100,14 +100,14 @@ suite(
                     });
 
                 test(
-                    "Checking whether members of the item are replaced using ejs...",
+                    "Checking whether members of the item are replaced using ejs…",
                     () =>
                     {
                         assert.strictEqual(new RegExp(`^${type}$`, "gm").test(content), true);
                     });
 
                 test(
-                    "Checking whether $-substitutions are replaced using ejs...",
+                    "Checking whether $-substitutions are replaced using ejs…",
                     () =>
                     {
                         assert.strictEqual(content.includes(`${object}`), true);
@@ -127,21 +127,21 @@ suite(
                     });
 
                 test(
-                    "Checking whether the tag-name is correct...",
+                    "Checking whether the tag-name is correct…",
                     () =>
                     {
                         assert.strictEqual(document.documentElement.tagName, "instruction");
                     });
 
                 test(
-                    "Checking whether the type-attribute is set correctly...",
+                    "Checking whether the type-attribute is set correctly…",
                     () =>
                     {
                         assert.strictEqual(document.documentElement.getAttribute("type"), compiler.Item.Type);
                     });
 
                 test(
-                    "Checking whether the execution-mode is set correctly...",
+                    "Checking whether the execution-mode is set correctly…",
                     () =>
                     {
                         if (compiler.Item.Standalone)
@@ -155,7 +155,7 @@ suite(
                     });
 
                 test(
-                    "Checking whether the filename is set correctly...",
+                    "Checking whether the filename is set correctly…",
                     () =>
                     {
                         assert.strictEqual(document.documentElement.textContent, compiler.Item.FullName);

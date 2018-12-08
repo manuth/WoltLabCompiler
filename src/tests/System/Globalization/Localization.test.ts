@@ -36,7 +36,7 @@ suite(
                     });
 
                 test(
-                    "Checking whether the locales of the `Localization` are evaluated correctly...",
+                    "Checking whether the locales of the `Localization` are evaluated correctly…",
                     () =>
                     {
                         assert.strictEqual(locales1.every((locale: string) => localization1.GetLocales().includes(locale)), true);

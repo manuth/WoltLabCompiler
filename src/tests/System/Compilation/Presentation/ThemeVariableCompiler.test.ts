@@ -48,18 +48,18 @@ suite(
             () =>
             {
                 suite(
-                    "General tests...",
+                    "General tests…",
                     () =>
                     {
                         test(
-                            "Checking whether the compiler executes without any errors...",
+                            "Checking whether the compiler executes without any errors…",
                             async () =>
                             {
                                 await compiler.Execute();
                             });
 
                         test(
-                            "Checking whether the compiled file exists...",
+                            "Checking whether the compiled file exists…",
                             async () =>
                             {
                                 assert.strictEqual(await FileSystem.pathExists(tempFile.FullName), true);
@@ -67,7 +67,7 @@ suite(
                     });
 
                 suite(
-                    "Testing the integrity of the file...",
+                    "Testing the integrity of the file…",
                     () =>
                     {
                         let document: Document;
@@ -114,11 +114,11 @@ suite(
                             });
 
                         suite(
-                            "Testing the XML-Document...",
+                            "Testing the XML-Document…",
                             () =>
                             {
                                 test(
-                                    "Checking whether the tag-name is correct...",
+                                    "Checking whether the tag-name is correct…",
                                     () =>
                                     {
                                         assert.strictEqual(rootElement.tagName, rootTag);
@@ -126,18 +126,18 @@ suite(
                             });
 
                         suite(
-                            "Testing variables...",
+                            "Testing variables…",
                             () =>
                             {
                                 test(
-                                    "Checking whether simple the values of simple variables are stored correctly...",
+                                    "Checking whether simple the values of simple variables are stored correctly…",
                                     () =>
                                     {
                                         assert.strictEqual(variableElement.textContent, value);
                                     });
 
                                 test(
-                                    "Checking whether scss-code is stored correctly...",
+                                    "Checking whether scss-code is stored correctly…",
                                     () =>
                                     {
                                         assert.strictEqual(scssElement.textContent, scssCode);

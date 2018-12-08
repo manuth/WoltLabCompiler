@@ -35,7 +35,7 @@ suite(
                     () =>
                     {
                         test(
-                            "Checking whether the compiler can be executed...",
+                            "Checking whether the compiler can be executed…",
                             async () =>
                             {
                                 await compiler.Execute();
@@ -43,7 +43,7 @@ suite(
                     });
 
                 suite(
-                    "Checking the integrity of the file...",
+                    "Checking the integrity of the file…",
                     () =>
                     {
                         let editor: XMLEditor;
@@ -53,7 +53,7 @@ suite(
                             () =>
                             {
                                 test(
-                                    "Checking whether the content of the compiled file is valid xml...",
+                                    "Checking whether the content of the compiled file is valid xml…",
                                     async () =>
                                     {
                                         let document: Document = new DOMParser().parseFromString((await FileSystem.readFile(tempFile.FullName)).toString());
@@ -62,11 +62,11 @@ suite(
                             });
 
                         suite(
-                            "Checking the integrity of the meta-data...",
+                            "Checking the integrity of the meta-data…",
                             () =>
                             {
                                 test(
-                                    "Checking whether the import- and the delete-list are present...",
+                                    "Checking whether the import- and the delete-list are present…",
                                     () =>
                                     {
                                         assert.strictEqual(editor.HasTag("import", true), true);

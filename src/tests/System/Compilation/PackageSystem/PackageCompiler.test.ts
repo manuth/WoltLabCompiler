@@ -44,14 +44,14 @@ suite(
             () =>
             {
                 test(
-                    "Checking whether the instruction can be executed...",
+                    "Checking whether the instruction can be executed…",
                     async () =>
                     {
                         await compiler.Execute();
                     });
 
                 test(
-                    "Checking whether the tar-archive can be extracted...",
+                    "Checking whether the tar-archive can be extracted…",
                     async () =>
                     {
                         await tar.extract(
@@ -62,7 +62,7 @@ suite(
                     });
 
                 test(
-                    "Checking whether the package-manifest exists inside the tar-archive...",
+                    "Checking whether the package-manifest exists inside the tar-archive…",
                     async () =>
                     {
                         assert.strictEqual(await FileSystem.pathExists(archiveDir.MakePath("package.xml")), true);

@@ -47,7 +47,7 @@ suite("TimePeriod",
                     });
 
                 test(
-                    "Checking whether the `TimePeriod.Yearly`-period is triggered every year...",
+                    "Checking whether the `TimePeriod.Yearly`-period is triggered every year…",
                     () =>
                     {
                         endDate.setFullYear(endDate.getFullYear() + 1);
@@ -68,7 +68,7 @@ suite("TimePeriod",
                     });
 
                 test(
-                    "Checking whether the `TimePeriod.Monthly`-period is triggered every month...",
+                    "Checking whether the `TimePeriod.Monthly`-period is triggered every month…",
                     () =>
                     {
                         endDate.setMonth(endDate.getMonth() + 1);
@@ -89,7 +89,7 @@ suite("TimePeriod",
                     });
 
                 test(
-                    "Checking whether the `TimePeriod.Weekly`-period is triggered every week...",
+                    "Checking whether the `TimePeriod.Weekly`-period is triggered every week…",
                     () =>
                     {
                         endDate.setDate(endDate.getDate() + 7);
@@ -110,7 +110,7 @@ suite("TimePeriod",
                     });
 
                 test(
-                    "Checking whether the `TimePeriod.Daily`-period is triggered every day...",
+                    "Checking whether the `TimePeriod.Daily`-period is triggered every day…",
                     () =>
                     {
                         endDate.setDate(endDate.getDate() + 1);
@@ -131,7 +131,7 @@ suite("TimePeriod",
                     });
 
                 test(
-                    "Checking whether the `TimePeriod.Hourly`-period is triggered every hour...",
+                    "Checking whether the `TimePeriod.Hourly`-period is triggered every hour…",
                     () =>
                     {
                         endDate.setHours(endDate.getHours() + 1);

@@ -44,18 +44,18 @@ suite(
             () =>
             {
                 suite(
-                    "General tests...",
+                    "General tests…",
                     () =>
                     {
                         test(
-                            "Checking whether the item can be compiled...",
+                            "Checking whether the item can be compiled…",
                             async () =>
                             {
                                 await compiler.Execute();
                             });
 
                         test(
-                            "Checking whether the compiled file exists...",
+                            "Checking whether the compiled file exists…",
                             async () =>
                             {
                                 assert.strictEqual(await FileSystem.pathExists(tempFile.FullName), true);
@@ -63,7 +63,7 @@ suite(
                     });
 
                 suite(
-                    "Testing the integrity of the compiled file...",
+                    "Testing the integrity of the compiled file…",
                     () =>
                     {
                         let document: Document;
@@ -75,21 +75,21 @@ suite(
                             });
 
                         test(
-                            "Checking whether the namespace is correct...",
+                            "Checking whether the namespace is correct…",
                             () =>
                             {
                                 assert.strictEqual(document.documentElement.getAttribute("xmlns"), namespace);
                             });
 
                         test(
-                            "Checking whether the schema-instance is correct...",
+                            "Checking whether the schema-instance is correct…",
                             () =>
                             {
                                 assert.strictEqual(document.documentElement.getAttribute("xmlns:xsi"), "http://www.w3.org/2001/XMLSchema-instace");
                             });
 
                         test(
-                            "Checking whether the schema-location is correct...",
+                            "Checking whether the schema-location is correct…",
                             () =>
                             {
                                 assert.strictEqual(document.documentElement.getAttribute("xsi:schemaLocation"), `${namespace} ${schemaLocation}`);

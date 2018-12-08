@@ -40,11 +40,11 @@ suite(
             () =>
             {
                 suite(
-                    "Checking whether the `Collection`-property is automatically set properly, when...",
+                    "Checking whether the `Collection`-property is automatically set properly, when…",
                     () =>
                     {
                         test(
-                            "...setting the `Collection`-property...",
+                            "…setting the `Collection`-property…",
                             () =>
                             {
                                 instruction.Collection = $package.InstallSet;
@@ -52,7 +52,7 @@ suite(
                             });
 
                         test(
-                            "...setting the `Collection`-property to `null`...",
+                            "…setting the `Collection`-property to `null`…",
                             () =>
                             {
                                 instruction.Collection = null;
@@ -60,7 +60,7 @@ suite(
                             });
 
                         test(
-                            "...adding the instruction to an `InstructionSet`...",
+                            "…adding the instruction to an `InstructionSet`…",
                             () =>
                             {
                                 $package.InstallSet.push(instruction);
@@ -68,7 +68,7 @@ suite(
                             });
 
                         test(
-                            "...removing the instruction from the `InstructionSet`...",
+                            "…removing the instruction from the `InstructionSet`…",
                             () =>
                             {
                                 $package.InstallSet.pop();
@@ -88,7 +88,7 @@ suite(
                     });
 
                 test(
-                    "Checking whether the `DestinationRoot` is correct...",
+                    "Checking whether the `DestinationRoot` is correct…",
                     () =>
                     {
                         assert.strictEqual(instruction.DestinationRoot, $package.InstallSet.Directory);
@@ -100,7 +100,7 @@ suite(
             () =>
             {
                 test(
-                    "Checking whether the `FullName`-property is correct...",
+                    "Checking whether the `FullName`-property is correct…",
                     () =>
                     {
                         assert.strictEqual(

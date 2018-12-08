@@ -27,7 +27,7 @@ suite(
             () =>
             {
                 test(
-                    "Checking whether the `FileName` is set to `Source` automatically...",
+                    "Checking whether the `FileName` is set to `Source` automatically…",
                     () =>
                     {
                         assert.strictEqual(instruction.FileName, instruction.Source);

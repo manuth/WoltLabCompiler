@@ -73,11 +73,11 @@ suite(
             () =>
             {
                 suite(
-                    "General tests...",
+                    "General tests…",
                     () =>
                     {
                         test(
-                            "Checking whether the instruction can be compiled without an error...",
+                            "Checking whether the instruction can be compiled without an error…",
                             async () =>
                             {
                                 await compiler.Execute();
@@ -85,7 +85,7 @@ suite(
                     });
 
                 suite(
-                    "Testing the integrity of the created file...",
+                    "Testing the integrity of the created file…",
                     () =>
                     {
                         let importEditor: XMLEditor;
@@ -95,7 +95,7 @@ suite(
                             () =>
                             {
                                 test(
-                                    "Checking whether the content of the compiled file is valid xml...",
+                                    "Checking whether the content of the compiled file is valid xml…",
                                     async () =>
                                     {
                                         let document: Document = new DOMParser().parseFromString((await FileSystem.readFile(tempFile.FullName)).toString());
@@ -104,7 +104,7 @@ suite(
                             });
 
                         suite(
-                            "Checking the integrity of the cron-job...",
+                            "Checking the integrity of the cron-job…",
                             () =>
                             {
                                 let cronJobTag: string;
@@ -121,7 +121,7 @@ suite(
                                     () =>
                                     {
                                         test(
-                                            "Checking whether the cron-job is present...",
+                                            "Checking whether the cron-job is present…",
                                             () =>
                                             {
                                                 assert.strictEqual(importEditor.HasTag(cronJobTag, true), true);
@@ -166,21 +166,21 @@ suite(
                                             });
 
                                         test(
-                                            "Checking the name of the cron-job...",
+                                            "Checking the name of the cron-job…",
                                             () =>
                                             {
                                                 assert.strictEqual(cronJobEditor.GetAttribute(nameAttribute), cronJobName);
                                             });
 
                                         test(
-                                            "Checking the class-name of the cron-job...",
+                                            "Checking the class-name of the cron-job…",
                                             () =>
                                             {
                                                 assert.strictEqual(cronJobEditor.HasText(classTag, className), true);
                                             });
 
                                         test(
-                                            "Checking whether the localized description is correct...",
+                                            "Checking whether the localized description is correct…",
                                             () =>
                                             {
                                                 for (let editor of cronJobEditor.GetChildrenByTag(descriptionTag))
@@ -195,7 +195,7 @@ suite(
                                             });
 
                                         test(
-                                            "Checking whether the permission-settings are correct...",
+                                            "Checking whether the permission-settings are correct…",
                                             () =>
                                             {
                                                 assert.strictEqual(cronJobEditor.HasText(disableTag, allowDisable ? "1" : "0"), true);
@@ -203,14 +203,14 @@ suite(
                                             });
 
                                         test(
-                                            "Checking whether the options are correct...",
+                                            "Checking whether the options are correct…",
                                             () =>
                                             {
                                                 assert.strictEqual(cronJobEditor.GetText(optionsTag), options.join(","));
                                             });
 
                                         test(
-                                            "Checking whether the time-period is correct...",
+                                            "Checking whether the time-period is correct…",
                                             () =>
                                             {
                                                 assert.strictEqual(cronJobEditor.HasText(minuteTag, period.Minute), true);

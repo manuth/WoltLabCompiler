@@ -98,7 +98,7 @@ suite(
                     () =>
                     {
                         test(
-                            "Checking whether the item can be compiled...",
+                            "Checking whether the item can be compiled…",
                             async () =>
                             {
                                 await compiler.Execute();
@@ -106,7 +106,7 @@ suite(
                     });
 
                 suite(
-                    "Testing the integrity of the created file...",
+                    "Testing the integrity of the created file…",
                     () =>
                     {
                         let importEditor: XMLEditor;
@@ -116,7 +116,7 @@ suite(
                             () =>
                             {
                                 test(
-                                    "Checking whether the content of the compiled file is valid xml...",
+                                    "Checking whether the content of the compiled file is valid xml…",
                                     async () =>
                                     {
                                         let document = new DOMParser().parseFromString((await FileSystem.readFile(tempFile.FullName)).toString());
@@ -125,7 +125,7 @@ suite(
                             });
 
                         suite(
-                            "Checking the integrity of imported bb-codes...",
+                            "Checking the integrity of imported bb-codes…",
                             () =>
                             {
                                 let bbCodeTag: string;
@@ -145,7 +145,7 @@ suite(
                                     () =>
                                     {
                                         test(
-                                            "Checking whether at least one bb-code exists...",
+                                            "Checking whether at least one bb-code exists…",
                                             () =>
                                             {
                                                 assert.strictEqual(importEditor.HasTag(bbCodeTag), true);
@@ -154,7 +154,7 @@ suite(
                                     });
 
                                 suite(
-                                    "Checking the integrity of common bb-codes...",
+                                    "Checking the integrity of common bb-codes…",
                                     () =>
                                     {
                                         let bbCodeEditor: XMLEditor;
@@ -177,7 +177,7 @@ suite(
                                             () =>
                                             {
                                                 test(
-                                                    "Checking whether the common bb-code is present...",
+                                                    "Checking whether the common bb-code is present…",
                                                     () =>
                                                     {
                                                         let matches = bbCodeEditors.filter(
@@ -192,7 +192,7 @@ suite(
                                             });
 
                                         suite(
-                                            "Checking the integrity of the meta-data...",
+                                            "Checking the integrity of the meta-data…",
                                             () =>
                                             {
                                                 test(
@@ -203,21 +203,21 @@ suite(
                                                     });
 
                                                 test(
-                                                    "Checking the integrity of the icon-property...",
+                                                    "Checking the integrity of the icon-property…",
                                                     () =>
                                                     {
                                                         assert.strictEqual(bbCodeEditor.HasText(iconTag, icon), true);
                                                     });
 
                                                 test(
-                                                    "Checking the integrity of the isBlockElement-property...",
+                                                    "Checking the integrity of the isBlockElement-property…",
                                                     () =>
                                                     {
                                                         assert.strictEqual(bbCodeEditor.HasText(isBlockElementTag, isBlockElement ? "1" : "0"), true);
                                                     });
 
                                                 test(
-                                                    "Checking the integrity of the parseContent-property...",
+                                                    "Checking the integrity of the parseContent-property…",
                                                     () =>
                                                     {
                                                         assert.strictEqual(bbCodeEditor.HasText(parseContentTag, parseContent ? "0" : "1"), true);
@@ -225,7 +225,7 @@ suite(
                                             });
 
                                         suite(
-                                            "Checking the integrity of the attributes...",
+                                            "Checking the integrity of the attributes…",
                                             () =>
                                             {
                                                 let attributeEditor: XMLEditor;
@@ -246,7 +246,7 @@ suite(
                                                             });
 
                                                         test(
-                                                            "Checking the integrity of the attributes-property...",
+                                                            "Checking the integrity of the attributes-property…",
                                                             () =>
                                                             {
                                                                 assert.strictEqual(bbCodeEditor.HasTag(attributesTag, true), true);
@@ -254,7 +254,7 @@ suite(
                                                             });
 
                                                         test(
-                                                            "Checking whether at least one attribute is present...",
+                                                            "Checking whether at least one attribute is present…",
                                                             () =>
                                                             {
                                                                 let attributeEditors = attributesEditor.GetChildrenByTag(attributeTag);
@@ -264,7 +264,7 @@ suite(
                                                     });
 
                                                 suite(
-                                                    "Checking the integrity of the meta-data...",
+                                                    "Checking the integrity of the meta-data…",
                                                     () =>
                                                     {
                                                         let requiredTag: string;
@@ -327,7 +327,7 @@ suite(
                                     });
 
                                 suite(
-                                    "Checking the integrity of bb-codes based on PHP-classes...",
+                                    "Checking the integrity of bb-codes based on PHP-classes…",
                                     () =>
                                     {
                                         let bbCodeEditor: XMLEditor;
@@ -344,7 +344,7 @@ suite(
                                             () =>
                                             {
                                                 test(
-                                                    "Checking whether the class-bb-code is present...",
+                                                    "Checking whether the class-bb-code is present…",
                                                     () =>
                                                     {
                                                         let matches = bbCodeEditors.filter(
@@ -359,11 +359,11 @@ suite(
                                             });
 
                                         suite(
-                                            "Checking the integrity of the meta-data...",
+                                            "Checking the integrity of the meta-data…",
                                             () =>
                                             {
                                                 test(
-                                                    "Checking the integrity of the class-property...",
+                                                    "Checking the integrity of the class-property…",
                                                     () =>
                                                     {
                                                         assert.strictEqual(bbCodeEditor.HasText(classTag, className), true);
@@ -372,7 +372,7 @@ suite(
                                     });
 
                                 suite(
-                                    "Checking the integrity of bb-codes based on HTML...",
+                                    "Checking the integrity of bb-codes based on HTML…",
                                     () =>
                                     {
                                         let bbCodeEditor: XMLEditor;
@@ -392,7 +392,7 @@ suite(
                                             () =>
                                             {
                                                 test(
-                                                    "Checking whether the html bb-code is present...",
+                                                    "Checking whether the html bb-code is present…",
                                                     () =>
                                                     {
                                                         let matches = bbCodeEditors.filter(
@@ -407,18 +407,18 @@ suite(
                                             });
 
                                         suite(
-                                            "Checking the integrity of the meta-data...",
+                                            "Checking the integrity of the meta-data…",
                                             () =>
                                             {
                                                 test(
-                                                    "Checking the integrity of the opening html-tag...",
+                                                    "Checking the integrity of the opening html-tag…",
                                                     () =>
                                                     {
                                                         assert.strictEqual(bbCodeEditor.HasText(htmlOpenTag, htmlTag), true);
                                                     });
 
                                                 test(
-                                                    "Checking the integrity of the closing html-tag...",
+                                                    "Checking the integrity of the closing html-tag…",
                                                     () =>
                                                     {
                                                         if (isSelfClosing)
