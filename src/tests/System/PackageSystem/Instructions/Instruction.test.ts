@@ -1,4 +1,4 @@
-import * as assert from "assert";
+import assert = require("assert");
 import UPath = require("upath");
 import { Instruction } from "../../../../System/PackageSystem/Instructions/Instruction";
 import { Package } from "../../../../System/PackageSystem/Package";

@@ -1,5 +1,5 @@
-import * as assert from "assert";
-import * as Path from "path";
+import assert = require("assert");
+import Path = require("path");
 import { ThemeInstruction } from "../../../../System/PackageSystem/Instructions/Customization/Presentation/ThemeInstruction";
 
 suite(

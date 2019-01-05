@@ -1,8 +1,8 @@
-import * as FileSystem from "fs-extra";
-import * as memFs from "mem-fs";
-import * as memFsEditor from "mem-fs-editor";
-import * as Path from "path";
-import * as tar from "tar";
+import FileSystem = require("fs-extra");
+import memFs = require("mem-fs");
+import memFsEditor = require("mem-fs-editor");
+import Path = require("path");
+import tar = require("tar");
 
 /**
  * Provides the functionality to compile a component.

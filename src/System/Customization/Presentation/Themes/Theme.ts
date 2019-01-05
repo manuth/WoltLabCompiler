@@ -1,8 +1,8 @@
-import * as ColorNames from "colornames";
-import * as FileSystem from "fs-extra";
+import ColorNames = require("colornames");
+import FileSystem = require("fs-extra");
 import hexToRgba = require("hex-to-rgba");
-import * as OS from "os";
-import * as Path from "path";
+import OS = require("os");
+import Path = require("path");
 import { isNullOrUndefined } from "util";
 import { Component } from "../../../PackageSystem/Component";
 import { FileDescriptor } from "../../../PackageSystem/FileDescriptor";

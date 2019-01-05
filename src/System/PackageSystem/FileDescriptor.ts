@@ -1,5 +1,5 @@
 import escapeStringRegexp = require("escape-string-regexp");
-import * as Path from "path";
+import Path = require("path");
 import UPath = require("upath");
 import { isNullOrUndefined } from "util";
 import { IFileDescriptorOptions } from "./IFileDescriptorOptions";

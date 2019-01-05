@@ -1,5 +1,5 @@
-import * as assert from "assert";
-import * as FileSystem from "fs-extra";
+import assert = require("assert");
+import FileSystem = require("fs-extra");
 import { TempFile } from "temp-filesystem";
 import { isNullOrUndefined } from "util";
 import { DOMParser } from "xmldom";

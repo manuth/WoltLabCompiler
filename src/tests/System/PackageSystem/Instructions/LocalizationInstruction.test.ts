@@ -1,4 +1,4 @@
-import * as assert from "assert";
+import assert = require("assert");
 import { ILocalization } from "../../../../System/Globalization/ILocalization";
 import { ILocalizationItemOptions } from "../../../../System/Globalization/ILocalizationItemOptions";
 import { LocalizationItem } from "../../../../System/Globalization/LocalizationItem";

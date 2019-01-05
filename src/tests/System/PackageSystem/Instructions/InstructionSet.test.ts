@@ -1,4 +1,4 @@
-import * as assert from "assert";
+import assert = require("assert");
 import { Instruction } from "../../../../System/PackageSystem/Instructions/Instruction";
 import { InstructionSet } from "../../../../System/PackageSystem/Instructions/InstructionSet";
 import { Package } from "../../../../System/PackageSystem/Package";

@@ -1,4 +1,4 @@
-import * as assert from "assert";
+import assert = require("assert");
 import { IOptionOptions } from "../../../System/Options/IOptionOptions";
 import { Option } from "../../../System/Options/Option";
 import { OptionType } from "../../../System/Options/OptionType";

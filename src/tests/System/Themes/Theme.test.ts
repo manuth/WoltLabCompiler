@@ -1,7 +1,7 @@
-import * as assert from "assert";
-import * as dedent from "dedent";
-import * as FileSystem from "fs-extra";
-import * as OS from "os";
+import assert = require("assert");
+import dedent = require("dedent");
+import FileSystem = require("fs-extra");
+import OS = require("os");
 import { TempDirectory } from "temp-filesystem";
 import { Theme } from "../../../System/Customization/Presentation/Themes/Theme";
 import { ThemeInstruction } from "../../../System/PackageSystem/Instructions/Customization/Presentation/ThemeInstruction";

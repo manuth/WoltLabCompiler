@@ -1,7 +1,7 @@
-import * as assert from "assert";
+import assert = require("assert");
 import escapeStringRegexp = require("escape-string-regexp");
-import * as FileSystem from "fs-extra";
-import * as Path from "path";
+import FileSystem = require("fs-extra");
+import Path = require("path");
 import { TempFile } from "temp-filesystem";
 import UPath = require("upath");
 import { isNullOrUndefined } from "util";

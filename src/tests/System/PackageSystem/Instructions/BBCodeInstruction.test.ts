@@ -1,4 +1,4 @@
-import * as assert from "assert";
+import assert = require("assert");
 import { BBCode } from "../../../../System/Customization/BBCodes/BBCode";
 import { BBCodeInstruction } from "../../../../System/PackageSystem/Instructions/Customization/BBCodeInstruction";
 

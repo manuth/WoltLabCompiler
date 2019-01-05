@@ -1,5 +1,5 @@
-import * as assert from "assert";
-import * as dedent from "dedent";
+import assert = require("assert");
+import dedent = require("dedent");
 import { XML } from "../../../System/Serialization/XML";
 
 suite(

@@ -1,4 +1,4 @@
-import * as FileSystem from "fs-extra";
+import FileSystem = require("fs-extra");
 import { XMLSerializer } from "xmldom";
 import { XML } from "../Serialization/XML";
 import { Compiler } from "./Compiler";

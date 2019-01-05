@@ -1,5 +1,5 @@
-import * as assert from "assert";
-import * as parser from "cron-parser";
+import assert = require("assert");
+import parser = require("cron-parser");
 import { TimePeriod } from "../../../System/Tasks/TimePeriod";
 
 suite("TimePeriod",

@@ -1,4 +1,4 @@
-import * as assert from "assert";
+import assert = require("assert");
 import { ImageDirectoryDescriptor } from "../../../System/Customization/Presentation/Themes/ImageDirectoryDescriptor";
 
 suite(

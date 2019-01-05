@@ -1,5 +1,5 @@
-import * as FileSystem from "fs-extra";
-import * as Path from "path";
+import FileSystem = require("fs-extra");
+import Path = require("path");
 import { ThemeInstruction } from "../../../PackageSystem/Instructions/Customization/Presentation/ThemeInstruction";
 import { IThemeOptions } from "./IThemeOptions";
 

@@ -1,5 +1,5 @@
-import * as assert from "assert";
-import * as FileSystem from "fs-extra";
+import assert = require("assert");
+import FileSystem = require("fs-extra");
 import { TempDirectory } from "temp-filesystem";
 import { UserOptionInstructionCompiler } from "../../../../System/Compilation/PackageSystem/Instructions/UserOptionInstructionCompiler";
 import { ILocalization } from "../../../../System/Globalization/ILocalization";

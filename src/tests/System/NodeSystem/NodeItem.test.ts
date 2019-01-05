@@ -1,4 +1,4 @@
-import * as assert from "assert";
+import assert = require("assert");
 import { Node } from "../../../System/NodeSystem/Node";
 import { NodeItem } from "../../../System/NodeSystem/NodeItem";
 

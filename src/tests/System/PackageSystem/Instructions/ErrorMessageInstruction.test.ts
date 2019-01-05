@@ -1,4 +1,4 @@
-import * as assert from "assert";
+import assert = require("assert");
 import { ILocalization } from "../../../../System/Globalization/ILocalization";
 import { ErrorMessageInstruction } from "../../../../System/PackageSystem/Instructions/Globalization/ErrorMessageInstruction";
 

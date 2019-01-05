@@ -1,5 +1,5 @@
-import * as assert from "assert";
-import * as FileSystem from "fs-extra";
+import assert = require("assert");
+import FileSystem = require("fs-extra");
 import { TempDirectory } from "temp-filesystem";
 import { EventListenerInstructionCompiler } from "../../../../System/Compilation/PackageSystem/Instructions/EventListenerInstructionCompiler";
 import { EventListenerInstruction } from "../../../../System/PackageSystem/Instructions/Events/EventListenerInstruction";

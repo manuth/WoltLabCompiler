@@ -1,4 +1,4 @@
-import * as assert from "assert";
+import assert = require("assert");
 import { isNullOrUndefined } from "util";
 import { INodeOptions } from "../../../System/NodeSystem/INodeOptions";
 import { Node } from "../../../System/NodeSystem/Node";

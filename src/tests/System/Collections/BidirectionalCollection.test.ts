@@ -1,4 +1,4 @@
-import * as assert from "assert";
+import assert = require("assert");
 import { BidirectionalCollection } from "../../../System/Collections/BidirectionalCollection";
 
 suite(

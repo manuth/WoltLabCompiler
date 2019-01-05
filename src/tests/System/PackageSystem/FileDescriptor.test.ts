@@ -1,6 +1,6 @@
-import * as assert from "assert";
-import * as FileSystem from "fs-extra";
-import * as Path from "path";
+import assert = require("assert");
+import FileSystem = require("fs-extra");
+import Path = require("path");
 import { TempDirectory, TempFile } from "temp-filesystem";
 import { FileDescriptor } from "../../../System/PackageSystem/FileDescriptor";
 

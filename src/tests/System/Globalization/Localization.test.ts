@@ -1,4 +1,4 @@
-import * as assert from "assert";
+import assert = require("assert");
 import { Localization } from "../../../System/Globalization/Localization";
 
 suite(

@@ -1,6 +1,6 @@
-import * as assert from "assert";
-import * as FileSystem from "fs-extra";
-import * as tar from "tar";
+import assert = require("assert");
+import FileSystem = require("fs-extra");
+import tar = require("tar");
 import { TempDirectory, TempFile } from "temp-filesystem";
 import { PackageCompiler } from "../../../../System/Compilation/PackageSystem/PackageCompiler";
 import { Package } from "../../../../System/PackageSystem/Package";

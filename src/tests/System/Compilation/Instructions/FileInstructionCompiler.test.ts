@@ -1,7 +1,7 @@
-import * as assert from "assert";
-import * as FileSystem from "fs-extra";
-import * as Path from "path";
-import * as tar from "tar";
+import assert = require("assert");
+import FileSystem = require("fs-extra");
+import Path = require("path");
+import tar = require("tar");
 import { TempDirectory } from "temp-filesystem";
 import { FileInstructionCompiler } from "../../../../System/Compilation/PackageSystem/Instructions/FileInstructionCompiler";
 import { ApplicationFileSystemInstruction } from "../../../../System/PackageSystem/Instructions/FileSystem/ApplicationFileSystemInstruction";

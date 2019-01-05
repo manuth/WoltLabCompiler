@@ -1,4 +1,4 @@
-import * as Path from "path";
+import Path = require("path");
 import { isNullOrUndefined } from "util";
 import { FileInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/FileInstructionCompiler";
 import { InstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/InstructionCompiler";

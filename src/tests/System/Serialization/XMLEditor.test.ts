@@ -1,4 +1,4 @@
-import * as assert from "assert";
+import assert = require("assert");
 import { XML } from "../../../System/Serialization/XML";
 import { XMLEditor } from "../../../System/Serialization/XMLEditor";
 
