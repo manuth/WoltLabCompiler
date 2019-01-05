@@ -1,7 +1,7 @@
-import assert = require("assert");
+import Assert = require("assert");
 import FileSystem = require("fs-extra");
 import Path = require("path");
-import tar = require("tar");
+import Tar = require("tar");
 import { TempDirectory } from "temp-filesystem";
 import { FileInstructionCompiler } from "../../../../System/Compilation/PackageSystem/Instructions/FileInstructionCompiler";
 import { ApplicationFileSystemInstruction } from "../../../../System/PackageSystem/Instructions/FileSystem/ApplicationFileSystemInstruction";
@@ -82,14 +82,14 @@ suite(
                     "Checking whether the archive has been created…",
                     async () =>
                     {
-                        assert.strictEqual(await FileSystem.pathExists(archiveFileName), true);
+                        Assert.strictEqual(await FileSystem.pathExists(archiveFileName), true);
                     });
 
                 test(
                     "Checking whether the archive can be extracted…",
                     async () =>
                     {
-                        await tar.extract(
+                        await Tar.extract(
                             {
                                 cwd: testDir.FullName,
                                 file: archiveFileName
@@ -102,20 +102,20 @@ suite(
                     {
                         let files: string[] = [];
 
-                        await tar.list({
+                        await Tar.list({
                             file: archiveFileName,
-                            onentry: (entry: tar.FileStat): void =>
+                            onentry: (entry: Tar.FileStat): void =>
                             {
                                 files.push(entry.header.path);
                             },
-                            filter: (fileName: string, stat: tar.FileStat): boolean =>
+                            filter: (fileName: string, stat: Tar.FileStat): boolean =>
                             {
                                 return Path.parse(fileName).dir.length === 0;
                             }
                         });
 
-                        assert.strictEqual(fileNames.every((fileName: string): boolean => files.includes(fileName)), true);
-                        assert.strictEqual(files.every((fileName: string): boolean => fileNames.includes(fileName)), true);
+                        Assert.strictEqual(fileNames.every((fileName: string): boolean => files.includes(fileName)), true);
+                        Assert.strictEqual(files.every((fileName: string): boolean => fileNames.includes(fileName)), true);
                     });
             });
 
@@ -161,21 +161,21 @@ suite(
                     "Checking whether the `application`-attribute is not present if the `Application` is not specified…",
                     () =>
                     {
-                        assert.strictEqual(normalDocument.documentElement.hasAttribute("application"), false);
+                        Assert.strictEqual(normalDocument.documentElement.hasAttribute("application"), false);
                     });
 
                 test(
                     "Checking whether the `application`-attribute is present if the `Application` is specified…",
                     () =>
                     {
-                        assert.strictEqual(applicationDocument.documentElement.hasAttribute("application"), true);
+                        Assert.strictEqual(applicationDocument.documentElement.hasAttribute("application"), true);
                     });
 
                 test(
                     "Checking whether the `application`-attribute is correct…",
                     () =>
                     {
-                        assert.strictEqual(applicationDocument.documentElement.getAttribute("application"), application);
+                        Assert.strictEqual(applicationDocument.documentElement.getAttribute("application"), application);
                     });
             });
     });

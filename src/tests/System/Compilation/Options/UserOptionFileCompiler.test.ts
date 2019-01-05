@@ -1,4 +1,4 @@
-import assert = require("assert");
+import Assert = require("assert");
 import FileSystem = require("fs-extra");
 import { TempFile } from "temp-filesystem";
 import { DOMParser } from "xmldom";
@@ -112,7 +112,7 @@ suite(
                                             "Checking whether the option exists…",
                                             () =>
                                             {
-                                                assert.strictEqual(editor.GetElementsByTag(optionTag).length, 1);
+                                                Assert.strictEqual(editor.GetElementsByTag(optionTag).length, 1);
                                                 optionEditor = editor.GetElementsByTag(optionTag)[0];
                                             });
                                     });
@@ -143,36 +143,36 @@ suite(
                                             'Checking whether the "Required"-property is correct…',
                                             () =>
                                             {
-                                                assert.strictEqual(optionEditor.HasText(requiredTag, option.Required ? "1" : "0"), true);
+                                                Assert.strictEqual(optionEditor.HasText(requiredTag, option.Required ? "1" : "0"), true);
                                             });
 
                                         test(
                                             'Checking whether the "AskOnRegistration"-property is correct…',
                                             () =>
                                             {
-                                                assert.strictEqual(optionEditor.HasText(registrationTag, option.AskOnRegistration ? "1" : "0"), true);
+                                                Assert.strictEqual(optionEditor.HasText(registrationTag, option.AskOnRegistration ? "1" : "0"), true);
                                             });
 
                                         test(
                                             "Checking whether the permissions are set correctly…",
                                             () =>
                                             {
-                                                assert.strictEqual(optionEditor.HasText(editTag, option.EditPermissions.toString()), true);
-                                                assert.strictEqual(optionEditor.HasText(viewTag, option.ViewPermissions.toString()), true);
+                                                Assert.strictEqual(optionEditor.HasText(editTag, option.EditPermissions.toString()), true);
+                                                Assert.strictEqual(optionEditor.HasText(viewTag, option.ViewPermissions.toString()), true);
                                             });
 
                                         test(
                                             'Checking whether the "Searchable"-property is correct…',
                                             () =>
                                             {
-                                                assert.strictEqual(optionEditor.HasText(searchableTag, option.Searchable ? "1" : "0"), true);
+                                                Assert.strictEqual(optionEditor.HasText(searchableTag, option.Searchable ? "1" : "0"), true);
                                             });
 
                                         test(
                                             "Checking whether the output-class is correct…",
                                             () =>
                                             {
-                                                assert.strictEqual(optionEditor.HasText(outputTag, option.OutputClass), true);
+                                                Assert.strictEqual(optionEditor.HasText(outputTag, option.OutputClass), true);
                                             });
                                     });
                             });

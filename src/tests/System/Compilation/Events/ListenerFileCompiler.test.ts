@@ -1,4 +1,4 @@
-import assert = require("assert");
+import Assert = require("assert");
 import FileSystem = require("fs-extra");
 import { TempFile } from "temp-filesystem";
 import { DOMParser } from "xmldom";
@@ -169,7 +169,7 @@ suite(
                                     "Checking whether the listener is present…",
                                     () =>
                                     {
-                                        assert.strictEqual(importEditor.HasTag(listenerTag, true), true);
+                                        Assert.strictEqual(importEditor.HasTag(listenerTag, true), true);
                                         listenerEditor = importEditor.GetChildrenByTag(listenerTag)[0];
                                     });
 
@@ -177,12 +177,12 @@ suite(
                                     "Checking the integrity of the meta-data…",
                                     () =>
                                     {
-                                        assert.strictEqual(listenerEditor.HasAttribute(nameAttribute, name), true);
-                                        assert.strictEqual(listenerEditor.HasText(environmentTag, environment), true);
-                                        assert.strictEqual(listenerEditor.HasText(eventTag, event), true);
-                                        assert.strictEqual(listenerEditor.HasText(executionOrderTag, executionOrder.toString()), true);
-                                        assert.strictEqual(listenerEditor.HasText(permissionsTag, permissions.join(",")), true);
-                                        assert.strictEqual(listenerEditor.HasText(optionsTag, enableOptions.join(",")), true);
+                                        Assert.strictEqual(listenerEditor.HasAttribute(nameAttribute, name), true);
+                                        Assert.strictEqual(listenerEditor.HasText(environmentTag, environment), true);
+                                        Assert.strictEqual(listenerEditor.HasText(eventTag, event), true);
+                                        Assert.strictEqual(listenerEditor.HasText(executionOrderTag, executionOrder.toString()), true);
+                                        Assert.strictEqual(listenerEditor.HasText(permissionsTag, permissions.join(",")), true);
+                                        Assert.strictEqual(listenerEditor.HasText(optionsTag, enableOptions.join(",")), true);
                                     });
                             });
                     });

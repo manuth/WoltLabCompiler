@@ -1,4 +1,4 @@
-import assert = require("assert");
+import Assert = require("assert");
 import FileSystem = require("fs-extra");
 import { TempFile } from "temp-filesystem";
 import { InstructionCompiler } from "../../../../System/Compilation/PackageSystem/Instructions/InstructionCompiler";
@@ -103,14 +103,14 @@ suite(
                     "Checking whether members of the item are replaced using ejs…",
                     () =>
                     {
-                        assert.strictEqual(new RegExp(`^${type}$`, "gm").test(content), true);
+                        Assert.strictEqual(new RegExp(`^${type}$`, "gm").test(content), true);
                     });
 
                 test(
                     "Checking whether $-substitutions are replaced using ejs…",
                     () =>
                     {
-                        assert.strictEqual(content.includes(`${object}`), true);
+                        Assert.strictEqual(content.includes(`${object}`), true);
                     });
             });
 
@@ -130,14 +130,14 @@ suite(
                     "Checking whether the tag-name is correct…",
                     () =>
                     {
-                        assert.strictEqual(document.documentElement.tagName, "instruction");
+                        Assert.strictEqual(document.documentElement.tagName, "instruction");
                     });
 
                 test(
                     "Checking whether the type-attribute is set correctly…",
                     () =>
                     {
-                        assert.strictEqual(document.documentElement.getAttribute("type"), compiler.Item.Type);
+                        Assert.strictEqual(document.documentElement.getAttribute("type"), compiler.Item.Type);
                     });
 
                 test(
@@ -146,11 +146,11 @@ suite(
                     {
                         if (compiler.Item.Standalone)
                         {
-                            assert.strictEqual(document.documentElement.getAttribute("run"), "standalone");
+                            Assert.strictEqual(document.documentElement.getAttribute("run"), "standalone");
                         }
                         else
                         {
-                            assert.strictEqual(document.documentElement.hasAttribute("run"), false);
+                            Assert.strictEqual(document.documentElement.hasAttribute("run"), false);
                         }
                     });
 
@@ -158,7 +158,7 @@ suite(
                     "Checking whether the filename is set correctly…",
                     () =>
                     {
-                        assert.strictEqual(document.documentElement.textContent, compiler.Item.FullName);
+                        Assert.strictEqual(document.documentElement.textContent, compiler.Item.FullName);
                     });
             });
     });

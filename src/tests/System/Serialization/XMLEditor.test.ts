@@ -1,4 +1,4 @@
-import assert = require("assert");
+import Assert = require("assert");
 import { XML } from "../../../System/Serialization/XML";
 import { XMLEditor } from "../../../System/Serialization/XMLEditor";
 
@@ -50,7 +50,7 @@ suite(
                     "Checking whether the name of the tag is correct…",
                     () =>
                     {
-                        assert.strictEqual(editor.TagName, editorTag);
+                        Assert.strictEqual(editor.TagName, editorTag);
                     });
             });
 
@@ -62,7 +62,7 @@ suite(
                     "Checking whether the element of the editor is correct…",
                     () =>
                     {
-                        assert.strictEqual(editor.Element === editorElement, true);
+                        Assert.strictEqual(editor.Element === editorElement, true);
                     });
             });
 
@@ -84,7 +84,7 @@ suite(
                     "Checking whether the ParentNode is correct…",
                     () =>
                     {
-                        assert.strictEqual(child.ParentNode === parent.Element, true);
+                        Assert.strictEqual(child.ParentNode === parent.Element, true);
                     });
             });
 
@@ -96,7 +96,7 @@ suite(
                     "Checking whether the `Document`-property is a document-node…",
                     () =>
                     {
-                        assert.strictEqual(temp.Document.nodeType, temp.Element.DOCUMENT_NODE);
+                        Assert.strictEqual(temp.Document.nodeType, temp.Element.DOCUMENT_NODE);
                     });
             });
 
@@ -123,7 +123,7 @@ suite(
                     "Checking whether the children are correct…",
                     () =>
                     {
-                        assert.strictEqual(parent.ChildNodes.length, children.length);
+                        Assert.strictEqual(parent.ChildNodes.length, children.length);
                         parent.ChildNodes.every(
                             (node: Node) =>
                             {
@@ -149,7 +149,7 @@ suite(
                     () =>
                     {
                         let element: XMLEditor = editor.CreateElement(tagName);
-                        assert.strictEqual(element.TagName, tagName);
+                        Assert.strictEqual(element.TagName, tagName);
                     });
 
                 test(
@@ -158,7 +158,7 @@ suite(
                     {
                         let content = "hello world";
                         let element = editor.CreateElement(tagName, (newChild: XMLEditor) => newChild.TextContent = content);
-                        assert.strictEqual(element.TextContent, content);
+                        Assert.strictEqual(element.TextContent, content);
                     });
             });
 
@@ -181,9 +181,9 @@ suite(
                     () =>
                     {
                         let element: XMLEditor = editor.CreateCDATAElement(tagName, content);
-                        assert.strictEqual(element.TagName, tagName);
-                        assert.strictEqual(element.ChildNodes[0].nodeType, element.Element.CDATA_SECTION_NODE);
-                        assert.strictEqual(element.TextContent, content);
+                        Assert.strictEqual(element.TagName, tagName);
+                        Assert.strictEqual(element.ChildNodes[0].nodeType, element.Element.CDATA_SECTION_NODE);
+                        Assert.strictEqual(element.TextContent, content);
                     });
 
                 test(
@@ -199,7 +199,7 @@ suite(
                                 newChild.ChildNodes[0].textContent = content;
                             });
 
-                        assert.strictEqual(element.TextContent, content);
+                        Assert.strictEqual(element.TextContent, content);
                     });
             });
 
@@ -222,9 +222,9 @@ suite(
                     () =>
                     {
                         let element: XMLEditor = editor.CreateTextElement(tagName, content);
-                        assert.strictEqual(element.TagName, tagName);
-                        assert.strictEqual(element.ChildNodes[0].nodeType, element.Element.TEXT_NODE);
-                        assert.strictEqual(element.TextContent, content);
+                        Assert.strictEqual(element.TagName, tagName);
+                        Assert.strictEqual(element.ChildNodes[0].nodeType, element.Element.TEXT_NODE);
+                        Assert.strictEqual(element.TextContent, content);
                     });
 
                 test(
@@ -240,7 +240,7 @@ suite(
                                 newChild.ChildNodes[0].textContent = content;
                             });
 
-                        assert.strictEqual(element.TextContent, content);
+                        Assert.strictEqual(element.TextContent, content);
                     });
             });
 
@@ -265,7 +265,7 @@ suite(
                     () =>
                     {
                         parent.Add(child);
-                        assert.strictEqual(parent.ChildNodes.includes(child.Element), true);
+                        Assert.strictEqual(parent.ChildNodes.includes(child.Element), true);
                     });
 
                 test(
@@ -274,8 +274,8 @@ suite(
                     {
                         let node: Node;
                         parent.Add(childNode, (newNode: Node) => node = newNode);
-                        assert.strictEqual(childNode === node, true);
-                        assert.strictEqual(parent.ChildNodes.includes(childNode), true);
+                        Assert.strictEqual(childNode === node, true);
+                        Assert.strictEqual(parent.ChildNodes.includes(childNode), true);
                     });
             });
 
@@ -299,8 +299,8 @@ suite(
                     () =>
                     {
                         parent.AddElement(tagName, (childNode: XMLEditor) => child = childNode);
-                        assert.strictEqual(child.TagName, tagName);
-                        assert.strictEqual(parent.ChildNodes.includes(child.Element), true);
+                        Assert.strictEqual(child.TagName, tagName);
+                        Assert.strictEqual(parent.ChildNodes.includes(child.Element), true);
                     });
             });
 
@@ -329,7 +329,7 @@ suite(
                     "Checking whether inserting elements in inexistent-indexes causes an error…",
                     () =>
                     {
-                        assert.throws(() => parent.Insert(1, newElement));
+                        Assert.throws(() => parent.Insert(1, newElement));
                     });
 
                 test(
@@ -338,7 +338,7 @@ suite(
                     {
                         let index = 0;
                         parent.Insert(index, newElement);
-                        assert.strictEqual(parent.ChildNodes.indexOf(newElement.Element), index);
+                        Assert.strictEqual(parent.ChildNodes.indexOf(newElement.Element), index);
                     });
 
                 test(
@@ -347,7 +347,7 @@ suite(
                     {
                         let index = parent.ChildNodes.length;
                         parent.Insert(index, newElement);
-                        assert.strictEqual(parent.ChildNodes.indexOf(newElement.Element), index);
+                        Assert.strictEqual(parent.ChildNodes.indexOf(newElement.Element), index);
                     });
 
                 test(
@@ -356,7 +356,7 @@ suite(
                     {
                         let index: number = Math.floor(Math.random() * parent.ChildNodes.length);
                         parent.Insert(index, newElement);
-                        assert.strictEqual(parent.ChildNodes.indexOf(newElement.Element), index);
+                        Assert.strictEqual(parent.ChildNodes.indexOf(newElement.Element), index);
                     });
             });
 
@@ -386,8 +386,8 @@ suite(
                         let randomTag = tags[Math.floor(Math.random() * tags.length)];
                         parent.ChildNodes[Math.floor(Math.random() * parent.ChildNodes.length)].appendChild(parent.CreateElement(randomTag).Element);
                         let result = parent.GetChildrenByTag(randomTag);
-                        assert.strictEqual(result.length, 1);
-                        assert.strictEqual(result[0].ParentNode === parent.Element, true);
+                        Assert.strictEqual(result.length, 1);
+                        Assert.strictEqual(result[0].ParentNode === parent.Element, true);
                     });
             });
 
@@ -417,7 +417,7 @@ suite(
                         let randomTag = tags[Math.floor(Math.random() * tags.length)];
                         parent.ChildNodes[Math.floor(Math.random() * parent.ChildNodes.length)].appendChild(parent.CreateElement(randomTag).Element);
                         let result = parent.GetElementsByTag(randomTag);
-                        assert.strictEqual(result.length, 2);
+                        Assert.strictEqual(result.length, 2);
                     });
             });
 
@@ -441,7 +441,7 @@ suite(
                     "Checking whether querying text from inexistent children throws an error…",
                     () =>
                     {
-                        assert.throws(() => parent.GetText(textTag));
+                        Assert.throws(() => parent.GetText(textTag));
                     });
 
                 test(
@@ -449,7 +449,7 @@ suite(
                     () =>
                     {
                         parent.AddTextElement(textTag, textContent);
-                        assert.strictEqual(parent.GetText(textTag), textContent);
+                        Assert.strictEqual(parent.GetText(textTag), textContent);
                     });
             });
 
@@ -471,7 +471,7 @@ suite(
                     "Checking whether querying inexistent attributes throws an exception…",
                     () =>
                     {
-                        assert.throws(() => attributeEditor.GetAttribute(attributeName));
+                        Assert.throws(() => attributeEditor.GetAttribute(attributeName));
                     });
 
                 test(
@@ -480,7 +480,7 @@ suite(
                     {
                         let value = "test";
                         attributeEditor.SetAttribute(attributeName, value);
-                        assert.strictEqual(attributeEditor.GetAttribute(attributeName), value);
+                        Assert.strictEqual(attributeEditor.GetAttribute(attributeName), value);
                     });
             });
 
@@ -505,7 +505,7 @@ suite(
                     () =>
                     {
                         attributeEditor.SetAttribute(attributeName, attributeValue);
-                        assert.strictEqual(attributeEditor.GetAttribute(attributeName), attributeValue);
+                        Assert.strictEqual(attributeEditor.GetAttribute(attributeName), attributeValue);
                     });
             });
 
@@ -534,12 +534,12 @@ suite(
                     "Checking whether the method acts as expected…",
                     () =>
                     {
-                        assert.strictEqual(attributeEditor.HasAttribute(attributeName), true);
-                        assert.strictEqual(attributeEditor.HasAttribute(attributeName, attributeValue), true);
-                        assert.strictEqual(attributeEditor.HasAttribute(attributeName, alternativeValue), false);
-                        assert.strictEqual(attributeEditor.HasAttribute(alternativeName), false);
-                        assert.strictEqual(attributeEditor.HasAttribute(alternativeName, attributeValue), false);
-                        assert.strictEqual(attributeEditor.HasAttribute(alternativeName, alternativeValue), false);
+                        Assert.strictEqual(attributeEditor.HasAttribute(attributeName), true);
+                        Assert.strictEqual(attributeEditor.HasAttribute(attributeName, attributeValue), true);
+                        Assert.strictEqual(attributeEditor.HasAttribute(attributeName, alternativeValue), false);
+                        Assert.strictEqual(attributeEditor.HasAttribute(alternativeName), false);
+                        Assert.strictEqual(attributeEditor.HasAttribute(alternativeName, attributeValue), false);
+                        Assert.strictEqual(attributeEditor.HasAttribute(alternativeName, alternativeValue), false);
                     });
             });
 
@@ -568,12 +568,12 @@ suite(
                     "Checking whether the method acts as expected…",
                     () =>
                     {
-                        assert.strictEqual(textEditor.HasText(null, text), true);
-                        assert.strictEqual(textEditor.HasText(null, alternativeText), false);
-                        assert.strictEqual(textEditor.HasText(tag, text), true);
-                        assert.strictEqual(textEditor.HasText(tag, alternativeText), false);
-                        assert.strictEqual(textEditor.HasText(alternativeTag, text), false);
-                        assert.strictEqual(textEditor.HasText(alternativeTag, alternativeText), false);
+                        Assert.strictEqual(textEditor.HasText(null, text), true);
+                        Assert.strictEqual(textEditor.HasText(null, alternativeText), false);
+                        Assert.strictEqual(textEditor.HasText(tag, text), true);
+                        Assert.strictEqual(textEditor.HasText(tag, alternativeText), false);
+                        Assert.strictEqual(textEditor.HasText(alternativeTag, text), false);
+                        Assert.strictEqual(textEditor.HasText(alternativeTag, alternativeText), false);
                     });
             });
 
@@ -598,16 +598,16 @@ suite(
                     "Checking whether the method acts as expected…",
                     () =>
                     {
-                        assert.strictEqual(tagEditor.HasTag(tag), true);
-                        assert.strictEqual(tagEditor.HasTag(alternativeTag), false);
-                        assert.strictEqual(tagEditor.HasTag(tag, true), true);
-                        assert.strictEqual(tagEditor.HasTag(alternativeTag, true), false);
+                        Assert.strictEqual(tagEditor.HasTag(tag), true);
+                        Assert.strictEqual(tagEditor.HasTag(alternativeTag), false);
+                        Assert.strictEqual(tagEditor.HasTag(tag, true), true);
+                        Assert.strictEqual(tagEditor.HasTag(alternativeTag, true), false);
 
                         tagEditor.AddElement(tag);
-                        assert.strictEqual(tagEditor.HasTag(tag), true);
-                        assert.strictEqual(tagEditor.HasTag(alternativeTag), false);
-                        assert.strictEqual(tagEditor.HasTag(tag, true), false);
-                        assert.strictEqual(tagEditor.HasTag(alternativeTag, true), false);
+                        Assert.strictEqual(tagEditor.HasTag(tag), true);
+                        Assert.strictEqual(tagEditor.HasTag(alternativeTag), false);
+                        Assert.strictEqual(tagEditor.HasTag(tag, true), false);
+                        Assert.strictEqual(tagEditor.HasTag(alternativeTag, true), false);
                     });
             });
     });

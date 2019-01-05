@@ -1,4 +1,4 @@
-import assert = require("assert");
+import Assert = require("assert");
 import { isNullOrUndefined } from "util";
 import { INodeOptions } from "../../../System/NodeSystem/INodeOptions";
 import { Node } from "../../../System/NodeSystem/Node";
@@ -61,7 +61,7 @@ suite(
                         nodeA.Parent = nodeB;
                         nodeB.Parent = nodeC;
 
-                        assert.strictEqual(nodeA.FullName, [nodeCName, nodeBName, nodeAName].join("."));
+                        Assert.strictEqual(nodeA.FullName, [nodeCName, nodeBName, nodeAName].join("."));
                     });
             });
 
@@ -78,7 +78,7 @@ suite(
                             () =>
                             {
                                 nodeA.Parent = nodeB;
-                                assert.strictEqual(nodeA.Parent, nodeB);
+                                Assert.strictEqual(nodeA.Parent, nodeB);
                             });
 
                         test(
@@ -86,7 +86,7 @@ suite(
                             () =>
                             {
                                 nodeC.Nodes.push(nodeA);
-                                assert.strictEqual(nodeA.Parent, nodeC);
+                                Assert.strictEqual(nodeA.Parent, nodeC);
                             });
                     });
             });
@@ -105,8 +105,8 @@ suite(
                             {
                                 nodeB.Parent = nodeA;
 
-                                assert.strictEqual(nodeA.Nodes.length, 1);
-                                assert.strictEqual(nodeA.Nodes[0], nodeB);
+                                Assert.strictEqual(nodeA.Nodes.length, 1);
+                                Assert.strictEqual(nodeA.Nodes[0], nodeB);
                             });
 
                         test(
@@ -115,8 +115,8 @@ suite(
                             {
                                 nodeA.Nodes.push(nodeC);
 
-                                assert.strictEqual(nodeA.Nodes.length, 1);
-                                assert.strictEqual(nodeA.Nodes[0], nodeC);
+                                Assert.strictEqual(nodeA.Nodes.length, 1);
+                                Assert.strictEqual(nodeA.Nodes[0], nodeC);
                             });
                     });
             });
@@ -132,10 +132,10 @@ suite(
                         nodeA.Parent = nodeB;
                         nodeB.Parent = nodeC;
 
-                        assert.strictEqual(nodeC.GetAllNodes().includes(nodeA), true);
-                        assert.strictEqual(nodeC.GetAllNodes().includes(nodeB), true);
-                        assert.strictEqual(nodeC.GetAllNodes().includes(nodeC), true);
-                        assert.strictEqual(nodeC.GetAllNodes().length, 3);
+                        Assert.strictEqual(nodeC.GetAllNodes().includes(nodeA), true);
+                        Assert.strictEqual(nodeC.GetAllNodes().includes(nodeB), true);
+                        Assert.strictEqual(nodeC.GetAllNodes().includes(nodeC), true);
+                        Assert.strictEqual(nodeC.GetAllNodes().length, 3);
                     });
             });
 
@@ -161,8 +161,8 @@ suite(
                     "Checking whether the node returns itself if an ID is assigned…",
                     () =>
                     {
-                        assert.strictEqual(id in idNode.GetObjects(), true);
-                        assert.strictEqual(idNode.GetObjects()[id], idNode);
+                        Assert.strictEqual(id in idNode.GetObjects(), true);
+                        Assert.strictEqual(idNode.GetObjects()[id], idNode);
                     });
 
                 test(
@@ -197,8 +197,8 @@ suite(
                         let allNodes: Node<NodeItem, {}>[] = rootNode.GetAllNodes();
                         allNodes[Math.floor(Math.random() * allNodes.length)].Nodes.push(idNode);
 
-                        assert.strictEqual(id in rootNode.GetObjects(), true);
-                        assert.strictEqual(rootNode.GetObjects()[id], idNode);
+                        Assert.strictEqual(id in rootNode.GetObjects(), true);
+                        Assert.strictEqual(rootNode.GetObjects()[id], idNode);
                     });
             });
     });

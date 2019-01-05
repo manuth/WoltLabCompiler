@@ -1,5 +1,5 @@
-import assert = require("assert");
-import dedent = require("dedent");
+import Assert = require("assert");
+import Dedent = require("dedent");
 import FileSystem = require("fs-extra");
 import { TempFile } from "temp-filesystem";
 import { DOMParser } from "xmldom";
@@ -29,7 +29,7 @@ suite(
                 locale = "en";
                 category = "foo";
                 messageName = "bar";
-                messageValue = dedent(
+                messageValue = Dedent(
                     `
                     This is a test
                     with a message which has
@@ -84,7 +84,7 @@ suite(
                             "Checking whether the expected file exists…",
                             async () =>
                             {
-                                assert.strictEqual(await FileSystem.pathExists(tempFile.FullName), true);
+                                Assert.strictEqual(await FileSystem.pathExists(tempFile.FullName), true);
                             });
                     });
 
@@ -114,21 +114,21 @@ suite(
                                     "Checking whether the tag-name is correct…",
                                     () =>
                                     {
-                                        assert.strictEqual(rootEditor.TagName, rootTag);
+                                        Assert.strictEqual(rootEditor.TagName, rootTag);
                                     });
 
                                 test(
                                     "Checking whether the language is specified…",
                                     () =>
                                     {
-                                        assert.strictEqual(rootEditor.HasAttribute(languageAttribute), true);
+                                        Assert.strictEqual(rootEditor.HasAttribute(languageAttribute), true);
                                     });
 
                                 test(
                                     "Checking whether the language is specified correctly…",
                                     () =>
                                     {
-                                        assert.strictEqual(rootEditor.GetAttribute(languageAttribute), locale);
+                                        Assert.strictEqual(rootEditor.GetAttribute(languageAttribute), locale);
                                     });
                             });
 
@@ -155,7 +155,7 @@ suite(
                                             "Checking whether the category exists…",
                                             () =>
                                             {
-                                                assert.strictEqual(rootEditor.HasTag(categoryTag, true), true);
+                                                Assert.strictEqual(rootEditor.HasTag(categoryTag, true), true);
                                                 categoryEditor = rootEditor.GetChildrenByTag(categoryTag)[0];
                                             });
 
@@ -163,7 +163,7 @@ suite(
                                             "Checking whether the integrity of the name of the category…",
                                             () =>
                                             {
-                                                assert.strictEqual(categoryEditor.HasAttribute(nameAttribute, category), true);
+                                                Assert.strictEqual(categoryEditor.HasAttribute(nameAttribute, category), true);
                                             });
                                     });
 
@@ -184,7 +184,7 @@ suite(
                                             "Checking whether the translation exists…",
                                             () =>
                                             {
-                                                assert.strictEqual(categoryEditor.HasTag(itemTag, true), true);
+                                                Assert.strictEqual(categoryEditor.HasTag(itemTag, true), true);
                                                 itemEditor = categoryEditor.GetChildrenByTag(itemTag)[0];
                                             });
 
@@ -192,14 +192,14 @@ suite(
                                             "Checking whether the integrity of the name of the translation…",
                                             () =>
                                             {
-                                                assert.strictEqual(itemEditor.HasAttribute(nameAttribute, `${category}.${messageName}`), true);
+                                                Assert.strictEqual(itemEditor.HasAttribute(nameAttribute, `${category}.${messageName}`), true);
                                             });
 
                                         test(
                                             "Checking the integrity of the text of the translation…",
                                             () =>
                                             {
-                                                assert.strictEqual(itemEditor.TextContent, messageValue);
+                                                Assert.strictEqual(itemEditor.TextContent, messageValue);
                                             });
                                     });
                             });

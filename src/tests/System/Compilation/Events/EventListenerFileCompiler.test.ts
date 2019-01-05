@@ -1,4 +1,4 @@
-import assert = require("assert");
+import Assert = require("assert");
 import FileSystem = require("fs-extra");
 import { TempFile } from "temp-filesystem";
 import { DOMParser } from "xmldom";
@@ -106,7 +106,7 @@ suite(
                                     "Checking whether the event-listener is present…",
                                     () =>
                                     {
-                                        assert.strictEqual(editor.GetElementsByTag(listenerTag).length, 1);
+                                        Assert.strictEqual(editor.GetElementsByTag(listenerTag).length, 1);
                                         eventListenerEditor = editor.GetElementsByTag(listenerTag)[0];
                                     });
 
@@ -114,9 +114,9 @@ suite(
                                     "Checking the integrity of the meta-data…",
                                     () =>
                                     {
-                                        assert.strictEqual(eventListenerEditor.HasText(eventClassTag, className), true);
-                                        assert.strictEqual(eventListenerEditor.HasText(inheritTag, allowInherit ? "1" : "0"), true);
-                                        assert.strictEqual(eventListenerEditor.HasText(eventHandlerTag, eventHandler), true);
+                                        Assert.strictEqual(eventListenerEditor.HasText(eventClassTag, className), true);
+                                        Assert.strictEqual(eventListenerEditor.HasText(inheritTag, allowInherit ? "1" : "0"), true);
+                                        Assert.strictEqual(eventListenerEditor.HasText(eventHandlerTag, eventHandler), true);
                                     });
                             });
                     });

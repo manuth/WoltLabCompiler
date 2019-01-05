@@ -1,4 +1,4 @@
-import assert = require("assert");
+import Assert = require("assert");
 import FileSystem = require("fs-extra");
 import { TempFile } from "temp-filesystem";
 import { DOMParser } from "xmldom";
@@ -63,7 +63,7 @@ suite(
                     "Checking whether the compiled file exists…",
                     async () =>
                     {
-                        assert.strictEqual(await FileSystem.pathExists(tempFile.FullName), true);
+                        Assert.strictEqual(await FileSystem.pathExists(tempFile.FullName), true);
                     });
 
                 test(
@@ -71,7 +71,7 @@ suite(
                     async () =>
                     {
                         let document = new DOMParser().parseFromString((await FileSystem.readFile(tempFile.FullName)).toString());
-                        assert.strictEqual(document.documentElement.textContent, variableValue);
+                        Assert.strictEqual(document.documentElement.textContent, variableValue);
                     });
             });
     });

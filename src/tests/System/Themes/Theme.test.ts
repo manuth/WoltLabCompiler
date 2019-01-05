@@ -1,5 +1,5 @@
-import assert = require("assert");
-import dedent = require("dedent");
+import Assert = require("assert");
+import Dedent = require("dedent");
 import FileSystem = require("fs-extra");
 import OS = require("os");
 import { TempDirectory } from "temp-filesystem";
@@ -95,7 +95,7 @@ suite(
                     });
 
                 tempDir = new TempDirectory();
-                customScss = dedent(
+                customScss = Dedent(
                     `
                         :root
                         {
@@ -164,8 +164,8 @@ suite(
                     "Checking whether the `Author`-property equals the author of the package if no author is specified…",
                     () =>
                     {
-                        assert.strictEqual(theme.Author.Name, author.Name);
-                        assert.strictEqual(theme.Author.URL, author.URL);
+                        Assert.strictEqual(theme.Author.Name, author.Name);
+                        Assert.strictEqual(theme.Author.URL, author.URL);
                     });
             });
 
@@ -175,7 +175,7 @@ suite(
             {
                 test(
                     "Checking whether the `CustomScss`-property equals the content of the scss-file…",
-                    () => assert.strictEqual(theme.CustomScss, customScss));
+                    () => Assert.strictEqual(theme.CustomScss, customScss));
             });
 
         suite(
@@ -202,14 +202,14 @@ suite(
                             "Checking whether special scss-variables written in scss are added…",
                             () =>
                             {
-                                assert.strictEqual(theme.ScssOverride.indexOf(`$${specialScssVariable.Name}: ${specialScssVariable.Input};`) >= 0, true);
+                                Assert.strictEqual(theme.ScssOverride.indexOf(`$${specialScssVariable.Name}: ${specialScssVariable.Input};`) >= 0, true);
                             });
 
                         test(
                             "Checking whether special scss-variables written in json are added…",
                             () =>
                             {
-                                assert.strictEqual(theme.ScssOverride.indexOf(`$${specialJsonVariable.Name}: ${specialJsonVariable.Input};`) >= 0, true);
+                                Assert.strictEqual(theme.ScssOverride.indexOf(`$${specialJsonVariable.Name}: ${specialJsonVariable.Input};`) >= 0, true);
                             });
                     });
             });
@@ -238,14 +238,14 @@ suite(
                             "Checking whether variables written in scss are added…",
                             () =>
                             {
-                                assert.strictEqual(scssVariable.Name in theme.Variables, true);
+                                Assert.strictEqual(scssVariable.Name in theme.Variables, true);
                             });
 
                         test(
                             "Checking whether variables written in json are added…",
                             () =>
                             {
-                                assert.strictEqual(jsonVariable.Name in theme.Variables, true);
+                                Assert.strictEqual(jsonVariable.Name in theme.Variables, true);
                             });
                     });
 
@@ -261,7 +261,7 @@ suite(
                                     `Checking whether "${variable.Input}" is parsed correctly (expecting "${variable.Output}")…`,
                                     () =>
                                     {
-                                        assert.strictEqual(theme.Variables[variable.Name], variable.Output);
+                                        Assert.strictEqual(theme.Variables[variable.Name], variable.Output);
                                     });
                             }
                         }

@@ -1,4 +1,3 @@
-import escapeStringRegexp = require("escape-string-regexp");
 import Path = require("path");
 import UPath = require("upath");
 import { isNullOrUndefined } from "util";

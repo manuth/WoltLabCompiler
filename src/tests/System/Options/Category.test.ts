@@ -1,4 +1,4 @@
-import assert = require("assert");
+import Assert = require("assert");
 import { isNullOrUndefined } from "util";
 import { INode } from "../../../System/NodeSystem/INode";
 import { INodeOptions } from "../../../System/NodeSystem/INodeOptions";
@@ -123,16 +123,16 @@ suite(
                     "Checking whether sub-nodes can be found by their ID…",
                     () =>
                     {
-                        assert.strictEqual(categoryID in objects, true);
-                        assert.strictEqual(objects[categoryID], category);
+                        Assert.strictEqual(categoryID in objects, true);
+                        Assert.strictEqual(objects[categoryID], category);
                     });
 
                 test(
                     "Checking whether options can be found by their ID…",
                     () =>
                     {
-                        assert.strictEqual(optionID in objects, true);
-                        assert.strictEqual((objects[optionID] as MyOption).Name, optionName);
+                        Assert.strictEqual(optionID in objects, true);
+                        Assert.strictEqual((objects[optionID] as MyOption).Name, optionName);
                     });
             });
     });

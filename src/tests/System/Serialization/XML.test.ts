@@ -1,5 +1,5 @@
-import assert = require("assert");
-import dedent = require("dedent");
+import Assert = require("assert");
+import Dedent = require("dedent");
 import { XML } from "../../../System/Serialization/XML";
 
 suite(
@@ -30,14 +30,14 @@ suite(
                     "Checking whether the processing-instruction exists…",
                     () =>
                     {
-                        assert.strictEqual(document.childNodes[0].nodeType, document.PROCESSING_INSTRUCTION_NODE);
+                        Assert.strictEqual(document.childNodes[0].nodeType, document.PROCESSING_INSTRUCTION_NODE);
                     });
 
                 test(
                     "Checking whether the tag-name is correct…",
                     () =>
                     {
-                        assert.strictEqual(document.documentElement.tagName, tag);
+                        Assert.strictEqual(document.documentElement.tagName, tag);
                     });
             });
 
@@ -49,7 +49,7 @@ suite(
                     "Checking whether `xml`-code is formatted correctly…",
                     () =>
                     {
-                        let input: string = dedent(`
+                        let input: string = Dedent(`
                             <?xml version="1.0" encoding="UTF-8"?><foo>
                                 <bar><baz>this
                             is
@@ -57,7 +57,7 @@ suite(
                             test for the indentation of the XML-formatter
                             Let's see it it works :')</baz></bar></foo>`);
 
-                        let output: string = dedent(`
+                        let output: string = Dedent(`
                             <?xml version="1.0" encoding="UTF-8"?>
                             <foo>
                                 <bar>
@@ -69,7 +69,7 @@ suite(
                                 </bar>
                             </foo>`);
 
-                        assert.strictEqual(XML.Format(input), output);
+                        Assert.strictEqual(XML.Format(input), output);
                     });
             });
     });

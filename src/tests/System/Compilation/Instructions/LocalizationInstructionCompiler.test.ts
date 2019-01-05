@@ -1,4 +1,4 @@
-import assert = require("assert");
+import Assert = require("assert");
 import FileSystem = require("fs-extra");
 import Path = require("path");
 import { TempDirectory } from "temp-filesystem";
@@ -79,7 +79,7 @@ suite(
                     {
                         let files: string[] = await FileSystem.readdir(localizationDir);
 
-                        assert.strictEqual(
+                        Assert.strictEqual(
                             files.every(
                                 (file: string) =>
                                 {
@@ -87,7 +87,7 @@ suite(
                                 }),
                                 true);
 
-                        assert.strictEqual(
+                        Assert.strictEqual(
                             locales.every(
                                 (locale: string) =>
                                 {

@@ -1,4 +1,4 @@
-import assert = require("assert");
+import Assert = require("assert");
 import { Localization } from "../../../System/Globalization/Localization";
 
 suite(
@@ -39,8 +39,8 @@ suite(
                     "Checking whether the locales of the `Localization` are evaluated correctly…",
                     () =>
                     {
-                        assert.strictEqual(locales1.every((locale: string) => localization1.GetLocales().includes(locale)), true);
-                        assert.strictEqual(locales2.every((locale: string) => localization2.GetLocales().includes(locale)), true);
+                        Assert.strictEqual(locales1.every((locale: string) => localization1.GetLocales().includes(locale)), true);
+                        Assert.strictEqual(locales2.every((locale: string) => localization2.GetLocales().includes(locale)), true);
                     });
             });
     });

@@ -1,5 +1,5 @@
-import assert = require("assert");
-import dedent = require("dedent");
+import Assert = require("assert");
+import Dedent = require("dedent");
 import FileSystem = require("fs-extra");
 import Path = require("path");
 import { TempDirectory } from "temp-filesystem";
@@ -37,7 +37,7 @@ suite(
                 await FileSystem.writeFile(tempDir.MakePath(mainFile), `$${var1Name}: ${var1Value};`);
                 await FileSystem.writeFile(
                     tempDir.MakePath(importFile),
-                    dedent(
+                    Dedent(
                         `
                         @import "${Path.basename(mainFile)}";
                         $${var2Name}: ${var2Value};
@@ -60,11 +60,11 @@ suite(
             {
                 test(
                     "Checking whether expected variable is present…",
-                    () => assert.strictEqual(var1Name in variablesWithoutImport, true));
+                    () => Assert.strictEqual(var1Name in variablesWithoutImport, true));
 
                 test(
                     "Checking whether the value of the expected variable is correct…",
-                    () => assert.strictEqual(variablesWithoutImport[var1Name], var1Value));
+                    () => Assert.strictEqual(variablesWithoutImport[var1Name], var1Value));
             });
 
         suite(
@@ -75,29 +75,29 @@ suite(
                     "Checking whether the expected variables are present…",
                     () =>
                     {
-                        assert.strictEqual(var2Name in variablesWithImport, true);
-                        assert.strictEqual(var3Name in variablesWithImport, true);
+                        Assert.strictEqual(var2Name in variablesWithImport, true);
+                        Assert.strictEqual(var3Name in variablesWithImport, true);
                     });
 
                 test(
                     "Checking whether variables imported variables are not present…",
                     () =>
                     {
-                        assert.strictEqual(var1Name in variablesWithImport, false);
+                        Assert.strictEqual(var1Name in variablesWithImport, false);
                     });
 
                 test(
                     "Checking whether independent variables have the correct value…",
                     () =>
                     {
-                        assert.strictEqual(variablesWithImport[var2Name], var2Value);
+                        Assert.strictEqual(variablesWithImport[var2Name], var2Value);
                     });
 
                 test(
                     "Checking whether variables which depend on imports have the correct value…",
                     () =>
                     {
-                        assert.strictEqual(variablesWithImport[var3Name], var1Value);
+                        Assert.strictEqual(variablesWithImport[var3Name], var1Value);
                     });
             });
     });

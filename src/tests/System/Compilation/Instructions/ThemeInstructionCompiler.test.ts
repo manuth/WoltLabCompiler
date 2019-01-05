@@ -1,7 +1,7 @@
-import assert = require("assert");
-import dedent = require("dedent");
+import Assert = require("assert");
+import Dedent = require("dedent");
 import FileSystem = require("fs-extra");
-import tar = require("tar");
+import Tar = require("tar");
 import { TempDirectory } from "temp-filesystem";
 import { ThemeInstructionCompiler } from "../../../../System/Compilation/PackageSystem/Instructions/ThemeInstructionCompiler";
 import { ThemeInstruction } from "../../../../System/PackageSystem/Instructions/Customization/Presentation/ThemeInstruction";
@@ -35,7 +35,7 @@ suite(
                 let resourceDir: TempDirectory = new TempDirectory();
                 await FileSystem.writeFile(
                     resourceDir.MakePath("variables.json"),
-                    dedent(`
+                    Dedent(`
                         {
                             "wcfHeaderBackground": "red",
                             "somethingSpecial": "test-value",
@@ -43,7 +43,7 @@ suite(
                         }`));
                 await FileSystem.writeFile(
                     resourceDir.MakePath("main.scss"),
-                    dedent(`
+                    Dedent(`
                         :root
                         {
                             color: red !important;
@@ -88,14 +88,14 @@ suite(
                     "Checking whether the tar-archive has been created…",
                     async () =>
                     {
-                        assert.strictEqual(await FileSystem.pathExists(themeArchive), true);
+                        Assert.strictEqual(await FileSystem.pathExists(themeArchive), true);
                     });
 
                 test(
                     "Checking whether the tar-archive can be extracted without an error…",
                     async () =>
                     {
-                        await tar.extract(
+                        await Tar.extract(
                             {
                                 cwd: themeDir.FullName,
                                 file: themeArchive
@@ -106,8 +106,8 @@ suite(
                     "Checking whether the files expected in the tar-archive exist…",
                     async () =>
                     {
-                        assert.strictEqual(await FileSystem.pathExists(themeDir.MakePath("style.xml")), true);
-                        assert.strictEqual(await FileSystem.pathExists(themeDir.MakePath("variables.xml")), true);
+                        Assert.strictEqual(await FileSystem.pathExists(themeDir.MakePath("style.xml")), true);
+                        Assert.strictEqual(await FileSystem.pathExists(themeDir.MakePath("variables.xml")), true);
                     });
             });
     });

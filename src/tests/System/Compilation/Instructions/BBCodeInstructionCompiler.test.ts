@@ -1,4 +1,4 @@
-import assert = require("assert");
+import Assert = require("assert");
 import FileSystem = require("fs-extra");
 import { TempDirectory } from "temp-filesystem";
 import { BBCodeInstructionCompiler } from "../../../../System/Compilation/PackageSystem/Instructions/BBCodeInstructionCompiler";
@@ -77,7 +77,7 @@ suite(
                     "Checking whether the bb-code file exists…",
                     async () =>
                     {
-                        assert.strictEqual(await FileSystem.pathExists(fileName), true);
+                        Assert.strictEqual(await FileSystem.pathExists(fileName), true);
                     });
 
                 test(
@@ -85,7 +85,7 @@ suite(
                     async () =>
                     {
                         let files: string[] = await FileSystem.readdir(translationDir);
-                        assert.strictEqual(locales.every((locale: string) => files.includes(`${locale}.xml`)), true);
+                        Assert.strictEqual(locales.every((locale: string) => files.includes(`${locale}.xml`)), true);
                     });
             });
     });

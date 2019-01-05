@@ -1,4 +1,4 @@
-import assert = require("assert");
+import Assert = require("assert");
 import FileSystem = require("fs-extra");
 import { TempFile } from "temp-filesystem";
 import { DOMParser } from "xmldom";
@@ -108,7 +108,7 @@ suite(
                                             "Checking whether the option exists…",
                                             () =>
                                             {
-                                                assert.strictEqual(editor.GetElementsByTag(optionTag).length, 1);
+                                                Assert.strictEqual(editor.GetElementsByTag(optionTag).length, 1);
                                                 optionEditor = editor.GetElementsByTag(optionTag)[0];
                                             });
                                     });
@@ -133,21 +133,21 @@ suite(
                                             "Checking whether the visibility is set correctly…",
                                             () =>
                                             {
-                                                assert.strictEqual(optionEditor.HasText(visibleTag, option.Visible ? "0" : "1"), true);
+                                                Assert.strictEqual(optionEditor.HasText(visibleTag, option.Visible ? "0" : "1"), true);
                                             });
 
                                         test(
                                             "Checking whether the localization-support is set correctly…",
                                             () =>
                                             {
-                                                assert.strictEqual(optionEditor.HasText(localizableTag, option.Localizable ? "1" : "0"), true);
+                                                Assert.strictEqual(optionEditor.HasText(localizableTag, option.Localizable ? "1" : "0"), true);
                                             });
 
                                         test(
                                             "Checking whether the localization-requirement is set correctly…",
                                             () =>
                                             {
-                                                assert.strictEqual(optionEditor.HasText(forceLocalizationTag, option.ForceLocalization ? "1" : "0"), true);
+                                                Assert.strictEqual(optionEditor.HasText(forceLocalizationTag, option.ForceLocalization ? "1" : "0"), true);
                                             });
                                     });
                             });

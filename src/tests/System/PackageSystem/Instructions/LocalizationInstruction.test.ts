@@ -1,4 +1,4 @@
-import assert = require("assert");
+import Assert = require("assert");
 import { ILocalization } from "../../../../System/Globalization/ILocalization";
 import { ILocalizationItemOptions } from "../../../../System/Globalization/ILocalizationItemOptions";
 import { LocalizationItem } from "../../../../System/Globalization/LocalizationItem";
@@ -57,28 +57,28 @@ suite(
                     "Checking whether an entry for the locale of the translations is present…",
                     () =>
                     {
-                        assert.strictEqual(locale in translations, true);
+                        Assert.strictEqual(locale in translations, true);
                     });
 
                 test(
                     "Checking whether categories are created correctly…",
                     () =>
                     {
-                        assert.strictEqual(category in translations[locale], true);
+                        Assert.strictEqual(category in translations[locale], true);
                     });
 
                 test(
                     "Checking whether keys are created correctly…",
                     () =>
                     {
-                        assert.strictEqual(`${category}.${messageName}` in translations[locale][category], true);
+                        Assert.strictEqual(`${category}.${messageName}` in translations[locale][category], true);
                     });
 
                 test(
                     "Checking whether translations are created correctly…",
                     () =>
                     {
-                        assert.strictEqual(translations[locale][category][`${category}.${messageName}`], messageValue);
+                        Assert.strictEqual(translations[locale][category][`${category}.${messageName}`], messageValue);
                     });
             });
     });

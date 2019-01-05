@@ -1,4 +1,4 @@
-import assert = require("assert");
+import Assert = require("assert");
 import FileSystem = require("fs-extra");
 import { TempDirectory } from "temp-filesystem";
 import { IThemeOptions } from "../../../System/Customization/Presentation/Themes/IThemeOptions";
@@ -56,13 +56,13 @@ suite(
             "Checking whether themes are automatically added to the collection…",
             () =>
             {
-                assert.strictEqual(collection.length, themeDirectories.length);
+                Assert.strictEqual(collection.length, themeDirectories.length);
             });
 
         test(
             "Checking whether the meta-data is applied correctly…",
             () =>
             {
-                assert.strictEqual(collection.every((themeInstruction: ThemeInstruction) => themeInstruction.Theme.Name === name), true);
+                Assert.strictEqual(collection.every((themeInstruction: ThemeInstruction) => themeInstruction.Theme.Name === name), true);
             });
     });

@@ -1,4 +1,4 @@
-import assert = require("assert");
+import Assert = require("assert");
 import FileSystem = require("fs-extra");
 import { TempDirectory } from "temp-filesystem";
 import { GroupOptionInstructionCompiler } from "../../../../System/Compilation/PackageSystem/Instructions/GroupOptionInstructionCompiler";
@@ -78,7 +78,7 @@ suite(
                     "Checking whether the option-file exists…",
                     async () =>
                     {
-                        assert.strictEqual(await FileSystem.pathExists(fileName), true);
+                        Assert.strictEqual(await FileSystem.pathExists(fileName), true);
                     });
 
                 test(
@@ -86,7 +86,7 @@ suite(
                     async () =>
                     {
                         let files: string[] = await FileSystem.readdir(translationDir);
-                        assert.strictEqual(locales.every((locale: string) => files.includes(`${locale}.xml`)), true);
+                        Assert.strictEqual(locales.every((locale: string) => files.includes(`${locale}.xml`)), true);
                     });
             });
     });

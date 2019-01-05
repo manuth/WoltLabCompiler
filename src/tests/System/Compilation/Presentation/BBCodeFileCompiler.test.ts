@@ -1,4 +1,4 @@
-import assert = require("assert");
+import Assert = require("assert");
 import FileSystem = require("fs-extra");
 import { TempFile } from "temp-filesystem";
 import { isNullOrUndefined } from "util";
@@ -148,7 +148,7 @@ suite(
                                             "Checking whether at least one bb-code exists…",
                                             () =>
                                             {
-                                                assert.strictEqual(importEditor.HasTag(bbCodeTag), true);
+                                                Assert.strictEqual(importEditor.HasTag(bbCodeTag), true);
                                                 bbCodeEditors = importEditor.GetChildrenByTag(bbCodeTag);
                                             });
                                     });
@@ -186,7 +186,7 @@ suite(
                                                                 return editor.GetAttribute(nameAttribute) === commonBBCodeName;
                                                             });
 
-                                                        assert.strictEqual(matches.length, 1);
+                                                        Assert.strictEqual(matches.length, 1);
                                                         bbCodeEditor = matches[0];
                                                     });
                                             });
@@ -199,28 +199,28 @@ suite(
                                                     "Checking the integrity of the label-property",
                                                     () =>
                                                     {
-                                                        assert.strictEqual(bbCodeEditor.HasText(labelTag, `wcf.editor.button.${commonBBCodeName}`), true);
+                                                        Assert.strictEqual(bbCodeEditor.HasText(labelTag, `wcf.editor.button.${commonBBCodeName}`), true);
                                                     });
 
                                                 test(
                                                     "Checking the integrity of the icon-property…",
                                                     () =>
                                                     {
-                                                        assert.strictEqual(bbCodeEditor.HasText(iconTag, icon), true);
+                                                        Assert.strictEqual(bbCodeEditor.HasText(iconTag, icon), true);
                                                     });
 
                                                 test(
                                                     "Checking the integrity of the isBlockElement-property…",
                                                     () =>
                                                     {
-                                                        assert.strictEqual(bbCodeEditor.HasText(isBlockElementTag, isBlockElement ? "1" : "0"), true);
+                                                        Assert.strictEqual(bbCodeEditor.HasText(isBlockElementTag, isBlockElement ? "1" : "0"), true);
                                                     });
 
                                                 test(
                                                     "Checking the integrity of the parseContent-property…",
                                                     () =>
                                                     {
-                                                        assert.strictEqual(bbCodeEditor.HasText(parseContentTag, parseContent ? "0" : "1"), true);
+                                                        Assert.strictEqual(bbCodeEditor.HasText(parseContentTag, parseContent ? "0" : "1"), true);
                                                     });
                                             });
 
@@ -249,7 +249,7 @@ suite(
                                                             "Checking the integrity of the attributes-property…",
                                                             () =>
                                                             {
-                                                                assert.strictEqual(bbCodeEditor.HasTag(attributesTag, true), true);
+                                                                Assert.strictEqual(bbCodeEditor.HasTag(attributesTag, true), true);
                                                                 attributesEditor = bbCodeEditor.GetChildrenByTag(attributesTag)[0];
                                                             });
 
@@ -258,7 +258,7 @@ suite(
                                                             () =>
                                                             {
                                                                 let attributeEditors = attributesEditor.GetChildrenByTag(attributeTag);
-                                                                assert.strictEqual(attributeEditors.length > 0, true);
+                                                                Assert.strictEqual(attributeEditors.length > 0, true);
                                                                 attributeEditor = attributeEditors[Math.floor(Math.random() * attributeEditors.length)];
                                                             });
                                                     });
@@ -285,14 +285,14 @@ suite(
                                                             "Checking the integrity of the required-property",
                                                             () =>
                                                             {
-                                                                assert.strictEqual(attributeEditor.HasText(requiredTag, attribute.Required ? "1" : "0"), true);
+                                                                Assert.strictEqual(attributeEditor.HasText(requiredTag, attribute.Required ? "1" : "0"), true);
                                                             });
 
                                                         test(
                                                             "Checking the integrity of the valueByContent-property",
                                                             () =>
                                                             {
-                                                                assert.strictEqual(attributeEditor.HasText(valueByContentTag, attribute.ValueByContent ? "1" : "0"), true);
+                                                                Assert.strictEqual(attributeEditor.HasText(valueByContentTag, attribute.ValueByContent ? "1" : "0"), true);
                                                             });
 
                                                         test(
@@ -305,7 +305,7 @@ suite(
                                                                 }
                                                                 else
                                                                 {
-                                                                    assert.strictEqual(attributeEditor.HasText(codeTag, attribute.Code), true);
+                                                                    Assert.strictEqual(attributeEditor.HasText(codeTag, attribute.Code), true);
                                                                 }
                                                             });
 
@@ -319,7 +319,7 @@ suite(
                                                                 }
                                                                 else
                                                                 {
-                                                                    assert.strictEqual(attributeEditor.HasText(validationPatternTag, attribute.ValidationPattern.source), true);
+                                                                    Assert.strictEqual(attributeEditor.HasText(validationPatternTag, attribute.ValidationPattern.source), true);
                                                                 }
                                                             });
                                                     });
@@ -353,7 +353,7 @@ suite(
                                                                 return element.GetAttribute(nameAttribute) === classBBCodeName;
                                                             });
 
-                                                        assert.strictEqual(matches.length, 1);
+                                                        Assert.strictEqual(matches.length, 1);
                                                         bbCodeEditor = matches[0];
                                                     });
                                             });
@@ -366,7 +366,7 @@ suite(
                                                     "Checking the integrity of the class-property…",
                                                     () =>
                                                     {
-                                                        assert.strictEqual(bbCodeEditor.HasText(classTag, className), true);
+                                                        Assert.strictEqual(bbCodeEditor.HasText(classTag, className), true);
                                                     });
                                             });
                                     });
@@ -401,7 +401,7 @@ suite(
                                                                 return element.GetAttribute(nameAttribute) === htmlBBCodeName;
                                                             });
 
-                                                        assert.strictEqual(matches.length, 1);
+                                                        Assert.strictEqual(matches.length, 1);
                                                         bbCodeEditor = matches[0];
                                                     });
                                             });
@@ -414,7 +414,7 @@ suite(
                                                     "Checking the integrity of the opening html-tag…",
                                                     () =>
                                                     {
-                                                        assert.strictEqual(bbCodeEditor.HasText(htmlOpenTag, htmlTag), true);
+                                                        Assert.strictEqual(bbCodeEditor.HasText(htmlOpenTag, htmlTag), true);
                                                     });
 
                                                 test(
@@ -423,11 +423,11 @@ suite(
                                                     {
                                                         if (isSelfClosing)
                                                         {
-                                                            assert.strictEqual(importEditor.GetElementsByTag(htmlCloseTag).length, 0);
+                                                            Assert.strictEqual(importEditor.GetElementsByTag(htmlCloseTag).length, 0);
                                                         }
                                                         else
                                                         {
-                                                            assert.strictEqual(bbCodeEditor.HasText(htmlCloseTag, htmlTag), true);
+                                                            Assert.strictEqual(bbCodeEditor.HasText(htmlCloseTag, htmlTag), true);
                                                         }
                                                     });
                                             });

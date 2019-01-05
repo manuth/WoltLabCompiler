@@ -1,4 +1,4 @@
-import assert = require("assert");
+import Assert = require("assert");
 import FileSystem = require("fs-extra");
 import { TempFile } from "temp-filesystem";
 import { DOMParser } from "xmldom";
@@ -58,7 +58,7 @@ suite(
                             "Checking whether the compiled file exists…",
                             async () =>
                             {
-                                assert.strictEqual(await FileSystem.pathExists(tempFile.FullName), true);
+                                Assert.strictEqual(await FileSystem.pathExists(tempFile.FullName), true);
                             });
                     });
 
@@ -78,21 +78,21 @@ suite(
                             "Checking whether the namespace is correct…",
                             () =>
                             {
-                                assert.strictEqual(document.documentElement.getAttribute("xmlns"), namespace);
+                                Assert.strictEqual(document.documentElement.getAttribute("xmlns"), namespace);
                             });
 
                         test(
                             "Checking whether the schema-instance is correct…",
                             () =>
                             {
-                                assert.strictEqual(document.documentElement.getAttribute("xmlns:xsi"), "http://www.w3.org/2001/XMLSchema-instace");
+                                Assert.strictEqual(document.documentElement.getAttribute("xmlns:xsi"), "http://www.w3.org/2001/XMLSchema-instace");
                             });
 
                         test(
                             "Checking whether the schema-location is correct…",
                             () =>
                             {
-                                assert.strictEqual(document.documentElement.getAttribute("xsi:schemaLocation"), `${namespace} ${schemaLocation}`);
+                                Assert.strictEqual(document.documentElement.getAttribute("xsi:schemaLocation"), `${namespace} ${schemaLocation}`);
                             });
                     });
             });

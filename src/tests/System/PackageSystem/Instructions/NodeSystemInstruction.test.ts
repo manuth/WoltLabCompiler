@@ -1,4 +1,4 @@
-import assert = require("assert");
+import Assert = require("assert");
 import { isNullOrUndefined } from "util";
 import { INodeOptions } from "../../../../System/NodeSystem/INodeOptions";
 import { Node } from "../../../../System/NodeSystem/Node";
@@ -86,14 +86,14 @@ suite(
                     "Checking whether object-ids are queried correctly…",
                     () =>
                     {
-                        assert.strictEqual(id in instruction.ObjectsByID, true);
+                        Assert.strictEqual(id in instruction.ObjectsByID, true);
                     });
 
                 test(
                     "Checking whether the objects are assigned to the ids correctly…",
                     () =>
                     {
-                        assert.strictEqual(instruction.ObjectsByID[id], idNode);
+                        Assert.strictEqual(instruction.ObjectsByID[id], idNode);
                     });
             });
     });
