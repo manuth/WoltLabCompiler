@@ -1,6 +1,5 @@
 import assert = require("assert");
 import { isNullOrUndefined } from "util";
-import { INode } from "../../../../System/NodeSystem/INode";
 import { INodeOptions } from "../../../../System/NodeSystem/INodeOptions";
 import { Node } from "../../../../System/NodeSystem/Node";
 import { NodeItem } from "../../../../System/NodeSystem/NodeItem";
