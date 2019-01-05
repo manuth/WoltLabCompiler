@@ -5,7 +5,6 @@ import { TimePeriod } from "../../../System/Tasks/TimePeriod";
 suite("TimePeriod",
     () =>
     {
-        // tslint:disable-next-line:typedef
         let cronExpressionType = CronParser.parseExpression("* * * * * *");
         let periodConverter: (value: TimePeriod) => typeof cronExpressionType;
         let period: typeof cronExpressionType;
