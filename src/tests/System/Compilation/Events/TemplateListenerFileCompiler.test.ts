@@ -1,5 +1,5 @@
-import * as assert from "assert";
-import * as FileSystem from "fs-extra";
+import Assert = require("assert");
+import FileSystem = require("fs-extra");
 import { TempFile } from "temp-filesystem";
 import { DOMParser } from "xmldom";
 import { TemplateListenerFileCompiler } from "../../../../System/Compilation/Events/TemplateListenerFileCompiler";
@@ -101,7 +101,7 @@ suite(
                                     "Checking whether the template-listener is present…",
                                     () =>
                                     {
-                                        assert.strictEqual(editor.GetElementsByTag(listenerTag).length, 1);
+                                        Assert.strictEqual(editor.GetElementsByTag(listenerTag).length, 1);
                                         templateListenerEditor = editor.GetElementsByTag(listenerTag)[0];
                                     });
 
@@ -109,8 +109,8 @@ suite(
                                     "Checking the integrity of the meta-data…",
                                     () =>
                                     {
-                                        assert.strictEqual(templateListenerEditor.HasText(templateTag, templateName), true);
-                                        assert.strictEqual(templateListenerEditor.HasText(codeTag, code), true);
+                                        Assert.strictEqual(templateListenerEditor.HasText(templateTag, templateName), true);
+                                        Assert.strictEqual(templateListenerEditor.HasText(codeTag, code), true);
                                     });
                             });
                     });

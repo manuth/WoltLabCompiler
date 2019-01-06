@@ -1,7 +1,5 @@
-import * as assert from "assert";
-import escapeStringRegexp = require("escape-string-regexp");
-import * as FileSystem from "fs-extra";
-import * as Path from "path";
+import Assert = require("assert");
+import FileSystem = require("fs-extra");
 import { TempFile } from "temp-filesystem";
 import UPath = require("upath");
 import { isNullOrUndefined } from "util";
@@ -263,14 +261,14 @@ suite(
                                     "Checking whether the name of the document-element tag is correct…",
                                     () =>
                                     {
-                                        assert.strictEqual($package.TagName, rootTag);
+                                        Assert.strictEqual($package.TagName, rootTag);
                                     });
 
                                 test(
                                     "Checking whether the identifier is correct…",
                                     () =>
                                     {
-                                        assert.strictEqual($package.HasAttribute(identifierAttribute, identifier), true);
+                                        Assert.strictEqual($package.HasAttribute(identifierAttribute, identifier), true);
                                     });
                             });
 
@@ -300,7 +298,7 @@ suite(
                                                     "Checking whether the package-information is present…",
                                                     () =>
                                                     {
-                                                        assert.strictEqual($package.HasTag(packageInfoTag, true), true);
+                                                        Assert.strictEqual($package.HasTag(packageInfoTag, true), true);
                                                         packageInfo = $package.GetChildrenByTag(packageInfoTag)[0];
                                                     });
                                             });
@@ -335,7 +333,7 @@ suite(
 
                                                             if (editor.HasAttribute(languageAttribute))
                                                             {
-                                                                assert.strictEqual(editor.GetAttribute(languageAttribute), locale);
+                                                                Assert.strictEqual(editor.GetAttribute(languageAttribute), locale);
                                                                 expected = localizedName;
                                                             }
                                                             else
@@ -343,7 +341,7 @@ suite(
                                                                 expected = invariantName;
                                                             }
 
-                                                            assert.strictEqual(editor.TextContent, expected);
+                                                            Assert.strictEqual(editor.TextContent, expected);
                                                         }
                                                     });
 
@@ -357,7 +355,7 @@ suite(
 
                                                             if (editor.HasAttribute(languageAttribute))
                                                             {
-                                                                assert.strictEqual(editor.GetAttribute(languageAttribute), locale);
+                                                                Assert.strictEqual(editor.GetAttribute(languageAttribute), locale);
                                                                 expected = localizedDescription;
                                                             }
                                                             else
@@ -365,7 +363,7 @@ suite(
                                                                 expected = invariantDescription;
                                                             }
 
-                                                            assert.strictEqual(editor.TextContent, expected);
+                                                            Assert.strictEqual(editor.TextContent, expected);
                                                         }
                                                     });
 
@@ -373,14 +371,14 @@ suite(
                                                     "Checking whether the version is correct…",
                                                     () =>
                                                     {
-                                                        assert.strictEqual(packageInfo.HasText(versionTag, version), true);
+                                                        Assert.strictEqual(packageInfo.HasText(versionTag, version), true);
                                                     });
 
                                                 test(
                                                     "Checking whether the date is correct…",
                                                     () =>
                                                     {
-                                                        assert.strictEqual(new Date(packageInfo.GetText(dateTag)).getTime(), date.getTime());
+                                                        Assert.strictEqual(new Date(packageInfo.GetText(dateTag)).getTime(), date.getTime());
                                                     });
                                             });
                                     });
@@ -407,7 +405,7 @@ suite(
                                                     "Checking whether the author-information is present…",
                                                     () =>
                                                     {
-                                                        assert.strictEqual($package.HasTag(authorInfoTag, true), true);
+                                                        Assert.strictEqual($package.HasTag(authorInfoTag, true), true);
                                                         authorInfo = $package.GetChildrenByTag(authorInfoTag)[0];
                                                     });
                                             });
@@ -464,7 +462,7 @@ suite(
                                                     "Checking whether the list of the required packages is present…",
                                                     () =>
                                                     {
-                                                        assert.strictEqual($package.HasTag(requiredPackagesTag, true), true);
+                                                        Assert.strictEqual($package.HasTag(requiredPackagesTag, true), true);
                                                         packages = $package.GetChildrenByTag(requiredPackagesTag)[0];
                                                     });
                                             });
@@ -487,7 +485,7 @@ suite(
                                                     "Checking whether the tag-names are correct…",
                                                     () =>
                                                     {
-                                                        assert.strictEqual(
+                                                        Assert.strictEqual(
                                                             requiredPackageNodes.length,
                                                             packages.ChildNodes.filter((node: Node) => node.nodeType === node.ELEMENT_NODE).length);
                                                     });
@@ -498,7 +496,7 @@ suite(
                                                     {
                                                         for (let requiredPackage of requiredPackages)
                                                         {
-                                                            assert.strictEqual(
+                                                            Assert.strictEqual(
                                                                 requiredPackageNodes.filter(
                                                                     (requiredPackageNode: XMLEditor) =>
                                                                     {
@@ -534,7 +532,7 @@ suite(
                                                     "Checking whether the list of conflicting packages is present…",
                                                     () =>
                                                     {
-                                                        assert.strictEqual($package.HasTag(conflictingPackagesTag, true), true);
+                                                        Assert.strictEqual($package.HasTag(conflictingPackagesTag, true), true);
                                                         packages = $package.GetChildrenByTag(conflictingPackagesTag)[0];
                                                     });
                                             });
@@ -557,7 +555,7 @@ suite(
                                                     "Checking whether the tag-names are correct…",
                                                     () =>
                                                     {
-                                                        assert.strictEqual(
+                                                        Assert.strictEqual(
                                                             conflictingPackageNodes.length,
                                                             packages.ChildNodes.filter((node: Node) => node.nodeType === node.ELEMENT_NODE).length);
                                                     });
@@ -568,7 +566,7 @@ suite(
                                                     {
                                                         for (let conflictingPackage of conflictingPackages)
                                                         {
-                                                            assert.strictEqual(
+                                                            Assert.strictEqual(
                                                                 conflictingPackageNodes.filter(
                                                                     (conflictingPackageNode: XMLEditor) =>
                                                                     {
@@ -603,7 +601,7 @@ suite(
                                                     "Checking whether the list of optional packages is present…",
                                                     () =>
                                                     {
-                                                        assert.strictEqual($package.HasTag(optionalPackagesTag, true), true);
+                                                        Assert.strictEqual($package.HasTag(optionalPackagesTag, true), true);
                                                         packages = $package.GetChildrenByTag(optionalPackagesTag)[0];
                                                     });
                                             });
@@ -626,7 +624,7 @@ suite(
                                                     "Checking whether the tag-names are correct…",
                                                     () =>
                                                     {
-                                                        assert.strictEqual(
+                                                        Assert.strictEqual(
                                                             optionalPackageNodes.length,
                                                             packages.ChildNodes.filter((node: Node) => node.nodeType === node.ELEMENT_NODE).length);
                                                     });
@@ -637,7 +635,7 @@ suite(
                                                     {
                                                         for (let optionalPackage of optionalPackages)
                                                         {
-                                                            assert.strictEqual(
+                                                            Assert.strictEqual(
                                                                 optionalPackageNodes.filter(
                                                                     (optionalPackageNode: XMLEditor) =>
                                                                     {
@@ -668,10 +666,10 @@ suite(
                                             "Checking whether the compatibility-information looks like expected…",
                                             () =>
                                             {
-                                                assert.strictEqual($package.HasTag(compatibilityTag, true), true);
+                                                Assert.strictEqual($package.HasTag(compatibilityTag, true), true);
                                                 let compatibility: XMLEditor = $package.GetChildrenByTag(compatibilityTag)[0];
-                                                assert.strictEqual(compatibility.HasTag(apiTag, true), true);
-                                                assert.strictEqual(compatibility.GetChildrenByTag(apiTag)[0].HasAttribute("version", "2018"), true);
+                                                Assert.strictEqual(compatibility.HasTag(apiTag, true), true);
+                                                Assert.strictEqual(compatibility.GetChildrenByTag(apiTag)[0].HasAttribute("version", "2018"), true);
                                             });
                                     });
 
@@ -695,7 +693,7 @@ suite(
                                                 {
                                                     for (let instruction of instructionSet.Instructions)
                                                     {
-                                                        assert.strictEqual(
+                                                        Assert.strictEqual(
                                                             node.GetElementsByTag(instructionTag).filter(
                                                                 (instructionEditor: XMLEditor) =>
                                                                 {
@@ -735,7 +733,7 @@ suite(
                                                                 let filtered: XMLEditor[] = instructionLists.filter(
                                                                     (instructionList: XMLEditor) => instructionList.HasAttribute(typeAttribute, "install"));
 
-                                                                assert.strictEqual(filtered.length, 1);
+                                                                Assert.strictEqual(filtered.length, 1);
                                                                 installSetEditor = filtered[0];
                                                             });
                                                     });
@@ -774,7 +772,7 @@ suite(
                                                                                 instructionList.HasAttribute("fromversion", updateSet.FromVersion);
                                                                         });
 
-                                                                    assert.strictEqual(filtered.length, 1);
+                                                                    Assert.strictEqual(filtered.length, 1);
                                                                     validateInstructionSet(updateSet, filtered[0]);
                                                                 }
                                                             });

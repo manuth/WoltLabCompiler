@@ -1,4 +1,4 @@
-import * as FileSystem from "fs-extra";
+import FileSystem = require("fs-extra");
 import { isNullOrUndefined } from "util";
 import { Theme } from "../../Customization/Presentation/Themes/Theme";
 import { Compiler } from "../Compiler";

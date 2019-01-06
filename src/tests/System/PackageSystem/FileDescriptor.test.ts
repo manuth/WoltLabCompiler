@@ -1,6 +1,6 @@
-import * as assert from "assert";
-import * as FileSystem from "fs-extra";
-import * as Path from "path";
+import Assert = require("assert");
+import FileSystem = require("fs-extra");
+import Path = require("path");
 import { TempDirectory, TempFile } from "temp-filesystem";
 import { FileDescriptor } from "../../../System/PackageSystem/FileDescriptor";
 
@@ -63,14 +63,14 @@ suite(
                     "Checking whether the `Source` points to the correct file…",
                     async () =>
                     {
-                        assert.strictEqual((await FileSystem.readFile(fileDescriptor.Source)).toString(), content);
+                        Assert.strictEqual((await FileSystem.readFile(fileDescriptor.Source)).toString(), content);
                     });
 
                 test(
                     "Checking whether the `FileName` automatically is set to the basename of the source if no filename is specified…",
                     () =>
                     {
-                        assert.strictEqual(fileDescriptor.FileName, Path.basename(fileName));
+                        Assert.strictEqual(fileDescriptor.FileName, Path.basename(fileName));
                     });
             });
 
@@ -92,7 +92,7 @@ suite(
                     "Checking whether `Source` points to the correct file…",
                     async () =>
                     {
-                        assert.strictEqual((await FileSystem.readFile(fileDescriptor.Source)).toString(), content);
+                        Assert.strictEqual((await FileSystem.readFile(fileDescriptor.Source)).toString(), content);
                     });
 
                 test(
@@ -103,7 +103,7 @@ suite(
                         let current: string = process.cwd();
                         process.chdir(tempDir.FullName);
                         {
-                            assert.strictEqual((await FileSystem.readFile(fileDescriptor.Source)).toString(), content);
+                            Assert.strictEqual((await FileSystem.readFile(fileDescriptor.Source)).toString(), content);
                         }
                         process.chdir(current);
                     });
@@ -112,7 +112,7 @@ suite(
                     "Checking whether `FileName` is set to the relative path if no filename is specified…",
                     () =>
                     {
-                        assert.strictEqual(fileDescriptor.FileName, Path.normalize(fileName));
+                        Assert.strictEqual(fileDescriptor.FileName, Path.normalize(fileName));
                     });
             });
 
@@ -146,14 +146,14 @@ suite(
                     "Checking whether `Source` points to the correct file…",
                     async () =>
                     {
-                        assert.strictEqual((await FileSystem.readFile(fileDescriptor.Source)).toString(), content);
+                        Assert.strictEqual((await FileSystem.readFile(fileDescriptor.Source)).toString(), content);
                     });
 
                 test(
                     "Checking whether `FileName` is set to the basename of the path if no filename is specified…",
                     () =>
                     {
-                        assert.strictEqual(fileDescriptor.FileName, Path.basename(fileName));
+                        Assert.strictEqual(fileDescriptor.FileName, Path.basename(fileName));
                     });
             });
     });

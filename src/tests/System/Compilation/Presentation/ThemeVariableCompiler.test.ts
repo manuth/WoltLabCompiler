@@ -1,6 +1,6 @@
-import * as assert from "assert";
-import * as dedent from "dedent";
-import * as FileSystem from "fs-extra";
+import Assert = require("assert");
+import Dedent = require("dedent");
+import FileSystem = require("fs-extra");
 import { TempFile } from "temp-filesystem";
 import { DOMParser } from "xmldom";
 import { ThemeVariableCompiler } from "../../../../System/Compilation/Presentation/ThemeVariableCompiler";
@@ -24,7 +24,7 @@ suite(
                 variableName = "wcfHeaderBackground";
                 value = "rgba(255, 0, 0, 1)";
                 scssCodeName = "individualScss";
-                scssCode = dedent(
+                scssCode = Dedent(
                     `
                     :root
                     {
@@ -62,7 +62,7 @@ suite(
                             "Checking whether the compiled file exists…",
                             async () =>
                             {
-                                assert.strictEqual(await FileSystem.pathExists(tempFile.FullName), true);
+                                Assert.strictEqual(await FileSystem.pathExists(tempFile.FullName), true);
                             });
                     });
 
@@ -109,8 +109,8 @@ suite(
                                     }
                                 }
 
-                                assert.strictEqual(variableElement.parentNode === rootElement, true);
-                                assert.strictEqual(scssElement.parentNode === rootElement, true);
+                                Assert.strictEqual(variableElement.parentNode === rootElement, true);
+                                Assert.strictEqual(scssElement.parentNode === rootElement, true);
                             });
 
                         suite(
@@ -121,7 +121,7 @@ suite(
                                     "Checking whether the tag-name is correct…",
                                     () =>
                                     {
-                                        assert.strictEqual(rootElement.tagName, rootTag);
+                                        Assert.strictEqual(rootElement.tagName, rootTag);
                                     });
                             });
 
@@ -133,14 +133,14 @@ suite(
                                     "Checking whether simple the values of simple variables are stored correctly…",
                                     () =>
                                     {
-                                        assert.strictEqual(variableElement.textContent, value);
+                                        Assert.strictEqual(variableElement.textContent, value);
                                     });
 
                                 test(
                                     "Checking whether scss-code is stored correctly…",
                                     () =>
                                     {
-                                        assert.strictEqual(scssElement.textContent, scssCode);
+                                        Assert.strictEqual(scssElement.textContent, scssCode);
                                     });
                             });
                     });

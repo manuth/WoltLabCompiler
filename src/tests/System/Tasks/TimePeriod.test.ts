@@ -1,12 +1,11 @@
-import * as assert from "assert";
-import * as parser from "cron-parser";
+import Assert = require("assert");
+import CronParser = require("cron-parser");
 import { TimePeriod } from "../../../System/Tasks/TimePeriod";
 
 suite("TimePeriod",
     () =>
     {
-        // tslint:disable-next-line:typedef
-        let cronExpressionType = parser.parseExpression("* * * * * *");
+        let cronExpressionType = CronParser.parseExpression("* * * * * *");
         let periodConverter: (value: TimePeriod) => typeof cronExpressionType;
         let period: typeof cronExpressionType;
         let startDate: Date;
@@ -20,7 +19,7 @@ suite("TimePeriod",
 
                 periodConverter = (value: TimePeriod): typeof cronExpressionType =>
                 {
-                    return parser.parseExpression(
+                    return CronParser.parseExpression(
                         `${value.Minute} ${value.Hour} ${value.DayOfMonth} ${value.Month} ${value.DayOfWeek}`,
                         {
                             currentDate: startDate
@@ -51,7 +50,7 @@ suite("TimePeriod",
                     () =>
                     {
                         endDate.setFullYear(endDate.getFullYear() + 1);
-                        assert.strictEqual(
+                        Assert.strictEqual(
                             period.next().getTime() - period.next().getTime(),
                             startDate.getTime() - endDate.getTime());
                     });
@@ -72,7 +71,7 @@ suite("TimePeriod",
                     () =>
                     {
                         endDate.setMonth(endDate.getMonth() + 1);
-                        assert.strictEqual(
+                        Assert.strictEqual(
                             period.next().getTime() - period.next().getTime(),
                             startDate.getTime() - endDate.getTime());
                     });
@@ -93,7 +92,7 @@ suite("TimePeriod",
                     () =>
                     {
                         endDate.setDate(endDate.getDate() + 7);
-                        assert.strictEqual(
+                        Assert.strictEqual(
                             period.next().getTime() - period.next().getTime(),
                             startDate.getTime() - endDate.getTime());
                     });
@@ -114,7 +113,7 @@ suite("TimePeriod",
                     () =>
                     {
                         endDate.setDate(endDate.getDate() + 1);
-                        assert.strictEqual(
+                        Assert.strictEqual(
                             period.next().getTime() - period.next().getTime(),
                             startDate.getTime() - endDate.getTime());
                     });
@@ -135,7 +134,7 @@ suite("TimePeriod",
                     () =>
                     {
                         endDate.setHours(endDate.getHours() + 1);
-                        assert.strictEqual(
+                        Assert.strictEqual(
                             period.next().getTime() - period.next().getTime(),
                             startDate.getTime() - endDate.getTime());
                     });

@@ -1,4 +1,4 @@
-import * as Path from "path";
+import Path = require("path");
 import { DOMParser } from "xmldom";
 import { IInstruction } from "../../../PackageSystem/Instructions/IInstruction";
 import { Compiler } from "../../Compiler";

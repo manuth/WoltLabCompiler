@@ -1,7 +1,7 @@
-import * as assert from "assert";
-import * as FileSystem from "fs-extra";
-import * as Path from "path";
-import * as tar from "tar";
+import Assert = require("assert");
+import FileSystem = require("fs-extra");
+import Path = require("path");
+import Tar = require("tar");
 import { TempDirectory, TempFile } from "temp-filesystem";
 import { Compiler } from "../../../System/Compilation/Compiler";
 
@@ -76,7 +76,7 @@ suite(
                             {
                                 await FileSystem.writeFile(sourceFile.FullName, ejsString);
                                 await compiler["CopyTemplate"](sourceFile.FullName, destinationFile.FullName, context);
-                                assert.strictEqual((await FileSystem.readFile(destinationFile.FullName)).toString(), result);
+                                Assert.strictEqual((await FileSystem.readFile(destinationFile.FullName)).toString(), result);
                             });
 
                         test(
@@ -85,7 +85,7 @@ suite(
                             {
                                 await FileSystem.writeFile(sourceFile.FullName, ejsString);
                                 await compiler["CopyTemplate"](sourceFile.FullName, sourceFile.FullName, context);
-                                assert.strictEqual((await FileSystem.readFile(sourceFile.FullName)).toString(), result);
+                                Assert.strictEqual((await FileSystem.readFile(sourceFile.FullName)).toString(), result);
                             });
                     });
 
@@ -125,7 +125,7 @@ suite(
                             {
                                 await FileSystem.writeFile(sourceDir.MakePath(fileName), ejsString);
                                 await compiler["CopyTemplate"](sourceDir.FullName, destinationDir.FullName, context);
-                                assert.strictEqual((await FileSystem.readFile(destinationDir.MakePath(fileName))).toString(), result);
+                                Assert.strictEqual((await FileSystem.readFile(destinationDir.MakePath(fileName))).toString(), result);
                             });
 
                         test(
@@ -134,7 +134,7 @@ suite(
                             {
                                 await FileSystem.writeFile(sourceDir.MakePath(hiddenFileName), ejsString);
                                 await compiler["CopyTemplate"](sourceDir.FullName, destinationDir.FullName, context);
-                                assert.strictEqual((await FileSystem.readFile(destinationDir.MakePath(hiddenFileName))).toString(), result);
+                                Assert.strictEqual((await FileSystem.readFile(destinationDir.MakePath(hiddenFileName))).toString(), result);
                             });
 
                         test(
@@ -143,7 +143,7 @@ suite(
                             {
                                 await FileSystem.writeFile(sourceDir.MakePath(hiddenFileName), ejsString);
                                 await compiler["CopyTemplate"](sourceDir.FullName, sourceDir.FullName, context);
-                                assert.strictEqual((await FileSystem.readFile(sourceDir.MakePath(hiddenFileName))).toString(), result);
+                                Assert.strictEqual((await FileSystem.readFile(sourceDir.MakePath(hiddenFileName))).toString(), result);
                             });
                     });
             });
@@ -164,7 +164,7 @@ suite(
                     "Checking whether destination-paths are built correctly…",
                     () =>
                     {
-                        assert.strictEqual(Path.join(compiler.DestinationPath, ...path), compiler["MakeDestinationPath"](...path));
+                        Assert.strictEqual(Path.join(compiler.DestinationPath, ...path), compiler["MakeDestinationPath"](...path));
                     });
             });
 
@@ -208,14 +208,14 @@ suite(
                         let testDir: TempDirectory = new TempDirectory();
                         {
                             await compiler["Compress"](sourceDir.FullName, destinationFile.FullName);
-                            await tar.extract(
+                            await Tar.extract(
                                 {
                                     cwd: testDir.FullName,
                                     file: destinationFile.FullName
                                 });
 
                             let archiveFiles: string[] = await FileSystem.readdir(testDir.FullName);
-                            assert.strictEqual(files.every((file: string) => archiveFiles.includes(file)), true);
+                            Assert.strictEqual(files.every((file: string) => archiveFiles.includes(file)), true);
                         }
                         testDir.Dispose();
                     });

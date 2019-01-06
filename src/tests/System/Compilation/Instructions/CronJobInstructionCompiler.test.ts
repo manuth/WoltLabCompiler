@@ -1,5 +1,5 @@
-import * as assert from "assert";
-import * as FileSystem from "fs-extra";
+import Assert = require("assert");
+import FileSystem = require("fs-extra");
 import { TempDirectory } from "temp-filesystem";
 import { CronJobInstructionCompiler } from "../../../../System/Compilation/PackageSystem/Instructions/CronJobInstructionCompiler";
 import { ACPOptionInstruction } from "../../../../System/PackageSystem/Instructions/Options/ACPOptionInstruction";
@@ -79,7 +79,7 @@ suite(
                     "Checking whether the expected file exists…",
                     async () =>
                     {
-                        assert.strictEqual(await FileSystem.pathExists(fileName), true);
+                        Assert.strictEqual(await FileSystem.pathExists(fileName), true);
                     });
             });
     });

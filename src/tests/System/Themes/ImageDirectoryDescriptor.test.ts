@@ -1,4 +1,4 @@
-import * as assert from "assert";
+import Assert = require("assert");
 import { ImageDirectoryDescriptor } from "../../../System/Customization/Presentation/Themes/ImageDirectoryDescriptor";
 
 suite(
@@ -37,11 +37,11 @@ suite(
             {
                 test(
                     'Checking whether the `FileName`-property is set to "images.tar" when no filename is specified…',
-                    () => assert.strictEqual(imageDirectory.FileName, "images.tar"));
+                    () => Assert.strictEqual(imageDirectory.FileName, "images.tar"));
 
                 test(
                     "Checking whether the `FileName`-property is set properly when a filename is specified…",
-                    () => assert.strictEqual(customImageDirectory.FileName, customFileName));
+                    () => Assert.strictEqual(customImageDirectory.FileName, customFileName));
             });
 
         suite(
@@ -50,10 +50,10 @@ suite(
             {
                 test(
                     "Checking whether `DestinationRoot` is set to `Source` when no destination-root is specified…",
-                    () => assert.strictEqual(imageDirectory.DestinationRoot, imageDirectory.Source));
+                    () => Assert.strictEqual(imageDirectory.DestinationRoot, imageDirectory.Source));
 
                 test(
                     "Checking whether `DestinationRoot` is set properly when a destination-root is specified…",
-                    () => assert.strictEqual(customImageDirectory.DestinationRoot, customDestination));
+                    () => Assert.strictEqual(customImageDirectory.DestinationRoot, customDestination));
             });
     });

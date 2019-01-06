@@ -1,4 +1,4 @@
-import * as FileSystem from "fs-extra";
+import FileSystem = require("fs-extra");
 import { TempFile } from "temp-filesystem";
 import { IInstruction } from "../../../PackageSystem/Instructions/IInstruction";
 import { InstructionFileCompiler } from "./InstructionFileCompiler";

@@ -1,8 +1,8 @@
-import * as FileSystem from "fs-extra";
-import * as memFs from "mem-fs";
-import * as memFsEditor from "mem-fs-editor";
-import * as Path from "path";
-import * as tar from "tar";
+import FileSystem = require("fs-extra");
+import MemoryFileStore = require("mem-fs");
+import MemoryFileStoreEditor = require("mem-fs-editor");
+import Path = require("path");
+import Tar = require("tar");
 
 /**
  * Provides the functionality to compile a component.
@@ -78,13 +78,13 @@ export abstract class Compiler<T>
      */
     protected async CopyTemplate(source: string, destination: string, context?: { [key: string]: any })
     {
-        let fileSystem = memFsEditor.create(memFs.create());
-        fileSystem.copyTpl(source, destination, context, {}, { globOptions: { dot: true } });
+        let fileStoreEditor = MemoryFileStoreEditor.create(MemoryFileStore.create());
+        fileStoreEditor.copyTpl(source, destination, context, {}, { globOptions: { dot: true } });
 
         await new Promise<void>(
             (resolve) =>
             {
-                fileSystem.commit(
+                fileStoreEditor.commit(
                     [],
                     () =>
                     {
@@ -116,7 +116,7 @@ export abstract class Compiler<T>
     protected async Compress(source: string, destination: string)
     {
         await FileSystem.ensureDir(Path.dirname(destination));
-        await tar.create(
+        await Tar.create(
             {
                 cwd: Path.resolve(source),
                 file: Path.resolve(destination)

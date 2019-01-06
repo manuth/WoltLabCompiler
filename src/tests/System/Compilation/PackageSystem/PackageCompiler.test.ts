@@ -1,6 +1,6 @@
-import * as assert from "assert";
-import * as FileSystem from "fs-extra";
-import * as tar from "tar";
+import Assert = require("assert");
+import FileSystem = require("fs-extra");
+import Tar = require("tar");
 import { TempDirectory, TempFile } from "temp-filesystem";
 import { PackageCompiler } from "../../../../System/Compilation/PackageSystem/PackageCompiler";
 import { Package } from "../../../../System/PackageSystem/Package";
@@ -54,7 +54,7 @@ suite(
                     "Checking whether the tar-archive can be extracted…",
                     async () =>
                     {
-                        await tar.extract(
+                        await Tar.extract(
                             {
                                 cwd: archiveDir.FullName,
                                 file: archive.FullName
@@ -65,7 +65,7 @@ suite(
                     "Checking whether the package-manifest exists inside the tar-archive…",
                     async () =>
                     {
-                        assert.strictEqual(await FileSystem.pathExists(archiveDir.MakePath("package.xml")), true);
+                        Assert.strictEqual(await FileSystem.pathExists(archiveDir.MakePath("package.xml")), true);
                     });
             });
     });

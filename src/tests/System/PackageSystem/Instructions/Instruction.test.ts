@@ -1,4 +1,4 @@
-import * as assert from "assert";
+import Assert = require("assert");
 import UPath = require("upath");
 import { Instruction } from "../../../../System/PackageSystem/Instructions/Instruction";
 import { Package } from "../../../../System/PackageSystem/Package";
@@ -48,7 +48,7 @@ suite(
                             () =>
                             {
                                 instruction.Collection = $package.InstallSet;
-                                assert.strictEqual(instruction.Collection, $package.InstallSet);
+                                Assert.strictEqual(instruction.Collection, $package.InstallSet);
                             });
 
                         test(
@@ -56,7 +56,7 @@ suite(
                             () =>
                             {
                                 instruction.Collection = null;
-                                assert.strictEqual(instruction.Collection, null);
+                                Assert.strictEqual(instruction.Collection, null);
                             });
 
                         test(
@@ -64,7 +64,7 @@ suite(
                             () =>
                             {
                                 $package.InstallSet.push(instruction);
-                                assert.strictEqual(instruction.Collection, $package.InstallSet);
+                                Assert.strictEqual(instruction.Collection, $package.InstallSet);
                             });
 
                         test(
@@ -72,7 +72,7 @@ suite(
                             () =>
                             {
                                 $package.InstallSet.pop();
-                                assert.strictEqual(instruction.Collection, null);
+                                Assert.strictEqual(instruction.Collection, null);
                             });
                     });
             });
@@ -91,7 +91,7 @@ suite(
                     "Checking whether the `DestinationRoot` is correct…",
                     () =>
                     {
-                        assert.strictEqual(instruction.DestinationRoot, $package.InstallSet.Directory);
+                        Assert.strictEqual(instruction.DestinationRoot, $package.InstallSet.Directory);
                     });
             });
 
@@ -103,7 +103,7 @@ suite(
                     "Checking whether the `FullName`-property is correct…",
                     () =>
                     {
-                        assert.strictEqual(
+                        Assert.strictEqual(
                             instruction.FullName,
                             UPath.join($package.InstallSet.Directory, instruction.FileName));
                     });

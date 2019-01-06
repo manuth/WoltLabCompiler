@@ -1,8 +1,8 @@
-import * as ColorNames from "colornames";
-import * as FileSystem from "fs-extra";
-import hexToRgba = require("hex-to-rgba");
-import * as OS from "os";
-import * as Path from "path";
+import ColorNames = require("colornames");
+import FileSystem = require("fs-extra");
+import HexToRgba = require("hex-to-rgba");
+import OS = require("os");
+import Path = require("path");
 import { isNullOrUndefined } from "util";
 import { Component } from "../../../PackageSystem/Component";
 import { FileDescriptor } from "../../../PackageSystem/FileDescriptor";
@@ -400,15 +400,15 @@ export class Theme extends Component
                 case "wcfFooterCopyrightLinkActive":
                     if (/#(([0-9a-fA-F]{3}){1,2}|([0-9a-fA-F]{4}){1,2})/.test(variables[name]))
                     {
-                        normalVariables[name] = hexToRgba(variables[name]);
+                        normalVariables[name] = HexToRgba(variables[name]);
                     }
                     else if (ColorNames.get.css(variables[name]))
                     {
-                        normalVariables[name] = hexToRgba(ColorNames.get.css(variables[name]).value);
+                        normalVariables[name] = HexToRgba(ColorNames.get.css(variables[name]).value);
                     }
                     else if (variables[name] === "transparent")
                     {
-                        normalVariables[name] = hexToRgba("#0000");
+                        normalVariables[name] = HexToRgba("#0000");
                     }
                     else
                     {

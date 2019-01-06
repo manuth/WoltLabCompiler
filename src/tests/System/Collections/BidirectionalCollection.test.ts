@@ -1,4 +1,4 @@
-import * as assert from "assert";
+import Assert = require("assert");
 import { BidirectionalCollection } from "../../../System/Collections/BidirectionalCollection";
 
 suite(
@@ -56,7 +56,7 @@ suite(
             () =>
             {
                 collection.push(child);
-                assert.strictEqual(child.Parent, parent);
+                Assert.strictEqual(child.Parent, parent);
             });
 
         test(
@@ -64,6 +64,6 @@ suite(
             () =>
             {
                 collection.pop();
-                assert.strictEqual(child.Parent, null);
+                Assert.strictEqual(child.Parent, null);
             });
     });

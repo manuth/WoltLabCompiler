@@ -1,5 +1,5 @@
-import * as assert from "assert";
-import * as FileSystem from "fs-extra";
+import Assert = require("assert");
+import FileSystem = require("fs-extra");
 import { TempFile } from "temp-filesystem";
 import { DOMParser } from "xmldom";
 import { XMLFileCompiler } from "../../../System/Compilation/XMLFileCompiler";
@@ -53,7 +53,7 @@ suite(
                     "Checking whether the compiled file exists…",
                     async () =>
                     {
-                        assert.strictEqual(await FileSystem.pathExists(tempFile.FullName), true);
+                        Assert.strictEqual(await FileSystem.pathExists(tempFile.FullName), true);
                     });
 
                 test(
@@ -67,15 +67,15 @@ suite(
                     "Checking whether a processing-instruction for `xml` is present…",
                     () =>
                     {
-                        assert.strictEqual(document.childNodes[0].nodeType, document.PROCESSING_INSTRUCTION_NODE);
-                        assert.strictEqual((document.childNodes[0] as ProcessingInstruction).target, "xml");
+                        Assert.strictEqual(document.childNodes[0].nodeType, document.PROCESSING_INSTRUCTION_NODE);
+                        Assert.strictEqual((document.childNodes[0] as ProcessingInstruction).target, "xml");
                     });
 
                 test(
                     "Checking whether the root-tag is set correct…",
                     () =>
                     {
-                        assert.strictEqual(document.documentElement.tagName, rootTag);
+                        Assert.strictEqual(document.documentElement.tagName, rootTag);
                     });
             });
     });

@@ -1,5 +1,5 @@
-import * as assert from "assert";
-import * as FileSystem from "fs-extra";
+import Assert = require("assert");
+import FileSystem = require("fs-extra");
 import { TempDirectory } from "temp-filesystem";
 import { EventListenerInstructionCompiler } from "../../../../System/Compilation/PackageSystem/Instructions/EventListenerInstructionCompiler";
 import { EventListenerInstruction } from "../../../../System/PackageSystem/Instructions/Events/EventListenerInstruction";
@@ -48,6 +48,6 @@ suite(
             "Checking whether the compiled file exists…",
             async () =>
             {
-                assert.strictEqual(await FileSystem.pathExists(fileName), true);
+                Assert.strictEqual(await FileSystem.pathExists(fileName), true);
             });
     });

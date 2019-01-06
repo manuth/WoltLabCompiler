@@ -1,5 +1,5 @@
-import * as assert from "assert";
-import * as FileSystem from "fs-extra";
+import Assert = require("assert");
+import FileSystem = require("fs-extra");
 import { TempFile } from "temp-filesystem";
 import { DOMParser } from "xmldom";
 import { NamedObjectDeletionFileCompiler } from "../../../System/Compilation/NamedObjectDeletionFileCompiler";
@@ -114,12 +114,12 @@ suite(
                                     () =>
                                     {
                                         let deletedObjects = editor.GetElementsByTag(objectTag);
-                                        assert.strictEqual(deletedObjects.length, objectsToDelete.length);
+                                        Assert.strictEqual(deletedObjects.length, objectsToDelete.length);
 
                                         for (let objectToDelete of objectsToDelete)
                                         {
                                             let matches = deletedObjects.filter((objectNode: XMLEditor) => objectNode.HasAttribute("name", objectToDelete.Name));
-                                            assert.strictEqual(matches.length, 1);
+                                            Assert.strictEqual(matches.length, 1);
                                         }
                                     });
                             });

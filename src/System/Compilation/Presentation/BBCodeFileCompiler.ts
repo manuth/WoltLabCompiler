@@ -1,5 +1,4 @@
 import { isNullOrUndefined } from "util";
-import { BBCodeAttribute } from "../../Customization/BBCodes/BBCodeAttribute";
 import { BBCodeInstruction } from "../../PackageSystem/Instructions/Customization/BBCodeInstruction";
 import { XMLEditor } from "../../Serialization/XMLEditor";
 import { NamedObjectDeletionFileCompiler } from "../NamedObjectDeletionFileCompiler";

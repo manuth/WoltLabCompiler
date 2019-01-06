@@ -1,5 +1,5 @@
-import * as assert from "assert";
-import * as FileSystem from "fs-extra";
+import Assert = require("assert");
+import FileSystem = require("fs-extra");
 import { TempDirectory, TempFile } from "temp-filesystem";
 import { ThemeCompiler } from "../../../../System/Compilation/Presentation/ThemeCompiler";
 import { ThemeInstruction } from "../../../../System/PackageSystem/Instructions/Customization/Presentation/ThemeInstruction";
@@ -76,14 +76,14 @@ suite(
                     "Checking whether the theme-metadata exists…",
                     async () =>
                     {
-                        assert.strictEqual(await FileSystem.pathExists(tempDir.MakePath("style.xml")), true);
+                        Assert.strictEqual(await FileSystem.pathExists(tempDir.MakePath("style.xml")), true);
                     });
 
                 test(
                     "Checking whether the variable-file exists…",
                     async () =>
                     {
-                        assert.strictEqual(await FileSystem.pathExists(tempDir.MakePath(variableFileName)), true);
+                        Assert.strictEqual(await FileSystem.pathExists(tempDir.MakePath(variableFileName)), true);
                     });
             });
     });

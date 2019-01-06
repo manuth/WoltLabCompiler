@@ -1,5 +1,5 @@
-import * as assert from "assert";
-import * as FileSystem from "fs-extra";
+import Assert = require("assert");
+import FileSystem = require("fs-extra");
 import { TempFile } from "temp-filesystem";
 import { DOMParser } from "xmldom";
 import { ImportFileCompiler } from "../../../System/Compilation/ImportFileCompiler";
@@ -69,8 +69,8 @@ suite(
                                     "Checking whether the import- and the delete-list are present…",
                                     () =>
                                     {
-                                        assert.strictEqual(editor.HasTag("import", true), true);
-                                        assert.strictEqual(editor.HasTag("delete", true), true);
+                                        Assert.strictEqual(editor.HasTag("import", true), true);
+                                        Assert.strictEqual(editor.HasTag("delete", true), true);
                                     });
                             });
                     });

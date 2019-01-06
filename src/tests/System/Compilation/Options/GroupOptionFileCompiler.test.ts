@@ -1,5 +1,5 @@
-import * as assert from "assert";
-import * as FileSystem from "fs-extra";
+import Assert = require("assert");
+import FileSystem = require("fs-extra");
 import { TempFile } from "temp-filesystem";
 import { DOMParser } from "xmldom";
 import { GroupOptionFileCompiler } from "../../../../System/Compilation/Options/GroupOptionFileCompiler";
@@ -109,7 +109,7 @@ suite(
                                             "Checking whether the option exists…",
                                             () =>
                                             {
-                                                assert.strictEqual(editor.GetElementsByTag(optionTag).length, 1);
+                                                Assert.strictEqual(editor.GetElementsByTag(optionTag).length, 1);
                                                 optionEditor = editor.GetElementsByTag(optionTag)[0];
                                             });
                                     });
@@ -136,16 +136,16 @@ suite(
                                             "Checking whether the default values are correct…",
                                             () =>
                                             {
-                                                assert.strictEqual(optionEditor.HasText(userValueTag, `${option.UserDefaultValue}`), true);
-                                                assert.strictEqual(optionEditor.HasText(modValueTag, `${option.ModDefaultValue}`), true);
-                                                assert.strictEqual(optionEditor.HasText(adminValueTag, `${option.AdminDefaultValue}`), true);
+                                                Assert.strictEqual(optionEditor.HasText(userValueTag, `${option.UserDefaultValue}`), true);
+                                                Assert.strictEqual(optionEditor.HasText(modValueTag, `${option.ModDefaultValue}`), true);
+                                                Assert.strictEqual(optionEditor.HasText(adminValueTag, `${option.AdminDefaultValue}`), true);
                                             });
 
                                         test(
                                             "Checking whether the registered-restriction is correct…",
                                             () =>
                                             {
-                                                assert.strictEqual(optionEditor.HasText(registeredTag, option.RegisteredOnly ? "1" : "0"), true);
+                                                Assert.strictEqual(optionEditor.HasText(registeredTag, option.RegisteredOnly ? "1" : "0"), true);
                                             });
                                     });
                             });

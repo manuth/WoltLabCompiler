@@ -1,4 +1,4 @@
-import * as assert from "assert";
+import Assert = require("assert");
 import { IOptionOptions } from "../../../System/Options/IOptionOptions";
 import { Option } from "../../../System/Options/Option";
 import { OptionType } from "../../../System/Options/OptionType";
@@ -34,7 +34,7 @@ suite(
                     {
                         let value = OptionType.TextArea;
                         option.Type = OptionType.TextArea;
-                        assert.strictEqual(option.Type, value);
+                        Assert.strictEqual(option.Type, value);
                     });
 
                 test(
@@ -43,7 +43,7 @@ suite(
                     {
                         let value = "foo";
                         option.Type = value;
-                        assert.strictEqual(option.Type, value);
+                        Assert.strictEqual(option.Type, value);
                     });
             });
     });

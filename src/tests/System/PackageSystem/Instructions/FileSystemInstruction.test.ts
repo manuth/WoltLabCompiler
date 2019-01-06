@@ -1,4 +1,4 @@
-import * as assert from "assert";
+import Assert = require("assert");
 import { FileSystemInstruction } from "../../../../System/PackageSystem/Instructions/FileSystem/FileSystemInstruction";
 
 suite(
@@ -30,7 +30,7 @@ suite(
                     "Checking whether the `FileName` is set to `Source` automatically…",
                     () =>
                     {
-                        assert.strictEqual(instruction.FileName, instruction.Source);
+                        Assert.strictEqual(instruction.FileName, instruction.Source);
                     });
             });
     });
