@@ -1,6 +1,6 @@
 {
   "name": "woltlab-compiler",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A compiler for WoltLab-Package Archives and WoltLab-Package Components",
   "author": "Manuel Thalmann <m@nuth.ch>",
   "license": "MIT",
@@ -44,25 +44,25 @@
     "mem-fs-editor": "^5.1.0",
     "sass-variable-parser": "^1.2.2",
     "tar": "^4.4.8",
-    "temp-filesystem": "^1.1.0",
+    "temp-filesystem": "^1.1.1",
     "upath": "^1.1.0",
     "xmldom": "^0.1.27"
   },
   "devDependencies": {
     "@types/dedent": "^0.7.0",
     "@types/fs-extra": "^5.0.4",
-    "@types/mem-fs": "^1.1.1",
-    "@types/mem-fs-editor": "^4.0.1",
+    "@types/mem-fs": "^1.1.2",
+    "@types/mem-fs-editor": "^5.1.0",
     "@types/mocha": "^5.2.5",
-    "@types/node": "^10.12.12",
+    "@types/node": "^10.12.18",
     "@types/tar": "^4.0.0",
     "@types/xmldom": "^0.1.29",
     "cron-parser": "^2.7.3",
     "dedent": "^0.7.0",
     "mocha": "^5.2.0",
-    "rimraf": "^2.6.2",
-    "tslint": "^5.11.0",
+    "rimraf": "^2.6.3",
+    "tslint": "^5.12.0",
     "typescript": "^3.2.2",
-    "typescript-tslint-plugin": "^0.1.2"
+    "typescript-tslint-plugin": "^0.2.1"
   }
 }
