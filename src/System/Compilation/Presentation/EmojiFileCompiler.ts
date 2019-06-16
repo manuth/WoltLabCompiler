@@ -19,16 +19,25 @@ export class EmojiFileCompiler extends NamedObjectDeletionFileCompiler<EmojiInst
         super(item);
     }
 
+    /**
+     * @inheritdoc
+     */
     protected get SchemaLocation(): string
     {
         return "https://www.woltlab.com/XSD/tornado/smiley.xsd";
     }
 
+    /**
+     * @inheritdoc
+     */
     protected get ObjectTagName(): string
     {
         return "smiley";
     }
 
+    /**
+     * @inheritdoc
+     */
     protected CreateImport(): Element
     {
         let editor: XMLEditor = new XMLEditor(super.CreateImport());

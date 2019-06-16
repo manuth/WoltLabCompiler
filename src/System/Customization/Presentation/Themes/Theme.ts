@@ -120,6 +120,9 @@ export class Theme extends Component
         this.ParseVariables(variables);
     }
 
+    /**
+     * @inheritdoc
+     */
     public get Author(): Person
     {
         return super.Author ||

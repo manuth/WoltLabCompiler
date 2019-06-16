@@ -18,6 +18,9 @@ export abstract class ImportFileCompiler<T> extends WoltLabXMLCompiler<T>
         super(item);
     }
 
+    /**
+     * @inheritdoc
+     */
     protected CreateDocument(): Document
     {
         let document: Document = super.CreateDocument();

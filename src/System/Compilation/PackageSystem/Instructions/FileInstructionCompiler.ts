@@ -20,6 +20,9 @@ export class FileInstructionCompiler extends InstructionCompiler<ApplicationFile
         super(item);
     }
 
+    /**
+     * @inheritdoc
+     */
     public Serialize()
     {
         let document = super.Serialize();
@@ -33,6 +36,9 @@ export class FileInstructionCompiler extends InstructionCompiler<ApplicationFile
         return document;
     }
 
+    /**
+     * @inheritdoc
+     */
     protected async Compile()
     {
         let tempDir = new TempDirectory();

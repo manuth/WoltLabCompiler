@@ -24,6 +24,9 @@ export class SelfContainedPHPInstruction extends ApplicationFileSystemInstructio
         this.Destination = options.Destination;
     }
 
+    /**
+     * @inheritdoc
+     */
     public get Compiler()
     {
         return new SelfContainedPHPInstructionCompiler(this);
@@ -42,11 +45,17 @@ export class SelfContainedPHPInstruction extends ApplicationFileSystemInstructio
         super.Source = value;
     }
 
+    /**
+     * @inheritdoc
+     */
     public get FileName()
     {
         return super.FileName;
     }
 
+    /**
+     * @inheritdoc
+     */
     public set FileName(value)
     {
         super.FileName = value;
@@ -99,6 +108,9 @@ export class SelfContainedPHPInstruction extends ApplicationFileSystemInstructio
         return result;
     }
 
+    /**
+     * @inheritdoc
+     */
     protected MakeDefaultFileName(source: string)
     {
         return Path.join("scripts", "php", this.Application, super.MakeDefaultFileName(source));

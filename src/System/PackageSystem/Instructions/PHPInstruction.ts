@@ -21,11 +21,17 @@ export class PHPInstruction extends Instruction
         this.Application = options.Application;
     }
 
+    /**
+     * @inheritdoc
+     */
     public get Type(): string
     {
         return "script";
     }
 
+    /**
+     * @inheritdoc
+     */
     public get Compiler()
     {
         return new PHPInstructionCompiler(this);
@@ -57,6 +63,9 @@ export class PHPInstruction extends Instruction
         super.FileName = value;
     }
 
+    /**
+     * @inheritdoc
+     */
     public get FullName()
     {
         return this.FileName;

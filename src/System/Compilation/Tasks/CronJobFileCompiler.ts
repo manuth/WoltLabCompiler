@@ -19,16 +19,25 @@ export class CronJobFileCompiler extends NamedObjectDeletionFileCompiler<CronJob
         super(item);
     }
 
+    /**
+     * @inheritdoc
+     */
     protected get SchemaLocation(): string
     {
         return "https://www.woltlab.com/XSD/tornado/cronjob.xsd";
     }
 
+    /**
+     * @inheritdoc
+     */
     protected get ObjectTagName(): string
     {
         return "cronjob";
     }
 
+    /**
+     * @inheritdoc
+     */
     protected CreateImport(): Element
     {
         let editor: XMLEditor = new XMLEditor(super.CreateImport());

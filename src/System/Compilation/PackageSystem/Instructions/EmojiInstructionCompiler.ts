@@ -19,6 +19,9 @@ export class EmojiInstructionCompiler extends TemplateInstructionCompiler<EmojiI
         super(item);
     }
 
+    /**
+     * @inheritdoc
+     */
     protected get FileCompiler(): Compiler<EmojiInstruction>
     {
         return new EmojiFileCompiler(this.Item);

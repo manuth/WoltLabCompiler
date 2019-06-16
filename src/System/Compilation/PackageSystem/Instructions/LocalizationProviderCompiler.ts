@@ -18,6 +18,9 @@ export class LocalizationProviderCompiler<T extends ILocalizationInstruction> ex
         super(item);
     }
 
+    /**
+     * @inheritdoc
+     */
     public Serialize()
     {
         let document = super.Serialize();
@@ -36,6 +39,9 @@ export class LocalizationProviderCompiler<T extends ILocalizationInstruction> ex
         return document;
     }
 
+    /**
+     * @inheritdoc
+     */
     protected async Compile()
     {
         let compiler = new LocalizationInstructionCompiler(this.Item);

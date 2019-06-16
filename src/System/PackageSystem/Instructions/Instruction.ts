@@ -39,11 +39,17 @@ export abstract class Instruction implements IInstruction
      */
     public abstract get Type(): string;
 
+    /**
+     * @inheritdoc
+     */
     public get Collection()
     {
         return this.collection;
     }
 
+    /**
+     * @inheritdoc
+     */
     public set Collection(value)
     {
         if (this.Collection !== value)
@@ -68,31 +74,49 @@ export abstract class Instruction implements IInstruction
         }
     }
 
+    /**
+     * @inheritdoc
+     */
     public get DestinationRoot()
     {
         return Path.join(this.Collection.Directory);
     }
 
+    /**
+     * @inheritdoc
+     */
     public get FileName()
     {
         return this.fileName;
     }
 
+    /**
+     * @inheritdoc
+     */
     public set FileName(value)
     {
         this.fileName = value;
     }
 
+    /**
+     * @inheritdoc
+     */
     public get FullName()
     {
         return UPath.join(this.DestinationRoot, this.FileName);
     }
 
+    /**
+     * @inheritdoc
+     */
     public get Standalone()
     {
         return this.standalone;
     }
 
+    /**
+     * @inheritdoc
+     */
     public set Standalone(value)
     {
         this.standalone = value;
@@ -106,6 +130,9 @@ export abstract class Instruction implements IInstruction
         return new InstructionCompiler(this);
     }
 
+    /**
+     * @inheritdoc
+     */
     public get ObjectsByID(): { [id: string]: any }
     {
         return {};

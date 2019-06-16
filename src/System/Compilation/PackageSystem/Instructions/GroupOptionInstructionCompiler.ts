@@ -20,6 +20,9 @@ export class GroupOptionInstructionCompiler extends OptionInstructionCompiler<Gr
         super(item);
     }
 
+    /**
+     * @inheritdoc
+     */
     protected get OptionFileCompiler(): GroupOptionFileCompiler
     {
         return new GroupOptionFileCompiler(this.Item);

@@ -27,6 +27,9 @@ export class CronJobInstruction extends NamedDeleteInstruction
         }
     }
 
+    /**
+     * @inheritdoc
+     */
     public get Type(): string
     {
         return "cronjob";
@@ -45,6 +48,9 @@ export class CronJobInstruction extends NamedDeleteInstruction
         this.cronJobs = value;
     }
 
+    /**
+     * @inheritdoc
+     */
     public get Compiler(): InstructionCompiler<CronJobInstruction>
     {
         return new CronJobInstructionCompiler(this);

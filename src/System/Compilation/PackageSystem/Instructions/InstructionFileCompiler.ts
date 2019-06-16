@@ -23,6 +23,9 @@ export abstract class InstructionFileCompiler<T extends IInstruction> extends In
      */
     protected abstract get FileCompiler(): Compiler<T>;
 
+    /**
+     * @inheritdoc
+     */
     protected async Compile(): Promise<void>
     {
         let compiler: Compiler<T> = this.FileCompiler;

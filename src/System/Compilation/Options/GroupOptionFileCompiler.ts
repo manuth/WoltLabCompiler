@@ -21,11 +21,17 @@ export class GroupOptionFileCompiler extends OptionFileCompiler<GroupOptionInstr
         super(item);
     }
 
+    /**
+     * @inheritdoc
+     */
     protected get SchemaLocation(): string
     {
         return "http://www.woltlab.com/XSD/tornado/userGroupOption.xsd";
     }
 
+    /**
+     * @inheritdoc
+     */
     protected CreateOption(option: GroupOption): Element
     {
         let editor: XMLEditor = new XMLEditor(super.CreateOption(option));

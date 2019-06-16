@@ -26,6 +26,9 @@ export abstract class ListenerInstruction<T extends Listener, TOptions> extends 
         }
     }
 
+    /**
+     * @inheritdoc
+     */
     public get Listeners(): T[]
     {
         return this.listeners;

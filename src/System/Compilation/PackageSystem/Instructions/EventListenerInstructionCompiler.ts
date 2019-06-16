@@ -19,6 +19,9 @@ export class EventListenerInstructionCompiler extends TemplateInstructionCompile
         super(item);
     }
 
+    /**
+     * @inheritdoc
+     */
     protected get FileCompiler(): Compiler<EventListenerInstruction>
     {
         return new EventListenerFileCompiler(this.Item);

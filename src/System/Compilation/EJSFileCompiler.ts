@@ -32,6 +32,9 @@ export abstract class EJSFileCompiler<T> extends XMLFileCompiler<T>
         return new RegExp(`<${this.Delimiter}.*?${this.Delimiter}>`, "g");
     }
 
+    /**
+     * @inheritdoc
+     */
     protected get Document()
     {
         let document = super.Document;

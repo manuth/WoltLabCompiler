@@ -18,6 +18,9 @@ suite(
                 tempFile = new TempFile();
                 compiler = new class extends ImportFileCompiler<{}>
                 {
+                    /**
+                     * @inheritdoc
+                     */
                     protected get SchemaLocation(): string
                     {
                         return "http://example.com/mySchema.xsd";

@@ -37,7 +37,7 @@ suite(
         let homePage: string;
         let requiredPackages: IRequiredPackageDescriptorOptions[];
         let conflictingPackages: IConflictingPackageDescriptorOptions[];
-        let optionalPackages: Required<IPackageFileDescriptorOptions>[];
+        let optionalPackages: Array<Required<IPackageFileDescriptorOptions>>;
         let installSet: IInstructionSetOptions;
         let updateSets: IUpdateInstructionSetOptions[];
 

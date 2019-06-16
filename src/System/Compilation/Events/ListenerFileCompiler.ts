@@ -21,6 +21,9 @@ export abstract class ListenerFileCompiler<T extends IListenerInstruction<TListe
         super(item);
     }
 
+    /**
+     * @inheritdoc
+     */
     protected CreateImport(): Element
     {
         let editor: XMLEditor = new XMLEditor(super.CreateImport());

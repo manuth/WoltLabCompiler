@@ -32,7 +32,7 @@ export class Node<T extends NodeItem, TOptions> implements INode<T>
     /**
      * The children of the node.
      */
-    private nodes: Node<T, TOptions>[] = new NodeCollection(this);
+    private nodes: Array<Node<T, TOptions>> = new NodeCollection(this);
 
     /**
      * Initializes a new instance of the `Node` class.
@@ -74,9 +74,9 @@ export class Node<T extends NodeItem, TOptions> implements INode<T>
     /**
      * Gets the parents of the node.
      */
-    protected get Parents(): Node<T, TOptions>[]
+    protected get Parents(): Array<Node<T, TOptions>>
     {
-        let result: Node<T, TOptions>[] = [];
+        let result: Array<Node<T, TOptions>> = [];
 
         for (let node: Node<T, TOptions> = this.Parent; node !== null; node = node.Parent)
         {
@@ -120,16 +120,25 @@ export class Node<T extends NodeItem, TOptions> implements INode<T>
         return this.Parents.reverse().concat([this]).map((node: Node<T, TOptions>) => node.Name).join(".");
     }
 
+    /**
+     * @inheritdoc
+     */
     public get Item(): T
     {
         return this.item;
     }
 
+    /**
+     * @inheritdoc
+     */
     public get Parent(): Node<T, TOptions>
     {
         return this.parent;
     }
 
+    /**
+     * @inheritdoc
+     */
     public set Parent(value: Node<T, TOptions>)
     {
         if (this.Parent !== value)
@@ -154,14 +163,20 @@ export class Node<T extends NodeItem, TOptions> implements INode<T>
         }
     }
 
-    public get Nodes(): Node<T, TOptions>[]
+    /**
+     * @inheritdoc
+     */
+    public get Nodes(): Array<Node<T, TOptions>>
     {
         return this.nodes;
     }
 
-    public GetAllNodes(): Node<T, TOptions>[]
+    /**
+     * @inheritdoc
+     */
+    public GetAllNodes(): Array<Node<T, TOptions>>
     {
-        let result: Node<T, TOptions>[] = [];
+        let result: Array<Node<T, TOptions>> = [];
         result.push(this);
 
         for (let node of this.Nodes)
@@ -172,6 +187,9 @@ export class Node<T extends NodeItem, TOptions> implements INode<T>
         return result;
     }
 
+    /**
+     * @inheritdoc
+     */
     public GetObjects(): { [id: string]: any }
     {
         let result: { [id: string]: any } = {};

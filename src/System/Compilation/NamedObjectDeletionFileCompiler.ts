@@ -14,6 +14,9 @@ export abstract class NamedObjectDeletionFileCompiler<T extends INamedDeleteInst
      */
     protected abstract get ObjectTagName(): string;
 
+    /**
+     * @inheritdoc
+     */
     protected CreateDeleteObject(object: INamedObject): Element
     {
         let editor: XMLEditor = new XMLEditor(XML.CreateDocument(this.ObjectTagName).documentElement);

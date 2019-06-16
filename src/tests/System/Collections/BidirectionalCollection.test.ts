@@ -28,11 +28,17 @@ suite(
          */
         class MyCollection extends BidirectionalCollection<Parent, Child>
         {
+            /**
+             * @inheritdoc
+             */
             protected GetParent(item: Child)
             {
                 return item.Parent;
             }
 
+            /**
+             * @inheritdoc
+             */
             protected SetParent(item: Child, owner: Parent)
             {
                 item.Parent = owner;

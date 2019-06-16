@@ -31,6 +31,9 @@ export class ApplicationFileSystemInstruction extends FileSystemInstruction
         }
     }
 
+    /**
+     * @inheritdoc
+     */
     public get Type(): string
     {
         return "file";
@@ -49,11 +52,17 @@ export class ApplicationFileSystemInstruction extends FileSystemInstruction
         this.application = value;
     }
 
+    /**
+     * @inheritdoc
+     */
     public get Compiler(): InstructionCompiler<ApplicationFileSystemInstruction>
     {
         return new FileInstructionCompiler(this);
     }
 
+    /**
+     * @inheritdoc
+     */
     protected MakeDefaultFileName(source: string)
     {
         return `${super.MakeDefaultFileName(source)}.tar`;

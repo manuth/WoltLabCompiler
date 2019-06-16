@@ -20,6 +20,9 @@ export class LocalizationInstructionCompiler extends InstructionCompiler<ILocali
         super(item);
     }
 
+    /**
+     * @inheritdoc
+     */
     public Serialize(): Document
     {
         let document: Document = super.Serialize();
@@ -39,6 +42,9 @@ export class LocalizationInstructionCompiler extends InstructionCompiler<ILocali
         }
     }
 
+    /**
+     * @inheritdoc
+     */
     protected async Compile(): Promise<void>
     {
         let messages = this.Item.GetMessages();

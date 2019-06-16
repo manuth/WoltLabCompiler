@@ -26,6 +26,9 @@ suite(
          */
         class MyNodeInstruction extends NodeSystemInstruction<NodeItem, {}>
         {
+            /**
+             * @inheritdoc
+             */
             public Type: string;
 
             public constructor(options: INodeSystemInstructionOptions<{}>)

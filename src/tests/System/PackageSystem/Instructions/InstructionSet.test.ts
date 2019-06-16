@@ -24,6 +24,9 @@ suite(
 
                 instruction = new class extends Instruction
                 {
+                    /**
+                     * @inheritdoc
+                     */
                     public Type: string;
 
                     constructor()

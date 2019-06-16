@@ -23,11 +23,17 @@ suite(
                 objectTag = "myObject";
                 compiler = new class extends ObjectDeletionFileCompiler<IDeleteInstruction<{}>, {}>
                 {
+                    /**
+                     * @inheritdoc
+                     */
                     protected get SchemaLocation(): string
                     {
                         return "http://example.com/mySchema.xsd";
                     }
 
+                    /**
+                     * @inheritdoc
+                     */
                     protected CreateDeleteObject(): Element
                     {
                         return XML.CreateDocument(objectTag).documentElement;
@@ -36,9 +42,15 @@ suite(
                 }(
                     new class extends Instruction implements IDeleteInstruction<{}>
                     {
+                        /**
+                         * @inheritdoc
+                         */
                         public Type = "foo";
 
-                        public ObjectsToDelete: {}[] = [
+                        /**
+                         * @inheritdoc
+                         */
+                        public ObjectsToDelete: Array<{}> = [
                             {},
                             {}
                         ];

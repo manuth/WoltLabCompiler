@@ -297,7 +297,7 @@ suite(
 
                                                         test(
                                                             "Checking the integrity of the code-property",
-                                                            function ()
+                                                            function()
                                                             {
                                                                 if (isNullOrUndefined(attribute.Code))
                                                                 {
@@ -311,7 +311,7 @@ suite(
 
                                                         test(
                                                             "Checking the integrity of the validationPattern-property",
-                                                            function (): void
+                                                            function(): void
                                                             {
                                                                 if (isNullOrUndefined(attribute.ValidationPattern))
                                                                 {

@@ -18,11 +18,17 @@ export class NodeCollection<T extends INode<TItem>, TItem extends NodeItem> exte
         super(owner);
     }
 
+    /**
+     * @inheritdoc
+     */
     protected GetParent(child: T): INode<TItem>
     {
         return child.Parent;
     }
 
+    /**
+     * @inheritdoc
+     */
     protected SetParent(child: INode<TItem>, parent: T): void
     {
         child.Parent = parent;

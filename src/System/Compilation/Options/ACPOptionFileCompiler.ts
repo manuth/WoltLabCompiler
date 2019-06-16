@@ -20,11 +20,17 @@ export class ACPOptionFileCompiler extends OptionFileCompiler<ACPOptionInstructi
         super(item);
     }
 
+    /**
+     * @inheritdoc
+     */
     protected get SchemaLocation(): string
     {
         return "http://www.woltlab.com/XSD/tornado/option.xsd";
     }
 
+    /**
+     * @inheritdoc
+     */
     protected CreateOption(option: ACPOption): Element
     {
         let editor: XMLEditor = new XMLEditor(super.CreateOption(option));

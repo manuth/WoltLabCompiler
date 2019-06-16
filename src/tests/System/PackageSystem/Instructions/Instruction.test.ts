@@ -12,6 +12,9 @@ suite(
          */
         class MyInstruction extends Instruction
         {
+            /**
+             * @inheritdoc
+             */
             public Type = "custom";
         }
 

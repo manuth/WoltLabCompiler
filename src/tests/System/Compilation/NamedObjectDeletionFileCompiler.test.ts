@@ -36,11 +36,17 @@ suite(
 
                 compiler = new class extends NamedObjectDeletionFileCompiler<INamedDeleteInstruction>
                 {
+                    /**
+                     * @inheritdoc
+                     */
                     protected get SchemaLocation(): string
                     {
                         return "http://example.com/mySchema.xsd";
                     }
 
+                    /**
+                     * @inheritdoc
+                     */
                     protected get ObjectTagName(): string
                     {
                         return objectTag;
@@ -48,8 +54,14 @@ suite(
                 }(
                     new class extends Instruction implements INamedDeleteInstruction
                     {
+                        /**
+                         * @inheritdoc
+                         */
                         public Type = "foo";
 
+                        /**
+                         * @inheritdoc
+                         */
                         public ObjectsToDelete: INamedObject[] = objectsToDelete;
 
                         public constructor()

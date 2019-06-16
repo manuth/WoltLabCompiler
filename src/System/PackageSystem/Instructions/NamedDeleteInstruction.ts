@@ -27,6 +27,9 @@ export abstract class NamedDeleteInstruction extends Instruction implements INam
         }
     }
 
+    /**
+     * @inheritdoc
+     */
     public get ObjectsToDelete(): INamedObject[]
     {
         return this.objectsToDelete;

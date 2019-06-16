@@ -19,16 +19,25 @@ export class EventListenerFileCompiler extends ListenerFileCompiler<EventListene
         super(item);
     }
 
+    /**
+     * @inheritdoc
+     */
     protected get SchemaLocation(): string
     {
         return "http://www.woltlab.com/XSD/tornado/eventListener.xsd";
     }
 
+    /**
+     * @inheritdoc
+     */
     protected get ObjectTagName(): string
     {
         return "eventlistener";
     }
 
+    /**
+     * @inheritdoc
+     */
     protected CreateListener(listener: EventListener): Element
     {
         let editor: XMLEditor = new XMLEditor(super.CreateListener(listener));

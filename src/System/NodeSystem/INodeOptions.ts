@@ -26,5 +26,5 @@ export interface INodeOptions<T>
     /**
      * The children of the node.
      */
-    Nodes?: INodeOptions<T>[];
+    Nodes?: Array<INodeOptions<T>>;
 }

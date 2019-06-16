@@ -27,6 +27,9 @@ export class EmojiInstruction extends NamedDeleteInstruction
         }
     }
 
+    /**
+     * @inheritdoc
+     */
     public get Type(): string
     {
         return "smiley";
@@ -40,6 +43,9 @@ export class EmojiInstruction extends NamedDeleteInstruction
         return this.emojis;
     }
 
+    /**
+     * @inheritdoc
+     */
     public get Compiler(): InstructionCompiler<EmojiInstruction>
     {
         return new EmojiInstructionCompiler(this);

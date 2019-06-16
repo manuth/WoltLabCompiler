@@ -19,16 +19,25 @@ export class TemplateListenerFileCompiler extends ListenerFileCompiler<TemplateL
         super(item);
     }
 
+    /**
+     * @inheritdoc
+     */
     protected get SchemaLocation(): string
     {
         return "http://www.woltlab.com/XSD/tornado/templateListener.xsd";
     }
 
+    /**
+     * @inheritdoc
+     */
     protected get ObjectTagName(): string
     {
         return "templatelistener";
     }
 
+    /**
+     * @inheritdoc
+     */
     protected CreateListener(listener: TemplateListener): Element
     {
         let editor: XMLEditor = new XMLEditor(super.CreateListener(listener));

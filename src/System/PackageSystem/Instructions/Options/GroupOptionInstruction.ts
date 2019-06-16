@@ -26,21 +26,33 @@ export class GroupOptionInstruction extends OptionInstruction<GroupCategory, ICa
             });
     }
 
+    /**
+     * @inheritdoc
+     */
     public get Type(): string
     {
         return "userGroupOption";
     }
 
+    /**
+     * @inheritdoc
+     */
     public get RootCategory(): string
     {
         return "wcf.acp.group";
     }
 
+    /**
+     * @inheritdoc
+     */
     public get OptionCategory(): string
     {
         return "option";
     }
 
+    /**
+     * @inheritdoc
+     */
     public get Compiler(): InstructionCompiler<GroupOptionInstruction>
     {
         return new GroupOptionInstructionCompiler(this);

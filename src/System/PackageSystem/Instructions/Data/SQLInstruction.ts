@@ -15,11 +15,17 @@ export class SQLInstruction extends FileSystemInstruction
         super(options);
     }
 
+    /**
+     * @inheritdoc
+     */
     public get Type(): string
     {
         return "sql";
     }
 
+    /**
+     * @inheritdoc
+     */
     protected MakeDefaultFileName(source: string)
     {
         return Path.join("scripts", "sql", super.MakeDefaultFileName(source));

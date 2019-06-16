@@ -46,6 +46,9 @@ export abstract class OptionFileCompiler<T extends IOptionInstruction<TCategory,
         this.languageCategory = value;
     }
 
+    /**
+     * @inheritdoc
+     */
     protected CreateImport(): Element
     {
         let editor: XMLEditor = new XMLEditor(super.CreateImport());
@@ -85,6 +88,9 @@ export abstract class OptionFileCompiler<T extends IOptionInstruction<TCategory,
         return editor.Element;
     }
 
+    /**
+     * @inheritdoc
+     */
     protected CreateDelete(): Element
     {
         let editor: XMLEditor = new XMLEditor(super.CreateDelete());

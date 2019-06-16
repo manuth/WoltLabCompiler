@@ -44,6 +44,9 @@ export class InstructionCompiler<T extends IInstruction> extends Compiler<T>
         return document;
     }
 
+    /**
+     * @inheritdoc
+     */
     protected async Compile(): Promise<void>
     {
     }

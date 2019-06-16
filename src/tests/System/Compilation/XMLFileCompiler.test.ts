@@ -19,6 +19,9 @@ suite(
                 rootTag = "foo";
                 compiler = new class extends XMLFileCompiler<{}>
                 {
+                    /**
+                     * @inheritdoc
+                     */
                     protected TagName = "foo";
 
                     public constructor()

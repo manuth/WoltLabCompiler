@@ -19,16 +19,25 @@ export class PackageFileCompiler extends WoltLabXMLCompiler<Package>
         super(item);
     }
 
+    /**
+     * @inheritdoc
+     */
     protected get TagName()
     {
         return "package";
     }
 
+    /**
+     * @inheritdoc
+     */
     protected get SchemaLocation()
     {
         return "http://www.woltlab.com/XSD/tornado/package.xsd";
     }
 
+    /**
+     * @inheritdoc
+     */
     protected CreateDocument()
     {
         let document = super.CreateDocument();

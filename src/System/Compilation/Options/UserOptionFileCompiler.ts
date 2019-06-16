@@ -21,11 +21,17 @@ export class UserOptionFileCompiler extends OptionFileCompiler<UserOptionInstruc
         super(item);
     }
 
+    /**
+     * @inheritdoc
+     */
     protected get SchemaLocation(): string
     {
         return "http://www.woltlab.com/XSD/tornado/userOption.xsd";
     }
 
+    /**
+     * @inheritdoc
+     */
     protected CreateOption(option: UserOption): Element
     {
         let editor: XMLEditor = new XMLEditor(super.CreateOption(option));

@@ -20,6 +20,9 @@ export class ACPOptionInstructionCompiler extends OptionInstructionCompiler<ACPO
         super(item);
     }
 
+    /**
+     * @inheritdoc
+     */
     protected get OptionFileCompiler(): ACPOptionFileCompiler
     {
         return new ACPOptionFileCompiler(this.Item);

@@ -20,6 +20,9 @@ export class InstructionSetCompiler extends Compiler<InstructionSet>
         super(item);
     }
 
+    /**
+     * @inheritdoc
+     */
     protected async Compile(): Promise<void>
     {
         for (let instruction of this.Item)

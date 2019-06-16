@@ -17,6 +17,9 @@ export class ErrorMessageInstruction extends TranslationInstruction
         super(options);
     }
 
+    /**
+     * @inheritdoc
+     */
     public GetMessages(): { [locale: string]: { [category: string]: { [key: string]: string } } }
     {
         let result: TranslationInstruction = new TranslationInstruction(

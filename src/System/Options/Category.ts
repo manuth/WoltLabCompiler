@@ -75,41 +75,65 @@ export class Category<TOption extends Option, TOptionOptions> extends NodeItem i
         }
     }
 
+    /**
+     * @inheritdoc
+     */
     public get DisplayName(): Localization
     {
         return this.displayName;
     }
 
+    /**
+     * @inheritdoc
+     */
     public get Description(): Localization
     {
         return this.description;
     }
 
+    /**
+     * @inheritdoc
+     */
     public get ShowOrder(): number
     {
         return this.showOrder;
     }
 
+    /**
+     * @inheritdoc
+     */
     public set ShowOrder(value: number)
     {
         this.showOrder = value;
     }
 
+    /**
+     * @inheritdoc
+     */
     public get EnableOptions(): string[]
     {
         return this.enableOptions;
     }
 
+    /**
+     * @inheritdoc
+     */
     public set EnableOptions(value: string[])
     {
         this.enableOptions = value;
     }
 
+    /**
+     * @inheritdoc
+     */
     public get Options(): ReadonlyArray<TOption>
     {
         return this.options;
     }
 
+    /**
+     * @inheritdoc
+     */
     public GetObjects(): { [id: string]: any }
     {
         let result: { [id: string]: any } = {};

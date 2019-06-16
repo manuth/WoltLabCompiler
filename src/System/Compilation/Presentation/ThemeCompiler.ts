@@ -44,6 +44,9 @@ export class ThemeCompiler extends Compiler<Theme>
         this.variableFileName = value;
     }
 
+    /**
+     * @inheritdoc
+     */
     protected async Compile()
     {
         let variables: { [key: string]: string } = {};

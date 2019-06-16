@@ -19,6 +19,9 @@ export class TemplateListenerInstructionCompiler extends TemplateInstructionComp
         super(item);
     }
 
+    /**
+     * @inheritdoc
+     */
     protected get FileCompiler(): Compiler<TemplateListenerInstruction>
     {
         return new TemplateListenerFileCompiler(this.Item);

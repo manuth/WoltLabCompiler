@@ -25,16 +25,25 @@ export class ThemeFileCompiler extends WoltLabXMLCompiler<Theme>
         this.VariableFileName = variableFileName;
     }
 
+    /**
+     * @inheritdoc
+     */
     protected get TagName()
     {
         return "style";
     }
 
+    /**
+     * @inheritdoc
+     */
     protected get SchemaLocation()
     {
         return "https://www.woltlab.com/XSD/vortex/style.xsd";
     }
 
+    /**
+     * @inheritdoc
+     */
     protected CreateDocument()
     {
         let document = super.CreateDocument();

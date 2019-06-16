@@ -23,11 +23,17 @@ export class EventListenerInstruction extends ListenerInstruction<EventListener,
             });
     }
 
+    /**
+     * @inheritdoc
+     */
     public get Type(): string
     {
         return "eventListener";
     }
 
+    /**
+     * @inheritdoc
+     */
     public get Compiler(): InstructionCompiler<EventListenerInstruction>
     {
         return new EventListenerInstructionCompiler(this);

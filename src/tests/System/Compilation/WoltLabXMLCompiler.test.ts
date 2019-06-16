@@ -22,6 +22,9 @@ suite(
 
                 compiler = new class extends WoltLabXMLCompiler<{}>
                 {
+                    /**
+                     * @inheritdoc
+                     */
                     protected SchemaLocation = schemaLocation;
 
                     public constructor()

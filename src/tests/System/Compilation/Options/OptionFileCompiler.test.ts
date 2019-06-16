@@ -63,11 +63,17 @@ suite(
                     });
             }
 
+            /**
+             * @inheritdoc
+             */
             public get RootCategory()
             {
                 return "wcf.foo.option";
             }
 
+            /**
+             * @inheritdoc
+             */
             public get Type()
             {
                 return "bar";
@@ -158,6 +164,9 @@ suite(
                 categoryNode = optionInstruction.ObjectsByID[categoryID];
                 compiler = new class extends OptionFileCompiler<MyOptionInstruction, MyCategory, MyOption>
                 {
+                    /**
+                     * @inheritdoc
+                     */
                     protected get SchemaLocation()
                     {
                         return "http://example.com/myOptions.xsd";

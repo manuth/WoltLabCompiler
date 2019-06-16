@@ -17,16 +17,25 @@ export class LocalizationFileCompiler extends WoltLabXMLCompiler<[string, { [cat
         super(item);
     }
 
+    /**
+     * @inheritdoc
+     */
     protected get TagName(): string
     {
         return "language";
     }
 
+    /**
+     * @inheritdoc
+     */
     protected get SchemaLocation(): string
     {
         return "http://www.woltlab.com/XSD/tornado/language.xsd";
     }
 
+    /**
+     * @inheritdoc
+     */
     protected CreateDocument(): Document
     {
         let document: Document = super.CreateDocument();
