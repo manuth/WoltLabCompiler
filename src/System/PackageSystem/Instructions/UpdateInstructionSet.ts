@@ -33,6 +33,10 @@ export class UpdateInstructionSet extends InstructionSet
     {
         this.fromVersion = value;
     }
+
+    /**
+     * @inheritdoc
+     */
     public Serialize(): Element
     {
         let editor: XMLEditor = new XMLEditor(super.Serialize());

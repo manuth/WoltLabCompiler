@@ -16,6 +16,9 @@ export abstract class WoltLabXMLCompiler<T> extends EJSFileCompiler<T>
         super(item);
     }
 
+    /**
+     * @inheritdoc
+     */
     protected get TagName(): string
     {
         return "data";
@@ -26,6 +29,9 @@ export abstract class WoltLabXMLCompiler<T> extends EJSFileCompiler<T>
      */
     protected abstract get SchemaLocation(): string;
 
+    /**
+     * @inheritdoc
+     */
     protected CreateDocument(): Document
     {
         let document: Document = super.CreateDocument();

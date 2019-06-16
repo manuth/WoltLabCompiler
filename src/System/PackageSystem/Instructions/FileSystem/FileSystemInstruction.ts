@@ -41,6 +41,9 @@ export abstract class FileSystemInstruction extends Instruction
         this.source = value;
     }
 
+    /**
+     * @inheritdoc
+     */
     public get FileName()
     {
         if (isNullOrUndefined(super.FileName))
@@ -53,11 +56,17 @@ export abstract class FileSystemInstruction extends Instruction
         }
     }
 
+    /**
+     * @inheritdoc
+     */
     public set FileName(value)
     {
         super.FileName = value;
     }
 
+    /**
+     * @inheritdoc
+     */
     public get Compiler(): InstructionCompiler<FileSystemInstruction>
     {
         return new FileSystemInstructionCompiler(this);

@@ -29,6 +29,9 @@ export class InstructionSet extends BidirectionalCollection<InstructionSet, Inst
         this.Package = $package;
     }
 
+    /**
+     * @inheritdoc
+     */
     public get Owner(): InstructionSet
     {
         return this;
@@ -86,11 +89,17 @@ export class InstructionSet extends BidirectionalCollection<InstructionSet, Inst
         return editor.Element;
     }
 
+    /**
+     * @inheritdoc
+     */
     protected GetParent(child: Instruction)
     {
         return child.Collection;
     }
 
+    /**
+     * @inheritdoc
+     */
     protected SetParent(child: Instruction, parent: InstructionSet)
     {
         child.Collection = parent;

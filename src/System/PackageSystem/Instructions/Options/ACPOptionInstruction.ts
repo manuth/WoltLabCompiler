@@ -26,16 +26,25 @@ export class ACPOptionInstruction extends OptionInstruction<ACPCategory, ICatego
             });
     }
 
+    /**
+     * @inheritdoc
+     */
     public get Type(): string
     {
         return "option";
     }
 
+    /**
+     * @inheritdoc
+     */
     public get RootCategory(): string
     {
         return "wcf.acp.option";
     }
 
+    /**
+     * @inheritdoc
+     */
     public get Compiler(): InstructionCompiler<ACPOptionInstruction>
     {
         return new ACPOptionInstructionCompiler(this);

@@ -40,6 +40,9 @@ export class BBCodeInstruction extends NamedDeleteInstruction implements ILocali
         }
     }
 
+    /**
+     * @inheritdoc
+     */
     public get Type()
     {
         return "bbcode";
@@ -53,21 +56,33 @@ export class BBCodeInstruction extends NamedDeleteInstruction implements ILocali
         return this.bbCodes;
     }
 
+    /**
+     * @inheritdoc
+     */
     public get TranslationDirectory()
     {
         return this.translationDirectory;
     }
 
+    /**
+     * @inheritdoc
+     */
     public set TranslationDirectory(value)
     {
         this.translationDirectory = value;
     }
 
+    /**
+     * @inheritdoc
+     */
     public get Compiler()
     {
         return new BBCodeInstructionCompiler(this);
     }
 
+    /**
+     * @inheritdoc
+     */
     public GetMessages()
     {
         let result: TranslationInstruction = new TranslationInstruction(

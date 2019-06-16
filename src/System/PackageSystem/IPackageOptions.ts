@@ -17,6 +17,9 @@ export interface IPackageOptions extends  Partial<IComponentOptions>
      */
     Identifier: string;
 
+    /**
+     * @inheritdoc
+     */
     DisplayName: ILocalization;
 
     /**
@@ -37,7 +40,7 @@ export interface IPackageOptions extends  Partial<IComponentOptions>
     /**
      * A set of packages which can be installed additionally.
      */
-    OptionalPackages?: Required<IPackageFileDescriptorOptions>[];
+    OptionalPackages?: Array<Required<IPackageFileDescriptorOptions>>;
 
     /**
      * A set of instructions for installing the package.

@@ -398,7 +398,7 @@ export class XMLEditor
      * @param nodeList
      * The node-list to convert.
      */
-    protected static ToArray<T extends Node>(nodeList: { length: number, item(index: number): T })
+    protected static ToArray<T extends Element>(nodeList: NodeListOf<T> | HTMLCollectionOf<T>)
     {
         let result: T[] = [];
 

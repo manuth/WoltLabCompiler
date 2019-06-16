@@ -19,6 +19,9 @@ suite(
 
                 compiler = new class extends Compiler<{}>
                 {
+                    /**
+                     * @inheritdoc
+                     */
                     protected async Compile(): Promise<void>
                     {
                     }

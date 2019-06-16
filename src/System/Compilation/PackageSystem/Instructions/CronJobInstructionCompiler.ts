@@ -19,6 +19,9 @@ export class CronJobInstructionCompiler extends TemplateInstructionCompiler<Cron
         super(item);
     }
 
+    /**
+     * @inheritdoc
+     */
     protected get FileCompiler(): Compiler<CronJobInstruction>
     {
         return new CronJobFileCompiler(this.Item);

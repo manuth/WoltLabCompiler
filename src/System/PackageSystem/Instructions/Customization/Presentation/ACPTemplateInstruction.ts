@@ -15,11 +15,17 @@ export class ACPTemplateInstruction extends ApplicationFileSystemInstruction
         super(options);
     }
 
+    /**
+     * @inheritdoc
+     */
     public get Type(): string
     {
         return "acpTemplate";
     }
 
+    /**
+     * @inheritdoc
+     */
     public MakeDefaultFileName(source: string)
     {
         return Path.join("acpTemplates", super.MakeDefaultFileName(source));

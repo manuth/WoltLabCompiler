@@ -15,6 +15,9 @@ suite(
 
                 instruction = new class extends FileSystemInstruction
                 {
+                    /**
+                     * @inheritdoc
+                     */
                     public Type = "foo";
                 }(
                     {

@@ -8,8 +8,14 @@ import { IImageDirectoryDescriptorOptions } from "./IImageDirectoryDescriptorOpt
  */
 export interface IThemeOptions extends Partial<IComponentOptions>
 {
+    /**
+     * @inheritdoc
+     */
     Name: string;
 
+    /**
+     * @inheritdoc
+     */
     DisplayName: ILocalization;
 
     /**

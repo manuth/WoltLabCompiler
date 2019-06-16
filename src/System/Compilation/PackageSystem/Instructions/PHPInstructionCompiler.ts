@@ -8,6 +8,9 @@ import { InstructionCompiler } from "./InstructionCompiler";
  */
 export class PHPInstructionCompiler extends InstructionCompiler<PHPInstruction>
 {
+    /**
+     * @inheritdoc
+     */
     public Serialize()
     {
         let document = super.Serialize();

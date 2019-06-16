@@ -26,21 +26,33 @@ export abstract class LocalizationInstruction<T extends LocalizationItem, TOptio
         super(options, generator);
     }
 
+    /**
+     * @inheritdoc
+     */
     public get Type(): string
     {
         return "language";
     }
 
+    /**
+     * @inheritdoc
+     */
     public get TranslationDirectory(): string
     {
         return this.FileName;
     }
 
+    /**
+     * @inheritdoc
+     */
     public get Compiler(): InstructionCompiler<ILocalizationInstruction>
     {
         return new LocalizationInstructionCompiler(this);
     }
 
+    /**
+     * @inheritdoc
+     */
     public GetMessages(): { [locale: string]: { [category: string]: { [key: string]: string } } }
     {
         let result: { [locale: string]: { [category: string]: { [key: string]: string } } } = {};

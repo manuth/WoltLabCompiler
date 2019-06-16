@@ -24,6 +24,9 @@ export abstract class XMLFileCompiler<T> extends Compiler<T>
      */
     protected abstract get TagName(): string;
 
+    /**
+     * @inheritdoc
+     */
     protected async Compile(): Promise<void>
     {
         await FileSystem.ensureFile(this.DestinationPath);

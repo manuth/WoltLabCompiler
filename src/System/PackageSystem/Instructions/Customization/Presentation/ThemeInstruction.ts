@@ -14,6 +14,12 @@ export class ThemeInstruction extends Instruction
      */
     private theme: Theme;
 
+    /**
+     * Initializes a new instance of the `ThemeInstruction` class.
+     *
+     * @param options
+     * The options for the theme-instruction.
+     */
     public constructor(options: IThemeInstructionOptions)
     {
         super({
@@ -23,6 +29,9 @@ export class ThemeInstruction extends Instruction
         this.theme = new Theme(this, options.Theme);
     }
 
+    /**
+     * @inheritdoc
+     */
     public get Type(): string
     {
         return "style";
@@ -36,6 +45,9 @@ export class ThemeInstruction extends Instruction
         return this.theme;
     }
 
+    /**
+     * @inheritdoc
+     */
     public get Compiler(): InstructionCompiler<ThemeInstruction>
     {
         return new ThemeInstructionCompiler(this);

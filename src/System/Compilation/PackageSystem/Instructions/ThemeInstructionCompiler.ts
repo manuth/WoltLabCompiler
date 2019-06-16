@@ -19,6 +19,9 @@ export class ThemeInstructionCompiler extends InstructionCompiler<ThemeInstructi
         super(item);
     }
 
+    /**
+     * @inheritdoc
+     */
     protected async Compile(): Promise<void>
     {
         let tempDir: TempDirectory = new TempDirectory();

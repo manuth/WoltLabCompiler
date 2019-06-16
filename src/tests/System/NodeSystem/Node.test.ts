@@ -194,7 +194,7 @@ suite(
 
                         rootNode.Nodes.push(node);
 
-                        let allNodes: Node<NodeItem, {}>[] = rootNode.GetAllNodes();
+                        let allNodes: Array<Node<NodeItem, {}>> = rootNode.GetAllNodes();
                         allNodes[Math.floor(Math.random() * allNodes.length)].Nodes.push(idNode);
 
                         Assert.strictEqual(id in rootNode.GetObjects(), true);

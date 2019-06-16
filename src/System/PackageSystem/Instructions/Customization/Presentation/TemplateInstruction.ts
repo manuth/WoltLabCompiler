@@ -15,11 +15,17 @@ export class TemplateInstruction extends ApplicationFileSystemInstruction
         super(options);
     }
 
+    /**
+     * @inheritdoc
+     */
     public get Type(): string
     {
         return "template";
     }
 
+    /**
+     * @inheritdoc
+     */
     public MakeDefaultFileName(source: string)
     {
         return Path.join("templates", super.MakeDefaultFileName(source));

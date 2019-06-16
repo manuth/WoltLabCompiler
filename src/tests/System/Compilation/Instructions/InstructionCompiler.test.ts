@@ -37,6 +37,9 @@ suite(
 
                 let instruction: Instruction = new class extends Instruction
                 {
+                    /**
+                     * @inheritdoc
+                     */
                     public Type: string = type;
 
                     public constructor()
@@ -44,6 +47,9 @@ suite(
                         super({ FileName: "example.txt" });
                     }
 
+                    /**
+                     * @inheritdoc
+                     */
                     public get ObjectsByID(): { [key: string]: any }
                     {
                         return objects;
@@ -59,6 +65,9 @@ suite(
                         super(item);
                     }
 
+                    /**
+                     * @inheritdoc
+                     */
                     protected async Compile(): Promise<void>
                     {
                         await FileSystem.writeFile(this.DestinationPath, `<%= Item.Type %>\n<%= $("${objectID}") %>`);

@@ -24,13 +24,22 @@ suite(
 
                 compiler = new class extends EJSFileCompiler<{}>
                 {
+                    /**
+                     * @inheritdoc
+                     */
                     protected TagName = "test";
 
+                    /**
+                     * Initializes a new instance of the `EJSFileCompiler` class.
+                     */
                     public constructor()
                     {
                         super({});
                     }
 
+                    /**
+                     * @inheritdoc
+                     */
                     protected CreateDocument()
                     {
                         let document = super.CreateDocument();
@@ -38,6 +47,9 @@ suite(
                         return document;
                     }
 
+                    /**
+                     * @inheritdoc
+                     */
                     protected async Compile()
                     {
                         await super.Compile();

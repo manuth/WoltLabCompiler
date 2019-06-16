@@ -9,5 +9,5 @@ export interface INodeSystemInstructionOptions<T> extends IInstructionOptions
     /**
      * The nodes provided by the instruction.
      */
-    Nodes: INodeOptions<T>[];
+    Nodes: Array<INodeOptions<T>>;
 }

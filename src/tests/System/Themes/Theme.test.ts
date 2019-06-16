@@ -17,10 +17,29 @@ suite(
          */
         interface IVariable
         {
+            /**
+             * @inheritdoc
+             */
             Name: string;
+
+            /**
+             * @inheritdoc
+             */
             Input: string;
+
+            /**
+             * @inheritdoc
+             */
             Output: string;
+
+            /**
+             * @inheritdoc
+             */
             Special?: boolean;
+
+            /**
+             * @inheritdoc
+             */
             Source: "scss" | "json";
         }
 

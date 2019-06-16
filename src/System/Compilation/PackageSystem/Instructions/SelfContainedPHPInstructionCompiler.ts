@@ -19,6 +19,9 @@ export class SelfContainedPHPInstructionCompiler extends InstructionCompiler<Sel
         super(item);
     }
 
+    /**
+     * @inheritdoc
+     */
     public Serialize()
     {
         let document = this.Item.FileInstruction.Compiler.Serialize();
@@ -32,6 +35,9 @@ export class SelfContainedPHPInstructionCompiler extends InstructionCompiler<Sel
         return document;
     }
 
+    /**
+     * @inheritdoc
+     */
     protected async Compile(): Promise<void>
     {
         let fileInstruction = this.Item.FileInstruction;

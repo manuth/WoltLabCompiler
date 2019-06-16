@@ -8,6 +8,9 @@ import { InstructionFileCompiler } from "./InstructionFileCompiler";
  */
 export abstract class TemplateInstructionCompiler<T extends IInstruction> extends InstructionFileCompiler<T>
 {
+    /**
+     * @inheritdoc
+     */
     protected async Compile(): Promise<void>
     {
         await super.Compile();

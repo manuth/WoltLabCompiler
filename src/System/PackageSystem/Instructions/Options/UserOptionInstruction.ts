@@ -26,16 +26,25 @@ export class UserOptionInstruction extends OptionInstruction<UserCategory, ICate
             });
     }
 
+    /**
+     * @inheritdoc
+     */
     public get Type(): string
     {
         return "userOption";
     }
 
+    /**
+     * @inheritdoc
+     */
     public get RootCategory(): string
     {
         return "wcf.user.option";
     }
 
+    /**
+     * @inheritdoc
+     */
     public get Compiler(): InstructionCompiler<UserOptionInstruction>
     {
         return new UserOptionInstructionCompiler(this);

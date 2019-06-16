@@ -15,6 +15,9 @@ export class BBCodeInstructionCompiler extends LocalizationProviderCompiler<BBCo
         super(item);
     }
 
+    /**
+     * @inheritdoc
+     */
     protected async Compile(): Promise<void>
     {
         await super.Compile();

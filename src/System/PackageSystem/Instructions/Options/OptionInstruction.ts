@@ -43,33 +43,54 @@ export abstract class OptionInstruction<TCategory extends Category<TOption, TOpt
         }
     }
 
+    /**
+     * @inheritdoc
+     */
     public get TranslationDirectory(): string
     {
         return this.Type;
     }
 
+    /**
+     * @inheritdoc
+     */
     public abstract get RootCategory(): string;
 
+    /**
+     * @inheritdoc
+     */
     public get OptionCategory(): string
     {
         return null;
     }
 
+    /**
+     * @inheritdoc
+     */
     public get CategoryCategory(): string
     {
         return "category";
     }
 
+    /**
+     * @inheritdoc
+     */
     public get CategoriesToDelete(): INamedObject[]
     {
         return this.categoriesToDelete;
     }
 
+    /**
+     * @inheritdoc
+     */
     public get OptionsToDelete(): INamedObject[]
     {
         return this.optionsToDelete;
     }
 
+    /**
+     * @inheritdoc
+     */
     public GetMessages(): { [locale: string]: { [category: string]: { [key: string]: string } } }
     {
         let result: TranslationInstruction = new TranslationInstruction(

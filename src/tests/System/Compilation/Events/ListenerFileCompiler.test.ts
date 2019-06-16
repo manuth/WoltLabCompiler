@@ -52,6 +52,9 @@ suite(
                             });
                     }
 
+                    /**
+                     * @inheritdoc
+                     */
                     public get Type()
                     {
                         return "baz";
@@ -63,11 +66,17 @@ suite(
                  */
                 class MyListenerFileCompiler extends ListenerFileCompiler<MyListenerInstruction, Listener>
                 {
+                    /**
+                     * @inheritdoc
+                     */
                     protected get ObjectTagName()
                     {
                         return listenerTag;
                     }
 
+                    /**
+                     * @inheritdoc
+                     */
                     protected get SchemaLocation()
                     {
                         return "http://example.com/myListener.xsd";

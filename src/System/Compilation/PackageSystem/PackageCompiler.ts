@@ -21,6 +21,9 @@ export class PackageCompiler extends Compiler<Package>
         super(item);
     }
 
+    /**
+     * @inheritdoc
+     */
     protected async Compile(): Promise<void>
     {
         let tempDir: TempDirectory = new TempDirectory();

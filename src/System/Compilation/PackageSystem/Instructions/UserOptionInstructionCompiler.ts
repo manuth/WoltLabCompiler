@@ -20,6 +20,9 @@ export class UserOptionInstructionCompiler extends OptionInstructionCompiler<Use
         super(item);
     }
 
+    /**
+     * @inheritdoc
+     */
     protected get OptionFileCompiler(): UserOptionFileCompiler
     {
         return new UserOptionFileCompiler(this.Item);

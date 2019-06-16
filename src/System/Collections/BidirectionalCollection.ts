@@ -30,6 +30,9 @@ export abstract class BidirectionalCollection<TParent, TChild> extends Array<TCh
         return this.owner;
     }
 
+    /**
+     * @inheritdoc
+     */
     public push(...items: TChild[])
     {
         let result = 0;
@@ -45,18 +48,27 @@ export abstract class BidirectionalCollection<TParent, TChild> extends Array<TCh
         return result;
     }
 
+    /**
+     * @inheritdoc
+     */
     public pop()
     {
         let result = this[this.length - 1];
         return this.Remove(result) ? result : undefined;
     }
 
+    /**
+     * @inheritdoc
+     */
     public shift()
     {
         let result = this[0];
         return this.Remove(result) ? result : undefined;
     }
 
+    /**
+     * @inheritdoc
+     */
     public unshift(...items: TChild[])
     {
         let result = 0;

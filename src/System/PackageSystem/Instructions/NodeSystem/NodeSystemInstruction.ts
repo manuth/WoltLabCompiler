@@ -12,7 +12,7 @@ export abstract class NodeSystemInstruction<T extends NodeItem, TOptions> extend
     /**
      * The nodes provides by the instruction.
      */
-    private nodes: Node<T, TOptions>[] = [];
+    private nodes: Array<Node<T, TOptions>> = [];
 
     /**
      * Initializes a new instance of the `NodeSystemInstruction<T>` class.
@@ -33,11 +33,17 @@ export abstract class NodeSystemInstruction<T extends NodeItem, TOptions> extend
         }
     }
 
-    public get Nodes(): Node<T, TOptions>[]
+    /**
+     * @inheritdoc
+     */
+    public get Nodes(): Array<Node<T, TOptions>>
     {
         return this.nodes;
     }
 
+    /**
+     * @inheritdoc
+     */
     public get ObjectsByID(): { [id: string]: any }
     {
         let result: { [id: string]: any } = {};

@@ -19,16 +19,25 @@ export class BBCodeFileCompiler extends NamedObjectDeletionFileCompiler<BBCodeIn
         super(item);
     }
 
+    /**
+     * @inheritdoc
+     */
     protected get SchemaLocation()
     {
         return "https://www.woltlab.com/XSD/vortex/bbcode.xsd";
     }
 
+    /**
+     * @inheritdoc
+     */
     protected get ObjectTagName()
     {
         return "bbcode";
     }
 
+    /**
+     * @inheritdoc
+     */
     protected CreateImport()
     {
         let editor = new XMLEditor(super.CreateImport());

@@ -17,6 +17,9 @@ export class FileSystemInstructionCompiler extends InstructionCompiler<FileSyste
         super(item);
     }
 
+    /**
+     * @inheritdoc
+     */
     protected async Compile(): Promise<void>
     {
         await this.CopyTemplate(this.Item.Source, this.DestinationFileName);

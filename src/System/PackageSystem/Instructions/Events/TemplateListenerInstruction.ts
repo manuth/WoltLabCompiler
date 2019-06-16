@@ -23,11 +23,17 @@ export class TemplateListenerInstruction extends ListenerInstruction<TemplateLis
             });
     }
 
+    /**
+     * @inheritdoc
+     */
     public get Type(): string
     {
         return "templateListener";
     }
 
+    /**
+     * @inheritdoc
+     */
     public get Compiler(): InstructionCompiler<TemplateListenerInstruction>
     {
         return new TemplateListenerInstructionCompiler(this);

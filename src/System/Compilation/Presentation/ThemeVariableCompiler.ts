@@ -17,16 +17,25 @@ export class ThemeVariableCompiler extends WoltLabXMLCompiler<{ [key: string]: s
         super(item);
     }
 
+    /**
+     * @inheritdoc
+     */
     protected get TagName(): string
     {
         return "variables";
     }
 
+    /**
+     * @inheritdoc
+     */
     protected get SchemaLocation(): string
     {
         return "http://www.woltlab.com/XSD/tornado/styleVariables.xsd";
     }
 
+    /**
+     * @inheritdoc
+     */
     protected CreateDocument(): Document
     {
         let document: Document = super.CreateDocument();

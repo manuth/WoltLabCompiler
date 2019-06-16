@@ -17,9 +17,12 @@ export class LocalizationSetCompiler extends Compiler<{ [locale: string]: { [cat
         super(item);
     }
 
+    /**
+     * @inheritdoc
+     */
     protected async Compile(): Promise<void>
     {
-        let tasks: Promise<void>[] = [];
+        let tasks: Array<Promise<void>> = [];
 
         for (let locale in this.Item)
         {
