@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## WoltLabCompiler v1.0.4
+  - Fix all vulnerabilities
+  - Update all dependencies
+
+[Show differences](https://github.com/manuth/WoltLabCompiler/compare/v1.0.3...v1.0.4)
+
 ## WoltLabCompiler v1.0.3
   - Improved the stability
 
