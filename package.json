@@ -1,6 +1,6 @@
 {
   "name": "woltlab-compiler",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A compiler for WoltLab-Package Archives and WoltLab-Package Components",
   "author": "Manuel Thalmann <m@nuth.ch>",
   "license": "MIT",
