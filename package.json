@@ -51,6 +51,7 @@
   "devDependencies": {
     "@manuth/tsconfig": "^1.2.2",
     "@manuth/tslint-presets": "^1.0.3",
+    "@types/colornames": "^1.1.1",
     "@types/dedent": "^0.7.0",
     "@types/fs-extra": "^8.0.0",
     "@types/mem-fs": "^1.1.2",
