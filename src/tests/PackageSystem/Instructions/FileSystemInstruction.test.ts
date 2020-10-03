@@ -1,39 +1,45 @@
 import Assert = require("assert");
 import { FileSystemInstruction } from "../../../PackageSystem/Instructions/FileSystem/FileSystemInstruction";
 
-suite(
-    "FileSystemInstruction",
-    () =>
-    {
-        let fileName: string;
-        let instruction: FileSystemInstruction;
+/**
+ * Registers tests for the `FileSystemInstruction` class.
+ */
+export function FileSystemInstructionTests(): void
+{
+    suite(
+        "FileSystemInstruction",
+        () =>
+        {
+            let fileName: string;
+            let instruction: FileSystemInstruction;
 
-        suiteSetup(
-            () =>
-            {
-                fileName = "foo.sql";
-
-                instruction = new class extends FileSystemInstruction
+            suiteSetup(
+                () =>
                 {
-                    /**
-                     * @inheritdoc
-                     */
-                    public Type = "foo";
-                }(
-                    {
-                        Source: fileName
-                    });
-            });
+                    fileName = "foo.sql";
 
-        suite(
-            "FileName",
-            () =>
-            {
-                test(
-                    "Checking whether the `FileName` is set to `Source` automatically…",
-                    () =>
+                    instruction = new class extends FileSystemInstruction
                     {
-                        Assert.strictEqual(instruction.FileName, instruction.Source);
-                    });
-            });
-    });
+                        /**
+                         * @inheritdoc
+                         */
+                        public Type = "foo";
+                    }(
+                        {
+                            Source: fileName
+                        });
+                });
+
+            suite(
+                "FileName",
+                () =>
+                {
+                    test(
+                        "Checking whether the `FileName` is set to `Source` automatically…",
+                        () =>
+                        {
+                            Assert.strictEqual(instruction.FileName, instruction.Source);
+                        });
+                });
+        });
+}

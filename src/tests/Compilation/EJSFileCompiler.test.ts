@@ -4,89 +4,95 @@ import { TempFile } from "temp-filesystem";
 import { DOMParser } from "xmldom";
 import { EJSFileCompiler } from "../../Compilation/EJSFileCompiler";
 
-suite(
-    "EJSFileCompiler",
-    () =>
-    {
-        let tempFile: TempFile;
-        let variableName: string;
-        let variableValue: string;
-        let compiler: EJSFileCompiler<unknown>;
+/**
+ * Registers tests for the `EJSFileCompiler` class.
+ */
+export function EJSFileCompilerTests(): void
+{
+    suite(
+        "EJSFileCompiler",
+        () =>
+        {
+            let tempFile: TempFile;
+            let variableName: string;
+            let variableValue: string;
+            let compiler: EJSFileCompiler<unknown>;
 
-        suiteSetup(
-            async () =>
-            {
-                let context: Record<string, string> = {};
-                tempFile = new TempFile();
-                variableName = "foo";
-                variableValue = "Hello World";
-                context[variableName] = variableValue;
-
-                compiler = new class extends EJSFileCompiler<unknown>
+            suiteSetup(
+                async () =>
                 {
-                    /**
-                     * @inheritdoc
-                     */
-                    protected TagName = "test";
+                    let context: Record<string, string> = {};
+                    tempFile = new TempFile();
+                    variableName = "foo";
+                    variableValue = "Hello World";
+                    context[variableName] = variableValue;
 
-                    /**
-                     * Initializes a new instance of the `EJSFileCompiler` class.
-                     */
-                    public constructor()
+                    compiler = new class extends EJSFileCompiler<unknown>
                     {
-                        super({});
-                    }
+                        /**
+                         * @inheritdoc
+                         */
+                        protected TagName = "test";
 
-                    /**
-                     * @inheritdoc
-                     *
-                     * @returns
-                     * The serialized document.
-                     */
-                    protected CreateDocument(): Document
-                    {
-                        let document = super.CreateDocument();
-                        document.documentElement.appendChild(document.createTextNode(`<%= ${variableName} %>`));
-                        return document;
-                    }
+                        /**
+                         * Initializes a new instance of the `EJSFileCompiler` class.
+                         */
+                        public constructor()
+                        {
+                            super({});
+                        }
 
-                    /**
-                     * @inheritdoc
-                     */
-                    protected async Compile(): Promise<void>
-                    {
-                        await super.Compile();
-                        await this.CopyTemplate(this.DestinationPath, this.DestinationPath, context);
-                    }
-                }();
+                        /**
+                         * @inheritdoc
+                         *
+                         * @returns
+                         * The serialized document.
+                         */
+                        protected CreateDocument(): Document
+                        {
+                            let document = super.CreateDocument();
+                            document.documentElement.appendChild(document.createTextNode(`<%= ${variableName} %>`));
+                            return document;
+                        }
 
-                compiler.DestinationPath = tempFile.FullName;
-            });
+                        /**
+                         * @inheritdoc
+                         */
+                        protected async Compile(): Promise<void>
+                        {
+                            await super.Compile();
+                            await this.CopyTemplate(this.DestinationPath, this.DestinationPath, context);
+                        }
+                    }();
 
-        suite(
-            "Compile()",
-            () =>
-            {
-                test(
-                    "Checking whether the component can be compiled…",
-                    async () =>
-                    {
-                        await compiler.Execute();
-                    });
+                    compiler.DestinationPath = tempFile.FullName;
+                });
 
-                test(
-                    "Checking whether the compiled file exists…",
-                    async () =>
-                    {
-                        Assert.strictEqual(await FileSystem.pathExists(tempFile.FullName), true);
-                    });
+            suite(
+                "Compile",
+                () =>
+                {
+                    test(
+                        "Checking whether the component can be compiled…",
+                        async () =>
+                        {
+                            await compiler.Execute();
+                        });
 
-                test(
-                    "Checking whether the EJS-variable has been replaced…",
-                    async () =>
-                    {
-                        let document = new DOMParser().parseFromString((await FileSystem.readFile(tempFile.FullName)).toString());
-                        Assert.strictEqual(document.documentElement.textContent, variableValue);
-                    });
-            });
-    });
+                    test(
+                        "Checking whether the compiled file exists…",
+                        async () =>
+                        {
+                            Assert.strictEqual(await FileSystem.pathExists(tempFile.FullName), true);
+                        });
+
+                    test(
+                        "Checking whether the EJS-variable has been replaced…",
+                        async () =>
+                        {
+                            let document = new DOMParser().parseFromString((await FileSystem.readFile(tempFile.FullName)).toString());
+                            Assert.strictEqual(document.documentElement.textContent, variableValue);
+                        });
+                });
+        });
+}

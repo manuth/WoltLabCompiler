@@ -7,145 +7,151 @@ import { ICategoryOptions } from "../../Options/ICategoryOptions";
 import { IOptionOptions } from "../../Options/IOptionOptions";
 import { Option } from "../../Options/Option";
 
-suite(
-    "Category",
-    () =>
-    {
-        /**
-         * Represents an option.
-         */
-        class MyOption extends Option
-        { }
-
-        /**
-         * Represents a category.
-         */
-        class MyCategory extends Category<Option, IOptionOptions>
+/**
+ * Registers tests for the `Category` class.
+ */
+export function CategoryTests(): void
+{
+    suite(
+        "Category",
+        () =>
         {
             /**
-             * Initializes a new instance of the `MyCategor` class.
-             *
-             * @param node
-             * The node of the category.
-             *
-             * @param options
-             * The options of the category.
+             * Represents an option.
              */
-            public constructor(node: INode, options: ICategoryOptions<IOptionOptions>)
-            {
-                super(
-                    node,
-                    options,
-                    (parent: Category<Option, IOptionOptions>, opts: IOptionOptions) =>
-                    {
-                        return new MyOption(parent, opts);
-                    });
-            }
-        }
+            class MyOption extends Option
+            { }
 
-        /**
-         * Represents a node.
-         */
-        class MyNode extends Node<MyCategory, ICategoryOptions<IOptionOptions>>
-        {
             /**
-             * Initializes a new instance of the `MyNode` class.
-             *
-             * @param options
-             * The options for generating the object.
+             * Represents a category.
              */
-            public constructor(options: INodeOptions<ICategoryOptions<IOptionOptions>>)
+            class MyCategory extends Category<Option, IOptionOptions>
             {
-                super(
-                    options,
-                    (parent: Node<MyCategory, ICategoryOptions<IOptionOptions>>, opts: ICategoryOptions<IOptionOptions>) =>
-                    {
-                        return new MyCategory(parent, opts);
-                    });
-            }
-        }
-
-        let rootNode: MyNode;
-        let names: string[];
-        let category: MyNode;
-        let categoryID: string;
-        let optionID: string;
-        let optionName: string;
-
-        suiteSetup(
-            () =>
-            {
-                names = ["foo", "bar", "baz", "this", "is", "a", "test", "and", "tests", "stuff"];
-                categoryID = "foo";
-                optionID = "bar";
-                optionName = "test-option";
-
-                category = new MyNode(
-                    {
-                        ID: categoryID,
-                        Name: "test-category"
-                    });
-
-                for (let name of names.reverse())
+                /**
+                 * Initializes a new instance of the `MyCategor` class.
+                 *
+                 * @param node
+                 * The node of the category.
+                 *
+                 * @param options
+                 * The options of the category.
+                 */
+                public constructor(node: INode, options: ICategoryOptions<IOptionOptions>)
                 {
-                    let child: MyNode = rootNode;
-
-                    rootNode = new MyNode(
+                    super(
+                        node,
+                        options,
+                        (parent: Category<Option, IOptionOptions>, opts: IOptionOptions) =>
                         {
-                            Name: name,
-                            Item: {
-                            }
+                            return new MyOption(parent, opts);
+                        });
+                }
+            }
+
+            /**
+             * Represents a node.
+             */
+            class MyNode extends Node<MyCategory, ICategoryOptions<IOptionOptions>>
+            {
+                /**
+                 * Initializes a new instance of the `MyNode` class.
+                 *
+                 * @param options
+                 * The options for generating the object.
+                 */
+                public constructor(options: INodeOptions<ICategoryOptions<IOptionOptions>>)
+                {
+                    super(
+                        options,
+                        (parent: Node<MyCategory, ICategoryOptions<IOptionOptions>>, opts: ICategoryOptions<IOptionOptions>) =>
+                        {
+                            return new MyCategory(parent, opts);
+                        });
+                }
+            }
+
+            let rootNode: MyNode;
+            let names: string[];
+            let category: MyNode;
+            let categoryID: string;
+            let optionID: string;
+            let optionName: string;
+
+            suiteSetup(
+                () =>
+                {
+                    names = ["foo", "bar", "baz", "this", "is", "a", "test", "and", "tests", "stuff"];
+                    categoryID = "foo";
+                    optionID = "bar";
+                    optionName = "test-option";
+
+                    category = new MyNode(
+                        {
+                            ID: categoryID,
+                            Name: "test-category"
                         });
 
-                    if (child)
+                    for (let name of names.reverse())
                     {
-                        rootNode.Nodes.push(child);
-                    }
-                }
+                        let child: MyNode = rootNode;
 
-                let allNodes: Array<Node<MyCategory, ICategoryOptions<IOptionOptions>>> = rootNode.GetAllNodes();
-                allNodes[Math.floor(Math.random() * allNodes.length)].Nodes.push(category);
-                allNodes[Math.floor(Math.random() * allNodes.length)].Nodes.push(
-                    new MyNode(
+                        rootNode = new MyNode(
+                            {
+                                Name: name,
+                                Item: {
+                                }
+                            });
+
+                        if (child)
                         {
-                            Name: "option-container",
-                            Item: {
-                                Options: [
-                                    {
-                                        ID: optionID,
-                                        Name: optionName
-                                    }
-                                ]
-                            }
-                        }));
-            });
+                            rootNode.Nodes.push(child);
+                        }
+                    }
 
-        suite(
-            "GetObjects()",
-            () =>
-            {
-                let objects: Record<string, unknown>;
+                    let allNodes: Array<Node<MyCategory, ICategoryOptions<IOptionOptions>>> = rootNode.GetAllNodes();
+                    allNodes[Math.floor(Math.random() * allNodes.length)].Nodes.push(category);
+                    allNodes[Math.floor(Math.random() * allNodes.length)].Nodes.push(
+                        new MyNode(
+                            {
+                                Name: "option-container",
+                                Item: {
+                                    Options: [
+                                        {
+                                            ID: optionID,
+                                            Name: optionName
+                                        }
+                                    ]
+                                }
+                            }));
+                });
 
-                suiteSetup(
-                    () =>
-                    {
-                        objects = rootNode.GetObjects();
-                    });
+            suite(
+                "GetObjects",
+                () =>
+                {
+                    let objects: Record<string, unknown>;
 
-                test(
-                    "Checking whether sub-nodes can be found by their ID…",
-                    () =>
-                    {
-                        Assert.strictEqual(categoryID in objects, true);
-                        Assert.strictEqual(objects[categoryID], category);
-                    });
+                    suiteSetup(
+                        () =>
+                        {
+                            objects = rootNode.GetObjects();
+                        });
 
-                test(
-                    "Checking whether options can be found by their ID…",
-                    () =>
-                    {
-                        Assert.strictEqual(optionID in objects, true);
-                        Assert.strictEqual((objects[optionID] as MyOption).Name, optionName);
-                    });
-            });
-    });
+                    test(
+                        "Checking whether sub-nodes can be found by their ID…",
+                        () =>
+                        {
+                            Assert.strictEqual(categoryID in objects, true);
+                            Assert.strictEqual(objects[categoryID], category);
+                        });
+
+                    test(
+                        "Checking whether options can be found by their ID…",
+                        () =>
+                        {
+                            Assert.strictEqual(optionID in objects, true);
+                            Assert.strictEqual((objects[optionID] as MyOption).Name, optionName);
+                        });
+                });
+        });
+}

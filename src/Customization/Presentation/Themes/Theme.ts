@@ -1,8 +1,8 @@
-import OS = require("os");
-import Path = require("path");
-import ColorNames = require("colornames");
-import FileSystem = require("fs-extra");
-import HexToRgba = require("hex-to-rgba");
+import { EOL } from "os";
+import { get } from "colornames";
+import { readFileSync } from "fs-extra";
+import hexToRgba = require("hex-to-rgba");
+import { isAbsolute, join } from "upath";
 import { Component } from "../../../PackageSystem/Component";
 import { FileDescriptor } from "../../../PackageSystem/FileDescriptor";
 import { ThemeInstruction } from "../../../PackageSystem/Instructions/Customization/Presentation/ThemeInstruction";
@@ -97,7 +97,7 @@ export class Theme extends Component
 
         if (options.CustomScssFileName)
         {
-            this.CustomScss = FileSystem.readFileSync(options.CustomScssFileName).toString();
+            this.CustomScss = readFileSync(options.CustomScssFileName).toString();
         }
 
         if (options.ScssOverrideFileName)
@@ -111,8 +111,8 @@ export class Theme extends Component
                 variables,
                 // eslint-disable-next-line @typescript-eslint/no-var-requires
                 require(
-                    Path.join(
-                        ...(Path.isAbsolute(options.VariableFileName) ? [options.VariableFileName] : [process.cwd(), options.VariableFileName]))));
+                    join(
+                        ...(isAbsolute(options.VariableFileName) ? [options.VariableFileName] : [process.cwd(), options.VariableFileName]))));
         }
 
         if (options.Images)
@@ -390,15 +390,15 @@ export class Theme extends Component
                 case "wcfFooterCopyrightLinkActive":
                     if (/#(([0-9a-fA-F]{3}){1,2}|([0-9a-fA-F]{4}){1,2})/.test(variables[name]))
                     {
-                        normalVariables[name] = HexToRgba(variables[name]);
+                        normalVariables[name] = hexToRgba(variables[name]);
                     }
-                    else if (ColorNames.get.css(variables[name]))
+                    else if (get.css(variables[name]))
                     {
-                        normalVariables[name] = HexToRgba(ColorNames.get.css(variables[name]).value);
+                        normalVariables[name] = hexToRgba(get.css(variables[name]).value);
                     }
                     else if (variables[name] === "transparent")
                     {
-                        normalVariables[name] = HexToRgba("#0000");
+                        normalVariables[name] = hexToRgba("#0000");
                     }
                     else
                     {
@@ -420,7 +420,7 @@ export class Theme extends Component
                 (name: string) =>
                 {
                     return `$${name}: ${specialVariables[name]};`;
-                }).join(OS.EOL);
+                }).join(EOL);
         }
     }
 }

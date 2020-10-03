@@ -4,158 +4,164 @@ import FileSystem = require("fs-extra");
 import { TempDirectory, TempFile } from "temp-filesystem";
 import { FileDescriptor } from "../../PackageSystem/FileDescriptor";
 
-suite(
-    "FileDescriptor",
-    () =>
-    {
-        let workingDir: TempDirectory;
-        let currentDir: string;
-        let fileName: string;
-        let fileDescriptor: FileDescriptor;
-        let content: string;
+/**
+ * Registers tests for the `FileDescriptor` class.
+ */
+export function FileDescriptorTests(): void
+{
+    suite(
+        "FileDescriptor",
+        () =>
+        {
+            let workingDir: TempDirectory;
+            let currentDir: string;
+            let fileName: string;
+            let fileDescriptor: FileDescriptor;
+            let content: string;
 
-        suiteSetup(
-            () =>
-            {
-                workingDir = new TempDirectory();
-                currentDir = process.cwd();
-                process.chdir(workingDir.FullName);
-                content = "Hello World";
-            });
-
-        suiteTeardown(
-            () =>
-            {
-                process.chdir(currentDir);
-                workingDir.Dispose();
-            });
-
-        setup(
-            async () =>
-            {
-                await FileSystem.ensureFile(fileName);
-                await FileSystem.writeFile(fileName, content);
-                fileDescriptor = new FileDescriptor({
-                    Source: fileName
+            suiteSetup(
+                () =>
+                {
+                    workingDir = new TempDirectory();
+                    currentDir = process.cwd();
+                    process.chdir(workingDir.FullName);
+                    content = "Hello World";
                 });
-            });
 
-        suite(
-            "Checking whether absolute paths are handled correctly…",
-            () =>
-            {
-                let tempFile: TempFile;
+            suiteTeardown(
+                () =>
+                {
+                    process.chdir(currentDir);
+                    workingDir.Dispose();
+                });
 
-                suiteSetup(
-                    () =>
-                    {
-                        tempFile = new TempFile();
-                        fileName = tempFile.FullName;
+            setup(
+                async () =>
+                {
+                    await FileSystem.ensureFile(fileName);
+                    await FileSystem.writeFile(fileName, content);
+                    fileDescriptor = new FileDescriptor({
+                        Source: fileName
                     });
+                });
 
-                suiteTeardown(
-                    () =>
-                    {
-                        tempFile.Dispose();
-                    });
+            suite(
+                "Checking whether absolute paths are handled correctly…",
+                () =>
+                {
+                    let tempFile: TempFile;
 
-                test(
-                    "Checking whether the `Source` points to the correct file…",
-                    async () =>
-                    {
-                        Assert.strictEqual((await FileSystem.readFile(fileDescriptor.Source)).toString(), content);
-                    });
+                    suiteSetup(
+                        () =>
+                        {
+                            tempFile = new TempFile();
+                            fileName = tempFile.FullName;
+                        });
 
-                test(
-                    "Checking whether the `FileName` automatically is set to the basename of the source if no filename is specified…",
-                    () =>
-                    {
-                        Assert.strictEqual(fileDescriptor.FileName, Path.basename(fileName));
-                    });
-            });
+                    suiteTeardown(
+                        () =>
+                        {
+                            tempFile.Dispose();
+                        });
 
-        suite(
-            "Checking whether relative paths are handled correctly…",
-            () =>
-            {
-                let relativeFile: string;
-
-                suiteSetup(
-                    () =>
-                    {
-                        relativeFile = "./foo/bar/baz/test.txt";
-                        fileName = relativeFile;
-                        content = "Hello Relative World";
-                    });
-
-                test(
-                    "Checking whether `Source` points to the correct file…",
-                    async () =>
-                    {
-                        Assert.strictEqual((await FileSystem.readFile(fileDescriptor.Source)).toString(), content);
-                    });
-
-                test(
-                    "Checking whether `Source` points to the correct file even if the working directory is changed…",
-                    async () =>
-                    {
-                        let tempDir: TempDirectory = new TempDirectory();
-                        let current: string = process.cwd();
-                        process.chdir(tempDir.FullName);
-
+                    test(
+                        "Checking whether the `Source` points to the correct file…",
+                        async () =>
                         {
                             Assert.strictEqual((await FileSystem.readFile(fileDescriptor.Source)).toString(), content);
-                        }
+                        });
 
-                        process.chdir(current);
-                    });
+                    test(
+                        "Checking whether the `FileName` automatically is set to the basename of the source if no filename is specified…",
+                        () =>
+                        {
+                            Assert.strictEqual(fileDescriptor.FileName, Path.basename(fileName));
+                        });
+                });
 
-                test(
-                    "Checking whether `FileName` is set to the relative path if no filename is specified…",
-                    () =>
-                    {
-                        Assert.strictEqual(fileDescriptor.FileName, Path.normalize(fileName));
-                    });
-            });
+            suite(
+                "Checking whether relative paths are handled correctly…",
+                () =>
+                {
+                    let relativeFile: string;
 
-        suite(
-            "Checking whether relative paths outside of the current directory are handled correctly…",
-            () =>
-            {
-                let current: string;
-                let childDir: string;
-                let relativeFile: string;
+                    suiteSetup(
+                        () =>
+                        {
+                            relativeFile = "./foo/bar/baz/test.txt";
+                            fileName = relativeFile;
+                            content = "Hello Relative World";
+                        });
 
-                suiteSetup(
-                    async () =>
-                    {
-                        current = process.cwd();
-                        childDir = "foo";
-                        relativeFile = "../bar/baz/test.txt";
-                        fileName = relativeFile;
-                        content = "Hello Parent World";
-                        await FileSystem.ensureDir(childDir);
-                        process.chdir(childDir);
-                    });
+                    test(
+                        "Checking whether `Source` points to the correct file…",
+                        async () =>
+                        {
+                            Assert.strictEqual((await FileSystem.readFile(fileDescriptor.Source)).toString(), content);
+                        });
 
-                suiteTeardown(
-                    () =>
-                    {
-                        process.chdir(current);
-                    });
+                    test(
+                        "Checking whether `Source` points to the correct file even if the working directory is changed…",
+                        async () =>
+                        {
+                            let tempDir: TempDirectory = new TempDirectory();
+                            let current: string = process.cwd();
+                            process.chdir(tempDir.FullName);
 
-                test(
-                    "Checking whether `Source` points to the correct file…",
-                    async () =>
-                    {
-                        Assert.strictEqual((await FileSystem.readFile(fileDescriptor.Source)).toString(), content);
-                    });
+                            {
+                                Assert.strictEqual((await FileSystem.readFile(fileDescriptor.Source)).toString(), content);
+                            }
 
-                test(
-                    "Checking whether `FileName` is set to the basename of the path if no filename is specified…",
-                    () =>
-                    {
-                        Assert.strictEqual(fileDescriptor.FileName, Path.basename(fileName));
-                    });
-            });
-    });
+                            process.chdir(current);
+                        });
+
+                    test(
+                        "Checking whether `FileName` is set to the relative path if no filename is specified…",
+                        () =>
+                        {
+                            Assert.strictEqual(fileDescriptor.FileName, Path.normalize(fileName));
+                        });
+                });
+
+            suite(
+                "Checking whether relative paths outside of the current directory are handled correctly…",
+                () =>
+                {
+                    let current: string;
+                    let childDir: string;
+                    let relativeFile: string;
+
+                    suiteSetup(
+                        async () =>
+                        {
+                            current = process.cwd();
+                            childDir = "foo";
+                            relativeFile = "../bar/baz/test.txt";
+                            fileName = relativeFile;
+                            content = "Hello Parent World";
+                            await FileSystem.ensureDir(childDir);
+                            process.chdir(childDir);
+                        });
+
+                    suiteTeardown(
+                        () =>
+                        {
+                            process.chdir(current);
+                        });
+
+                    test(
+                        "Checking whether `Source` points to the correct file…",
+                        async () =>
+                        {
+                            Assert.strictEqual((await FileSystem.readFile(fileDescriptor.Source)).toString(), content);
+                        });
+
+                    test(
+                        "Checking whether `FileName` is set to the basename of the path if no filename is specified…",
+                        () =>
+                        {
+                            Assert.strictEqual(fileDescriptor.FileName, Path.basename(fileName));
+                        });
+                });
+        });
+}

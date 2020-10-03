@@ -8,136 +8,142 @@ import { INamedDeleteInstruction } from "../../PackageSystem/Instructions/INamed
 import { Instruction } from "../../PackageSystem/Instructions/Instruction";
 import { XMLEditor } from "../../Serialization/XMLEditor";
 
-suite(
-    "NamedObjectDeletionFileCompiler",
-    () =>
-    {
-        let tempFile: TempFile;
-        let objectTag: string;
-        let compiler: NamedObjectDeletionFileCompiler<INamedDeleteInstruction>;
-        let objectsToDelete: INamedObject[];
+/**
+ * Registers tests for the `NamedObjectDeletionFileCompiler` class.
+ */
+export function NamedObjectDeletionFileCompilerTests(): void
+{
+    suite(
+        "NamedObjectDeletionFileCompiler",
+        () =>
+        {
+            let tempFile: TempFile;
+            let objectTag: string;
+            let compiler: NamedObjectDeletionFileCompiler<INamedDeleteInstruction>;
+            let objectsToDelete: INamedObject[];
 
-        suiteSetup(
-            () =>
-            {
-                tempFile = new TempFile();
-                objectTag = "myObject";
-                objectsToDelete = [
-                    {
-                        Name: "foo"
-                    },
-                    {
-                        Name: "bar"
-                    },
-                    {
-                        Name: "baz"
-                    }
-                ];
-
-                compiler = new class extends NamedObjectDeletionFileCompiler<INamedDeleteInstruction>
+            suiteSetup(
+                () =>
                 {
-                    /**
-                     * @inheritdoc
-                     */
-                    protected get SchemaLocation(): string
-                    {
-                        return "http://example.com/mySchema.xsd";
-                    }
-
-                    /**
-                     * @inheritdoc
-                     */
-                    protected get ObjectTagName(): string
-                    {
-                        return objectTag;
-                    }
-                }(
-                    new class extends Instruction implements INamedDeleteInstruction
-                    {
-                        /**
-                         * @inheritdoc
-                         */
-                        public Type = "foo";
-
-                        /**
-                         * @inheritdoc
-                         */
-                        public ObjectsToDelete: INamedObject[] = objectsToDelete;
-
-                        /**
-                         * Initializes a new instance of the `Instruction` class.
-                         */
-                        public constructor()
+                    tempFile = new TempFile();
+                    objectTag = "myObject";
+                    objectsToDelete = [
                         {
-                            super(
-                                {
-                                    FileName: null
-                                });
+                            Name: "foo"
+                        },
+                        {
+                            Name: "bar"
+                        },
+                        {
+                            Name: "baz"
                         }
-                    }());
+                    ];
 
-                compiler.DestinationPath = tempFile.FullName;
-            });
-
-        suiteTeardown(
-            () =>
-            {
-                tempFile.Dispose();
-            });
-
-        suite(
-            "Compile()",
-            () =>
-            {
-                suite(
-                    "General",
-                    () =>
+                    compiler = new class extends NamedObjectDeletionFileCompiler<INamedDeleteInstruction>
                     {
-                        test(
-                            "Checking whether the compiler can be executed…",
-                            async () =>
-                            {
-                                await compiler.Execute();
-                            });
-                    });
+                        /**
+                         * @inheritdoc
+                         */
+                        protected get SchemaLocation(): string
+                        {
+                            return "http://example.com/mySchema.xsd";
+                        }
 
-                suite(
-                    "Checking the integrity of the file…",
-                    () =>
-                    {
-                        let editor: XMLEditor;
+                        /**
+                         * @inheritdoc
+                         */
+                        protected get ObjectTagName(): string
+                        {
+                            return objectTag;
+                        }
+                    }(
+                        new class extends Instruction implements INamedDeleteInstruction
+                        {
+                            /**
+                             * @inheritdoc
+                             */
+                            public Type = "foo";
 
-                        suite(
-                            "General",
-                            () =>
+                            /**
+                             * @inheritdoc
+                             */
+                            public ObjectsToDelete: INamedObject[] = objectsToDelete;
+
+                            /**
+                             * Initializes a new instance of the `Instruction` class.
+                             */
+                            public constructor()
                             {
-                                test(
-                                    "Checking whether the content of the compiled file is valid xml…",
-                                    async () =>
+                                super(
                                     {
-                                        let document = new DOMParser().parseFromString((await FileSystem.readFile(tempFile.FullName)).toString());
-                                        editor = new XMLEditor(document.documentElement);
+                                        FileName: null
                                     });
-                            });
+                            }
+                        }());
 
-                        suite(
-                            "Checking the integrity of the meta-data…",
-                            () =>
-                            {
-                                test(
-                                    "Checking the integrity of the named deletions…",
-                                    () =>
-                                    {
-                                        let deletedObjects = editor.GetElementsByTag(objectTag);
-                                        Assert.strictEqual(deletedObjects.length, objectsToDelete.length);
+                    compiler.DestinationPath = tempFile.FullName;
+                });
 
-                                        for (let objectToDelete of objectsToDelete)
+            suiteTeardown(
+                () =>
+                {
+                    tempFile.Dispose();
+                });
+
+            suite(
+                "Compile",
+                () =>
+                {
+                    suite(
+                        "General",
+                        () =>
+                        {
+                            test(
+                                "Checking whether the compiler can be executed…",
+                                async () =>
+                                {
+                                    await compiler.Execute();
+                                });
+                        });
+
+                    suite(
+                        "Checking the integrity of the file…",
+                        () =>
+                        {
+                            let editor: XMLEditor;
+
+                            suite(
+                                "General",
+                                () =>
+                                {
+                                    test(
+                                        "Checking whether the content of the compiled file is valid xml…",
+                                        async () =>
                                         {
-                                            let matches = deletedObjects.filter((objectNode: XMLEditor) => objectNode.HasAttribute("name", objectToDelete.Name));
-                                            Assert.strictEqual(matches.length, 1);
-                                        }
-                                    });
-                            });
-                    });
-            });
-    });
+                                            let document = new DOMParser().parseFromString((await FileSystem.readFile(tempFile.FullName)).toString());
+                                            editor = new XMLEditor(document.documentElement);
+                                        });
+                                });
+
+                            suite(
+                                "Checking the integrity of the meta-data…",
+                                () =>
+                                {
+                                    test(
+                                        "Checking the integrity of the named deletions…",
+                                        () =>
+                                        {
+                                            let deletedObjects = editor.GetElementsByTag(objectTag);
+                                            Assert.strictEqual(deletedObjects.length, objectsToDelete.length);
+
+                                            for (let objectToDelete of objectsToDelete)
+                                            {
+                                                let matches = deletedObjects.filter((objectNode: XMLEditor) => objectNode.HasAttribute("name", objectToDelete.Name));
+                                                Assert.strictEqual(matches.length, 1);
+                                            }
+                                        });
+                                });
+                        });
+                });
+        });
+}

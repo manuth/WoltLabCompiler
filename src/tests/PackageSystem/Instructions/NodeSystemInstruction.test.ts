@@ -5,110 +5,116 @@ import { NodeItem } from "../../../NodeSystem/NodeItem";
 import { INodeSystemInstructionOptions } from "../../../PackageSystem/Instructions/NodeSystem/INodeSystemInstructionOptions";
 import { NodeSystemInstruction } from "../../../PackageSystem/Instructions/NodeSystem/NodeSystemInstruction";
 
-suite(
-    "NodeSystemInstruction",
-    () =>
-    {
-        /**
-         * Represents a node.
-         */
-        class MyNode extends Node<NodeItem, unknown>
+/**
+ * Registers tests for the `NodeSystemInstruction` class.
+ */
+export function NodeSystemInstructionTests(): void
+{
+    suite(
+        "NodeSystemInstruction",
+        () =>
         {
             /**
-             * Initializes a new instance of the `MyNode` class.
-             *
-             * @param options
-             * The options of the node.
+             * Represents a node.
              */
-            public constructor(options: INodeOptions<unknown>)
+            class MyNode extends Node<NodeItem, unknown>
             {
-                super(options, (node) => new NodeItem(node));
-            }
-        }
-
-        /**
-         * Represents an instruction which provides `MyNode`s.
-         */
-        class MyNodeInstruction extends NodeSystemInstruction<NodeItem, unknown>
-        {
-            /**
-             * @inheritdoc
-             */
-            public Type: string;
-
-            /**
-             * Initializes a new instance of the `MyNodeInstruction` class.
-             *
-             * @param options
-             * The options of the node.
-             */
-            public constructor(options: INodeSystemInstructionOptions<unknown>)
-            {
-                super(options, (node) => new NodeItem(node));
-            }
-        }
-
-        let id: string;
-        let idNode: MyNode;
-        let instruction: MyNodeInstruction;
-
-        suiteSetup(
-            () =>
-            {
-                id = "Foo";
-
-                idNode = new MyNode(
-                    {
-                        ID: id,
-                        Name: "bar"
-                    });
-
-                let names = ["this", "is", "a", "test"];
-                let node: MyNode;
-
-                for (let name of names.reverse())
+                /**
+                 * Initializes a new instance of the `MyNode` class.
+                 *
+                 * @param options
+                 * The options of the node.
+                 */
+                public constructor(options: INodeOptions<unknown>)
                 {
-                    let child = node;
+                    super(options, (node) => new NodeItem(node));
+                }
+            }
 
-                    node = new MyNode(
+            /**
+             * Represents an instruction which provides `MyNode`s.
+             */
+            class MyNodeInstruction extends NodeSystemInstruction<NodeItem, unknown>
+            {
+                /**
+                 * @inheritdoc
+                 */
+                public Type: string;
+
+                /**
+                 * Initializes a new instance of the `MyNodeInstruction` class.
+                 *
+                 * @param options
+                 * The options of the node.
+                 */
+                public constructor(options: INodeSystemInstructionOptions<unknown>)
+                {
+                    super(options, (node) => new NodeItem(node));
+                }
+            }
+
+            let id: string;
+            let idNode: MyNode;
+            let instruction: MyNodeInstruction;
+
+            suiteSetup(
+                () =>
+                {
+                    id = "Foo";
+
+                    idNode = new MyNode(
                         {
-                            Name: name
+                            ID: id,
+                            Name: "bar"
                         });
 
-                    if (child)
+                    let names = ["this", "is", "a", "test"];
+                    let node: MyNode;
+
+                    for (let name of names.reverse())
                     {
-                        node.Nodes.push(child);
+                        let child = node;
+
+                        node = new MyNode(
+                            {
+                                Name: name
+                            });
+
+                        if (child)
+                        {
+                            node.Nodes.push(child);
+                        }
                     }
-                }
 
-                let allNodes = node.GetAllNodes();
-                allNodes[Math.floor(Math.random() * allNodes.length)].Nodes.push(idNode);
+                    let allNodes = node.GetAllNodes();
+                    allNodes[Math.floor(Math.random() * allNodes.length)].Nodes.push(idNode);
 
-                instruction = new MyNodeInstruction(
-                    {
-                        FileName: "test.xml",
-                        Nodes: []
-                    });
+                    instruction = new MyNodeInstruction(
+                        {
+                            FileName: "test.xml",
+                            Nodes: []
+                        });
 
-                instruction.Nodes.push(node);
-            });
+                    instruction.Nodes.push(node);
+                });
 
-        suite(
-            "ObjectsByID",
-            () =>
-            {
-                test(
-                    "Checking whether object-ids are queried correctly…",
-                    () =>
-                    {
-                        Assert.strictEqual(id in instruction.ObjectsByID, true);
-                    });
+            suite(
+                "ObjectsByID",
+                () =>
+                {
+                    test(
+                        "Checking whether object-ids are queried correctly…",
+                        () =>
+                        {
+                            Assert.strictEqual(id in instruction.ObjectsByID, true);
+                        });
 
-                test(
-                    "Checking whether the objects are assigned to the ids correctly…",
-                    () =>
-                    {
-                        Assert.strictEqual(instruction.ObjectsByID[id], idNode);
-                    });
-            });
-    });
+                    test(
+                        "Checking whether the objects are assigned to the ids correctly…",
+                        () =>
+                        {
+                            Assert.strictEqual(instruction.ObjectsByID[id], idNode);
+                        });
+                });
+        });
+}

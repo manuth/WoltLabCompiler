@@ -5,85 +5,91 @@ import { ThemeCompiler } from "../../../Compilation/Presentation/ThemeCompiler";
 import { ThemeInstruction } from "../../../PackageSystem/Instructions/Customization/Presentation/ThemeInstruction";
 import { Package } from "../../../PackageSystem/Package";
 
-suite(
-    "ThemeCompiler",
-    () =>
-    {
-        let tempDir: TempDirectory;
-        let variableFile: TempFile;
-        let variableFileName: string;
-        let compiler: ThemeCompiler;
+/**
+ * Registers tests for the `ThemeCompiler` class.
+ */
+export function ThemeCompilerTests(): void
+{
+    suite(
+        "ThemeCompiler",
+        () =>
+        {
+            let tempDir: TempDirectory;
+            let variableFile: TempFile;
+            let variableFileName: string;
+            let compiler: ThemeCompiler;
 
-        suiteSetup(
-            async () =>
-            {
-                tempDir = new TempDirectory();
-                variableFile = new TempFile(
-                    {
-                        postfix: ".json"
-                    });
+            suiteSetup(
+                async () =>
+                {
+                    tempDir = new TempDirectory();
+                    variableFile = new TempFile(
+                        {
+                            postfix: ".json"
+                        });
 
-                variableFileName = "myVariableFile.xml";
+                    variableFileName = "myVariableFile.xml";
 
-                await FileSystem.writeJSON(
-                    variableFile.FullName,
-                    {
-                        wcfHeaderBackground: "red"
-                    });
+                    await FileSystem.writeJSON(
+                        variableFile.FullName,
+                        {
+                            wcfHeaderBackground: "red"
+                        });
 
-                let instruction: ThemeInstruction = new ThemeInstruction(
-                    {
-                        Theme: {
-                            Name: "foo",
+                    let instruction: ThemeInstruction = new ThemeInstruction(
+                        {
+                            Theme: {
+                                Name: "foo",
+                                DisplayName: {},
+                                VariableFileName: variableFile.FullName
+                            }
+                        });
+
+                    let $package: Package = new Package(
+                        {
+                            Identifier: "bar",
                             DisplayName: {},
-                            VariableFileName: variableFile.FullName
-                        }
-                    });
+                            InstallSet: {
+                                Instructions: []
+                            }
+                        });
 
-                let $package: Package = new Package(
-                    {
-                        Identifier: "bar",
-                        DisplayName: {},
-                        InstallSet: {
-                            Instructions: []
-                        }
-                    });
+                    $package.InstallSet.push(instruction);
+                    compiler = new ThemeCompiler(instruction.Theme, variableFileName);
+                    compiler.DestinationPath = tempDir.FullName;
+                });
 
-                $package.InstallSet.push(instruction);
-                compiler = new ThemeCompiler(instruction.Theme, variableFileName);
-                compiler.DestinationPath = tempDir.FullName;
-            });
+            suiteTeardown(
+                () =>
+                {
+                    tempDir.Dispose();
+                    variableFile.Dispose();
+                });
 
-        suiteTeardown(
-            () =>
-            {
-                tempDir.Dispose();
-                variableFile.Dispose();
-            });
+            suite(
+                "Compile",
+                () =>
+                {
+                    test(
+                        "Checking whether themes can be compiled without an error…",
+                        async () =>
+                        {
+                            await compiler.Execute();
+                        });
 
-        suite(
-            "Compile()",
-            () =>
-            {
-                test(
-                    "Checking whether themes can be compiled without an error…",
-                    async () =>
-                    {
-                        await compiler.Execute();
-                    });
+                    test(
+                        "Checking whether the theme-metadata exists…",
+                        async () =>
+                        {
+                            Assert.strictEqual(await FileSystem.pathExists(tempDir.MakePath("style.xml")), true);
+                        });
 
-                test(
-                    "Checking whether the theme-metadata exists…",
-                    async () =>
-                    {
-                        Assert.strictEqual(await FileSystem.pathExists(tempDir.MakePath("style.xml")), true);
-                    });
-
-                test(
-                    "Checking whether the variable-file exists…",
-                    async () =>
-                    {
-                        Assert.strictEqual(await FileSystem.pathExists(tempDir.MakePath(variableFileName)), true);
-                    });
-            });
-    });
+                    test(
+                        "Checking whether the variable-file exists…",
+                        async () =>
+                        {
+                            Assert.strictEqual(await FileSystem.pathExists(tempDir.MakePath(variableFileName)), true);
+                        });
+                });
+        });
+}

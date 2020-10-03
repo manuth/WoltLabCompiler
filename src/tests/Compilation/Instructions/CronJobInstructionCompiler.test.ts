@@ -7,79 +7,85 @@ import { CronJobInstruction } from "../../../PackageSystem/Instructions/Tasks/Cr
 import { Package } from "../../../PackageSystem/Package";
 import { TimePeriod } from "../../../Tasks/TimePeriod";
 
-suite(
-    "CronJobInstructionCompiler",
-    () =>
-    {
-        let tempDir: TempDirectory;
-        let fileName: string;
-        let compiler: CronJobInstructionCompiler;
-        let instruction: CronJobInstruction;
+/**
+ * Registers tests for the `CronJobInstructionCompiler` class.
+ */
+export function CronJobInstructionCompilerTests(): void
+{
+    suite(
+        "CronJobInstructionCompiler",
+        () =>
+        {
+            let tempDir: TempDirectory;
+            let fileName: string;
+            let compiler: CronJobInstructionCompiler;
+            let instruction: CronJobInstruction;
 
-        suiteSetup(
-            () =>
-            {
-                tempDir = new TempDirectory();
-                let $package: Package = new Package(
-                    {
-                        Identifier: "foo",
-                        DisplayName: {},
-                        InstallSet: {
-                            Instructions: [
-                                new ACPOptionInstruction(
-                                    {
-                                        FileName: null,
-                                        Nodes: [
-                                            {
-                                                ID: "foo",
-                                                Name: "this-is-a-test"
-                                            }
-                                        ]
-                                    })
-                            ]
-                        }
-                    });
-
-                instruction = new CronJobInstruction(
-                    {
-                        FileName: "cronJobs.xml",
-                        CronJobs: [
-                            {
-                                Name: "foo",
-                                ClassName: "bar",
-                                Period: TimePeriod.Monthly
+            suiteSetup(
+                () =>
+                {
+                    tempDir = new TempDirectory();
+                    let $package: Package = new Package(
+                        {
+                            Identifier: "foo",
+                            DisplayName: {},
+                            InstallSet: {
+                                Instructions: [
+                                    new ACPOptionInstruction(
+                                        {
+                                            FileName: null,
+                                            Nodes: [
+                                                {
+                                                    ID: "foo",
+                                                    Name: "this-is-a-test"
+                                                }
+                                            ]
+                                        })
+                                ]
                             }
-                        ]
-                    });
+                        });
 
-                $package.InstallSet.push(instruction);
-                compiler = new CronJobInstructionCompiler(instruction);
-                compiler.DestinationPath = tempDir.FullName;
-                fileName = compiler.DestinationFileName;
-            });
+                    instruction = new CronJobInstruction(
+                        {
+                            FileName: "cronJobs.xml",
+                            CronJobs: [
+                                {
+                                    Name: "foo",
+                                    ClassName: "bar",
+                                    Period: TimePeriod.Monthly
+                                }
+                            ]
+                        });
 
-        suiteTeardown(
-            () =>
-            {
-                tempDir.Dispose();
-            });
+                    $package.InstallSet.push(instruction);
+                    compiler = new CronJobInstructionCompiler(instruction);
+                    compiler.DestinationPath = tempDir.FullName;
+                    fileName = compiler.DestinationFileName;
+                });
 
-        suite(
-            "Compile()",
-            () =>
-            {
-                test(
-                    "Checking whether the instruction can be compiled without an error…",
-                    async () =>
-                    {
-                        await compiler.Execute();
-                    });
+            suiteTeardown(
+                () =>
+                {
+                    tempDir.Dispose();
+                });
 
-                test(
-                    "Checking whether the expected file exists…",
-                    async () =>
-                    {
-                        Assert.strictEqual(await FileSystem.pathExists(fileName), true);
-                    });
-            });
-    });
+            suite(
+                "Compile",
+                () =>
+                {
+                    test(
+                        "Checking whether the instruction can be compiled without an error…",
+                        async () =>
+                        {
+                            await compiler.Execute();
+                        });
+
+                    test(
+                        "Checking whether the expected file exists…",
+                        async () =>
+                        {
+                            Assert.strictEqual(await FileSystem.pathExists(fileName), true);
+                        });
+                });
+        });
+}

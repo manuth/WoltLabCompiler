@@ -5,49 +5,55 @@ import { TemplateListenerInstructionCompiler } from "../../../Compilation/Packag
 import { TemplateListenerInstruction } from "../../../PackageSystem/Instructions/Events/TemplateListenerInstruction";
 import { Package } from "../../../PackageSystem/Package";
 
-suite(
-    "TemplateListenerInstructionCompiler",
-    () =>
-    {
-        let tempDir: TempDirectory;
-        let fileName: string;
-        let compiler: TemplateListenerInstructionCompiler;
+/**
+ * Registers tests for the `TemplateListenerInstructionCompiler` class.
+ */
+export function TemplateListenerInstructionCompilerTests(): void
+{
+    suite(
+        "TemplateListenerInstructionCompiler",
+        () =>
+        {
+            let tempDir: TempDirectory;
+            let fileName: string;
+            let compiler: TemplateListenerInstructionCompiler;
 
-        suiteSetup(
-            () =>
-            {
-                let $package: Package = new Package(
-                    {
-                        Identifier: "test",
-                        DisplayName: {},
-                        InstallSet: {
-                            Instructions: []
-                        }
-                    });
+            suiteSetup(
+                () =>
+                {
+                    let $package: Package = new Package(
+                        {
+                            Identifier: "test",
+                            DisplayName: {},
+                            InstallSet: {
+                                Instructions: []
+                            }
+                        });
 
-                let instruction: TemplateListenerInstruction = new TemplateListenerInstruction(
-                    {
-                        FileName: "eventListeners.xml",
-                        Listeners: []
-                    });
+                    let instruction: TemplateListenerInstruction = new TemplateListenerInstruction(
+                        {
+                            FileName: "eventListeners.xml",
+                            Listeners: []
+                        });
 
-                $package.InstallSet.push(instruction);
-                compiler = new TemplateListenerInstructionCompiler(instruction);
-                compiler.DestinationPath = tempDir.FullName;
-                fileName = compiler.DestinationFileName;
-            });
+                    $package.InstallSet.push(instruction);
+                    compiler = new TemplateListenerInstructionCompiler(instruction);
+                    compiler.DestinationPath = tempDir.FullName;
+                    fileName = compiler.DestinationFileName;
+                });
 
-        test(
-            "Checking whether the compiler can be executed…",
-            async () =>
-            {
-                await compiler.Execute();
-            });
+            test(
+                "Checking whether the compiler can be executed…",
+                async () =>
+                {
+                    await compiler.Execute();
+                });
 
-        test(
-            "Checking whether the compiled file exists…",
-            async () =>
-            {
-                Assert.strictEqual(await FileSystem.pathExists(fileName), true);
-            });
-    });
+            test(
+                "Checking whether the compiled file exists…",
+                async () =>
+                {
+                    Assert.strictEqual(await FileSystem.pathExists(fileName), true);
+                });
+        });
+}

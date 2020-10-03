@@ -5,51 +5,57 @@ import { EmojiInstructionCompiler } from "../../../Compilation/PackageSystem/Ins
 import { EmojiInstruction } from "../../../PackageSystem/Instructions/Customization/EmojiInstruction";
 import { Package } from "../../../PackageSystem/Package";
 
-suite(
-    "EmojiInstructionCompiler",
-    () =>
-    {
-        let tempDir: TempDirectory;
-        let fileName: string;
-        let compiler: EmojiInstructionCompiler;
+/**
+ * Registers tests for the `EmojiInstructionCompiler` class.
+ */
+export function EmojiInstructionCompilerTests(): void
+{
+    suite(
+        "EmojiInstructionCompiler",
+        () =>
+        {
+            let tempDir: TempDirectory;
+            let fileName: string;
+            let compiler: EmojiInstructionCompiler;
 
-        suiteSetup(
-            () =>
-            {
-                tempDir = new TempDirectory();
+            suiteSetup(
+                () =>
+                {
+                    tempDir = new TempDirectory();
 
-                let $package: Package = new Package(
-                    {
-                        Identifier: "test",
-                        DisplayName: {},
-                        InstallSet: {
-                            Instructions: []
-                        }
-                    });
+                    let $package: Package = new Package(
+                        {
+                            Identifier: "test",
+                            DisplayName: {},
+                            InstallSet: {
+                                Instructions: []
+                            }
+                        });
 
-                let instruction: EmojiInstruction = new EmojiInstruction(
-                    {
-                        FileName: "emojis.xml",
-                        Emojis: []
-                    });
+                    let instruction: EmojiInstruction = new EmojiInstruction(
+                        {
+                            FileName: "emojis.xml",
+                            Emojis: []
+                        });
 
-                $package.InstallSet.push(instruction);
-                compiler = new EmojiInstructionCompiler(instruction);
-                compiler.DestinationPath = tempDir.FullName;
-                fileName = compiler.DestinationFileName;
-            });
+                    $package.InstallSet.push(instruction);
+                    compiler = new EmojiInstructionCompiler(instruction);
+                    compiler.DestinationPath = tempDir.FullName;
+                    fileName = compiler.DestinationFileName;
+                });
 
-        test(
-            "Checking whether the compiler can be executed…",
-            async () =>
-            {
-                await compiler.Execute();
-            });
+            test(
+                "Checking whether the compiler can be executed…",
+                async () =>
+                {
+                    await compiler.Execute();
+                });
 
-        test(
-            "Checking whether the compiled file exists…",
-            async () =>
-            {
-                Assert.strictEqual(await FileSystem.pathExists(fileName), true);
-            });
-    });
+            test(
+                "Checking whether the compiled file exists…",
+                async () =>
+                {
+                    Assert.strictEqual(await FileSystem.pathExists(fileName), true);
+                });
+        });
+}

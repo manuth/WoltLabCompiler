@@ -1,14 +1,24 @@
+import { CollectionTests } from "./Collections";
+import { CompilationTests } from "./Compilation";
+import { GlobalizationTests } from "./Globalization";
+import { NodeSystemTests } from "./NodeSystem";
+import { OptionTests } from "./Options";
+import { PackageSystemTests } from "./PackageSystem";
+import { SerializationTests } from "./Serialization";
+import { TaskTests } from "./Tasks";
+import { ThemeTests } from "./Themes";
+
 suite(
     "WoltLabCompiler",
     () =>
     {
-        require("./Collections/index.test");
-        require("./Compilation/index.test");
-        require("./Globalization/index.test");
-        require("./NodeSystem/index.test");
-        require("./Options/index.test");
-        require("./PackageSystem/index.test");
-        require("./Serialization/index.test");
-        require("./Tasks/index.test");
-        require("./Themes/index.test");
+        CollectionTests();
+        CompilationTests();
+        GlobalizationTests();
+        NodeSystemTests();
+        OptionTests();
+        PackageSystemTests();
+        SerializationTests();
+        TaskTests();
+        ThemeTests();
     });
