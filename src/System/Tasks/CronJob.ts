@@ -45,6 +45,8 @@ export class CronJob
 
     /**
      * Initializes a new instance of the `CronJob` class.
+     *
+     * @param options
      */
     public constructor(options: ICronJobOptions)
     {
@@ -86,6 +88,9 @@ export class CronJob
         return this.name;
     }
 
+    /**
+     *
+     */
     public set Name(value)
     {
         this.name = value;
@@ -99,6 +104,9 @@ export class CronJob
         return this.className;
     }
 
+    /**
+     *
+     */
     public set ClassName(value)
     {
         this.className = value;
@@ -120,6 +128,9 @@ export class CronJob
         return this.allowDisable;
     }
 
+    /**
+     *
+     */
     public set AllowDisable(value)
     {
         this.allowDisable = value;
@@ -133,6 +144,9 @@ export class CronJob
         return this.allowEdit;
     }
 
+    /**
+     *
+     */
     public set AllowEdit(value)
     {
         this.allowEdit = value;
@@ -146,6 +160,9 @@ export class CronJob
         return this.options;
     }
 
+    /**
+     *
+     */
     public set Options(value)
     {
         this.options = value;
@@ -159,6 +176,9 @@ export class CronJob
         return this.period;
     }
 
+    /**
+     *
+     */
     public set Period(value)
     {
         this.period = value;

@@ -31,6 +31,7 @@ export abstract class BidirectionalCollection<TParent, TChild> extends Array<TCh
     }
 
     /**
+     * @param items
      * @inheritdoc
      */
     public push(...items: TChild[])
@@ -67,6 +68,7 @@ export abstract class BidirectionalCollection<TParent, TChild> extends Array<TCh
     }
 
     /**
+     * @param items
      * @inheritdoc
      */
     public unshift(...items: TChild[])

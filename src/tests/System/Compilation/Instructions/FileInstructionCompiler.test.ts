@@ -1,6 +1,6 @@
 import Assert = require("assert");
-import FileSystem = require("fs-extra");
 import Path = require("path");
+import FileSystem = require("fs-extra");
 import Tar = require("tar");
 import { TempDirectory } from "temp-filesystem";
 import { FileInstructionCompiler } from "../../../../System/Compilation/PackageSystem/Instructions/FileInstructionCompiler";
@@ -31,7 +31,8 @@ suite(
                     "test2.txt",
                     "this-is-a-file.txt",
                     ".htaccess",
-                    "picture.xcf"];
+                    "picture.xcf"
+];
                 content = "Hello World";
 
                 let $package: Package = new Package(

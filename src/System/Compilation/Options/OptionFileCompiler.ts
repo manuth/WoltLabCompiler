@@ -41,6 +41,9 @@ export abstract class OptionFileCompiler<T extends IOptionInstruction<TCategory,
         return this.languageCategory;
     }
 
+    /**
+     *
+     */
     public set LanguageCategory(value: string)
     {
         this.languageCategory = value;

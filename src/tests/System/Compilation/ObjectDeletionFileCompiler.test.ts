@@ -38,7 +38,6 @@ suite(
                     {
                         return XML.CreateDocument(objectTag).documentElement;
                     }
-
                 }(
                     new class extends Instruction implements IDeleteInstruction<{}>
                     {
@@ -55,6 +54,9 @@ suite(
                             {}
                         ];
 
+                        /**
+                         *
+                         */
                         public constructor()
                         {
                             super({

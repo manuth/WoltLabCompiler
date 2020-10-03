@@ -44,6 +44,9 @@ export class UserOption extends Option
 
     /**
      * Initializes a new instance of the `UserOption` class.
+     *
+     * @param category
+     * @param options
      */
     public constructor(category: ICategory, options: IUserOptionOptions)
     {
@@ -81,6 +84,9 @@ export class UserOption extends Option
         return this.required;
     }
 
+    /**
+     *
+     */
     public set Required(value)
     {
         this.required = value;
@@ -94,6 +100,9 @@ export class UserOption extends Option
         return this.askOnRegistration;
     }
 
+    /**
+     *
+     */
     public set AskOnRegistration(value)
     {
         this.askOnRegistration = value;
@@ -107,6 +116,9 @@ export class UserOption extends Option
         return this.editPermissions;
     }
 
+    /**
+     *
+     */
     public set EditPermissions(value)
     {
         this.editPermissions = value;
@@ -120,6 +132,9 @@ export class UserOption extends Option
         return this.viewPermissions;
     }
 
+    /**
+     *
+     */
     public set ViewPermissions(value)
     {
         this.viewPermissions = value;
@@ -133,6 +148,9 @@ export class UserOption extends Option
         return this.searchable;
     }
 
+    /**
+     *
+     */
     public set Searchable(value)
     {
         this.searchable = value;
@@ -148,6 +166,9 @@ export class UserOption extends Option
         return this.outputClass;
     }
 
+    /**
+     *
+     */
     public set OutputClass(value)
     {
         this.outputClass = value;

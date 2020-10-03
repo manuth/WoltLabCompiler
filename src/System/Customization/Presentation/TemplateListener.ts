@@ -18,6 +18,8 @@ export class TemplateListener extends Listener
 
     /**
      * Initializes a new instance of the `TemplateListener` class.
+     *
+     * @param options
      */
     public constructor(options: ITemplateListenerOptions)
     {
@@ -34,6 +36,9 @@ export class TemplateListener extends Listener
         return this.templateName;
     }
 
+    /**
+     *
+     */
     public set TemplateName(value: string)
     {
         this.templateName = value;
@@ -47,6 +52,9 @@ export class TemplateListener extends Listener
         return this.code;
     }
 
+    /**
+     *
+     */
     public set Code(value: string)
     {
         this.code = value;

@@ -45,6 +45,9 @@ export class XMLEditor
         return this.Element.textContent;
     }
 
+    /**
+     *
+     */
     public set TextContent(value)
     {
         this.Element.textContent = value;
@@ -127,9 +130,9 @@ export class XMLEditor
      *
      * @param tag
      * The tag of the element to create.
-     *
      * @param textContent
      * The text to insert into the element.
+     * @param processor
      */
     public CreateTextElement(tag: string, textContent: string, processor?: (element: XMLEditor) => void): XMLEditor
     {
@@ -151,6 +154,7 @@ export class XMLEditor
      *
      * @param node
      * The node to add.
+     * @param processor
      */
     public Add<T extends Node | XMLEditor>(node: T, processor?: (node: T) => void): void
     {
@@ -209,9 +213,9 @@ export class XMLEditor
      *
      * @param tag
      * The tag of the element to create.
-     *
      * @param textContent
      * The text to insert into the element.
+     * @param processor
      */
     public AddTextElement(tag: string, textContent: string, processor?: (element: XMLEditor) => void): void
     {
@@ -331,6 +335,7 @@ export class XMLEditor
      *
      * @param name
      * The name to look for.
+     * @param value
      */
     public HasAttribute(name: string, value?: string): boolean
     {
@@ -371,6 +376,7 @@ export class XMLEditor
 
     /**
      * Asserts the element to have a tag.
+     *
      * @param tag
      * The tag to assert.
      *

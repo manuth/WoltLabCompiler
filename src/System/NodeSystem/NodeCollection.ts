@@ -19,6 +19,7 @@ export class NodeCollection<T extends INode<TItem>, TItem extends NodeItem> exte
     }
 
     /**
+     * @param child
      * @inheritdoc
      */
     protected GetParent(child: T): INode<TItem>
@@ -27,6 +28,8 @@ export class NodeCollection<T extends INode<TItem>, TItem extends NodeItem> exte
     }
 
     /**
+     * @param child
+     * @param parent
      * @inheritdoc
      */
     protected SetParent(child: INode<TItem>, parent: T): void

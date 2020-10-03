@@ -35,6 +35,8 @@ export abstract class ObjectDeletionFileCompiler<T extends IDeleteInstruction<TO
 
     /**
      * Serializes an object to delete.
+     *
+     * @param object
      */
     protected abstract CreateDeleteObject(object: TObject): Element;
 }

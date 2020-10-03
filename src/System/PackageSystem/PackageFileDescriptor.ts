@@ -14,6 +14,8 @@ export class PackageFileDescriptor extends PackageDescriptor
 
     /**
      * Initializes a new instance of the `PackageFileDescriptor` class.
+     *
+     * @param options
      */
     public constructor(options: IPackageFileDescriptorOptions)
     {
@@ -34,6 +36,9 @@ export class PackageFileDescriptor extends PackageDescriptor
         return this.fileName;
     }
 
+    /**
+     *
+     */
     public set FileName(value: string)
     {
         this.fileName = value;

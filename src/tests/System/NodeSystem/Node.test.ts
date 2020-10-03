@@ -13,6 +13,9 @@ suite(
          */
         class MyNode extends Node<NodeItem, {}>
         {
+            /**
+             * @param options
+             */
             public constructor(options: INodeOptions<{}>)
             {
                 super(options, () => new NodeItem(this));

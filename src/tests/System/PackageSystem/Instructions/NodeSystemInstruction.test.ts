@@ -15,6 +15,9 @@ suite(
          */
         class MyNode extends Node<NodeItem, {}>
         {
+            /**
+             * @param options
+             */
             public constructor(options: INodeOptions<{}>)
             {
                 super(options, (node, options) => new NodeItem(node));
@@ -31,6 +34,9 @@ suite(
              */
             public Type: string;
 
+            /**
+             * @param options
+             */
             public constructor(options: INodeSystemInstructionOptions<{}>)
             {
                 super(options, (node, options) => new NodeItem(node));
@@ -51,7 +57,7 @@ suite(
                         Name: "bar"
                     });
 
-                let names = [ "this", "is", "a", "test" ];
+                let names = ["this", "is", "a", "test"];
                 let node: MyNode;
 
                 for (let name of names.reverse())

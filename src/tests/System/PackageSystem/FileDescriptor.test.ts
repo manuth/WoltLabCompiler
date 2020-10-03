@@ -1,6 +1,6 @@
 import Assert = require("assert");
-import FileSystem = require("fs-extra");
 import Path = require("path");
+import FileSystem = require("fs-extra");
 import { TempDirectory, TempFile } from "temp-filesystem";
 import { FileDescriptor } from "../../../System/PackageSystem/FileDescriptor";
 
@@ -102,9 +102,11 @@ suite(
                         let tempDir: TempDirectory = new TempDirectory();
                         let current: string = process.cwd();
                         process.chdir(tempDir.FullName);
+
                         {
                             Assert.strictEqual((await FileSystem.readFile(fileDescriptor.Source)).toString(), content);
                         }
+
                         process.chdir(current);
                     });
 

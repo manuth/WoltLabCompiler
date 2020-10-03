@@ -15,6 +15,8 @@ export class ACPOptionInstruction extends OptionInstruction<ACPCategory, ICatego
 {
     /**
      * Initializes a new instance of the `ACPOptionInstruction` class.
+     *
+     * @param options
      */
     public constructor(options: IOptionInstructionOptions<ICategoryOptions<IACPOptionOptions>>)
     {

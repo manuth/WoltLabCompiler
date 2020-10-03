@@ -17,9 +17,9 @@ export class LocalizationItem extends NodeItem
     /**
      * Initializes a new instance of the `LocalizationItem` class.
      *
+     * @param node
      * @param options
      * The options for generating the object.
-     *
      * @param generator
      * The generator-function for generating sub-nodes.
      */

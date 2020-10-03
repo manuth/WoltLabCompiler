@@ -36,6 +36,7 @@ export class EventListenerFileCompiler extends ListenerFileCompiler<EventListene
     }
 
     /**
+     * @param listener
      * @inheritdoc
      */
     protected CreateListener(listener: EventListener): Element

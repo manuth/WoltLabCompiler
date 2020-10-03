@@ -30,6 +30,7 @@ export class GroupOptionFileCompiler extends OptionFileCompiler<GroupOptionInstr
     }
 
     /**
+     * @param option
      * @inheritdoc
      */
     protected CreateOption(option: GroupOption): Element

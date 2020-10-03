@@ -1,7 +1,7 @@
 import Assert = require("assert");
+import { isNullOrUndefined } from "util";
 import FileSystem = require("fs-extra");
 import { TempFile } from "temp-filesystem";
-import { isNullOrUndefined } from "util";
 import { DOMParser } from "xmldom";
 import { OptionFileCompiler } from "../../../../System/Compilation/Options/OptionFileCompiler";
 import { INode } from "../../../../System/NodeSystem/INode";
@@ -25,6 +25,10 @@ suite(
          */
         class MyOption extends Option
         {
+            /**
+             * @param category
+             * @param options
+             */
             public constructor(category: ICategory, options: IOptionOptions)
             {
                 super(category, options);
@@ -36,6 +40,10 @@ suite(
          */
         class MyCategory extends Category<MyOption, IOptionOptions>
         {
+            /**
+             * @param node
+             * @param options
+             */
             public constructor(node: INode, options: ICategoryOptions<IOptionOptions>)
             {
                 super(
@@ -53,6 +61,9 @@ suite(
          */
         class MyOptionInstruction extends OptionInstruction<MyCategory, ICategoryOptions<IOptionOptions>, MyOption, IOptionOptions>
         {
+            /**
+             * @param options
+             */
             public constructor(options: INodeSystemInstructionOptions<ICategoryOptions<IOptionOptions>>)
             {
                 super(

@@ -15,6 +15,8 @@ export class UserOptionInstruction extends OptionInstruction<UserCategory, ICate
 {
     /**
      * Initializes a new instance of the `UserOptionInstruction` class.
+     *
+     * @param options
      */
     public constructor(options: IOptionInstructionOptions<ICategoryOptions<IUserOptionOptions>>)
     {

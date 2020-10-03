@@ -55,6 +55,8 @@ export class BBCode
 
     /**
      * Initializes a new instance of the `BBCode` class.
+     *
+     * @param options
      */
     public constructor(options: IBBCodeOptions)
     {
@@ -112,6 +114,9 @@ export class BBCode
         return this.name;
     }
 
+    /**
+     *
+     */
     public set Name(value: string)
     {
         this.name = value;
@@ -133,6 +138,9 @@ export class BBCode
         return this.icon;
     }
 
+    /**
+     *
+     */
     public set Icon(value: string)
     {
         this.icon = value;
@@ -146,6 +154,9 @@ export class BBCode
         return this.className;
     }
 
+    /**
+     *
+     */
     public set ClassName(value: string)
     {
         this.className = value;
@@ -159,6 +170,9 @@ export class BBCode
         return this.tagName;
     }
 
+    /**
+     *
+     */
     public set TagName(value: string)
     {
         this.tagName = value;
@@ -172,6 +186,9 @@ export class BBCode
         return this.isSelfClosing;
     }
 
+    /**
+     *
+     */
     public set IsSelfClosing(value: boolean)
     {
         this.isSelfClosing = value;
@@ -185,6 +202,9 @@ export class BBCode
         return this.isBlockElement;
     }
 
+    /**
+     *
+     */
     public set IsBlockElement(value: boolean)
     {
         this.isBlockElement = value;
@@ -198,6 +218,9 @@ export class BBCode
         return this.parseContent;
     }
 
+    /**
+     *
+     */
     public set ParseContent(value: boolean)
     {
         this.parseContent = value;

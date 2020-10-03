@@ -1,7 +1,7 @@
 import Assert = require("assert");
+import Path = require("path");
 import Dedent = require("dedent");
 import FileSystem = require("fs-extra");
-import Path = require("path");
 import { TempDirectory } from "temp-filesystem";
 import { SassVariableParser } from "../../../System/Customization/Presentation/Themes/SassVariableParser";
 

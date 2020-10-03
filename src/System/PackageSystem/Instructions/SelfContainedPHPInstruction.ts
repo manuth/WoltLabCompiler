@@ -17,6 +17,8 @@ export class SelfContainedPHPInstruction extends ApplicationFileSystemInstructio
 
     /**
      * Initializes a new instance of the `PHPInstruction` class.
+     *
+     * @param options
      */
     public constructor(options: ISelfContainedPHPInstructionOptions)
     {
@@ -40,6 +42,9 @@ export class SelfContainedPHPInstruction extends ApplicationFileSystemInstructio
         return super.Source;
     }
 
+    /**
+     *
+     */
     public set Source(value)
     {
         super.Source = value;
@@ -69,6 +74,9 @@ export class SelfContainedPHPInstruction extends ApplicationFileSystemInstructio
         return this.destination;
     }
 
+    /**
+     *
+     */
     public set Destination(value)
     {
         this.destination = value;
@@ -109,6 +117,7 @@ export class SelfContainedPHPInstruction extends ApplicationFileSystemInstructio
     }
 
     /**
+     * @param source
      * @inheritdoc
      */
     protected MakeDefaultFileName(source: string)

@@ -94,6 +94,9 @@ export class Node<T extends NodeItem, TOptions> implements INode<T>
         return this.id;
     }
 
+    /**
+     *
+     */
     public set ID(value: string)
     {
         this.id = value;
@@ -107,6 +110,9 @@ export class Node<T extends NodeItem, TOptions> implements INode<T>
         return this.name;
     }
 
+    /**
+     *
+     */
     public set Name(value: string)
     {
         this.name = value;

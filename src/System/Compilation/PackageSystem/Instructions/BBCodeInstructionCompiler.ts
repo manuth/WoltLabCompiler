@@ -9,6 +9,8 @@ export class BBCodeInstructionCompiler extends LocalizationProviderCompiler<BBCo
 {
     /**
      * Initializes a new instance of the `BBCodeInstructionCompiler`.
+     *
+     * @param item
      */
     public constructor(item: BBCodeInstruction)
     {

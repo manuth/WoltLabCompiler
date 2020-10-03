@@ -11,6 +11,9 @@ export class GroupCategory extends Category<GroupOption, IGroupOptionOptions>
 {
     /**
      * Initializes a new instance of the `GroupCategory` class.
+     *
+     * @param node
+     * @param options
      */
     public constructor(node: INode, options: ICategoryOptions<IGroupOptionOptions>)
     {

@@ -15,10 +15,12 @@ export abstract class TemplateInstructionCompiler<T extends IInstruction> extend
     {
         await super.Compile();
         let tempFile: TempFile = new TempFile();
+
         {
             await FileSystem.writeFile(tempFile.FullName, await FileSystem.readFile(this.DestinationFileName));
             await this.CopyTemplate(tempFile.FullName, this.DestinationFileName);
         }
+
         tempFile.Dispose();
     }
 }

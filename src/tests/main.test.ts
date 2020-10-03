@@ -1,6 +1,13 @@
+import Assert = require("assert");
+
 suite(
     "WoltLabCompiler",
     () =>
     {
-        require("./System/index.test");
+        test(
+            "Example…",
+            () =>
+            {
+                Assert.strictEqual(1, 1);
+            });
     });

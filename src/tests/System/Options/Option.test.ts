@@ -14,6 +14,9 @@ suite(
             {
                 option = new class extends Option
                 {
+                    /**
+                     * @param options
+                     */
                     public constructor(options: IOptionOptions)
                     {
                         super(null, options);

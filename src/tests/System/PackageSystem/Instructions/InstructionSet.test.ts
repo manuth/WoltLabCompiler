@@ -29,6 +29,9 @@ suite(
                      */
                     public Type: string;
 
+                    /**
+                     *
+                     */
                     constructor()
                     {
                         super(

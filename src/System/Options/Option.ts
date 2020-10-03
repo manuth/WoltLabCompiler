@@ -83,6 +83,9 @@ export abstract class Option
 
     /**
      * Initializes a new instance of the `Option` class.
+     *
+     * @param category
+     * @param options
      */
     public constructor(category: ICategory, options: IOptionOptions)
     {
@@ -157,6 +160,9 @@ export abstract class Option
         return this.id;
     }
 
+    /**
+     *
+     */
     public set ID(value: string)
     {
         this.id = value;
@@ -170,6 +176,9 @@ export abstract class Option
         return this.name;
     }
 
+    /**
+     *
+     */
     public set Name(value: string)
     {
         this.name = value;
@@ -207,6 +216,9 @@ export abstract class Option
         return this.type;
     }
 
+    /**
+     *
+     */
     public set Type(value: OptionType | string)
     {
         this.type = value;
@@ -220,6 +232,9 @@ export abstract class Option
         return this.defaultValue;
     }
 
+    /**
+     *
+     */
     public set DefaultValue(value: any)
     {
         this.defaultValue = value;
@@ -233,6 +248,9 @@ export abstract class Option
         return this.showOrder;
     }
 
+    /**
+     *
+     */
     public set ShowOrder(value: number)
     {
         this.showOrder = value;
@@ -246,6 +264,9 @@ export abstract class Option
         return this.validationPattern;
     }
 
+    /**
+     *
+     */
     public set ValidationPattern(value: RegExp)
     {
         this.validationPattern = value;
@@ -267,6 +288,9 @@ export abstract class Option
         return this.options;
     }
 
+    /**
+     *
+     */
     public set Options(value: string[])
     {
         this.options = value;
@@ -286,6 +310,9 @@ export abstract class Option
         return this.enableOptions;
     }
 
+    /**
+     *
+     */
     public set EnableOptions(value: string[])
     {
         this.enableOptions = value;
@@ -299,6 +326,9 @@ export abstract class Option
         return this.additionalProperties;
     }
 
+    /**
+     *
+     */
     public set AdditionalProperties(value: { [key: string]: any })
     {
         this.additionalProperties = value;

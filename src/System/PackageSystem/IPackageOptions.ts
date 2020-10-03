@@ -10,7 +10,7 @@ import { IRequiredPackageDescriptorOptions } from "./IRequiredPackageDescriptorO
 /**
  * Provides options for the `Package` class.
  */
-export interface IPackageOptions extends  Partial<IComponentOptions>
+export interface IPackageOptions extends Partial<IComponentOptions>
 {
     /**
      * The identifier of the package.

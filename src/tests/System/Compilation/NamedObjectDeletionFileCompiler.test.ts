@@ -64,6 +64,9 @@ suite(
                          */
                         public ObjectsToDelete: INamedObject[] = objectsToDelete;
 
+                        /**
+                         *
+                         */
                         public constructor()
                         {
                             super(

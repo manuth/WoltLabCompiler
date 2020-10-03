@@ -11,6 +11,8 @@ export class ErrorMessageInstruction extends TranslationInstruction
 {
     /**
      * Initializes a new instance of the `ErrorMessageInstruction` class.
+     *
+     * @param options
      */
     public constructor(options: INodeSystemInstructionOptions<ILocalizationItemOptions>)
     {

@@ -14,6 +14,8 @@ export class PHPInstruction extends Instruction
 
     /**
      * Initializes a new instance of the `PHPInstruction` class.
+     *
+     * @param options
      */
     public constructor(options: IPHPInstructionOptions)
     {
@@ -45,6 +47,9 @@ export class PHPInstruction extends Instruction
         return this.application;
     }
 
+    /**
+     *
+     */
     public set Application(value: string)
     {
         this.application = value;
@@ -58,6 +63,9 @@ export class PHPInstruction extends Instruction
         return super.FileName;
     }
 
+    /**
+     *
+     */
     public set FileName(value)
     {
         super.FileName = value;

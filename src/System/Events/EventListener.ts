@@ -28,6 +28,8 @@ export class EventListener extends Listener
 
     /**
      * Initializes a new instance of the `EventListener` class.
+     *
+     * @param options
      */
     public constructor(options: IEventListenerOptions)
     {
@@ -50,6 +52,9 @@ export class EventListener extends Listener
         return this.className;
     }
 
+    /**
+     *
+     */
     public set ClassName(value)
     {
         this.className = value;
@@ -63,6 +68,9 @@ export class EventListener extends Listener
         return this.allowInherited;
     }
 
+    /**
+     *
+     */
     public set AllowInherited(value)
     {
         this.allowInherited = value;
@@ -78,6 +86,9 @@ export class EventListener extends Listener
         return this.eventHandlerClassName;
     }
 
+    /**
+     *
+     */
     public set EventHandlerClassName(value)
     {
         this.eventHandlerClassName = value;

@@ -12,6 +12,8 @@ export class NodeItem
 
     /**
      * Initializes a new instance of the `NodeItem` class.
+     *
+     * @param node
      */
     public constructor(node: INode)
     {

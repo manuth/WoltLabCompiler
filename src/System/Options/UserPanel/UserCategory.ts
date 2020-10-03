@@ -11,6 +11,9 @@ export class UserCategory extends Category<UserOption, IUserOptionOptions>
 {
     /**
      * Initializes a new instance of the `UserCategory` class.
+     *
+     * @param node
+     * @param options
      */
     public constructor(node: INode, options: ICategoryOptions<IUserOptionOptions>)
     {

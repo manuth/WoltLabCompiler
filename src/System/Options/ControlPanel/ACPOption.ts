@@ -25,6 +25,9 @@ export class ACPOption extends Option
 
     /**
      * Initializes a new instance of the `ACPOption` class.
+     *
+     * @param category
+     * @param options
      */
     public constructor(category: ICategory, options: IACPOptionOptions)
     {
@@ -54,6 +57,9 @@ export class ACPOption extends Option
         return this.visible;
     }
 
+    /**
+     *
+     */
     public set Visible(value)
     {
         this.visible = value;
@@ -67,6 +73,9 @@ export class ACPOption extends Option
         return this.localizable;
     }
 
+    /**
+     *
+     */
     public set Localizable(value)
     {
         this.localizable = value;
@@ -80,6 +89,9 @@ export class ACPOption extends Option
         return this.forceLocalization;
     }
 
+    /**
+     *
+     */
     public set ForceLocalization(value)
     {
         this.forceLocalization = value;

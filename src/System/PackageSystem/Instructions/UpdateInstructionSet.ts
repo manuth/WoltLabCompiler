@@ -14,6 +14,9 @@ export class UpdateInstructionSet extends InstructionSet
 
     /**
      * Initializes a new instance of the `UpdateInstructionSet` class.
+     *
+     * @param $package
+     * @param fromVersion
      */
     public constructor($package: Package, fromVersion: string)
     {
@@ -29,6 +32,9 @@ export class UpdateInstructionSet extends InstructionSet
         return this.fromVersion;
     }
 
+    /**
+     *
+     */
     public set FromVersion(value: string)
     {
         this.fromVersion = value;

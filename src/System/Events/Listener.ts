@@ -39,6 +39,8 @@ export abstract class Listener
 
     /**
      * Initializes a new instance of the `Listener` class.
+     *
+     * @param options
      */
     public constructor(options: IListenerOptions)
     {
@@ -75,6 +77,9 @@ export abstract class Listener
         return this.name;
     }
 
+    /**
+     *
+     */
     public set Name(value: string)
     {
         this.name = value;
@@ -88,6 +93,9 @@ export abstract class Listener
         return this.environment;
     }
 
+    /**
+     *
+     */
     public set Environment(value: ListenerEnvironment)
     {
         this.environment = value;
@@ -101,6 +109,9 @@ export abstract class Listener
         return this.eventName;
     }
 
+    /**
+     *
+     */
     public set EventName(value: string)
     {
         this.eventName = value;
@@ -114,6 +125,9 @@ export abstract class Listener
         return this.executionOrder;
     }
 
+    /**
+     *
+     */
     public set ExecutionOrder(value: number)
     {
         this.executionOrder = value;

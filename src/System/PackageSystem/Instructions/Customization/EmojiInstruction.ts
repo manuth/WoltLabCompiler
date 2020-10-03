@@ -16,6 +16,8 @@ export class EmojiInstruction extends NamedDeleteInstruction
 
     /**
      * Initializes a new instance of the `EmojiInstruction` class.
+     *
+     * @param options
      */
     public constructor(options: IEmojiInstructionOptions)
     {

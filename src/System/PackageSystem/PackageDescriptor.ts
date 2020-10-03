@@ -12,6 +12,8 @@ export class PackageDescriptor
 
     /**
      * Initializes a new instance of the `PackageDescriptor` class.
+     *
+     * @param options
      */
     public constructor(options: IPackageDescriptorOptions)
     {
@@ -26,6 +28,9 @@ export class PackageDescriptor
         return this.identifier;
     }
 
+    /**
+     *
+     */
     public set Identifier(value: string)
     {
         this.identifier = value;

@@ -39,6 +39,8 @@ export class Category<TOption extends Option, TOptionOptions> extends NodeItem i
     /**
      * Initializes a new instance of the `Category` class.
      *
+     * @param node
+     * @param options
      * @param generator
      * A function for generating options.
      */
@@ -126,7 +128,7 @@ export class Category<TOption extends Option, TOptionOptions> extends NodeItem i
     /**
      * @inheritdoc
      */
-    public get Options(): ReadonlyArray<TOption>
+    public get Options(): readonly TOption[]
     {
         return this.options;
     }

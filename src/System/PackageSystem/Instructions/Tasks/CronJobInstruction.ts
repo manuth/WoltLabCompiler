@@ -16,6 +16,8 @@ export class CronJobInstruction extends NamedDeleteInstruction
 
     /**
      * Initializes a new instance of the `CronJobInstruction` class.
+     *
+     * @param options
      */
     public constructor(options: ICronJobInstructionOptions)
     {
@@ -43,6 +45,9 @@ export class CronJobInstruction extends NamedDeleteInstruction
         return this.cronJobs;
     }
 
+    /**
+     *
+     */
     public set CronJobs(value: CronJob[])
     {
         this.cronJobs = value;

@@ -8,6 +8,8 @@ export class OptionalPackageDescriptor extends PackageFileDescriptor
 {
     /**
      * Initializes a new instance of the `OptionalPackageDescriptor` class.
+     *
+     * @param options
      */
     public constructor(options: Required<IPackageFileDescriptorOptions>)
     {

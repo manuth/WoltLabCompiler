@@ -1,7 +1,7 @@
 import Assert = require("assert");
+import OS = require("os");
 import Dedent = require("dedent");
 import FileSystem = require("fs-extra");
-import OS = require("os");
 import { TempDirectory } from "temp-filesystem";
 import { Theme } from "../../../System/Customization/Presentation/Themes/Theme";
 import { ThemeInstruction } from "../../../System/PackageSystem/Instructions/Customization/Presentation/ThemeInstruction";
@@ -221,14 +221,14 @@ suite(
                             "Checking whether special scss-variables written in scss are added…",
                             () =>
                             {
-                                Assert.strictEqual(theme.ScssOverride.indexOf(`$${specialScssVariable.Name}: ${specialScssVariable.Input};`) >= 0, true);
+                                Assert.strictEqual(theme.ScssOverride.includes(`$${specialScssVariable.Name}: ${specialScssVariable.Input};`), true);
                             });
 
                         test(
                             "Checking whether special scss-variables written in json are added…",
                             () =>
                             {
-                                Assert.strictEqual(theme.ScssOverride.indexOf(`$${specialJsonVariable.Name}: ${specialJsonVariable.Input};`) >= 0, true);
+                                Assert.strictEqual(theme.ScssOverride.includes(`$${specialJsonVariable.Name}: ${specialJsonVariable.Input};`), true);
                             });
                     });
             });

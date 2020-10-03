@@ -29,6 +29,7 @@ suite(
         class MyCollection extends BidirectionalCollection<Parent, Child>
         {
             /**
+             * @param item
              * @inheritdoc
              */
             protected GetParent(item: Child)
@@ -37,6 +38,8 @@ suite(
             }
 
             /**
+             * @param item
+             * @param owner
              * @inheritdoc
              */
             protected SetParent(item: Child, owner: Parent)

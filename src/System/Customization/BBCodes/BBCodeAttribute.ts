@@ -28,6 +28,9 @@ export class BBCodeAttribute
      */
     private validationPattern: RegExp = null;
 
+    /**
+     * @param options
+     */
     public constructor(options: IBBCodeAttributeOptions)
     {
         if (!isNullOrUndefined(options.Required))
@@ -59,6 +62,9 @@ export class BBCodeAttribute
         return this.required;
     }
 
+    /**
+     *
+     */
     public set Required(value)
     {
         this.Required = value;
@@ -72,6 +78,9 @@ export class BBCodeAttribute
         return this.valueByContent;
     }
 
+    /**
+     *
+     */
     public set ValueByContent(value)
     {
         this.valueByContent = value;
@@ -87,6 +96,9 @@ export class BBCodeAttribute
         return this.code;
     }
 
+    /**
+     *
+     */
     public set Code(value)
     {
         this.code = value;
@@ -100,6 +112,9 @@ export class BBCodeAttribute
         return this.validationPattern;
     }
 
+    /**
+     *
+     */
     public set ValidationPattern(value)
     {
         this.validationPattern = value;

@@ -1,6 +1,6 @@
 import Path = require("path");
-import UPath = require("upath");
 import { isNullOrUndefined } from "util";
+import UPath = require("upath");
 import { FileSystemInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/FileSystemInstructionCompiler";
 import { InstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/InstructionCompiler";
 import { Instruction } from "../Instruction";
@@ -18,6 +18,8 @@ export abstract class FileSystemInstruction extends Instruction
 
     /**
      * Initializes a new instance of the `FileSystemInstruction` class.
+     *
+     * @param options
      */
     public constructor(options: IFileSystemInstructionOptions)
     {
@@ -36,6 +38,9 @@ export abstract class FileSystemInstruction extends Instruction
         return this.source;
     }
 
+    /**
+     *
+     */
     public set Source(value: string)
     {
         this.source = value;

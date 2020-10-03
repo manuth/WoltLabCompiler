@@ -13,6 +13,8 @@ export class RequiredPackageDescriptor extends PackageFileDescriptor
 
     /**
      * Initializes a new instance of the `RequiredPackageDescriptor` class.
+     *
+     * @param options
      */
     public constructor(options: IRequiredPackageDescriptorOptions)
     {
@@ -28,6 +30,9 @@ export class RequiredPackageDescriptor extends PackageFileDescriptor
         return this.minVersion;
     }
 
+    /**
+     *
+     */
     public set MinVersion(value: string)
     {
         this.minVersion = value;

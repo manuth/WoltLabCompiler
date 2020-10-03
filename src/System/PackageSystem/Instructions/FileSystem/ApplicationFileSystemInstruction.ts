@@ -16,6 +16,8 @@ export class ApplicationFileSystemInstruction extends FileSystemInstruction
 
     /**
      * Initializes a new instance of the `ApplicationFileSystemInstruction`.
+     *
+     * @param options
      */
     public constructor(options: IApplicationFileSystemInstructionOptions)
     {
@@ -47,6 +49,9 @@ export class ApplicationFileSystemInstruction extends FileSystemInstruction
         return this.application;
     }
 
+    /**
+     *
+     */
     public set Application(value: string)
     {
         this.application = value;
@@ -61,6 +66,7 @@ export class ApplicationFileSystemInstruction extends FileSystemInstruction
     }
 
     /**
+     * @param source
      * @inheritdoc
      */
     protected MakeDefaultFileName(source: string)

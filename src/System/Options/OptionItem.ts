@@ -33,6 +33,7 @@ export class OptionItem
      *
      * @param option
      * The option of the item.
+     * @param options
      */
     public constructor(option: Option, options: IOptionItemOptions)
     {
@@ -55,6 +56,9 @@ export class OptionItem
         return this.name;
     }
 
+    /**
+     *
+     */
     public set Name(value: string)
     {
         this.name = value;
@@ -76,6 +80,9 @@ export class OptionItem
         return this.value;
     }
 
+    /**
+     *
+     */
     public set Value(value: any)
     {
         this.value = value;

@@ -12,6 +12,8 @@ export class EventListenerInstruction extends ListenerInstruction<EventListener,
 {
     /**
      * Initializes a new instance of the `EventListenerInstruction` class.
+     *
+     * @param options
      */
     public constructor(options: IListenerInstructionOptions<IEventListenerOptions>)
     {

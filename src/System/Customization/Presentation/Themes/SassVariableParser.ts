@@ -1,5 +1,5 @@
-import FileSystem = require("fs-extra");
 import Path = require("path");
+import FileSystem = require("fs-extra");
 import { parse } from "sass-variable-parser";
 
 /**

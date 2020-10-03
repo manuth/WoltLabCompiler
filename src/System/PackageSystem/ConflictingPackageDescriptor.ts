@@ -13,6 +13,8 @@ export class ConflictingPackageDescriptor extends PackageDescriptor
 
     /**
      * Initializes a new instance of the `ConflictingPackageDescriptor` class.
+     *
+     * @param options
      */
     public constructor(options: IConflictingPackageDescriptorOptions)
     {
@@ -28,6 +30,9 @@ export class ConflictingPackageDescriptor extends PackageDescriptor
         return this.version;
     }
 
+    /**
+     *
+     */
     public set Version(value: string)
     {
         this.version = value;

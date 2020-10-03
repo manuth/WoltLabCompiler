@@ -27,6 +27,9 @@ suite(
                      */
                     protected SchemaLocation = schemaLocation;
 
+                    /**
+                     *
+                     */
                     public constructor()
                     {
                         super({});

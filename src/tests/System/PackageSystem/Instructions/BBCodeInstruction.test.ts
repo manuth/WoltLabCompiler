@@ -22,7 +22,6 @@ suite(
         suiteSetup(
             () =>
             {
-
                 bbCodeInstruction = new BBCodeInstruction(
                     {
                         FileName: "test.xml",

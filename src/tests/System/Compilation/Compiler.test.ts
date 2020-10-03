@@ -1,6 +1,6 @@
 import Assert = require("assert");
-import FileSystem = require("fs-extra");
 import Path = require("path");
+import FileSystem = require("fs-extra");
 import Tar = require("tar");
 import { TempDirectory, TempFile } from "temp-filesystem";
 import { Compiler } from "../../../System/Compilation/Compiler";
@@ -209,6 +209,7 @@ suite(
                     async () =>
                     {
                         let testDir: TempDirectory = new TempDirectory();
+
                         {
                             await compiler["Compress"](sourceDir.FullName, destinationFile.FullName);
                             await Tar.extract(
@@ -220,6 +221,7 @@ suite(
                             let archiveFiles: string[] = await FileSystem.readdir(testDir.FullName);
                             Assert.strictEqual(files.every((file: string) => archiveFiles.includes(file)), true);
                         }
+
                         testDir.Dispose();
                     });
             });

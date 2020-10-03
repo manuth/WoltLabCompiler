@@ -51,6 +51,8 @@ export class Package extends Component
 
     /**
      * Initializes a new instance of the `Package` class.
+     *
+     * @param options
      */
     public constructor(options: IPackageOptions)
     {
@@ -133,6 +135,9 @@ export class Package extends Component
         return this.identifier;
     }
 
+    /**
+     *
+     */
     public set Identifier(value: string)
     {
         this.identifier = value;

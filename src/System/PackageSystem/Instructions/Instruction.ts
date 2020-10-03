@@ -1,6 +1,6 @@
 import Path = require("path");
-import UPath = require("upath");
 import { isNullOrUndefined } from "util";
+import UPath = require("upath");
 import { InstructionCompiler } from "../../Compilation/PackageSystem/Instructions/InstructionCompiler";
 import { IInstruction } from "./IInstruction";
 import { IInstructionOptions } from "./IInstructionOptions";
@@ -28,6 +28,8 @@ export abstract class Instruction implements IInstruction
 
     /**
      * Initializes a new instance of the `Instruction` class.
+     *
+     * @param options
      */
     public constructor(options: IInstructionOptions)
     {

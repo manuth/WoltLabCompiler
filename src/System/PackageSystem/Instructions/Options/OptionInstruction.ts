@@ -27,6 +27,9 @@ export abstract class OptionInstruction<TCategory extends Category<TOption, TOpt
 
     /**
      * Initializes a new instance of the `OptionInstruction<TCategory, TCategoryOptions, TOption, TOptionOptions>` class.
+     *
+     * @param options
+     * @param generator
      */
     public constructor(options: IOptionInstructionOptions<TCategoryOptions>, generator: (node: Node<TCategory, TCategoryOptions>, options: TCategoryOptions) => TCategory)
     {

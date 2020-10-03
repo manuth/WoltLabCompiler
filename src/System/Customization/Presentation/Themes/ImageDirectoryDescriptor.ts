@@ -13,6 +13,8 @@ export class ImageDirectoryDescriptor extends FileDescriptor
 
     /**
      * Initializes a new instance of the `ImageFolderDescriptor` class.
+     *
+     * @param options
      */
     public constructor(options: IImageDirectoryDescriptorOptions)
     {
@@ -39,6 +41,9 @@ export class ImageDirectoryDescriptor extends FileDescriptor
         return this.destinationRoot;
     }
 
+    /**
+     *
+     */
     public set DestinationRoot(value: string)
     {
         this.destinationRoot = value;

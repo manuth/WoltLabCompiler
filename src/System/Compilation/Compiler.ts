@@ -1,7 +1,7 @@
+import Path = require("path");
 import FileSystem = require("fs-extra");
 import MemoryFileStore = require("mem-fs");
 import MemoryFileStoreEditor = require("mem-fs-editor");
-import Path = require("path");
 import Tar = require("tar");
 
 /**
@@ -46,6 +46,9 @@ export abstract class Compiler<T>
         return this.destinationPath;
     }
 
+    /**
+     *
+     */
     public set DestinationPath(value)
     {
         this.destinationPath = value;

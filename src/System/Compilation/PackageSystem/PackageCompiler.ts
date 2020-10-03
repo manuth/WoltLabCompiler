@@ -27,6 +27,7 @@ export class PackageCompiler extends Compiler<Package>
     protected async Compile(): Promise<void>
     {
         let tempDir: TempDirectory = new TempDirectory();
+
         {
             for (let additionalFile of this.Item.AdditionalFiles)
             {
@@ -49,6 +50,7 @@ export class PackageCompiler extends Compiler<Package>
 
             await this.Compress(tempDir.FullName, this.DestinationPath);
         }
+
         tempDir.Dispose();
     }
 }

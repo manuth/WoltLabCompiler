@@ -103,6 +103,9 @@ export class TimePeriod
         return this.minute;
     }
 
+    /**
+     *
+     */
     public set Minute(value: string)
     {
         this.minute = value;
@@ -116,6 +119,9 @@ export class TimePeriod
         return this.hour;
     }
 
+    /**
+     *
+     */
     public set Hour(value: string)
     {
         this.hour = value;
@@ -129,6 +135,9 @@ export class TimePeriod
         return this.dayOfMonth;
     }
 
+    /**
+     *
+     */
     public set DayOfMonth(value: string)
     {
         this.dayOfMonth = value;
@@ -142,6 +151,9 @@ export class TimePeriod
         return this.month;
     }
 
+    /**
+     *
+     */
     public set Month(value: string)
     {
         this.month = value;
@@ -155,6 +167,9 @@ export class TimePeriod
         return this.dayOfWeek;
     }
 
+    /**
+     *
+     */
     public set DayOfWeek(value: string)
     {
         this.dayOfWeek = value;

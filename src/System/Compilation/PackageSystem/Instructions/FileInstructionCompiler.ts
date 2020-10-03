@@ -1,5 +1,5 @@
-import { TempDirectory } from "temp-filesystem";
 import { isNullOrUndefined } from "util";
+import { TempDirectory } from "temp-filesystem";
 import { ApplicationFileSystemInstruction } from "../../../PackageSystem/Instructions/FileSystem/ApplicationFileSystemInstruction";
 import { XMLEditor } from "../../../Serialization/XMLEditor";
 import { InstructionCompiler } from "./InstructionCompiler";

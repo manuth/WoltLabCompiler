@@ -30,6 +30,9 @@ export class GroupOption extends Option
 
     /**
      * Initializes a new instance of the `GroupOption` class.
+     *
+     * @param category
+     * @param options
      */
     public constructor(category: ICategory, options: IGroupOptionOptions)
     {
@@ -64,6 +67,9 @@ export class GroupOption extends Option
         return this.userDefaultValue;
     }
 
+    /**
+     *
+     */
     public set UserDefaultValue(value)
     {
         this.userDefaultValue = value;
@@ -77,6 +83,9 @@ export class GroupOption extends Option
         return this.modDefaultValue;
     }
 
+    /**
+     *
+     */
     public set ModDefaultValue(value)
     {
         this.modDefaultValue = value;
@@ -90,6 +99,9 @@ export class GroupOption extends Option
         return this.adminDefaultValue;
     }
 
+    /**
+     *
+     */
     public set AdminDefaultValue(value)
     {
         this.adminDefaultValue = value;
@@ -103,6 +115,9 @@ export class GroupOption extends Option
         return this.registeredOnly;
     }
 
+    /**
+     *
+     */
     public set RegisteredOnly(value)
     {
         this.registeredOnly = value;

@@ -41,6 +41,7 @@ export class BBCodeFileCompiler extends NamedObjectDeletionFileCompiler<BBCodeIn
     protected CreateImport()
     {
         let editor = new XMLEditor(super.CreateImport());
+
         for (let bbCode of this.Item.BBCodes)
         {
             editor.AddElement(

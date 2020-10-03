@@ -24,6 +24,8 @@ export class BBCodeInstruction extends NamedDeleteInstruction implements ILocali
 
     /**
      * Initializes a new instance of the `BBCodeInstruction` class.
+     *
+     * @param options
      */
     public constructor(options: IBBCodeInstructionOptions)
     {

@@ -30,6 +30,7 @@ export class UserOptionFileCompiler extends OptionFileCompiler<UserOptionInstruc
     }
 
     /**
+     * @param option
      * @inheritdoc
      */
     protected CreateOption(option: UserOption): Element

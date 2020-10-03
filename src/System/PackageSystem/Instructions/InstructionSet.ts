@@ -22,6 +22,8 @@ export class InstructionSet extends BidirectionalCollection<InstructionSet, Inst
 
     /**
      * Initializes a new instance of the `InstructionSet` class.
+     *
+     * @param $package
      */
     public constructor($package: Package)
     {
@@ -45,6 +47,9 @@ export class InstructionSet extends BidirectionalCollection<InstructionSet, Inst
         return this.package;
     }
 
+    /**
+     *
+     */
     public set Package(value)
     {
         this.package = value;
@@ -58,6 +63,9 @@ export class InstructionSet extends BidirectionalCollection<InstructionSet, Inst
         return this.directory;
     }
 
+    /**
+     *
+     */
     public set Directory(value)
     {
         this.directory = value;
@@ -90,6 +98,7 @@ export class InstructionSet extends BidirectionalCollection<InstructionSet, Inst
     }
 
     /**
+     * @param child
      * @inheritdoc
      */
     protected GetParent(child: Instruction)
@@ -98,6 +107,8 @@ export class InstructionSet extends BidirectionalCollection<InstructionSet, Inst
     }
 
     /**
+     * @param child
+     * @param parent
      * @inheritdoc
      */
     protected SetParent(child: Instruction, parent: InstructionSet)

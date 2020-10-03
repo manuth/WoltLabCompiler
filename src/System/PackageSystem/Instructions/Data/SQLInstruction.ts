@@ -9,6 +9,8 @@ export class SQLInstruction extends FileSystemInstruction
 {
     /**
      * Initializes a new instance of the `SQLInstruction` class.
+     *
+     * @param options
      */
     public constructor(options: IFileSystemInstructionOptions)
     {
@@ -24,6 +26,7 @@ export class SQLInstruction extends FileSystemInstruction
     }
 
     /**
+     * @param source
      * @inheritdoc
      */
     protected MakeDefaultFileName(source: string)

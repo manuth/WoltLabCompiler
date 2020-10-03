@@ -24,6 +24,10 @@ suite(
          */
         class MyCategory extends Category<Option, IOptionOptions>
         {
+            /**
+             * @param node
+             * @param options
+             */
             public constructor(node: INode, options: ICategoryOptions<IOptionOptions>)
             {
                 super(
@@ -41,6 +45,9 @@ suite(
          */
         class MyNode extends Node<MyCategory, ICategoryOptions<IOptionOptions>>
         {
+            /**
+             * @param options
+             */
             public constructor(options: INodeOptions<ICategoryOptions<IOptionOptions>>)
             {
                 super(

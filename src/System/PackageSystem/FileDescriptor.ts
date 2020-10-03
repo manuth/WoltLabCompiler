@@ -1,6 +1,6 @@
 import Path = require("path");
-import UPath = require("upath");
 import { isNullOrUndefined } from "util";
+import UPath = require("upath");
 import { IFileDescriptorOptions } from "./IFileDescriptorOptions";
 
 /**
@@ -20,6 +20,8 @@ export class FileDescriptor
 
     /**
      * Initializes a new instance of the `FileDescriptor` class.
+     *
+     * @param options
      */
     public constructor(options: IFileDescriptorOptions)
     {
@@ -54,6 +56,9 @@ export class FileDescriptor
         return this.source;
     }
 
+    /**
+     *
+     */
     public set Source(value: string)
     {
         this.source = value;
@@ -67,6 +72,9 @@ export class FileDescriptor
         return this.fileName;
     }
 
+    /**
+     *
+     */
     public set FileName(value: string)
     {
         this.fileName = value;

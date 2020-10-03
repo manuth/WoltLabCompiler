@@ -16,6 +16,8 @@ export abstract class NamedDeleteInstruction extends Instruction implements INam
 
     /**
      * Initializes a new instance of the `NamedDeleteInstruction` class.
+     *
+     * @param options
      */
     public constructor(options: IDeleteInstructionOptions<INamedObject>)
     {

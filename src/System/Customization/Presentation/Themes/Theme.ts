@@ -1,9 +1,9 @@
-import ColorNames = require("colornames");
-import FileSystem = require("fs-extra");
-import HexToRgba = require("hex-to-rgba");
 import OS = require("os");
 import Path = require("path");
 import { isNullOrUndefined } from "util";
+import ColorNames = require("colornames");
+import FileSystem = require("fs-extra");
+import HexToRgba = require("hex-to-rgba");
 import { Component } from "../../../PackageSystem/Component";
 import { FileDescriptor } from "../../../PackageSystem/FileDescriptor";
 import { ThemeInstruction } from "../../../PackageSystem/Instructions/Customization/Presentation/ThemeInstruction";
@@ -62,6 +62,7 @@ export class Theme extends Component
      *
      * @param instruction
      * The instruction of the theme.
+     * @param options
      */
     public constructor(instruction: ThemeInstruction, options: IThemeOptions)
     {
@@ -140,6 +141,9 @@ export class Theme extends Component
         return this.thumbnail;
     }
 
+    /**
+     *
+     */
     public set Thumbnail(value)
     {
         this.thumbnail = value;
@@ -153,6 +157,9 @@ export class Theme extends Component
         return this.highResThumbnail;
     }
 
+    /**
+     *
+     */
     public set HighResThumbnail(value)
     {
         this.highResThumbnail = value;
@@ -174,6 +181,9 @@ export class Theme extends Component
         return this.coverPhoto;
     }
 
+    /**
+     *
+     */
     public set CoverPhoto(value)
     {
         this.coverPhoto = value;
@@ -187,6 +197,9 @@ export class Theme extends Component
         return this.customSCSS;
     }
 
+    /**
+     *
+     */
     public set CustomScss(value)
     {
         this.customSCSS = value;
@@ -200,6 +213,9 @@ export class Theme extends Component
         return this.scssOverride;
     }
 
+    /**
+     *
+     */
     public set ScssOverride(value)
     {
         this.scssOverride = value;

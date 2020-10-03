@@ -29,6 +29,7 @@ export class ACPOptionFileCompiler extends OptionFileCompiler<ACPOptionInstructi
     }
 
     /**
+     * @param option
      * @inheritdoc
      */
     protected CreateOption(option: ACPOption): Element

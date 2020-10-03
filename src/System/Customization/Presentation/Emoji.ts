@@ -38,6 +38,8 @@ export class Emoji
 
     /**
      * Initializes a new instance of the `Emoji` class.
+     *
+     * @param options
      */
     public constructor(options: IEmojiOptions)
     {
@@ -70,6 +72,9 @@ export class Emoji
         return this.name;
     }
 
+    /**
+     *
+     */
     public set Name(value: string)
     {
         this.name = value;
@@ -83,6 +88,9 @@ export class Emoji
         return this.displayName;
     }
 
+    /**
+     *
+     */
     public set DisplayName(value: string)
     {
         this.displayName = value;
@@ -104,6 +112,9 @@ export class Emoji
         return this.showOrder;
     }
 
+    /**
+     *
+     */
     public set ShowOrder(value: number)
     {
         this.showOrder = value;
@@ -117,6 +128,9 @@ export class Emoji
         return this.fileName;
     }
 
+    /**
+     *
+     */
     public set FileName(value: string)
     {
         this.fileName = value;
@@ -130,6 +144,9 @@ export class Emoji
         return this.highResFileName;
     }
 
+    /**
+     *
+     */
     public set HighResFileName(value: string)
     {
         this.highResFileName = value;

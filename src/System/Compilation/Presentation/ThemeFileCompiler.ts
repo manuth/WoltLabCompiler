@@ -18,6 +18,7 @@ export class ThemeFileCompiler extends WoltLabXMLCompiler<Theme>
      *
      * @param item
      * The item to compile.
+     * @param variableFileName
      */
     public constructor(item: Theme, variableFileName: string)
     {
@@ -128,6 +129,7 @@ export class ThemeFileCompiler extends WoltLabXMLCompiler<Theme>
             });
 
         let files = new XMLEditor(document.createElement("files"));
+
         {
             if (
                 Object.keys(this.Item.Variables).length > 0 ||
@@ -165,6 +167,9 @@ export class ThemeFileCompiler extends WoltLabXMLCompiler<Theme>
         return this.variableFileName;
     }
 
+    /**
+     *
+     */
     public set VariableFileName(value)
     {
         this.variableFileName = value;

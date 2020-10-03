@@ -1,7 +1,7 @@
 import Assert = require("assert");
+import { isNullOrUndefined } from "util";
 import FileSystem = require("fs-extra");
 import { TempFile } from "temp-filesystem";
-import { isNullOrUndefined } from "util";
 import { DOMParser } from "xmldom";
 import { BBCodeFileCompiler } from "../../../../System/Compilation/Presentation/BBCodeFileCompiler";
 import { IBBCodeAttributeOptions } from "../../../../System/Customization/BBCodes/IBBCodeAttributeOptions";

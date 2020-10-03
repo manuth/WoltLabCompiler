@@ -1,5 +1,5 @@
-import FileSystem = require("fs-extra");
 import { isNullOrUndefined } from "util";
+import FileSystem = require("fs-extra");
 import { Theme } from "../../Customization/Presentation/Themes/Theme";
 import { Compiler } from "../Compiler";
 import { ThemeFileCompiler } from "./ThemeFileCompiler";
@@ -20,6 +20,7 @@ export class ThemeCompiler extends Compiler<Theme>
      *
      * @param item
      * The item to compile.
+     * @param variableFileName
      */
     public constructor(item: Theme, variableFileName?: string)
     {
@@ -39,6 +40,9 @@ export class ThemeCompiler extends Compiler<Theme>
         return this.variableFileName;
     }
 
+    /**
+     *
+     */
     public set VariableFileName(value)
     {
         this.variableFileName = value;

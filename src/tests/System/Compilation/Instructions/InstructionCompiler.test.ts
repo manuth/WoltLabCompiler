@@ -42,6 +42,9 @@ suite(
                      */
                     public Type: string = type;
 
+                    /**
+                     *
+                     */
                     public constructor()
                     {
                         super({ FileName: "example.txt" });
@@ -60,6 +63,9 @@ suite(
 
                 compiler = new class extends InstructionCompiler<IInstruction>
                 {
+                    /**
+                     * @param item
+                     */
                     public constructor(item: IInstruction)
                     {
                         super(item);

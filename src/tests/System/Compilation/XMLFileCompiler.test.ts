@@ -24,6 +24,9 @@ suite(
                      */
                     protected TagName = "foo";
 
+                    /**
+                     *
+                     */
                     public constructor()
                     {
                         super({});

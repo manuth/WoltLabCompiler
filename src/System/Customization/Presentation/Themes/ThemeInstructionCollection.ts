@@ -1,5 +1,5 @@
-import FileSystem = require("fs-extra");
 import Path = require("path");
+import FileSystem = require("fs-extra");
 import { ThemeInstruction } from "../../../PackageSystem/Instructions/Customization/Presentation/ThemeInstruction";
 import { IThemeOptions } from "./IThemeOptions";
 
@@ -30,10 +30,12 @@ export class ThemeInstructionCollection extends Array<ThemeInstruction>
             {
                 let currentDir: string = process.cwd();
                 process.chdir(themeFolder);
+
                 {
                     let theme: IThemeOptions = require(metaFile) as IThemeOptions;
                     this.push(new ThemeInstruction({ Theme: theme }));
                 }
+
                 process.chdir(currentDir);
             }
         }

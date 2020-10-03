@@ -36,6 +36,7 @@ export class TemplateListenerFileCompiler extends ListenerFileCompiler<TemplateL
     }
 
     /**
+     * @param listener
      * @inheritdoc
      */
     protected CreateListener(listener: TemplateListener): Element

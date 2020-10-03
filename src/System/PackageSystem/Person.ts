@@ -18,6 +18,8 @@ export class Person
 
     /**
      * Initializes a new instance of the `Person` class.
+     *
+     * @param options
      */
     public constructor(options: IPersonOptions)
     {
@@ -37,6 +39,9 @@ export class Person
         return this.name;
     }
 
+    /**
+     *
+     */
     public set Name(value: string)
     {
         this.name = value;
@@ -50,6 +55,9 @@ export class Person
         return this.url;
     }
 
+    /**
+     *
+     */
     public set URL(value: string)
     {
         this.url = value;

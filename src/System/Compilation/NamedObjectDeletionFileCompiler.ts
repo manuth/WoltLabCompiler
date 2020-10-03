@@ -15,6 +15,7 @@ export abstract class NamedObjectDeletionFileCompiler<T extends INamedDeleteInst
     protected abstract get ObjectTagName(): string;
 
     /**
+     * @param object
      * @inheritdoc
      */
     protected CreateDeleteObject(object: INamedObject): Element

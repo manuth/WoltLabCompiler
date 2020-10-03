@@ -45,6 +45,8 @@ export abstract class Component
 
     /**
      * Initializes a new instance of the `Component` class.
+     *
+     * @param options
      */
     public constructor(options: IComponentOptions)
     {
@@ -81,6 +83,9 @@ export abstract class Component
         return this.name;
     }
 
+    /**
+     *
+     */
     public set Name(value: string)
     {
         this.name = value;
@@ -102,6 +107,9 @@ export abstract class Component
         return this.version;
     }
 
+    /**
+     *
+     */
     public set Version(value: string)
     {
         this.version = value;
@@ -123,6 +131,9 @@ export abstract class Component
         return this.creationDate;
     }
 
+    /**
+     *
+     */
     public set CreationDate(value: Date)
     {
         this.creationDate = value;
@@ -144,6 +155,9 @@ export abstract class Component
         return this.license;
     }
 
+    /**
+     *
+     */
     public set License(value: string)
     {
         this.license = value;

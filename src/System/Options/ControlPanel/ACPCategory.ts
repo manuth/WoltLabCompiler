@@ -11,6 +11,9 @@ export class ACPCategory extends Category<ACPOption, IACPOptionOptions>
 {
     /**
      * Initializes a new instance of the `ACPCategory` class.
+     *
+     * @param node
+     * @param options
      */
     public constructor(node: INode, options: ICategoryOptions<IACPOptionOptions>)
     {

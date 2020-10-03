@@ -9,6 +9,8 @@ export class TemplateInstruction extends ApplicationFileSystemInstruction
 {
     /**
      * Initializes a new instance of the `TemplateInstruction` class.
+     *
+     * @param options
      */
     public constructor(options: IApplicationFileSystemInstructionOptions)
     {
@@ -24,6 +26,7 @@ export class TemplateInstruction extends ApplicationFileSystemInstruction
     }
 
     /**
+     * @param source
      * @inheritdoc
      */
     public MakeDefaultFileName(source: string)
