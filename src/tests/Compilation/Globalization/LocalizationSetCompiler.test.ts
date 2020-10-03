@@ -1,7 +1,7 @@
-import Assert = require("assert");
-import Path = require("path");
-import FileSystem = require("fs-extra");
+import { strictEqual } from "assert";
+import { readdir } from "fs-extra";
 import { TempDirectory } from "temp-filesystem";
+import { parse } from "upath";
 import { LocalizationSetCompiler } from "../../../Compilation/Globalization/LocalizationSetCompiler";
 import { ILocalization } from "../../../Globalization/ILocalization";
 import { TranslationInstruction } from "../../../PackageSystem/Instructions/Globalization/TranslationInstruction";
@@ -69,17 +69,17 @@ export function LocalizationSetCompilerTests(): void
                         "Checking whether all the expected files exist…",
                         async () =>
                         {
-                            let files: string[] = await FileSystem.readdir(tempDir.FullName);
+                            let files: string[] = await readdir(tempDir.FullName);
 
-                            Assert.strictEqual(
+                            strictEqual(
                                 files.every(
                                     (file: string) =>
                                     {
-                                        return locales.includes(Path.parse(file).name);
+                                        return locales.includes(parse(file).name);
                                     }),
                                 true);
 
-                            Assert.strictEqual(
+                            strictEqual(
                                 locales.every(
                                     (locale: string) =>
                                     {

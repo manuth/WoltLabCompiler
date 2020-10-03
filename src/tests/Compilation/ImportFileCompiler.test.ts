@@ -1,5 +1,5 @@
-import Assert = require("assert");
-import FileSystem = require("fs-extra");
+import { strictEqual } from "assert";
+import { readFile } from "fs-extra";
 import { TempFile } from "temp-filesystem";
 import { DOMParser } from "xmldom";
 import { ImportFileCompiler } from "../../Compilation/ImportFileCompiler";
@@ -65,7 +65,7 @@ export function ImportFileCompilerTests(): void
                                         "Checking whether the content of the compiled file is valid xml…",
                                         async () =>
                                         {
-                                            let document: Document = new DOMParser().parseFromString((await FileSystem.readFile(tempFile.FullName)).toString());
+                                            let document: Document = new DOMParser().parseFromString((await readFile(tempFile.FullName)).toString());
                                             editor = new XMLEditor(document.documentElement);
                                         });
                                 });
@@ -78,8 +78,8 @@ export function ImportFileCompilerTests(): void
                                         "Checking whether the import- and the delete-list are present…",
                                         () =>
                                         {
-                                            Assert.strictEqual(editor.HasTag("import", true), true);
-                                            Assert.strictEqual(editor.HasTag("delete", true), true);
+                                            strictEqual(editor.HasTag("import", true), true);
+                                            strictEqual(editor.HasTag("delete", true), true);
                                         });
                                 });
                         });

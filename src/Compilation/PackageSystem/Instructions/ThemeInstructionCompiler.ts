@@ -27,7 +27,6 @@ export class ThemeInstructionCompiler extends InstructionCompiler<ThemeInstructi
         let tempDir: TempDirectory = new TempDirectory();
         let themeDir: TempDirectory = new TempDirectory();
         let themeCompiler: ThemeCompiler = new ThemeCompiler(this.Item.Theme);
-
         themeCompiler.DestinationPath = tempDir.FullName;
         await themeCompiler.Execute();
         await this.CopyTemplate(tempDir.FullName, themeDir.FullName);

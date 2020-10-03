@@ -1,8 +1,8 @@
-import Path = require("path");
-import FileSystem = require("fs-extra");
-import MemoryFileStore = require("mem-fs");
-import MemoryFileStoreEditor = require("mem-fs-editor");
-import Tar = require("tar");
+import { ensureDir, readdir } from "fs-extra";
+import { create as createFS } from "mem-fs";
+import { create as createEditor } from "mem-fs-editor";
+import { create as createArchive } from "tar";
+import { dirname, join, resolve } from "upath";
 
 /**
  * Provides the functionality to compile a component.
@@ -81,7 +81,7 @@ export abstract class Compiler<T>
      */
     protected async CopyTemplate(source: string, destination: string, context?: Record<string, unknown>): Promise<void>
     {
-        let fileStoreEditor = MemoryFileStoreEditor.create(MemoryFileStore.create());
+        let fileStoreEditor = createEditor(createFS());
         fileStoreEditor.copyTpl(source, destination, context, {}, { globOptions: { dot: true } });
 
         await new Promise<void>(
@@ -107,7 +107,7 @@ export abstract class Compiler<T>
      */
     protected MakeDestinationPath(...path: string[]): string
     {
-        return Path.join(this.DestinationPath, ...path);
+        return join(this.DestinationPath, ...path);
     }
 
     /**
@@ -121,12 +121,13 @@ export abstract class Compiler<T>
      */
     protected async Compress(source: string, destination: string): Promise<void>
     {
-        await FileSystem.ensureDir(Path.dirname(destination));
-        await Tar.create(
+        await ensureDir(dirname(destination));
+
+        await createArchive(
             {
-                cwd: Path.resolve(source),
-                file: Path.resolve(destination)
+                cwd: resolve(source),
+                file: resolve(destination)
             },
-            await FileSystem.readdir(source));
+            await readdir(source));
     }
 }

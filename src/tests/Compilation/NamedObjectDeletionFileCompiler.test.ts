@@ -1,5 +1,5 @@
-import Assert = require("assert");
-import FileSystem = require("fs-extra");
+import { strictEqual } from "assert";
+import { readFile } from "fs-extra";
 import { TempFile } from "temp-filesystem";
 import { DOMParser } from "xmldom";
 import { NamedObjectDeletionFileCompiler } from "../../Compilation/NamedObjectDeletionFileCompiler";
@@ -120,7 +120,7 @@ export function NamedObjectDeletionFileCompilerTests(): void
                                         "Checking whether the content of the compiled file is valid xml…",
                                         async () =>
                                         {
-                                            let document = new DOMParser().parseFromString((await FileSystem.readFile(tempFile.FullName)).toString());
+                                            let document = new DOMParser().parseFromString((await readFile(tempFile.FullName)).toString());
                                             editor = new XMLEditor(document.documentElement);
                                         });
                                 });
@@ -134,12 +134,12 @@ export function NamedObjectDeletionFileCompilerTests(): void
                                         () =>
                                         {
                                             let deletedObjects = editor.GetElementsByTag(objectTag);
-                                            Assert.strictEqual(deletedObjects.length, objectsToDelete.length);
+                                            strictEqual(deletedObjects.length, objectsToDelete.length);
 
                                             for (let objectToDelete of objectsToDelete)
                                             {
                                                 let matches = deletedObjects.filter((objectNode: XMLEditor) => objectNode.HasAttribute("name", objectToDelete.Name));
-                                                Assert.strictEqual(matches.length, 1);
+                                                strictEqual(matches.length, 1);
                                             }
                                         });
                                 });

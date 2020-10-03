@@ -1,4 +1,4 @@
-import FileSystem = require("fs-extra");
+import { copy } from "fs-extra";
 import { Theme } from "../../Customization/Presentation/Themes/Theme";
 import { Compiler } from "../Compiler";
 import { ThemeFileCompiler } from "./ThemeFileCompiler";
@@ -80,17 +80,17 @@ export class ThemeCompiler extends Compiler<Theme>
 
         if (this.Item.Thumbnail)
         {
-            await FileSystem.copy(this.Item.Thumbnail.Source, this.MakeDestinationPath(this.Item.Thumbnail.FileName));
+            await copy(this.Item.Thumbnail.Source, this.MakeDestinationPath(this.Item.Thumbnail.FileName));
         }
 
         if (this.Item.HighResThumbnail)
         {
-            await FileSystem.copy(this.Item.HighResThumbnail.Source, this.MakeDestinationPath(this.Item.HighResThumbnail.FileName));
+            await copy(this.Item.HighResThumbnail.Source, this.MakeDestinationPath(this.Item.HighResThumbnail.FileName));
         }
 
         if (this.Item.CoverPhoto)
         {
-            await FileSystem.copy(this.Item.CoverPhoto.Source, this.MakeDestinationPath(this.Item.CoverPhoto.FileName));
+            await copy(this.Item.CoverPhoto.Source, this.MakeDestinationPath(this.Item.CoverPhoto.FileName));
         }
     }
 }

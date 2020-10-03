@@ -1,5 +1,5 @@
-import Assert = require("assert");
-import FileSystem = require("fs-extra");
+import { strictEqual } from "assert";
+import { ensureDir, ensureFile, writeFile } from "fs-extra";
 import { TempDirectory } from "temp-filesystem";
 import { IThemeOptions } from "../../Customization/Presentation/Themes/IThemeOptions";
 import { ThemeInstructionCollection } from "../../Customization/Presentation/Themes/ThemeInstructionCollection";
@@ -31,11 +31,12 @@ export function ThemeInstructionCollectionTests(): void
                         let tsPath: string = themeRoot.MakePath(themeDirectory, "Theme.ts");
                         let jsPath: string = themeRoot.MakePath(themeDirectory, "Theme.js");
 
-                        await FileSystem.ensureDir(themeRoot.MakePath(themeDirectory));
-                        await FileSystem.ensureFile(tsPath);
-                        await FileSystem.ensureFile(jsPath);
-                        await FileSystem.writeFile(tsPath, "");
-                        await FileSystem.writeFile(jsPath, `module.exports = ${JSON.stringify(
+                        await ensureDir(themeRoot.MakePath(themeDirectory));
+                        await ensureFile(tsPath);
+                        await ensureFile(jsPath);
+                        await writeFile(tsPath, "");
+
+                        await writeFile(jsPath, `module.exports = ${JSON.stringify(
                             {
                                 Name: name,
                                 DisplayName: {}
@@ -60,14 +61,14 @@ export function ThemeInstructionCollectionTests(): void
                 "Checking whether themes are automatically added to the collection…",
                 () =>
                 {
-                    Assert.strictEqual(collection.length, themeDirectories.length);
+                    strictEqual(collection.length, themeDirectories.length);
                 });
 
             test(
                 "Checking whether the meta-data is applied correctly…",
                 () =>
                 {
-                    Assert.strictEqual(collection.every((themeInstruction: ThemeInstruction) => themeInstruction.Theme.Name === name), true);
+                    strictEqual(collection.every((themeInstruction: ThemeInstruction) => themeInstruction.Theme.Name === name), true);
                 });
         });
 }

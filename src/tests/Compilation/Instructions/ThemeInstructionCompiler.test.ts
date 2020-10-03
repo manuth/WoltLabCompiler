@@ -1,7 +1,7 @@
-import Assert = require("assert");
-import Dedent = require("dedent");
-import FileSystem = require("fs-extra");
-import Tar = require("tar");
+import { strictEqual } from "assert";
+import dedent = require("dedent");
+import { pathExists, writeFile } from "fs-extra";
+import { extract } from "tar";
 import { TempDirectory } from "temp-filesystem";
 import { ThemeInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/ThemeInstructionCompiler";
 import { ThemeInstruction } from "../../../PackageSystem/Instructions/Customization/Presentation/ThemeInstruction";
@@ -39,18 +39,18 @@ export function ThemeInstructionCompilerTests(): void
 
                     let resourceDir: TempDirectory = new TempDirectory();
 
-                    await FileSystem.writeFile(
+                    await writeFile(
                         resourceDir.MakePath("variables.json"),
-                        Dedent(`
+                        dedent(`
                             {
                                 "wcfHeaderBackground": "red",
                                 "somethingSpecial": "test-value",
                                 "moreSpecialStuff": "foobar"
                             }`));
 
-                    await FileSystem.writeFile(
+                    await writeFile(
                         resourceDir.MakePath("main.scss"),
-                        Dedent(`
+                        dedent(`
                             :root
                             {
                                 color: red !important;
@@ -95,14 +95,14 @@ export function ThemeInstructionCompilerTests(): void
                         "Checking whether the tar-archive has been created…",
                         async () =>
                         {
-                            Assert.strictEqual(await FileSystem.pathExists(themeArchive), true);
+                            strictEqual(await pathExists(themeArchive), true);
                         });
 
                     test(
                         "Checking whether the tar-archive can be extracted without an error…",
                         async () =>
                         {
-                            await Tar.extract(
+                            await extract(
                                 {
                                     cwd: themeDir.FullName,
                                     file: themeArchive
@@ -113,8 +113,8 @@ export function ThemeInstructionCompilerTests(): void
                         "Checking whether the files expected in the tar-archive exist…",
                         async () =>
                         {
-                            Assert.strictEqual(await FileSystem.pathExists(themeDir.MakePath("style.xml")), true);
-                            Assert.strictEqual(await FileSystem.pathExists(themeDir.MakePath("variables.xml")), true);
+                            strictEqual(await pathExists(themeDir.MakePath("style.xml")), true);
+                            strictEqual(await pathExists(themeDir.MakePath("variables.xml")), true);
                         });
                 });
         });

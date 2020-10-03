@@ -1,5 +1,5 @@
-import Assert = require("assert");
-import FileSystem = require("fs-extra");
+import { strictEqual } from "assert";
+import { readFile } from "fs-extra";
 import { TempFile } from "temp-filesystem";
 import { DOMParser } from "xmldom";
 import { EventListenerFileCompiler } from "../../../Compilation/Events/EventListenerFileCompiler";
@@ -83,7 +83,7 @@ export function EventListenerFileCompilerTests(): void
                                         "Checking whether the content of the file is valid xml…",
                                         async () =>
                                         {
-                                            let document: Document = new DOMParser().parseFromString((await FileSystem.readFile(tempFile.FullName)).toString());
+                                            let document: Document = new DOMParser().parseFromString((await readFile(tempFile.FullName)).toString());
                                             editor = new XMLEditor(document.documentElement);
                                         });
                                 });
@@ -111,7 +111,7 @@ export function EventListenerFileCompilerTests(): void
                                         "Checking whether the event-listener is present…",
                                         () =>
                                         {
-                                            Assert.strictEqual(editor.GetElementsByTag(listenerTag).length, 1);
+                                            strictEqual(editor.GetElementsByTag(listenerTag).length, 1);
                                             eventListenerEditor = editor.GetElementsByTag(listenerTag)[0];
                                         });
 
@@ -119,9 +119,9 @@ export function EventListenerFileCompilerTests(): void
                                         "Checking the integrity of the meta-data…",
                                         () =>
                                         {
-                                            Assert.strictEqual(eventListenerEditor.HasText(eventClassTag, className), true);
-                                            Assert.strictEqual(eventListenerEditor.HasText(inheritTag, allowInherit ? "1" : "0"), true);
-                                            Assert.strictEqual(eventListenerEditor.HasText(eventHandlerTag, eventHandler), true);
+                                            strictEqual(eventListenerEditor.HasText(eventClassTag, className), true);
+                                            strictEqual(eventListenerEditor.HasText(inheritTag, allowInherit ? "1" : "0"), true);
+                                            strictEqual(eventListenerEditor.HasText(eventHandlerTag, eventHandler), true);
                                         });
                                 });
                         });

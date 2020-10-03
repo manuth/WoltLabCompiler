@@ -1,4 +1,4 @@
-import Path = require("path");
+import { join } from "upath";
 import { InstructionCompiler } from "../../Compilation/PackageSystem/Instructions/InstructionCompiler";
 import { SelfContainedPHPInstructionCompiler } from "../../Compilation/PackageSystem/Instructions/SelfContainedPHPInstructionCompiler";
 import { ApplicationFileSystemInstruction } from "./FileSystem/ApplicationFileSystemInstruction";
@@ -134,6 +134,6 @@ export class SelfContainedPHPInstruction extends ApplicationFileSystemInstructio
      */
     protected MakeDefaultFileName(source: string): string
     {
-        return Path.join("scripts", "php", this.Application, super.MakeDefaultFileName(source));
+        return join("scripts", "php", this.Application, super.MakeDefaultFileName(source));
     }
 }

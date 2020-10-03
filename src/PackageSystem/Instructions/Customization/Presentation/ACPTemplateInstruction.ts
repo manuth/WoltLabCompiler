@@ -1,4 +1,4 @@
-import Path = require("path");
+import { join } from "upath";
 import { ApplicationFileSystemInstruction } from "../../FileSystem/ApplicationFileSystemInstruction";
 import { IApplicationFileSystemInstructionOptions } from "../../FileSystem/IApplicationFileSystemInstructionOptions";
 
@@ -37,6 +37,6 @@ export class ACPTemplateInstruction extends ApplicationFileSystemInstruction
      */
     public MakeDefaultFileName(source: string): string
     {
-        return Path.join("acpTemplates", super.MakeDefaultFileName(source));
+        return join("acpTemplates", super.MakeDefaultFileName(source));
     }
 }

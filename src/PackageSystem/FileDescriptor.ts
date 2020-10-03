@@ -1,5 +1,4 @@
-import Path = require("path");
-import UPath = require("upath");
+import { basename, isAbsolute, normalize, resolve, sep } from "upath";
 import { IFileDescriptorOptions } from "./IFileDescriptorOptions";
 
 /**
@@ -25,7 +24,7 @@ export class FileDescriptor
      */
     public constructor(options: IFileDescriptorOptions)
     {
-        this.Source = Path.resolve(options.Source);
+        this.Source = resolve(options.Source);
 
         if (options.FileName)
         {
@@ -33,13 +32,13 @@ export class FileDescriptor
         }
         else
         {
-            let fileName: string = Path.normalize(options.Source);
+            let fileName: string = normalize(options.Source);
 
             if (
-                Path.isAbsolute(fileName) ||
-                (UPath.normalize(fileName).split(UPath.sep)[0] === ".."))
+                isAbsolute(fileName) ||
+                (normalize(fileName).split(sep)[0] === ".."))
             {
-                this.FileName = Path.basename(fileName);
+                this.FileName = basename(fileName);
             }
             else
             {

@@ -1,5 +1,5 @@
-import Assert = require("assert");
-import FileSystem = require("fs-extra");
+import { strictEqual } from "assert";
+import { pathExists, readFile } from "fs-extra";
 import { TempFile } from "temp-filesystem";
 import { DOMParser } from "xmldom";
 import { WoltLabXMLCompiler } from "../../Compilation/WoltLabXMLCompiler";
@@ -69,7 +69,7 @@ export function WoltLabXMLCompilerTests(): void
                                 "Checking whether the compiled file exists…",
                                 async () =>
                                 {
-                                    Assert.strictEqual(await FileSystem.pathExists(tempFile.FullName), true);
+                                    strictEqual(await pathExists(tempFile.FullName), true);
                                 });
                         });
 
@@ -82,28 +82,28 @@ export function WoltLabXMLCompilerTests(): void
                             suiteSetup(
                                 async () =>
                                 {
-                                    document = new DOMParser().parseFromString((await FileSystem.readFile(tempFile.FullName)).toString());
+                                    document = new DOMParser().parseFromString((await readFile(tempFile.FullName)).toString());
                                 });
 
                             test(
                                 "Checking whether the namespace is correct…",
                                 () =>
                                 {
-                                    Assert.strictEqual(document.documentElement.getAttribute("xmlns"), namespace);
+                                    strictEqual(document.documentElement.getAttribute("xmlns"), namespace);
                                 });
 
                             test(
                                 "Checking whether the schema-instance is correct…",
                                 () =>
                                 {
-                                    Assert.strictEqual(document.documentElement.getAttribute("xmlns:xsi"), "http://www.w3.org/2001/XMLSchema-instace");
+                                    strictEqual(document.documentElement.getAttribute("xmlns:xsi"), "http://www.w3.org/2001/XMLSchema-instace");
                                 });
 
                             test(
                                 "Checking whether the schema-location is correct…",
                                 () =>
                                 {
-                                    Assert.strictEqual(document.documentElement.getAttribute("xsi:schemaLocation"), `${namespace} ${schemaLocation}`);
+                                    strictEqual(document.documentElement.getAttribute("xsi:schemaLocation"), `${namespace} ${schemaLocation}`);
                                 });
                         });
                 });

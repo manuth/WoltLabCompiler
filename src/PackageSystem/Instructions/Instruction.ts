@@ -1,5 +1,4 @@
-import Path = require("path");
-import UPath = require("upath");
+import { join } from "upath";
 import { InstructionCompiler } from "../../Compilation/PackageSystem/Instructions/InstructionCompiler";
 import { IInstruction } from "./IInstruction";
 import { IInstructionOptions } from "./IInstructionOptions";
@@ -77,7 +76,7 @@ export abstract class Instruction implements IInstruction
      */
     public get DestinationRoot(): string
     {
-        return Path.join(this.Collection.Directory);
+        return join(this.Collection.Directory);
     }
 
     /**
@@ -101,7 +100,7 @@ export abstract class Instruction implements IInstruction
      */
     public get FullName(): string
     {
-        return UPath.join(this.DestinationRoot, this.FileName);
+        return join(this.DestinationRoot, this.FileName);
     }
 
     /**

@@ -1,5 +1,5 @@
-import Assert = require("assert");
-import FileSystem = require("fs-extra");
+import { strictEqual } from "assert";
+import { readFile } from "fs-extra";
 import { TempFile } from "temp-filesystem";
 import { DOMParser } from "xmldom";
 import { EmojiFileCompiler } from "../../../Compilation/Presentation/EmojiFileCompiler";
@@ -90,7 +90,7 @@ export function EmojiFileCompilerTests(): void
                                         "Checking whether the content of the compiled file is valid xml…",
                                         async () =>
                                         {
-                                            let document: Document = new DOMParser().parseFromString((await FileSystem.readFile(tempFile.FullName)).toString());
+                                            let document: Document = new DOMParser().parseFromString((await readFile(tempFile.FullName)).toString());
                                             importEditor = new XMLEditor(document.documentElement).GetChildrenByTag("import")[0];
                                         });
                                 });
@@ -124,7 +124,7 @@ export function EmojiFileCompilerTests(): void
                                         "Checking whether the emoji is present…",
                                         () =>
                                         {
-                                            Assert.strictEqual(importEditor.HasTag(emojiTag, true), true);
+                                            strictEqual(importEditor.HasTag(emojiTag, true), true);
                                             emojiEditor = importEditor.GetChildrenByTag(emojiTag)[0];
                                         });
 
@@ -132,12 +132,12 @@ export function EmojiFileCompilerTests(): void
                                         "Checking the integrity of the meta-data…",
                                         () =>
                                         {
-                                            Assert.strictEqual(emojiEditor.HasAttribute(nameAttribute, `:${name}:`), true);
-                                            Assert.strictEqual(emojiEditor.HasText(displayNameTag, displayName), true);
-                                            Assert.strictEqual(emojiEditor.HasText(aliasesTag, aliases.map((alias: string) => `:${alias}:`).join("\n")), true);
-                                            Assert.strictEqual(emojiEditor.HasText(showOrderTag, showOrder.toString()), true);
-                                            Assert.strictEqual(emojiEditor.HasText(fileNameTag, fileName), true);
-                                            Assert.strictEqual(emojiEditor.HasText(highResFileNameTag, highResFileName), true);
+                                            strictEqual(emojiEditor.HasAttribute(nameAttribute, `:${name}:`), true);
+                                            strictEqual(emojiEditor.HasText(displayNameTag, displayName), true);
+                                            strictEqual(emojiEditor.HasText(aliasesTag, aliases.map((alias: string) => `:${alias}:`).join("\n")), true);
+                                            strictEqual(emojiEditor.HasText(showOrderTag, showOrder.toString()), true);
+                                            strictEqual(emojiEditor.HasText(fileNameTag, fileName), true);
+                                            strictEqual(emojiEditor.HasText(highResFileNameTag, highResFileName), true);
                                         });
                                 });
                         });

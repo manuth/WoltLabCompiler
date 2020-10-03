@@ -1,5 +1,5 @@
-import Assert = require("assert");
-import FileSystem = require("fs-extra");
+import { strictEqual } from "assert";
+import { pathExists, readFile } from "fs-extra";
 import { TempFile } from "temp-filesystem";
 import { DOMParser } from "xmldom";
 import { XMLFileCompiler } from "../../Compilation/XMLFileCompiler";
@@ -65,14 +65,14 @@ export function XMLFileCompilerTests(): void
                         "Checking whether the compiled file exists…",
                         async () =>
                         {
-                            Assert.strictEqual(await FileSystem.pathExists(tempFile.FullName), true);
+                            strictEqual(await pathExists(tempFile.FullName), true);
                         });
 
                     test(
                         "Checking whether the compiled xml-file can be parsed…",
                         async () =>
                         {
-                            document = new DOMParser().parseFromString((await FileSystem.readFile(tempFile.FullName)).toString());
+                            document = new DOMParser().parseFromString((await readFile(tempFile.FullName)).toString());
                         });
 
                     test(
@@ -80,15 +80,15 @@ export function XMLFileCompilerTests(): void
                         () =>
                         {
                             let firstChild = document.childNodes[0];
-                            Assert.strictEqual(firstChild.nodeType, document.PROCESSING_INSTRUCTION_NODE);
-                            Assert.strictEqual((firstChild as ProcessingInstruction).target, "xml");
+                            strictEqual(firstChild.nodeType, document.PROCESSING_INSTRUCTION_NODE);
+                            strictEqual((firstChild as ProcessingInstruction).target, "xml");
                         });
 
                     test(
                         "Checking whether the root-tag is set correct…",
                         () =>
                         {
-                            Assert.strictEqual(document.documentElement.tagName, rootTag);
+                            strictEqual(document.documentElement.tagName, rootTag);
                         });
                 });
         });

@@ -1,5 +1,5 @@
-import Assert = require("assert");
-import FileSystem = require("fs-extra");
+import { strictEqual } from "assert";
+import { pathExists } from "fs-extra";
 import { TempDirectory } from "temp-filesystem";
 import { TemplateListenerInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/TemplateListenerInstructionCompiler";
 import { TemplateListenerInstruction } from "../../../PackageSystem/Instructions/Events/TemplateListenerInstruction";
@@ -21,7 +21,7 @@ export function TemplateListenerInstructionCompilerTests(): void
             suiteSetup(
                 () =>
                 {
-                    let $package: Package = new Package(
+                    let extensionPackage: Package = new Package(
                         {
                             Identifier: "test",
                             DisplayName: {},
@@ -36,7 +36,7 @@ export function TemplateListenerInstructionCompilerTests(): void
                             Listeners: []
                         });
 
-                    $package.InstallSet.push(instruction);
+                    extensionPackage.InstallSet.push(instruction);
                     compiler = new TemplateListenerInstructionCompiler(instruction);
                     compiler.DestinationPath = tempDir.FullName;
                     fileName = compiler.DestinationFileName;
@@ -53,7 +53,7 @@ export function TemplateListenerInstructionCompilerTests(): void
                 "Checking whether the compiled file exists…",
                 async () =>
                 {
-                    Assert.strictEqual(await FileSystem.pathExists(fileName), true);
+                    strictEqual(await pathExists(fileName), true);
                 });
         });
 }

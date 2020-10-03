@@ -1,5 +1,5 @@
-import Assert = require("assert");
-import FileSystem = require("fs-extra");
+import { strictEqual } from "assert";
+import { readFile } from "fs-extra";
 import { TempFile } from "temp-filesystem";
 import { DOMParser } from "xmldom";
 import { GroupOptionFileCompiler } from "../../../Compilation/Options/GroupOptionFileCompiler";
@@ -88,7 +88,7 @@ export function GroupOptionFileCompilerTests(): void
                                         "Checking whether the file is a valid xml-file…",
                                         async () =>
                                         {
-                                            let document: Document = new DOMParser().parseFromString((await FileSystem.readFile(tempFile.FullName)).toString());
+                                            let document: Document = new DOMParser().parseFromString((await readFile(tempFile.FullName)).toString());
                                             editor = new XMLEditor(document.documentElement);
                                         });
                                 });
@@ -115,7 +115,7 @@ export function GroupOptionFileCompilerTests(): void
                                                 "Checking whether the option exists…",
                                                 () =>
                                                 {
-                                                    Assert.strictEqual(editor.GetElementsByTag(optionTag).length, 1);
+                                                    strictEqual(editor.GetElementsByTag(optionTag).length, 1);
                                                     optionEditor = editor.GetElementsByTag(optionTag)[0];
                                                 });
                                         });
@@ -142,16 +142,16 @@ export function GroupOptionFileCompilerTests(): void
                                                 "Checking whether the default values are correct…",
                                                 () =>
                                                 {
-                                                    Assert.strictEqual(optionEditor.HasText(userValueTag, `${option.UserDefaultValue}`), true);
-                                                    Assert.strictEqual(optionEditor.HasText(modValueTag, `${option.ModDefaultValue}`), true);
-                                                    Assert.strictEqual(optionEditor.HasText(adminValueTag, `${option.AdminDefaultValue}`), true);
+                                                    strictEqual(optionEditor.HasText(userValueTag, `${option.UserDefaultValue}`), true);
+                                                    strictEqual(optionEditor.HasText(modValueTag, `${option.ModDefaultValue}`), true);
+                                                    strictEqual(optionEditor.HasText(adminValueTag, `${option.AdminDefaultValue}`), true);
                                                 });
 
                                             test(
                                                 "Checking whether the registered-restriction is correct…",
                                                 () =>
                                                 {
-                                                    Assert.strictEqual(optionEditor.HasText(registeredTag, option.RegisteredOnly ? "1" : "0"), true);
+                                                    strictEqual(optionEditor.HasText(registeredTag, option.RegisteredOnly ? "1" : "0"), true);
                                                 });
                                         });
                                 });

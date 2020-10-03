@@ -1,5 +1,5 @@
-import Assert = require("assert");
-import FileSystem = require("fs-extra");
+import { strictEqual } from "assert";
+import { readFile } from "fs-extra";
 import { TempFile } from "temp-filesystem";
 import { DOMParser } from "xmldom";
 import { TemplateListenerFileCompiler } from "../../../Compilation/Events/TemplateListenerFileCompiler";
@@ -80,7 +80,7 @@ export function TemplateListenerFileCompilerTests(): void
                                         "Checking whether the content of the file is valid xml…",
                                         async () =>
                                         {
-                                            let document: Document = new DOMParser().parseFromString((await FileSystem.readFile(tempFile.FullName)).toString());
+                                            let document: Document = new DOMParser().parseFromString((await readFile(tempFile.FullName)).toString());
                                             editor = new XMLEditor(document.documentElement);
                                         });
                                 });
@@ -106,7 +106,7 @@ export function TemplateListenerFileCompilerTests(): void
                                         "Checking whether the template-listener is present…",
                                         () =>
                                         {
-                                            Assert.strictEqual(editor.GetElementsByTag(listenerTag).length, 1);
+                                            strictEqual(editor.GetElementsByTag(listenerTag).length, 1);
                                             templateListenerEditor = editor.GetElementsByTag(listenerTag)[0];
                                         });
 
@@ -114,8 +114,8 @@ export function TemplateListenerFileCompilerTests(): void
                                         "Checking the integrity of the meta-data…",
                                         () =>
                                         {
-                                            Assert.strictEqual(templateListenerEditor.HasText(templateTag, templateName), true);
-                                            Assert.strictEqual(templateListenerEditor.HasText(codeTag, code), true);
+                                            strictEqual(templateListenerEditor.HasText(templateTag, templateName), true);
+                                            strictEqual(templateListenerEditor.HasText(codeTag, code), true);
                                         });
                                 });
                         });

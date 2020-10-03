@@ -1,4 +1,4 @@
-import FileSystem = require("fs-extra");
+import { copy } from "fs-extra";
 import { TempDirectory } from "temp-filesystem";
 import { Package } from "../../PackageSystem/Package";
 import { Compiler } from "../Compiler";
@@ -31,7 +31,7 @@ export class PackageCompiler extends Compiler<Package>
         {
             for (let additionalFile of this.Item.AdditionalFiles)
             {
-                FileSystem.copy(additionalFile.Source, additionalFile.FileName);
+                copy(additionalFile.Source, additionalFile.FileName);
             }
 
             let compiler: PackageFileCompiler = new PackageFileCompiler(this.Item);

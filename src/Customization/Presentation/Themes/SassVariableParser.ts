@@ -1,6 +1,6 @@
-import Path = require("path");
-import FileSystem = require("fs-extra");
+import { readFileSync } from "fs-extra";
 import { parse } from "sass-variable-parser";
+import { dirname } from "upath";
 
 /**
  * Provides the functionality to parse `sass`-variable files.
@@ -36,10 +36,10 @@ export class SassVariableParser
         try
         {
             let variables: Record<string, string> = parse(
-                FileSystem.readFileSync(this.fileName).toString(),
+                readFileSync(this.fileName).toString(),
                 {
                     camelCase: false,
-                    cwd: Path.dirname(this.fileName)
+                    cwd: dirname(this.fileName)
                 }) as Record<string, string>;
 
             return variables;

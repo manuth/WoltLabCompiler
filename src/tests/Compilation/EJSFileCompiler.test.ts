@@ -1,5 +1,5 @@
-import Assert = require("assert");
-import FileSystem = require("fs-extra");
+import { strictEqual } from "assert";
+import { pathExists, readFile } from "fs-extra";
 import { TempFile } from "temp-filesystem";
 import { DOMParser } from "xmldom";
 import { EJSFileCompiler } from "../../Compilation/EJSFileCompiler";
@@ -83,15 +83,15 @@ export function EJSFileCompilerTests(): void
                         "Checking whether the compiled file exists…",
                         async () =>
                         {
-                            Assert.strictEqual(await FileSystem.pathExists(tempFile.FullName), true);
+                            strictEqual(await pathExists(tempFile.FullName), true);
                         });
 
                     test(
                         "Checking whether the EJS-variable has been replaced…",
                         async () =>
                         {
-                            let document = new DOMParser().parseFromString((await FileSystem.readFile(tempFile.FullName)).toString());
-                            Assert.strictEqual(document.documentElement.textContent, variableValue);
+                            let document = new DOMParser().parseFromString((await readFile(tempFile.FullName)).toString());
+                            strictEqual(document.documentElement.textContent, variableValue);
                         });
                 });
         });

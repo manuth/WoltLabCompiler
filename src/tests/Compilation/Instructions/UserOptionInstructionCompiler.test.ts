@@ -1,5 +1,5 @@
-import Assert = require("assert");
-import FileSystem = require("fs-extra");
+import { doesNotReject, strictEqual } from "assert";
+import { pathExists, readdir } from "fs-extra";
 import { TempDirectory } from "temp-filesystem";
 import { UserOptionInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/UserOptionInstructionCompiler";
 import { ILocalization } from "../../../Globalization/ILocalization";
@@ -25,7 +25,8 @@ export function UserOptionInstructionCompilerTests(): void
                 () =>
                 {
                     let displayName: ILocalization = {};
-                    let $package: Package = new Package(
+
+                    let extensionPackage: Package = new Package(
                         {
                             Identifier: "foo",
                             DisplayName: {},
@@ -55,7 +56,7 @@ export function UserOptionInstructionCompilerTests(): void
                             ]
                         });
 
-                    $package.InstallSet.push(instruction);
+                    extensionPackage.InstallSet.push(instruction);
                     compiler = new UserOptionInstructionCompiler(instruction);
                     compiler.DestinationPath = tempDir.FullName;
                     fileName = compiler.DestinationFileName;
@@ -76,22 +77,22 @@ export function UserOptionInstructionCompilerTests(): void
                         "Checking whether the compiler can be executed…",
                         async () =>
                         {
-                            await compiler.Execute();
+                            await doesNotReject(async () => compiler.Execute());
                         });
 
                     test(
                         "Checking whether the option-file exists…",
                         async () =>
                         {
-                            Assert.strictEqual(await FileSystem.pathExists(fileName), true);
+                            strictEqual(await pathExists(fileName), true);
                         });
 
                     test(
                         "Checking whether the language-files exist…",
                         async () =>
                         {
-                            let files: string[] = await FileSystem.readdir(translationDir);
-                            Assert.strictEqual(locales.every((locale: string) => files.includes(`${locale}.xml`)), true);
+                            let files: string[] = await readdir(translationDir);
+                            strictEqual(locales.every((locale: string) => files.includes(`${locale}.xml`)), true);
                         });
                 });
         });

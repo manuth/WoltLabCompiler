@@ -1,4 +1,4 @@
-import Assert = require("assert");
+import { strictEqual } from "assert";
 import { Instruction } from "../../../PackageSystem/Instructions/Instruction";
 import { InstructionSet } from "../../../PackageSystem/Instructions/InstructionSet";
 import { Package } from "../../../PackageSystem/Package";
@@ -56,7 +56,7 @@ export function InstructionSetTests(): void
                         () =>
                         {
                             instruction.Collection = instructionSet;
-                            Assert.strictEqual(instructionSet.includes(instruction), true);
+                            strictEqual(instructionSet.includes(instruction), true);
                         });
 
                     test(
@@ -64,7 +64,7 @@ export function InstructionSetTests(): void
                         () =>
                         {
                             instruction.Collection = null;
-                            Assert.strictEqual(instructionSet.includes(instruction), false);
+                            strictEqual(instructionSet.includes(instruction), false);
                         });
 
                     test(
@@ -72,7 +72,7 @@ export function InstructionSetTests(): void
                         () =>
                         {
                             instructionSet.push(instruction);
-                            Assert.strictEqual(instructionSet.includes(instruction), true);
+                            strictEqual(instructionSet.includes(instruction), true);
                         });
 
                     test(
@@ -80,7 +80,7 @@ export function InstructionSetTests(): void
                         () =>
                         {
                             instructionSet.pop();
-                            Assert.strictEqual(instructionSet.includes(instruction), false);
+                            strictEqual(instructionSet.includes(instruction), false);
                         });
                 });
         });

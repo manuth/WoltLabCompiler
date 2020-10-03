@@ -1,4 +1,4 @@
-import Assert = require("assert");
+import { strictEqual } from "assert";
 import { INode } from "../../NodeSystem/INode";
 import { INodeOptions } from "../../NodeSystem/INodeOptions";
 import { Node } from "../../NodeSystem/Node";
@@ -141,16 +141,16 @@ export function CategoryTests(): void
                         "Checking whether sub-nodes can be found by their ID…",
                         () =>
                         {
-                            Assert.strictEqual(categoryID in objects, true);
-                            Assert.strictEqual(objects[categoryID], category);
+                            strictEqual(categoryID in objects, true);
+                            strictEqual(objects[categoryID], category);
                         });
 
                     test(
                         "Checking whether options can be found by their ID…",
                         () =>
                         {
-                            Assert.strictEqual(optionID in objects, true);
-                            Assert.strictEqual((objects[optionID] as MyOption).Name, optionName);
+                            strictEqual(optionID in objects, true);
+                            strictEqual((objects[optionID] as MyOption).Name, optionName);
                         });
                 });
         });

@@ -1,5 +1,5 @@
-import Assert = require("assert");
-import FileSystem = require("fs-extra");
+import { strictEqual } from "assert";
+import { readFile } from "fs-extra";
 import { TempFile } from "temp-filesystem";
 import { DOMParser } from "xmldom";
 import { BBCodeFileCompiler } from "../../../Compilation/Presentation/BBCodeFileCompiler";
@@ -123,7 +123,7 @@ export function BBCodeFileCompilerTests(): void
                                         "Checking whether the content of the compiled file is valid xml…",
                                         async () =>
                                         {
-                                            let document = new DOMParser().parseFromString((await FileSystem.readFile(tempFile.FullName)).toString());
+                                            let document = new DOMParser().parseFromString((await readFile(tempFile.FullName)).toString());
                                             importEditor = new XMLEditor(document.documentElement).GetChildrenByTag("import")[0];
                                         });
                                 });
@@ -152,7 +152,7 @@ export function BBCodeFileCompilerTests(): void
                                                 "Checking whether at least one bb-code exists…",
                                                 () =>
                                                 {
-                                                    Assert.strictEqual(importEditor.HasTag(bbCodeTag), true);
+                                                    strictEqual(importEditor.HasTag(bbCodeTag), true);
                                                     bbCodeEditors = importEditor.GetChildrenByTag(bbCodeTag);
                                                 });
                                         });
@@ -190,7 +190,7 @@ export function BBCodeFileCompilerTests(): void
                                                                     return editor.GetAttribute(nameAttribute) === commonBBCodeName;
                                                                 });
 
-                                                            Assert.strictEqual(matches.length, 1);
+                                                            strictEqual(matches.length, 1);
                                                             bbCodeEditor = matches[0];
                                                         });
                                                 });
@@ -203,28 +203,28 @@ export function BBCodeFileCompilerTests(): void
                                                         "Checking the integrity of the label-property",
                                                         () =>
                                                         {
-                                                            Assert.strictEqual(bbCodeEditor.HasText(labelTag, `wcf.editor.button.${commonBBCodeName}`), true);
+                                                            strictEqual(bbCodeEditor.HasText(labelTag, `wcf.editor.button.${commonBBCodeName}`), true);
                                                         });
 
                                                     test(
                                                         "Checking the integrity of the icon-property…",
                                                         () =>
                                                         {
-                                                            Assert.strictEqual(bbCodeEditor.HasText(iconTag, icon), true);
+                                                            strictEqual(bbCodeEditor.HasText(iconTag, icon), true);
                                                         });
 
                                                     test(
                                                         "Checking the integrity of the isBlockElement-property…",
                                                         () =>
                                                         {
-                                                            Assert.strictEqual(bbCodeEditor.HasText(isBlockElementTag, isBlockElement ? "1" : "0"), true);
+                                                            strictEqual(bbCodeEditor.HasText(isBlockElementTag, isBlockElement ? "1" : "0"), true);
                                                         });
 
                                                     test(
                                                         "Checking the integrity of the parseContent-property…",
                                                         () =>
                                                         {
-                                                            Assert.strictEqual(bbCodeEditor.HasText(parseContentTag, parseContent ? "0" : "1"), true);
+                                                            strictEqual(bbCodeEditor.HasText(parseContentTag, parseContent ? "0" : "1"), true);
                                                         });
                                                 });
 
@@ -253,7 +253,7 @@ export function BBCodeFileCompilerTests(): void
                                                                 "Checking the integrity of the attributes-property…",
                                                                 () =>
                                                                 {
-                                                                    Assert.strictEqual(bbCodeEditor.HasTag(attributesTag, true), true);
+                                                                    strictEqual(bbCodeEditor.HasTag(attributesTag, true), true);
                                                                     attributesEditor = bbCodeEditor.GetChildrenByTag(attributesTag)[0];
                                                                 });
 
@@ -262,7 +262,7 @@ export function BBCodeFileCompilerTests(): void
                                                                 () =>
                                                                 {
                                                                     let attributeEditors = attributesEditor.GetChildrenByTag(attributeTag);
-                                                                    Assert.strictEqual(attributeEditors.length > 0, true);
+                                                                    strictEqual(attributeEditors.length > 0, true);
                                                                     attributeEditor = attributeEditors[Math.floor(Math.random() * attributeEditors.length)];
                                                                 });
                                                         });
@@ -289,14 +289,14 @@ export function BBCodeFileCompilerTests(): void
                                                                 "Checking the integrity of the required-property",
                                                                 () =>
                                                                 {
-                                                                    Assert.strictEqual(attributeEditor.HasText(requiredTag, attribute.Required ? "1" : "0"), true);
+                                                                    strictEqual(attributeEditor.HasText(requiredTag, attribute.Required ? "1" : "0"), true);
                                                                 });
 
                                                             test(
                                                                 "Checking the integrity of the valueByContent-property",
                                                                 () =>
                                                                 {
-                                                                    Assert.strictEqual(attributeEditor.HasText(valueByContentTag, attribute.ValueByContent ? "1" : "0"), true);
+                                                                    strictEqual(attributeEditor.HasText(valueByContentTag, attribute.ValueByContent ? "1" : "0"), true);
                                                                 });
 
                                                             test(
@@ -309,7 +309,7 @@ export function BBCodeFileCompilerTests(): void
                                                                     }
                                                                     else
                                                                     {
-                                                                        Assert.strictEqual(attributeEditor.HasText(codeTag, attribute.Code), true);
+                                                                        strictEqual(attributeEditor.HasText(codeTag, attribute.Code), true);
                                                                     }
                                                                 });
 
@@ -323,7 +323,7 @@ export function BBCodeFileCompilerTests(): void
                                                                     }
                                                                     else
                                                                     {
-                                                                        Assert.strictEqual(attributeEditor.HasText(validationPatternTag, attribute.ValidationPattern.source), true);
+                                                                        strictEqual(attributeEditor.HasText(validationPatternTag, attribute.ValidationPattern.source), true);
                                                                     }
                                                                 });
                                                         });
@@ -357,7 +357,7 @@ export function BBCodeFileCompilerTests(): void
                                                                     return element.GetAttribute(nameAttribute) === classBBCodeName;
                                                                 });
 
-                                                            Assert.strictEqual(matches.length, 1);
+                                                            strictEqual(matches.length, 1);
                                                             bbCodeEditor = matches[0];
                                                         });
                                                 });
@@ -370,7 +370,7 @@ export function BBCodeFileCompilerTests(): void
                                                         "Checking the integrity of the class-property…",
                                                         () =>
                                                         {
-                                                            Assert.strictEqual(bbCodeEditor.HasText(classTag, className), true);
+                                                            strictEqual(bbCodeEditor.HasText(classTag, className), true);
                                                         });
                                                 });
                                         });
@@ -405,7 +405,7 @@ export function BBCodeFileCompilerTests(): void
                                                                     return element.GetAttribute(nameAttribute) === htmlBBCodeName;
                                                                 });
 
-                                                            Assert.strictEqual(matches.length, 1);
+                                                            strictEqual(matches.length, 1);
                                                             bbCodeEditor = matches[0];
                                                         });
                                                 });
@@ -418,7 +418,7 @@ export function BBCodeFileCompilerTests(): void
                                                         "Checking the integrity of the opening html-tag…",
                                                         () =>
                                                         {
-                                                            Assert.strictEqual(bbCodeEditor.HasText(htmlOpenTag, htmlTag), true);
+                                                            strictEqual(bbCodeEditor.HasText(htmlOpenTag, htmlTag), true);
                                                         });
 
                                                     test(
@@ -427,11 +427,11 @@ export function BBCodeFileCompilerTests(): void
                                                         {
                                                             if (isSelfClosing)
                                                             {
-                                                                Assert.strictEqual(importEditor.GetElementsByTag(htmlCloseTag).length, 0);
+                                                                strictEqual(importEditor.GetElementsByTag(htmlCloseTag).length, 0);
                                                             }
                                                             else
                                                             {
-                                                                Assert.strictEqual(bbCodeEditor.HasText(htmlCloseTag, htmlTag), true);
+                                                                strictEqual(bbCodeEditor.HasText(htmlCloseTag, htmlTag), true);
                                                             }
                                                         });
                                                 });

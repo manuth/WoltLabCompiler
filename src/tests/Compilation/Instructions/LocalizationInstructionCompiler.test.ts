@@ -1,7 +1,7 @@
-import Assert = require("assert");
-import Path = require("path");
-import FileSystem = require("fs-extra");
+import { strictEqual } from "assert";
+import { readdir } from "fs-extra";
 import { TempDirectory } from "temp-filesystem";
+import { parse } from "upath";
 import { LocalizationInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/LocalizationInstructionCompiler";
 import { ILocalization } from "../../../Globalization/ILocalization";
 import { TranslationInstruction } from "../../../PackageSystem/Instructions/Globalization/TranslationInstruction";
@@ -33,7 +33,7 @@ export function LocalizationInstructionCompilerTests(): void
                         localization[locale] = "example";
                     }
 
-                    let $package: Package = new Package(
+                    let extensionPackage: Package = new Package(
                         {
                             Identifier: "test",
                             DisplayName: {},
@@ -55,7 +55,7 @@ export function LocalizationInstructionCompilerTests(): void
                             ]
                         });
 
-                    $package.InstallSet.push(instruction);
+                    extensionPackage.InstallSet.push(instruction);
                     compiler = new LocalizationInstructionCompiler(instruction);
                     compiler.DestinationPath = tempDir.FullName;
                     localizationDir = compiler.DestinationFileName;
@@ -82,17 +82,17 @@ export function LocalizationInstructionCompilerTests(): void
                         "Checking whether all the expected files exist…",
                         async () =>
                         {
-                            let files: string[] = await FileSystem.readdir(localizationDir);
+                            let files: string[] = await readdir(localizationDir);
 
-                            Assert.strictEqual(
+                            strictEqual(
                                 files.every(
                                     (file: string) =>
                                     {
-                                        return locales.includes(Path.parse(file).name);
+                                        return locales.includes(parse(file).name);
                                     }),
                                 true);
 
-                            Assert.strictEqual(
+                            strictEqual(
                                 locales.every(
                                     (locale: string) =>
                                     {

@@ -1,9 +1,9 @@
-import Assert = require("assert");
-import Path = require("path");
-import FileSystem = require("fs-extra");
-import Tar = require("tar");
+import { strictEqual } from "assert";
+import { readdir, readFile, writeFile } from "fs-extra";
+import { extract } from "tar";
 import { TempDirectory, TempFile } from "temp-filesystem";
-import { Compiler } from "../../Compilation/Compiler";
+import { join } from "upath";
+import { TestCompiler } from "./TestCompiler";
 
 /**
  * Registers tests for the `Compiler` class.
@@ -15,23 +15,13 @@ export function CompilerTests(): void
         () =>
         {
             let tempDir: TempDirectory;
-            let compiler: Compiler<unknown>;
+            let compiler: TestCompiler;
 
             suiteSetup(
                 () =>
                 {
                     tempDir = new TempDirectory();
-
-                    compiler = new class extends Compiler<unknown>
-                    {
-                        /**
-                         * @inheritdoc
-                         */
-                        protected async Compile(): Promise<void>
-                        {
-                        }
-                    }({});
-
+                    compiler = new TestCompiler({});
                     compiler.DestinationPath = tempDir.FullName;
                 });
 
@@ -82,18 +72,18 @@ export function CompilerTests(): void
                                 "Checking whether ejs-strings are replaced when copying the file to a new location…",
                                 async () =>
                                 {
-                                    await FileSystem.writeFile(sourceFile.FullName, ejsString);
-                                    await compiler["CopyTemplate"](sourceFile.FullName, destinationFile.FullName, context);
-                                    Assert.strictEqual((await FileSystem.readFile(destinationFile.FullName)).toString(), result);
+                                    await writeFile(sourceFile.FullName, ejsString);
+                                    await compiler.CopyTemplate(sourceFile.FullName, destinationFile.FullName, context);
+                                    strictEqual((await readFile(destinationFile.FullName)).toString(), result);
                                 });
 
                             test(
                                 "Checking whether ejs-strings are replaced when overwriting the source-file…",
                                 async () =>
                                 {
-                                    await FileSystem.writeFile(sourceFile.FullName, ejsString);
-                                    await compiler["CopyTemplate"](sourceFile.FullName, sourceFile.FullName, context);
-                                    Assert.strictEqual((await FileSystem.readFile(sourceFile.FullName)).toString(), result);
+                                    await writeFile(sourceFile.FullName, ejsString);
+                                    await compiler.CopyTemplate(sourceFile.FullName, sourceFile.FullName, context);
+                                    strictEqual((await readFile(sourceFile.FullName)).toString(), result);
                                 });
                         });
 
@@ -131,27 +121,27 @@ export function CompilerTests(): void
                                 "Checking whether normal files are copied correctly…",
                                 async () =>
                                 {
-                                    await FileSystem.writeFile(sourceDir.MakePath(fileName), ejsString);
+                                    await writeFile(sourceDir.MakePath(fileName), ejsString);
                                     await compiler["CopyTemplate"](sourceDir.FullName, destinationDir.FullName, context);
-                                    Assert.strictEqual((await FileSystem.readFile(destinationDir.MakePath(fileName))).toString(), result);
+                                    strictEqual((await readFile(destinationDir.MakePath(fileName))).toString(), result);
                                 });
 
                             test(
                                 "Checking whether hidden files are copied correctly…",
                                 async () =>
                                 {
-                                    await FileSystem.writeFile(sourceDir.MakePath(hiddenFileName), ejsString);
+                                    await writeFile(sourceDir.MakePath(hiddenFileName), ejsString);
                                     await compiler["CopyTemplate"](sourceDir.FullName, destinationDir.FullName, context);
-                                    Assert.strictEqual((await FileSystem.readFile(destinationDir.MakePath(hiddenFileName))).toString(), result);
+                                    strictEqual((await readFile(destinationDir.MakePath(hiddenFileName))).toString(), result);
                                 });
 
                             test(
                                 "Checking whether variables are replaced correctly when overwriting the source-files…",
                                 async () =>
                                 {
-                                    await FileSystem.writeFile(sourceDir.MakePath(hiddenFileName), ejsString);
+                                    await writeFile(sourceDir.MakePath(hiddenFileName), ejsString);
                                     await compiler["CopyTemplate"](sourceDir.FullName, sourceDir.FullName, context);
-                                    Assert.strictEqual((await FileSystem.readFile(sourceDir.MakePath(hiddenFileName))).toString(), result);
+                                    strictEqual((await readFile(sourceDir.MakePath(hiddenFileName))).toString(), result);
                                 });
                         });
                 });
@@ -172,7 +162,7 @@ export function CompilerTests(): void
                         "Checking whether destination-paths are built correctly…",
                         () =>
                         {
-                            Assert.strictEqual(Path.join(compiler.DestinationPath, ...path), compiler["MakeDestinationPath"](...path));
+                            strictEqual(join(compiler.DestinationPath, ...path), compiler["MakeDestinationPath"](...path));
                         });
                 });
 
@@ -198,7 +188,7 @@ export function CompilerTests(): void
 
                             for (let file of files)
                             {
-                                await FileSystem.writeFile(sourceDir.MakePath(file), "this is a test");
+                                await writeFile(sourceDir.MakePath(file), "this is a test");
                             }
                         });
 
@@ -216,15 +206,16 @@ export function CompilerTests(): void
                             let testDir: TempDirectory = new TempDirectory();
 
                             {
-                                await compiler["Compress"](sourceDir.FullName, destinationFile.FullName);
-                                await Tar.extract(
+                                await compiler.Compress(sourceDir.FullName, destinationFile.FullName);
+
+                                await extract(
                                     {
                                         cwd: testDir.FullName,
                                         file: destinationFile.FullName
                                     });
 
-                                let archiveFiles: string[] = await FileSystem.readdir(testDir.FullName);
-                                Assert.strictEqual(files.every((file: string) => archiveFiles.includes(file)), true);
+                                let archiveFiles: string[] = await readdir(testDir.FullName);
+                                strictEqual(files.every((file: string) => archiveFiles.includes(file)), true);
                             }
 
                             testDir.Dispose();

@@ -1,4 +1,4 @@
-import Assert = require("assert");
+import { strictEqual } from "assert";
 import { INodeOptions } from "../../../NodeSystem/INodeOptions";
 import { Node } from "../../../NodeSystem/Node";
 import { NodeItem } from "../../../NodeSystem/NodeItem";
@@ -106,14 +106,14 @@ export function NodeSystemInstructionTests(): void
                         "Checking whether object-ids are queried correctly…",
                         () =>
                         {
-                            Assert.strictEqual(id in instruction.ObjectsByID, true);
+                            strictEqual(id in instruction.ObjectsByID, true);
                         });
 
                     test(
                         "Checking whether the objects are assigned to the ids correctly…",
                         () =>
                         {
-                            Assert.strictEqual(instruction.ObjectsByID[id], idNode);
+                            strictEqual(instruction.ObjectsByID[id], idNode);
                         });
                 });
         });

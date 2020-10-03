@@ -1,4 +1,4 @@
-import FileSystem = require("fs-extra");
+import { copy } from "fs-extra";
 import { TempDirectory } from "temp-filesystem";
 import { SelfContainedPHPInstruction } from "../../../PackageSystem/Instructions/SelfContainedPHPInstruction";
 import { InstructionCompiler } from "./InstructionCompiler";
@@ -45,7 +45,7 @@ export class SelfContainedPHPInstructionCompiler extends InstructionCompiler<Sel
     {
         let fileInstruction = this.Item.FileInstruction;
         let tempDir = new TempDirectory();
-        await FileSystem.copy(this.Item.Source, tempDir.MakePath(this.Item.Destination));
+        await copy(this.Item.Source, tempDir.MakePath(this.Item.Destination));
         fileInstruction.Source = tempDir.FullName;
         let compiler = fileInstruction.Compiler;
         compiler.DestinationPath = this.DestinationPath;

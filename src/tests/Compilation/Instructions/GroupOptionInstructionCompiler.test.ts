@@ -1,5 +1,5 @@
-import Assert = require("assert");
-import FileSystem = require("fs-extra");
+import { strictEqual } from "assert";
+import { pathExists, readdir } from "fs-extra";
 import { TempDirectory } from "temp-filesystem";
 import { GroupOptionInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/GroupOptionInstructionCompiler";
 import { ILocalization } from "../../../Globalization/ILocalization";
@@ -83,15 +83,15 @@ export function GroupOptionInstructionCompilerTests(): void
                         "Checking whether the option-file exists…",
                         async () =>
                         {
-                            Assert.strictEqual(await FileSystem.pathExists(fileName), true);
+                            strictEqual(await pathExists(fileName), true);
                         });
 
                     test(
                         "Checking whether the language-files exist…",
                         async () =>
                         {
-                            let files: string[] = await FileSystem.readdir(translationDir);
-                            Assert.strictEqual(locales.every((locale: string) => files.includes(`${locale}.xml`)), true);
+                            let files: string[] = await readdir(translationDir);
+                            strictEqual(locales.every((locale: string) => files.includes(`${locale}.xml`)), true);
                         });
                 });
         });

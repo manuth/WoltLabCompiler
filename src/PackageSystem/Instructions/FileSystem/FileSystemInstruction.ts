@@ -1,5 +1,4 @@
-import Path = require("path");
-import UPath = require("upath");
+import { basename, isAbsolute, normalize, sep } from "upath";
 import { FileSystemInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/FileSystemInstructionCompiler";
 import { InstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/InstructionCompiler";
 import { Instruction } from "../Instruction";
@@ -82,10 +81,10 @@ export abstract class FileSystemInstruction extends Instruction
     protected MakeDefaultFileName(source: string): string
     {
         if (
-            Path.isAbsolute(source) ||
-            (UPath.normalize(source).split(UPath.sep)[0] === ".."))
+            isAbsolute(source) ||
+            (normalize(source).split(sep)[0] === ".."))
         {
-            return Path.basename(source);
+            return basename(source);
         }
         else
         {

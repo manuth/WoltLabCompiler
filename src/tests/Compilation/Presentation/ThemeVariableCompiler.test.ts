@@ -1,6 +1,6 @@
-import Assert = require("assert");
-import Dedent = require("dedent");
-import FileSystem = require("fs-extra");
+import { strictEqual } from "assert";
+import dedent = require("dedent");
+import { pathExists, readFile } from "fs-extra";
 import { TempFile } from "temp-filesystem";
 import { DOMParser } from "xmldom";
 import { ThemeVariableCompiler } from "../../../Compilation/Presentation/ThemeVariableCompiler";
@@ -29,12 +29,14 @@ export function ThemeVariableCompilerTests(): void
                     variableName = "wcfHeaderBackground";
                     value = "rgba(255, 0, 0, 1)";
                     scssCodeName = "individualScss";
-                    scssCode = Dedent(
+
+                    scssCode = dedent(
                         `
                         :root
                         {
                             color: red !important;
                         }`);
+
                     variables[variableName] = value;
                     variables[scssCodeName] = scssCode;
 
@@ -67,7 +69,7 @@ export function ThemeVariableCompilerTests(): void
                                 "Checking whether the compiled file exists…",
                                 async () =>
                                 {
-                                    Assert.strictEqual(await FileSystem.pathExists(tempFile.FullName), true);
+                                    strictEqual(await pathExists(tempFile.FullName), true);
                                 });
                         });
 
@@ -86,7 +88,7 @@ export function ThemeVariableCompilerTests(): void
                             suiteSetup(
                                 async () =>
                                 {
-                                    document = new DOMParser().parseFromString((await FileSystem.readFile(tempFile.FullName)).toString());
+                                    document = new DOMParser().parseFromString((await readFile(tempFile.FullName)).toString());
                                     rootTag = "variables";
                                     variableTag = "variable";
                                     rootElement = document.documentElement;
@@ -114,8 +116,8 @@ export function ThemeVariableCompilerTests(): void
                                         }
                                     }
 
-                                    Assert.strictEqual(variableElement.parentNode === rootElement, true);
-                                    Assert.strictEqual(scssElement.parentNode === rootElement, true);
+                                    strictEqual(variableElement.parentNode === rootElement, true);
+                                    strictEqual(scssElement.parentNode === rootElement, true);
                                 });
 
                             suite(
@@ -126,7 +128,7 @@ export function ThemeVariableCompilerTests(): void
                                         "Checking whether the tag-name is correct…",
                                         () =>
                                         {
-                                            Assert.strictEqual(rootElement.tagName, rootTag);
+                                            strictEqual(rootElement.tagName, rootTag);
                                         });
                                 });
 
@@ -138,14 +140,14 @@ export function ThemeVariableCompilerTests(): void
                                         "Checking whether simple the values of simple variables are stored correctly…",
                                         () =>
                                         {
-                                            Assert.strictEqual(variableElement.textContent, value);
+                                            strictEqual(variableElement.textContent, value);
                                         });
 
                                     test(
                                         "Checking whether scss-code is stored correctly…",
                                         () =>
                                         {
-                                            Assert.strictEqual(scssElement.textContent, scssCode);
+                                            strictEqual(scssElement.textContent, scssCode);
                                         });
                                 });
                         });

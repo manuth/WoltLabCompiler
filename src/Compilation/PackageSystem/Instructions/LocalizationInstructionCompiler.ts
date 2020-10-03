@@ -1,5 +1,5 @@
 import { TempDirectory } from "temp-filesystem";
-import UPath = require("upath");
+import { normalize } from "upath";
 import { ILocalizationInstruction } from "../../../PackageSystem/Instructions/Globalization/ILocalizationInstruction";
 import { LocalizationSetCompiler } from "../../Globalization/LocalizationSetCompiler";
 import { InstructionCompiler } from "./InstructionCompiler";
@@ -32,11 +32,12 @@ export class LocalizationInstructionCompiler extends InstructionCompiler<ILocali
 
         if (Object.keys(this.Item.GetMessages()).length > 0)
         {
-            document.documentElement.textContent = UPath.normalize(
+            document.documentElement.textContent = normalize(
                 this.MakePackagePath(
                     this.Item.DestinationRoot,
                     this.Item.TranslationDirectory,
                     "*"));
+
             return document;
         }
         else

@@ -1,5 +1,5 @@
-import Assert = require("assert");
-import Path = require("path");
+import { strictEqual } from "assert";
+import { parse } from "upath";
 import { ThemeInstruction } from "../../../PackageSystem/Instructions/Customization/Presentation/ThemeInstruction";
 
 /**
@@ -35,7 +35,7 @@ export function ThemeInstructionTests(): void
                         "Checking whether the filename is set to the name of the theme if no filename is specified…",
                         () =>
                         {
-                            Assert.strictEqual(Path.parse(themeInstruction.FileName).name, ThemeName);
+                            strictEqual(parse(themeInstruction.FileName).name, ThemeName);
                         });
                 });
         });

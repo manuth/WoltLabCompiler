@@ -1,7 +1,7 @@
-import Assert = require("assert");
-import Path = require("path");
-import FileSystem = require("fs-extra");
+import { strictEqual } from "assert";
+import { ensureDir, ensureFile, readFile, writeFile } from "fs-extra";
 import { TempDirectory, TempFile } from "temp-filesystem";
+import { basename, normalize } from "upath";
 import { FileDescriptor } from "../../PackageSystem/FileDescriptor";
 
 /**
@@ -38,8 +38,9 @@ export function FileDescriptorTests(): void
             setup(
                 async () =>
                 {
-                    await FileSystem.ensureFile(fileName);
-                    await FileSystem.writeFile(fileName, content);
+                    await ensureFile(fileName);
+                    await writeFile(fileName, content);
+
                     fileDescriptor = new FileDescriptor({
                         Source: fileName
                     });
@@ -68,14 +69,14 @@ export function FileDescriptorTests(): void
                         "Checking whether the `Source` points to the correct file…",
                         async () =>
                         {
-                            Assert.strictEqual((await FileSystem.readFile(fileDescriptor.Source)).toString(), content);
+                            strictEqual((await readFile(fileDescriptor.Source)).toString(), content);
                         });
 
                     test(
                         "Checking whether the `FileName` automatically is set to the basename of the source if no filename is specified…",
                         () =>
                         {
-                            Assert.strictEqual(fileDescriptor.FileName, Path.basename(fileName));
+                            strictEqual(fileDescriptor.FileName, basename(fileName));
                         });
                 });
 
@@ -97,7 +98,7 @@ export function FileDescriptorTests(): void
                         "Checking whether `Source` points to the correct file…",
                         async () =>
                         {
-                            Assert.strictEqual((await FileSystem.readFile(fileDescriptor.Source)).toString(), content);
+                            strictEqual((await readFile(fileDescriptor.Source)).toString(), content);
                         });
 
                     test(
@@ -109,7 +110,7 @@ export function FileDescriptorTests(): void
                             process.chdir(tempDir.FullName);
 
                             {
-                                Assert.strictEqual((await FileSystem.readFile(fileDescriptor.Source)).toString(), content);
+                                strictEqual((await readFile(fileDescriptor.Source)).toString(), content);
                             }
 
                             process.chdir(current);
@@ -119,7 +120,7 @@ export function FileDescriptorTests(): void
                         "Checking whether `FileName` is set to the relative path if no filename is specified…",
                         () =>
                         {
-                            Assert.strictEqual(fileDescriptor.FileName, Path.normalize(fileName));
+                            strictEqual(fileDescriptor.FileName, normalize(fileName));
                         });
                 });
 
@@ -139,7 +140,7 @@ export function FileDescriptorTests(): void
                             relativeFile = "../bar/baz/test.txt";
                             fileName = relativeFile;
                             content = "Hello Parent World";
-                            await FileSystem.ensureDir(childDir);
+                            await ensureDir(childDir);
                             process.chdir(childDir);
                         });
 
@@ -153,14 +154,14 @@ export function FileDescriptorTests(): void
                         "Checking whether `Source` points to the correct file…",
                         async () =>
                         {
-                            Assert.strictEqual((await FileSystem.readFile(fileDescriptor.Source)).toString(), content);
+                            strictEqual((await readFile(fileDescriptor.Source)).toString(), content);
                         });
 
                     test(
                         "Checking whether `FileName` is set to the basename of the path if no filename is specified…",
                         () =>
                         {
-                            Assert.strictEqual(fileDescriptor.FileName, Path.basename(fileName));
+                            strictEqual(fileDescriptor.FileName, basename(fileName));
                         });
                 });
         });

@@ -1,5 +1,5 @@
-import Assert = require("assert");
-import FileSystem = require("fs-extra");
+import { doesNotReject, strictEqual } from "assert";
+import { pathExists } from "fs-extra";
 import { TempDirectory } from "temp-filesystem";
 import { EmojiInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/EmojiInstructionCompiler";
 import { EmojiInstruction } from "../../../PackageSystem/Instructions/Customization/EmojiInstruction";
@@ -48,14 +48,14 @@ export function EmojiInstructionCompilerTests(): void
                 "Checking whether the compiler can be executed…",
                 async () =>
                 {
-                    await compiler.Execute();
+                    await doesNotReject(async () => compiler.Execute());
                 });
 
             test(
                 "Checking whether the compiled file exists…",
                 async () =>
                 {
-                    Assert.strictEqual(await FileSystem.pathExists(fileName), true);
+                    strictEqual(await pathExists(fileName), true);
                 });
         });
 }

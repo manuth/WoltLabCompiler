@@ -1,4 +1,4 @@
-import Assert = require("assert");
+import { strictEqual } from "assert";
 import { INodeOptions } from "../../NodeSystem/INodeOptions";
 import { Node } from "../../NodeSystem/Node";
 import { NodeItem } from "../../NodeSystem/NodeItem";
@@ -71,7 +71,7 @@ export function NodeTests(): void
                             nodeA.Parent = nodeB;
                             nodeB.Parent = nodeC;
 
-                            Assert.strictEqual(nodeA.FullName, [nodeCName, nodeBName, nodeAName].join("."));
+                            strictEqual(nodeA.FullName, [nodeCName, nodeBName, nodeAName].join("."));
                         });
                 });
 
@@ -88,7 +88,7 @@ export function NodeTests(): void
                                 () =>
                                 {
                                     nodeA.Parent = nodeB;
-                                    Assert.strictEqual(nodeA.Parent, nodeB);
+                                    strictEqual(nodeA.Parent, nodeB);
                                 });
 
                             test(
@@ -96,7 +96,7 @@ export function NodeTests(): void
                                 () =>
                                 {
                                     nodeC.Nodes.push(nodeA);
-                                    Assert.strictEqual(nodeA.Parent, nodeC);
+                                    strictEqual(nodeA.Parent, nodeC);
                                 });
                         });
                 });
@@ -115,8 +115,8 @@ export function NodeTests(): void
                                 {
                                     nodeB.Parent = nodeA;
 
-                                    Assert.strictEqual(nodeA.Nodes.length, 1);
-                                    Assert.strictEqual(nodeA.Nodes[0], nodeB);
+                                    strictEqual(nodeA.Nodes.length, 1);
+                                    strictEqual(nodeA.Nodes[0], nodeB);
                                 });
 
                             test(
@@ -125,8 +125,8 @@ export function NodeTests(): void
                                 {
                                     nodeA.Nodes.push(nodeC);
 
-                                    Assert.strictEqual(nodeA.Nodes.length, 1);
-                                    Assert.strictEqual(nodeA.Nodes[0], nodeC);
+                                    strictEqual(nodeA.Nodes.length, 1);
+                                    strictEqual(nodeA.Nodes[0], nodeC);
                                 });
                         });
                 });
@@ -142,10 +142,10 @@ export function NodeTests(): void
                             nodeA.Parent = nodeB;
                             nodeB.Parent = nodeC;
 
-                            Assert.strictEqual(nodeC.GetAllNodes().includes(nodeA), true);
-                            Assert.strictEqual(nodeC.GetAllNodes().includes(nodeB), true);
-                            Assert.strictEqual(nodeC.GetAllNodes().includes(nodeC), true);
-                            Assert.strictEqual(nodeC.GetAllNodes().length, 3);
+                            strictEqual(nodeC.GetAllNodes().includes(nodeA), true);
+                            strictEqual(nodeC.GetAllNodes().includes(nodeB), true);
+                            strictEqual(nodeC.GetAllNodes().includes(nodeC), true);
+                            strictEqual(nodeC.GetAllNodes().length, 3);
                         });
                 });
 
@@ -171,8 +171,8 @@ export function NodeTests(): void
                         "Checking whether the node returns itself if an ID is assigned…",
                         () =>
                         {
-                            Assert.strictEqual(id in idNode.GetObjects(), true);
-                            Assert.strictEqual(idNode.GetObjects()[id], idNode);
+                            strictEqual(id in idNode.GetObjects(), true);
+                            strictEqual(idNode.GetObjects()[id], idNode);
                         });
 
                     test(
@@ -207,8 +207,8 @@ export function NodeTests(): void
                             let allNodes = rootNode.GetAllNodes();
                             allNodes[Math.floor(Math.random() * allNodes.length)].Nodes.push(idNode);
 
-                            Assert.strictEqual(id in rootNode.GetObjects(), true);
-                            Assert.strictEqual(rootNode.GetObjects()[id], idNode);
+                            strictEqual(id in rootNode.GetObjects(), true);
+                            strictEqual(rootNode.GetObjects()[id], idNode);
                         });
                 });
         });

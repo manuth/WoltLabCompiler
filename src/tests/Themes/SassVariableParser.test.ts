@@ -1,8 +1,8 @@
-import Assert = require("assert");
-import Path = require("path");
-import Dedent = require("dedent");
-import FileSystem = require("fs-extra");
+import { strictEqual } from "assert";
+import dedent = require("dedent");
+import { writeFile } from "fs-extra";
 import { TempDirectory } from "temp-filesystem";
+import { basename } from "upath";
 import { SassVariableParser } from "../../Customization/Presentation/Themes/SassVariableParser";
 
 /**
@@ -39,12 +39,13 @@ export function SassVariableParserTests(): void
                     var2Name = "b";
                     var2Value = '"Hello World"';
 
-                    await FileSystem.writeFile(tempDir.MakePath(mainFile), `$${var1Name}: ${var1Value};`);
-                    await FileSystem.writeFile(
+                    await writeFile(tempDir.MakePath(mainFile), `$${var1Name}: ${var1Value};`);
+
+                    await writeFile(
                         tempDir.MakePath(importFile),
-                        Dedent(
+                        dedent(
                             `
-                            @import "${Path.basename(mainFile)}";
+                            @import "${basename(mainFile)}";
                             $${var2Name}: ${var2Value};
                             $${var3Name}: $${var1Name};`
                         ));
@@ -65,11 +66,11 @@ export function SassVariableParserTests(): void
                 {
                     test(
                         "Checking whether expected variable is present…",
-                        () => Assert.strictEqual(var1Name in variablesWithoutImport, true));
+                        () => strictEqual(var1Name in variablesWithoutImport, true));
 
                     test(
                         "Checking whether the value of the expected variable is correct…",
-                        () => Assert.strictEqual(variablesWithoutImport[var1Name], var1Value));
+                        () => strictEqual(variablesWithoutImport[var1Name], var1Value));
                 });
 
             suite(
@@ -80,29 +81,29 @@ export function SassVariableParserTests(): void
                         "Checking whether the expected variables are present…",
                         () =>
                         {
-                            Assert.strictEqual(var2Name in variablesWithImport, true);
-                            Assert.strictEqual(var3Name in variablesWithImport, true);
+                            strictEqual(var2Name in variablesWithImport, true);
+                            strictEqual(var3Name in variablesWithImport, true);
                         });
 
                     test(
                         "Checking whether variables imported variables are not present…",
                         () =>
                         {
-                            Assert.strictEqual(var1Name in variablesWithImport, false);
+                            strictEqual(var1Name in variablesWithImport, false);
                         });
 
                     test(
                         "Checking whether independent variables have the correct value…",
                         () =>
                         {
-                            Assert.strictEqual(variablesWithImport[var2Name], var2Value);
+                            strictEqual(variablesWithImport[var2Name], var2Value);
                         });
 
                     test(
                         "Checking whether variables which depend on imports have the correct value…",
                         () =>
                         {
-                            Assert.strictEqual(variablesWithImport[var3Name], var1Value);
+                            strictEqual(variablesWithImport[var3Name], var1Value);
                         });
                 });
         });

@@ -1,5 +1,5 @@
-import Assert = require("assert");
-import FileSystem = require("fs-extra");
+import { strictEqual } from "assert";
+import { readFile } from "fs-extra";
 import { TempFile } from "temp-filesystem";
 import { DOMParser } from "xmldom";
 import { ObjectDeletionFileCompiler } from "../../Compilation/ObjectDeletionFileCompiler";
@@ -113,7 +113,7 @@ export function ObjectDeletionFileCompilerTests(): void
                                         "Checking whether the content of the compiled file is valid xml…",
                                         async () =>
                                         {
-                                            let document: Document = new DOMParser().parseFromString((await FileSystem.readFile(tempFile.FullName)).toString());
+                                            let document: Document = new DOMParser().parseFromString((await readFile(tempFile.FullName)).toString());
                                             editor = new XMLEditor(document.documentElement);
                                         });
                                 });
@@ -127,7 +127,8 @@ export function ObjectDeletionFileCompilerTests(): void
                                         () =>
                                         {
                                             let deletedObjects: XMLEditor[] = editor.GetElementsByTag(objectTag);
-                                            Assert.strictEqual(
+
+                                            strictEqual(
                                                 deletedObjects.every(
                                                     (object: XMLEditor) =>
                                                     {

@@ -1,5 +1,5 @@
-import Assert = require("assert");
-import FileSystem = require("fs-extra");
+import { strictEqual } from "assert";
+import { readFile, writeFile } from "fs-extra";
 import { TempFile } from "temp-filesystem";
 import { InstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/InstructionCompiler";
 import { IInstruction } from "../../../PackageSystem/Instructions/IInstruction";
@@ -84,7 +84,7 @@ export function InstructionCompilerTests(): void
                          */
                         protected async Compile(): Promise<void>
                         {
-                            await FileSystem.writeFile(this.DestinationPath, `<%= Item.Type %>\n<%= $("${objectID}") %>`);
+                            await writeFile(this.DestinationPath, `<%= Item.Type %>\n<%= $("${objectID}") %>`);
                             await this.CopyTemplate(this.DestinationPath, this.DestinationPath);
                         }
                     }(instruction);
@@ -119,21 +119,21 @@ export function InstructionCompilerTests(): void
                     suiteSetup(
                         async () =>
                         {
-                            content = (await FileSystem.readFile(tempFile.FullName)).toString();
+                            content = (await readFile(tempFile.FullName)).toString();
                         });
 
                     test(
                         "Checking whether members of the item are replaced using ejs…",
                         () =>
                         {
-                            Assert.strictEqual(new RegExp(`^${type}$`, "gm").test(content), true);
+                            strictEqual(new RegExp(`^${type}$`, "gm").test(content), true);
                         });
 
                     test(
                         "Checking whether $-substitutions are replaced using ejs…",
                         () =>
                         {
-                            Assert.strictEqual(content.includes(`${object}`), true);
+                            strictEqual(content.includes(`${object}`), true);
                         });
                 });
 
@@ -153,14 +153,14 @@ export function InstructionCompilerTests(): void
                         "Checking whether the tag-name is correct…",
                         () =>
                         {
-                            Assert.strictEqual(document.documentElement.tagName, "instruction");
+                            strictEqual(document.documentElement.tagName, "instruction");
                         });
 
                     test(
                         "Checking whether the type-attribute is set correctly…",
                         () =>
                         {
-                            Assert.strictEqual(document.documentElement.getAttribute("type"), compiler.Item.Type);
+                            strictEqual(document.documentElement.getAttribute("type"), compiler.Item.Type);
                         });
 
                     test(
@@ -169,11 +169,11 @@ export function InstructionCompilerTests(): void
                         {
                             if (compiler.Item.Standalone)
                             {
-                                Assert.strictEqual(document.documentElement.getAttribute("run"), "standalone");
+                                strictEqual(document.documentElement.getAttribute("run"), "standalone");
                             }
                             else
                             {
-                                Assert.strictEqual(document.documentElement.hasAttribute("run"), false);
+                                strictEqual(document.documentElement.hasAttribute("run"), false);
                             }
                         });
 
@@ -181,7 +181,7 @@ export function InstructionCompilerTests(): void
                         "Checking whether the filename is set correctly…",
                         () =>
                         {
-                            Assert.strictEqual(document.documentElement.textContent, compiler.Item.FullName);
+                            strictEqual(document.documentElement.textContent, compiler.Item.FullName);
                         });
                 });
         });

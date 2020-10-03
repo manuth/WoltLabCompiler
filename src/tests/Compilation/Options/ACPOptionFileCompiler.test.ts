@@ -1,5 +1,5 @@
-import Assert = require("assert");
-import FileSystem = require("fs-extra");
+import { strictEqual } from "assert";
+import { readFile } from "fs-extra";
 import { TempFile } from "temp-filesystem";
 import { DOMParser } from "xmldom";
 import { ACPOptionFileCompiler } from "../../../Compilation/Options/ACPOptionFileCompiler";
@@ -87,7 +87,7 @@ export function ACPOptionFileCompilerTests(): void
                                         "Checking whether the file is a valid xml-file…",
                                         async () =>
                                         {
-                                            let document: Document = new DOMParser().parseFromString((await FileSystem.readFile(tempFile.FullName)).toString());
+                                            let document: Document = new DOMParser().parseFromString((await readFile(tempFile.FullName)).toString());
                                             editor = new XMLEditor(document.documentElement);
                                         });
                                 });
@@ -114,7 +114,7 @@ export function ACPOptionFileCompilerTests(): void
                                                 "Checking whether the option exists…",
                                                 () =>
                                                 {
-                                                    Assert.strictEqual(editor.GetElementsByTag(optionTag).length, 1);
+                                                    strictEqual(editor.GetElementsByTag(optionTag).length, 1);
                                                     optionEditor = editor.GetElementsByTag(optionTag)[0];
                                                 });
                                         });
@@ -139,21 +139,21 @@ export function ACPOptionFileCompilerTests(): void
                                                 "Checking whether the visibility is set correctly…",
                                                 () =>
                                                 {
-                                                    Assert.strictEqual(optionEditor.HasText(visibleTag, option.Visible ? "0" : "1"), true);
+                                                    strictEqual(optionEditor.HasText(visibleTag, option.Visible ? "0" : "1"), true);
                                                 });
 
                                             test(
                                                 "Checking whether the localization-support is set correctly…",
                                                 () =>
                                                 {
-                                                    Assert.strictEqual(optionEditor.HasText(localizableTag, option.Localizable ? "1" : "0"), true);
+                                                    strictEqual(optionEditor.HasText(localizableTag, option.Localizable ? "1" : "0"), true);
                                                 });
 
                                             test(
                                                 "Checking whether the localization-requirement is set correctly…",
                                                 () =>
                                                 {
-                                                    Assert.strictEqual(optionEditor.HasText(forceLocalizationTag, option.ForceLocalization ? "1" : "0"), true);
+                                                    strictEqual(optionEditor.HasText(forceLocalizationTag, option.ForceLocalization ? "1" : "0"), true);
                                                 });
                                         });
                                 });

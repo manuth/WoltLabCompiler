@@ -1,6 +1,6 @@
-import Assert = require("assert");
-import Dedent = require("dedent");
-import FileSystem = require("fs-extra");
+import { strictEqual } from "assert";
+import dedent = require("dedent");
+import { pathExists, readFile } from "fs-extra";
 import { TempFile } from "temp-filesystem";
 import { DOMParser } from "xmldom";
 import { LocalizationFileCompiler } from "../../../Compilation/Globalization/LocalizationFileCompiler";
@@ -34,11 +34,13 @@ export function LocalizationFileCompilerTests(): void
                     locale = "en";
                     category = "foo";
                     messageName = "bar";
-                    messageValue = Dedent(
+
+                    messageValue = dedent(
                         `
                         This is a test
                         with a message which has
                         multiple lines`);
+
                     localization[locale] = messageValue;
 
                     instruction = new TranslationInstruction(
@@ -89,7 +91,7 @@ export function LocalizationFileCompilerTests(): void
                                 "Checking whether the expected file exists…",
                                 async () =>
                                 {
-                                    Assert.strictEqual(await FileSystem.pathExists(tempFile.FullName), true);
+                                    strictEqual(await pathExists(tempFile.FullName), true);
                                 });
                         });
 
@@ -105,7 +107,7 @@ export function LocalizationFileCompilerTests(): void
                             suiteSetup(
                                 async () =>
                                 {
-                                    document = new DOMParser().parseFromString((await FileSystem.readFile(tempFile.FullName)).toString());
+                                    document = new DOMParser().parseFromString((await readFile(tempFile.FullName)).toString());
                                     rootTag = "language";
                                     rootEditor = new XMLEditor(document.documentElement);
                                     languageAttribute = "languagecode";
@@ -119,21 +121,21 @@ export function LocalizationFileCompilerTests(): void
                                         "Checking whether the tag-name is correct…",
                                         () =>
                                         {
-                                            Assert.strictEqual(rootEditor.TagName, rootTag);
+                                            strictEqual(rootEditor.TagName, rootTag);
                                         });
 
                                     test(
                                         "Checking whether the language is specified…",
                                         () =>
                                         {
-                                            Assert.strictEqual(rootEditor.HasAttribute(languageAttribute), true);
+                                            strictEqual(rootEditor.HasAttribute(languageAttribute), true);
                                         });
 
                                     test(
                                         "Checking whether the language is specified correctly…",
                                         () =>
                                         {
-                                            Assert.strictEqual(rootEditor.GetAttribute(languageAttribute), locale);
+                                            strictEqual(rootEditor.GetAttribute(languageAttribute), locale);
                                         });
                                 });
 
@@ -160,7 +162,7 @@ export function LocalizationFileCompilerTests(): void
                                                 "Checking whether the category exists…",
                                                 () =>
                                                 {
-                                                    Assert.strictEqual(rootEditor.HasTag(categoryTag, true), true);
+                                                    strictEqual(rootEditor.HasTag(categoryTag, true), true);
                                                     categoryEditor = rootEditor.GetChildrenByTag(categoryTag)[0];
                                                 });
 
@@ -168,7 +170,7 @@ export function LocalizationFileCompilerTests(): void
                                                 "Checking whether the integrity of the name of the category…",
                                                 () =>
                                                 {
-                                                    Assert.strictEqual(categoryEditor.HasAttribute(nameAttribute, category), true);
+                                                    strictEqual(categoryEditor.HasAttribute(nameAttribute, category), true);
                                                 });
                                         });
 
@@ -189,7 +191,7 @@ export function LocalizationFileCompilerTests(): void
                                                 "Checking whether the translation exists…",
                                                 () =>
                                                 {
-                                                    Assert.strictEqual(categoryEditor.HasTag(itemTag, true), true);
+                                                    strictEqual(categoryEditor.HasTag(itemTag, true), true);
                                                     itemEditor = categoryEditor.GetChildrenByTag(itemTag)[0];
                                                 });
 
@@ -197,14 +199,14 @@ export function LocalizationFileCompilerTests(): void
                                                 "Checking whether the integrity of the name of the translation…",
                                                 () =>
                                                 {
-                                                    Assert.strictEqual(itemEditor.HasAttribute(nameAttribute, `${category}.${messageName}`), true);
+                                                    strictEqual(itemEditor.HasAttribute(nameAttribute, `${category}.${messageName}`), true);
                                                 });
 
                                             test(
                                                 "Checking the integrity of the text of the translation…",
                                                 () =>
                                                 {
-                                                    Assert.strictEqual(itemEditor.TextContent, messageValue);
+                                                    strictEqual(itemEditor.TextContent, messageValue);
                                                 });
                                         });
                                 });

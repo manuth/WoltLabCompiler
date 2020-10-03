@@ -1,5 +1,5 @@
-import Assert = require("assert");
-import FileSystem = require("fs-extra");
+import { strictEqual } from "assert";
+import { readFile, writeJSON } from "fs-extra";
 import { TempFile } from "temp-filesystem";
 import { DOMParser } from "xmldom";
 import { ThemeFileCompiler } from "../../../Compilation/Presentation/ThemeFileCompiler";
@@ -73,7 +73,7 @@ export function ThemeFileCompilerTests(): void
                     description["inv"] = invariantDescription;
 
                     let variableFile: TempFile = new TempFile({ postfix: ".json" });
-                    await FileSystem.writeJSON(variableFile.FullName, { wfcHeaderBackground: "red" });
+                    await writeJSON(variableFile.FullName, { wfcHeaderBackground: "red" });
 
                     let themeInstruction: ThemeInstruction = new ThemeInstruction(
                         {
@@ -155,7 +155,7 @@ export function ThemeFileCompilerTests(): void
                                         "Checking whether the content of the document is valid xml…",
                                         async () =>
                                         {
-                                            let document: Document = new DOMParser().parseFromString((await FileSystem.readFile(tempFile.FullName)).toString());
+                                            let document: Document = new DOMParser().parseFromString((await readFile(tempFile.FullName)).toString());
                                             rootEditor = new XMLEditor(document.documentElement);
                                         });
 
@@ -163,7 +163,7 @@ export function ThemeFileCompilerTests(): void
                                         "Checking whether the name of the root-tag is correct…",
                                         () =>
                                         {
-                                            Assert.strictEqual(rootEditor.TagName, rootTag);
+                                            strictEqual(rootEditor.TagName, rootTag);
                                         });
                                 });
 
@@ -194,7 +194,7 @@ export function ThemeFileCompilerTests(): void
                                                 "Checking whether the general meta-data is present…",
                                                 () =>
                                                 {
-                                                    Assert.strictEqual(rootEditor.HasTag(generalTag, true), true);
+                                                    strictEqual(rootEditor.HasTag(generalTag, true), true);
                                                     generalEditor = rootEditor.GetChildrenByTag(generalTag)[0];
                                                 });
 
@@ -202,7 +202,7 @@ export function ThemeFileCompilerTests(): void
                                                 "Checking whether the author meta-data is present…",
                                                 () =>
                                                 {
-                                                    Assert.strictEqual(rootEditor.HasTag(authorTag, true), true);
+                                                    strictEqual(rootEditor.HasTag(authorTag, true), true);
                                                     authorEditor = rootEditor.GetChildrenByTag(authorTag)[0];
                                                 });
 
@@ -210,7 +210,7 @@ export function ThemeFileCompilerTests(): void
                                                 "Checking whether the files meta-data is present…",
                                                 () =>
                                                 {
-                                                    Assert.strictEqual(rootEditor.HasTag(filesTag, true), true);
+                                                    strictEqual(rootEditor.HasTag(filesTag, true), true);
                                                     filesEditor = rootEditor.GetChildrenByTag(filesTag)[0];
                                                 });
                                         });
@@ -257,10 +257,10 @@ export function ThemeFileCompilerTests(): void
                                                     {
                                                         if (editor.HasAttribute(languageAttribute))
                                                         {
-                                                            Assert.strictEqual(editor.GetAttribute(languageAttribute), locale);
+                                                            strictEqual(editor.GetAttribute(languageAttribute), locale);
                                                         }
 
-                                                        Assert.strictEqual(editor.TextContent, editor.HasAttribute(languageAttribute) ? localizedName : invariantName);
+                                                        strictEqual(editor.TextContent, editor.HasAttribute(languageAttribute) ? localizedName : invariantName);
                                                     }
                                                 });
 
@@ -268,15 +268,15 @@ export function ThemeFileCompilerTests(): void
                                                 "Checking whether the version is correct…",
                                                 () =>
                                                 {
-                                                    Assert.strictEqual(generalEditor.HasText(versionTag, version), true);
+                                                    strictEqual(generalEditor.HasText(versionTag, version), true);
                                                 });
 
                                             test(
                                                 "Checking whether the date is correct…",
                                                 () =>
                                                 {
-                                                    Assert.strictEqual(generalEditor.HasTag(dateTag, true), true);
-                                                    Assert.strictEqual(new Date(generalEditor.GetElementsByTag(dateTag)[0].TextContent).getTime(), date.getTime());
+                                                    strictEqual(generalEditor.HasTag(dateTag, true), true);
+                                                    strictEqual(new Date(generalEditor.GetElementsByTag(dateTag)[0].TextContent).getTime(), date.getTime());
                                                 });
 
                                             test(
@@ -287,10 +287,10 @@ export function ThemeFileCompilerTests(): void
                                                     {
                                                         if (editor.HasAttribute(languageAttribute))
                                                         {
-                                                            Assert.strictEqual(editor.GetAttribute(languageAttribute), locale);
+                                                            strictEqual(editor.GetAttribute(languageAttribute), locale);
                                                         }
 
-                                                        Assert.strictEqual(editor.TextContent, editor.HasAttribute(languageAttribute) ? localizedDescription : invariantDescription);
+                                                        strictEqual(editor.TextContent, editor.HasAttribute(languageAttribute) ? localizedDescription : invariantDescription);
                                                     }
                                                 });
 
@@ -298,42 +298,42 @@ export function ThemeFileCompilerTests(): void
                                                 "Checking whether the license is correct…",
                                                 () =>
                                                 {
-                                                    Assert.strictEqual(generalEditor.HasText(licenseTag, license), true);
+                                                    strictEqual(generalEditor.HasText(licenseTag, license), true);
                                                 });
 
                                             test(
                                                 "Checking whether the package-name is correct…",
                                                 () =>
                                                 {
-                                                    Assert.strictEqual(generalEditor.HasText(packageTag, packageName), true);
+                                                    strictEqual(generalEditor.HasText(packageTag, packageName), true);
                                                 });
 
                                             test(
                                                 "Checking whether the api-version is correct…",
                                                 () =>
                                                 {
-                                                    Assert.strictEqual(generalEditor.HasText(apiTag, "3.1"), true);
+                                                    strictEqual(generalEditor.HasText(apiTag, "3.1"), true);
                                                 });
 
                                             test(
                                                 "Checking whether the thumbnail is correct…",
                                                 () =>
                                                 {
-                                                    Assert.strictEqual(generalEditor.HasText(thumbnailTag, thumbnail), true);
+                                                    strictEqual(generalEditor.HasText(thumbnailTag, thumbnail), true);
                                                 });
 
                                             test(
                                                 "Checking whether the high-resolution thumbnail is correct…",
                                                 () =>
                                                 {
-                                                    Assert.strictEqual(generalEditor.HasText(highResThumbnailTag, highResThumbnail), true);
+                                                    strictEqual(generalEditor.HasText(highResThumbnailTag, highResThumbnail), true);
                                                 });
 
                                             test(
                                                 "Checking whether the cover-photo is correct…",
                                                 () =>
                                                 {
-                                                    Assert.strictEqual(generalEditor.HasText(coverPhotoTag, coverPhoto), true);
+                                                    strictEqual(generalEditor.HasText(coverPhotoTag, coverPhoto), true);
                                                 });
                                         });
 
@@ -355,14 +355,14 @@ export function ThemeFileCompilerTests(): void
                                                 "Checking whether the name of the author is correct…",
                                                 () =>
                                                 {
-                                                    Assert.strictEqual(authorEditor.HasText(authorNameTag, author.Name), true);
+                                                    strictEqual(authorEditor.HasText(authorNameTag, author.Name), true);
                                                 });
 
                                             test(
                                                 "Checking whether the website of the author is correct…",
                                                 () =>
                                                 {
-                                                    Assert.strictEqual(authorEditor.HasText(authorURLTag, author.URL), true);
+                                                    strictEqual(authorEditor.HasText(authorURLTag, author.URL), true);
                                                 });
                                         });
 
@@ -386,17 +386,17 @@ export function ThemeFileCompilerTests(): void
                                                 "Checking whether the variables-file is correct…",
                                                 () =>
                                                 {
-                                                    Assert.strictEqual(filesEditor.HasText(variablesTag, variableFileName), true);
+                                                    strictEqual(filesEditor.HasText(variablesTag, variableFileName), true);
                                                 });
 
                                             test(
                                                 "Checking whether the image-descriptor is correct…",
                                                 () =>
                                                 {
-                                                    Assert.strictEqual(filesEditor.HasTag(imageTag, true), true);
+                                                    strictEqual(filesEditor.HasTag(imageTag, true), true);
                                                     let imageEditor: XMLEditor = filesEditor.GetChildrenByTag(imageTag)[0];
-                                                    Assert.strictEqual(imageEditor.GetAttribute(imagePathAttribute), imageDescriptor.DestinationRoot);
-                                                    Assert.strictEqual(imageEditor.TextContent, imageDescriptor.FileName);
+                                                    strictEqual(imageEditor.GetAttribute(imagePathAttribute), imageDescriptor.DestinationRoot);
+                                                    strictEqual(imageEditor.TextContent, imageDescriptor.FileName);
                                                 });
                                         });
                                 });

@@ -1,4 +1,4 @@
-import FileSystem = require("fs-extra");
+import { ensureFile, writeFile } from "fs-extra";
 import { XMLSerializer } from "xmldom";
 import { XML } from "../Serialization/XML";
 import { Compiler } from "./Compiler";
@@ -29,8 +29,8 @@ export abstract class XMLFileCompiler<T> extends Compiler<T>
      */
     protected async Compile(): Promise<void>
     {
-        await FileSystem.ensureFile(this.DestinationPath);
-        await FileSystem.writeFile(this.DestinationPath, this.Content);
+        await ensureFile(this.DestinationPath);
+        await writeFile(this.DestinationPath, this.Content);
     }
 
     /**

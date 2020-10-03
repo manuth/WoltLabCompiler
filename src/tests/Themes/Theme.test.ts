@@ -1,7 +1,7 @@
-import Assert = require("assert");
-import OS = require("os");
-import Dedent = require("dedent");
-import FileSystem = require("fs-extra");
+import { strictEqual } from "assert";
+import { EOL } from "os";
+import dedent = require("dedent");
+import { writeFile, writeJSON } from "fs-extra";
 import { TempDirectory } from "temp-filesystem";
 import { Theme } from "../../Customization/Presentation/Themes/Theme";
 import { ThemeInstruction } from "../../PackageSystem/Instructions/Customization/Presentation/ThemeInstruction";
@@ -119,7 +119,8 @@ export function ThemeTests(): void
                         });
 
                     tempDir = new TempDirectory();
-                    customScss = Dedent(
+
+                    customScss = dedent(
                         `
                             :root
                             {
@@ -130,9 +131,9 @@ export function ThemeTests(): void
                     let scssOverrideFileName: string = tempDir.MakePath("override.scss");
                     let variableFileName: string = tempDir.MakePath("variables.json");
 
-                    await FileSystem.writeFile(customScssFileName, customScss);
+                    await writeFile(customScssFileName, customScss);
 
-                    await FileSystem.writeFile(
+                    await writeFile(
                         scssOverrideFileName,
                         variables.filter(
                             (variable: IVariable) =>
@@ -143,9 +144,9 @@ export function ThemeTests(): void
                                 {
                                     return `$${variable.Name}: ${variable.Input};`;
                                 }
-                            ).join(OS.EOL));
+                            ).join(EOL));
 
-                    await FileSystem.writeJSON(
+                    await writeJSON(
                         variableFileName,
                         variables.filter(
                             (variable: IVariable) =>
@@ -188,8 +189,8 @@ export function ThemeTests(): void
                         "Checking whether the `Author`-property equals the author of the package if no author is specified…",
                         () =>
                         {
-                            Assert.strictEqual(theme.Author.Name, author.Name);
-                            Assert.strictEqual(theme.Author.URL, author.URL);
+                            strictEqual(theme.Author.Name, author.Name);
+                            strictEqual(theme.Author.URL, author.URL);
                         });
                 });
 
@@ -199,7 +200,7 @@ export function ThemeTests(): void
                 {
                     test(
                         "Checking whether the `CustomScss`-property equals the content of the scss-file…",
-                        () => Assert.strictEqual(theme.CustomScss, customScss));
+                        () => strictEqual(theme.CustomScss, customScss));
                 });
 
             suite(
@@ -226,14 +227,14 @@ export function ThemeTests(): void
                                 "Checking whether special scss-variables written in scss are added…",
                                 () =>
                                 {
-                                    Assert.strictEqual(theme.ScssOverride.includes(`$${specialScssVariable.Name}: ${specialScssVariable.Input};`), true);
+                                    strictEqual(theme.ScssOverride.includes(`$${specialScssVariable.Name}: ${specialScssVariable.Input};`), true);
                                 });
 
                             test(
                                 "Checking whether special scss-variables written in json are added…",
                                 () =>
                                 {
-                                    Assert.strictEqual(theme.ScssOverride.includes(`$${specialJsonVariable.Name}: ${specialJsonVariable.Input};`), true);
+                                    strictEqual(theme.ScssOverride.includes(`$${specialJsonVariable.Name}: ${specialJsonVariable.Input};`), true);
                                 });
                         });
                 });
@@ -262,14 +263,14 @@ export function ThemeTests(): void
                                 "Checking whether variables written in scss are added…",
                                 () =>
                                 {
-                                    Assert.strictEqual(scssVariable.Name in theme.Variables, true);
+                                    strictEqual(scssVariable.Name in theme.Variables, true);
                                 });
 
                             test(
                                 "Checking whether variables written in json are added…",
                                 () =>
                                 {
-                                    Assert.strictEqual(jsonVariable.Name in theme.Variables, true);
+                                    strictEqual(jsonVariable.Name in theme.Variables, true);
                                 });
                         });
 
@@ -285,7 +286,7 @@ export function ThemeTests(): void
                                         `Checking whether "${variable.Input}" is parsed correctly (expecting "${variable.Output}")…`,
                                         () =>
                                         {
-                                            Assert.strictEqual(theme.Variables[variable.Name], variable.Output);
+                                            strictEqual(theme.Variables[variable.Name], variable.Output);
                                         });
                                 }
                             }

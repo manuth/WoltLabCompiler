@@ -1,5 +1,5 @@
-import Assert = require("assert");
-import FileSystem = require("fs-extra");
+import { strictEqual } from "assert";
+import { pathExists, writeJSON } from "fs-extra";
 import { TempDirectory, TempFile } from "temp-filesystem";
 import { ThemeCompiler } from "../../../Compilation/Presentation/ThemeCompiler";
 import { ThemeInstruction } from "../../../PackageSystem/Instructions/Customization/Presentation/ThemeInstruction";
@@ -23,6 +23,7 @@ export function ThemeCompilerTests(): void
                 async () =>
                 {
                     tempDir = new TempDirectory();
+
                     variableFile = new TempFile(
                         {
                             postfix: ".json"
@@ -30,7 +31,7 @@ export function ThemeCompilerTests(): void
 
                     variableFileName = "myVariableFile.xml";
 
-                    await FileSystem.writeJSON(
+                    await writeJSON(
                         variableFile.FullName,
                         {
                             wcfHeaderBackground: "red"
@@ -45,7 +46,7 @@ export function ThemeCompilerTests(): void
                             }
                         });
 
-                    let $package: Package = new Package(
+                    let extensionPackage: Package = new Package(
                         {
                             Identifier: "bar",
                             DisplayName: {},
@@ -54,7 +55,7 @@ export function ThemeCompilerTests(): void
                             }
                         });
 
-                    $package.InstallSet.push(instruction);
+                    extensionPackage.InstallSet.push(instruction);
                     compiler = new ThemeCompiler(instruction.Theme, variableFileName);
                     compiler.DestinationPath = tempDir.FullName;
                 });
@@ -81,14 +82,14 @@ export function ThemeCompilerTests(): void
                         "Checking whether the theme-metadata exists…",
                         async () =>
                         {
-                            Assert.strictEqual(await FileSystem.pathExists(tempDir.MakePath("style.xml")), true);
+                            strictEqual(await pathExists(tempDir.MakePath("style.xml")), true);
                         });
 
                     test(
                         "Checking whether the variable-file exists…",
                         async () =>
                         {
-                            Assert.strictEqual(await FileSystem.pathExists(tempDir.MakePath(variableFileName)), true);
+                            strictEqual(await pathExists(tempDir.MakePath(variableFileName)), true);
                         });
                 });
         });

@@ -1,5 +1,5 @@
-import Assert = require("assert");
-import FileSystem = require("fs-extra");
+import { doesNotReject, strictEqual } from "assert";
+import { pathExists } from "fs-extra";
 import { TempDirectory } from "temp-filesystem";
 import { CronJobInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/CronJobInstructionCompiler";
 import { ACPOptionInstruction } from "../../../PackageSystem/Instructions/Options/ACPOptionInstruction";
@@ -77,14 +77,14 @@ export function CronJobInstructionCompilerTests(): void
                         "Checking whether the instruction can be compiled without an error…",
                         async () =>
                         {
-                            await compiler.Execute();
+                            await doesNotReject(async () => compiler.Execute());
                         });
 
                     test(
                         "Checking whether the expected file exists…",
                         async () =>
                         {
-                            Assert.strictEqual(await FileSystem.pathExists(fileName), true);
+                            strictEqual(await pathExists(fileName), true);
                         });
                 });
         });

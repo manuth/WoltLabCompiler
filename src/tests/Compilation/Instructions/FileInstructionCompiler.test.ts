@@ -1,8 +1,8 @@
-import Assert = require("assert");
-import Path = require("path");
-import FileSystem = require("fs-extra");
-import Tar = require("tar");
+import { doesNotReject, strictEqual } from "assert";
+import { pathExists, writeFile } from "fs-extra";
+import { extract, FileStat, list } from "tar";
 import { TempDirectory } from "temp-filesystem";
+import { parse } from "upath";
 import { FileInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/FileInstructionCompiler";
 import { ApplicationFileSystemInstruction } from "../../../PackageSystem/Instructions/FileSystem/ApplicationFileSystemInstruction";
 import { Package } from "../../../PackageSystem/Package";
@@ -31,6 +31,7 @@ export function FileInstructionCompilerTests(): void
                     sourceDir = new TempDirectory();
                     testDir = new TempDirectory();
                     tempDir = new TempDirectory();
+
                     fileNames = [
                         "test1.txt",
                         "test2.txt",
@@ -38,6 +39,7 @@ export function FileInstructionCompilerTests(): void
                         ".htaccess",
                         "picture.xcf"
                     ];
+
                     content = "Hello World";
 
                     let $package: Package = new Package(
@@ -51,7 +53,7 @@ export function FileInstructionCompilerTests(): void
 
                     for (let fileName of fileNames)
                     {
-                        await FileSystem.writeFile(sourceDir.MakePath(fileName), content);
+                        await writeFile(sourceDir.MakePath(fileName), content);
                     }
 
                     instruction = new ApplicationFileSystemInstruction(
@@ -81,6 +83,7 @@ export function FileInstructionCompilerTests(): void
                         "Checking whether the instruction can be compiled…",
                         async () =>
                         {
+                            await doesNotReject(async () => compiler.Execute());
                             await compiler.Execute();
                         });
 
@@ -88,14 +91,14 @@ export function FileInstructionCompilerTests(): void
                         "Checking whether the archive has been created…",
                         async () =>
                         {
-                            Assert.strictEqual(await FileSystem.pathExists(archiveFileName), true);
+                            strictEqual(await pathExists(archiveFileName), true);
                         });
 
                     test(
                         "Checking whether the archive can be extracted…",
                         async () =>
                         {
-                            await Tar.extract(
+                            await extract(
                                 {
                                     cwd: testDir.FullName,
                                     file: archiveFileName
@@ -108,20 +111,20 @@ export function FileInstructionCompilerTests(): void
                         {
                             let files: string[] = [];
 
-                            await Tar.list({
+                            await list({
                                 file: archiveFileName,
-                                onentry: (entry: Tar.FileStat): void =>
+                                onentry: (entry: FileStat): void =>
                                 {
                                     files.push(entry.header.path);
                                 },
-                                filter: (fileName: string, stat: Tar.FileStat): boolean =>
+                                filter: (fileName: string, stat: FileStat): boolean =>
                                 {
-                                    return Path.parse(fileName).dir.length === 0;
+                                    return parse(fileName).dir.length === 0;
                                 }
                             });
 
-                            Assert.strictEqual(fileNames.every((fileName: string): boolean => files.includes(fileName)), true);
-                            Assert.strictEqual(files.every((fileName: string): boolean => fileNames.includes(fileName)), true);
+                            strictEqual(fileNames.every((fileName: string): boolean => files.includes(fileName)), true);
+                            strictEqual(files.every((fileName: string): boolean => fileNames.includes(fileName)), true);
                         });
                 });
 
@@ -167,21 +170,21 @@ export function FileInstructionCompilerTests(): void
                         "Checking whether the `application`-attribute is not present if the `Application` is not specified…",
                         () =>
                         {
-                            Assert.strictEqual(normalDocument.documentElement.hasAttribute("application"), false);
+                            strictEqual(normalDocument.documentElement.hasAttribute("application"), false);
                         });
 
                     test(
                         "Checking whether the `application`-attribute is present if the `Application` is specified…",
                         () =>
                         {
-                            Assert.strictEqual(applicationDocument.documentElement.hasAttribute("application"), true);
+                            strictEqual(applicationDocument.documentElement.hasAttribute("application"), true);
                         });
 
                     test(
                         "Checking whether the `application`-attribute is correct…",
                         () =>
                         {
-                            Assert.strictEqual(applicationDocument.documentElement.getAttribute("application"), application);
+                            strictEqual(applicationDocument.documentElement.getAttribute("application"), application);
                         });
                 });
         });

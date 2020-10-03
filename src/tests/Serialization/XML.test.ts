@@ -1,5 +1,5 @@
-import Assert = require("assert");
-import Dedent = require("dedent");
+import { strictEqual } from "assert";
+import dedent = require("dedent");
 import { XML } from "../../Serialization/XML";
 
 /**
@@ -35,14 +35,14 @@ export function XMLTests(): void
                         "Checking whether the processing-instruction exists…",
                         () =>
                         {
-                            Assert.strictEqual(document.childNodes[0].nodeType, document.PROCESSING_INSTRUCTION_NODE);
+                            strictEqual(document.childNodes[0].nodeType, document.PROCESSING_INSTRUCTION_NODE);
                         });
 
                     test(
                         "Checking whether the tag-name is correct…",
                         () =>
                         {
-                            Assert.strictEqual(document.documentElement.tagName, tag);
+                            strictEqual(document.documentElement.tagName, tag);
                         });
                 });
 
@@ -54,7 +54,7 @@ export function XMLTests(): void
                         "Checking whether `xml`-code is formatted correctly…",
                         () =>
                         {
-                            let input: string = Dedent(`
+                            let input: string = dedent(`
                                 <?xml version="1.0" encoding="UTF-8"?><foo>
                                     <bar><baz>this
                                 is
@@ -62,7 +62,7 @@ export function XMLTests(): void
                                 test for the indentation of the XML-formatter
                                 Let's see it it works :')</baz></bar></foo>`);
 
-                            let output: string = Dedent(`
+                            let output: string = dedent(`
                                 <?xml version="1.0" encoding="UTF-8"?>
                                 <foo>
                                     <bar>
@@ -74,7 +74,7 @@ export function XMLTests(): void
                                     </bar>
                                 </foo>`);
 
-                            Assert.strictEqual(XML.Format(input), output);
+                            strictEqual(XML.Format(input), output);
                         });
                 });
         });

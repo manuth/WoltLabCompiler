@@ -1,4 +1,4 @@
-import Path = require("path");
+import { join } from "upath";
 import { DOMParser } from "xmldom";
 import { IInstruction } from "../../../PackageSystem/Instructions/IInstruction";
 import { Compiler } from "../../Compiler";
@@ -104,6 +104,6 @@ export class InstructionCompiler<T extends IInstruction> extends Compiler<T>
      */
     protected MakeDestinationPath(...path: string[]): string
     {
-        return Path.join(this.DestinationFileName, ...path);
+        return join(this.DestinationFileName, ...path);
     }
 }

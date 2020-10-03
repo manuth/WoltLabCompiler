@@ -1,4 +1,4 @@
-import Path = require("path");
+import { join } from "upath";
 import { FileSystemInstruction } from "../FileSystem/FileSystemInstruction";
 import { IFileSystemInstructionOptions } from "../FileSystem/IFileSystemInstructionOptions";
 
@@ -37,6 +37,6 @@ export class SQLInstruction extends FileSystemInstruction
      */
     protected MakeDefaultFileName(source: string): string
     {
-        return Path.join("scripts", "sql", super.MakeDefaultFileName(source));
+        return join("scripts", "sql", super.MakeDefaultFileName(source));
     }
 }

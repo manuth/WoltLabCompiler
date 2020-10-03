@@ -1,5 +1,5 @@
-import Assert = require("assert");
-import FileSystem = require("fs-extra");
+import { strictEqual } from "assert";
+import { readFile } from "fs-extra";
 import { TempFile } from "temp-filesystem";
 import { DOMParser } from "xmldom";
 import { UserOptionFileCompiler } from "../../../Compilation/Options/UserOptionFileCompiler";
@@ -26,6 +26,7 @@ export function UserOptionFileCompilerTests(): void
                 () =>
                 {
                     tempFile = new TempFile();
+
                     option = {
                         Name: "foo",
                         Required: Math.random() > 0.5,
@@ -90,7 +91,7 @@ export function UserOptionFileCompilerTests(): void
                                         "Checking whether the file is a valid xml-file…",
                                         async () =>
                                         {
-                                            let document: Document = new DOMParser().parseFromString((await FileSystem.readFile(tempFile.FullName)).toString());
+                                            let document: Document = new DOMParser().parseFromString((await readFile(tempFile.FullName)).toString());
                                             editor = new XMLEditor(document.documentElement);
                                         });
                                 });
@@ -117,7 +118,7 @@ export function UserOptionFileCompilerTests(): void
                                                 "Checking whether the option exists…",
                                                 () =>
                                                 {
-                                                    Assert.strictEqual(editor.GetElementsByTag(optionTag).length, 1);
+                                                    strictEqual(editor.GetElementsByTag(optionTag).length, 1);
                                                     optionEditor = editor.GetElementsByTag(optionTag)[0];
                                                 });
                                         });
@@ -148,36 +149,36 @@ export function UserOptionFileCompilerTests(): void
                                                 'Checking whether the "Required"-property is correct…',
                                                 () =>
                                                 {
-                                                    Assert.strictEqual(optionEditor.HasText(requiredTag, option.Required ? "1" : "0"), true);
+                                                    strictEqual(optionEditor.HasText(requiredTag, option.Required ? "1" : "0"), true);
                                                 });
 
                                             test(
                                                 'Checking whether the "AskOnRegistration"-property is correct…',
                                                 () =>
                                                 {
-                                                    Assert.strictEqual(optionEditor.HasText(registrationTag, option.AskOnRegistration ? "1" : "0"), true);
+                                                    strictEqual(optionEditor.HasText(registrationTag, option.AskOnRegistration ? "1" : "0"), true);
                                                 });
 
                                             test(
                                                 "Checking whether the permissions are set correctly…",
                                                 () =>
                                                 {
-                                                    Assert.strictEqual(optionEditor.HasText(editTag, option.EditPermissions.toString()), true);
-                                                    Assert.strictEqual(optionEditor.HasText(viewTag, option.ViewPermissions.toString()), true);
+                                                    strictEqual(optionEditor.HasText(editTag, option.EditPermissions.toString()), true);
+                                                    strictEqual(optionEditor.HasText(viewTag, option.ViewPermissions.toString()), true);
                                                 });
 
                                             test(
                                                 'Checking whether the "Searchable"-property is correct…',
                                                 () =>
                                                 {
-                                                    Assert.strictEqual(optionEditor.HasText(searchableTag, option.Searchable ? "1" : "0"), true);
+                                                    strictEqual(optionEditor.HasText(searchableTag, option.Searchable ? "1" : "0"), true);
                                                 });
 
                                             test(
                                                 "Checking whether the output-class is correct…",
                                                 () =>
                                                 {
-                                                    Assert.strictEqual(optionEditor.HasText(outputTag, option.OutputClass), true);
+                                                    strictEqual(optionEditor.HasText(outputTag, option.OutputClass), true);
                                                 });
                                         });
                                 });

@@ -1,4 +1,4 @@
-import Assert = require("assert");
+import { strictEqual } from "assert";
 import CronParser = require("cron-parser");
 import { TimePeriod } from "../../Tasks/TimePeriod";
 
@@ -56,7 +56,8 @@ export function TimePeriodTests(): void
                         () =>
                         {
                             endDate.setFullYear(endDate.getFullYear() + 1);
-                            Assert.strictEqual(
+
+                            strictEqual(
                                 period.next().getTime() - period.next().getTime(),
                                 startDate.getTime() - endDate.getTime());
                         });
@@ -77,7 +78,8 @@ export function TimePeriodTests(): void
                         () =>
                         {
                             endDate.setMonth(endDate.getMonth() + 1);
-                            Assert.strictEqual(
+
+                            strictEqual(
                                 period.next().getTime() - period.next().getTime(),
                                 startDate.getTime() - endDate.getTime());
                         });
@@ -98,7 +100,7 @@ export function TimePeriodTests(): void
                         () =>
                         {
                             endDate.setDate(endDate.getDate() + 7);
-                            Assert.strictEqual(
+                            strictEqual(
                                 period.next().getTime() - period.next().getTime(),
                                 startDate.getTime() - endDate.getTime());
                         });
@@ -119,7 +121,7 @@ export function TimePeriodTests(): void
                         () =>
                         {
                             endDate.setDate(endDate.getDate() + 1);
-                            Assert.strictEqual(
+                            strictEqual(
                                 period.next().getTime() - period.next().getTime(),
                                 startDate.getTime() - endDate.getTime());
                         });
@@ -140,7 +142,7 @@ export function TimePeriodTests(): void
                         () =>
                         {
                             endDate.setHours(endDate.getHours() + 1);
-                            Assert.strictEqual(
+                            strictEqual(
                                 period.next().getTime() - period.next().getTime(),
                                 startDate.getTime() - endDate.getTime());
                         });

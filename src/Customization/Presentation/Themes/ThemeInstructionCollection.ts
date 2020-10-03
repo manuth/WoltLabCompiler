@@ -1,5 +1,5 @@
-import Path = require("path");
-import FileSystem = require("fs-extra");
+import { lstatSync, pathExistsSync, readdirSync } from "fs-extra";
+import { join, resolve } from "upath";
 import { ThemeInstruction } from "../../../PackageSystem/Instructions/Customization/Presentation/ThemeInstruction";
 import { IThemeOptions } from "./IThemeOptions";
 
@@ -18,17 +18,17 @@ export class ThemeInstructionCollection extends Array<ThemeInstruction>
     {
         super();
 
-        let themeFolders: string[] = FileSystem.pathExistsSync(path) ?
-            FileSystem.readdirSync(path).map(
-                (entry: string) => Path.join(path, entry)).filter(
-                    (entry: string) => FileSystem.lstatSync(entry).isDirectory()) :
+        let themeFolders: string[] = pathExistsSync(path) ?
+            readdirSync(path).map(
+                (entry: string) => join(path, entry)).filter(
+                    (entry: string) => lstatSync(entry).isDirectory()) :
             [];
 
         for (let themeFolder of themeFolders)
         {
-            let metaFile: string = Path.resolve(Path.join(themeFolder, "Theme"));
+            let metaFile: string = resolve(join(themeFolder, "Theme"));
 
-            if (FileSystem.pathExistsSync(metaFile + ".ts"))
+            if (pathExistsSync(metaFile + ".ts"))
             {
                 let currentDir: string = process.cwd();
                 process.chdir(themeFolder);

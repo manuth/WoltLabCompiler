@@ -1,4 +1,4 @@
-import Assert = require("assert");
+import { strictEqual } from "assert";
 import { Node } from "../../NodeSystem/Node";
 import { NodeItem } from "../../NodeSystem/NodeItem";
 
@@ -29,7 +29,7 @@ export function NodeItemTests(): void
                         "Checking whether the `Node`-property is set correctly after initializing a new `NodeItem`…",
                         () =>
                         {
-                            Assert.strictEqual(node.Item.Node, node);
+                            strictEqual(node.Item.Node, node);
                         });
                 });
         });

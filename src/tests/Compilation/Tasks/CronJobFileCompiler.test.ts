@@ -1,5 +1,5 @@
-import Assert = require("assert");
-import FileSystem = require("fs-extra");
+import { strictEqual } from "assert";
+import { readFile } from "fs-extra";
 import { TempFile } from "temp-filesystem";
 import { DOMParser } from "xmldom";
 import { CronJobFileCompiler } from "../../../Compilation/Tasks/CronJobFileCompiler";
@@ -103,7 +103,7 @@ export function CronJobFileCompilerTests(): void
                                         "Checking whether the content of the compiled file is valid xml…",
                                         async () =>
                                         {
-                                            let document: Document = new DOMParser().parseFromString((await FileSystem.readFile(tempFile.FullName)).toString());
+                                            let document: Document = new DOMParser().parseFromString((await readFile(tempFile.FullName)).toString());
                                             importEditor = new XMLEditor(document.documentElement).GetChildrenByTag("import")[0];
                                         });
                                 });
@@ -129,7 +129,7 @@ export function CronJobFileCompilerTests(): void
                                                 "Checking whether the cron-job is present…",
                                                 () =>
                                                 {
-                                                    Assert.strictEqual(importEditor.HasTag(cronJobTag, true), true);
+                                                    strictEqual(importEditor.HasTag(cronJobTag, true), true);
                                                     cronJobEditor = importEditor.GetChildrenByTag(cronJobTag)[0];
                                                 });
                                         });
@@ -174,14 +174,14 @@ export function CronJobFileCompilerTests(): void
                                                 "Checking the name of the cron-job…",
                                                 () =>
                                                 {
-                                                    Assert.strictEqual(cronJobEditor.GetAttribute(nameAttribute), cronJobName);
+                                                    strictEqual(cronJobEditor.GetAttribute(nameAttribute), cronJobName);
                                                 });
 
                                             test(
                                                 "Checking the class-name of the cron-job…",
                                                 () =>
                                                 {
-                                                    Assert.strictEqual(cronJobEditor.HasText(classTag, className), true);
+                                                    strictEqual(cronJobEditor.HasText(classTag, className), true);
                                                 });
 
                                             test(
@@ -192,10 +192,10 @@ export function CronJobFileCompilerTests(): void
                                                     {
                                                         if (editor.HasAttribute(languageAttribute))
                                                         {
-                                                            Assert.strictEqual(editor.GetAttribute(languageAttribute), locale);
+                                                            strictEqual(editor.GetAttribute(languageAttribute), locale);
                                                         }
 
-                                                        Assert.strictEqual(editor.TextContent, editor.HasAttribute(languageAttribute) ? localizedDescription : invariantDescription);
+                                                        strictEqual(editor.TextContent, editor.HasAttribute(languageAttribute) ? localizedDescription : invariantDescription);
                                                     }
                                                 });
 
@@ -203,26 +203,26 @@ export function CronJobFileCompilerTests(): void
                                                 "Checking whether the permission-settings are correct…",
                                                 () =>
                                                 {
-                                                    Assert.strictEqual(cronJobEditor.HasText(disableTag, allowDisable ? "1" : "0"), true);
-                                                    Assert.strictEqual(cronJobEditor.HasText(editTag, allowEdit ? "1" : "0"), true);
+                                                    strictEqual(cronJobEditor.HasText(disableTag, allowDisable ? "1" : "0"), true);
+                                                    strictEqual(cronJobEditor.HasText(editTag, allowEdit ? "1" : "0"), true);
                                                 });
 
                                             test(
                                                 "Checking whether the options are correct…",
                                                 () =>
                                                 {
-                                                    Assert.strictEqual(cronJobEditor.GetText(optionsTag), options.join(","));
+                                                    strictEqual(cronJobEditor.GetText(optionsTag), options.join(","));
                                                 });
 
                                             test(
                                                 "Checking whether the time-period is correct…",
                                                 () =>
                                                 {
-                                                    Assert.strictEqual(cronJobEditor.HasText(minuteTag, period.Minute), true);
-                                                    Assert.strictEqual(cronJobEditor.HasText(hourTag, period.Hour), true);
-                                                    Assert.strictEqual(cronJobEditor.HasText(dayOfMonthTag, period.DayOfMonth), true);
-                                                    Assert.strictEqual(cronJobEditor.HasText(monthTag, period.Month), true);
-                                                    Assert.strictEqual(cronJobEditor.HasText(dayOfWeekTag, period.DayOfWeek), true);
+                                                    strictEqual(cronJobEditor.HasText(minuteTag, period.Minute), true);
+                                                    strictEqual(cronJobEditor.HasText(hourTag, period.Hour), true);
+                                                    strictEqual(cronJobEditor.HasText(dayOfMonthTag, period.DayOfMonth), true);
+                                                    strictEqual(cronJobEditor.HasText(monthTag, period.Month), true);
+                                                    strictEqual(cronJobEditor.HasText(dayOfWeekTag, period.DayOfWeek), true);
                                                 });
                                         });
                                 });

@@ -1,5 +1,5 @@
-import Assert = require("assert");
-import FileSystem = require("fs-extra");
+import { strictEqual } from "assert";
+import { readFile } from "fs-extra";
 import { TempFile } from "temp-filesystem";
 import { DOMParser } from "xmldom";
 import { OptionFileCompiler } from "../../../Compilation/Options/OptionFileCompiler";
@@ -248,7 +248,7 @@ export function OptionFileCompilerTests(): void
                                         "Checking whether the content is valid xml…",
                                         async () =>
                                         {
-                                            let document = new DOMParser().parseFromString((await FileSystem.readFile(tempFile.FullName)).toString());
+                                            let document = new DOMParser().parseFromString((await readFile(tempFile.FullName)).toString());
                                             importEditor = new XMLEditor(document.documentElement).GetChildrenByTag("import")[0];
                                         });
                                 });
@@ -275,7 +275,7 @@ export function OptionFileCompilerTests(): void
                                                 "Checking whether the category-list is present…",
                                                 () =>
                                                 {
-                                                    Assert.strictEqual(importEditor.HasTag(categoriesTag, true), true);
+                                                    strictEqual(importEditor.HasTag(categoriesTag, true), true);
                                                     categoriesEditor = importEditor.GetChildrenByTag(categoriesTag)[0];
                                                 });
                                         });
@@ -313,7 +313,7 @@ export function OptionFileCompilerTests(): void
                                                         "Checking whether any category is present…",
                                                         () =>
                                                         {
-                                                            Assert.strictEqual(categoriesEditor.HasTag(categoryTag), true);
+                                                            strictEqual(categoriesEditor.HasTag(categoryTag), true);
                                                             categories = categoriesEditor.GetChildrenByTag(categoryTag);
                                                         });
 
@@ -349,7 +349,7 @@ export function OptionFileCompilerTests(): void
                                                                             return category.GetAttribute(nameAttribute) === rootCategoryNode.FullName;
                                                                         });
 
-                                                                    Assert.strictEqual(filtered.length, 1);
+                                                                    strictEqual(filtered.length, 1);
                                                                     categoryEditor = filtered[0];
                                                                 });
                                                         });
@@ -364,11 +364,11 @@ export function OptionFileCompilerTests(): void
                                                                 {
                                                                     if (section)
                                                                     {
-                                                                        Assert.strictEqual(categoryEditor.HasText(parentTag, section), true);
+                                                                        strictEqual(categoryEditor.HasText(parentTag, section), true);
                                                                     }
                                                                     else
                                                                     {
-                                                                        Assert.strictEqual(categoryEditor.HasTag(parentTag), false);
+                                                                        strictEqual(categoryEditor.HasTag(parentTag), false);
                                                                     }
                                                                 });
 
@@ -378,11 +378,11 @@ export function OptionFileCompilerTests(): void
                                                                 {
                                                                     if (rootShowOrder)
                                                                     {
-                                                                        Assert.strictEqual(categoryEditor.HasText(showOrderTag, rootShowOrder.toString()), true);
+                                                                        strictEqual(categoryEditor.HasText(showOrderTag, rootShowOrder.toString()), true);
                                                                     }
                                                                     else
                                                                     {
-                                                                        Assert.strictEqual(categoryEditor.HasTag(showOrderTag), false);
+                                                                        strictEqual(categoryEditor.HasTag(showOrderTag), false);
                                                                     }
                                                                 });
 
@@ -392,7 +392,7 @@ export function OptionFileCompilerTests(): void
                                                                 {
                                                                     if (rootEnableOptions.length > 0)
                                                                     {
-                                                                        Assert.strictEqual(categoryEditor.GetText(enableOptionsTag), enableOptions.join(","));
+                                                                        strictEqual(categoryEditor.GetText(enableOptionsTag), enableOptions.join(","));
                                                                     }
                                                                 });
                                                         });
@@ -418,7 +418,7 @@ export function OptionFileCompilerTests(): void
                                                                             return category.GetAttribute(nameAttribute) === categoryNode.FullName;
                                                                         });
 
-                                                                    Assert.strictEqual(filtered.length, 1);
+                                                                    strictEqual(filtered.length, 1);
                                                                     categoryEditor = filtered[0];
                                                                 });
                                                         });
@@ -433,11 +433,11 @@ export function OptionFileCompilerTests(): void
                                                                 {
                                                                     if (section)
                                                                     {
-                                                                        Assert.strictEqual(categoryEditor.HasText(parentTag, categoryNode.Parent.FullName), true);
+                                                                        strictEqual(categoryEditor.HasText(parentTag, categoryNode.Parent.FullName), true);
                                                                     }
                                                                     else
                                                                     {
-                                                                        Assert.strictEqual(categoryEditor.HasTag(parentTag), false);
+                                                                        strictEqual(categoryEditor.HasTag(parentTag), false);
                                                                     }
                                                                 });
 
@@ -447,11 +447,11 @@ export function OptionFileCompilerTests(): void
                                                                 {
                                                                     if (showOrder)
                                                                     {
-                                                                        Assert.strictEqual(categoryEditor.HasText(showOrderTag, showOrder.toString()), true);
+                                                                        strictEqual(categoryEditor.HasText(showOrderTag, showOrder.toString()), true);
                                                                     }
                                                                     else
                                                                     {
-                                                                        Assert.strictEqual(categoryEditor.HasTag(showOrderTag), false);
+                                                                        strictEqual(categoryEditor.HasTag(showOrderTag), false);
                                                                     }
                                                                 });
 
@@ -461,7 +461,7 @@ export function OptionFileCompilerTests(): void
                                                                 {
                                                                     if (enableOptions.length > 0)
                                                                     {
-                                                                        Assert.strictEqual(categoryEditor.GetText(enableOptionsTag), enableOptions.join(","));
+                                                                        strictEqual(categoryEditor.GetText(enableOptionsTag), enableOptions.join(","));
                                                                     }
                                                                 });
                                                         });
@@ -491,7 +491,7 @@ export function OptionFileCompilerTests(): void
                                                 "Checking whether the option-list is present…",
                                                 () =>
                                                 {
-                                                    Assert.strictEqual(importEditor.HasTag(optionsTag, true), true);
+                                                    strictEqual(importEditor.HasTag(optionsTag, true), true);
                                                     optionsEditor = importEditor.GetChildrenByTag(optionsTag)[0];
                                                 });
                                         });
@@ -518,7 +518,7 @@ export function OptionFileCompilerTests(): void
                                                         "Checking whether exactly one option is present…",
                                                         () =>
                                                         {
-                                                            Assert.strictEqual(optionsEditor.HasTag(optionTag, true), true);
+                                                            strictEqual(optionsEditor.HasTag(optionTag, true), true);
                                                             optionEditor = optionsEditor.GetChildrenByTag(optionTag)[0];
                                                         });
                                                 });
@@ -553,55 +553,55 @@ export function OptionFileCompilerTests(): void
                                                         "Checking whether the name is correct…",
                                                         () =>
                                                         {
-                                                            Assert.strictEqual(optionEditor.HasAttribute(nameAttribute, option.Name), true);
+                                                            strictEqual(optionEditor.HasAttribute(nameAttribute, option.Name), true);
                                                         });
 
                                                     test(
                                                         "Checking whether the category is correct…",
                                                         () =>
                                                         {
-                                                            Assert.strictEqual(optionEditor.HasText(categoryTag, categoryNode.FullName), true);
+                                                            strictEqual(optionEditor.HasText(categoryTag, categoryNode.FullName), true);
                                                         });
 
                                                     test(
                                                         "Checking whether the type is correct…",
                                                         () =>
                                                         {
-                                                            Assert.strictEqual(optionEditor.HasText(typeTag, option.Type), true);
+                                                            strictEqual(optionEditor.HasText(typeTag, option.Type), true);
                                                         });
 
                                                     test(
                                                         "Checking whether the default value is correct…",
                                                         () =>
                                                         {
-                                                            Assert.strictEqual(optionEditor.HasText(defaultValueTag, `${option.DefaultValue}`), true);
+                                                            strictEqual(optionEditor.HasText(defaultValueTag, `${option.DefaultValue}`), true);
                                                         });
 
                                                     test(
                                                         "Checking whether the show-order is correct…",
                                                         () =>
                                                         {
-                                                            Assert.strictEqual(optionEditor.HasText(showOrderTag, option.ShowOrder.toString()), true);
+                                                            strictEqual(optionEditor.HasText(showOrderTag, option.ShowOrder.toString()), true);
                                                         });
 
                                                     test(
                                                         "Checking whether the validation-pattern is correct…",
                                                         () =>
                                                         {
-                                                            Assert.strictEqual(optionEditor.HasText(patternTag, option.ValidationPattern.source), true);
+                                                            strictEqual(optionEditor.HasText(patternTag, option.ValidationPattern.source), true);
                                                         });
 
                                                     test(
                                                         "Checking whether the items are correct…",
                                                         () =>
                                                         {
-                                                            Assert.strictEqual(optionEditor.HasTag(itemsTag, true), true);
+                                                            strictEqual(optionEditor.HasTag(itemsTag, true), true);
                                                             let lines = optionEditor.GetChildrenByTag(itemsTag)[0].TextContent.split("\n");
 
                                                             for (let item of option.Items)
                                                             {
                                                                 let pattern = new RegExp(`^${item.Value}:\\.*?.${option.Name}\\.${item.Name}$`, "g");
-                                                                Assert.strictEqual(lines.filter((line: string) => pattern.test(line)).length, 1);
+                                                                strictEqual(lines.filter((line: string) => pattern.test(line)).length, 1);
                                                             }
                                                         });
 
@@ -609,14 +609,14 @@ export function OptionFileCompilerTests(): void
                                                         "Checking whether the dependent options are correct…",
                                                         () =>
                                                         {
-                                                            Assert.strictEqual(optionEditor.GetText(optionsTag), option.Options.join(","));
+                                                            strictEqual(optionEditor.GetText(optionsTag), option.Options.join(","));
                                                         });
 
                                                     test(
                                                         'Checking whether the "enableoptions" property is correct…',
                                                         () =>
                                                         {
-                                                            Assert.strictEqual(optionEditor.GetText(enableOptionsTag), option.EnableOptions.join(","));
+                                                            strictEqual(optionEditor.GetText(enableOptionsTag), option.EnableOptions.join(","));
                                                         });
                                                 });
                                         });

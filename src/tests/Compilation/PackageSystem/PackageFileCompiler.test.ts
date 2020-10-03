@@ -1,7 +1,7 @@
-import Assert = require("assert");
-import FileSystem = require("fs-extra");
+import { strictEqual } from "assert";
+import { readFile } from "fs-extra";
 import { TempFile } from "temp-filesystem";
-import UPath = require("upath");
+import { join } from "upath";
 import { DOMParser } from "xmldom";
 import { PackageFileCompiler } from "../../../Compilation/PackageSystem/PackageFileCompiler";
 import { ILocalization } from "../../../Globalization/ILocalization";
@@ -237,7 +237,7 @@ export function PackageFileCompilerTests(): void
                         "Checking the integrity of the compiled file…",
                         () =>
                         {
-                            let $package: XMLEditor;
+                            let extensionPackage: XMLEditor;
 
                             suite(
                                 "General",
@@ -257,22 +257,22 @@ export function PackageFileCompilerTests(): void
                                         "Checking whether the content of the content of the document is valid xml…",
                                         async () =>
                                         {
-                                            let document: Document = new DOMParser().parseFromString((await FileSystem.readFile(tempFile.FullName)).toString());
-                                            $package = new XMLEditor(document.documentElement);
+                                            let document: Document = new DOMParser().parseFromString((await readFile(tempFile.FullName)).toString());
+                                            extensionPackage = new XMLEditor(document.documentElement);
                                         });
 
                                     test(
                                         "Checking whether the name of the document-element tag is correct…",
                                         () =>
                                         {
-                                            Assert.strictEqual($package.TagName, rootTag);
+                                            strictEqual(extensionPackage.TagName, rootTag);
                                         });
 
                                     test(
                                         "Checking whether the identifier is correct…",
                                         () =>
                                         {
-                                            Assert.strictEqual($package.HasAttribute(identifierAttribute, identifier), true);
+                                            strictEqual(extensionPackage.HasAttribute(identifierAttribute, identifier), true);
                                         });
                                 });
 
@@ -302,8 +302,8 @@ export function PackageFileCompilerTests(): void
                                                         "Checking whether the package-information is present…",
                                                         () =>
                                                         {
-                                                            Assert.strictEqual($package.HasTag(packageInfoTag, true), true);
-                                                            packageInfo = $package.GetChildrenByTag(packageInfoTag)[0];
+                                                            strictEqual(extensionPackage.HasTag(packageInfoTag, true), true);
+                                                            packageInfo = extensionPackage.GetChildrenByTag(packageInfoTag)[0];
                                                         });
                                                 });
 
@@ -337,7 +337,7 @@ export function PackageFileCompilerTests(): void
 
                                                                 if (editor.HasAttribute(languageAttribute))
                                                                 {
-                                                                    Assert.strictEqual(editor.GetAttribute(languageAttribute), locale);
+                                                                    strictEqual(editor.GetAttribute(languageAttribute), locale);
                                                                     expected = localizedName;
                                                                 }
                                                                 else
@@ -345,7 +345,7 @@ export function PackageFileCompilerTests(): void
                                                                     expected = invariantName;
                                                                 }
 
-                                                                Assert.strictEqual(editor.TextContent, expected);
+                                                                strictEqual(editor.TextContent, expected);
                                                             }
                                                         });
 
@@ -359,7 +359,7 @@ export function PackageFileCompilerTests(): void
 
                                                                 if (editor.HasAttribute(languageAttribute))
                                                                 {
-                                                                    Assert.strictEqual(editor.GetAttribute(languageAttribute), locale);
+                                                                    strictEqual(editor.GetAttribute(languageAttribute), locale);
                                                                     expected = localizedDescription;
                                                                 }
                                                                 else
@@ -367,7 +367,7 @@ export function PackageFileCompilerTests(): void
                                                                     expected = invariantDescription;
                                                                 }
 
-                                                                Assert.strictEqual(editor.TextContent, expected);
+                                                                strictEqual(editor.TextContent, expected);
                                                             }
                                                         });
 
@@ -375,14 +375,14 @@ export function PackageFileCompilerTests(): void
                                                         "Checking whether the version is correct…",
                                                         () =>
                                                         {
-                                                            Assert.strictEqual(packageInfo.HasText(versionTag, version), true);
+                                                            strictEqual(packageInfo.HasText(versionTag, version), true);
                                                         });
 
                                                     test(
                                                         "Checking whether the date is correct…",
                                                         () =>
                                                         {
-                                                            Assert.strictEqual(new Date(packageInfo.GetText(dateTag)).getTime(), date.getTime());
+                                                            strictEqual(new Date(packageInfo.GetText(dateTag)).getTime(), date.getTime());
                                                         });
                                                 });
                                         });
@@ -409,8 +409,8 @@ export function PackageFileCompilerTests(): void
                                                         "Checking whether the author-information is present…",
                                                         () =>
                                                         {
-                                                            Assert.strictEqual($package.HasTag(authorInfoTag, true), true);
-                                                            authorInfo = $package.GetChildrenByTag(authorInfoTag)[0];
+                                                            strictEqual(extensionPackage.HasTag(authorInfoTag, true), true);
+                                                            authorInfo = extensionPackage.GetChildrenByTag(authorInfoTag)[0];
                                                         });
                                                 });
 
@@ -466,8 +466,8 @@ export function PackageFileCompilerTests(): void
                                                         "Checking whether the list of the required packages is present…",
                                                         () =>
                                                         {
-                                                            Assert.strictEqual($package.HasTag(requiredPackagesTag, true), true);
-                                                            packages = $package.GetChildrenByTag(requiredPackagesTag)[0];
+                                                            strictEqual(extensionPackage.HasTag(requiredPackagesTag, true), true);
+                                                            packages = extensionPackage.GetChildrenByTag(requiredPackagesTag)[0];
                                                         });
                                                 });
 
@@ -489,7 +489,7 @@ export function PackageFileCompilerTests(): void
                                                         "Checking whether the tag-names are correct…",
                                                         () =>
                                                         {
-                                                            Assert.strictEqual(
+                                                            strictEqual(
                                                                 requiredPackageNodes.length,
                                                                 packages.ChildNodes.filter((node: Node) => node.nodeType === node.ELEMENT_NODE).length);
                                                         });
@@ -500,7 +500,7 @@ export function PackageFileCompilerTests(): void
                                                         {
                                                             for (let requiredPackage of requiredPackages)
                                                             {
-                                                                Assert.strictEqual(
+                                                                strictEqual(
                                                                     requiredPackageNodes.filter(
                                                                         (requiredPackageNode: XMLEditor) =>
                                                                         {
@@ -536,8 +536,8 @@ export function PackageFileCompilerTests(): void
                                                         "Checking whether the list of conflicting packages is present…",
                                                         () =>
                                                         {
-                                                            Assert.strictEqual($package.HasTag(conflictingPackagesTag, true), true);
-                                                            packages = $package.GetChildrenByTag(conflictingPackagesTag)[0];
+                                                            strictEqual(extensionPackage.HasTag(conflictingPackagesTag, true), true);
+                                                            packages = extensionPackage.GetChildrenByTag(conflictingPackagesTag)[0];
                                                         });
                                                 });
 
@@ -559,7 +559,7 @@ export function PackageFileCompilerTests(): void
                                                         "Checking whether the tag-names are correct…",
                                                         () =>
                                                         {
-                                                            Assert.strictEqual(
+                                                            strictEqual(
                                                                 conflictingPackageNodes.length,
                                                                 packages.ChildNodes.filter((node: Node) => node.nodeType === node.ELEMENT_NODE).length);
                                                         });
@@ -570,7 +570,7 @@ export function PackageFileCompilerTests(): void
                                                         {
                                                             for (let conflictingPackage of conflictingPackages)
                                                             {
-                                                                Assert.strictEqual(
+                                                                strictEqual(
                                                                     conflictingPackageNodes.filter(
                                                                         (conflictingPackageNode: XMLEditor) =>
                                                                         {
@@ -605,8 +605,8 @@ export function PackageFileCompilerTests(): void
                                                         "Checking whether the list of optional packages is present…",
                                                         () =>
                                                         {
-                                                            Assert.strictEqual($package.HasTag(optionalPackagesTag, true), true);
-                                                            packages = $package.GetChildrenByTag(optionalPackagesTag)[0];
+                                                            strictEqual(extensionPackage.HasTag(optionalPackagesTag, true), true);
+                                                            packages = extensionPackage.GetChildrenByTag(optionalPackagesTag)[0];
                                                         });
                                                 });
 
@@ -628,7 +628,7 @@ export function PackageFileCompilerTests(): void
                                                         "Checking whether the tag-names are correct…",
                                                         () =>
                                                         {
-                                                            Assert.strictEqual(
+                                                            strictEqual(
                                                                 optionalPackageNodes.length,
                                                                 packages.ChildNodes.filter((node: Node) => node.nodeType === node.ELEMENT_NODE).length);
                                                         });
@@ -639,7 +639,7 @@ export function PackageFileCompilerTests(): void
                                                         {
                                                             for (let optionalPackage of optionalPackages)
                                                             {
-                                                                Assert.strictEqual(
+                                                                strictEqual(
                                                                     optionalPackageNodes.filter(
                                                                         (optionalPackageNode: XMLEditor) =>
                                                                         {
@@ -670,10 +670,10 @@ export function PackageFileCompilerTests(): void
                                                 "Checking whether the compatibility-information looks like expected…",
                                                 () =>
                                                 {
-                                                    Assert.strictEqual($package.HasTag(compatibilityTag, true), true);
-                                                    let compatibility: XMLEditor = $package.GetChildrenByTag(compatibilityTag)[0];
-                                                    Assert.strictEqual(compatibility.HasTag(apiTag, true), true);
-                                                    Assert.strictEqual(compatibility.GetChildrenByTag(apiTag)[0].HasAttribute("version", "2018"), true);
+                                                    strictEqual(extensionPackage.HasTag(compatibilityTag, true), true);
+                                                    let compatibility: XMLEditor = extensionPackage.GetChildrenByTag(compatibilityTag)[0];
+                                                    strictEqual(compatibility.HasTag(apiTag, true), true);
+                                                    strictEqual(compatibility.GetChildrenByTag(apiTag)[0].HasAttribute("version", "2018"), true);
                                                 });
                                         });
 
@@ -689,7 +689,7 @@ export function PackageFileCompilerTests(): void
                                             suiteSetup(
                                                 () =>
                                                 {
-                                                    instructionLists = $package.GetChildrenByTag("instructions");
+                                                    instructionLists = extensionPackage.GetChildrenByTag("instructions");
                                                     instructionTag = "instruction";
                                                     typeAttribute = "type";
 
@@ -697,7 +697,7 @@ export function PackageFileCompilerTests(): void
                                                     {
                                                         for (let instruction of instructionSet.Instructions)
                                                         {
-                                                            Assert.strictEqual(
+                                                            strictEqual(
                                                                 node.GetElementsByTag(instructionTag).filter(
                                                                     (instructionEditor: XMLEditor) =>
                                                                     {
@@ -705,7 +705,7 @@ export function PackageFileCompilerTests(): void
 
                                                                         if (instruction.Type === "language")
                                                                         {
-                                                                            textContent = UPath.join(instruction.FullName, "*");
+                                                                            textContent = join(instruction.FullName, "*");
                                                                         }
                                                                         else
                                                                         {
@@ -737,7 +737,7 @@ export function PackageFileCompilerTests(): void
                                                                     let filtered: XMLEditor[] = instructionLists.filter(
                                                                         (instructionList: XMLEditor) => instructionList.HasAttribute(typeAttribute, "install"));
 
-                                                                    Assert.strictEqual(filtered.length, 1);
+                                                                    strictEqual(filtered.length, 1);
                                                                     installSetEditor = filtered[0];
                                                                 });
                                                         });
@@ -776,7 +776,7 @@ export function PackageFileCompilerTests(): void
                                                                                     instructionList.HasAttribute("fromversion", updateSet.FromVersion);
                                                                             });
 
-                                                                        Assert.strictEqual(filtered.length, 1);
+                                                                        strictEqual(filtered.length, 1);
                                                                         validateInstructionSet(updateSet, filtered[0]);
                                                                     }
                                                                 });

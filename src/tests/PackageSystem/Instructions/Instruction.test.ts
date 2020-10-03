@@ -1,5 +1,5 @@
-import Assert = require("assert");
-import UPath = require("upath");
+import { strictEqual } from "assert";
+import { join } from "upath";
 import { Instruction } from "../../../PackageSystem/Instructions/Instruction";
 import { Package } from "../../../PackageSystem/Package";
 
@@ -56,7 +56,7 @@ export function InstructionTests(): void
                                 () =>
                                 {
                                     instruction.Collection = extensionPackage.InstallSet;
-                                    Assert.strictEqual(instruction.Collection, extensionPackage.InstallSet);
+                                    strictEqual(instruction.Collection, extensionPackage.InstallSet);
                                 });
 
                             test(
@@ -64,7 +64,7 @@ export function InstructionTests(): void
                                 () =>
                                 {
                                     instruction.Collection = null;
-                                    Assert.strictEqual(instruction.Collection, null);
+                                    strictEqual(instruction.Collection, null);
                                 });
 
                             test(
@@ -72,7 +72,7 @@ export function InstructionTests(): void
                                 () =>
                                 {
                                     extensionPackage.InstallSet.push(instruction);
-                                    Assert.strictEqual(instruction.Collection, extensionPackage.InstallSet);
+                                    strictEqual(instruction.Collection, extensionPackage.InstallSet);
                                 });
 
                             test(
@@ -80,7 +80,7 @@ export function InstructionTests(): void
                                 () =>
                                 {
                                     extensionPackage.InstallSet.pop();
-                                    Assert.strictEqual(instruction.Collection, null);
+                                    strictEqual(instruction.Collection, null);
                                 });
                         });
                 });
@@ -99,7 +99,7 @@ export function InstructionTests(): void
                         "Checking whether the `DestinationRoot` is correct…",
                         () =>
                         {
-                            Assert.strictEqual(instruction.DestinationRoot, extensionPackage.InstallSet.Directory);
+                            strictEqual(instruction.DestinationRoot, extensionPackage.InstallSet.Directory);
                         });
                 });
 
@@ -111,9 +111,9 @@ export function InstructionTests(): void
                         "Checking whether the `FullName`-property is correct…",
                         () =>
                         {
-                            Assert.strictEqual(
+                            strictEqual(
                                 instruction.FullName,
-                                UPath.join(extensionPackage.InstallSet.Directory, instruction.FileName));
+                                join(extensionPackage.InstallSet.Directory, instruction.FileName));
                         });
                 });
         });
