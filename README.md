@@ -79,8 +79,7 @@ This creates a `.tar`-package called `MyPackage.tar`.
 ***Compiling a set of Localizations***
 ```ts
 import Path = require("path");
-import { LocalizationSetCompiler } from "./System/Compilation/Globalization/LocalizationSetCompiler";
-import { TranslationInstruction } from "./System/PackageSystem/Instructions/Globalization/TranslationInstruction";
+import { LocalizationSetCompiler, TranslationInstruction } from "woltlab-compiler";
 
 (async () =>
 {
