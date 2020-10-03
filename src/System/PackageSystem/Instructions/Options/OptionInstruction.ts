@@ -1,4 +1,3 @@
-import { isNullOrUndefined } from "util";
 import { LocalizationNode } from "../../../Globalization/LocalizationNode";
 import { INamedObject } from "../../../INamedObject";
 import { Node } from "../../../NodeSystem/Node";
@@ -29,18 +28,21 @@ export abstract class OptionInstruction<TCategory extends Category<TOption, TOpt
      * Initializes a new instance of the `OptionInstruction<TCategory, TCategoryOptions, TOption, TOptionOptions>` class.
      *
      * @param options
+     * The options of the option-instruction.
+     *
      * @param generator
+     * A component for creating categories.
      */
     public constructor(options: IOptionInstructionOptions<TCategoryOptions>, generator: (node: Node<TCategory, TCategoryOptions>, options: TCategoryOptions) => TCategory)
     {
         super(options, generator);
 
-        if (!isNullOrUndefined(options.CategoriesToDelete))
+        if (options.CategoriesToDelete)
         {
             this.CategoriesToDelete.push(...options.CategoriesToDelete);
         }
 
-        if (!isNullOrUndefined(options.OptionsToDelete))
+        if (options.OptionsToDelete)
         {
             this.OptionsToDelete.push(...options.OptionsToDelete);
         }
@@ -93,8 +95,11 @@ export abstract class OptionInstruction<TCategory extends Category<TOption, TOpt
 
     /**
      * @inheritdoc
+     *
+     * @returns
+     * The messages of the options-instruction.
      */
-    public GetMessages(): { [locale: string]: { [category: string]: { [key: string]: string } } }
+    public GetMessages(): Record<string, Record<string, Record<string, string>>>
     {
         let result: TranslationInstruction = new TranslationInstruction(
             {
@@ -109,7 +114,7 @@ export abstract class OptionInstruction<TCategory extends Category<TOption, TOpt
 
         let optionNode: LocalizationNode;
 
-        if (!isNullOrUndefined(this.OptionCategory))
+        if (this.OptionCategory)
         {
             optionNode = new LocalizationNode(
                 {
@@ -125,7 +130,7 @@ export abstract class OptionInstruction<TCategory extends Category<TOption, TOpt
 
         let categoryNode: LocalizationNode;
 
-        if (!isNullOrUndefined(this.CategoryCategory))
+        if (this.CategoryCategory)
         {
             categoryNode = new LocalizationNode(
                 {
@@ -143,7 +148,7 @@ export abstract class OptionInstruction<TCategory extends Category<TOption, TOpt
         {
             for (let node of rootNode.GetAllNodes())
             {
-                if (!isNullOrUndefined(node.Item))
+                if (node.Item)
                 {
                     let categoryTranslations: LocalizationNode = new LocalizationNode(
                         {
@@ -151,7 +156,8 @@ export abstract class OptionInstruction<TCategory extends Category<TOption, TOpt
                             Item: node.Item.DisplayName.GetLocales().length > 0 ?
                                 {
                                     Translations: node.Item.DisplayName.Data
-                                } : undefined
+                                } :
+                                undefined
                         });
 
                     if (node.Item.Description.GetLocales().length > 0)
@@ -174,7 +180,8 @@ export abstract class OptionInstruction<TCategory extends Category<TOption, TOpt
                                 Item: option.DisplayName.GetLocales().length > 0 ?
                                     {
                                         Translations: option.DisplayName.Data
-                                    } : undefined
+                                    } :
+                                    undefined
                             });
 
                         for (let optionItem of option.Items)

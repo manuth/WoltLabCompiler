@@ -1,4 +1,3 @@
-import { isNullOrUndefined } from "util";
 import { BBCodeInstruction } from "../../PackageSystem/Instructions/Customization/BBCodeInstruction";
 import { XMLEditor } from "../../Serialization/XMLEditor";
 import { NamedObjectDeletionFileCompiler } from "../NamedObjectDeletionFileCompiler";
@@ -22,7 +21,7 @@ export class BBCodeFileCompiler extends NamedObjectDeletionFileCompiler<BBCodeIn
     /**
      * @inheritdoc
      */
-    protected get SchemaLocation()
+    protected get SchemaLocation(): string
     {
         return "https://www.woltlab.com/XSD/vortex/bbcode.xsd";
     }
@@ -30,15 +29,18 @@ export class BBCodeFileCompiler extends NamedObjectDeletionFileCompiler<BBCodeIn
     /**
      * @inheritdoc
      */
-    protected get ObjectTagName()
+    protected get ObjectTagName(): string
     {
         return "bbcode";
     }
 
     /**
      * @inheritdoc
+     *
+     * @returns
+     * The serialized import.
      */
-    protected CreateImport()
+    protected CreateImport(): Element
     {
         let editor = new XMLEditor(super.CreateImport());
 
@@ -55,17 +57,17 @@ export class BBCodeFileCompiler extends NamedObjectDeletionFileCompiler<BBCodeIn
                         bbCodeEditor.AddTextElement("buttonLabel", `wcf.editor.button.${bbCode.Name}`);
                     }
 
-                    if (!isNullOrUndefined(bbCode.Icon))
+                    if (bbCode.Icon)
                     {
                         bbCodeEditor.AddTextElement("wysiwygicon", bbCode.Icon);
                     }
 
-                    if (!isNullOrUndefined(bbCode.ClassName))
+                    if (bbCode.ClassName)
                     {
                         bbCodeEditor.AddTextElement("classname", bbCode.ClassName);
                     }
 
-                    if (!isNullOrUndefined(bbCode.TagName))
+                    if (bbCode.TagName)
                     {
                         bbCodeEditor.AddTextElement("htmlopen", bbCode.TagName);
 
@@ -97,12 +99,12 @@ export class BBCodeFileCompiler extends NamedObjectDeletionFileCompiler<BBCodeIn
                                             attributeEditor.AddTextElement("required", attribute.Required ? "1" : "0");
                                             attributeEditor.AddTextElement("useText", attribute.ValueByContent ? "1" : "0");
 
-                                            if (!isNullOrUndefined(attribute.Code))
+                                            if (attribute.Code)
                                             {
                                                 attributeEditor.AddTextElement("html", attribute.Code);
                                             }
 
-                                            if (!isNullOrUndefined(attribute.ValidationPattern))
+                                            if (attribute.ValidationPattern)
                                             {
                                                 attributeEditor.AddTextElement("validationpattern", attribute.ValidationPattern.source);
                                             }

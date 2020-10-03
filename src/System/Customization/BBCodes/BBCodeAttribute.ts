@@ -1,4 +1,3 @@
-import { isNullOrUndefined } from "util";
 import { IBBCodeAttributeOptions } from "./IBBCodeAttributeOptions";
 
 /**
@@ -29,26 +28,29 @@ export class BBCodeAttribute
     private validationPattern: RegExp = null;
 
     /**
+     * Initializes a new instance of the `BBCodeAttribute` class.
+     *
      * @param options
+     * The options of the attribute.
      */
     public constructor(options: IBBCodeAttributeOptions)
     {
-        if (!isNullOrUndefined(options.Required))
+        if (options.Required)
         {
             this.required = options.Required;
         }
 
-        if (!isNullOrUndefined(options.ValueByContent))
+        if (options.ValueByContent)
         {
             this.valueByContent = options.ValueByContent;
         }
 
-        if (!isNullOrUndefined(options.Code))
+        if (options.Code)
         {
             this.code = options.Code;
         }
 
-        if (!isNullOrUndefined(options.ValidationPattern))
+        if (options.ValidationPattern)
         {
             this.validationPattern = options.ValidationPattern;
         }
@@ -57,15 +59,15 @@ export class BBCodeAttribute
     /**
      * Gets or sets a value indicating whether the attribute is required.
      */
-    public get Required()
+    public get Required(): boolean
     {
         return this.required;
     }
 
     /**
-     *
+     * @inheritdoc
      */
-    public set Required(value)
+    public set Required(value: boolean)
     {
         this.Required = value;
     }
@@ -73,15 +75,15 @@ export class BBCodeAttribute
     /**
      * Gets or sets a value indicating if the value of the attribute - if not present - should be taken by the content of the bb-code.
      */
-    public get ValueByContent()
+    public get ValueByContent(): boolean
     {
         return this.valueByContent;
     }
 
     /**
-     *
+     * @inheritdoc
      */
-    public set ValueByContent(value)
+    public set ValueByContent(value: boolean)
     {
         this.valueByContent = value;
     }
@@ -91,15 +93,15 @@ export class BBCodeAttribute
      *
      * %s will be replaced by the value of the attribute.
      */
-    public get Code()
+    public get Code(): string
     {
         return this.code;
     }
 
     /**
-     *
+     * @inheritdoc
      */
-    public set Code(value)
+    public set Code(value: string)
     {
         this.code = value;
     }
@@ -107,15 +109,15 @@ export class BBCodeAttribute
     /**
      * Gets or sets a regex-pattern for validating the value of the attribute.
      */
-    public get ValidationPattern()
+    public get ValidationPattern(): RegExp
     {
         return this.validationPattern;
     }
 
     /**
-     *
+     * @inheritdoc
      */
-    public set ValidationPattern(value)
+    public set ValidationPattern(value: RegExp)
     {
         this.validationPattern = value;
     }

@@ -1,5 +1,4 @@
 import Assert = require("assert");
-import { isNullOrUndefined } from "util";
 import FileSystem = require("fs-extra");
 import { TempFile } from "temp-filesystem";
 import UPath = require("upath");
@@ -502,7 +501,7 @@ suite(
                                                                     {
                                                                         return (requiredPackageNode.TextContent === requiredPackage.Identifier) &&
                                                                             requiredPackageNode.HasAttribute("minversion", requiredPackage.MinVersion) &&
-                                                                            (isNullOrUndefined(requiredPackage.FileName) || requiredPackageNode.HasAttribute("file", requiredPackage.FileName));
+                                                                            ((requiredPackage.FileName === undefined) || requiredPackageNode.HasAttribute("file", requiredPackage.FileName));
                                                                     }).length > 0,
                                                                 true);
                                                         }

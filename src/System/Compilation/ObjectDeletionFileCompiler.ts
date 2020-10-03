@@ -20,6 +20,9 @@ export abstract class ObjectDeletionFileCompiler<T extends IDeleteInstruction<TO
 
     /**
      * Serializes the delete-section of the document.
+     *
+     * @returns
+     * The serialized deletion.
      */
     protected CreateDelete(): Element
     {
@@ -37,6 +40,10 @@ export abstract class ObjectDeletionFileCompiler<T extends IDeleteInstruction<TO
      * Serializes an object to delete.
      *
      * @param object
+     * The object to delete.
+     *
+     * @returns
+     * The serialized deletion-entry.
      */
     protected abstract CreateDeleteObject(object: TObject): Element;
 }

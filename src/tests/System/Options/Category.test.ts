@@ -1,5 +1,4 @@
 import Assert = require("assert");
-import { isNullOrUndefined } from "util";
 import { INode } from "../../../System/NodeSystem/INode";
 import { INodeOptions } from "../../../System/NodeSystem/INodeOptions";
 import { Node } from "../../../System/NodeSystem/Node";
@@ -16,8 +15,7 @@ suite(
          * Represents an option.
          */
         class MyOption extends Option
-        {
-        }
+        { }
 
         /**
          * Represents a category.
@@ -25,8 +23,13 @@ suite(
         class MyCategory extends Category<Option, IOptionOptions>
         {
             /**
+             * Initializes a new instance of the `MyCategor` class.
+             *
              * @param node
+             * The node of the category.
+             *
              * @param options
+             * The options of the category.
              */
             public constructor(node: INode, options: ICategoryOptions<IOptionOptions>)
             {
@@ -46,7 +49,10 @@ suite(
         class MyNode extends Node<MyCategory, ICategoryOptions<IOptionOptions>>
         {
             /**
+             * Initializes a new instance of the `MyNode` class.
+             *
              * @param options
+             * The options for generating the object.
              */
             public constructor(options: INodeOptions<ICategoryOptions<IOptionOptions>>)
             {
@@ -91,7 +97,7 @@ suite(
                             }
                         });
 
-                    if (!isNullOrUndefined(child))
+                    if (child)
                     {
                         rootNode.Nodes.push(child);
                     }
@@ -118,7 +124,7 @@ suite(
             "GetObjects()",
             () =>
             {
-                let objects: { [key: string]: any };
+                let objects: Record<string, unknown>;
 
                 suiteSetup(
                     () =>

@@ -14,6 +14,7 @@ export class NodeItem
      * Initializes a new instance of the `NodeItem` class.
      *
      * @param node
+     * The node of the item.
      */
     public constructor(node: INode)
     {
@@ -30,8 +31,11 @@ export class NodeItem
 
     /**
      * Gets the identifiable objects of the node.
+     *
+     * @returns
+     * The objects of the node.
      */
-    public GetObjects(): { [id: string]: any }
+    public GetObjects(): Record<string, unknown>
     {
         return {};
     }

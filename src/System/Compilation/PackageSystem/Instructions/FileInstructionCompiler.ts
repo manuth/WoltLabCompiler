@@ -1,4 +1,3 @@
-import { isNullOrUndefined } from "util";
 import { TempDirectory } from "temp-filesystem";
 import { ApplicationFileSystemInstruction } from "../../../PackageSystem/Instructions/FileSystem/ApplicationFileSystemInstruction";
 import { XMLEditor } from "../../../Serialization/XMLEditor";
@@ -22,13 +21,16 @@ export class FileInstructionCompiler extends InstructionCompiler<ApplicationFile
 
     /**
      * @inheritdoc
+     *
+     * @returns
+     * The serialized document.
      */
-    public Serialize()
+    public Serialize(): Document
     {
         let document = super.Serialize();
         let editor = new XMLEditor(document.documentElement);
 
-        if (!isNullOrUndefined(this.Item.Application))
+        if (this.Item.Application)
         {
             editor.SetAttribute("application", this.Item.Application);
         }
@@ -39,7 +41,7 @@ export class FileInstructionCompiler extends InstructionCompiler<ApplicationFile
     /**
      * @inheritdoc
      */
-    protected async Compile()
+    protected async Compile(): Promise<void>
     {
         let tempDir = new TempDirectory();
         await this.CopyTemplate(this.Item.Source, tempDir.FullName);

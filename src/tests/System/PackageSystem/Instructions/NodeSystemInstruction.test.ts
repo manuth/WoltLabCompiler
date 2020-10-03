@@ -1,5 +1,4 @@
 import Assert = require("assert");
-import { isNullOrUndefined } from "util";
 import { INodeOptions } from "../../../../System/NodeSystem/INodeOptions";
 import { Node } from "../../../../System/NodeSystem/Node";
 import { NodeItem } from "../../../../System/NodeSystem/NodeItem";
@@ -13,21 +12,24 @@ suite(
         /**
          * Represents a node.
          */
-        class MyNode extends Node<NodeItem, {}>
+        class MyNode extends Node<NodeItem, unknown>
         {
             /**
+             * Initializes a new instance of the `MyNode` class.
+             *
              * @param options
+             * The options of the node.
              */
-            public constructor(options: INodeOptions<{}>)
+            public constructor(options: INodeOptions<unknown>)
             {
-                super(options, (node, options) => new NodeItem(node));
+                super(options, (node) => new NodeItem(node));
             }
         }
 
         /**
          * Represents an instruction which provides `MyNode`s.
          */
-        class MyNodeInstruction extends NodeSystemInstruction<NodeItem, {}>
+        class MyNodeInstruction extends NodeSystemInstruction<NodeItem, unknown>
         {
             /**
              * @inheritdoc
@@ -35,11 +37,14 @@ suite(
             public Type: string;
 
             /**
+             * Initializes a new instance of the `MyNodeInstruction` class.
+             *
              * @param options
+             * The options of the node.
              */
-            public constructor(options: INodeSystemInstructionOptions<{}>)
+            public constructor(options: INodeSystemInstructionOptions<unknown>)
             {
-                super(options, (node, options) => new NodeItem(node));
+                super(options, (node) => new NodeItem(node));
             }
         }
 
@@ -51,6 +56,7 @@ suite(
             () =>
             {
                 id = "Foo";
+
                 idNode = new MyNode(
                     {
                         ID: id,
@@ -69,7 +75,7 @@ suite(
                             Name: name
                         });
 
-                    if (!isNullOrUndefined(child))
+                    if (child)
                     {
                         node.Nodes.push(child);
                     }

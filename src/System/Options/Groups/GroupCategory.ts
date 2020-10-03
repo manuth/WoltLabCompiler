@@ -13,7 +13,10 @@ export class GroupCategory extends Category<GroupOption, IGroupOptionOptions>
      * Initializes a new instance of the `GroupCategory` class.
      *
      * @param node
+     * The node of the category.
+     *
      * @param options
+     * The options of the category.
      */
     public constructor(node: INode, options: ICategoryOptions<IGroupOptionOptions>)
     {

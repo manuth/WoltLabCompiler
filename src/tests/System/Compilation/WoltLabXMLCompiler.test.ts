@@ -11,7 +11,7 @@ suite(
         let tempFile: TempFile;
         let namespace: string;
         let schemaLocation: string;
-        let compiler: WoltLabXMLCompiler<{}>;
+        let compiler: WoltLabXMLCompiler<unknown>;
 
         suiteSetup(
             () =>
@@ -20,7 +20,7 @@ suite(
                 namespace = "http://www.woltlab.com";
                 schemaLocation = "http://example.com/helloWorld.xsd";
 
-                compiler = new class extends WoltLabXMLCompiler<{}>
+                compiler = new class extends WoltLabXMLCompiler<unknown>
                 {
                     /**
                      * @inheritdoc
@@ -28,7 +28,7 @@ suite(
                     protected SchemaLocation = schemaLocation;
 
                     /**
-                     *
+                     * Initializes a new instance of the class.
                      */
                     public constructor()
                     {

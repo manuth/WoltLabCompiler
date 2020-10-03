@@ -29,8 +29,13 @@ export class ACPOptionFileCompiler extends OptionFileCompiler<ACPOptionInstructi
     }
 
     /**
-     * @param option
      * @inheritdoc
+     *
+     * @param option
+     * The option to serialize.
+     *
+     * @returns
+     * The serialized option.
      */
     protected CreateOption(option: ACPOption): Element
     {

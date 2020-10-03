@@ -44,9 +44,9 @@ export abstract class NodeSystemInstruction<T extends NodeItem, TOptions> extend
     /**
      * @inheritdoc
      */
-    public get ObjectsByID(): { [id: string]: any }
+    public get ObjectsByID(): Record<string, unknown>
     {
-        let result: { [id: string]: any } = {};
+        let result: Record<string, unknown> = {};
 
         for (let node of this.Nodes)
         {

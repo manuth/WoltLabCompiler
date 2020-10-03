@@ -18,6 +18,7 @@ export class CronJobInstruction extends NamedDeleteInstruction
      * Initializes a new instance of the `CronJobInstruction` class.
      *
      * @param options
+     * The options of the cron-job instruction.
      */
     public constructor(options: ICronJobInstructionOptions)
     {
@@ -46,7 +47,7 @@ export class CronJobInstruction extends NamedDeleteInstruction
     }
 
     /**
-     *
+     * @inheritdoc
      */
     public set CronJobs(value: CronJob[])
     {

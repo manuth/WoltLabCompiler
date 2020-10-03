@@ -1,5 +1,5 @@
-import { isNullOrUndefined } from "util";
 import { BBCodeInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/BBCodeInstructionCompiler";
+import { InstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/InstructionCompiler";
 import { BBCode } from "../../../Customization/BBCodes/BBCode";
 import { LocalizationNode } from "../../../Globalization/LocalizationNode";
 import { ILocalizationInstruction } from "../Globalization/ILocalizationInstruction";
@@ -26,6 +26,7 @@ export class BBCodeInstruction extends NamedDeleteInstruction implements ILocali
      * Initializes a new instance of the `BBCodeInstruction` class.
      *
      * @param options
+     * The options of the bbcode-instruction.
      */
     public constructor(options: IBBCodeInstructionOptions)
     {
@@ -45,7 +46,7 @@ export class BBCodeInstruction extends NamedDeleteInstruction implements ILocali
     /**
      * @inheritdoc
      */
-    public get Type()
+    public get Type(): string
     {
         return "bbcode";
     }
@@ -53,7 +54,7 @@ export class BBCodeInstruction extends NamedDeleteInstruction implements ILocali
     /**
      * Gets the bb-codes provided by this instruction.
      */
-    public get BBCodes()
+    public get BBCodes(): BBCode[]
     {
         return this.bbCodes;
     }
@@ -61,7 +62,7 @@ export class BBCodeInstruction extends NamedDeleteInstruction implements ILocali
     /**
      * @inheritdoc
      */
-    public get TranslationDirectory()
+    public get TranslationDirectory(): string
     {
         return this.translationDirectory;
     }
@@ -77,15 +78,18 @@ export class BBCodeInstruction extends NamedDeleteInstruction implements ILocali
     /**
      * @inheritdoc
      */
-    public get Compiler()
+    public get Compiler(): InstructionCompiler<BBCodeInstruction>
     {
         return new BBCodeInstructionCompiler(this);
     }
 
     /**
      * @inheritdoc
+     *
+     * @returns
+     * The messages of the options-instruction.
      */
-    public GetMessages()
+    public GetMessages(): Record<string, Record<string, Record<string, string>>>
     {
         let result: TranslationInstruction = new TranslationInstruction(
             {

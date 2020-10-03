@@ -4,7 +4,7 @@ import { LocalizationFileCompiler } from "./LocalizationFileCompiler";
 /**
  * Provides the functionality to compile localization-sets.
  */
-export class LocalizationSetCompiler extends Compiler<{ [locale: string]: { [category: string]: { [key: string]: string } } }>
+export class LocalizationSetCompiler extends Compiler<Record<string, Record<string, Record<string, string>>>>
 {
     /**
      * Initializes a new instance of the `LocalizationSetCompiler` class.
@@ -12,7 +12,7 @@ export class LocalizationSetCompiler extends Compiler<{ [locale: string]: { [cat
      * @param item
      * The item to compile.
      */
-    public constructor(item: { [locale: string]: { [category: string]: { [key: string]: string } } })
+    public constructor(item: Record<string, Record<string, Record<string, string>>>)
     {
         super(item);
     }

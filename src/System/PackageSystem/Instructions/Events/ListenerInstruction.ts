@@ -17,7 +17,10 @@ export abstract class ListenerInstruction<T extends Listener, TOptions> extends 
      * Initializes a new instance of the `ListenerInstruction<T, TOptions>` class.
      *
      * @param options
+     * The options of the listener-instruction.
+     *
      * @param generator
+     * A component for generating listeners.
      */
     public constructor(options: IListenerInstructionOptions<TOptions>, generator: (opts: TOptions) => T)
     {

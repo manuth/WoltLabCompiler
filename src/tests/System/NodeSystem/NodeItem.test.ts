@@ -10,12 +10,12 @@ suite(
             "Node",
             () =>
             {
-                let node: Node<NodeItem, {}> = new Node<NodeItem, {}>(
+                let node: Node<NodeItem, unknown> = new Node<NodeItem, unknown>(
                     {
                         Name: "foo",
                         Item: {}
                     },
-                    (parent: Node<NodeItem, {}>): NodeItem =>
+                    (parent: Node<NodeItem, unknown>): NodeItem =>
                     {
                         return new NodeItem(parent);
                     });

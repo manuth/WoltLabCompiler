@@ -11,18 +11,18 @@ suite(
         let tempFile: TempFile;
         let variableName: string;
         let variableValue: string;
-        let compiler: EJSFileCompiler<{}>;
+        let compiler: EJSFileCompiler<unknown>;
 
         suiteSetup(
             async () =>
             {
-                let context: { [key: string]: string } = {};
+                let context: Record<string, string> = {};
                 tempFile = new TempFile();
                 variableName = "foo";
                 variableValue = "Hello World";
                 context[variableName] = variableValue;
 
-                compiler = new class extends EJSFileCompiler<{}>
+                compiler = new class extends EJSFileCompiler<unknown>
                 {
                     /**
                      * @inheritdoc
@@ -39,8 +39,11 @@ suite(
 
                     /**
                      * @inheritdoc
+                     *
+                     * @returns
+                     * The serialized document.
                      */
-                    protected CreateDocument()
+                    protected CreateDocument(): Document
                     {
                         let document = super.CreateDocument();
                         document.documentElement.appendChild(document.createTextNode(`<%= ${variableName} %>`));
@@ -50,7 +53,7 @@ suite(
                     /**
                      * @inheritdoc
                      */
-                    protected async Compile()
+                    protected async Compile(): Promise<void>
                     {
                         await super.Compile();
                         await this.CopyTemplate(this.DestinationPath, this.DestinationPath, context);

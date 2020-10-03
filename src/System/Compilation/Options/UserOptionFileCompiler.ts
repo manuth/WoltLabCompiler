@@ -1,4 +1,3 @@
-import { isNullOrUndefined } from "util";
 import { UserCategory } from "../../Options/UserPanel/UserCategory";
 import { UserOption } from "../../Options/UserPanel/UserOption";
 import { UserOptionInstruction } from "../../PackageSystem/Instructions/Options/UserOptionInstruction";
@@ -30,8 +29,13 @@ export class UserOptionFileCompiler extends OptionFileCompiler<UserOptionInstruc
     }
 
     /**
-     * @param option
      * @inheritdoc
+     *
+     * @param option
+     * The option to serialize.
+     *
+     * @returns
+     * The serialized option.
      */
     protected CreateOption(option: UserOption): Element
     {
@@ -42,7 +46,7 @@ export class UserOptionFileCompiler extends OptionFileCompiler<UserOptionInstruc
         editor.AddTextElement("visible", option.ViewPermissions.toString());
         editor.AddTextElement("searchable", option.Searchable ? "1" : "0");
 
-        if (!isNullOrUndefined(option.OutputClass))
+        if (option.OutputClass)
         {
             editor.AddTextElement("outputclass", option.OutputClass);
         }

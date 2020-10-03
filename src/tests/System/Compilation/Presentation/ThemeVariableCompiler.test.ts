@@ -19,7 +19,7 @@ suite(
         suiteSetup(
             () =>
             {
-                let variables: { [key: string]: string } = {};
+                let variables: Record<string, string> = {};
                 tempFile = new TempFile();
                 variableName = "wcfHeaderBackground";
                 value = "rgba(255, 0, 0, 1)";

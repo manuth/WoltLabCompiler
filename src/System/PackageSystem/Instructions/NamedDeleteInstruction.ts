@@ -1,4 +1,3 @@
-import { isNullOrUndefined } from "util";
 import { INamedObject } from "../../INamedObject";
 import { IDeleteInstructionOptions } from "./IDeleteInstructionOptions";
 import { INamedDeleteInstruction } from "./INamedDeleteInstruction";
@@ -18,12 +17,13 @@ export abstract class NamedDeleteInstruction extends Instruction implements INam
      * Initializes a new instance of the `NamedDeleteInstruction` class.
      *
      * @param options
+     * The options for the named deletion-instruction.
      */
     public constructor(options: IDeleteInstructionOptions<INamedObject>)
     {
         super(options);
 
-        if (!isNullOrUndefined(options.ObjectsToDelete))
+        if (options.ObjectsToDelete)
         {
             this.ObjectsToDelete.push(...options.ObjectsToDelete);
         }

@@ -1,4 +1,3 @@
-import { isNullOrUndefined } from "util";
 import { Package } from "../../PackageSystem/Package";
 import { XMLEditor } from "../../Serialization/XMLEditor";
 import { WoltLabXMLCompiler } from "../WoltLabXMLCompiler";
@@ -22,7 +21,7 @@ export class PackageFileCompiler extends WoltLabXMLCompiler<Package>
     /**
      * @inheritdoc
      */
-    protected get TagName()
+    protected get TagName(): string
     {
         return "package";
     }
@@ -30,15 +29,18 @@ export class PackageFileCompiler extends WoltLabXMLCompiler<Package>
     /**
      * @inheritdoc
      */
-    protected get SchemaLocation()
+    protected get SchemaLocation(): string
     {
         return "http://www.woltlab.com/XSD/tornado/package.xsd";
     }
 
     /**
      * @inheritdoc
+     *
+     * @returns
+     * The serialized document.
      */
-    protected CreateDocument()
+    protected CreateDocument(): Document
     {
         let document = super.CreateDocument();
         let editor = new XMLEditor(document.documentElement);
@@ -88,12 +90,12 @@ export class PackageFileCompiler extends WoltLabXMLCompiler<Package>
             "authorinformation",
             (author) =>
             {
-                if (!isNullOrUndefined(this.Item.Author.Name))
+                if (this.Item.Author.Name)
                 {
                     author.AddTextElement("author", this.Item.Author.Name);
                 }
 
-                if (!isNullOrUndefined(this.Item.Author.URL))
+                if (this.Item.Author.URL)
                 {
                     author.AddTextElement("authorurl", this.Item.Author.URL);
                 }
@@ -114,7 +116,7 @@ export class PackageFileCompiler extends WoltLabXMLCompiler<Package>
                             {
                                 requiredPackageNode.SetAttribute("minversion", requiredPackage.MinVersion);
 
-                                if (!isNullOrUndefined(requiredPackage.FileName))
+                                if (requiredPackage.FileName)
                                 {
                                     requiredPackageNode.SetAttribute("file", requiredPackage.FileName);
                                 }

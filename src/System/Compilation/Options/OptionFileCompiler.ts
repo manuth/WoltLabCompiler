@@ -1,4 +1,3 @@
-import { isNullOrUndefined } from "util";
 import { INode } from "../../NodeSystem/Generic/INode";
 import { ICategory } from "../../Options/Generic/ICategory";
 import { Option } from "../../Options/Option";
@@ -23,14 +22,11 @@ export abstract class OptionFileCompiler<T extends IOptionInstruction<TCategory,
      *
      * @param item
      * The item to compile.
-     *
-     * @param languageCategory
-     * The language-category which contains translations for options.
      */
     public constructor(item: T)
     {
         super(item);
-        this.LanguageCategory = `${item.RootCategory}${isNullOrUndefined(item.OptionCategory) ? "" : `.${item.OptionCategory}`}`;
+        this.LanguageCategory = `${item.RootCategory}${item.OptionCategory ? `.${item.OptionCategory}` : ""}`;
     }
 
     /**
@@ -42,7 +38,7 @@ export abstract class OptionFileCompiler<T extends IOptionInstruction<TCategory,
     }
 
     /**
-     *
+     * @inheritdoc
      */
     public set LanguageCategory(value: string)
     {
@@ -51,6 +47,9 @@ export abstract class OptionFileCompiler<T extends IOptionInstruction<TCategory,
 
     /**
      * @inheritdoc
+     *
+     * @returns
+     * The serialized import.
      */
     protected CreateImport(): Element
     {
@@ -77,7 +76,7 @@ export abstract class OptionFileCompiler<T extends IOptionInstruction<TCategory,
                 {
                     for (let category of rootCategory.GetAllNodes())
                     {
-                        if (!isNullOrUndefined(category.Item))
+                        if (category.Item)
                         {
                             for (let option of category.Item.Options)
                             {
@@ -93,6 +92,9 @@ export abstract class OptionFileCompiler<T extends IOptionInstruction<TCategory,
 
     /**
      * @inheritdoc
+     *
+     * @returns
+     * The serialized deletion.
      */
     protected CreateDelete(): Element
     {
@@ -126,6 +128,9 @@ export abstract class OptionFileCompiler<T extends IOptionInstruction<TCategory,
      *
      * @param category
      * The category to serialize.
+     *
+     * @returns
+     * The serialized category.
      */
     protected CreateCategory(category: INode<TCategory>): Element
     {
@@ -133,21 +138,17 @@ export abstract class OptionFileCompiler<T extends IOptionInstruction<TCategory,
         let editor: XMLEditor = new XMLEditor(document.documentElement);
         editor.SetAttribute("name", category.FullName);
 
-        if (!isNullOrUndefined(category.Parent))
+        if (category.Parent)
         {
             editor.AddTextElement("parent", category.Parent.FullName);
         }
 
-        if (
-            !isNullOrUndefined(category.Item) &&
-            !isNullOrUndefined(category.Item.ShowOrder))
+        if (category.Item?.ShowOrder)
         {
             editor.AddTextElement("showorder", category.Item.ShowOrder.toString());
         }
 
-        if (
-            !isNullOrUndefined(category.Item) &&
-            category.Item.EnableOptions.length > 0)
+        if (category.Item?.EnableOptions.length > 0)
         {
             editor.AddTextElement("options", category.Item.EnableOptions.join(","));
         }
@@ -160,6 +161,9 @@ export abstract class OptionFileCompiler<T extends IOptionInstruction<TCategory,
      *
      * @param option
      * The option to serialize.
+     *
+     * @returns
+     * The serialized option.
      */
     protected CreateOption(option: TOption): Element
     {
@@ -169,17 +173,17 @@ export abstract class OptionFileCompiler<T extends IOptionInstruction<TCategory,
         editor.AddTextElement("categoryname", option.Category.Node.FullName);
         editor.AddTextElement("optiontype", option.Type);
 
-        if (!isNullOrUndefined(option.DefaultValue))
+        if (option.DefaultValue)
         {
             editor.AddTextElement("defaultvalue", `${option.DefaultValue}`);
         }
 
-        if (!isNullOrUndefined(option.ShowOrder))
+        if (option.ShowOrder)
         {
             editor.AddTextElement("showorder", option.ShowOrder.toString());
         }
 
-        if (!isNullOrUndefined(option.ValidationPattern))
+        if (option.ValidationPattern)
         {
             editor.AddTextElement("validationpattern", option.ValidationPattern.source);
         }
@@ -206,7 +210,7 @@ export abstract class OptionFileCompiler<T extends IOptionInstruction<TCategory,
 
         for (let additionalProperty in option.AdditionalProperties)
         {
-            editor.AddTextElement(additionalProperty, option.AdditionalProperties[additionalProperty]);
+            editor.AddTextElement(additionalProperty, `${option.AdditionalProperties[additionalProperty]}`);
         }
 
         return editor.Element;

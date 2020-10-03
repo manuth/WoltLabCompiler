@@ -12,6 +12,9 @@ export interface ILocalizationInstruction extends IInstruction
 
     /**
      * Gets the messages provided by the instruction.
+     *
+     * @returns
+     * The messages of the options-instruction.
      */
-    GetMessages(): { [locale: string]: { [category: string]: { [key: string]: string } } };
+    GetMessages(): Record<string, Record<string, Record<string, string>>>;
 }

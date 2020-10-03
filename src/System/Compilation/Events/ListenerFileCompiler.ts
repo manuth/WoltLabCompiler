@@ -1,4 +1,3 @@
-import { isNullOrUndefined } from "util";
 import { Listener } from "../../Events/Listener";
 import { IListenerInstruction } from "../../PackageSystem/Instructions/Events/IListenerInstruction";
 import { XML } from "../../Serialization/XML";
@@ -23,6 +22,9 @@ export abstract class ListenerFileCompiler<T extends IListenerInstruction<TListe
 
     /**
      * @inheritdoc
+     *
+     * @returns
+     * The serialized import.
      */
     protected CreateImport(): Element
     {
@@ -41,6 +43,9 @@ export abstract class ListenerFileCompiler<T extends IListenerInstruction<TListe
      *
      * @param listener
      * The listener to serialize.
+     *
+     * @returns
+     * The serialized listener.
      */
     protected CreateListener(listener: TListener): Element
     {
@@ -49,7 +54,7 @@ export abstract class ListenerFileCompiler<T extends IListenerInstruction<TListe
         editor.AddTextElement("environment", listener.Environment);
         editor.AddTextElement("eventname", listener.EventName);
 
-        if (!isNullOrUndefined(listener.ExecutionOrder))
+        if (listener.ExecutionOrder)
         {
             editor.AddTextElement("nice", listener.ExecutionOrder.toString());
         }

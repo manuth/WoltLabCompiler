@@ -146,8 +146,8 @@ suite(
                         (variable: IVariable) =>
                         {
                             return variable.Source === "json";
-                        }).reduce<{ [key: string]: any }>(
-                            (previousValue: { [key: string]: any }, currentValue: IVariable) =>
+                        }).reduce<Record<string, unknown>>(
+                            (previousValue: Record<string, unknown>, currentValue: IVariable) =>
                             {
                                 previousValue[currentValue.Name] = currentValue.Input;
                                 return previousValue;

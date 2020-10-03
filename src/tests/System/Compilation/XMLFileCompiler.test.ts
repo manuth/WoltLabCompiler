@@ -10,14 +10,15 @@ suite(
     {
         let tempFile: TempFile;
         let rootTag: string;
-        let compiler: XMLFileCompiler<{}>;
+        let compiler: XMLFileCompiler<unknown>;
 
         suiteSetup(
             () =>
             {
                 tempFile = new TempFile();
                 rootTag = "foo";
-                compiler = new class extends XMLFileCompiler<{}>
+
+                compiler = new class extends XMLFileCompiler<unknown>
                 {
                     /**
                      * @inheritdoc
@@ -25,7 +26,7 @@ suite(
                     protected TagName = "foo";
 
                     /**
-                     *
+                     * Initializes a new instance of the class.
                      */
                     public constructor()
                     {
@@ -73,8 +74,9 @@ suite(
                     "Checking whether a processing-instruction for `xml` is present…",
                     () =>
                     {
-                        Assert.strictEqual(document.childNodes[0].nodeType, document.PROCESSING_INSTRUCTION_NODE);
-                        Assert.strictEqual((document.childNodes[0] as ProcessingInstruction).target, "xml");
+                        let firstChild = document.childNodes[0];
+                        Assert.strictEqual(firstChild.nodeType, document.PROCESSING_INSTRUCTION_NODE);
+                        Assert.strictEqual((firstChild as ProcessingInstruction).target, "xml");
                     });
 
                 test(

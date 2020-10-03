@@ -1,4 +1,3 @@
-import { isNullOrUndefined } from "util";
 import { Localization } from "../Globalization/Localization";
 import { ICronJobOptions } from "./ICronJobOptions";
 import { TimePeriod } from "./TimePeriod";
@@ -47,32 +46,33 @@ export class CronJob
      * Initializes a new instance of the `CronJob` class.
      *
      * @param options
+     * The options of the cron-job.
      */
     public constructor(options: ICronJobOptions)
     {
-        if (!isNullOrUndefined(options.Name))
+        if (options.Name)
         {
             this.Name = options.Name;
         }
 
         this.ClassName = options.ClassName;
 
-        if (!isNullOrUndefined(options.Description))
+        if (options.Description)
         {
             this.Description.Data = options.Description;
         }
 
-        if (!isNullOrUndefined(options.AllowDisable))
+        if (options.AllowDisable)
         {
             this.AllowDisable = options.AllowDisable;
         }
 
-        if (!isNullOrUndefined(options.AllowEdit))
+        if (options.AllowEdit)
         {
             this.AllowEdit = options.AllowEdit;
         }
 
-        if (!isNullOrUndefined(options.Options))
+        if (options.Options)
         {
             this.Options = options.Options;
         }
@@ -83,15 +83,15 @@ export class CronJob
     /**
      * Gets or sets the name of the cron-job.
      */
-    public get Name()
+    public get Name(): string
     {
         return this.name;
     }
 
     /**
-     *
+     * @inheritdoc
      */
-    public set Name(value)
+    public set Name(value: string)
     {
         this.name = value;
     }
@@ -99,15 +99,15 @@ export class CronJob
     /**
      * Gets or sets the class-name of the cron-job.
      */
-    public get ClassName()
+    public get ClassName(): string
     {
         return this.className;
     }
 
     /**
-     *
+     * @inheritdoc
      */
-    public set ClassName(value)
+    public set ClassName(value: string)
     {
         this.className = value;
     }
@@ -115,7 +115,7 @@ export class CronJob
     /**
      * Gets the description of the cron-job.
      */
-    public get Description()
+    public get Description(): Localization
     {
         return this.description;
     }
@@ -123,15 +123,15 @@ export class CronJob
     /**
      * Gets or sets a value indicating whether the cron-job can be disabled.
      */
-    public get AllowDisable()
+    public get AllowDisable(): boolean
     {
         return this.allowDisable;
     }
 
     /**
-     *
+     * @inheritdoc
      */
-    public set AllowDisable(value)
+    public set AllowDisable(value: boolean)
     {
         this.allowDisable = value;
     }
@@ -139,15 +139,15 @@ export class CronJob
     /**
      * Gets or sets a value indicating whether the cron-job can be edited.
      */
-    public get AllowEdit()
+    public get AllowEdit(): boolean
     {
         return this.allowEdit;
     }
 
     /**
-     *
+     * @inheritdoc
      */
-    public set AllowEdit(value)
+    public set AllowEdit(value: boolean)
     {
         this.allowEdit = value;
     }
@@ -155,15 +155,15 @@ export class CronJob
     /**
      * Gets or sets a set of options of which at least one must be enabled in order to execute the cron-job.
      */
-    public get Options()
+    public get Options(): string[]
     {
         return this.options;
     }
 
     /**
-     *
+     * @inheritdoc
      */
-    public set Options(value)
+    public set Options(value: string[])
     {
         this.options = value;
     }
@@ -171,15 +171,15 @@ export class CronJob
     /**
      * Gets or sets the period to execute the cron-job.
      */
-    public get Period()
+    public get Period(): TimePeriod
     {
         return this.period;
     }
 
     /**
-     *
+     * @inheritdoc
      */
-    public set Period(value)
+    public set Period(value: TimePeriod)
     {
         this.period = value;
     }

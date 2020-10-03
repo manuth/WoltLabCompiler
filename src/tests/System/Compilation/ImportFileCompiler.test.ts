@@ -10,13 +10,12 @@ suite(
     () =>
     {
         let tempFile: TempFile;
-        let compiler: ImportFileCompiler<{}>;
+        let compiler: ImportFileCompiler<unknown>;
 
         suiteSetup(
             () =>
             {
-                tempFile = new TempFile();
-                compiler = new class extends ImportFileCompiler<{}>
+                compiler = new class extends ImportFileCompiler<unknown>
                 {
                     /**
                      * @inheritdoc
@@ -26,6 +25,8 @@ suite(
                         return "http://example.com/mySchema.xsd";
                     }
                 }({});
+
+                tempFile = new TempFile();
                 compiler.DestinationPath = tempFile.FullName;
             });
 

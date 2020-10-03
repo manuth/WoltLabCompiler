@@ -1,4 +1,3 @@
-import { isNullOrUndefined } from "util";
 import { ICategory } from "../ICategory";
 import { Option } from "../Option";
 import { EditPermission } from "./EditPermission";
@@ -46,18 +45,21 @@ export class UserOption extends Option
      * Initializes a new instance of the `UserOption` class.
      *
      * @param category
+     * The category of the option.
+     *
      * @param options
+     * The options of the user-option.
      */
     public constructor(category: ICategory, options: IUserOptionOptions)
     {
         super(category, options);
 
-        if (!isNullOrUndefined(options.Required))
+        if (options.Required)
         {
             this.Required = options.Required;
         }
 
-        if (!isNullOrUndefined(options.AskOnRegistration))
+        if (options.AskOnRegistration)
         {
             this.AskOnRegistration = options.AskOnRegistration;
         }
@@ -65,12 +67,12 @@ export class UserOption extends Option
         this.EditPermissions = options.EditPermissions;
         this.ViewPermissions = options.ViewPermissions;
 
-        if (!isNullOrUndefined(options.Searchable))
+        if (options.Searchable)
         {
             this.Searchable = options.Searchable;
         }
 
-        if (!isNullOrUndefined(options.OutputClass))
+        if (options.OutputClass)
         {
             this.OutputClass = options.OutputClass;
         }
@@ -79,15 +81,15 @@ export class UserOption extends Option
     /**
      * Gets or sets a value indicating whether the option is required.
      */
-    public get Required()
+    public get Required(): boolean
     {
         return this.required;
     }
 
     /**
-     *
+     * @inheritdoc
      */
-    public set Required(value)
+    public set Required(value: boolean)
     {
         this.required = value;
     }
@@ -95,15 +97,15 @@ export class UserOption extends Option
     /**
      * Gets or sets a value indicating whether users are ask for setting the option during registration.
      */
-    public get AskOnRegistration()
+    public get AskOnRegistration(): boolean
     {
         return this.askOnRegistration;
     }
 
     /**
-     *
+     * @inheritdoc
      */
-    public set AskOnRegistration(value)
+    public set AskOnRegistration(value: boolean)
     {
         this.askOnRegistration = value;
     }
@@ -111,15 +113,15 @@ export class UserOption extends Option
     /**
      * Gets or sets the permissions which are required for editing the option.
      */
-    public get EditPermissions()
+    public get EditPermissions(): EditPermission
     {
         return this.editPermissions;
     }
 
     /**
-     *
+     * @inheritdoc
      */
-    public set EditPermissions(value)
+    public set EditPermissions(value: EditPermission)
     {
         this.editPermissions = value;
     }
@@ -127,15 +129,15 @@ export class UserOption extends Option
     /**
      * Gets or sets the permissions which are required for viewing the option.
      */
-    public get ViewPermissions()
+    public get ViewPermissions(): ViewPermission
     {
         return this.viewPermissions;
     }
 
     /**
-     *
+     * @inheritdoc
      */
-    public set ViewPermissions(value)
+    public set ViewPermissions(value: ViewPermission)
     {
         this.viewPermissions = value;
     }
@@ -143,15 +145,15 @@ export class UserOption extends Option
     /**
      * Gets or sets a value indicating whether users can be searched by the value of the option.
      */
-    public get Searchable()
+    public get Searchable(): boolean
     {
         return this.searchable;
     }
 
     /**
-     *
+     * @inheritdoc
      */
-    public set Searchable(value)
+    public set Searchable(value: boolean)
     {
         this.searchable = value;
     }
@@ -161,15 +163,15 @@ export class UserOption extends Option
      *
      * The class must implement the `wcf\system\option\user\IUserOptionOutput` interface.
      */
-    public get OutputClass()
+    public get OutputClass(): string
     {
         return this.outputClass;
     }
 
     /**
-     *
+     * @inheritdoc
      */
-    public set OutputClass(value)
+    public set OutputClass(value: string)
     {
         this.outputClass = value;
     }

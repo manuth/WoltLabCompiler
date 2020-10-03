@@ -1,4 +1,3 @@
-import { isNullOrUndefined } from "util";
 import FileSystem = require("fs-extra");
 import { Theme } from "../../Customization/Presentation/Themes/Theme";
 import { Compiler } from "../Compiler";
@@ -20,13 +19,15 @@ export class ThemeCompiler extends Compiler<Theme>
      *
      * @param item
      * The item to compile.
+     *
      * @param variableFileName
+     * The name of the variable-file.
      */
     public constructor(item: Theme, variableFileName?: string)
     {
         super(item);
 
-        if (!isNullOrUndefined(variableFileName))
+        if (variableFileName)
         {
             this.VariableFileName = variableFileName;
         }
@@ -35,15 +36,15 @@ export class ThemeCompiler extends Compiler<Theme>
     /**
      * Gets or sets the filename to save variables to.
      */
-    public get VariableFileName()
+    public get VariableFileName(): string
     {
         return this.variableFileName;
     }
 
     /**
-     *
+     * @inheritdoc
      */
-    public set VariableFileName(value)
+    public set VariableFileName(value: string)
     {
         this.variableFileName = value;
     }
@@ -51,17 +52,17 @@ export class ThemeCompiler extends Compiler<Theme>
     /**
      * @inheritdoc
      */
-    protected async Compile()
+    protected async Compile(): Promise<void>
     {
-        let variables: { [key: string]: string } = {};
+        let variables: Record<string, string> = {};
         Object.assign(variables, this.Item.Variables);
 
-        if (!isNullOrUndefined(this.Item.CustomScss))
+        if (this.Item.CustomScss)
         {
             variables.individualScss = this.Item.CustomScss;
         }
 
-        if (!isNullOrUndefined(this.Item.ScssOverride))
+        if (this.Item.ScssOverride)
         {
             variables.overrideScss = this.Item.ScssOverride;
         }
@@ -77,17 +78,17 @@ export class ThemeCompiler extends Compiler<Theme>
             await variableCompiler.Execute();
         }
 
-        if (!isNullOrUndefined(this.Item.Thumbnail))
+        if (this.Item.Thumbnail)
         {
             await FileSystem.copy(this.Item.Thumbnail.Source, this.MakeDestinationPath(this.Item.Thumbnail.FileName));
         }
 
-        if (!isNullOrUndefined(this.Item.HighResThumbnail))
+        if (this.Item.HighResThumbnail)
         {
             await FileSystem.copy(this.Item.HighResThumbnail.Source, this.MakeDestinationPath(this.Item.HighResThumbnail.FileName));
         }
 
-        if (!isNullOrUndefined(this.Item.CoverPhoto))
+        if (this.Item.CoverPhoto)
         {
             await FileSystem.copy(this.Item.CoverPhoto.Source, this.MakeDestinationPath(this.Item.CoverPhoto.FileName));
         }

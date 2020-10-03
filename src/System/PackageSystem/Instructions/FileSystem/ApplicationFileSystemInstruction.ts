@@ -1,4 +1,3 @@
-import { isNullOrUndefined } from "util";
 import { FileInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/FileInstructionCompiler";
 import { InstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/InstructionCompiler";
 import { FileSystemInstruction } from "./FileSystemInstruction";
@@ -18,6 +17,7 @@ export class ApplicationFileSystemInstruction extends FileSystemInstruction
      * Initializes a new instance of the `ApplicationFileSystemInstruction`.
      *
      * @param options
+     * The options of the application file-system instruction.
      */
     public constructor(options: IApplicationFileSystemInstructionOptions)
     {
@@ -27,7 +27,7 @@ export class ApplicationFileSystemInstruction extends FileSystemInstruction
                 FileName: options.FileName
             });
 
-        if (!isNullOrUndefined(options.Application))
+        if (options.Application)
         {
             this.Application = options.Application;
         }
@@ -50,7 +50,7 @@ export class ApplicationFileSystemInstruction extends FileSystemInstruction
     }
 
     /**
-     *
+     * @inheritdoc
      */
     public set Application(value: string)
     {
@@ -66,10 +66,15 @@ export class ApplicationFileSystemInstruction extends FileSystemInstruction
     }
 
     /**
-     * @param source
      * @inheritdoc
+     *
+     * @param source
+     * The source of the instruction.
+     *
+     * @returns
+     * The default filename.
      */
-    protected MakeDefaultFileName(source: string)
+    protected MakeDefaultFileName(source: string): string
     {
         return `${super.MakeDefaultFileName(source)}.tar`;
     }

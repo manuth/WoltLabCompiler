@@ -1,6 +1,5 @@
 import OS = require("os");
 import Path = require("path");
-import { isNullOrUndefined } from "util";
 import ColorNames = require("colornames");
 import FileSystem = require("fs-extra");
 import HexToRgba = require("hex-to-rgba");
@@ -50,7 +49,7 @@ export class Theme extends Component
     /**
      * The variables of the theme.
      */
-    private variables: { [key: string]: string } = {};
+    private variables: Record<string, string> = {};
 
     /**
      * The image-directory provided by the theme.
@@ -62,7 +61,9 @@ export class Theme extends Component
      *
      * @param instruction
      * The instruction of the theme.
+     *
      * @param options
+     * The options of the theme.
      */
     public constructor(instruction: ThemeInstruction, options: IThemeOptions)
     {
@@ -76,44 +77,45 @@ export class Theme extends Component
             License: options.License
         });
 
-        let variables: { [key: string]: string } = {};
+        let variables: Record<string, string> = {};
         this.instruction = instruction;
 
-        if (!isNullOrUndefined(options.Thumbnail))
+        if (options.Thumbnail)
         {
             this.Thumbnail = new FileDescriptor(typeof options.Thumbnail === "string" ? { Source: options.Thumbnail } : options.Thumbnail);
         }
 
-        if (!isNullOrUndefined(options.HighResThumbnail))
+        if (options.HighResThumbnail)
         {
             this.HighResThumbnail = new FileDescriptor(typeof options.HighResThumbnail === "string" ? { Source: options.HighResThumbnail } : options.HighResThumbnail);
         }
 
-        if (!isNullOrUndefined(options.CoverPhoto))
+        if (options.CoverPhoto)
         {
             this.CoverPhoto = new FileDescriptor(typeof options.CoverPhoto === "string" ? { Source: options.CoverPhoto } : options.CoverPhoto);
         }
 
-        if (!isNullOrUndefined(options.CustomScssFileName))
+        if (options.CustomScssFileName)
         {
             this.CustomScss = FileSystem.readFileSync(options.CustomScssFileName).toString();
         }
 
-        if (!isNullOrUndefined(options.ScssOverrideFileName))
+        if (options.ScssOverrideFileName)
         {
             Object.assign(variables, new SassVariableParser(options.ScssOverrideFileName).Parse());
         }
 
-        if (!isNullOrUndefined(options.VariableFileName))
+        if (options.VariableFileName)
         {
             Object.assign(
                 variables,
+                // eslint-disable-next-line @typescript-eslint/no-var-requires
                 require(
                     Path.join(
                         ...(Path.isAbsolute(options.VariableFileName) ? [options.VariableFileName] : [process.cwd(), options.VariableFileName]))));
         }
 
-        if (!isNullOrUndefined(options.Images))
+        if (options.Images)
         {
             this.images = new ImageDirectoryDescriptor(options.Images);
         }
@@ -126,25 +128,21 @@ export class Theme extends Component
      */
     public get Author(): Person
     {
-        return super.Author ||
-            ((
-                !isNullOrUndefined(this.Instruction) &&
-                !isNullOrUndefined(this.Instruction.Collection) &&
-                !isNullOrUndefined(this.Instruction.Collection.Package)) ? this.Instruction.Collection.Package.Author : null);
+        return super.Author ?? this.Instruction?.Collection?.Package?.Author ?? null;
     }
 
     /**
      * Gets or sets the thumbnail of the theme.
      */
-    public get Thumbnail()
+    public get Thumbnail(): FileDescriptor
     {
         return this.thumbnail;
     }
 
     /**
-     *
+     * @inheritdoc
      */
-    public set Thumbnail(value)
+    public set Thumbnail(value: FileDescriptor)
     {
         this.thumbnail = value;
     }
@@ -152,15 +150,15 @@ export class Theme extends Component
     /**
      * Gets or sets the high resolution version of the thumbnail.
      */
-    public get HighResThumbnail()
+    public get HighResThumbnail(): FileDescriptor
     {
         return this.highResThumbnail;
     }
 
     /**
-     *
+     * @inheritdoc
      */
-    public set HighResThumbnail(value)
+    public set HighResThumbnail(value: FileDescriptor)
     {
         this.highResThumbnail = value;
     }
@@ -168,7 +166,7 @@ export class Theme extends Component
     /**
      * Gets the instruction which contains this theme.
      */
-    public get Instruction()
+    public get Instruction(): ThemeInstruction
     {
         return this.instruction;
     }
@@ -176,15 +174,15 @@ export class Theme extends Component
     /**
      * Gets or sets the path to the default cover-photo for user-profiles.
      */
-    public get CoverPhoto()
+    public get CoverPhoto(): FileDescriptor
     {
         return this.coverPhoto;
     }
 
     /**
-     *
+     * @inheritdoc
      */
-    public set CoverPhoto(value)
+    public set CoverPhoto(value: FileDescriptor)
     {
         this.coverPhoto = value;
     }
@@ -192,15 +190,15 @@ export class Theme extends Component
     /**
      * Gets or sets the `scss`-code of the theme.
      */
-    public get CustomScss()
+    public get CustomScss(): string
     {
         return this.customSCSS;
     }
 
     /**
-     *
+     * @inheritdoc
      */
-    public set CustomScss(value)
+    public set CustomScss(value: string)
     {
         this.customSCSS = value;
     }
@@ -208,15 +206,15 @@ export class Theme extends Component
     /**
      * Gets or sets the variable-overrides of special `scss`-variables.
      */
-    public get ScssOverride()
+    public get ScssOverride(): string
     {
         return this.scssOverride;
     }
 
     /**
-     *
+     * @inheritdoc
      */
-    public set ScssOverride(value)
+    public set ScssOverride(value: string)
     {
         this.scssOverride = value;
     }
@@ -224,7 +222,7 @@ export class Theme extends Component
     /**
      * Gets the variables of the theme.
      */
-    public get Variables()
+    public get Variables(): Record<string, string>
     {
         return this.variables;
     }
@@ -232,7 +230,7 @@ export class Theme extends Component
     /**
      * Gets the image-directory of the theme.
      */
-    public get Images()
+    public get Images(): ImageDirectoryDescriptor
     {
         return this.images;
     }
@@ -243,15 +241,16 @@ export class Theme extends Component
      * @param variables
      * The variables to parse.
      */
-    protected ParseVariables(variables: { [key: string]: string }): void
+    protected ParseVariables(variables: Record<string, string>): void
     {
-        let normalVariables: { [key: string]: string } = {};
-        let specialVariables: { [key: string]: string } = {};
+        let normalVariables: Record<string, string> = {};
+        let specialVariables: Record<string, string> = {};
 
         for (let name in variables)
         {
             switch (name)
             {
+                // Common variables
                 case "wcfLayoutMinWidth":
                 case "wcfLayoutMaxWidth":
                 case "pageLogo":
@@ -266,12 +265,10 @@ export class Theme extends Component
                 case "useGoogleFont":
                 case "wcfFontFamilyGoogle":
                 case "wcfFontFamilyFallback":
-
                 case "wcfHeaderBackground":
                 case "wcfHeaderText":
                 case "wcfHeaderLink":
                 case "wcfHeaderLinkActive":
-
                 case "wcfHeaderSearchBoxBackground":
                 case "wcfHeaderSearchBoxText":
                 case "wcfHeaderSearchBoxPlaceholder":
@@ -283,54 +280,43 @@ export class Theme extends Component
                 case "wcfHeaderMenuLinkBackgroundActive":
                 case "wcfHeaderMenuLink":
                 case "wcfHeaderMenuLinkActive":
-
                 case "wcfHeaderMenuDropdownBackground":
                 case "wcfHeaderMenuDropdownLink":
                 case "wcfHeaderMenuDropdownBackgroundActive":
                 case "wcfHeaderMenuDropdownLinkActive":
-
                 case "wcfNavigationBackground":
                 case "wcfNavigationText":
                 case "wcfNavigationLink":
                 case "wcfNavigationLinkActive":
-
                 case "wcfSidebarBackground":
                 case "wcfSidebarText":
                 case "wcfSidebarLink":
                 case "wcfSidebarLinkActive":
-
                 case "wcfSidebarDimmedText":
                 case "wcfSidebarDimmedLink":
                 case "$wcfSidebarDimmedLinkActive":
-
                 case "wcfSidebarHeadlineText":
                 case "wcfSidebarHeadlineLink":
                 case "wcfSidebarHeadlineLinkActive":
-
                 case "wcfContentBackground":
                 case "wcfContentBorder":
                 case "wcfContentBorderInner":
                 case "wcfContentText":
                 case "wcfContentLink":
                 case "wcfContentLinkActive":
-
                 case "wcfContentContainerBackground":
                 case "wcfContentContainerBorder":
-
                 case "wcfContentDimmedText":
                 case "wcfContentDimmedLink":
                 case "wcfContentDimmedLinkActive":
-
                 case "wcfContentHeadlineBorder":
                 case "wcfContentHeadlineText":
                 case "wcfContentHeadlineLink":
                 case "wcfContentHeadlineLinkActive":
-
                 case "wcfTabularBoxBorderInner":
                 case "wcfTabularBoxHeadline":
                 case "wcfTabularBoxBackgroundActive":
                 case "wcfTabularBoxHeadlineActive":
-
                 case "wcfInputLabel":
                 case "wcfInputBackground":
                 case "wcfInputBorder":
@@ -340,79 +326,64 @@ export class Theme extends Component
                 case "wcfInputBackgroundActive":
                 case "wcfInputBorderActive":
                 case "wcfInputTextActive":
-
                 case "wcfInputDisabledBackground":
                 case "wcfInputDisabledBorder":
                 case "wcfInputDisabledText":
-
                 case "wcfButtonBackground":
                 case "wcfButtonText":
                 case "wcfButtonBackgroundActive":
                 case "wcfButtonTextActive":
-
                 case "wcfButtonPrimaryBackground":
                 case "wcfButtonPrimaryText":
                 case "wcfButtonPrimaryBackgroundActive":
                 case "wcfButtonPrimaryTextActive":
-
                 case "wcfButtonDisabledBackground":
                 case "wcfButtonDisabledText":
-
                 case "wcfEditorButtonBackground":
                 case "wcfEditorButtonBackgroundActive":
                 case "wcfEditorButtonText":
                 case "wcfEditorButtonTextActive":
                 case "wcfEditorButtonTextDisabled":
-
                 case "wcfDropdownBackground":
                 case "wcfDropdownBorderInner":
                 case "wcfDropdownText":
                 case "wcfDropdownLink":
                 case "wcfDropdownBackgroundActive":
                 case "wcfDropdownLinkActive":
-
                 case "wcfStatusInfoBackground":
                 case "wcfStatusInfoBorder":
                 case "wcfStatusInfoText":
                 case "wcfStatusInfoLink":
                 case "wcfStatusInfoLinkActive":
-
                 case "wcfStatusSuccessBackground":
                 case "wcfStatusSuccessBorder":
                 case "wcfStatusSuccessText":
                 case "wcfStatusSuccessLink":
                 case "wcfStatusSuccessLinkActive":
-
                 case "wcfStatusWarningBackground":
                 case "wcfStatusWarningBorder":
                 case "wcfStatusWarningText":
                 case "wcfStatusWarningLink":
                 case "wcfStatusWarningLinkActive":
-
                 case "wcfStatusErrorBackground":
                 case "wcfStatusErrorBorder":
                 case "wcfStatusErrorText":
                 case "wcfStatusErrorLink":
                 case "wcfStatusErrorLinkActive":
-
                 case "wcfFooterBoxBackground":
                 case "wcfFooterBoxText":
                 case "wcfFooterBoxLink":
                 case "wcfFooterBoxLinkActive":
-
                 case "wcfFooterBoxHeadlineText":
                 case "wcfFooterBoxHeadlineLink":
                 case "wcfFooterBoxHeadlineLinkActive":
-
                 case "wcfFooterBackground":
                 case "wcfFooterText":
                 case "wcfFooterLink":
                 case "wcfFooterLinkActive":
-
                 case "wcfFooterHeadlineText":
                 case "wcfFooterHeadlineLink":
                 case "wcfFooterHeadlineLinkActive":
-
                 case "wcfFooterCopyrightBackground":
                 case "wcfFooterCopyrightText":
                 case "wcfFooterCopyrightLink":

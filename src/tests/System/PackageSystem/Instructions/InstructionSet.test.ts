@@ -30,9 +30,9 @@ suite(
                     public Type: string;
 
                     /**
-                     *
+                     * Initializes a new instance of the `Instruction` class.
                      */
-                    constructor()
+                    public constructor()
                     {
                         super(
                             {

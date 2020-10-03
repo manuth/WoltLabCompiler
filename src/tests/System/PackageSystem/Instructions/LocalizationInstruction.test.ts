@@ -14,7 +14,7 @@ suite(
         let messageName: string;
         let messageValue: string;
         let instruction: LocalizationInstruction<LocalizationItem, ILocalizationItemOptions>;
-        let translations: { [locale: string]: { [category: string]: { [key: string]: string } } };
+        let translations: Record<string, Record<string, Record<string, string>>>;
 
         suiteSetup(
             () =>

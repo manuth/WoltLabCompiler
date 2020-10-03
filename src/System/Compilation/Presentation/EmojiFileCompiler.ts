@@ -1,4 +1,3 @@
-import { isNullOrUndefined } from "util";
 import { EmojiInstruction } from "../../PackageSystem/Instructions/Customization/EmojiInstruction";
 import { XMLEditor } from "../../Serialization/XMLEditor";
 import { NamedObjectDeletionFileCompiler } from "../NamedObjectDeletionFileCompiler";
@@ -37,6 +36,9 @@ export class EmojiFileCompiler extends NamedObjectDeletionFileCompiler<EmojiInst
 
     /**
      * @inheritdoc
+     *
+     * @returns
+     * The serialized import.
      */
     protected CreateImport(): Element
     {
@@ -56,14 +58,14 @@ export class EmojiFileCompiler extends NamedObjectDeletionFileCompiler<EmojiInst
                         smiley.AddCDATAElement("aliases", emoji.Aliases.map((alias: string) => `:${alias}:`).join("\n"));
                     }
 
-                    if (!isNullOrUndefined(emoji.ShowOrder))
+                    if (emoji.ShowOrder)
                     {
                         smiley.AddTextElement("showorder", emoji.ShowOrder.toString());
                     }
 
                     smiley.AddTextElement("path", emoji.FileName);
 
-                    if (!isNullOrUndefined(emoji.HighResFileName))
+                    if (emoji.HighResFileName)
                     {
                         smiley.AddTextElement("path2x", emoji.HighResFileName);
                     }

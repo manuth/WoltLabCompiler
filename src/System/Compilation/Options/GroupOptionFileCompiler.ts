@@ -1,4 +1,3 @@
-import { isNullOrUndefined } from "util";
 import { GroupCategory } from "../../Options/Groups/GroupCategory";
 import { GroupOption } from "../../Options/Groups/GroupOption";
 import { GroupOptionInstruction } from "../../PackageSystem/Instructions/Options/GroupOptionInstruction";
@@ -30,24 +29,29 @@ export class GroupOptionFileCompiler extends OptionFileCompiler<GroupOptionInstr
     }
 
     /**
-     * @param option
      * @inheritdoc
+     *
+     * @param option
+     * The option to serialize.
+     *
+     * @returns
+     * The serialized option.
      */
     protected CreateOption(option: GroupOption): Element
     {
         let editor: XMLEditor = new XMLEditor(super.CreateOption(option));
 
-        if (!isNullOrUndefined(option.UserDefaultValue))
+        if (option.UserDefaultValue)
         {
             editor.AddTextElement("userdefaultvalue", `${option.UserDefaultValue}`);
         }
 
-        if (!isNullOrUndefined(option.ModDefaultValue))
+        if (option.ModDefaultValue)
         {
             editor.AddTextElement("moddefaultvalue", `${option.ModDefaultValue}`);
         }
 
-        if (!isNullOrUndefined(option.AdminDefaultValue))
+        if (option.AdminDefaultValue)
         {
             editor.AddTextElement("admindefaultvalue", `${option.AdminDefaultValue}`);
         }

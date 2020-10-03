@@ -14,6 +14,7 @@ export class TemplateListenerInstruction extends ListenerInstruction<TemplateLis
      * Initializes a new instance of the `TemplateListenerInstruction` class.
      *
      * @param options
+     * The options of the template-listener instruction.
      */
     public constructor(options: IListenerInstructionOptions<ITemplateListenerOptions>)
     {

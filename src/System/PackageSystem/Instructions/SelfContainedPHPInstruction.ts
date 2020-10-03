@@ -1,6 +1,8 @@
 import Path = require("path");
+import { InstructionCompiler } from "../../Compilation/PackageSystem/Instructions/InstructionCompiler";
 import { SelfContainedPHPInstructionCompiler } from "../../Compilation/PackageSystem/Instructions/SelfContainedPHPInstructionCompiler";
 import { ApplicationFileSystemInstruction } from "./FileSystem/ApplicationFileSystemInstruction";
+import { FileSystemInstruction } from "./FileSystem/FileSystemInstruction";
 import { InstructionSet } from "./InstructionSet";
 import { ISelfContainedPHPInstructionOptions } from "./ISelfContainedPHPInstructionOptions";
 import { PHPInstruction } from "./PHPInstruction";
@@ -16,9 +18,10 @@ export class SelfContainedPHPInstruction extends ApplicationFileSystemInstructio
     private destination: string;
 
     /**
-     * Initializes a new instance of the `PHPInstruction` class.
+     * Initializes a new instance of the `SelfContainedPHPInstruction` class.
      *
      * @param options
+     * The options of the self-contained php instruction.
      */
     public constructor(options: ISelfContainedPHPInstructionOptions)
     {
@@ -29,7 +32,7 @@ export class SelfContainedPHPInstruction extends ApplicationFileSystemInstructio
     /**
      * @inheritdoc
      */
-    public get Compiler()
+    public get Compiler(): InstructionCompiler<SelfContainedPHPInstruction>
     {
         return new SelfContainedPHPInstructionCompiler(this);
     }
@@ -37,15 +40,15 @@ export class SelfContainedPHPInstruction extends ApplicationFileSystemInstructio
     /**
      * Gets or sets the path to load the `php`-file from.
      */
-    public get Source()
+    public get Source(): string
     {
         return super.Source;
     }
 
     /**
-     *
+     * @inheritdoc
      */
-    public set Source(value)
+    public set Source(value: string)
     {
         super.Source = value;
     }
@@ -53,7 +56,7 @@ export class SelfContainedPHPInstruction extends ApplicationFileSystemInstructio
     /**
      * @inheritdoc
      */
-    public get FileName()
+    public get FileName(): string
     {
         return super.FileName;
     }
@@ -61,7 +64,7 @@ export class SelfContainedPHPInstruction extends ApplicationFileSystemInstructio
     /**
      * @inheritdoc
      */
-    public set FileName(value)
+    public set FileName(value: string)
     {
         super.FileName = value;
     }
@@ -69,15 +72,15 @@ export class SelfContainedPHPInstruction extends ApplicationFileSystemInstructio
     /**
      * Gets or sets the path to save the `php`-file to.
      */
-    public get Destination()
+    public get Destination(): string
     {
         return this.destination;
     }
 
     /**
-     *
+     * @inheritdoc
      */
-    public set Destination(value)
+    public set Destination(value: string)
     {
         this.destination = value;
     }
@@ -85,16 +88,18 @@ export class SelfContainedPHPInstruction extends ApplicationFileSystemInstructio
     /**
      * Gets the file-instruction contained by this instruction.
      */
-    public get FileInstruction()
+    public get FileInstruction(): FileSystemInstruction
     {
         let collection = new InstructionSet(this.Collection.Package);
         collection.Directory = this.Collection.Directory;
+
         let result = new ApplicationFileSystemInstruction(
             {
                 Application: this.Application,
                 Source: null,
                 FileName: this.FileName
             });
+
         collection.push(result);
         return result;
     }
@@ -102,25 +107,32 @@ export class SelfContainedPHPInstruction extends ApplicationFileSystemInstructio
     /**
      * Gets the php-instruction contained by this instruction.
      */
-    public get PHPInstruction()
+    public get PHPInstruction(): PHPInstruction
     {
         let collection = new InstructionSet(this.Collection.Package);
         collection.Directory = this.Collection.Directory;
+
         let result = new PHPInstruction(
             {
                 Application: this.Application,
                 FileName: this.Destination,
                 Standalone: this.Standalone
             });
+
         collection.push(result);
         return result;
     }
 
     /**
-     * @param source
      * @inheritdoc
+     *
+     * @param source
+     * The source of the instruction.
+     *
+     * @returns
+     * The default filename.
      */
-    protected MakeDefaultFileName(source: string)
+    protected MakeDefaultFileName(source: string): string
     {
         return Path.join("scripts", "php", this.Application, super.MakeDefaultFileName(source));
     }

@@ -18,9 +18,11 @@ export class ThemeInstructionCollection extends Array<ThemeInstruction>
     {
         super();
 
-        let themeFolders: string[] = FileSystem.pathExistsSync(path) ? FileSystem.readdirSync(path).map(
-            (entry: string) => Path.join(path, entry)).filter(
-                (entry: string) => FileSystem.lstatSync(entry).isDirectory()) : [];
+        let themeFolders: string[] = FileSystem.pathExistsSync(path) ?
+            FileSystem.readdirSync(path).map(
+                (entry: string) => Path.join(path, entry)).filter(
+                    (entry: string) => FileSystem.lstatSync(entry).isDirectory()) :
+            [];
 
         for (let themeFolder of themeFolders)
         {
@@ -32,6 +34,7 @@ export class ThemeInstructionCollection extends Array<ThemeInstruction>
                 process.chdir(themeFolder);
 
                 {
+                    // eslint-disable-next-line @typescript-eslint/no-var-requires
                     let theme: IThemeOptions = require(metaFile) as IThemeOptions;
                     this.push(new ThemeInstruction({ Theme: theme }));
                 }

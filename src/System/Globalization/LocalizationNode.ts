@@ -12,6 +12,7 @@ export class LocalizationNode extends Node<LocalizationItem, ILocalizationItemOp
      * Initializes a new instance of the `LocalizationNode` class.
      *
      * @param options
+     * The options of the localization-node.
      */
     public constructor(options: INodeOptions<ILocalizationItemOptions>)
     {

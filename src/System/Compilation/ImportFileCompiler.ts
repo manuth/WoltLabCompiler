@@ -20,6 +20,9 @@ export abstract class ImportFileCompiler<T> extends WoltLabXMLCompiler<T>
 
     /**
      * @inheritdoc
+     *
+     * @returns
+     * The serialized document.
      */
     protected CreateDocument(): Document
     {
@@ -32,6 +35,9 @@ export abstract class ImportFileCompiler<T> extends WoltLabXMLCompiler<T>
 
     /**
      * Serializes the import-section of the document.
+     *
+     * @returns
+     * The serialized import.
      */
     protected CreateImport(): Element
     {
@@ -41,6 +47,9 @@ export abstract class ImportFileCompiler<T> extends WoltLabXMLCompiler<T>
 
     /**
      * Serializes the delete-section of the document.
+     *
+     * @returns
+     * The serialized deletion.
      */
     protected CreateDelete(): Element
     {

@@ -1,5 +1,4 @@
 import Path = require("path");
-import { isNullOrUndefined } from "util";
 import UPath = require("upath");
 import { IFileDescriptorOptions } from "./IFileDescriptorOptions";
 
@@ -22,12 +21,17 @@ export class FileDescriptor
      * Initializes a new instance of the `FileDescriptor` class.
      *
      * @param options
+     * The options of the file-descriptor.
      */
     public constructor(options: IFileDescriptorOptions)
     {
         this.Source = Path.resolve(options.Source);
 
-        if (isNullOrUndefined(options.FileName))
+        if (options.FileName)
+        {
+            this.FileName = options.FileName;
+        }
+        else
         {
             let fileName: string = Path.normalize(options.Source);
 
@@ -42,10 +46,6 @@ export class FileDescriptor
                 this.FileName = fileName;
             }
         }
-        else
-        {
-            this.FileName = options.FileName;
-        }
     }
 
     /**
@@ -57,7 +57,7 @@ export class FileDescriptor
     }
 
     /**
-     *
+     * @inheritdoc
      */
     public set Source(value: string)
     {
@@ -73,7 +73,7 @@ export class FileDescriptor
     }
 
     /**
-     *
+     * @inheritdoc
      */
     public set FileName(value: string)
     {

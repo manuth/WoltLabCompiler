@@ -14,12 +14,12 @@ suite(
         let compiler: InstructionCompiler<IInstruction>;
         let type: string;
         let objectID: string;
-        let object: object;
+        let object: unknown;
 
         suiteSetup(
             () =>
             {
-                let objects: { [key: string]: object } = {};
+                let objects: Record<string, unknown> = {};
                 tempFile = new TempFile();
                 type = "test";
                 objectID = "date";
@@ -43,7 +43,7 @@ suite(
                     public Type: string = type;
 
                     /**
-                     *
+                     * Initializes a new instance of the class.
                      */
                     public constructor()
                     {
@@ -53,7 +53,7 @@ suite(
                     /**
                      * @inheritdoc
                      */
-                    public get ObjectsByID(): { [key: string]: any }
+                    public get ObjectsByID(): Record<string, unknown>
                     {
                         return objects;
                     }
@@ -64,7 +64,10 @@ suite(
                 compiler = new class extends InstructionCompiler<IInstruction>
                 {
                     /**
+                     * Initializes a new instance of the class.
+                     *
                      * @param item
+                     * The options of the instruction.
                      */
                     public constructor(item: IInstruction)
                     {

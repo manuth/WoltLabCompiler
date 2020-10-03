@@ -14,14 +14,15 @@ suite(
     {
         let tempFile: TempFile;
         let objectTag: string;
-        let compiler: ObjectDeletionFileCompiler<IDeleteInstruction<{}>, {}>;
+        let compiler: ObjectDeletionFileCompiler<IDeleteInstruction<unknown>, unknown>;
 
         suiteSetup(
             () =>
             {
                 tempFile = new TempFile();
                 objectTag = "myObject";
-                compiler = new class extends ObjectDeletionFileCompiler<IDeleteInstruction<{}>, {}>
+
+                compiler = new class extends ObjectDeletionFileCompiler<IDeleteInstruction<unknown>, unknown>
                 {
                     /**
                      * @inheritdoc
@@ -33,13 +34,16 @@ suite(
 
                     /**
                      * @inheritdoc
+                     *
+                     * @returns
+                     * The newly created deletion-entry.
                      */
                     protected CreateDeleteObject(): Element
                     {
                         return XML.CreateDocument(objectTag).documentElement;
                     }
                 }(
-                    new class extends Instruction implements IDeleteInstruction<{}>
+                    new class extends Instruction implements IDeleteInstruction<unknown>
                     {
                         /**
                          * @inheritdoc
@@ -49,13 +53,13 @@ suite(
                         /**
                          * @inheritdoc
                          */
-                        public ObjectsToDelete: Array<{}> = [
+                        public ObjectsToDelete: unknown[] = [
                             {},
                             {}
                         ];
 
                         /**
-                         *
+                         * Initializes a new instance of the `Instruction` class.
                          */
                         public constructor()
                         {

@@ -10,10 +10,14 @@ export class XML
      *
      * @param tagName
      * The name of the tag of the `documentElement`.
+     *
+     * @returns
+     * The newly created document.
      */
     public static CreateDocument(tagName: string): Document
     {
         let result = new DOMParser().parseFromString(`<${tagName} />`);
+
         result.insertBefore(
             result.createProcessingInstruction("xml", 'version="1.0" encoding="UTF-8"'),
             result.documentElement);
@@ -28,9 +32,9 @@ export class XML
      * The xml-code to format.
      *
      * @returns
-     * Formatted xml-code.
+     * The formatted xml-code.
      */
-    public static Format(xml: string)
+    public static Format(xml: string): string
     {
         let document = new DOMParser().parseFromString(xml);
         let children: Node[] = [];
@@ -64,7 +68,7 @@ export class XML
      * @param indent
      * The indentation of the element itself.
      */
-    protected static FormatElement(element: Element, indent = "")
+    protected static FormatElement(element: Element, indent = ""): void
     {
         let innerIndent = `${" ".repeat(4)}${indent}`;
 

@@ -1,5 +1,4 @@
 import Path = require("path");
-import { isNullOrUndefined } from "util";
 import UPath = require("upath");
 import { FileSystemInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/FileSystemInstructionCompiler";
 import { InstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/InstructionCompiler";
@@ -20,6 +19,7 @@ export abstract class FileSystemInstruction extends Instruction
      * Initializes a new instance of the `FileSystemInstruction` class.
      *
      * @param options
+     * The options of the file-system instruction.
      */
     public constructor(options: IFileSystemInstructionOptions)
     {
@@ -39,7 +39,7 @@ export abstract class FileSystemInstruction extends Instruction
     }
 
     /**
-     *
+     * @inheritdoc
      */
     public set Source(value: string)
     {
@@ -49,22 +49,15 @@ export abstract class FileSystemInstruction extends Instruction
     /**
      * @inheritdoc
      */
-    public get FileName()
+    public get FileName(): string
     {
-        if (isNullOrUndefined(super.FileName))
-        {
-            return this.MakeDefaultFileName(this.Source);
-        }
-        else
-        {
-            return super.FileName;
-        }
+        return super.FileName ?? this.MakeDefaultFileName(this.Source);
     }
 
     /**
      * @inheritdoc
      */
-    public set FileName(value)
+    public set FileName(value: string)
     {
         super.FileName = value;
     }
@@ -82,8 +75,11 @@ export abstract class FileSystemInstruction extends Instruction
      *
      * @param source
      * The source of the instruction.
+     *
+     * @returns
+     * The default filename.
      */
-    protected MakeDefaultFileName(source: string)
+    protected MakeDefaultFileName(source: string): string
     {
         if (
             Path.isAbsolute(source) ||

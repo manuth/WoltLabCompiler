@@ -22,6 +22,9 @@ export interface INode<T> extends INodeBase
 
     /**
      * Gets all nodes recursively.
+     *
+     * @returns
+     * All nodes inside this node.
      */
     GetAllNodes(): ReadonlyArray<INode<T>>;
 }

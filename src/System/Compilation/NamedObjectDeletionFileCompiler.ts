@@ -15,8 +15,13 @@ export abstract class NamedObjectDeletionFileCompiler<T extends INamedDeleteInst
     protected abstract get ObjectTagName(): string;
 
     /**
-     * @param object
      * @inheritdoc
+     *
+     * @param object
+     * The object to delete.
+     *
+     * @returns
+     * The serialized deletion-entry.
      */
     protected CreateDeleteObject(object: INamedObject): Element
     {

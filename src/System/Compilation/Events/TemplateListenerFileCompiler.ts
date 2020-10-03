@@ -36,8 +36,13 @@ export class TemplateListenerFileCompiler extends ListenerFileCompiler<TemplateL
     }
 
     /**
-     * @param listener
      * @inheritdoc
+     *
+     * @param listener
+     * The listener to serialize.
+     *
+     * @returns
+     * The serialized listener.
      */
     protected CreateListener(listener: TemplateListener): Element
     {

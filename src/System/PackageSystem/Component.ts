@@ -1,4 +1,3 @@
-import { isNullOrUndefined } from "util";
 import { Localization } from "../Globalization/Localization";
 import { IComponentOptions } from "./IComponentOptions";
 import { Person } from "./Person";
@@ -47,6 +46,7 @@ export abstract class Component
      * Initializes a new instance of the `Component` class.
      *
      * @param options
+     * The options of the component.
      */
     public constructor(options: IComponentOptions)
     {
@@ -54,22 +54,22 @@ export abstract class Component
         this.DisplayName.Data = options.DisplayName;
         this.Version = options.Version;
 
-        if (!isNullOrUndefined(options.Author))
+        if (options.Author)
         {
             this.author = new Person(options.Author);
         }
 
-        if (!isNullOrUndefined(options.CreationDate))
+        if (options.CreationDate)
         {
             this.CreationDate = options.CreationDate;
         }
 
-        if (!isNullOrUndefined(options.Description))
+        if (options.Description)
         {
             this.Description.Data = options.Description;
         }
 
-        if (!isNullOrUndefined(options.License))
+        if (options.License)
         {
             this.License = options.License;
         }
@@ -84,7 +84,7 @@ export abstract class Component
     }
 
     /**
-     *
+     * @inheritdoc
      */
     public set Name(value: string)
     {
@@ -108,7 +108,7 @@ export abstract class Component
     }
 
     /**
-     *
+     * @inheritdoc
      */
     public set Version(value: string)
     {
@@ -132,7 +132,7 @@ export abstract class Component
     }
 
     /**
-     *
+     * @inheritdoc
      */
     public set CreationDate(value: Date)
     {
@@ -156,7 +156,7 @@ export abstract class Component
     }
 
     /**
-     *
+     * @inheritdoc
      */
     public set License(value: string)
     {

@@ -55,7 +55,7 @@ suite(
                     /**
                      * @inheritdoc
                      */
-                    public get Type()
+                    public get Type(): string
                     {
                         return "baz";
                     }
@@ -69,7 +69,7 @@ suite(
                     /**
                      * @inheritdoc
                      */
-                    protected get ObjectTagName()
+                    protected get ObjectTagName(): string
                     {
                         return listenerTag;
                     }
@@ -77,7 +77,7 @@ suite(
                     /**
                      * @inheritdoc
                      */
-                    protected get SchemaLocation()
+                    protected get SchemaLocation(): string
                     {
                         return "http://example.com/myListener.xsd";
                     }

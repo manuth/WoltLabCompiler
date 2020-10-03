@@ -22,15 +22,18 @@ export class InstructionCompiler<T extends IInstruction> extends Compiler<T>
     /**
      * Gets the name of the file to write the compiled item to.
      */
-    public get DestinationFileName()
+    public get DestinationFileName(): string
     {
         return this.MakePackagePath(this.Item.FullName);
     }
 
     /**
      * Returns an XML `Document` which represents the compiled instruction.
+     *
+     * @returns
+     * The serialized document.
      */
-    public Serialize()
+    public Serialize(): Document
     {
         let document = new DOMParser().parseFromString("<instruction />");
         document.documentElement.textContent = this.Item.FullName;
@@ -48,8 +51,7 @@ export class InstructionCompiler<T extends IInstruction> extends Compiler<T>
      * @inheritdoc
      */
     protected async Compile(): Promise<void>
-    {
-    }
+    { }
 
     /**
      * Copies files using `EJS`.
@@ -63,7 +65,7 @@ export class InstructionCompiler<T extends IInstruction> extends Compiler<T>
      * @param context
      * The context to use.
      */
-    protected async CopyTemplate(source: string, destination: string, context?: { [key: string]: any })
+    protected async CopyTemplate(source: string, destination: string, context?: Record<string, unknown>): Promise<void>
     {
         context = context || {};
 
@@ -82,19 +84,25 @@ export class InstructionCompiler<T extends IInstruction> extends Compiler<T>
      *
      * @param path
      * The path that is to be joined.
+     *
+     * @returns
+     * The joined path relative to the package-folder.
      */
-    protected MakePackagePath(...path: string[])
+    protected MakePackagePath(...path: string[]): string
     {
         return super.MakeDestinationPath(...path);
     }
 
     /**
-     * Joins the paths and returns the path contained by the destination-folder.
+     * @inheritdoc
      *
      * @param path
      * The path that is to be joined.
+     *
+     * @returns
+     * The joined path relative to the destination-folder.
      */
-    protected MakeDestinationPath(...path: string[])
+    protected MakeDestinationPath(...path: string[]): string
     {
         return Path.join(this.DestinationFileName, ...path);
     }

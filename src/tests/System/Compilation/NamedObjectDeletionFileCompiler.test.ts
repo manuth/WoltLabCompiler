@@ -65,7 +65,7 @@ suite(
                         public ObjectsToDelete: INamedObject[] = objectsToDelete;
 
                         /**
-                         *
+                         * Initializes a new instance of the `Instruction` class.
                          */
                         public constructor()
                         {

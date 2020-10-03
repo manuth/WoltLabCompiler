@@ -4,7 +4,7 @@ import { WoltLabXMLCompiler } from "../WoltLabXMLCompiler";
 /**
  * Provides the functionality to compile localization-files.
  */
-export class LocalizationFileCompiler extends WoltLabXMLCompiler<[string, { [category: string]: { [key: string]: string } }]>
+export class LocalizationFileCompiler extends WoltLabXMLCompiler<[string, Record<string, Record<string, string>>]>
 {
     /**
      * Initializes a new instance of the `LocalizationFileCompiler` class.
@@ -12,7 +12,7 @@ export class LocalizationFileCompiler extends WoltLabXMLCompiler<[string, { [cat
      * @param item
      * The item to compile.
      */
-    public constructor(item: [string, { [category: string]: { [key: string]: string } }])
+    public constructor(item: [string, Record<string, Record<string, string>>])
     {
         super(item);
     }
@@ -35,6 +35,9 @@ export class LocalizationFileCompiler extends WoltLabXMLCompiler<[string, { [cat
 
     /**
      * @inheritdoc
+     *
+     * @returns
+     * The serialized document.
      */
     protected CreateDocument(): Document
     {

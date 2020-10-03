@@ -1,4 +1,3 @@
-import { isNullOrUndefined } from "util";
 import { ICategory } from "../ICategory";
 import { Option } from "../Option";
 import { IACPOptionOptions } from "./IACPOptionOptions";
@@ -27,23 +26,26 @@ export class ACPOption extends Option
      * Initializes a new instance of the `ACPOption` class.
      *
      * @param category
+     * The category of the option.
+     *
      * @param options
+     * The options of the acp-option.
      */
     public constructor(category: ICategory, options: IACPOptionOptions)
     {
         super(category, options);
 
-        if (!isNullOrUndefined(options.Visible))
+        if (options.Visible)
         {
             this.Visible = options.Visible;
         }
 
-        if (!isNullOrUndefined(options.Localizable))
+        if (options.Localizable)
         {
             this.Localizable = options.Localizable;
         }
 
-        if (!isNullOrUndefined(options.ForceLocalization))
+        if (options.ForceLocalization)
         {
             this.ForceLocalization = options.ForceLocalization;
         }
@@ -52,15 +54,15 @@ export class ACPOption extends Option
     /**
      * Gets or sets a value indicating whether the option is visible.
      */
-    public get Visible()
+    public get Visible(): boolean
     {
         return this.visible;
     }
 
     /**
-     *
+     * @inheritdoc
      */
-    public set Visible(value)
+    public set Visible(value: boolean)
     {
         this.visible = value;
     }
@@ -68,15 +70,15 @@ export class ACPOption extends Option
     /**
      * Gets or sets a value indicating whether the option is localizable.
      */
-    public get Localizable()
+    public get Localizable(): boolean
     {
         return this.localizable;
     }
 
     /**
-     *
+     * @inheritdoc
      */
-    public set Localizable(value)
+    public set Localizable(value: boolean)
     {
         this.localizable = value;
     }
@@ -84,15 +86,15 @@ export class ACPOption extends Option
     /**
      * Gets or sets a value indicating whether to force localization.
      */
-    public get ForceLocalization()
+    public get ForceLocalization(): boolean
     {
         return this.forceLocalization;
     }
 
     /**
-     *
+     * @inheritdoc
      */
-    public set ForceLocalization(value)
+    public set ForceLocalization(value: boolean)
     {
         this.forceLocalization = value;
     }

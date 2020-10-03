@@ -20,6 +20,7 @@ export class TemplateListener extends Listener
      * Initializes a new instance of the `TemplateListener` class.
      *
      * @param options
+     * The options of the template-listener.
      */
     public constructor(options: ITemplateListenerOptions)
     {
@@ -37,7 +38,7 @@ export class TemplateListener extends Listener
     }
 
     /**
-     *
+     * @inheritdoc
      */
     public set TemplateName(value: string)
     {
@@ -53,7 +54,7 @@ export class TemplateListener extends Listener
     }
 
     /**
-     *
+     * @inheritdoc
      */
     public set Code(value: string)
     {

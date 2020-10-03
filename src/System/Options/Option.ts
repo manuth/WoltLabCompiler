@@ -1,4 +1,3 @@
-import { isNullOrUndefined } from "util";
 import { Localization } from "../Globalization/Localization";
 import { ICategory } from "./ICategory";
 import { IOptionOptions } from "./IOptionOptions";
@@ -43,7 +42,7 @@ export abstract class Option
     /**
      * The default value of the option.
      */
-    private defaultValue: any = null;
+    private defaultValue: unknown = null;
 
     /**
      * The show-order of the option.
@@ -79,56 +78,59 @@ export abstract class Option
     /**
      * A set of additional properties of the option.
      */
-    private additionalProperties: { [key: string]: any } = {};
+    private additionalProperties: Record<string, unknown> = {};
 
     /**
      * Initializes a new instance of the `Option` class.
      *
      * @param category
+     * The category of the option.
+     *
      * @param options
+     * The options of the option.
      */
     public constructor(category: ICategory, options: IOptionOptions)
     {
         this.category = category;
 
-        if (!isNullOrUndefined(options.ID))
+        if (options.ID)
         {
             this.ID = options.ID;
         }
 
         this.Name = options.Name;
 
-        if (!isNullOrUndefined(options.DisplayName))
+        if (options.DisplayName)
         {
             this.DisplayName.Data = options.DisplayName;
         }
 
-        if (!isNullOrUndefined(options.Description))
+        if (options.Description)
         {
             this.Description.Data = options.Description;
         }
 
-        if (!isNullOrUndefined(options.Type))
+        if (options.Type)
         {
             this.Type = options.Type;
         }
 
-        if (!isNullOrUndefined(options.DefaultValue))
+        if (options.DefaultValue)
         {
             this.DefaultValue = options.DefaultValue;
         }
 
-        if (!isNullOrUndefined(options.ShowOrder))
+        if (options.ShowOrder)
         {
             this.ShowOrder = options.ShowOrder;
         }
 
-        if (!isNullOrUndefined(options.ValidationPattern))
+        if (options.ValidationPattern)
         {
             this.ValidationPattern = options.ValidationPattern;
         }
 
-        if (!isNullOrUndefined(options.Items))
+        if (options.Items)
         {
             for (let item of options.Items)
             {
@@ -136,17 +138,17 @@ export abstract class Option
             }
         }
 
-        if (!isNullOrUndefined(options.Options))
+        if (options.Options)
         {
             this.Options = options.Options;
         }
 
-        if (!isNullOrUndefined(options.EnableOptions))
+        if (options.EnableOptions)
         {
             this.EnableOptions = options.EnableOptions;
         }
 
-        if (!isNullOrUndefined(options.AdditionalProperties))
+        if (options.AdditionalProperties)
         {
             this.AdditionalProperties = options.AdditionalProperties;
         }
@@ -161,7 +163,7 @@ export abstract class Option
     }
 
     /**
-     *
+     * @inheritdoc
      */
     public set ID(value: string)
     {
@@ -177,7 +179,7 @@ export abstract class Option
     }
 
     /**
-     *
+     * @inheritdoc
      */
     public set Name(value: string)
     {
@@ -217,7 +219,7 @@ export abstract class Option
     }
 
     /**
-     *
+     * @inheritdoc
      */
     public set Type(value: OptionType | string)
     {
@@ -227,15 +229,15 @@ export abstract class Option
     /**
      * Gets or sets the default value of the option.
      */
-    public get DefaultValue(): any
+    public get DefaultValue(): unknown
     {
         return this.defaultValue;
     }
 
     /**
-     *
+     * @inheritdoc
      */
-    public set DefaultValue(value: any)
+    public set DefaultValue(value: unknown)
     {
         this.defaultValue = value;
     }
@@ -249,7 +251,7 @@ export abstract class Option
     }
 
     /**
-     *
+     * @inheritdoc
      */
     public set ShowOrder(value: number)
     {
@@ -265,7 +267,7 @@ export abstract class Option
     }
 
     /**
-     *
+     * @inheritdoc
      */
     public set ValidationPattern(value: RegExp)
     {
@@ -289,7 +291,7 @@ export abstract class Option
     }
 
     /**
-     *
+     * @inheritdoc
      */
     public set Options(value: string[])
     {
@@ -311,7 +313,7 @@ export abstract class Option
     }
 
     /**
-     *
+     * @inheritdoc
      */
     public set EnableOptions(value: string[])
     {
@@ -321,15 +323,15 @@ export abstract class Option
     /**
      * Gets or sets a set of additional properties of the option.
      */
-    public get AdditionalProperties(): { [key: string]: any }
+    public get AdditionalProperties(): Record<string, unknown>
     {
         return this.additionalProperties;
     }
 
     /**
-     *
+     * @inheritdoc
      */
-    public set AdditionalProperties(value: { [key: string]: any })
+    public set AdditionalProperties(value: Record<string, unknown>)
     {
         this.additionalProperties = value;
     }

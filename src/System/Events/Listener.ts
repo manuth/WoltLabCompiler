@@ -1,4 +1,3 @@
-import { isNullOrUndefined } from "util";
 import { IListenerOptions } from "./IListenerOptions";
 import { ListenerEnvironment } from "./ListenerEnvironment";
 
@@ -41,29 +40,30 @@ export abstract class Listener
      * Initializes a new instance of the `Listener` class.
      *
      * @param options
+     * The options of the listener.
      */
     public constructor(options: IListenerOptions)
     {
         this.Name = options.Name;
 
-        if (!isNullOrUndefined(options.Environment))
+        if (options.Environment)
         {
             this.Environment = options.Environment;
         }
 
         this.EventName = options.EventName;
 
-        if (!isNullOrUndefined(options.ExecutionOrder))
+        if (options.ExecutionOrder)
         {
             this.ExecutionOrder = options.ExecutionOrder;
         }
 
-        if (!isNullOrUndefined(options.Permissions))
+        if (options.Permissions)
         {
             this.Permissions.push(...options.Permissions);
         }
 
-        if (!isNullOrUndefined(options.Options))
+        if (options.Options)
         {
             this.Options.push(...options.Options);
         }
@@ -78,7 +78,7 @@ export abstract class Listener
     }
 
     /**
-     *
+     * @inheritdoc
      */
     public set Name(value: string)
     {
@@ -94,7 +94,7 @@ export abstract class Listener
     }
 
     /**
-     *
+     * @inheritdoc
      */
     public set Environment(value: ListenerEnvironment)
     {
@@ -110,7 +110,7 @@ export abstract class Listener
     }
 
     /**
-     *
+     * @inheritdoc
      */
     public set EventName(value: string)
     {
@@ -126,7 +126,7 @@ export abstract class Listener
     }
 
     /**
-     *
+     * @inheritdoc
      */
     public set ExecutionOrder(value: number)
     {

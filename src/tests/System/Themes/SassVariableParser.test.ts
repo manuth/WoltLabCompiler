@@ -19,8 +19,8 @@ suite(
         let var2Value: string;
         let var3Name: string;
 
-        let variablesWithoutImport: { [key: string]: string };
-        let variablesWithImport: { [key: string]: string };
+        let variablesWithoutImport: Record<string, string>;
+        let variablesWithImport: Record<string, string>;
 
         suiteSetup(
             async () =>

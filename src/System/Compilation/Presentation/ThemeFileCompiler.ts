@@ -1,4 +1,3 @@
-import { isNullOrUndefined } from "util";
 import { Theme } from "../../Customization/Presentation/Themes/Theme";
 import { XMLEditor } from "../../Serialization/XMLEditor";
 import { WoltLabXMLCompiler } from "../WoltLabXMLCompiler";
@@ -18,7 +17,9 @@ export class ThemeFileCompiler extends WoltLabXMLCompiler<Theme>
      *
      * @param item
      * The item to compile.
+     *
      * @param variableFileName
+     * The name of the variable-file.
      */
     public constructor(item: Theme, variableFileName: string)
     {
@@ -29,7 +30,7 @@ export class ThemeFileCompiler extends WoltLabXMLCompiler<Theme>
     /**
      * @inheritdoc
      */
-    protected get TagName()
+    protected get TagName(): string
     {
         return "style";
     }
@@ -37,15 +38,18 @@ export class ThemeFileCompiler extends WoltLabXMLCompiler<Theme>
     /**
      * @inheritdoc
      */
-    protected get SchemaLocation()
+    protected get SchemaLocation(): string
     {
         return "https://www.woltlab.com/XSD/vortex/style.xsd";
     }
 
     /**
      * @inheritdoc
+     *
+     * @returns
+     * The serialized document.
      */
-    protected CreateDocument()
+    protected CreateDocument(): Document
     {
         let document = super.CreateDocument();
         let editor = new XMLEditor(document.documentElement);
@@ -69,6 +73,7 @@ export class ThemeFileCompiler extends WoltLabXMLCompiler<Theme>
                 }
 
                 general.AddTextElement("version", this.Item.Version);
+
                 general.AddTextElement(
                     "date",
                     this.Item.CreationDate.getFullYear().toString() + "-" +
@@ -89,7 +94,7 @@ export class ThemeFileCompiler extends WoltLabXMLCompiler<Theme>
                         });
                 }
 
-                if (!isNullOrUndefined(this.Item.License))
+                if (this.Item.License)
                 {
                     general.AddTextElement("license", this.Item.License);
                 }
@@ -97,17 +102,17 @@ export class ThemeFileCompiler extends WoltLabXMLCompiler<Theme>
                 general.AddTextElement("packageName", this.Item.Instruction.Collection.Package.Identifier);
                 general.AddTextElement("apiVersion", "3.1");
 
-                if (!isNullOrUndefined(this.Item.Thumbnail))
+                if (this.Item.Thumbnail)
                 {
                     general.AddTextElement("image", this.Item.Thumbnail.FileName);
                 }
 
-                if (!isNullOrUndefined(this.Item.HighResThumbnail))
+                if (this.Item.HighResThumbnail)
                 {
                     general.AddTextElement("image2x", this.Item.HighResThumbnail.FileName);
                 }
 
-                if (!isNullOrUndefined(this.Item.CoverPhoto))
+                if (this.Item.CoverPhoto)
                 {
                     general.AddTextElement("coverPhoto", this.Item.CoverPhoto.FileName);
                 }
@@ -117,12 +122,12 @@ export class ThemeFileCompiler extends WoltLabXMLCompiler<Theme>
             "author",
             (author) =>
             {
-                if (!isNullOrUndefined(this.Item.Author.Name))
+                if (this.Item.Author.Name)
                 {
                     author.AddTextElement("authorname", this.Item.Author.Name);
                 }
 
-                if (!isNullOrUndefined(this.Item.Author.URL))
+                if (this.Item.Author.URL)
                 {
                     author.AddTextElement("authorurl", this.Item.Author.URL);
                 }
@@ -133,13 +138,13 @@ export class ThemeFileCompiler extends WoltLabXMLCompiler<Theme>
         {
             if (
                 Object.keys(this.Item.Variables).length > 0 ||
-                !isNullOrUndefined(this.Item.CustomScss) ||
-                !isNullOrUndefined(this.Item.ScssOverride))
+                this.Item.CustomScss ||
+                this.Item.ScssOverride)
             {
                 files.AddTextElement("variables", this.VariableFileName);
             }
 
-            if (!isNullOrUndefined(this.Item.Images))
+            if (this.Item.Images)
             {
                 files.AddTextElement(
                     "images",
@@ -162,15 +167,15 @@ export class ThemeFileCompiler extends WoltLabXMLCompiler<Theme>
     /**
      * Gets or sets the filename to save variables to.
      */
-    public get VariableFileName()
+    public get VariableFileName(): string
     {
         return this.variableFileName;
     }
 
     /**
-     *
+     * @inheritdoc
      */
-    public set VariableFileName(value)
+    public set VariableFileName(value: string)
     {
         this.variableFileName = value;
     }

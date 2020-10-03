@@ -9,8 +9,7 @@ suite(
          * Represents a parent-object.
          */
         class Parent
-        {
-        }
+        { }
 
         /**
          * Represents a child-object.
@@ -29,22 +28,31 @@ suite(
         class MyCollection extends BidirectionalCollection<Parent, Child>
         {
             /**
-             * @param item
              * @inheritdoc
+             *
+             * @param child
+             * The child whose parent to return.
+             *
+             * @returns
+             * The parent of the `child`.
              */
-            protected GetParent(item: Child)
+            protected GetParent(child: Child): Parent
             {
-                return item.Parent;
+                return child.Parent;
             }
 
             /**
-             * @param item
-             * @param owner
              * @inheritdoc
+             *
+             * @param child
+             * The child whose parent is to be set.
+             *
+             * @param parent
+             * The parent to set.
              */
-            protected SetParent(item: Child, owner: Parent)
+            protected SetParent(child: Child, parent: Parent): void
             {
-                item.Parent = owner;
+                child.Parent = parent;
             }
         }
 

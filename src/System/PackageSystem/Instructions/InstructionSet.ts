@@ -1,4 +1,3 @@
-import { isNullOrUndefined } from "util";
 import { BidirectionalCollection } from "../../Collections/BidirectionalCollection";
 import { XML } from "../../Serialization/XML";
 import { XMLEditor } from "../../Serialization/XMLEditor";
@@ -23,12 +22,13 @@ export class InstructionSet extends BidirectionalCollection<InstructionSet, Inst
     /**
      * Initializes a new instance of the `InstructionSet` class.
      *
-     * @param $package
+     * @param extensionPackage
+     * The extension of the instruction-set.
      */
-    public constructor($package: Package)
+    public constructor(extensionPackage: Package)
     {
         super(null);
-        this.Package = $package;
+        this.Package = extensionPackage;
     }
 
     /**
@@ -42,15 +42,15 @@ export class InstructionSet extends BidirectionalCollection<InstructionSet, Inst
     /**
      * Gets or sets the package the collection belongs to.
      */
-    public get Package()
+    public get Package(): Package
     {
         return this.package;
     }
 
     /**
-     *
+     * @inheritdoc
      */
-    public set Package(value)
+    public set Package(value: Package)
     {
         this.package = value;
     }
@@ -58,23 +58,26 @@ export class InstructionSet extends BidirectionalCollection<InstructionSet, Inst
     /**
      * Gets or sets the directory to save the components of this set.
      */
-    public get Directory()
+    public get Directory(): string
     {
         return this.directory;
     }
 
     /**
-     *
+     * @inheritdoc
      */
-    public set Directory(value)
+    public set Directory(value: string)
     {
         this.directory = value;
     }
 
     /**
      * Serializes the instruction-set to an xml dom-element.
+     *
+     * @returns
+     * An element representing this instruction.
      */
-    public Serialize()
+    public Serialize(): Element
     {
         let document = XML.CreateDocument("instructions");
         let editor = new XMLEditor(document.documentElement);
@@ -82,7 +85,7 @@ export class InstructionSet extends BidirectionalCollection<InstructionSet, Inst
 
         for (let instruction of this)
         {
-            if (!isNullOrUndefined(instruction.Compiler))
+            if (instruction.Compiler)
             {
                 let childNodes = instruction.Compiler.Serialize().childNodes;
 
@@ -98,20 +101,29 @@ export class InstructionSet extends BidirectionalCollection<InstructionSet, Inst
     }
 
     /**
-     * @param child
      * @inheritdoc
+     *
+     * @param child
+     * The child whose parent to return.
+     *
+     * @returns
+     * The parent of the `child`.
      */
-    protected GetParent(child: Instruction)
+    protected GetParent(child: Instruction): InstructionSet
     {
         return child.Collection;
     }
 
     /**
+     * Sets the parent of a child.
+     *
      * @param child
+     * The child whose parent is to be set.
+     *
      * @param parent
-     * @inheritdoc
+     * The parent to set.
      */
-    protected SetParent(child: Instruction, parent: InstructionSet)
+    protected SetParent(child: Instruction, parent: InstructionSet): void
     {
         child.Collection = parent;
     }

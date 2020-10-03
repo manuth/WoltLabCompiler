@@ -15,7 +15,10 @@ suite(
                 option = new class extends Option
                 {
                     /**
+                     * Initializes a new instance of the class.
+                     *
                      * @param options
+                     * The options of the configuration-option.
                      */
                     public constructor(options: IOptionOptions)
                     {

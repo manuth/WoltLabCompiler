@@ -15,6 +15,7 @@ export class ConflictingPackageDescriptor extends PackageDescriptor
      * Initializes a new instance of the `ConflictingPackageDescriptor` class.
      *
      * @param options
+     * The options of the confilcting package descriptor.
      */
     public constructor(options: IConflictingPackageDescriptorOptions)
     {
@@ -31,7 +32,7 @@ export class ConflictingPackageDescriptor extends PackageDescriptor
     }
 
     /**
-     *
+     * @inheritdoc
      */
     public set Version(value: string)
     {

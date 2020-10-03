@@ -1,4 +1,3 @@
-import { isNullOrUndefined } from "util";
 import { ICategory } from "../ICategory";
 import { Option } from "../Option";
 import { IGroupOptionOptions } from "./IGroupOptionOptions";
@@ -11,17 +10,17 @@ export class GroupOption extends Option
     /**
      * The default value for groups which apply to registered users.
      */
-    private userDefaultValue: any = null;
+    private userDefaultValue: unknown = null;
 
     /**
      * The default value for groups which have access to the moderation-section.
      */
-    private modDefaultValue: any = null;
+    private modDefaultValue: unknown = null;
 
     /**
      * The default value for groups with administrator permissions.
      */
-    private adminDefaultValue: any = null;
+    private adminDefaultValue: unknown = null;
 
     /**
      * A value indicating whether the option only applies to groups for registered users.
@@ -32,28 +31,31 @@ export class GroupOption extends Option
      * Initializes a new instance of the `GroupOption` class.
      *
      * @param category
+     * The category of the group-option.
+     *
      * @param options
+     * The options of the group-option.
      */
     public constructor(category: ICategory, options: IGroupOptionOptions)
     {
         super(category, options);
 
-        if (!isNullOrUndefined(options.UserDefaultValue))
+        if (options.UserDefaultValue)
         {
             this.UserDefaultValue = options.UserDefaultValue;
         }
 
-        if (!isNullOrUndefined(options.ModDefaultValue))
+        if (options.ModDefaultValue)
         {
             this.ModDefaultValue = options.ModDefaultValue;
         }
 
-        if (!isNullOrUndefined(options.AdminDefaultValue))
+        if (options.AdminDefaultValue)
         {
             this.AdminDefaultValue = options.AdminDefaultValue;
         }
 
-        if (!isNullOrUndefined(options.RegisteredOnly))
+        if (options.RegisteredOnly)
         {
             this.RegisteredOnly = options.RegisteredOnly;
         }
@@ -62,15 +64,15 @@ export class GroupOption extends Option
     /**
      * Gets or sets the default value for groups which apply to registered users.
      */
-    public get UserDefaultValue()
+    public get UserDefaultValue(): unknown
     {
         return this.userDefaultValue;
     }
 
     /**
-     *
+     * @inheritdoc
      */
-    public set UserDefaultValue(value)
+    public set UserDefaultValue(value: unknown)
     {
         this.userDefaultValue = value;
     }
@@ -78,15 +80,15 @@ export class GroupOption extends Option
     /**
      * Gets or sets the default value for groups which have access to the moderation-section.
      */
-    public get ModDefaultValue()
+    public get ModDefaultValue(): unknown
     {
         return this.modDefaultValue;
     }
 
     /**
-     *
+     * @inheritdoc
      */
-    public set ModDefaultValue(value)
+    public set ModDefaultValue(value: unknown)
     {
         this.modDefaultValue = value;
     }
@@ -94,15 +96,15 @@ export class GroupOption extends Option
     /**
      * Gets or sets the default value for groups with administrator permissions.
      */
-    public get AdminDefaultValue()
+    public get AdminDefaultValue(): unknown
     {
         return this.adminDefaultValue;
     }
 
     /**
-     *
+     * @inheritdoc
      */
-    public set AdminDefaultValue(value)
+    public set AdminDefaultValue(value: unknown)
     {
         this.adminDefaultValue = value;
     }
@@ -110,15 +112,15 @@ export class GroupOption extends Option
     /**
      * Gets or sets a value indicating whether the option only applies to groups for registered users.
      */
-    public get RegisteredOnly()
+    public get RegisteredOnly(): boolean
     {
         return this.registeredOnly;
     }
 
     /**
-     *
+     * @inheritdoc
      */
-    public set RegisteredOnly(value)
+    public set RegisteredOnly(value: boolean)
     {
         this.registeredOnly = value;
     }

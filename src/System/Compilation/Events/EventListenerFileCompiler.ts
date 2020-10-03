@@ -36,8 +36,13 @@ export class EventListenerFileCompiler extends ListenerFileCompiler<EventListene
     }
 
     /**
-     * @param listener
      * @inheritdoc
+     *
+     * @param listener
+     * The listener to serialize.
+     *
+     * @returns
+     * The serialized listener.
      */
     protected CreateListener(listener: EventListener): Element
     {

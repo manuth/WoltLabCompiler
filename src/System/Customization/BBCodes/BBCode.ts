@@ -1,4 +1,3 @@
-import { isNullOrUndefined } from "util";
 import { Localization } from "../../Globalization/Localization";
 import { BBCodeAttribute } from "./BBCodeAttribute";
 import { IBBCodeOptions } from "./IBBCodeOptions";
@@ -57,47 +56,48 @@ export class BBCode
      * Initializes a new instance of the `BBCode` class.
      *
      * @param options
+     * The options of the bbcode.
      */
     public constructor(options: IBBCodeOptions)
     {
         this.Name = options.Name;
 
-        if (!isNullOrUndefined(options.DisplayName))
+        if (options.DisplayName)
         {
             this.DisplayName.Data = options.DisplayName;
         }
 
-        if (!isNullOrUndefined(options.Icon))
+        if (options.Icon)
         {
             this.Icon = options.Icon;
         }
 
-        if (!isNullOrUndefined(options.ClassName))
+        if (options.ClassName)
         {
             this.ClassName = options.ClassName;
         }
 
-        if (!isNullOrUndefined(options.TagName))
+        if (options.TagName)
         {
             this.TagName = options.TagName;
         }
 
-        if (!isNullOrUndefined(options.IsSelfClosing))
+        if (options.IsSelfClosing)
         {
             this.IsSelfClosing = options.IsSelfClosing;
         }
 
-        if (!isNullOrUndefined(options.IsBlockElement))
+        if (options.IsBlockElement)
         {
             this.IsBlockElement = options.IsBlockElement;
         }
 
-        if (!isNullOrUndefined(options.ParseContent))
+        if (options.ParseContent)
         {
             this.ParseContent = options.ParseContent;
         }
 
-        if (!isNullOrUndefined(options.Attributes))
+        if (options.Attributes)
         {
             for (let attribute of options.Attributes)
             {
@@ -115,7 +115,7 @@ export class BBCode
     }
 
     /**
-     *
+     * @inheritdoc
      */
     public set Name(value: string)
     {
@@ -139,7 +139,7 @@ export class BBCode
     }
 
     /**
-     *
+     * @inheritdoc
      */
     public set Icon(value: string)
     {
@@ -155,7 +155,7 @@ export class BBCode
     }
 
     /**
-     *
+     * @inheritdoc
      */
     public set ClassName(value: string)
     {
@@ -171,7 +171,7 @@ export class BBCode
     }
 
     /**
-     *
+     * @inheritdoc
      */
     public set TagName(value: string)
     {
@@ -187,7 +187,7 @@ export class BBCode
     }
 
     /**
-     *
+     * @inheritdoc
      */
     public set IsSelfClosing(value: boolean)
     {
@@ -203,7 +203,7 @@ export class BBCode
     }
 
     /**
-     *
+     * @inheritdoc
      */
     public set IsBlockElement(value: boolean)
     {
@@ -219,7 +219,7 @@ export class BBCode
     }
 
     /**
-     *
+     * @inheritdoc
      */
     public set ParseContent(value: boolean)
     {

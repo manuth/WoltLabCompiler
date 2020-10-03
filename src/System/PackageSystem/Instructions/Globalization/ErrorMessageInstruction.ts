@@ -1,4 +1,3 @@
-import { isNullOrUndefined } from "util";
 import { ILocalizationItemOptions } from "../../../Globalization/ILocalizationItemOptions";
 import { LocalizationNode } from "../../../Globalization/LocalizationNode";
 import { INodeSystemInstructionOptions } from "../NodeSystem/INodeSystemInstructionOptions";
@@ -13,6 +12,7 @@ export class ErrorMessageInstruction extends TranslationInstruction
      * Initializes a new instance of the `ErrorMessageInstruction` class.
      *
      * @param options
+     * The options of the error-message.
      */
     public constructor(options: INodeSystemInstructionOptions<ILocalizationItemOptions>)
     {
@@ -21,8 +21,11 @@ export class ErrorMessageInstruction extends TranslationInstruction
 
     /**
      * @inheritdoc
+     *
+     * @returns
+     * The messages of the options-instruction.
      */
-    public GetMessages(): { [locale: string]: { [category: string]: { [key: string]: string } } }
+    public GetMessages(): Record<string, Record<string, Record<string, string>>>
     {
         let result: TranslationInstruction = new TranslationInstruction(
             {
@@ -44,7 +47,7 @@ export class ErrorMessageInstruction extends TranslationInstruction
         {
             for (let node of rootNode.GetAllNodes())
             {
-                if (!isNullOrUndefined(node.Item))
+                if (node.Item)
                 {
                     if (node.Item.Translations.GetLocales().length > 0)
                     {

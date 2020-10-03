@@ -29,18 +29,18 @@ export class SassVariableParser
      * @returns
      * The variables inside the scss-file.
      */
-    public Parse(): { [key: string]: string }
+    public Parse(): Record<string, string>
     {
         let currentDir: string = process.cwd();
 
         try
         {
-            let variables: { [key: string]: string } = parse(
+            let variables: Record<string, string> = parse(
                 FileSystem.readFileSync(this.fileName).toString(),
                 {
                     camelCase: false,
                     cwd: Path.dirname(this.fileName)
-                }) as { [key: string]: string };
+                }) as Record<string, string>;
 
             return variables;
         }

@@ -1,5 +1,4 @@
 import Path = require("path");
-import { isNullOrUndefined } from "util";
 import UPath = require("upath");
 import { InstructionCompiler } from "../../Compilation/PackageSystem/Instructions/InstructionCompiler";
 import { IInstruction } from "./IInstruction";
@@ -30,6 +29,7 @@ export abstract class Instruction implements IInstruction
      * Initializes a new instance of the `Instruction` class.
      *
      * @param options
+     * The options of the instruction.
      */
     public constructor(options: IInstructionOptions)
     {
@@ -44,7 +44,7 @@ export abstract class Instruction implements IInstruction
     /**
      * @inheritdoc
      */
-    public get Collection()
+    public get Collection(): InstructionSet
     {
         return this.collection;
     }
@@ -52,20 +52,16 @@ export abstract class Instruction implements IInstruction
     /**
      * @inheritdoc
      */
-    public set Collection(value)
+    public set Collection(value: InstructionSet)
     {
         if (this.Collection !== value)
         {
-            if (
-                !isNullOrUndefined(this.Collection) &&
-                this.Collection.includes(this))
+            if (this.Collection?.includes(this))
             {
                 this.Collection.splice(this.Collection.indexOf(this), 1);
             }
 
-            if (
-                isNullOrUndefined(value) ||
-                value.includes(this))
+            if (value?.includes(this))
             {
                 this.collection = value;
             }
@@ -79,7 +75,7 @@ export abstract class Instruction implements IInstruction
     /**
      * @inheritdoc
      */
-    public get DestinationRoot()
+    public get DestinationRoot(): string
     {
         return Path.join(this.Collection.Directory);
     }
@@ -87,7 +83,7 @@ export abstract class Instruction implements IInstruction
     /**
      * @inheritdoc
      */
-    public get FileName()
+    public get FileName(): string
     {
         return this.fileName;
     }
@@ -95,7 +91,7 @@ export abstract class Instruction implements IInstruction
     /**
      * @inheritdoc
      */
-    public set FileName(value)
+    public set FileName(value: string)
     {
         this.fileName = value;
     }
@@ -103,7 +99,7 @@ export abstract class Instruction implements IInstruction
     /**
      * @inheritdoc
      */
-    public get FullName()
+    public get FullName(): string
     {
         return UPath.join(this.DestinationRoot, this.FileName);
     }
@@ -111,7 +107,7 @@ export abstract class Instruction implements IInstruction
     /**
      * @inheritdoc
      */
-    public get Standalone()
+    public get Standalone(): boolean
     {
         return this.standalone;
     }
@@ -119,7 +115,7 @@ export abstract class Instruction implements IInstruction
     /**
      * @inheritdoc
      */
-    public set Standalone(value)
+    public set Standalone(value: boolean)
     {
         this.standalone = value;
     }
@@ -135,7 +131,7 @@ export abstract class Instruction implements IInstruction
     /**
      * @inheritdoc
      */
-    public get ObjectsByID(): { [id: string]: any }
+    public get ObjectsByID(): Record<string, unknown>
     {
         return {};
     }

@@ -10,6 +10,7 @@ export class OptionalPackageDescriptor extends PackageFileDescriptor
      * Initializes a new instance of the `OptionalPackageDescriptor` class.
      *
      * @param options
+     * The options of the file-descriptor.
      */
     public constructor(options: Required<IPackageFileDescriptorOptions>)
     {

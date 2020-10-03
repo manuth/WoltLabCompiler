@@ -38,5 +38,5 @@ export interface IInstruction
     /**
      * Gets all identifiable objects.
      */
-    ObjectsByID: { [id: string]: any };
+    ObjectsByID: Record<string, unknown>;
 }

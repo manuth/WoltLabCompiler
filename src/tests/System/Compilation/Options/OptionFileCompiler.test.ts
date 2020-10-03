@@ -1,5 +1,4 @@
 import Assert = require("assert");
-import { isNullOrUndefined } from "util";
 import FileSystem = require("fs-extra");
 import { TempFile } from "temp-filesystem";
 import { DOMParser } from "xmldom";
@@ -26,8 +25,13 @@ suite(
         class MyOption extends Option
         {
             /**
+             * Initializes a new instance of the `MyOption` class.
+             *
              * @param category
+             * The category of the option.
+             *
              * @param options
+             * The options of the configuration-option.
              */
             public constructor(category: ICategory, options: IOptionOptions)
             {
@@ -41,8 +45,13 @@ suite(
         class MyCategory extends Category<MyOption, IOptionOptions>
         {
             /**
+             * Initializes a new instance of the `MyCategory` class.
+             *
              * @param node
+             * The node of the category.
+             *
              * @param options
+             * The options of the category.
              */
             public constructor(node: INode, options: ICategoryOptions<IOptionOptions>)
             {
@@ -62,7 +71,10 @@ suite(
         class MyOptionInstruction extends OptionInstruction<MyCategory, ICategoryOptions<IOptionOptions>, MyOption, IOptionOptions>
         {
             /**
+             * Initializes a new instance of the `MyOptionInstruction` class.
+             *
              * @param options
+             * The options of the instruction.
              */
             public constructor(options: INodeSystemInstructionOptions<ICategoryOptions<IOptionOptions>>)
             {
@@ -77,7 +89,7 @@ suite(
             /**
              * @inheritdoc
              */
-            public get RootCategory()
+            public get RootCategory(): string
             {
                 return "wcf.foo.option";
             }
@@ -85,7 +97,7 @@ suite(
             /**
              * @inheritdoc
              */
-            public get Type()
+            public get Type(): string
             {
                 return "bar";
             }
@@ -178,7 +190,7 @@ suite(
                     /**
                      * @inheritdoc
                      */
-                    protected get SchemaLocation()
+                    protected get SchemaLocation(): string
                     {
                         return "http://example.com/myOptions.xsd";
                     }
@@ -343,7 +355,7 @@ suite(
                                                             "Checking the parent of the category…",
                                                             () =>
                                                             {
-                                                                if (!isNullOrUndefined(section))
+                                                                if (section)
                                                                 {
                                                                     Assert.strictEqual(categoryEditor.HasText(parentTag, section), true);
                                                                 }
@@ -357,7 +369,7 @@ suite(
                                                             "Checking the show-order of the category…",
                                                             () =>
                                                             {
-                                                                if (!isNullOrUndefined(rootShowOrder))
+                                                                if (rootShowOrder)
                                                                 {
                                                                     Assert.strictEqual(categoryEditor.HasText(showOrderTag, rootShowOrder.toString()), true);
                                                                 }
@@ -412,7 +424,7 @@ suite(
                                                             "Checking the parent of the category…",
                                                             () =>
                                                             {
-                                                                if (!isNullOrUndefined(section))
+                                                                if (section)
                                                                 {
                                                                     Assert.strictEqual(categoryEditor.HasText(parentTag, categoryNode.Parent.FullName), true);
                                                                 }
@@ -426,7 +438,7 @@ suite(
                                                             "Checking the show-order of the category…",
                                                             () =>
                                                             {
-                                                                if (!isNullOrUndefined(showOrder))
+                                                                if (showOrder)
                                                                 {
                                                                     Assert.strictEqual(categoryEditor.HasText(showOrderTag, showOrder.toString()), true);
                                                                 }
@@ -581,7 +593,7 @@ suite(
 
                                                         for (let item of option.Items)
                                                         {
-                                                            let pattern = new RegExp(`^${item.Value}:.*?\.${option.Name}\.${item.Name}$`, "g");
+                                                            let pattern = new RegExp(`^${item.Value}:\\.*?.${option.Name}\\.${item.Name}$`, "g");
                                                             Assert.strictEqual(lines.filter((line: string) => pattern.test(line)).length, 1);
                                                         }
                                                     });

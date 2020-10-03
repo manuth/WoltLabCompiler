@@ -1,4 +1,3 @@
-import { isNullOrUndefined } from "util";
 import { CronJobInstruction } from "../../PackageSystem/Instructions/Tasks/CronJobInstruction";
 import { XMLEditor } from "../../Serialization/XMLEditor";
 import { NamedObjectDeletionFileCompiler } from "../NamedObjectDeletionFileCompiler";
@@ -37,6 +36,9 @@ export class CronJobFileCompiler extends NamedObjectDeletionFileCompiler<CronJob
 
     /**
      * @inheritdoc
+     *
+     * @returns
+     * The serialized import.
      */
     protected CreateImport(): Element
     {
@@ -48,7 +50,7 @@ export class CronJobFileCompiler extends NamedObjectDeletionFileCompiler<CronJob
                 "cronjob",
                 (cronJobEditor: XMLEditor) =>
                 {
-                    if (!isNullOrUndefined(cronJob.Name))
+                    if (cronJob.Name)
                     {
                         cronJobEditor.SetAttribute("name", cronJob.Name);
                     }

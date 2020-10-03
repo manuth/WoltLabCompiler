@@ -1,5 +1,4 @@
 import Assert = require("assert");
-import { isNullOrUndefined } from "util";
 import { INodeOptions } from "../../../System/NodeSystem/INodeOptions";
 import { Node } from "../../../System/NodeSystem/Node";
 import { NodeItem } from "../../../System/NodeSystem/NodeItem";
@@ -11,12 +10,15 @@ suite(
         /**
          * Represents a node.
          */
-        class MyNode extends Node<NodeItem, {}>
+        class MyNode extends Node<NodeItem, unknown>
         {
             /**
+             * Initializes a new instance of the `MyNode` class.
+             *
              * @param options
+             * The options for creationg `NodeItem`s.
              */
-            public constructor(options: INodeOptions<{}>)
+            public constructor(options: INodeOptions<unknown>)
             {
                 super(options, () => new NodeItem(this));
             }
@@ -172,24 +174,24 @@ suite(
                     "Checking whether nodes with IDs are recognized correctly if they are nested deeply…",
                     () =>
                     {
-                        let rootNode: MyNode = new MyNode(
+                        let rootNode = new MyNode(
                             {
                                 Name: "root"
                             });
 
-                        let names: string[] = ["foo", "bar", "baz", "this", "is", "a", "test"];
+                        let names = ["foo", "bar", "baz", "this", "is", "a", "test"];
                         let node: MyNode;
 
                         for (let name of names.reverse())
                         {
-                            let child: MyNode = node;
+                            let child = node;
 
                             node = new MyNode(
                                 {
                                     Name: name
                                 });
 
-                            if (!isNullOrUndefined(child))
+                            if (child)
                             {
                                 node.Nodes.push(child);
                             }
@@ -197,7 +199,7 @@ suite(
 
                         rootNode.Nodes.push(node);
 
-                        let allNodes: Array<Node<NodeItem, {}>> = rootNode.GetAllNodes();
+                        let allNodes = rootNode.GetAllNodes();
                         allNodes[Math.floor(Math.random() * allNodes.length)].Nodes.push(idNode);
 
                         Assert.strictEqual(id in rootNode.GetObjects(), true);

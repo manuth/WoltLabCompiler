@@ -70,5 +70,5 @@ export interface IOptionOptions
     /**
      * Additional properties of the option.
      */
-    AdditionalProperties?: { [key: string]: any };
+    AdditionalProperties?: Record<string, unknown>;
 }

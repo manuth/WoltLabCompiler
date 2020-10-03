@@ -22,6 +22,9 @@ export class LocalizationInstructionCompiler extends InstructionCompiler<ILocali
 
     /**
      * @inheritdoc
+     *
+     * @returns
+     * The serialized document.
      */
     public Serialize(): Document
     {

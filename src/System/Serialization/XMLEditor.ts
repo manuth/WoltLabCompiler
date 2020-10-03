@@ -1,5 +1,3 @@
-import { isNullOrUndefined } from "util";
-
 /**
  * Provides the functionality to edit xml-files.
  */
@@ -24,7 +22,7 @@ export class XMLEditor
     /**
      * Gets the name of the tag of the element.
      */
-    public get TagName()
+    public get TagName(): string
     {
         return this.Element.tagName;
     }
@@ -32,7 +30,7 @@ export class XMLEditor
     /**
      * Gets the element to edit.
      */
-    public get Element()
+    public get Element(): Element
     {
         return this.element;
     }
@@ -40,15 +38,15 @@ export class XMLEditor
     /**
      * Gets or sets the text of the element.
      */
-    public get TextContent()
+    public get TextContent(): string
     {
         return this.Element.textContent;
     }
 
     /**
-     *
+     * @inheritdoc
      */
-    public set TextContent(value)
+    public set TextContent(value: string)
     {
         this.Element.textContent = value;
     }
@@ -56,7 +54,7 @@ export class XMLEditor
     /**
      * Gets the parent of the element.
      */
-    public get ParentNode()
+    public get ParentNode(): Node & ParentNode
     {
         return this.Element.parentNode;
     }
@@ -64,7 +62,7 @@ export class XMLEditor
     /**
      * Gets the document of the element.
      */
-    public get Document()
+    public get Document(): Document
     {
         return this.Element.ownerDocument;
     }
@@ -85,12 +83,15 @@ export class XMLEditor
      *
      * @param processor
      * A method for manipulating the new element.
+     *
+     * @returns
+     * The editor for the newly created element.
      */
-    public CreateElement(tag: string, processor?: (element: XMLEditor) => void)
+    public CreateElement(tag: string, processor?: (element: XMLEditor) => void): XMLEditor
     {
         let editor = new XMLEditor(this.Document.createElement(tag));
 
-        if (!isNullOrUndefined(processor))
+        if (processor)
         {
             processor(editor);
         }
@@ -109,8 +110,11 @@ export class XMLEditor
      *
      * @param processor
      * A method for manipulating the new element.
+     *
+     * @returns
+     * The editor for the newly created element.
      */
-    public CreateCDATAElement(tag: string, textContent: string, processor?: (element: XMLEditor) => void)
+    public CreateCDATAElement(tag: string, textContent: string, processor?: (element: XMLEditor) => void): XMLEditor
     {
         return this.CreateElement(
             tag,
@@ -118,7 +122,7 @@ export class XMLEditor
             {
                 element.Add(this.Document.createCDATASection(textContent));
 
-                if (!isNullOrUndefined(processor))
+                if (processor)
                 {
                     processor(element);
                 }
@@ -130,9 +134,15 @@ export class XMLEditor
      *
      * @param tag
      * The tag of the element to create.
+     *
      * @param textContent
      * The text to insert into the element.
+     *
      * @param processor
+     * A method for manipulating the new element.
+     *
+     * @returns
+     * The editor for the newly created element.
      */
     public CreateTextElement(tag: string, textContent: string, processor?: (element: XMLEditor) => void): XMLEditor
     {
@@ -142,7 +152,7 @@ export class XMLEditor
             {
                 element.TextContent = textContent;
 
-                if (!isNullOrUndefined(processor))
+                if (processor)
                 {
                     processor(element);
                 }
@@ -154,7 +164,9 @@ export class XMLEditor
      *
      * @param node
      * The node to add.
+     *
      * @param processor
+     * A method for manipulating the new node.
      */
     public Add<T extends Node | XMLEditor>(node: T, processor?: (node: T) => void): void
     {
@@ -171,7 +183,7 @@ export class XMLEditor
 
         this.Element.appendChild(element);
 
-        if (!isNullOrUndefined(processor))
+        if (processor)
         {
             processor(node);
         }
@@ -213,9 +225,12 @@ export class XMLEditor
      *
      * @param tag
      * The tag of the element to create.
+     *
      * @param textContent
      * The text to insert into the element.
+     *
      * @param processor
+     * A method for manipulating the new element.
      */
     public AddTextElement(tag: string, textContent: string, processor?: (element: XMLEditor) => void): void
     {
@@ -263,8 +278,11 @@ export class XMLEditor
      *
      * @param tag
      * The tag to look for.
+     *
+     * @returns
+     * The xml-editor of the children which were found.
      */
-    public GetChildrenByTag(tag: string)
+    public GetChildrenByTag(tag: string): XMLEditor[]
     {
         return this.GetElementsByTag(tag).filter((node: XMLEditor) => node.ParentNode === this.Element);
     }
@@ -274,8 +292,11 @@ export class XMLEditor
      *
      * @param tag
      * The tag to look for.
+     *
+     * @returns
+     * The xml-editor of the children which were found.
      */
-    public GetElementsByTag(tag: string)
+    public GetElementsByTag(tag: string): XMLEditor[]
     {
         return XMLEditor.ToArray(this.Element.getElementsByTagName(tag)).map((element: Element) => new XMLEditor(element));
     }
@@ -285,6 +306,9 @@ export class XMLEditor
      *
      * @param tag
      * The tag of the node to get the text.
+     *
+     * @returns
+     * The text of the child-node.
      */
     public GetText(tag: string): string
     {
@@ -303,6 +327,9 @@ export class XMLEditor
      *
      * @param name
      * The name of the attribute to get.
+     *
+     * @returns
+     * The value of the attribute.
      */
     public GetAttribute(name: string): string
     {
@@ -335,27 +362,35 @@ export class XMLEditor
      *
      * @param name
      * The name to look for.
+     *
      * @param value
+     * The expected value.
+     *
+     * @returns
+     * Either a value indicating whether an attribute with the specified `name` exists or a value indicating whether the attribute has the specified `value`.
      */
     public HasAttribute(name: string, value?: string): boolean
     {
-        return this.Element.hasAttribute(name) && (isNullOrUndefined(value) || (this.Element.getAttribute(name) === value));
+        return this.Element.hasAttribute(name) && ((value ?? this.Element.getAttribute(name)) === this.Element.getAttribute(name));
     }
 
     /**
      * Asserts a tag to contain a text.
      *
+     * @param tag
+     * The tag to check.
+     *
      * @param text
      * The text to assert.
      *
-     * @param tag
-     * The tag to check.
+     * @returns
+     * A value indicating whether contains the specified `text`.
      */
     public HasText(tag: string, text: string): boolean
     {
         let original: string;
 
-        if (!isNullOrUndefined(tag))
+        if (tag)
         {
             try
             {
@@ -382,6 +417,9 @@ export class XMLEditor
      *
      * @param unique
      * A value indicating whether the tag is unique.
+     *
+     * @returns
+     * A value indicating whether the element has the specified `tag`.
      */
     public HasTag(tag: string, unique?: boolean): boolean
     {
@@ -403,8 +441,11 @@ export class XMLEditor
      *
      * @param nodeList
      * The node-list to convert.
+     *
+     * @returns
+     * An array representing the specified `nodeList`.
      */
-    protected static ToArray<T extends Node>(nodeList: Pick<NodeListOf<T>, "length" | "item">)
+    protected static ToArray<T extends Node>(nodeList: Pick<NodeListOf<T>, "length" | "item">): T[]
     {
         let result: T[] = [];
 

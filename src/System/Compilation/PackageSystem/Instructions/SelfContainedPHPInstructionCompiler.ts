@@ -21,8 +21,11 @@ export class SelfContainedPHPInstructionCompiler extends InstructionCompiler<Sel
 
     /**
      * @inheritdoc
+     *
+     * @returns
+     * The serialized document.
      */
-    public Serialize()
+    public Serialize(): Document
     {
         let document = this.Item.FileInstruction.Compiler.Serialize();
         let childNodes = this.Item.PHPInstruction.Compiler.Serialize().childNodes;

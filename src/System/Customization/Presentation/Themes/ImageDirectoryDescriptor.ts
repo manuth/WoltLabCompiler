@@ -15,12 +15,13 @@ export class ImageDirectoryDescriptor extends FileDescriptor
      * Initializes a new instance of the `ImageFolderDescriptor` class.
      *
      * @param options
+     * The options of the image-directory descriptor.
      */
     public constructor(options: IImageDirectoryDescriptorOptions)
     {
         super({
             Source: options.Source,
-            FileName: options.FileName || "images.tar"
+            FileName: options.FileName ?? "images.tar"
         });
 
         if (options.DestinationRoot)
@@ -42,7 +43,7 @@ export class ImageDirectoryDescriptor extends FileDescriptor
     }
 
     /**
-     *
+     * @inheritdoc
      */
     public set DestinationRoot(value: string)
     {

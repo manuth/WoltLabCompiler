@@ -1,4 +1,3 @@
-import { isNullOrUndefined } from "util";
 import { IEmojiOptions } from "./IEmojiOptions";
 
 /**
@@ -40,25 +39,26 @@ export class Emoji
      * Initializes a new instance of the `Emoji` class.
      *
      * @param options
+     * The options of the emoji.
      */
     public constructor(options: IEmojiOptions)
     {
         this.Name = options.Name;
         this.DisplayName = options.DisplayName;
 
-        if (!isNullOrUndefined(options.Aliases))
+        if (options.Aliases)
         {
             this.Aliases.push(...options.Aliases);
         }
 
-        if (!isNullOrUndefined(options.ShowOrder))
+        if (options.ShowOrder)
         {
             this.ShowOrder = options.ShowOrder;
         }
 
         this.FileName = options.FileName;
 
-        if (!isNullOrUndefined(options.HighResFileName))
+        if (options.HighResFileName)
         {
             this.HighResFileName = options.HighResFileName;
         }
@@ -73,7 +73,7 @@ export class Emoji
     }
 
     /**
-     *
+     * @inheritdoc
      */
     public set Name(value: string)
     {
@@ -89,7 +89,7 @@ export class Emoji
     }
 
     /**
-     *
+     * @inheritdoc
      */
     public set DisplayName(value: string)
     {
@@ -113,7 +113,7 @@ export class Emoji
     }
 
     /**
-     *
+     * @inheritdoc
      */
     public set ShowOrder(value: number)
     {
@@ -129,7 +129,7 @@ export class Emoji
     }
 
     /**
-     *
+     * @inheritdoc
      */
     public set FileName(value: string)
     {
@@ -145,7 +145,7 @@ export class Emoji
     }
 
     /**
-     *
+     * @inheritdoc
      */
     public set HighResFileName(value: string)
     {

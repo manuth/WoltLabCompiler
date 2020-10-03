@@ -10,14 +10,14 @@ suite(
     () =>
     {
         let tempDir: TempDirectory;
-        let compiler: Compiler<{}>;
+        let compiler: Compiler<unknown>;
 
         suiteSetup(
             () =>
             {
                 tempDir = new TempDirectory();
 
-                compiler = new class extends Compiler<{}>
+                compiler = new class extends Compiler<unknown>
                 {
                     /**
                      * @inheritdoc
@@ -41,7 +41,7 @@ suite(
             () =>
             {
                 let ejsString: string;
-                let context: { [key: string]: string };
+                let context: Record<string, string>;
                 let result: string;
 
                 suiteSetup(

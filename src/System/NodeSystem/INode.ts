@@ -20,6 +20,9 @@ export interface INode
 
     /**
      * Gets the identifiable objects of the node.
+     *
+     * @returns
+     * The objects of the node.
      */
-    GetObjects(): { [id: string]: any };
+    GetObjects(): Record<string, unknown>;
 }

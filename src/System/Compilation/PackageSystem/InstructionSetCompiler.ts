@@ -1,4 +1,3 @@
-import { isNullOrUndefined } from "util";
 import { IInstruction } from "../../PackageSystem/Instructions/IInstruction";
 import { InstructionSet } from "../../PackageSystem/Instructions/InstructionSet";
 import { Compiler } from "../Compiler";
@@ -29,7 +28,7 @@ export class InstructionSetCompiler extends Compiler<InstructionSet>
         {
             let compiler: InstructionCompiler<IInstruction> = instruction.Compiler;
 
-            if (!isNullOrUndefined(compiler))
+            if (compiler)
             {
                 compiler.DestinationPath = this.DestinationPath;
                 await compiler.Execute();

@@ -7,7 +7,7 @@ suite(
     () =>
     {
         let locale = "en";
-        let localization: { [locale: string]: string } = {};
+        let localization: Record<string, string> = {};
 
         localization[locale] = "bar";
 
@@ -48,7 +48,7 @@ suite(
             () =>
             {
                 let category = "wcf.editor.button";
-                let translations: { [locale: string]: { [category: string]: { [key: string]: string } } };
+                let translations: Record<string, Record<string, Record<string, string>>>;
 
                 suiteSetup(
                     () =>
@@ -81,7 +81,7 @@ suite(
                     `Checking whether the translation of \`${category}.${bbCode.Name}\` is correct…`,
                     () =>
                     {
-                        Assert.equal(translations[locale][category][`${category}.${bbCode.Name}`], localization[locale]);
+                        Assert.strictEqual(translations[locale][category][`${category}.${bbCode.Name}`], localization[locale]);
                     });
             });
     });

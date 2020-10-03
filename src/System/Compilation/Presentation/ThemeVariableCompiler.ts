@@ -4,7 +4,7 @@ import { WoltLabXMLCompiler } from "../WoltLabXMLCompiler";
 /**
  * Provides the functionality to compile theme-variables.
  */
-export class ThemeVariableCompiler extends WoltLabXMLCompiler<{ [key: string]: string }>
+export class ThemeVariableCompiler extends WoltLabXMLCompiler<Record<string, string>>
 {
     /**
      * Initializes a new instance of the `ThemeVariableCompiler` class.
@@ -12,7 +12,7 @@ export class ThemeVariableCompiler extends WoltLabXMLCompiler<{ [key: string]: s
      * @param item
      * The item to compile.
      */
-    public constructor(item: { [key: string]: string })
+    public constructor(item: Record<string, string>)
     {
         super(item);
     }
@@ -35,6 +35,9 @@ export class ThemeVariableCompiler extends WoltLabXMLCompiler<{ [key: string]: s
 
     /**
      * @inheritdoc
+     *
+     * @returns
+     * The serialized document.
      */
     protected CreateDocument(): Document
     {

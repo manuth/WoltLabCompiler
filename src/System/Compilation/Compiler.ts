@@ -41,15 +41,15 @@ export abstract class Compiler<T>
     /**
      * Gets or sets the path to save the compiled item to.
      */
-    public get DestinationPath()
+    public get DestinationPath(): string
     {
         return this.destinationPath;
     }
 
     /**
-     *
+     * @inheritdoc
      */
-    public set DestinationPath(value)
+    public set DestinationPath(value: string)
     {
         this.destinationPath = value;
     }
@@ -57,7 +57,7 @@ export abstract class Compiler<T>
     /**
      * Compiles the item.
      */
-    public async Execute()
+    public async Execute(): Promise<void>
     {
         await this.Compile();
     }
@@ -79,7 +79,7 @@ export abstract class Compiler<T>
      * @param context
      * The context to use.
      */
-    protected async CopyTemplate(source: string, destination: string, context?: { [key: string]: any })
+    protected async CopyTemplate(source: string, destination: string, context?: Record<string, unknown>): Promise<void>
     {
         let fileStoreEditor = MemoryFileStoreEditor.create(MemoryFileStore.create());
         fileStoreEditor.copyTpl(source, destination, context, {}, { globOptions: { dot: true } });
@@ -101,8 +101,11 @@ export abstract class Compiler<T>
      *
      * @param path
      * The path that is to be joined.
+     *
+     * @returns
+     * The joined path relative to the destination-folder.
      */
-    protected MakeDestinationPath(...path: string[])
+    protected MakeDestinationPath(...path: string[]): string
     {
         return Path.join(this.DestinationPath, ...path);
     }
@@ -116,7 +119,7 @@ export abstract class Compiler<T>
      * @param destination
      * The filename to save the compressed file to.
      */
-    protected async Compress(source: string, destination: string)
+    protected async Compress(source: string, destination: string): Promise<void>
     {
         await FileSystem.ensureDir(Path.dirname(destination));
         await Tar.create(

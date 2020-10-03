@@ -17,6 +17,7 @@ export class GroupOptionInstruction extends OptionInstruction<GroupCategory, ICa
      * Initializes a new instance of the `GroupOptionInstruction` class.
      *
      * @param options
+     * The options of the group-option instruction.
      */
     public constructor(options: IOptionInstructionOptions<ICategoryOptions<IGroupOptionOptions>>)
     {

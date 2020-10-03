@@ -11,6 +11,7 @@ export class ACPTemplateInstruction extends ApplicationFileSystemInstruction
      * Initializes a new instance of the `ACPTemplateInstruction` class.
      *
      * @param options
+     * The options of the acp-template instruction.
      */
     public constructor(options: IApplicationFileSystemInstructionOptions)
     {
@@ -26,10 +27,15 @@ export class ACPTemplateInstruction extends ApplicationFileSystemInstruction
     }
 
     /**
-     * @param source
      * @inheritdoc
+     *
+     * @param source
+     * The source of the instruction.
+     *
+     * @returns
+     * The default filename.
      */
-    public MakeDefaultFileName(source: string)
+    public MakeDefaultFileName(source: string): string
     {
         return Path.join("acpTemplates", super.MakeDefaultFileName(source));
     }

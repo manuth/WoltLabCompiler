@@ -1,4 +1,3 @@
-import { isNullOrUndefined } from "util";
 import { IPersonOptions } from "./IPersonOptions";
 
 /**
@@ -20,12 +19,13 @@ export class Person
      * Initializes a new instance of the `Person` class.
      *
      * @param options
+     * The options of the person.
      */
     public constructor(options: IPersonOptions)
     {
         this.Name = options.Name;
 
-        if (!isNullOrUndefined(options.URL))
+        if (options.URL)
         {
             this.URL = options.URL;
         }
@@ -40,7 +40,7 @@ export class Person
     }
 
     /**
-     *
+     * @inheritdoc
      */
     public set Name(value: string)
     {
@@ -56,7 +56,7 @@ export class Person
     }
 
     /**
-     *
+     * @inheritdoc
      */
     public set URL(value: string)
     {

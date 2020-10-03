@@ -15,12 +15,15 @@ export class UpdateInstructionSet extends InstructionSet
     /**
      * Initializes a new instance of the `UpdateInstructionSet` class.
      *
-     * @param $package
+     * @param extensionPackage
+     * The package of the update-instruction.
+     *
      * @param fromVersion
+     * The minimum version of the update-instruction.
      */
-    public constructor($package: Package, fromVersion: string)
+    public constructor(extensionPackage: Package, fromVersion: string)
     {
-        super($package);
+        super(extensionPackage);
         this.FromVersion = fromVersion;
     }
 
@@ -33,7 +36,7 @@ export class UpdateInstructionSet extends InstructionSet
     }
 
     /**
-     *
+     * @inheritdoc
      */
     public set FromVersion(value: string)
     {
@@ -42,6 +45,9 @@ export class UpdateInstructionSet extends InstructionSet
 
     /**
      * @inheritdoc
+     *
+     * @returns
+     * An element representing this instruction.
      */
     public Serialize(): Element
     {

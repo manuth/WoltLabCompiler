@@ -1,4 +1,3 @@
-import { isNullOrUndefined } from "util";
 import { InstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/InstructionCompiler";
 import { LocalizationInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/LocalizationInstructionCompiler";
 import { LocalizationItem } from "../../../Globalization/LocalizationItem";
@@ -52,16 +51,19 @@ export abstract class LocalizationInstruction<T extends LocalizationItem, TOptio
 
     /**
      * @inheritdoc
+     *
+     * @returns
+     * The messages of the options-instruction.
      */
-    public GetMessages(): { [locale: string]: { [category: string]: { [key: string]: string } } }
+    public GetMessages(): Record<string, Record<string, Record<string, string>>>
     {
-        let result: { [locale: string]: { [category: string]: { [key: string]: string } } } = {};
+        let result: Record<string, Record<string, Record<string, string>>> = {};
 
         for (let rootNode of this.Nodes)
         {
             for (let node of rootNode.GetAllNodes())
             {
-                if (!isNullOrUndefined(node.Item))
+                if (node.Item)
                 {
                     for (let locale of node.Item.Translations.GetLocales())
                     {

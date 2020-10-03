@@ -14,6 +14,7 @@ export class PackageDescriptor
      * Initializes a new instance of the `PackageDescriptor` class.
      *
      * @param options
+     * The options of the descriptor.
      */
     public constructor(options: IPackageDescriptorOptions)
     {
@@ -29,7 +30,7 @@ export class PackageDescriptor
     }
 
     /**
-     *
+     * @inheritdoc
      */
     public set Identifier(value: string)
     {

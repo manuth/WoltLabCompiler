@@ -1,4 +1,3 @@
-import { isNullOrUndefined } from "util";
 import { Localization } from "../Globalization/Localization";
 import { INode } from "../NodeSystem/INode";
 import { NodeItem } from "../NodeSystem/NodeItem";
@@ -40,7 +39,11 @@ export class Category<TOption extends Option, TOptionOptions> extends NodeItem i
      * Initializes a new instance of the `Category` class.
      *
      * @param node
+     * The node of the category.
+     *
      * @param options
+     * The options of the category.
+     *
      * @param generator
      * A function for generating options.
      */
@@ -48,22 +51,22 @@ export class Category<TOption extends Option, TOptionOptions> extends NodeItem i
     {
         super(node);
 
-        if (!isNullOrUndefined(options.DisplayName))
+        if (options.DisplayName)
         {
             this.DisplayName.Data = options.DisplayName;
         }
 
-        if (!isNullOrUndefined(options.Description))
+        if (options.Description)
         {
             this.Description.Data = options.Description;
         }
 
-        if (!isNullOrUndefined(options.ShowOrder))
+        if (options.ShowOrder)
         {
             this.ShowOrder = options.ShowOrder;
         }
 
-        if (!isNullOrUndefined(options.Options))
+        if (options.Options)
         {
             for (let option of options.Options)
             {
@@ -71,7 +74,7 @@ export class Category<TOption extends Option, TOptionOptions> extends NodeItem i
             }
         }
 
-        if (!isNullOrUndefined(options.EnableOptions))
+        if (options.EnableOptions)
         {
             this.EnableOptions.push(...options.EnableOptions);
         }
@@ -135,14 +138,17 @@ export class Category<TOption extends Option, TOptionOptions> extends NodeItem i
 
     /**
      * @inheritdoc
+     *
+     * @returns
+     * The objects of the node.
      */
-    public GetObjects(): { [id: string]: any }
+    public GetObjects(): Record<string, unknown>
     {
-        let result: { [id: string]: any } = {};
+        let result: Record<string, unknown> = {};
 
         for (let option of this.Options)
         {
-            if (!isNullOrUndefined(option.ID))
+            if (option.ID)
             {
                 result[option.ID] = option;
             }

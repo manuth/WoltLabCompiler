@@ -1,4 +1,3 @@
-import { isNullOrUndefined } from "util";
 import { Component } from "./Component";
 import { ConflictingPackageDescriptor } from "./ConflictingPackageDescriptor";
 import { FileDescriptor } from "./FileDescriptor";
@@ -53,6 +52,7 @@ export class Package extends Component
      * Initializes a new instance of the `Package` class.
      *
      * @param options
+     * The options of the packge.
      */
     public constructor(options: IPackageOptions)
     {
@@ -71,7 +71,7 @@ export class Package extends Component
 
         this.Identifier = options.Identifier;
 
-        if (!isNullOrUndefined(options.AdditionalFiles))
+        if (options.AdditionalFiles)
         {
             for (let additionalFile of options.AdditionalFiles)
             {
@@ -79,7 +79,7 @@ export class Package extends Component
             }
         }
 
-        if (!isNullOrUndefined(options.RequiredPackages))
+        if (options.RequiredPackages)
         {
             for (let requiredPackage of options.RequiredPackages)
             {
@@ -87,7 +87,7 @@ export class Package extends Component
             }
         }
 
-        if (!isNullOrUndefined(options.ConflictingPackages))
+        if (options.ConflictingPackages)
         {
             for (let conflictingPackage of options.ConflictingPackages)
             {
@@ -95,7 +95,7 @@ export class Package extends Component
             }
         }
 
-        if (!isNullOrUndefined(options.OptionalPackages))
+        if (options.OptionalPackages)
         {
             for (let optionalPackage of options.OptionalPackages)
             {
@@ -105,18 +105,18 @@ export class Package extends Component
 
         this.InstallSet.push(...options.InstallSet.Instructions);
 
-        if (!isNullOrUndefined(options.InstallSet.Directory))
+        if (options.InstallSet.Directory)
         {
             this.InstallSet.Directory = options.InstallSet.Directory;
         }
 
-        if (!isNullOrUndefined(options.UpdateSets))
+        if (options.UpdateSets)
         {
             for (let updateSet of options.UpdateSets)
             {
                 let updateInstructionSet: UpdateInstructionSet = new UpdateInstructionSet(this, updateSet.FromVersion);
 
-                if (!isNullOrUndefined(updateSet.Directory))
+                if (updateSet.Directory)
                 {
                     updateInstructionSet.Directory = updateSet.Directory;
                 }
@@ -136,7 +136,7 @@ export class Package extends Component
     }
 
     /**
-     *
+     * @inheritdoc
      */
     public set Identifier(value: string)
     {
@@ -204,7 +204,7 @@ export class Package extends Component
     {
         for (let instruction of this.InstallSet)
         {
-            let objects: { [id: string]: any } = instruction.ObjectsByID;
+            let objects: Record<string, unknown> = instruction.ObjectsByID;
 
             if (id in objects)
             {

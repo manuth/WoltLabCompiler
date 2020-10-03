@@ -12,6 +12,9 @@ export class Localization
 
     /**
      * Gets the locales of the translations.
+     *
+     * @returns
+     * The locales of the localization.
      */
     public GetLocales(): string[]
     {

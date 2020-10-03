@@ -104,7 +104,7 @@ export class TimePeriod
     }
 
     /**
-     *
+     * @inheritdoc
      */
     public set Minute(value: string)
     {
@@ -120,7 +120,7 @@ export class TimePeriod
     }
 
     /**
-     *
+     * @inheritdoc
      */
     public set Hour(value: string)
     {
@@ -136,7 +136,7 @@ export class TimePeriod
     }
 
     /**
-     *
+     * @inheritdoc
      */
     public set DayOfMonth(value: string)
     {
@@ -152,7 +152,7 @@ export class TimePeriod
     }
 
     /**
-     *
+     * @inheritdoc
      */
     public set Month(value: string)
     {
@@ -168,7 +168,7 @@ export class TimePeriod
     }
 
     /**
-     *
+     * @inheritdoc
      */
     public set DayOfWeek(value: string)
     {

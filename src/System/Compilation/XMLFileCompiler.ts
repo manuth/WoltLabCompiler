@@ -51,6 +51,9 @@ export abstract class XMLFileCompiler<T> extends Compiler<T>
 
     /**
      * Creates the document to compile.
+     *
+     * @returns
+     * The serialized document.
      */
     protected CreateDocument(): Document
     {

@@ -40,7 +40,7 @@ suite(
             "GetMessage()",
             () =>
             {
-                let translations: { [locale: string]: { [category: string]: { [key: string]: string } } };
+                let translations: Record<string, Record<string, Record<string, string>>>;
 
                 suiteSetup(
                     () =>

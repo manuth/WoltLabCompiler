@@ -15,6 +15,7 @@ export class RequiredPackageDescriptor extends PackageFileDescriptor
      * Initializes a new instance of the `RequiredPackageDescriptor` class.
      *
      * @param options
+     * The options of the descriptor.
      */
     public constructor(options: IRequiredPackageDescriptorOptions)
     {
@@ -31,7 +32,7 @@ export class RequiredPackageDescriptor extends PackageFileDescriptor
     }
 
     /**
-     *
+     * @inheritdoc
      */
     public set MinVersion(value: string)
     {

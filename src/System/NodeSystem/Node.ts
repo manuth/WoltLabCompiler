@@ -1,4 +1,3 @@
-import { isNullOrUndefined } from "util";
 import { INode } from "./Generic/INode";
 import { INodeOptions } from "./INodeOptions";
 import { NodeCollection } from "./NodeCollection";
@@ -45,24 +44,24 @@ export class Node<T extends NodeItem, TOptions> implements INode<T>
      */
     public constructor(options: INodeOptions<TOptions>, generator: (node: Node<T, TOptions>, options: TOptions) => T)
     {
-        if (!isNullOrUndefined(options.ID))
+        if (options.ID)
         {
             this.ID = options.ID;
         }
 
         this.Name = options.Name;
 
-        if (!isNullOrUndefined(options.Item))
+        if (options.Item)
         {
             this.item = generator(this, options.Item);
         }
 
-        if (!isNullOrUndefined(options.Parent))
+        if (options.Parent)
         {
             this.Parent = new Node(options.Parent, generator);
         }
 
-        if (!isNullOrUndefined(options.Nodes))
+        if (options.Nodes)
         {
             for (let node of options.Nodes)
             {
@@ -95,7 +94,7 @@ export class Node<T extends NodeItem, TOptions> implements INode<T>
     }
 
     /**
-     *
+     * @inheritdoc
      */
     public set ID(value: string)
     {
@@ -111,7 +110,7 @@ export class Node<T extends NodeItem, TOptions> implements INode<T>
     }
 
     /**
-     *
+     * @inheritdoc
      */
     public set Name(value: string)
     {
@@ -149,16 +148,12 @@ export class Node<T extends NodeItem, TOptions> implements INode<T>
     {
         if (this.Parent !== value)
         {
-            if (
-                !isNullOrUndefined(this.Parent) &&
-                this.Parent.Nodes.includes(this))
+            if (this.Parent?.Nodes.includes(this))
             {
                 this.Parent.Nodes.splice(this.Parent.Nodes.indexOf(this), 1);
             }
 
-            if (
-                isNullOrUndefined(value) ||
-                value.Nodes.includes(this))
+            if (value?.Nodes.includes(this))
             {
                 this.parent = value;
             }
@@ -179,6 +174,9 @@ export class Node<T extends NodeItem, TOptions> implements INode<T>
 
     /**
      * @inheritdoc
+     *
+     * @returns
+     * All nodes inside this node.
      */
     public GetAllNodes(): Array<Node<T, TOptions>>
     {
@@ -195,17 +193,20 @@ export class Node<T extends NodeItem, TOptions> implements INode<T>
 
     /**
      * @inheritdoc
+     *
+     * @returns
+     * The objects of the node.
      */
-    public GetObjects(): { [id: string]: any }
+    public GetObjects(): Record<string, unknown>
     {
-        let result: { [id: string]: any } = {};
+        let result: Record<string, unknown> = {};
 
-        if (!isNullOrUndefined(this.ID))
+        if (this.ID)
         {
             result[this.ID] = this;
         }
 
-        if (!isNullOrUndefined(this.Item))
+        if (this.Item)
         {
             Object.assign(result, this.Item.GetObjects());
         }
@@ -219,7 +220,10 @@ export class Node<T extends NodeItem, TOptions> implements INode<T>
     }
 
     /**
-     * Returns a string that represents the current object.
+     * Returns a string which represents the current object.
+     *
+     * @returns
+     * A string which represents the object.
      */
     public toString(): string
     {

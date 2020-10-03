@@ -1,4 +1,3 @@
-import { isNullOrUndefined } from "util";
 import { IEventListenerOptions } from "./IEventListenerOptions";
 import { Listener } from "./Listener";
 
@@ -30,13 +29,14 @@ export class EventListener extends Listener
      * Initializes a new instance of the `EventListener` class.
      *
      * @param options
+     * The options of the event-listener.
      */
     public constructor(options: IEventListenerOptions)
     {
         super(options);
         this.ClassName = options.ClassName;
 
-        if (!isNullOrUndefined(options.AllowInherited))
+        if (options.AllowInherited)
         {
             this.AllowInherited = options.AllowInherited;
         }
@@ -47,15 +47,15 @@ export class EventListener extends Listener
     /**
      * Gets or sets the name of the class to listen to.
      */
-    public get ClassName()
+    public get ClassName(): string
     {
         return this.className;
     }
 
     /**
-     *
+     * @inheritdoc
      */
-    public set ClassName(value)
+    public set ClassName(value: string)
     {
         this.className = value;
     }
@@ -63,15 +63,15 @@ export class EventListener extends Listener
     /**
      * Gets or sets a value indicating whether listening to the event thrown by a class inheriting from `className` is allowed.
      */
-    public get AllowInherited()
+    public get AllowInherited(): boolean
     {
         return this.allowInherited;
     }
 
     /**
-     *
+     * @inheritdoc
      */
-    public set AllowInherited(value)
+    public set AllowInherited(value: boolean)
     {
         this.allowInherited = value;
     }
@@ -81,15 +81,15 @@ export class EventListener extends Listener
      *
      * Please consider that the event-handler class **must** inherit the `wcf\system\event\listener\IParameterizedEventListener`-class.
      */
-    public get EventHandlerClassName()
+    public get EventHandlerClassName(): string
     {
         return this.eventHandlerClassName;
     }
 
     /**
-     *
+     * @inheritdoc
      */
-    public set EventHandlerClassName(value)
+    public set EventHandlerClassName(value: string)
     {
         this.eventHandlerClassName = value;
     }

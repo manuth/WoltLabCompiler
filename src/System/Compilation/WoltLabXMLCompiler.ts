@@ -31,6 +31,9 @@ export abstract class WoltLabXMLCompiler<T> extends EJSFileCompiler<T>
 
     /**
      * @inheritdoc
+     *
+     * @returns
+     * The serialized document.
      */
     protected CreateDocument(): Document
     {

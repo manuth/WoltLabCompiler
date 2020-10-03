@@ -1,4 +1,3 @@
-import { isNullOrUndefined } from "util";
 import { Localization } from "../Globalization/Localization";
 import { IOptionItemOptions } from "./IOptionItemOptions";
 import { Option } from "./Option";
@@ -33,14 +32,16 @@ export class OptionItem
      *
      * @param option
      * The option of the item.
+     *
      * @param options
+     * The options of the item.
      */
     public constructor(option: Option, options: IOptionItemOptions)
     {
         this.option = option;
         this.Name = options.Name;
 
-        if (!isNullOrUndefined(options.DisplayName))
+        if (options.DisplayName)
         {
             this.DisplayName.Data = options.DisplayName;
         }
@@ -57,7 +58,7 @@ export class OptionItem
     }
 
     /**
-     *
+     * @inheritdoc
      */
     public set Name(value: string)
     {
@@ -75,15 +76,15 @@ export class OptionItem
     /**
      * Gets the value of the item.
      */
-    public get Value(): any
+    public get Value(): unknown
     {
         return this.value;
     }
 
     /**
-     *
+     * @inheritdoc
      */
-    public set Value(value: any)
+    public set Value(value: unknown)
     {
         this.value = value;
     }

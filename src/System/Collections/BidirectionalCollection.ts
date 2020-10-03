@@ -1,5 +1,3 @@
-import { isNullOrUndefined } from "util";
-
 /**
  * Represents a collection which is bidirectional.
  */
@@ -25,34 +23,37 @@ export abstract class BidirectionalCollection<TParent, TChild> extends Array<TCh
     /**
      * Gets the owner of the collection.
      */
-    public get Owner()
+    public get Owner(): TParent
     {
         return this.owner;
     }
 
     /**
-     * @param items
      * @inheritdoc
+     *
+     * @param items
+     * The new elements of the Array.
+     *
+     * @returns
+     * The new length of the array.
      */
-    public push(...items: TChild[])
+    public push(...items: TChild[]): number
     {
-        let result = 0;
-
         for (let item of items)
         {
-            if (this.Add(item))
-            {
-                result++;
-            }
+            this.Add(item);
         }
 
-        return result;
+        return this.length;
     }
 
     /**
      * @inheritdoc
+     *
+     * @returns
+     * The removed item.
      */
-    public pop()
+    public pop(): TChild
     {
         let result = this[this.length - 1];
         return this.Remove(result) ? result : undefined;
@@ -60,30 +61,33 @@ export abstract class BidirectionalCollection<TParent, TChild> extends Array<TCh
 
     /**
      * @inheritdoc
+     *
+     * @returns
+     * The removed element.
      */
-    public shift()
+    public shift(): TChild
     {
         let result = this[0];
         return this.Remove(result) ? result : undefined;
     }
 
     /**
-     * @param items
      * @inheritdoc
+     *
+     * @param items
+     * Elements to insert at the start of the Array.
+     *
+     * @returns
+     * The new length of the array.
      */
-    public unshift(...items: TChild[])
+    public unshift(...items: TChild[]): number
     {
-        let result = 0;
-
-        for (let i = items.length - 1; i >= 0; i--)
+        for (let item of items)
         {
-            if (this.Add(items[i]))
-            {
-                result++;
-            }
+            this.Add(item);
         }
 
-        return result;
+        return this.length;
     }
 
     /**
@@ -113,14 +117,17 @@ export abstract class BidirectionalCollection<TParent, TChild> extends Array<TCh
      *
      * @param item
      * The item to add.
+     *
+     * @returns
+     * A value indicating whether the item could be added.
      */
-    protected Add(item: TChild)
+    protected Add(item: TChild): boolean
     {
         if (this.GetParent(item) !== this.Owner)
         {
             super.push(item);
 
-            if (!isNullOrUndefined(item))
+            if (item)
             {
                 this.SetParent(item, this.Owner);
             }
@@ -138,14 +145,17 @@ export abstract class BidirectionalCollection<TParent, TChild> extends Array<TCh
      *
      * @param item
      * The item to remove.
+     *
+     * @returns
+     * A value indicating whether the element could be removed.
      */
-    protected Remove(item: TChild)
+    protected Remove(item: TChild): boolean
     {
         if (this.GetParent(item) === this.Owner)
         {
             super.splice(this.indexOf(item), 1);
 
-            if (!isNullOrUndefined(item))
+            if (item)
             {
                 this.SetParent(item, null);
             }

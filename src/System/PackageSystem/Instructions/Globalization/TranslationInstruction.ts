@@ -13,6 +13,7 @@ export class TranslationInstruction extends LocalizationInstruction<Localization
      * Initializes a new instance of the `TranslationInstruction` class.
      *
      * @param options
+     * The options of the node-system instruction.
      */
     public constructor(options: INodeSystemInstructionOptions<ILocalizationItemOptions>)
     {

@@ -13,5 +13,5 @@ export interface INodeItem
     /**
      * Gets the identifiable objects of the node.
      */
-    GetObjects(): { [id: string]: any };
+    GetObjects(): Record<string, unknown>;
 }
