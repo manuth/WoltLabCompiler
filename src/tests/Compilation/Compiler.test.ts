@@ -122,7 +122,7 @@ export function CompilerTests(): void
                                 async () =>
                                 {
                                     await writeFile(sourceDir.MakePath(fileName), ejsString);
-                                    await compiler["CopyTemplate"](sourceDir.FullName, destinationDir.FullName, context);
+                                    await compiler.CopyTemplate(sourceDir.FullName, destinationDir.FullName, context);
                                     strictEqual((await readFile(destinationDir.MakePath(fileName))).toString(), result);
                                 });
 
@@ -131,7 +131,7 @@ export function CompilerTests(): void
                                 async () =>
                                 {
                                     await writeFile(sourceDir.MakePath(hiddenFileName), ejsString);
-                                    await compiler["CopyTemplate"](sourceDir.FullName, destinationDir.FullName, context);
+                                    await compiler.CopyTemplate(sourceDir.FullName, destinationDir.FullName, context);
                                     strictEqual((await readFile(destinationDir.MakePath(hiddenFileName))).toString(), result);
                                 });
 
@@ -140,7 +140,7 @@ export function CompilerTests(): void
                                 async () =>
                                 {
                                     await writeFile(sourceDir.MakePath(hiddenFileName), ejsString);
-                                    await compiler["CopyTemplate"](sourceDir.FullName, sourceDir.FullName, context);
+                                    await compiler.CopyTemplate(sourceDir.FullName, sourceDir.FullName, context);
                                     strictEqual((await readFile(sourceDir.MakePath(hiddenFileName))).toString(), result);
                                 });
                         });
@@ -162,7 +162,7 @@ export function CompilerTests(): void
                         "Checking whether destination-paths are built correctly…",
                         () =>
                         {
-                            strictEqual(join(compiler.DestinationPath, ...path), compiler["MakeDestinationPath"](...path));
+                            strictEqual(join(compiler.DestinationPath, ...path), compiler.MakeDestinationPath(...path));
                         });
                 });
 
