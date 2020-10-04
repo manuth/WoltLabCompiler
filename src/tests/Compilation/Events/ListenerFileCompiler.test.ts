@@ -1,5 +1,5 @@
-import { TempFile } from "@manuth/temp-files";
 import { ok } from "assert";
+import { TempFile } from "@manuth/temp-files";
 import FileSystem = require("fs-extra");
 import { DOMParser } from "xmldom";
 import { ListenerFileCompiler } from "../../../Compilation/Events/ListenerFileCompiler";
