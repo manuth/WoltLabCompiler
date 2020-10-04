@@ -1,4 +1,4 @@
-import { TempDirectory } from "temp-filesystem";
+import { TempDirectory } from "@manuth/temp-files";
 import { normalize } from "upath";
 import { ILocalizationInstruction } from "../../../PackageSystem/Instructions/Globalization/ILocalizationInstruction";
 import { LocalizationSetCompiler } from "../../Globalization/LocalizationSetCompiler";

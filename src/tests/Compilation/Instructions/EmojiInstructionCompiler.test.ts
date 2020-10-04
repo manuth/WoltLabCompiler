@@ -1,6 +1,6 @@
 import { doesNotReject, strictEqual } from "assert";
+import { TempDirectory } from "@manuth/temp-files";
 import { pathExists } from "fs-extra";
-import { TempDirectory } from "temp-filesystem";
 import { EmojiInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/EmojiInstructionCompiler";
 import { EmojiInstruction } from "../../../PackageSystem/Instructions/Customization/EmojiInstruction";
 import { Package } from "../../../PackageSystem/Package";

@@ -1,6 +1,6 @@
 import Assert = require("assert");
+import { TempFile } from "@manuth/temp-files";
 import FileSystem = require("fs-extra");
-import { TempFile } from "temp-filesystem";
 import { DOMParser } from "xmldom";
 import { ListenerFileCompiler } from "../../../Compilation/Events/ListenerFileCompiler";
 import { IListenerOptions } from "../../../Events/IListenerOptions";

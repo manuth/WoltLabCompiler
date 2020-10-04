@@ -1,6 +1,6 @@
 import { strictEqual } from "assert";
+import { TempFile } from "@manuth/temp-files";
 import { readFile } from "fs-extra";
-import { TempFile } from "temp-filesystem";
 import { DOMParser } from "xmldom";
 import { EventListenerFileCompiler } from "../../../Compilation/Events/EventListenerFileCompiler";
 import { EventListenerInstruction } from "../../../PackageSystem/Instructions/Events/EventListenerInstruction";

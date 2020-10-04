@@ -1,4 +1,4 @@
-import { TempDirectory } from "temp-filesystem";
+import { TempDirectory } from "@manuth/temp-files";
 import { ThemeInstruction } from "../../../PackageSystem/Instructions/Customization/Presentation/ThemeInstruction";
 import { ThemeCompiler } from "../../Presentation/ThemeCompiler";
 import { InstructionCompiler } from "./InstructionCompiler";

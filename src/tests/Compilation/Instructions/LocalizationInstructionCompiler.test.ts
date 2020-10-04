@@ -1,6 +1,6 @@
 import { strictEqual } from "assert";
+import { TempDirectory } from "@manuth/temp-files";
 import { readdir } from "fs-extra";
-import { TempDirectory } from "temp-filesystem";
 import { parse } from "upath";
 import { LocalizationInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/LocalizationInstructionCompiler";
 import { ILocalization } from "../../../Globalization/ILocalization";

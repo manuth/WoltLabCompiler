@@ -1,7 +1,7 @@
 import { strictEqual } from "assert";
+import { TempFile } from "@manuth/temp-files";
 import dedent = require("dedent");
 import { pathExists, readFile } from "fs-extra";
-import { TempFile } from "temp-filesystem";
 import { DOMParser } from "xmldom";
 import { LocalizationFileCompiler } from "../../../Compilation/Globalization/LocalizationFileCompiler";
 import { ILocalization } from "../../../Globalization/ILocalization";

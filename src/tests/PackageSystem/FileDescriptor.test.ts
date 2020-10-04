@@ -1,6 +1,6 @@
 import { strictEqual } from "assert";
+import { TempDirectory, TempFile } from "@manuth/temp-files";
 import { ensureDir, ensureFile, readFile, writeFile } from "fs-extra";
-import { TempDirectory, TempFile } from "temp-filesystem";
 import { basename, normalize } from "upath";
 import { FileDescriptor } from "../../PackageSystem/FileDescriptor";
 

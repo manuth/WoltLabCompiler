@@ -1,6 +1,6 @@
 import { strictEqual } from "assert";
+import { TempDirectory } from "@manuth/temp-files";
 import { ensureDir, ensureFile, writeFile } from "fs-extra";
-import { TempDirectory } from "temp-filesystem";
 import { IThemeOptions } from "../../Customization/Presentation/Themes/IThemeOptions";
 import { ThemeInstructionCollection } from "../../Customization/Presentation/Themes/ThemeInstructionCollection";
 import { ThemeInstruction } from "../../PackageSystem/Instructions/Customization/Presentation/ThemeInstruction";

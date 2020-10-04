@@ -1,6 +1,6 @@
 import { strictEqual } from "assert";
+import { TempDirectory } from "@manuth/temp-files";
 import { pathExists, readdir } from "fs-extra";
-import { TempDirectory } from "temp-filesystem";
 import { BBCodeInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/BBCodeInstructionCompiler";
 import { ILocalization } from "../../../Globalization/ILocalization";
 import { BBCodeInstruction } from "../../../PackageSystem/Instructions/Customization/BBCodeInstruction";

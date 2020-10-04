@@ -1,4 +1,4 @@
-import { TempDirectory } from "temp-filesystem";
+import { TempDirectory } from "@manuth/temp-files";
 import { ApplicationFileSystemInstruction } from "../../../PackageSystem/Instructions/FileSystem/ApplicationFileSystemInstruction";
 import { XMLEditor } from "../../../Serialization/XMLEditor";
 import { InstructionCompiler } from "./InstructionCompiler";

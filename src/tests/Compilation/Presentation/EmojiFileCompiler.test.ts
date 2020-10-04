@@ -1,6 +1,6 @@
 import { strictEqual } from "assert";
+import { TempFile } from "@manuth/temp-files";
 import { readFile } from "fs-extra";
-import { TempFile } from "temp-filesystem";
 import { DOMParser } from "xmldom";
 import { EmojiFileCompiler } from "../../../Compilation/Presentation/EmojiFileCompiler";
 import { EmojiInstruction } from "../../../PackageSystem/Instructions/Customization/EmojiInstruction";

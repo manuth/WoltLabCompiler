@@ -1,6 +1,6 @@
 import { strictEqual } from "assert";
+import { TempDirectory } from "@manuth/temp-files";
 import { pathExists } from "fs-extra";
-import { TempDirectory } from "temp-filesystem";
 import { TemplateListenerInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/TemplateListenerInstructionCompiler";
 import { TemplateListenerInstruction } from "../../../PackageSystem/Instructions/Events/TemplateListenerInstruction";
 import { Package } from "../../../PackageSystem/Package";

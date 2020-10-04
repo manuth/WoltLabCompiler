@@ -1,7 +1,7 @@
 import { doesNotReject, strictEqual } from "assert";
+import { TempDirectory } from "@manuth/temp-files";
 import { pathExists, writeFile } from "fs-extra";
 import { extract, FileStat, list } from "tar";
-import { TempDirectory } from "temp-filesystem";
 import { parse } from "upath";
 import { FileInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/FileInstructionCompiler";
 import { ApplicationFileSystemInstruction } from "../../../PackageSystem/Instructions/FileSystem/ApplicationFileSystemInstruction";

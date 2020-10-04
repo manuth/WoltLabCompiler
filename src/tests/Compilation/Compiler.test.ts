@@ -1,7 +1,7 @@
 import { strictEqual } from "assert";
+import { TempDirectory, TempFile } from "@manuth/temp-files";
 import { readdir, readFile, writeFile } from "fs-extra";
 import { extract } from "tar";
-import { TempDirectory, TempFile } from "temp-filesystem";
 import { join } from "upath";
 import { TestCompiler } from "./TestCompiler";
 

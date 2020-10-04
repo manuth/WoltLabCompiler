@@ -1,6 +1,6 @@
 import { doesNotReject, strictEqual } from "assert";
+import { TempDirectory } from "@manuth/temp-files";
 import { pathExists, readdir } from "fs-extra";
-import { TempDirectory } from "temp-filesystem";
 import { UserOptionInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/UserOptionInstructionCompiler";
 import { ILocalization } from "../../../Globalization/ILocalization";
 import { UserOptionInstruction } from "../../../PackageSystem/Instructions/Options/UserOptionInstruction";

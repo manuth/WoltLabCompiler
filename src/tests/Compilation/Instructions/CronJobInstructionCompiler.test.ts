@@ -1,6 +1,6 @@
 import { doesNotReject, strictEqual } from "assert";
+import { TempDirectory } from "@manuth/temp-files";
 import { pathExists } from "fs-extra";
-import { TempDirectory } from "temp-filesystem";
 import { CronJobInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/CronJobInstructionCompiler";
 import { ACPOptionInstruction } from "../../../PackageSystem/Instructions/Options/ACPOptionInstruction";
 import { CronJobInstruction } from "../../../PackageSystem/Instructions/Tasks/CronJobInstruction";

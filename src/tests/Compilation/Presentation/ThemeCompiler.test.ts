@@ -1,6 +1,6 @@
 import { strictEqual } from "assert";
+import { TempDirectory, TempFile } from "@manuth/temp-files";
 import { pathExists, writeJSON } from "fs-extra";
-import { TempDirectory, TempFile } from "temp-filesystem";
 import { ThemeCompiler } from "../../../Compilation/Presentation/ThemeCompiler";
 import { ThemeInstruction } from "../../../PackageSystem/Instructions/Customization/Presentation/ThemeInstruction";
 import { Package } from "../../../PackageSystem/Package";
@@ -26,7 +26,7 @@ export function ThemeCompilerTests(): void
 
                     variableFile = new TempFile(
                         {
-                            postfix: ".json"
+                            Suffix: ".json"
                         });
 
                     variableFileName = "myVariableFile.xml";

@@ -1,6 +1,6 @@
 import { strictEqual } from "assert";
+import { TempFile } from "@manuth/temp-files";
 import { readFile, writeFile } from "fs-extra";
-import { TempFile } from "temp-filesystem";
 import { InstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/InstructionCompiler";
 import { IInstruction } from "../../../PackageSystem/Instructions/IInstruction";
 import { Instruction } from "../../../PackageSystem/Instructions/Instruction";

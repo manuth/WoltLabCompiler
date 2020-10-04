@@ -1,8 +1,8 @@
 import { strictEqual } from "assert";
+import { TempDirectory } from "@manuth/temp-files";
 import dedent = require("dedent");
 import { pathExists, writeFile } from "fs-extra";
 import { extract } from "tar";
-import { TempDirectory } from "temp-filesystem";
 import { ThemeInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/ThemeInstructionCompiler";
 import { ThemeInstruction } from "../../../PackageSystem/Instructions/Customization/Presentation/ThemeInstruction";
 import { Package } from "../../../PackageSystem/Package";

@@ -1,5 +1,5 @@
+import { TempFile } from "@manuth/temp-files";
 import { readFile, writeFile } from "fs-extra";
-import { TempFile } from "temp-filesystem";
 import { IInstruction } from "../../../PackageSystem/Instructions/IInstruction";
 import { InstructionFileCompiler } from "./InstructionFileCompiler";
 

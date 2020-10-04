@@ -1,6 +1,6 @@
 import { strictEqual } from "assert";
+import { TempDirectory } from "@manuth/temp-files";
 import { pathExists, readdir } from "fs-extra";
-import { TempDirectory } from "temp-filesystem";
 import { GroupOptionInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/GroupOptionInstructionCompiler";
 import { ILocalization } from "../../../Globalization/ILocalization";
 import { GroupOptionInstruction } from "../../../PackageSystem/Instructions/Options/GroupOptionInstruction";

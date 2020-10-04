@@ -1,5 +1,5 @@
+import { TempDirectory } from "@manuth/temp-files";
 import { copy } from "fs-extra";
-import { TempDirectory } from "temp-filesystem";
 import { Package } from "../../PackageSystem/Package";
 import { Compiler } from "../Compiler";
 import { InstructionSetCompiler } from "./InstructionSetCompiler";

@@ -1,6 +1,6 @@
 import { strictEqual } from "assert";
+import { TempFile } from "@manuth/temp-files";
 import { readFile } from "fs-extra";
-import { TempFile } from "temp-filesystem";
 import { DOMParser } from "xmldom";
 import { CronJobFileCompiler } from "../../../Compilation/Tasks/CronJobFileCompiler";
 import { ILocalization } from "../../../Globalization/ILocalization";

@@ -1,7 +1,7 @@
 import { strictEqual } from "assert";
+import { TempDirectory, TempFile } from "@manuth/temp-files";
 import { pathExists } from "fs-extra";
 import { extract } from "tar";
-import { TempDirectory, TempFile } from "temp-filesystem";
 import { PackageCompiler } from "../../../Compilation/PackageSystem/PackageCompiler";
 import { Package } from "../../../PackageSystem/Package";
 

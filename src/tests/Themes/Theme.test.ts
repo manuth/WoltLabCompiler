@@ -1,8 +1,8 @@
 import { strictEqual } from "assert";
 import { EOL } from "os";
+import { TempDirectory } from "@manuth/temp-files";
 import dedent = require("dedent");
 import { writeFile, writeJSON } from "fs-extra";
-import { TempDirectory } from "temp-filesystem";
 import { Theme } from "../../Customization/Presentation/Themes/Theme";
 import { ThemeInstruction } from "../../PackageSystem/Instructions/Customization/Presentation/ThemeInstruction";
 import { Package } from "../../PackageSystem/Package";

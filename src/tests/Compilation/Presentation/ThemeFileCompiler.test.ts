@@ -1,6 +1,6 @@
 import { strictEqual } from "assert";
+import { TempFile } from "@manuth/temp-files";
 import { readFile, writeJSON } from "fs-extra";
-import { TempFile } from "temp-filesystem";
 import { DOMParser } from "xmldom";
 import { ThemeFileCompiler } from "../../../Compilation/Presentation/ThemeFileCompiler";
 import { IImageDirectoryDescriptorOptions } from "../../../Customization/Presentation/Themes/IImageDirectoryDescriptorOptions";
@@ -72,7 +72,7 @@ export function ThemeFileCompilerTests(): void
                     description[locale] = localizedDescription;
                     description["inv"] = invariantDescription;
 
-                    let variableFile: TempFile = new TempFile({ postfix: ".json" });
+                    let variableFile: TempFile = new TempFile({ Suffix: ".json" });
                     await writeJSON(variableFile.FullName, { wfcHeaderBackground: "red" });
 
                     let themeInstruction: ThemeInstruction = new ThemeInstruction(
