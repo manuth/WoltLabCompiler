@@ -22,10 +22,13 @@ export class TestCompiler extends Compiler<unknown>
      *
      * @param context
      * The context to use.
+     *
+     * @param delimiter
+     * The delimiter of the ejs-tags.
      */
-    public async CopyTemplate(source: string, destination: string, context: Record<string, unknown>): Promise<void>
+    public async CopyTemplate(source: string, destination: string, context: Record<string, unknown>, delimiter?: string): Promise<void>
     {
-        return super.CopyTemplate(source, destination, context);
+        return super.CopyTemplate(source, destination, context, delimiter);
     }
 
     /**

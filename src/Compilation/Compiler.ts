@@ -78,11 +78,14 @@ export abstract class Compiler<T>
      *
      * @param context
      * The context to use.
+     *
+     * @param delimiter
+     * The delimiter of the ejs-tags.
      */
-    protected async CopyTemplate(source: string, destination: string, context?: Record<string, unknown>): Promise<void>
+    protected async CopyTemplate(source: string, destination: string, context?: Record<string, unknown>, delimiter?: string): Promise<void>
     {
         let fileStoreEditor = createEditor(createFS());
-        fileStoreEditor.copyTpl(source, destination, context, {}, { globOptions: { dot: true } });
+        fileStoreEditor.copyTpl(source, destination, context, { delimiter }, { globOptions: { dot: true } });
 
         await new Promise<void>(
             (resolve) =>
