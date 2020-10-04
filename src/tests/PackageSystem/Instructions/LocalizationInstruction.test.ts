@@ -1,4 +1,4 @@
-import { strictEqual } from "assert";
+import { ok, strictEqual } from "assert";
 import { ILocalization } from "../../../Globalization/ILocalization";
 import { ILocalizationItemOptions } from "../../../Globalization/ILocalizationItemOptions";
 import { LocalizationItem } from "../../../Globalization/LocalizationItem";
@@ -62,21 +62,21 @@ export function LocalizationInstructionTests(): void
                         "Checking whether an entry for the locale of the translations is present…",
                         () =>
                         {
-                            strictEqual(locale in translations, true);
+                            ok(locale in translations);
                         });
 
                     test(
                         "Checking whether categories are created correctly…",
                         () =>
                         {
-                            strictEqual(category in translations[locale], true);
+                            ok(category in translations[locale]);
                         });
 
                     test(
                         "Checking whether keys are created correctly…",
                         () =>
                         {
-                            strictEqual(`${category}.${messageName}` in translations[locale][category], true);
+                            ok(`${category}.${messageName}` in translations[locale][category]);
                         });
 
                     test(

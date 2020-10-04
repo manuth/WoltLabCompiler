@@ -1,4 +1,4 @@
-import { strictEqual } from "assert";
+import { ok, strictEqual } from "assert";
 import { TempDirectory } from "@manuth/temp-files";
 import { ensureDir, ensureFile, writeFile } from "fs-extra";
 import { IThemeOptions } from "../../Customization/Presentation/Themes/IThemeOptions";
@@ -68,7 +68,7 @@ export function ThemeInstructionCollectionTests(): void
                 "Checking whether the meta-data is applied correctly…",
                 () =>
                 {
-                    strictEqual(collection.every((themeInstruction: ThemeInstruction) => themeInstruction.Theme.Name === name), true);
+                    ok(collection.every((themeInstruction: ThemeInstruction) => themeInstruction.Theme.Name === name));
                 });
         });
 }

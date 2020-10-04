@@ -1,4 +1,4 @@
-import { strictEqual, throws } from "assert";
+import { ok, strictEqual, throws } from "assert";
 import { XML } from "../../Serialization/XML";
 import { XMLEditor } from "../../Serialization/XMLEditor";
 
@@ -67,7 +67,7 @@ export function XMLEditorTests(): void
                         "Checking whether the element of the editor is correct…",
                         () =>
                         {
-                            strictEqual(editor.Element === editorElement, true);
+                            ok(editor.Element === editorElement);
                         });
                 });
 
@@ -89,7 +89,7 @@ export function XMLEditorTests(): void
                         "Checking whether the ParentNode is correct…",
                         () =>
                         {
-                            strictEqual(child.ParentNode === parent.Element, true);
+                            ok(child.ParentNode === parent.Element);
                         });
                 });
 
@@ -270,7 +270,7 @@ export function XMLEditorTests(): void
                         () =>
                         {
                             parent.Add(child);
-                            strictEqual(parent.ChildNodes.includes(child.Element), true);
+                            ok(parent.ChildNodes.includes(child.Element));
                         });
 
                     test(
@@ -279,8 +279,8 @@ export function XMLEditorTests(): void
                         {
                             let node: Node;
                             parent.Add(childNode, (newNode: Node) => node = newNode);
-                            strictEqual(childNode === node, true);
-                            strictEqual(parent.ChildNodes.includes(childNode), true);
+                            ok(childNode === node);
+                            ok(parent.ChildNodes.includes(childNode));
                         });
                 });
 
@@ -305,7 +305,7 @@ export function XMLEditorTests(): void
                         {
                             parent.AddElement(tagName, (childNode: XMLEditor) => child = childNode);
                             strictEqual(child.TagName, tagName);
-                            strictEqual(parent.ChildNodes.includes(child.Element), true);
+                            ok(parent.ChildNodes.includes(child.Element));
                         });
                 });
 
@@ -392,7 +392,7 @@ export function XMLEditorTests(): void
                             parent.ChildNodes[Math.floor(Math.random() * parent.ChildNodes.length)].appendChild(parent.CreateElement(randomTag).Element);
                             let result = parent.GetChildrenByTag(randomTag);
                             strictEqual(result.length, 1);
-                            strictEqual(result[0].ParentNode === parent.Element, true);
+                            ok(result[0].ParentNode === parent.Element);
                         });
                 });
 
@@ -539,8 +539,8 @@ export function XMLEditorTests(): void
                         "Checking whether the method acts as expected…",
                         () =>
                         {
-                            strictEqual(attributeEditor.HasAttribute(attributeName), true);
-                            strictEqual(attributeEditor.HasAttribute(attributeName, attributeValue), true);
+                            ok(attributeEditor.HasAttribute(attributeName));
+                            ok(attributeEditor.HasAttribute(attributeName, attributeValue));
                             strictEqual(attributeEditor.HasAttribute(attributeName, alternativeValue), false);
                             strictEqual(attributeEditor.HasAttribute(alternativeName), false);
                             strictEqual(attributeEditor.HasAttribute(alternativeName, attributeValue), false);
@@ -573,9 +573,9 @@ export function XMLEditorTests(): void
                         "Checking whether the method acts as expected…",
                         () =>
                         {
-                            strictEqual(textEditor.HasText(null, text), true);
+                            ok(textEditor.HasText(null, text));
                             strictEqual(textEditor.HasText(null, alternativeText), false);
-                            strictEqual(textEditor.HasText(tag, text), true);
+                            ok(textEditor.HasText(tag, text));
                             strictEqual(textEditor.HasText(tag, alternativeText), false);
                             strictEqual(textEditor.HasText(alternativeTag, text), false);
                             strictEqual(textEditor.HasText(alternativeTag, alternativeText), false);
@@ -603,13 +603,13 @@ export function XMLEditorTests(): void
                         "Checking whether the method acts as expected…",
                         () =>
                         {
-                            strictEqual(tagEditor.HasTag(tag), true);
+                            ok(tagEditor.HasTag(tag));
                             strictEqual(tagEditor.HasTag(alternativeTag), false);
-                            strictEqual(tagEditor.HasTag(tag, true), true);
+                            ok(tagEditor.HasTag(tag, true));
                             strictEqual(tagEditor.HasTag(alternativeTag, true), false);
 
                             tagEditor.AddElement(tag);
-                            strictEqual(tagEditor.HasTag(tag), true);
+                            ok(tagEditor.HasTag(tag));
                             strictEqual(tagEditor.HasTag(alternativeTag), false);
                             strictEqual(tagEditor.HasTag(tag, true), false);
                             strictEqual(tagEditor.HasTag(alternativeTag, true), false);

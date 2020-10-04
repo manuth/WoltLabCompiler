@@ -1,4 +1,4 @@
-import { doesNotReject, strictEqual } from "assert";
+import { doesNotReject, ok } from "assert";
 import { TempDirectory } from "@manuth/temp-files";
 import { pathExists } from "fs-extra";
 import { EmojiInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/EmojiInstructionCompiler";
@@ -55,7 +55,7 @@ export function EmojiInstructionCompilerTests(): void
                 "Checking whether the compiled file exists…",
                 async () =>
                 {
-                    strictEqual(await pathExists(fileName), true);
+                    ok(await pathExists(fileName));
                 });
         });
 }

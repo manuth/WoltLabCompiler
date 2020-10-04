@@ -1,4 +1,4 @@
-import { strictEqual } from "assert";
+import { ok, strictEqual } from "assert";
 import { TempDirectory, TempFile } from "@manuth/temp-files";
 import { readdir, readFile, writeFile } from "fs-extra";
 import { extract } from "tar";
@@ -215,7 +215,7 @@ export function CompilerTests(): void
                                     });
 
                                 let archiveFiles: string[] = await readdir(testDir.FullName);
-                                strictEqual(files.every((file: string) => archiveFiles.includes(file)), true);
+                                ok(files.every((file: string) => archiveFiles.includes(file)));
                             }
 
                             testDir.Dispose();

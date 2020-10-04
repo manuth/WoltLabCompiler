@@ -1,4 +1,4 @@
-import { strictEqual } from "assert";
+import { ok, strictEqual } from "assert";
 import { EOL } from "os";
 import { TempDirectory } from "@manuth/temp-files";
 import dedent = require("dedent");
@@ -227,14 +227,14 @@ export function ThemeTests(): void
                                 "Checking whether special scss-variables written in scss are added…",
                                 () =>
                                 {
-                                    strictEqual(theme.ScssOverride.includes(`$${specialScssVariable.Name}: ${specialScssVariable.Input};`), true);
+                                    ok(theme.ScssOverride.includes(`$${specialScssVariable.Name}: ${specialScssVariable.Input};`));
                                 });
 
                             test(
                                 "Checking whether special scss-variables written in json are added…",
                                 () =>
                                 {
-                                    strictEqual(theme.ScssOverride.includes(`$${specialJsonVariable.Name}: ${specialJsonVariable.Input};`), true);
+                                    ok(theme.ScssOverride.includes(`$${specialJsonVariable.Name}: ${specialJsonVariable.Input};`));
                                 });
                         });
                 });
@@ -263,14 +263,14 @@ export function ThemeTests(): void
                                 "Checking whether variables written in scss are added…",
                                 () =>
                                 {
-                                    strictEqual(scssVariable.Name in theme.Variables, true);
+                                    ok(scssVariable.Name in theme.Variables);
                                 });
 
                             test(
                                 "Checking whether variables written in json are added…",
                                 () =>
                                 {
-                                    strictEqual(jsonVariable.Name in theme.Variables, true);
+                                    ok(jsonVariable.Name in theme.Variables);
                                 });
                         });
 

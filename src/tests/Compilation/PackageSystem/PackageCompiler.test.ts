@@ -1,4 +1,4 @@
-import { strictEqual } from "assert";
+import { ok } from "assert";
 import { TempDirectory, TempFile } from "@manuth/temp-files";
 import { pathExists } from "fs-extra";
 import { extract } from "tar";
@@ -71,7 +71,7 @@ export function PackageCompilerTests(): void
                         "Checking whether the package-manifest exists inside the tar-archive…",
                         async () =>
                         {
-                            strictEqual(await pathExists(archiveDir.MakePath("package.xml")), true);
+                            ok(await pathExists(archiveDir.MakePath("package.xml")));
                         });
                 });
         });

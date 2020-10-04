@@ -1,4 +1,4 @@
-import { strictEqual } from "assert";
+import { ok } from "assert";
 import { Localization } from "../../Globalization/Localization";
 
 /**
@@ -44,8 +44,8 @@ export function LocalizationTests(): void
                         "Checking whether the locales of the `Localization` are evaluated correctly…",
                         () =>
                         {
-                            strictEqual(locales1.every((locale: string) => localization1.GetLocales().includes(locale)), true);
-                            strictEqual(locales2.every((locale: string) => localization2.GetLocales().includes(locale)), true);
+                            ok(locales1.every((locale: string) => localization1.GetLocales().includes(locale)));
+                            ok(locales2.every((locale: string) => localization2.GetLocales().includes(locale)));
                         });
                 });
         });

@@ -1,4 +1,4 @@
-import { strictEqual } from "assert";
+import { ok, strictEqual } from "assert";
 import { TempFile } from "@manuth/temp-files";
 import { readFile } from "fs-extra";
 import { join } from "upath";
@@ -272,7 +272,7 @@ export function PackageFileCompilerTests(): void
                                         "Checking whether the identifier is correct…",
                                         () =>
                                         {
-                                            strictEqual(extensionPackage.HasAttribute(identifierAttribute, identifier), true);
+                                            ok(extensionPackage.HasAttribute(identifierAttribute, identifier));
                                         });
                                 });
 
@@ -302,7 +302,7 @@ export function PackageFileCompilerTests(): void
                                                         "Checking whether the package-information is present…",
                                                         () =>
                                                         {
-                                                            strictEqual(extensionPackage.HasTag(packageInfoTag, true), true);
+                                                            ok(extensionPackage.HasTag(packageInfoTag, true));
                                                             packageInfo = extensionPackage.GetChildrenByTag(packageInfoTag)[0];
                                                         });
                                                 });
@@ -375,7 +375,7 @@ export function PackageFileCompilerTests(): void
                                                         "Checking whether the version is correct…",
                                                         () =>
                                                         {
-                                                            strictEqual(packageInfo.HasText(versionTag, version), true);
+                                                            ok(packageInfo.HasText(versionTag, version));
                                                         });
 
                                                     test(
@@ -409,7 +409,7 @@ export function PackageFileCompilerTests(): void
                                                         "Checking whether the author-information is present…",
                                                         () =>
                                                         {
-                                                            strictEqual(extensionPackage.HasTag(authorInfoTag, true), true);
+                                                            ok(extensionPackage.HasTag(authorInfoTag, true));
                                                             authorInfo = extensionPackage.GetChildrenByTag(authorInfoTag)[0];
                                                         });
                                                 });
@@ -466,7 +466,7 @@ export function PackageFileCompilerTests(): void
                                                         "Checking whether the list of the required packages is present…",
                                                         () =>
                                                         {
-                                                            strictEqual(extensionPackage.HasTag(requiredPackagesTag, true), true);
+                                                            ok(extensionPackage.HasTag(requiredPackagesTag, true));
                                                             packages = extensionPackage.GetChildrenByTag(requiredPackagesTag)[0];
                                                         });
                                                 });
@@ -536,7 +536,7 @@ export function PackageFileCompilerTests(): void
                                                         "Checking whether the list of conflicting packages is present…",
                                                         () =>
                                                         {
-                                                            strictEqual(extensionPackage.HasTag(conflictingPackagesTag, true), true);
+                                                            ok(extensionPackage.HasTag(conflictingPackagesTag, true));
                                                             packages = extensionPackage.GetChildrenByTag(conflictingPackagesTag)[0];
                                                         });
                                                 });
@@ -605,7 +605,7 @@ export function PackageFileCompilerTests(): void
                                                         "Checking whether the list of optional packages is present…",
                                                         () =>
                                                         {
-                                                            strictEqual(extensionPackage.HasTag(optionalPackagesTag, true), true);
+                                                            ok(extensionPackage.HasTag(optionalPackagesTag, true));
                                                             packages = extensionPackage.GetChildrenByTag(optionalPackagesTag)[0];
                                                         });
                                                 });
@@ -670,10 +670,10 @@ export function PackageFileCompilerTests(): void
                                                 "Checking whether the compatibility-information looks like expected…",
                                                 () =>
                                                 {
-                                                    strictEqual(extensionPackage.HasTag(compatibilityTag, true), true);
+                                                    ok(extensionPackage.HasTag(compatibilityTag, true));
                                                     let compatibility: XMLEditor = extensionPackage.GetChildrenByTag(compatibilityTag)[0];
-                                                    strictEqual(compatibility.HasTag(apiTag, true), true);
-                                                    strictEqual(compatibility.GetChildrenByTag(apiTag)[0].HasAttribute("version", "2018"), true);
+                                                    ok(compatibility.HasTag(apiTag, true));
+                                                    ok(compatibility.GetChildrenByTag(apiTag)[0].HasAttribute("version", "2018"));
                                                 });
                                         });
 

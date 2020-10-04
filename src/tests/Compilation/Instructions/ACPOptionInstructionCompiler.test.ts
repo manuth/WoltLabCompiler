@@ -1,4 +1,4 @@
-import { strictEqual } from "assert";
+import { ok } from "assert";
 import { TempDirectory } from "@manuth/temp-files";
 import { pathExists, readdir } from "fs-extra";
 import { ACPOptionInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/ACPOptionInstructionCompiler";
@@ -84,7 +84,7 @@ export function ACPOptionInstructionCompilerTests(): void
                         "Checking whether the option-file exists…",
                         async () =>
                         {
-                            strictEqual(await pathExists(fileName), true);
+                            ok(await pathExists(fileName));
                         });
 
                     test(
@@ -92,7 +92,7 @@ export function ACPOptionInstructionCompilerTests(): void
                         async () =>
                         {
                             let files: string[] = await readdir(translationDir);
-                            strictEqual(locales.every((locale: string) => files.includes(`${locale}.xml`)), true);
+                            ok(locales.every((locale: string) => files.includes(`${locale}.xml`)));
                         });
                 });
         });

@@ -1,4 +1,4 @@
-import { strictEqual } from "assert";
+import { ok } from "assert";
 import { TempDirectory, TempFile } from "@manuth/temp-files";
 import { pathExists, writeJSON } from "fs-extra";
 import { ThemeCompiler } from "../../../Compilation/Presentation/ThemeCompiler";
@@ -82,14 +82,14 @@ export function ThemeCompilerTests(): void
                         "Checking whether the theme-metadata exists…",
                         async () =>
                         {
-                            strictEqual(await pathExists(tempDir.MakePath("style.xml")), true);
+                            ok(await pathExists(tempDir.MakePath("style.xml")));
                         });
 
                     test(
                         "Checking whether the variable-file exists…",
                         async () =>
                         {
-                            strictEqual(await pathExists(tempDir.MakePath(variableFileName)), true);
+                            ok(await pathExists(tempDir.MakePath(variableFileName)));
                         });
                 });
         });

@@ -1,4 +1,4 @@
-import { strictEqual } from "assert";
+import { ok, strictEqual } from "assert";
 import { TempDirectory } from "@manuth/temp-files";
 import dedent = require("dedent");
 import { writeFile } from "fs-extra";
@@ -81,8 +81,8 @@ export function SassVariableParserTests(): void
                         "Checking whether the expected variables are present…",
                         () =>
                         {
-                            strictEqual(var2Name in variablesWithImport, true);
-                            strictEqual(var3Name in variablesWithImport, true);
+                            ok(var2Name in variablesWithImport);
+                            ok(var3Name in variablesWithImport);
                         });
 
                     test(

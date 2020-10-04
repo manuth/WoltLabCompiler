@@ -1,4 +1,4 @@
-import { strictEqual } from "assert";
+import { ok } from "assert";
 import { TempDirectory } from "@manuth/temp-files";
 import dedent = require("dedent");
 import { pathExists, writeFile } from "fs-extra";
@@ -95,7 +95,7 @@ export function ThemeInstructionCompilerTests(): void
                         "Checking whether the tar-archive has been created…",
                         async () =>
                         {
-                            strictEqual(await pathExists(themeArchive), true);
+                            ok(await pathExists(themeArchive));
                         });
 
                     test(
@@ -113,8 +113,8 @@ export function ThemeInstructionCompilerTests(): void
                         "Checking whether the files expected in the tar-archive exist…",
                         async () =>
                         {
-                            strictEqual(await pathExists(themeDir.MakePath("style.xml")), true);
-                            strictEqual(await pathExists(themeDir.MakePath("variables.xml")), true);
+                            ok(await pathExists(themeDir.MakePath("style.xml")));
+                            ok(await pathExists(themeDir.MakePath("variables.xml")));
                         });
                 });
         });

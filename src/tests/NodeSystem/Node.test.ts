@@ -1,4 +1,4 @@
-import { strictEqual } from "assert";
+import { ok, strictEqual } from "assert";
 import { INodeOptions } from "../../NodeSystem/INodeOptions";
 import { Node } from "../../NodeSystem/Node";
 import { NodeItem } from "../../NodeSystem/NodeItem";
@@ -142,9 +142,9 @@ export function NodeTests(): void
                             nodeA.Parent = nodeB;
                             nodeB.Parent = nodeC;
 
-                            strictEqual(nodeC.GetAllNodes().includes(nodeA), true);
-                            strictEqual(nodeC.GetAllNodes().includes(nodeB), true);
-                            strictEqual(nodeC.GetAllNodes().includes(nodeC), true);
+                            ok(nodeC.GetAllNodes().includes(nodeA));
+                            ok(nodeC.GetAllNodes().includes(nodeB));
+                            ok(nodeC.GetAllNodes().includes(nodeC));
                             strictEqual(nodeC.GetAllNodes().length, 3);
                         });
                 });
@@ -171,7 +171,7 @@ export function NodeTests(): void
                         "Checking whether the node returns itself if an ID is assigned…",
                         () =>
                         {
-                            strictEqual(id in idNode.GetObjects(), true);
+                            ok(id in idNode.GetObjects());
                             strictEqual(idNode.GetObjects()[id], idNode);
                         });
 
@@ -207,7 +207,7 @@ export function NodeTests(): void
                             let allNodes = rootNode.GetAllNodes();
                             allNodes[Math.floor(Math.random() * allNodes.length)].Nodes.push(idNode);
 
-                            strictEqual(id in rootNode.GetObjects(), true);
+                            ok(id in rootNode.GetObjects());
                             strictEqual(rootNode.GetObjects()[id], idNode);
                         });
                 });

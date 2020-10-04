@@ -1,4 +1,4 @@
-import { doesNotReject, strictEqual } from "assert";
+import { doesNotReject, ok, strictEqual } from "assert";
 import { TempDirectory } from "@manuth/temp-files";
 import { pathExists, writeFile } from "fs-extra";
 import { extract, FileStat, list } from "tar";
@@ -91,7 +91,7 @@ export function FileInstructionCompilerTests(): void
                         "Checking whether the archive has been created…",
                         async () =>
                         {
-                            strictEqual(await pathExists(archiveFileName), true);
+                            ok(await pathExists(archiveFileName));
                         });
 
                     test(
@@ -123,8 +123,8 @@ export function FileInstructionCompilerTests(): void
                                 }
                             });
 
-                            strictEqual(fileNames.every((fileName: string): boolean => files.includes(fileName)), true);
-                            strictEqual(files.every((fileName: string): boolean => fileNames.includes(fileName)), true);
+                            ok(fileNames.every((fileName: string): boolean => files.includes(fileName)));
+                            ok(files.every((fileName: string): boolean => fileNames.includes(fileName)));
                         });
                 });
 
@@ -177,7 +177,7 @@ export function FileInstructionCompilerTests(): void
                         "Checking whether the `application`-attribute is present if the `Application` is specified…",
                         () =>
                         {
-                            strictEqual(applicationDocument.documentElement.hasAttribute("application"), true);
+                            ok(applicationDocument.documentElement.hasAttribute("application"));
                         });
 
                     test(

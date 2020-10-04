@@ -1,4 +1,4 @@
-import { strictEqual } from "assert";
+import { ok, strictEqual } from "assert";
 import { TempFile } from "@manuth/temp-files";
 import { readFile } from "fs-extra";
 import { DOMParser } from "xmldom";
@@ -142,16 +142,16 @@ export function GroupOptionFileCompilerTests(): void
                                                 "Checking whether the default values are correct…",
                                                 () =>
                                                 {
-                                                    strictEqual(optionEditor.HasText(userValueTag, `${option.UserDefaultValue}`), true);
-                                                    strictEqual(optionEditor.HasText(modValueTag, `${option.ModDefaultValue}`), true);
-                                                    strictEqual(optionEditor.HasText(adminValueTag, `${option.AdminDefaultValue}`), true);
+                                                    ok(optionEditor.HasText(userValueTag, `${option.UserDefaultValue}`));
+                                                    ok(optionEditor.HasText(modValueTag, `${option.ModDefaultValue}`));
+                                                    ok(optionEditor.HasText(adminValueTag, `${option.AdminDefaultValue}`));
                                                 });
 
                                             test(
                                                 "Checking whether the registered-restriction is correct…",
                                                 () =>
                                                 {
-                                                    strictEqual(optionEditor.HasText(registeredTag, option.RegisteredOnly ? "1" : "0"), true);
+                                                    ok(optionEditor.HasText(registeredTag, option.RegisteredOnly ? "1" : "0"));
                                                 });
                                         });
                                 });

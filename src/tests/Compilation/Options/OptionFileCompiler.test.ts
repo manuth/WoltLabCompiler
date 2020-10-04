@@ -1,4 +1,4 @@
-import { strictEqual } from "assert";
+import { ok, strictEqual } from "assert";
 import { TempFile } from "@manuth/temp-files";
 import { readFile } from "fs-extra";
 import { DOMParser } from "xmldom";
@@ -275,7 +275,7 @@ export function OptionFileCompilerTests(): void
                                                 "Checking whether the category-list is present…",
                                                 () =>
                                                 {
-                                                    strictEqual(importEditor.HasTag(categoriesTag, true), true);
+                                                    ok(importEditor.HasTag(categoriesTag, true));
                                                     categoriesEditor = importEditor.GetChildrenByTag(categoriesTag)[0];
                                                 });
                                         });
@@ -313,7 +313,7 @@ export function OptionFileCompilerTests(): void
                                                         "Checking whether any category is present…",
                                                         () =>
                                                         {
-                                                            strictEqual(categoriesEditor.HasTag(categoryTag), true);
+                                                            ok(categoriesEditor.HasTag(categoryTag));
                                                             categories = categoriesEditor.GetChildrenByTag(categoryTag);
                                                         });
 
@@ -364,7 +364,7 @@ export function OptionFileCompilerTests(): void
                                                                 {
                                                                     if (section)
                                                                     {
-                                                                        strictEqual(categoryEditor.HasText(parentTag, section), true);
+                                                                        ok(categoryEditor.HasText(parentTag, section));
                                                                     }
                                                                     else
                                                                     {
@@ -378,7 +378,7 @@ export function OptionFileCompilerTests(): void
                                                                 {
                                                                     if (rootShowOrder)
                                                                     {
-                                                                        strictEqual(categoryEditor.HasText(showOrderTag, rootShowOrder.toString()), true);
+                                                                        ok(categoryEditor.HasText(showOrderTag, rootShowOrder.toString()));
                                                                     }
                                                                     else
                                                                     {
@@ -433,7 +433,7 @@ export function OptionFileCompilerTests(): void
                                                                 {
                                                                     if (section)
                                                                     {
-                                                                        strictEqual(categoryEditor.HasText(parentTag, categoryNode.Parent.FullName), true);
+                                                                        ok(categoryEditor.HasText(parentTag, categoryNode.Parent.FullName));
                                                                     }
                                                                     else
                                                                     {
@@ -447,7 +447,7 @@ export function OptionFileCompilerTests(): void
                                                                 {
                                                                     if (showOrder)
                                                                     {
-                                                                        strictEqual(categoryEditor.HasText(showOrderTag, showOrder.toString()), true);
+                                                                        ok(categoryEditor.HasText(showOrderTag, showOrder.toString()));
                                                                     }
                                                                     else
                                                                     {
@@ -491,7 +491,7 @@ export function OptionFileCompilerTests(): void
                                                 "Checking whether the option-list is present…",
                                                 () =>
                                                 {
-                                                    strictEqual(importEditor.HasTag(optionsTag, true), true);
+                                                    ok(importEditor.HasTag(optionsTag, true));
                                                     optionsEditor = importEditor.GetChildrenByTag(optionsTag)[0];
                                                 });
                                         });
@@ -518,7 +518,7 @@ export function OptionFileCompilerTests(): void
                                                         "Checking whether exactly one option is present…",
                                                         () =>
                                                         {
-                                                            strictEqual(optionsEditor.HasTag(optionTag, true), true);
+                                                            ok(optionsEditor.HasTag(optionTag, true));
                                                             optionEditor = optionsEditor.GetChildrenByTag(optionTag)[0];
                                                         });
                                                 });
@@ -553,49 +553,49 @@ export function OptionFileCompilerTests(): void
                                                         "Checking whether the name is correct…",
                                                         () =>
                                                         {
-                                                            strictEqual(optionEditor.HasAttribute(nameAttribute, option.Name), true);
+                                                            ok(optionEditor.HasAttribute(nameAttribute, option.Name));
                                                         });
 
                                                     test(
                                                         "Checking whether the category is correct…",
                                                         () =>
                                                         {
-                                                            strictEqual(optionEditor.HasText(categoryTag, categoryNode.FullName), true);
+                                                            ok(optionEditor.HasText(categoryTag, categoryNode.FullName));
                                                         });
 
                                                     test(
                                                         "Checking whether the type is correct…",
                                                         () =>
                                                         {
-                                                            strictEqual(optionEditor.HasText(typeTag, option.Type), true);
+                                                            ok(optionEditor.HasText(typeTag, option.Type));
                                                         });
 
                                                     test(
                                                         "Checking whether the default value is correct…",
                                                         () =>
                                                         {
-                                                            strictEqual(optionEditor.HasText(defaultValueTag, `${option.DefaultValue}`), true);
+                                                            ok(optionEditor.HasText(defaultValueTag, `${option.DefaultValue}`));
                                                         });
 
                                                     test(
                                                         "Checking whether the show-order is correct…",
                                                         () =>
                                                         {
-                                                            strictEqual(optionEditor.HasText(showOrderTag, option.ShowOrder.toString()), true);
+                                                            ok(optionEditor.HasText(showOrderTag, option.ShowOrder.toString()));
                                                         });
 
                                                     test(
                                                         "Checking whether the validation-pattern is correct…",
                                                         () =>
                                                         {
-                                                            strictEqual(optionEditor.HasText(patternTag, option.ValidationPattern.source), true);
+                                                            ok(optionEditor.HasText(patternTag, option.ValidationPattern.source));
                                                         });
 
                                                     test(
                                                         "Checking whether the items are correct…",
                                                         () =>
                                                         {
-                                                            strictEqual(optionEditor.HasTag(itemsTag, true), true);
+                                                            ok(optionEditor.HasTag(itemsTag, true));
                                                             let lines = optionEditor.GetChildrenByTag(itemsTag)[0].TextContent.split("\n");
 
                                                             for (let item of option.Items)

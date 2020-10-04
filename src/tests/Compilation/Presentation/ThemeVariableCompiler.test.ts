@@ -1,4 +1,4 @@
-import { strictEqual } from "assert";
+import { ok, strictEqual } from "assert";
 import { TempFile } from "@manuth/temp-files";
 import dedent = require("dedent");
 import { pathExists, readFile } from "fs-extra";
@@ -69,7 +69,7 @@ export function ThemeVariableCompilerTests(): void
                                 "Checking whether the compiled file exists…",
                                 async () =>
                                 {
-                                    strictEqual(await pathExists(tempFile.FullName), true);
+                                    ok(await pathExists(tempFile.FullName));
                                 });
                         });
 
@@ -116,8 +116,8 @@ export function ThemeVariableCompilerTests(): void
                                         }
                                     }
 
-                                    strictEqual(variableElement.parentNode === rootElement, true);
-                                    strictEqual(scssElement.parentNode === rootElement, true);
+                                    ok(variableElement.parentNode === rootElement);
+                                    ok(scssElement.parentNode === rootElement);
                                 });
 
                             suite(

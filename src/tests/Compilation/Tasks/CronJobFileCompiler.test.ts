@@ -1,4 +1,4 @@
-import { strictEqual } from "assert";
+import { ok, strictEqual } from "assert";
 import { TempFile } from "@manuth/temp-files";
 import { readFile } from "fs-extra";
 import { DOMParser } from "xmldom";
@@ -129,7 +129,7 @@ export function CronJobFileCompilerTests(): void
                                                 "Checking whether the cron-job is present…",
                                                 () =>
                                                 {
-                                                    strictEqual(importEditor.HasTag(cronJobTag, true), true);
+                                                    ok(importEditor.HasTag(cronJobTag, true));
                                                     cronJobEditor = importEditor.GetChildrenByTag(cronJobTag)[0];
                                                 });
                                         });
@@ -181,7 +181,7 @@ export function CronJobFileCompilerTests(): void
                                                 "Checking the class-name of the cron-job…",
                                                 () =>
                                                 {
-                                                    strictEqual(cronJobEditor.HasText(classTag, className), true);
+                                                    ok(cronJobEditor.HasText(classTag, className));
                                                 });
 
                                             test(
@@ -203,8 +203,8 @@ export function CronJobFileCompilerTests(): void
                                                 "Checking whether the permission-settings are correct…",
                                                 () =>
                                                 {
-                                                    strictEqual(cronJobEditor.HasText(disableTag, allowDisable ? "1" : "0"), true);
-                                                    strictEqual(cronJobEditor.HasText(editTag, allowEdit ? "1" : "0"), true);
+                                                    ok(cronJobEditor.HasText(disableTag, allowDisable ? "1" : "0"));
+                                                    ok(cronJobEditor.HasText(editTag, allowEdit ? "1" : "0"));
                                                 });
 
                                             test(
@@ -218,11 +218,11 @@ export function CronJobFileCompilerTests(): void
                                                 "Checking whether the time-period is correct…",
                                                 () =>
                                                 {
-                                                    strictEqual(cronJobEditor.HasText(minuteTag, period.Minute), true);
-                                                    strictEqual(cronJobEditor.HasText(hourTag, period.Hour), true);
-                                                    strictEqual(cronJobEditor.HasText(dayOfMonthTag, period.DayOfMonth), true);
-                                                    strictEqual(cronJobEditor.HasText(monthTag, period.Month), true);
-                                                    strictEqual(cronJobEditor.HasText(dayOfWeekTag, period.DayOfWeek), true);
+                                                    ok(cronJobEditor.HasText(minuteTag, period.Minute));
+                                                    ok(cronJobEditor.HasText(hourTag, period.Hour));
+                                                    ok(cronJobEditor.HasText(dayOfMonthTag, period.DayOfMonth));
+                                                    ok(cronJobEditor.HasText(monthTag, period.Month));
+                                                    ok(cronJobEditor.HasText(dayOfWeekTag, period.DayOfWeek));
                                                 });
                                         });
                                 });

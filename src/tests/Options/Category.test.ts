@@ -1,4 +1,4 @@
-import { strictEqual } from "assert";
+import { ok, strictEqual } from "assert";
 import { INode } from "../../NodeSystem/INode";
 import { INodeOptions } from "../../NodeSystem/INodeOptions";
 import { Node } from "../../NodeSystem/Node";
@@ -141,7 +141,7 @@ export function CategoryTests(): void
                         "Checking whether sub-nodes can be found by their ID…",
                         () =>
                         {
-                            strictEqual(categoryID in objects, true);
+                            ok(categoryID in objects);
                             strictEqual(objects[categoryID], category);
                         });
 
@@ -149,7 +149,7 @@ export function CategoryTests(): void
                         "Checking whether options can be found by their ID…",
                         () =>
                         {
-                            strictEqual(optionID in objects, true);
+                            ok(optionID in objects);
                             strictEqual((objects[optionID] as MyOption).Name, optionName);
                         });
                 });

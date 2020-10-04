@@ -1,4 +1,4 @@
-import { strictEqual } from "assert";
+import { ok, strictEqual } from "assert";
 import { TempFile } from "@manuth/temp-files";
 import { readFile } from "fs-extra";
 import { DOMParser } from "xmldom";
@@ -139,21 +139,21 @@ export function ACPOptionFileCompilerTests(): void
                                                 "Checking whether the visibility is set correctly…",
                                                 () =>
                                                 {
-                                                    strictEqual(optionEditor.HasText(visibleTag, option.Visible ? "0" : "1"), true);
+                                                    ok(optionEditor.HasText(visibleTag, option.Visible ? "0" : "1"));
                                                 });
 
                                             test(
                                                 "Checking whether the localization-support is set correctly…",
                                                 () =>
                                                 {
-                                                    strictEqual(optionEditor.HasText(localizableTag, option.Localizable ? "1" : "0"), true);
+                                                    ok(optionEditor.HasText(localizableTag, option.Localizable ? "1" : "0"));
                                                 });
 
                                             test(
                                                 "Checking whether the localization-requirement is set correctly…",
                                                 () =>
                                                 {
-                                                    strictEqual(optionEditor.HasText(forceLocalizationTag, option.ForceLocalization ? "1" : "0"), true);
+                                                    ok(optionEditor.HasText(forceLocalizationTag, option.ForceLocalization ? "1" : "0"));
                                                 });
                                         });
                                 });

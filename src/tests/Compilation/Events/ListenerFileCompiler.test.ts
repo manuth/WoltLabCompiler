@@ -1,5 +1,5 @@
-import Assert = require("assert");
 import { TempFile } from "@manuth/temp-files";
+import { ok } from "assert";
 import FileSystem = require("fs-extra");
 import { DOMParser } from "xmldom";
 import { ListenerFileCompiler } from "../../../Compilation/Events/ListenerFileCompiler";
@@ -183,7 +183,7 @@ export function ListenerFileCompilerTests(): void
                                         "Checking whether the listener is present…",
                                         () =>
                                         {
-                                            Assert.strictEqual(importEditor.HasTag(listenerTag, true), true);
+                                            ok(importEditor.HasTag(listenerTag, true));
                                             listenerEditor = importEditor.GetChildrenByTag(listenerTag)[0];
                                         });
 
@@ -191,12 +191,12 @@ export function ListenerFileCompilerTests(): void
                                         "Checking the integrity of the meta-data…",
                                         () =>
                                         {
-                                            Assert.strictEqual(listenerEditor.HasAttribute(nameAttribute, name), true);
-                                            Assert.strictEqual(listenerEditor.HasText(environmentTag, environment), true);
-                                            Assert.strictEqual(listenerEditor.HasText(eventTag, event), true);
-                                            Assert.strictEqual(listenerEditor.HasText(executionOrderTag, executionOrder.toString()), true);
-                                            Assert.strictEqual(listenerEditor.HasText(permissionsTag, permissions.join(",")), true);
-                                            Assert.strictEqual(listenerEditor.HasText(optionsTag, enableOptions.join(",")), true);
+                                            ok(listenerEditor.HasAttribute(nameAttribute, name));
+                                            ok(listenerEditor.HasText(environmentTag, environment));
+                                            ok(listenerEditor.HasText(eventTag, event));
+                                            ok(listenerEditor.HasText(executionOrderTag, executionOrder.toString()));
+                                            ok(listenerEditor.HasText(permissionsTag, permissions.join(",")));
+                                            ok(listenerEditor.HasText(optionsTag, enableOptions.join(",")));
                                         });
                                 });
                         });

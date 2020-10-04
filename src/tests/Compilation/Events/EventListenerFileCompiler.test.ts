@@ -1,4 +1,4 @@
-import { strictEqual } from "assert";
+import { ok, strictEqual } from "assert";
 import { TempFile } from "@manuth/temp-files";
 import { readFile } from "fs-extra";
 import { DOMParser } from "xmldom";
@@ -119,9 +119,9 @@ export function EventListenerFileCompilerTests(): void
                                         "Checking the integrity of the meta-data…",
                                         () =>
                                         {
-                                            strictEqual(eventListenerEditor.HasText(eventClassTag, className), true);
-                                            strictEqual(eventListenerEditor.HasText(inheritTag, allowInherit ? "1" : "0"), true);
-                                            strictEqual(eventListenerEditor.HasText(eventHandlerTag, eventHandler), true);
+                                            ok(eventListenerEditor.HasText(eventClassTag, className));
+                                            ok(eventListenerEditor.HasText(inheritTag, allowInherit ? "1" : "0"));
+                                            ok(eventListenerEditor.HasText(eventHandlerTag, eventHandler));
                                         });
                                 });
                         });

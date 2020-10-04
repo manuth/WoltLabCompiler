@@ -1,4 +1,4 @@
-import { strictEqual } from "assert";
+import { ok, strictEqual } from "assert";
 import { TempFile } from "@manuth/temp-files";
 import { pathExists, readFile } from "fs-extra";
 import { DOMParser } from "xmldom";
@@ -65,7 +65,7 @@ export function XMLFileCompilerTests(): void
                         "Checking whether the compiled file exists…",
                         async () =>
                         {
-                            strictEqual(await pathExists(tempFile.FullName), true);
+                            ok(await pathExists(tempFile.FullName));
                         });
 
                     test(

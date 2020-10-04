@@ -1,4 +1,4 @@
-import { strictEqual } from "assert";
+import { ok, strictEqual } from "assert";
 import { TempFile } from "@manuth/temp-files";
 import { readFile } from "fs-extra";
 import { DOMParser } from "xmldom";
@@ -114,8 +114,8 @@ export function TemplateListenerFileCompilerTests(): void
                                         "Checking the integrity of the meta-data…",
                                         () =>
                                         {
-                                            strictEqual(templateListenerEditor.HasText(templateTag, templateName), true);
-                                            strictEqual(templateListenerEditor.HasText(codeTag, code), true);
+                                            ok(templateListenerEditor.HasText(templateTag, templateName));
+                                            ok(templateListenerEditor.HasText(codeTag, code));
                                         });
                                 });
                         });

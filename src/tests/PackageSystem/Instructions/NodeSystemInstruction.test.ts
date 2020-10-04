@@ -1,4 +1,4 @@
-import { strictEqual } from "assert";
+import { ok, strictEqual } from "assert";
 import { INodeOptions } from "../../../NodeSystem/INodeOptions";
 import { Node } from "../../../NodeSystem/Node";
 import { NodeItem } from "../../../NodeSystem/NodeItem";
@@ -106,7 +106,7 @@ export function NodeSystemInstructionTests(): void
                         "Checking whether object-ids are queried correctly…",
                         () =>
                         {
-                            strictEqual(id in instruction.ObjectsByID, true);
+                            ok(id in instruction.ObjectsByID);
                         });
 
                     test(

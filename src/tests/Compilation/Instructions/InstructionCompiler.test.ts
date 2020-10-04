@@ -1,4 +1,4 @@
-import { strictEqual } from "assert";
+import { ok, strictEqual } from "assert";
 import { TempFile } from "@manuth/temp-files";
 import { readFile, writeFile } from "fs-extra";
 import { InstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/InstructionCompiler";
@@ -126,14 +126,14 @@ export function InstructionCompilerTests(): void
                         "Checking whether members of the item are replaced using ejs…",
                         () =>
                         {
-                            strictEqual(new RegExp(`^${type}$`, "gm").test(content), true);
+                            ok(new RegExp(`^${type}$`, "gm").test(content));
                         });
 
                     test(
                         "Checking whether $-substitutions are replaced using ejs…",
                         () =>
                         {
-                            strictEqual(content.includes(`${object}`), true);
+                            ok(content.includes(`${object}`));
                         });
                 });
 

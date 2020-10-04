@@ -1,4 +1,4 @@
-import { strictEqual } from "assert";
+import { ok, strictEqual } from "assert";
 import { Instruction } from "../../../PackageSystem/Instructions/Instruction";
 import { InstructionSet } from "../../../PackageSystem/Instructions/InstructionSet";
 import { Package } from "../../../PackageSystem/Package";
@@ -56,7 +56,7 @@ export function InstructionSetTests(): void
                         () =>
                         {
                             instruction.Collection = instructionSet;
-                            strictEqual(instructionSet.includes(instruction), true);
+                            ok(instructionSet.includes(instruction));
                         });
 
                     test(
@@ -72,7 +72,7 @@ export function InstructionSetTests(): void
                         () =>
                         {
                             instructionSet.push(instruction);
-                            strictEqual(instructionSet.includes(instruction), true);
+                            ok(instructionSet.includes(instruction));
                         });
 
                     test(

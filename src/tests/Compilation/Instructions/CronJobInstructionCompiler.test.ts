@@ -1,4 +1,4 @@
-import { doesNotReject, strictEqual } from "assert";
+import { doesNotReject, ok } from "assert";
 import { TempDirectory } from "@manuth/temp-files";
 import { pathExists } from "fs-extra";
 import { CronJobInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/CronJobInstructionCompiler";
@@ -84,7 +84,7 @@ export function CronJobInstructionCompilerTests(): void
                         "Checking whether the expected file exists…",
                         async () =>
                         {
-                            strictEqual(await pathExists(fileName), true);
+                            ok(await pathExists(fileName));
                         });
                 });
         });

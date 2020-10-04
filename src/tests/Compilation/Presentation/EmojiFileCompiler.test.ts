@@ -1,4 +1,4 @@
-import { strictEqual } from "assert";
+import { ok } from "assert";
 import { TempFile } from "@manuth/temp-files";
 import { readFile } from "fs-extra";
 import { DOMParser } from "xmldom";
@@ -124,7 +124,7 @@ export function EmojiFileCompilerTests(): void
                                         "Checking whether the emoji is present…",
                                         () =>
                                         {
-                                            strictEqual(importEditor.HasTag(emojiTag, true), true);
+                                            ok(importEditor.HasTag(emojiTag, true));
                                             emojiEditor = importEditor.GetChildrenByTag(emojiTag)[0];
                                         });
 
@@ -132,12 +132,12 @@ export function EmojiFileCompilerTests(): void
                                         "Checking the integrity of the meta-data…",
                                         () =>
                                         {
-                                            strictEqual(emojiEditor.HasAttribute(nameAttribute, `:${name}:`), true);
-                                            strictEqual(emojiEditor.HasText(displayNameTag, displayName), true);
-                                            strictEqual(emojiEditor.HasText(aliasesTag, aliases.map((alias: string) => `:${alias}:`).join("\n")), true);
-                                            strictEqual(emojiEditor.HasText(showOrderTag, showOrder.toString()), true);
-                                            strictEqual(emojiEditor.HasText(fileNameTag, fileName), true);
-                                            strictEqual(emojiEditor.HasText(highResFileNameTag, highResFileName), true);
+                                            ok(emojiEditor.HasAttribute(nameAttribute, `:${name}:`));
+                                            ok(emojiEditor.HasText(displayNameTag, displayName));
+                                            ok(emojiEditor.HasText(aliasesTag, aliases.map((alias: string) => `:${alias}:`).join("\n")));
+                                            ok(emojiEditor.HasText(showOrderTag, showOrder.toString()));
+                                            ok(emojiEditor.HasText(fileNameTag, fileName));
+                                            ok(emojiEditor.HasText(highResFileNameTag, highResFileName));
                                         });
                                 });
                         });

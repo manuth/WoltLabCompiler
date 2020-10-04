@@ -1,4 +1,4 @@
-import { strictEqual } from "assert";
+import { ok, strictEqual } from "assert";
 import { ILocalization } from "../../../Globalization/ILocalization";
 import { ErrorMessageInstruction } from "../../../PackageSystem/Instructions/Globalization/ErrorMessageInstruction";
 
@@ -57,21 +57,21 @@ export function ErrorMessageInstructionTests(): void
                         "Checking whether the locale is present…",
                         () =>
                         {
-                            strictEqual(locale in translations, true);
+                            ok(locale in translations);
                         });
 
                     test(
                         `Checking whether the \`${optionCategory}\`-category is present…`,
                         () =>
                         {
-                            strictEqual(optionCategory in translations[locale], true);
+                            ok(optionCategory in translations[locale]);
                         });
 
                     test(
                         `Checking whether the \`${optionCategory}.${errorCategory}.${messageName}\`-message is present…`,
                         () =>
                         {
-                            strictEqual(`${optionCategory}.${errorCategory}.${messageName}` in translations[locale][optionCategory], true);
+                            ok(`${optionCategory}.${errorCategory}.${messageName}` in translations[locale][optionCategory]);
                         });
 
                     test(

@@ -1,4 +1,4 @@
-import { strictEqual } from "assert";
+import { ok, strictEqual } from "assert";
 import { BBCode } from "../../../Customization/BBCodes/BBCode";
 import { BBCodeInstruction } from "../../../PackageSystem/Instructions/Customization/BBCodeInstruction";
 
@@ -65,21 +65,21 @@ export function BBCodeInstructionTests(): void
                         "Checking whether an entry for the locale of the translations are present…",
                         () =>
                         {
-                            strictEqual(locale in translations, true);
+                            ok(locale in translations);
                         });
 
                     test(
                         `Checking whether the \`${category}\`-category is present…`,
                         () =>
                         {
-                            strictEqual(category in translations[locale], true);
+                            ok(category in translations[locale]);
                         });
 
                     test(
                         `Checking whether the \`${category}.${bbCode.Name}\` translation is present…`,
                         () =>
                         {
-                            strictEqual(`${category}.${bbCode.Name}` in translations[locale][category], true);
+                            ok(`${category}.${bbCode.Name}` in translations[locale][category]);
                         });
 
                     test(

@@ -1,4 +1,4 @@
-import { strictEqual } from "assert";
+import { ok } from "assert";
 import { TempDirectory } from "@manuth/temp-files";
 import { pathExists, readdir } from "fs-extra";
 import { BBCodeInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/BBCodeInstructionCompiler";
@@ -83,7 +83,7 @@ export function BBCodeInstructionCompilerTests(): void
                         "Checking whether the bb-code file exists…",
                         async () =>
                         {
-                            strictEqual(await pathExists(fileName), true);
+                            ok(await pathExists(fileName));
                         });
 
                     test(
@@ -91,7 +91,7 @@ export function BBCodeInstructionCompilerTests(): void
                         async () =>
                         {
                             let files: string[] = await readdir(translationDir);
-                            strictEqual(locales.every((locale: string) => files.includes(`${locale}.xml`)), true);
+                            ok(locales.every((locale: string) => files.includes(`${locale}.xml`)));
                         });
                 });
         });

@@ -1,4 +1,4 @@
-import { strictEqual } from "assert";
+import { ok } from "assert";
 import { TempDirectory } from "@manuth/temp-files";
 import { pathExists } from "fs-extra";
 import { TemplateListenerInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/TemplateListenerInstructionCompiler";
@@ -53,7 +53,7 @@ export function TemplateListenerInstructionCompilerTests(): void
                 "Checking whether the compiled file exists…",
                 async () =>
                 {
-                    strictEqual(await pathExists(fileName), true);
+                    ok(await pathExists(fileName));
                 });
         });
 }

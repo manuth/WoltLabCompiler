@@ -1,4 +1,4 @@
-import { strictEqual } from "assert";
+import { ok, strictEqual } from "assert";
 import { TempFile } from "@manuth/temp-files";
 import dedent = require("dedent");
 import { pathExists, readFile } from "fs-extra";
@@ -91,7 +91,7 @@ export function LocalizationFileCompilerTests(): void
                                 "Checking whether the expected file exists…",
                                 async () =>
                                 {
-                                    strictEqual(await pathExists(tempFile.FullName), true);
+                                    ok(await pathExists(tempFile.FullName));
                                 });
                         });
 
@@ -128,7 +128,7 @@ export function LocalizationFileCompilerTests(): void
                                         "Checking whether the language is specified…",
                                         () =>
                                         {
-                                            strictEqual(rootEditor.HasAttribute(languageAttribute), true);
+                                            ok(rootEditor.HasAttribute(languageAttribute));
                                         });
 
                                     test(
@@ -162,7 +162,7 @@ export function LocalizationFileCompilerTests(): void
                                                 "Checking whether the category exists…",
                                                 () =>
                                                 {
-                                                    strictEqual(rootEditor.HasTag(categoryTag, true), true);
+                                                    ok(rootEditor.HasTag(categoryTag, true));
                                                     categoryEditor = rootEditor.GetChildrenByTag(categoryTag)[0];
                                                 });
 
@@ -170,7 +170,7 @@ export function LocalizationFileCompilerTests(): void
                                                 "Checking whether the integrity of the name of the category…",
                                                 () =>
                                                 {
-                                                    strictEqual(categoryEditor.HasAttribute(nameAttribute, category), true);
+                                                    ok(categoryEditor.HasAttribute(nameAttribute, category));
                                                 });
                                         });
 
@@ -191,7 +191,7 @@ export function LocalizationFileCompilerTests(): void
                                                 "Checking whether the translation exists…",
                                                 () =>
                                                 {
-                                                    strictEqual(categoryEditor.HasTag(itemTag, true), true);
+                                                    ok(categoryEditor.HasTag(itemTag, true));
                                                     itemEditor = categoryEditor.GetChildrenByTag(itemTag)[0];
                                                 });
 
@@ -199,7 +199,7 @@ export function LocalizationFileCompilerTests(): void
                                                 "Checking whether the integrity of the name of the translation…",
                                                 () =>
                                                 {
-                                                    strictEqual(itemEditor.HasAttribute(nameAttribute, `${category}.${messageName}`), true);
+                                                    ok(itemEditor.HasAttribute(nameAttribute, `${category}.${messageName}`));
                                                 });
 
                                             test(

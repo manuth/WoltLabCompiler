@@ -1,4 +1,4 @@
-import { strictEqual } from "assert";
+import { ok } from "assert";
 import { TempFile } from "@manuth/temp-files";
 import { readFile } from "fs-extra";
 import { DOMParser } from "xmldom";
@@ -78,8 +78,8 @@ export function ImportFileCompilerTests(): void
                                         "Checking whether the import- and the delete-list are present…",
                                         () =>
                                         {
-                                            strictEqual(editor.HasTag("import", true), true);
-                                            strictEqual(editor.HasTag("delete", true), true);
+                                            ok(editor.HasTag("import", true));
+                                            ok(editor.HasTag("delete", true));
                                         });
                                 });
                         });

@@ -1,4 +1,4 @@
-import { doesNotReject, strictEqual } from "assert";
+import { doesNotReject, ok } from "assert";
 import { TempDirectory } from "@manuth/temp-files";
 import { pathExists, readdir } from "fs-extra";
 import { UserOptionInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/UserOptionInstructionCompiler";
@@ -84,7 +84,7 @@ export function UserOptionInstructionCompilerTests(): void
                         "Checking whether the option-file exists…",
                         async () =>
                         {
-                            strictEqual(await pathExists(fileName), true);
+                            ok(await pathExists(fileName));
                         });
 
                     test(
@@ -92,7 +92,7 @@ export function UserOptionInstructionCompilerTests(): void
                         async () =>
                         {
                             let files: string[] = await readdir(translationDir);
-                            strictEqual(locales.every((locale: string) => files.includes(`${locale}.xml`)), true);
+                            ok(locales.every((locale: string) => files.includes(`${locale}.xml`)));
                         });
                 });
         });
