@@ -6,20 +6,25 @@ export enum ViewPermission
     /**
      * Indicates the owner of the user the option is assigned to.
      */
-    Owner = 1,
+    Owner = 1 << 0,
 
     /**
      * Indicates users with administrator-privileges.
      */
-    Admin = 2,
+    Admin = 1 << 1,
 
     /**
      * Indicates registeres users.
      */
-    RegisteredUser = 4,
+    RegisteredUser = 1 << 2,
 
     /**
      * Indicates visitors which are not registered.
      */
-    Guest = 8
+    Guest = 1 << 3,
+
+    /**
+     * Indicates that all visitors have view permissions.
+     */
+    All = Owner | Admin | RegisteredUser | Guest
 }
