@@ -1,98 +1,147 @@
-import { ok, strictEqual } from "assert";
+import { strictEqual } from "assert";
 import { TempFile } from "@manuth/temp-files";
-import { pathExists, readFile } from "fs-extra";
+import { readFile } from "fs-extra";
 import { DOMParser } from "xmldom";
 import { EJSFileCompiler } from "../../Compilation/EJSFileCompiler";
+import { XMLEditor } from "../../Serialization/XMLEditor";
+import { CompilerTester } from "./CompilerTester";
 
 /**
  * Registers tests for the `EJSFileCompiler` class.
  */
 export function EJSFileCompilerTests(): void
 {
-    suite(
-        "EJSFileCompiler",
-        () =>
-        {
-            let tempFile: TempFile;
-            let variableName: string;
-            let variableValue: string;
-            let compiler: EJSFileCompiler<unknown>;
+    let context: Record<string, string>;
+    let tempFile: TempFile;
+    let variableName: string;
+    let variableValue: string;
+    let delimiter: string;
 
-            suiteSetup(
+    /**
+     * Provides an implementation of the `EJSFileCompiler` for testing.
+     */
+    class TestEJSFileCompiler extends EJSFileCompiler<unknown>
+    {
+        /**
+         * Initializes a new instance of the class.
+         */
+        public constructor()
+        {
+            super({});
+        }
+
+        /**
+         * @inheritdoc
+         */
+        public get Delimiter(): string
+        {
+            return delimiter;
+        }
+
+        /**
+         * @inheritdoc
+         */
+        protected get TagName(): string
+        {
+            return "test";
+        }
+
+        /**
+         * Copies files using `EJS`.
+         *
+         * @param source
+         * The source to copy the files from.
+         *
+         * @param destination
+         * The destination to copy the files to.
+         *
+         * @param context
+         * The context to use.
+         *
+         * @param delimiter
+         * The delimiter of the ejs-tags.
+         */
+        public async CopyTemplate(source: string, destination: string, context: Record<string, unknown>, delimiter?: string): Promise<void>
+        {
+            return super.CopyTemplate(source, destination, context, delimiter);
+        }
+
+        /**
+         * @inheritdoc
+         *
+         * @returns
+         * The serialized document.
+         */
+        protected CreateDocument(): Document
+        {
+            let document = super.CreateDocument();
+            document.documentElement.appendChild(document.createTextNode(`<${this.Delimiter}= ${variableName} ${this.Delimiter}>`));
+            return document;
+        }
+    }
+
+    new class extends CompilerTester<TestEJSFileCompiler>
+    {
+        /**
+         * Creates an instance of a compiler.
+         *
+         * @returns
+         * The new compiler-instance.
+         */
+        protected CreateCompiler(): TestEJSFileCompiler
+        {
+            return new TestEJSFileCompiler();
+        }
+
+        /**
+         * @inheritdoc
+         */
+        protected async SuiteSetup(): Promise<void>
+        {
+            context = {};
+            tempFile = new TempFile();
+            variableName = "foo";
+            variableValue = "Hello World";
+            context[variableName] = variableValue;
+        }
+
+        /**
+         * @inheritdoc
+         */
+        protected ExecuteTests(): void
+        {
+            super.ExecuteTests();
+
+            /**
+             * Creates an `XMLEditor` for the output file.
+             *
+             * @returns
+             * An `XMLEditor` for the output file.
+             */
+            async function GetEditor(): Promise<XMLEditor>
+            {
+                return new XMLEditor(
+                    new DOMParser().parseFromString((await readFile(tempFile.FullName)).toString()).documentElement);
+            }
+
+            test(
+                "Checking whether the ejs-variables inside `xml`-files are substituted correctly…",
                 async () =>
                 {
-                    let context: Record<string, string> = {};
-                    tempFile = new TempFile();
-                    variableName = "foo";
-                    variableValue = "Hello World";
-                    context[variableName] = variableValue;
-
-                    compiler = new class extends EJSFileCompiler<unknown>
-                    {
-                        /**
-                         * @inheritdoc
-                         */
-                        protected TagName = "test";
-
-                        /**
-                         * Initializes a new instance of the `EJSFileCompiler` class.
-                         */
-                        public constructor()
-                        {
-                            super({});
-                        }
-
-                        /**
-                         * @inheritdoc
-                         *
-                         * @returns
-                         * The serialized document.
-                         */
-                        protected CreateDocument(): Document
-                        {
-                            let document = super.CreateDocument();
-                            document.documentElement.appendChild(document.createTextNode(`<%= ${variableName} %>`));
-                            return document;
-                        }
-
-                        /**
-                         * @inheritdoc
-                         */
-                        protected async Compile(): Promise<void>
-                        {
-                            await super.Compile();
-                            await this.CopyTemplate(this.DestinationPath, this.DestinationPath, context);
-                        }
-                    }();
-
-                    compiler.DestinationPath = tempFile.FullName;
+                    await this.Compiler.CopyTemplate(this.Compiler.DestinationPath, tempFile.FullName, context);
+                    strictEqual((await GetEditor()).TextContent, variableValue);
                 });
 
-            suite(
-                "Compile",
-                () =>
+            test(
+                "Checking whether ejs-variables with custom delimiters are substituted correctly…",
+                async () =>
                 {
-                    test(
-                        "Checking whether the component can be compiled…",
-                        async () =>
-                        {
-                            await compiler.Execute();
-                        });
-
-                    test(
-                        "Checking whether the compiled file exists…",
-                        async () =>
-                        {
-                            ok(await pathExists(tempFile.FullName));
-                        });
-
-                    test(
-                        "Checking whether the EJS-variable has been replaced…",
-                        async () =>
-                        {
-                            let document = new DOMParser().parseFromString((await readFile(tempFile.FullName)).toString());
-                            strictEqual(document.documentElement.textContent, variableValue);
-                        });
+                    delimiter = "!";
+                    strictEqual(this.Compiler.Delimiter, delimiter);
+                    await this.Compiler.Execute();
+                    await this.Compiler.CopyTemplate(this.Compiler.DestinationPath, tempFile.FullName, context, delimiter);
+                    strictEqual((await GetEditor()).TextContent, variableValue);
                 });
-        });
+        }
+    }("EJSFileCompiler").Register();
 }
