@@ -24,7 +24,9 @@ export class ImageDirectoryDescriptor extends FileDescriptor
             FileName: options.FileName ?? "images.tar"
         });
 
-        if (options.DestinationRoot)
+        if (
+            (options.DestinationRoot !== null) &&
+            (options.DestinationRoot !== undefined))
         {
             this.destinationRoot = options.DestinationRoot;
         }

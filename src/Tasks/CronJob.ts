@@ -50,29 +50,39 @@ export class CronJob
      */
     public constructor(options: ICronJobOptions)
     {
-        if (options.Name)
+        if (
+            (options.Name !== null) &&
+            (options.Name !== undefined))
         {
             this.Name = options.Name;
         }
 
         this.ClassName = options.ClassName;
 
-        if (options.Description)
+        if (
+            (options.Description !== null) &&
+            (options.Description !== undefined))
         {
-            this.Description.Data = options.Description;
+            this.Description.Load(options.Description);
         }
 
-        if (options.AllowDisable)
+        if (
+            (options.AllowDisable !== null) &&
+            (options.AllowDisable !== undefined))
         {
             this.AllowDisable = options.AllowDisable;
         }
 
-        if (options.AllowEdit)
+        if (
+            (options.AllowEdit !== null) &&
+            (options.AllowEdit !== undefined))
         {
             this.AllowEdit = options.AllowEdit;
         }
 
-        if (options.Options)
+        if (
+            (options.Options !== null) &&
+            (options.Options !== undefined))
         {
             this.Options = options.Options;
         }

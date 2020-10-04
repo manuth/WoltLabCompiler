@@ -80,32 +80,44 @@ export class Theme extends Component
         let variables: Record<string, string> = {};
         this.instruction = instruction;
 
-        if (options.Thumbnail)
+        if (
+            (options.Thumbnail !== null) &&
+            (options.Thumbnail !== undefined))
         {
             this.Thumbnail = new FileDescriptor(typeof options.Thumbnail === "string" ? { Source: options.Thumbnail } : options.Thumbnail);
         }
 
-        if (options.HighResThumbnail)
+        if (
+            (options.HighResThumbnail !== null) &&
+            (options.HighResThumbnail !== undefined))
         {
             this.HighResThumbnail = new FileDescriptor(typeof options.HighResThumbnail === "string" ? { Source: options.HighResThumbnail } : options.HighResThumbnail);
         }
 
-        if (options.CoverPhoto)
+        if (
+            (options.CoverPhoto !== null) &&
+            (options.CoverPhoto !== undefined))
         {
             this.CoverPhoto = new FileDescriptor(typeof options.CoverPhoto === "string" ? { Source: options.CoverPhoto } : options.CoverPhoto);
         }
 
-        if (options.CustomScssFileName)
+        if (
+            (options.CustomScssFileName !== null) &&
+            (options.CustomScssFileName !== undefined))
         {
             this.CustomScss = readFileSync(options.CustomScssFileName).toString();
         }
 
-        if (options.ScssOverrideFileName)
+        if (
+            (options.ScssOverrideFileName !== null) &&
+            (options.ScssOverrideFileName !== undefined))
         {
             Object.assign(variables, new SassVariableParser(options.ScssOverrideFileName).Parse());
         }
 
-        if (options.VariableFileName)
+        if (
+            (options.VariableFileName !== null) &&
+            (options.VariableFileName !== undefined))
         {
             Object.assign(
                 variables,
@@ -115,7 +127,9 @@ export class Theme extends Component
                         ...(isAbsolute(options.VariableFileName) ? [options.VariableFileName] : [process.cwd(), options.VariableFileName]))));
         }
 
-        if (options.Images)
+        if (
+            (options.Images !== null) &&
+            (options.Images !== undefined))
         {
             this.images = new ImageDirectoryDescriptor(options.Images);
         }

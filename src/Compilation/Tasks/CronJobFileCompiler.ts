@@ -59,7 +59,7 @@ export class CronJobFileCompiler extends NamedObjectDeletionFileCompiler<CronJob
                     {
                         cronJobEditor.AddTextElement(
                             "description",
-                            cronJob.Description.Data[locale],
+                            cronJob.Description.Data.get(locale),
                             (description: XMLEditor) =>
                             {
                                 if (locale !== "inv")

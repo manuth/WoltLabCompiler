@@ -21,7 +21,9 @@ export class PackageFileDescriptor extends PackageDescriptor
     {
         super(options);
 
-        if (options.FileName)
+        if (
+            (options.FileName !== null) &&
+            (options.FileName !== undefined))
         {
             this.FileName = options.FileName;
         }

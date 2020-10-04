@@ -57,7 +57,7 @@ export class ErrorMessageInstruction extends TranslationInstruction
                                     Name: node.FullName,
                                     Item:
                                     {
-                                        Translations: node.Item.Translations.Data
+                                        Translations: node.Item.Translations.ToJSON()
                                     }
                                 }));
                     }

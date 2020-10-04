@@ -35,22 +35,30 @@ export class BBCodeAttribute
      */
     public constructor(options: IBBCodeAttributeOptions)
     {
-        if (options.Required)
+        if (
+            (options.Required !== null) &&
+            (options.Required !== undefined))
         {
             this.required = options.Required;
         }
 
-        if (options.ValueByContent)
+        if (
+            (options.ValueByContent !== null) &&
+            (options.ValueByContent !== undefined))
         {
             this.valueByContent = options.ValueByContent;
         }
 
-        if (options.Code)
+        if (
+            (options.Code !== null) &&
+            (options.Code !== undefined))
         {
             this.code = options.Code;
         }
 
-        if (options.ValidationPattern)
+        if (
+            (options.ValidationPattern !== null) &&
+            (options.ValidationPattern !== undefined))
         {
             this.validationPattern = options.ValidationPattern;
         }

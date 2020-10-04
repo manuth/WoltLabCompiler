@@ -35,17 +35,23 @@ export class ACPOption extends Option
     {
         super(category, options);
 
-        if (options.Visible)
+        if (
+            (options.Visible !== null) &&
+            (options.Visible !== undefined))
         {
             this.Visible = options.Visible;
         }
 
-        if (options.Localizable)
+        if (
+            (options.Localizable !== null) &&
+            (options.Localizable !== undefined))
         {
             this.Localizable = options.Localizable;
         }
 
-        if (options.ForceLocalization)
+        if (
+            (options.ForceLocalization !== null) &&
+            (options.ForceLocalization !== undefined))
         {
             this.ForceLocalization = options.ForceLocalization;
         }

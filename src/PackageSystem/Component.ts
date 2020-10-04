@@ -51,25 +51,33 @@ export abstract class Component
     public constructor(options: IComponentOptions)
     {
         this.Name = options.Name;
-        this.DisplayName.Data = options.DisplayName;
+        this.DisplayName.Load(options.DisplayName);
         this.Version = options.Version;
 
-        if (options.Author)
+        if (
+            (options.Author !== null) &&
+            (options.Author !== undefined))
         {
             this.author = new Person(options.Author);
         }
 
-        if (options.CreationDate)
+        if (
+            (options.CreationDate !== null) &&
+            (options.CreationDate !== undefined))
         {
             this.CreationDate = options.CreationDate;
         }
 
-        if (options.Description)
+        if (
+            (options.Description !== null) &&
+            (options.Description !== undefined))
         {
-            this.Description.Data = options.Description;
+            this.Description.Load(options.Description);
         }
 
-        if (options.License)
+        if (
+            (options.License !== null) &&
+            (options.License !== undefined))
         {
             this.License = options.License;
         }

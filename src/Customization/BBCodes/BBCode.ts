@@ -62,42 +62,58 @@ export class BBCode
     {
         this.Name = options.Name;
 
-        if (options.DisplayName)
+        if (
+            (options.DisplayName !== null) &&
+            (options.DisplayName !== undefined))
         {
-            this.DisplayName.Data = options.DisplayName;
+            this.DisplayName.Load(options.DisplayName);
         }
 
-        if (options.Icon)
+        if (
+            (options.Icon !== null) &&
+            (options.Icon !== undefined))
         {
             this.Icon = options.Icon;
         }
 
-        if (options.ClassName)
+        if (
+            (options.ClassName !== null) &&
+            (options.ClassName !== undefined))
         {
             this.ClassName = options.ClassName;
         }
 
-        if (options.TagName)
+        if (
+            (options.TagName !== null) &&
+            (options.TagName !== undefined))
         {
             this.TagName = options.TagName;
         }
 
-        if (options.IsSelfClosing)
+        if (
+            (options.IsSelfClosing !== null) &&
+            (options.IsSelfClosing !== undefined))
         {
             this.IsSelfClosing = options.IsSelfClosing;
         }
 
-        if (options.IsBlockElement)
+        if (
+            (options.IsBlockElement !== null) &&
+            (options.IsBlockElement !== undefined))
         {
             this.IsBlockElement = options.IsBlockElement;
         }
 
-        if (options.ParseContent)
+        if (
+            (options.ParseContent !== null) &&
+            (options.ParseContent !== undefined))
         {
             this.ParseContent = options.ParseContent;
         }
 
-        if (options.Attributes)
+        if (
+            (options.Attributes !== null) &&
+            (options.Attributes !== undefined))
         {
             for (let attribute of options.Attributes)
             {

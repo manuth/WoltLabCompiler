@@ -93,44 +93,60 @@ export abstract class Option
     {
         this.category = category;
 
-        if (options.ID)
+        if (
+            (options.ID !== null) &&
+            (options.ID !== undefined))
         {
             this.ID = options.ID;
         }
 
         this.Name = options.Name;
 
-        if (options.DisplayName)
+        if (
+            (options.DisplayName !== null) &&
+            (options.DisplayName !== undefined))
         {
-            this.DisplayName.Data = options.DisplayName;
+            this.DisplayName.Load(options.DisplayName);
         }
 
-        if (options.Description)
+        if (
+            (options.Description !== null) &&
+            (options.Description !== undefined))
         {
-            this.Description.Data = options.Description;
+            this.Description.Load(options.Description);
         }
 
-        if (options.Type)
+        if (
+            (options.Type !== null) &&
+            (options.Type !== undefined))
         {
             this.Type = options.Type;
         }
 
-        if (options.DefaultValue)
+        if (
+            (options.DefaultValue !== null) &&
+            (options.DefaultValue !== undefined))
         {
             this.DefaultValue = options.DefaultValue;
         }
 
-        if (options.ShowOrder)
+        if (
+            (options.ShowOrder !== null) &&
+            (options.ShowOrder !== undefined))
         {
             this.ShowOrder = options.ShowOrder;
         }
 
-        if (options.ValidationPattern)
+        if (
+            (options.ValidationPattern !== null) &&
+            (options.ValidationPattern !== undefined))
         {
             this.ValidationPattern = options.ValidationPattern;
         }
 
-        if (options.Items)
+        if (
+            (options.Items !== null) &&
+            (options.Items !== undefined))
         {
             for (let item of options.Items)
             {
@@ -138,17 +154,23 @@ export abstract class Option
             }
         }
 
-        if (options.Options)
+        if (
+            (options.Options !== null) &&
+            (options.Options !== undefined))
         {
             this.Options = options.Options;
         }
 
-        if (options.EnableOptions)
+        if (
+            (options.EnableOptions !== null) &&
+            (options.EnableOptions !== undefined))
         {
             this.EnableOptions = options.EnableOptions;
         }
 
-        if (options.AdditionalProperties)
+        if (
+            (options.AdditionalProperties !== null) &&
+            (options.AdditionalProperties !== undefined))
         {
             this.AdditionalProperties = options.AdditionalProperties;
         }

@@ -77,7 +77,7 @@ export abstract class LocalizationInstruction<T extends LocalizationItem, TOptio
                             result[locale][rootNode.FullName] = {};
                         }
 
-                        result[locale][rootNode.FullName][node.FullName] = node.Item.Translations.Data[locale];
+                        result[locale][rootNode.FullName][node.FullName] = node.Item.Translations.Data.get(locale);
                     }
                 }
             }

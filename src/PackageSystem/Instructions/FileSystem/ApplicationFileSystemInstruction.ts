@@ -27,7 +27,9 @@ export class ApplicationFileSystemInstruction extends FileSystemInstruction
                 FileName: options.FileName
             });
 
-        if (options.Application)
+        if (
+            (options.Application !== null) &&
+            (options.Application !== undefined))
         {
             this.Application = options.Application;
         }

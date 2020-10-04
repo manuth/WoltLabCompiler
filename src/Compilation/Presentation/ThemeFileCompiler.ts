@@ -62,7 +62,7 @@ export class ThemeFileCompiler extends WoltLabXMLCompiler<Theme>
                 {
                     general.AddTextElement(
                         "stylename",
-                        this.Item.DisplayName.Data[locale],
+                        this.Item.DisplayName.Data.get(locale),
                         (name) =>
                         {
                             if (locale !== "inv")
@@ -84,7 +84,7 @@ export class ThemeFileCompiler extends WoltLabXMLCompiler<Theme>
                 {
                     general.AddTextElement(
                         "description",
-                        this.Item.Description.Data[locale],
+                        this.Item.Description.Data.get(locale),
                         (description) =>
                         {
                             if (locale !== "inv")

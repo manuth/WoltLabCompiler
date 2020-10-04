@@ -54,7 +54,7 @@ export class PackageFileCompiler extends WoltLabXMLCompiler<Package>
                 {
                     packageInfo.AddTextElement(
                         "packagename",
-                        this.Item.DisplayName.Data[locale],
+                        this.Item.DisplayName.Data.get(locale),
                         (displayName) =>
                         {
                             if (locale !== "inv")
@@ -68,7 +68,7 @@ export class PackageFileCompiler extends WoltLabXMLCompiler<Package>
                 {
                     packageInfo.AddTextElement(
                         "packagedescription",
-                        this.Item.Description.Data[locale],
+                        this.Item.Description.Data.get(locale),
                         (description) =>
                         {
                             if (locale !== "inv")

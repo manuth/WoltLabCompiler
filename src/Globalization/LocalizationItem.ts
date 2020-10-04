@@ -26,9 +26,11 @@ export class LocalizationItem extends NodeItem
     {
         super(node);
 
-        if (options.Translations)
+        if (
+            (options.Translations !== null) &&
+            (options.Translations !== undefined))
         {
-            this.Translations.Data = options.Translations;
+            this.Translations.Load(options.Translations);
         }
     }
 

@@ -41,9 +41,11 @@ export class OptionItem
         this.option = option;
         this.Name = options.Name;
 
-        if (options.DisplayName)
+        if (
+            (options.DisplayName !== null) &&
+            (options.DisplayName !== undefined))
         {
-            this.DisplayName.Data = options.DisplayName;
+            this.DisplayName.Load(options.DisplayName);
         }
 
         this.Value = options.Value;

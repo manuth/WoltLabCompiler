@@ -71,7 +71,9 @@ export class Package extends Component
 
         this.Identifier = options.Identifier;
 
-        if (options.AdditionalFiles)
+        if (
+            (options.AdditionalFiles !== null) &&
+            (options.AdditionalFiles !== undefined))
         {
             for (let additionalFile of options.AdditionalFiles)
             {
@@ -79,7 +81,9 @@ export class Package extends Component
             }
         }
 
-        if (options.RequiredPackages)
+        if (
+            (options.RequiredPackages !== null) &&
+            (options.RequiredPackages !== undefined))
         {
             for (let requiredPackage of options.RequiredPackages)
             {
@@ -87,7 +91,9 @@ export class Package extends Component
             }
         }
 
-        if (options.ConflictingPackages)
+        if (
+            (options.ConflictingPackages !== null) &&
+            (options.ConflictingPackages !== undefined))
         {
             for (let conflictingPackage of options.ConflictingPackages)
             {
@@ -95,7 +101,9 @@ export class Package extends Component
             }
         }
 
-        if (options.OptionalPackages)
+        if (
+            (options.OptionalPackages !== null) &&
+            (options.OptionalPackages !== undefined))
         {
             for (let optionalPackage of options.OptionalPackages)
             {
@@ -105,12 +113,16 @@ export class Package extends Component
 
         this.InstallSet.push(...options.InstallSet.Instructions);
 
-        if (options.InstallSet.Directory)
+        if (
+            (options.InstallSet.Directory !== null) &&
+            (options.InstallSet.Directory !== undefined))
         {
             this.InstallSet.Directory = options.InstallSet.Directory;
         }
 
-        if (options.UpdateSets)
+        if (
+            (options.UpdateSets !== null) &&
+            (options.UpdateSets !== undefined))
         {
             for (let updateSet of options.UpdateSets)
             {

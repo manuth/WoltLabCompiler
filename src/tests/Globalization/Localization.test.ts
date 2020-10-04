@@ -31,12 +31,12 @@ export function LocalizationTests(): void
 
                             for (let locale of locales1)
                             {
-                                localization1.Data[locale] = testValue;
+                                localization1.Data.set(locale, testValue);
                             }
 
                             for (let locale of locales2)
                             {
-                                localization2.Data[locale] = testValue;
+                                localization2.Data.set(locale, testValue);
                             }
                         });
 

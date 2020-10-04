@@ -61,28 +61,29 @@ export function BBCodeFileCompilerTests(): void
                     isSelfClosing = true;
 
                     compiler = new BBCodeFileCompiler(
-                        new BBCodeInstruction({
-                            FileName: null,
-                            BBCodes: [
-                                {
-                                    Name: commonBBCodeName,
-                                    DisplayName: label,
-                                    Icon: icon,
-                                    IsBlockElement: isBlockElement,
-                                    ParseContent: parseContent,
-                                    Attributes: [attribute, attribute]
-                                },
-                                {
-                                    Name: classBBCodeName,
-                                    ClassName: className
-                                },
-                                {
-                                    Name: htmlBBCodeName,
-                                    TagName: htmlTag,
-                                    IsSelfClosing: isSelfClosing
-                                }
-                            ]
-                        }));
+                        new BBCodeInstruction(
+                            {
+                                FileName: null,
+                                BBCodes: [
+                                    {
+                                        Name: commonBBCodeName,
+                                        DisplayName: label,
+                                        Icon: icon,
+                                        IsBlockElement: isBlockElement,
+                                        ParseContent: parseContent,
+                                        Attributes: [attribute, attribute]
+                                    },
+                                    {
+                                        Name: classBBCodeName,
+                                        ClassName: className
+                                    },
+                                    {
+                                        Name: htmlBBCodeName,
+                                        TagName: htmlTag,
+                                        IsSelfClosing: isSelfClosing
+                                    }
+                                ]
+                            }));
 
                     compiler.DestinationPath = tempFile.FullName;
                 });

@@ -26,7 +26,9 @@ export class FileDescriptor
     {
         this.Source = resolve(options.Source);
 
-        if (options.FileName)
+        if (
+            (options.FileName !== null) &&
+            (options.FileName !== undefined))
         {
             this.FileName = options.FileName;
         }

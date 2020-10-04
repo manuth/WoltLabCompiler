@@ -600,7 +600,7 @@ export function OptionFileCompilerTests(): void
 
                                                             for (let item of option.Items)
                                                             {
-                                                                let pattern = new RegExp(`^${item.Value}:\\.*?.${option.Name}\\.${item.Name}$`, "g");
+                                                                let pattern = new RegExp(`^${item.Value}:.*?.${option.Name}\\.${item.Name}$`, "g");
                                                                 strictEqual(lines.filter((line: string) => pattern.test(line)).length, 1);
                                                             }
                                                         });

@@ -46,19 +46,25 @@ export class Emoji
         this.Name = options.Name;
         this.DisplayName = options.DisplayName;
 
-        if (options.Aliases)
+        if (
+            (options.Aliases !== null) &&
+            (options.Aliases !== undefined))
         {
             this.Aliases.push(...options.Aliases);
         }
 
-        if (options.ShowOrder)
+        if (
+            (options.ShowOrder !== null) &&
+            (options.ShowOrder !== undefined))
         {
             this.ShowOrder = options.ShowOrder;
         }
 
         this.FileName = options.FileName;
 
-        if (options.HighResFileName)
+        if (
+            (options.HighResFileName !== null) &&
+            (options.HighResFileName !== undefined))
         {
             this.HighResFileName = options.HighResFileName;
         }

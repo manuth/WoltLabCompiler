@@ -36,7 +36,9 @@ export class EventListener extends Listener
         super(options);
         this.ClassName = options.ClassName;
 
-        if (options.AllowInherited)
+        if (
+            (options.AllowInherited !== null) &&
+            (options.AllowInherited !== undefined))
         {
             this.AllowInherited = options.AllowInherited;
         }

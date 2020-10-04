@@ -44,24 +44,32 @@ export class Node<T extends NodeItem, TOptions> implements INode<T>
      */
     public constructor(options: INodeOptions<TOptions>, generator: (node: Node<T, TOptions>, options: TOptions) => T)
     {
-        if (options.ID)
+        if (
+            (options.ID !== null) &&
+            (options.ID !== undefined))
         {
             this.ID = options.ID;
         }
 
         this.Name = options.Name;
 
-        if (options.Item)
+        if (
+            (options.Item !== null) &&
+            (options.Item !== undefined))
         {
             this.item = generator(this, options.Item);
         }
 
-        if (options.Parent)
+        if (
+            (options.Parent !== null) &&
+            (options.Parent !== undefined))
         {
             this.Parent = new Node(options.Parent, generator);
         }
 
-        if (options.Nodes)
+        if (
+            (options.Nodes !== null) &&
+            (options.Nodes !== undefined))
         {
             for (let node of options.Nodes)
             {

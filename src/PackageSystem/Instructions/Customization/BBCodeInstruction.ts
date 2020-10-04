@@ -32,7 +32,9 @@ export class BBCodeInstruction extends NamedDeleteInstruction implements ILocali
     {
         super(options);
 
-        if (options.TranslationDirectory)
+        if (
+            (options.TranslationDirectory !== null) &&
+            (options.TranslationDirectory !== undefined))
         {
             this.TranslationDirectory = options.TranslationDirectory;
         }
@@ -111,7 +113,7 @@ export class BBCodeInstruction extends NamedDeleteInstruction implements ILocali
                         {
                             Name: bbCode.Name,
                             Item: {
-                                Translations: bbCode.DisplayName.Data
+                                Translations: bbCode.DisplayName.ToJSON()
                             }
                         }));
             }

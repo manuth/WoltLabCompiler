@@ -37,12 +37,16 @@ export abstract class OptionInstruction<TCategory extends Category<TOption, TOpt
     {
         super(options, generator);
 
-        if (options.CategoriesToDelete)
+        if (
+            (options.CategoriesToDelete !== null) &&
+            (options.CategoriesToDelete !== undefined))
         {
             this.CategoriesToDelete.push(...options.CategoriesToDelete);
         }
 
-        if (options.OptionsToDelete)
+        if (
+            (options.OptionsToDelete !== null) &&
+            (options.OptionsToDelete !== undefined))
         {
             this.OptionsToDelete.push(...options.OptionsToDelete);
         }
@@ -155,7 +159,7 @@ export abstract class OptionInstruction<TCategory extends Category<TOption, TOpt
                             Name: node.FullName,
                             Item: node.Item.DisplayName.GetLocales().length > 0 ?
                                 {
-                                    Translations: node.Item.DisplayName.Data
+                                    Translations: node.Item.DisplayName.ToJSON()
                                 } :
                                 undefined
                         });
@@ -167,7 +171,7 @@ export abstract class OptionInstruction<TCategory extends Category<TOption, TOpt
                                 {
                                     Name: "description",
                                     Item: {
-                                        Translations: node.Item.Description.Data
+                                        Translations: node.Item.Description.ToJSON()
                                     }
                                 }));
                     }
@@ -179,7 +183,7 @@ export abstract class OptionInstruction<TCategory extends Category<TOption, TOpt
                                 Name: option.Name,
                                 Item: option.DisplayName.GetLocales().length > 0 ?
                                     {
-                                        Translations: option.DisplayName.Data
+                                        Translations: option.DisplayName.ToJSON()
                                     } :
                                     undefined
                             });
@@ -193,7 +197,7 @@ export abstract class OptionInstruction<TCategory extends Category<TOption, TOpt
                                         {
                                             Name: optionItem.Name,
                                             Item: {
-                                                Translations: optionItem.DisplayName.Data
+                                                Translations: optionItem.DisplayName.ToJSON()
                                             }
                                         }));
                             }

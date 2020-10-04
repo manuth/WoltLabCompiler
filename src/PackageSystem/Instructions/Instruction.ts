@@ -60,7 +60,7 @@ export abstract class Instruction implements IInstruction
                 this.Collection.splice(this.Collection.indexOf(this), 1);
             }
 
-            if (value?.includes(this))
+            if (value?.includes(this) ?? true)
             {
                 this.collection = value;
             }

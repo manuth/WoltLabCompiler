@@ -51,22 +51,30 @@ export class Category<TOption extends Option, TOptionOptions> extends NodeItem i
     {
         super(node);
 
-        if (options.DisplayName)
+        if (
+            (options.DisplayName !== null) &&
+            (options.DisplayName !== undefined))
         {
-            this.DisplayName.Data = options.DisplayName;
+            this.DisplayName.Load(options.DisplayName);
         }
 
-        if (options.Description)
+        if (
+            (options.Description !== null) &&
+            (options.Description !== undefined))
         {
-            this.Description.Data = options.Description;
+            this.Description.Load(options.Description);
         }
 
-        if (options.ShowOrder)
+        if (
+            (options.ShowOrder !== null) &&
+            (options.ShowOrder !== undefined))
         {
             this.ShowOrder = options.ShowOrder;
         }
 
-        if (options.Options)
+        if (
+            (options.Options !== null) &&
+            (options.Options !== undefined))
         {
             for (let option of options.Options)
             {
@@ -74,7 +82,9 @@ export class Category<TOption extends Option, TOptionOptions> extends NodeItem i
             }
         }
 
-        if (options.EnableOptions)
+        if (
+            (options.EnableOptions !== null) &&
+            (options.EnableOptions !== undefined))
         {
             this.EnableOptions.push(...options.EnableOptions);
         }

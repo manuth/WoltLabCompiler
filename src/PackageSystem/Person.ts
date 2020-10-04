@@ -25,7 +25,9 @@ export class Person
     {
         this.Name = options.Name;
 
-        if (options.URL)
+        if (
+            (options.URL !== null) &&
+            (options.URL !== undefined))
         {
             this.URL = options.URL;
         }

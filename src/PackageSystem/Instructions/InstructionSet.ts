@@ -111,7 +111,7 @@ export class InstructionSet extends BidirectionalCollection<InstructionSet, Inst
      */
     protected GetParent(child: Instruction): InstructionSet
     {
-        return child.Collection;
+        return child?.Collection;
     }
 
     /**

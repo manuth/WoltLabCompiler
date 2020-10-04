@@ -46,24 +46,32 @@ export abstract class Listener
     {
         this.Name = options.Name;
 
-        if (options.Environment)
+        if (
+            (options.Environment !== null) &&
+            (options.Environment !== undefined))
         {
             this.Environment = options.Environment;
         }
 
         this.EventName = options.EventName;
 
-        if (options.ExecutionOrder)
+        if (
+            (options.ExecutionOrder !== null) &&
+            (options.ExecutionOrder !== undefined))
         {
             this.ExecutionOrder = options.ExecutionOrder;
         }
 
-        if (options.Permissions)
+        if (
+            (options.Permissions !== null) &&
+            (options.Permissions !== undefined))
         {
             this.Permissions.push(...options.Permissions);
         }
 
-        if (options.Options)
+        if (
+            (options.Options !== null) &&
+            (options.Options !== undefined))
         {
             this.Options.push(...options.Options);
         }

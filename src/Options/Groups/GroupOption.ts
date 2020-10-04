@@ -40,22 +40,30 @@ export class GroupOption extends Option
     {
         super(category, options);
 
-        if (options.UserDefaultValue)
+        if (
+            (options.UserDefaultValue !== null) &&
+            (options.UserDefaultValue !== undefined))
         {
             this.UserDefaultValue = options.UserDefaultValue;
         }
 
-        if (options.ModDefaultValue)
+        if (
+            (options.ModDefaultValue !== null) &&
+            (options.ModDefaultValue !== undefined))
         {
             this.ModDefaultValue = options.ModDefaultValue;
         }
 
-        if (options.AdminDefaultValue)
+        if (
+            (options.AdminDefaultValue !== null) &&
+            (options.AdminDefaultValue !== undefined))
         {
             this.AdminDefaultValue = options.AdminDefaultValue;
         }
 
-        if (options.RegisteredOnly)
+        if (
+            (options.RegisteredOnly !== null) &&
+            (options.RegisteredOnly !== undefined))
         {
             this.RegisteredOnly = options.RegisteredOnly;
         }

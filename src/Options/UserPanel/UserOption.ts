@@ -54,12 +54,16 @@ export class UserOption extends Option
     {
         super(category, options);
 
-        if (options.Required)
+        if (
+            (options.Required !== null) &&
+            (options.Required !== undefined))
         {
             this.Required = options.Required;
         }
 
-        if (options.AskOnRegistration)
+        if (
+            (options.AskOnRegistration !== null) &&
+            (options.AskOnRegistration !== undefined))
         {
             this.AskOnRegistration = options.AskOnRegistration;
         }
@@ -67,12 +71,16 @@ export class UserOption extends Option
         this.EditPermissions = options.EditPermissions;
         this.ViewPermissions = options.ViewPermissions;
 
-        if (options.Searchable)
+        if (
+            (options.Searchable !== null) &&
+            (options.Searchable !== undefined))
         {
             this.Searchable = options.Searchable;
         }
 
-        if (options.OutputClass)
+        if (
+            (options.OutputClass !== null) &&
+            (options.OutputClass !== undefined))
         {
             this.OutputClass = options.OutputClass;
         }
