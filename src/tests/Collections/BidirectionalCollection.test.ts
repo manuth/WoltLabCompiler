@@ -24,7 +24,7 @@ export function BidirectionalCollectionTests(): void
                 /**
                  * Gets or sets the parent of the child.
                  */
-                public Parent: Parent;
+                public Parent: Parent = null;
             }
 
             /**
@@ -43,7 +43,7 @@ export function BidirectionalCollectionTests(): void
                  */
                 protected GetParent(child: Child): Parent
                 {
-                    return child.Parent;
+                    return child?.Parent;
                 }
 
                 /**
@@ -65,7 +65,7 @@ export function BidirectionalCollectionTests(): void
             let child: Child;
             let collection: MyCollection;
 
-            suiteSetup(
+            setup(
                 () =>
                 {
                     parent = new Parent();
@@ -73,20 +73,31 @@ export function BidirectionalCollectionTests(): void
                     collection = new MyCollection(parent);
                 });
 
-            test(
-                "Checking whether the parent is set automatically…",
+            suite(
+                "push",
                 () =>
                 {
-                    collection.push(child);
-                    strictEqual(child.Parent, parent);
+                    test(
+                        "Checking whether the parent is set automatically…",
+                        () =>
+                        {
+                            collection.push(child);
+                            strictEqual(child.Parent, parent);
+                        });
                 });
 
-            test(
-                "Checking whether the parent is unset automatically…",
+            suite(
+                "pop",
                 () =>
                 {
-                    collection.pop();
-                    strictEqual(child.Parent, null);
+                    test(
+                        "Checking whether the parent is unset automatically…",
+                        () =>
+                        {
+                            collection.push(child);
+                            collection.pop();
+                            strictEqual(child.Parent, null);
+                        });
                 });
         });
 }
