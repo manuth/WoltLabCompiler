@@ -55,8 +55,9 @@ export abstract class BidirectionalCollection<TParent, TChild> extends Array<TCh
      */
     public pop(): TChild
     {
-        let result = this[this.length - 1];
-        return this.Remove(result) ? result : undefined;
+        let index = this.length - 1;
+        let result = this[index];
+        return this.Remove(index) ? result : undefined;
     }
 
     /**
@@ -67,8 +68,9 @@ export abstract class BidirectionalCollection<TParent, TChild> extends Array<TCh
      */
     public shift(): TChild
     {
-        let result = this[0];
-        return this.Remove(result) ? result : undefined;
+        let index = 0;
+        let result = this[index];
+        return this.Remove(index) ? result : undefined;
     }
 
     /**
@@ -143,17 +145,19 @@ export abstract class BidirectionalCollection<TParent, TChild> extends Array<TCh
     /**
      * Securely removes an item.
      *
-     * @param item
-     * The item to remove.
+     * @param index
+     * The index of the item to remove.
      *
      * @returns
      * A value indicating whether the element could be removed.
      */
-    protected Remove(item: TChild): boolean
+    protected Remove(index: number): boolean
     {
+        let item = this[index];
+
         if (this.GetParent(item) === this.Owner)
         {
-            super.splice(this.indexOf(item), 1);
+            super.splice(index, 1);
 
             if (item)
             {
