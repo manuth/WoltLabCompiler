@@ -4,7 +4,7 @@ import { readFile } from "fs-extra";
 import { DOMParser } from "xmldom";
 import { EJSFileCompiler } from "../../Compilation/EJSFileCompiler";
 import { XMLEditor } from "../../Serialization/XMLEditor";
-import { CompilerTester } from "./CompilerTester";
+import { CompilerTestRunner } from "./CompilerTestRunner";
 
 /**
  * Registers tests for the `EJSFileCompiler` class.
@@ -80,7 +80,7 @@ export function EJSFileCompilerTests(): void
         }
     }
 
-    new class extends CompilerTester<TestEJSFileCompiler>
+    new class extends CompilerTestRunner<TestEJSFileCompiler>
     {
         /**
          * Creates an instance of a compiler.

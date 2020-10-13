@@ -1,13 +1,12 @@
 import { doesNotReject, ok } from "assert";
-import { TempFile } from "@manuth/temp-files";
+import { ITempFileSystemOptions, TempFile } from "@manuth/temp-files";
 import { pathExists } from "fs-extra";
 import { Compiler } from "../../Compilation/Compiler";
-import { ITempFileSystemOptions } from "@manuth/temp-files/lib/ITempFileSystemOptions";
 
 /**
  * Provides the functionality to test a compiler.
  */
-export abstract class CompilerTester<TCompiler extends Compiler<unknown>>
+export abstract class CompilerTestRunner<TCompiler extends Compiler<unknown>>
 {
     /**
      * The file to write the compiler-output to.
