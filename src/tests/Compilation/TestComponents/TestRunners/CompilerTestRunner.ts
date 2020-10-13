@@ -151,6 +151,7 @@ export abstract class CompilerTestRunner<TTester extends CompilerTester<TCompile
                 suiteTeardown(async () => this.ExecuteSuiteTeardown());
                 setup(async () => this.ExecuteSetup());
                 teardown(async () => this.ExecuteTeardown());
+                this.ExecuteTests();
             });
     }
 
