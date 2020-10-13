@@ -24,6 +24,8 @@ export abstract class XMLCompilerTestRunner<TTester extends XMLFileCompilerTeste
      */
     protected ExecuteTests(): void
     {
+        super.ExecuteTests();
+
         test(
             "Checking whether the compiled file contains valid xml…",
             () =>
