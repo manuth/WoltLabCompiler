@@ -1,12 +1,12 @@
 import { doesNotReject, ok } from "assert";
 import { ITempFileSystemOptions, TempFile } from "@manuth/temp-files";
-import { pathExists } from "fs-extra";
 import { Compiler } from "../../../../Compilation/Compiler";
+import { CompilerTester } from "../Testers/CompilerTester";
 
 /**
- * Provides the functionality to test a compiler.
+ * Provides the functionality to register tests for a compiler.
  */
-export abstract class CompilerTestRunner<TCompiler extends Compiler<unknown>>
+export abstract class CompilerTestRunner<TTester extends CompilerTester<TCompiler>, TCompiler extends Compiler<unknown>>
 {
     /**
      * The file to write the compiler-output to.
@@ -14,9 +14,9 @@ export abstract class CompilerTestRunner<TCompiler extends Compiler<unknown>>
     private tempFile: TempFile = null;
 
     /**
-     * The compiler to test.
+     * The compiler-tester.
      */
-    private compiler: TCompiler;
+    private tester: TTester;
 
     /**
      * The title of the suite.
@@ -35,11 +35,19 @@ export abstract class CompilerTestRunner<TCompiler extends Compiler<unknown>>
     }
 
     /**
+     * Gets the compiler-tester.
+     */
+    protected get Tester(): TTester
+    {
+        return this.tester;
+    }
+
+    /**
      * Gets the compiler to test.
      */
     protected get Compiler(): TCompiler
     {
-        return this.compiler;
+        return this.Tester.Compiler;
     }
 
     /**
@@ -90,12 +98,12 @@ export abstract class CompilerTestRunner<TCompiler extends Compiler<unknown>>
     }
 
     /**
-     * Creates an instance of a compiler.
+     * Creates an instance of a compiler-tester.
      *
      * @returns
-     * The new compiler-instance.
+     * The new compiler-tester instance.
      */
-    protected abstract CreateCompiler(): TCompiler;
+    protected abstract CreateTester(): TTester;
 
     /**
      * Registers root tests.
@@ -108,7 +116,7 @@ export abstract class CompilerTestRunner<TCompiler extends Compiler<unknown>>
      */
     protected async SuiteSetup(): Promise<void>
     {
-        this.compiler = this.CreateCompiler();
+        this.tester = this.CreateTester();
         this.Compiler.DestinationPath = this.TempFile.FullName;
     }
 
@@ -155,14 +163,14 @@ export abstract class CompilerTestRunner<TCompiler extends Compiler<unknown>>
             "Checking whether the component can be compiled…",
             async () =>
             {
-                doesNotReject(async () => this.Compiler.Execute());
+                doesNotReject(async () => this.Tester.Compiler.Execute());
             });
 
         test(
             "Checking whether the compiled file exists…",
-            async () =>
+            () =>
             {
-                ok(await pathExists(this.Compiler.DestinationPath));
+                ok(this.Tester.DestinationExists);
             });
     }
 
@@ -183,7 +191,7 @@ export abstract class CompilerTestRunner<TCompiler extends Compiler<unknown>>
      */
     protected async ExecuteSetup(): Promise<void>
     {
-        this.compiler = this.CreateCompiler();
+        this.tester = this.CreateTester();
     }
 
     /**
