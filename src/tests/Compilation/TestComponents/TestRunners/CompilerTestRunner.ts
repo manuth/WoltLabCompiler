@@ -1,7 +1,7 @@
 import { doesNotReject, ok } from "assert";
 import { ITempFileSystemOptions, TempFile } from "@manuth/temp-files";
 import { pathExists } from "fs-extra";
-import { Compiler } from "../../Compilation/Compiler";
+import { Compiler } from "../../../../Compilation/Compiler";
 
 /**
  * Provides the functionality to test a compiler.

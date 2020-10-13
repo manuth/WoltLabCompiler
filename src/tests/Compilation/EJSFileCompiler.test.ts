@@ -4,7 +4,7 @@ import { readFile } from "fs-extra";
 import { DOMParser } from "xmldom";
 import { EJSFileCompiler } from "../../Compilation/EJSFileCompiler";
 import { XMLEditor } from "../../Serialization/XMLEditor";
-import { CompilerTestRunner } from "./CompilerTestRunner";
+import { CompilerTestRunner } from "./TestComponents/TestRunners/CompilerTestRunner";
 
 /**
  * Registers tests for the `EJSFileCompiler` class.
