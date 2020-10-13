@@ -1,11 +1,7 @@
 import { strictEqual } from "assert";
-import { TempFile } from "@manuth/temp-files";
-import { readFile } from "fs-extra";
-import { DOMParser } from "xmldom";
 import { EJSFileCompiler } from "../../Compilation/EJSFileCompiler";
-import { XMLEditor } from "../../Serialization/XMLEditor";
-import { CompilerTester } from "./TestComponents/Testers/CompilerTester";
-import { CompilerTestRunner } from "./TestComponents/TestRunners/CompilerTestRunner";
+import { XMLFileCompilerTester } from "./TestComponents/Testers/XMLFileCompilerTester";
+import { XMLCompilerTestRunner } from "./TestComponents/TestRunners/XMLCompilerTestRunner";
 
 /**
  * Registers tests for the `EJSFileCompiler` class.
@@ -13,7 +9,6 @@ import { CompilerTestRunner } from "./TestComponents/TestRunners/CompilerTestRun
 export function EJSFileCompilerTests(): void
 {
     let context: Record<string, string>;
-    let tempFile: TempFile;
     let variableName: string;
     let variableValue: string;
     let delimiter: string;
@@ -81,7 +76,7 @@ export function EJSFileCompilerTests(): void
         }
     }
 
-    new class extends CompilerTestRunner<CompilerTester<TestEJSFileCompiler>, TestEJSFileCompiler>
+    new class extends XMLCompilerTestRunner<XMLFileCompilerTester<TestEJSFileCompiler>, TestEJSFileCompiler>
     {
         /**
          * @inheritdoc
@@ -89,9 +84,9 @@ export function EJSFileCompilerTests(): void
          * @returns
          * The new compiler-tester instance.
          */
-        protected CreateTester(): CompilerTester<TestEJSFileCompiler>
+        protected CreateTester(): XMLFileCompilerTester<TestEJSFileCompiler>
         {
-            return new CompilerTester(new TestEJSFileCompiler());
+            return new XMLFileCompilerTester(new TestEJSFileCompiler());
         }
 
         /**
@@ -99,11 +94,19 @@ export function EJSFileCompilerTests(): void
          */
         protected async SuiteSetup(): Promise<void>
         {
+            await super.SuiteSetup();
             context = {};
-            tempFile = new TempFile();
             variableName = "foo";
             variableValue = "Hello World";
             context[variableName] = variableValue;
+        }
+
+        /**
+         * @inheritdoc
+         */
+        protected async Setup(): Promise<void>
+        {
+            delimiter = "%";
         }
 
         /**
@@ -113,35 +116,23 @@ export function EJSFileCompilerTests(): void
         {
             super.ExecuteTests();
 
-            /**
-             * Creates an `XMLEditor` for the output file.
-             *
-             * @returns
-             * An `XMLEditor` for the output file.
-             */
-            async function GetEditor(): Promise<XMLEditor>
-            {
-                return new XMLEditor(
-                    new DOMParser().parseFromString((await readFile(tempFile.FullName)).toString()).documentElement);
-            }
-
             test(
                 "Checking whether the ejs-variables inside `xml`-files are substituted correctly…",
                 async () =>
                 {
-                    await this.Compiler.CopyTemplate(this.Compiler.DestinationPath, tempFile.FullName, context);
-                    strictEqual((await GetEditor()).TextContent, variableValue);
+                    await this.Compiler.CopyTemplate(this.Compiler.DestinationPath, this.Compiler.DestinationPath, context, delimiter);
+                    strictEqual(this.Tester.XMLEditor.TextContent, variableValue);
                 });
 
             test(
                 "Checking whether ejs-variables with custom delimiters are substituted correctly…",
                 async () =>
                 {
-                    delimiter = "!";
+                    delimiter = "!!";
                     strictEqual(this.Compiler.Delimiter, delimiter);
                     await this.Compiler.Execute();
-                    await this.Compiler.CopyTemplate(this.Compiler.DestinationPath, tempFile.FullName, context, delimiter);
-                    strictEqual((await GetEditor()).TextContent, variableValue);
+                    await this.Compiler.CopyTemplate(this.Compiler.DestinationPath, this.Compiler.DestinationPath, context, delimiter);
+                    strictEqual(this.Tester.XMLEditor.TextContent, variableValue);
                 });
         }
     }("EJSFileCompiler").Register();
