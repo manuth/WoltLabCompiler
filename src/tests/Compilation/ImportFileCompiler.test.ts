@@ -1,88 +1,33 @@
-import { ok } from "assert";
-import { TempFile } from "@manuth/temp-files";
-import { readFile } from "fs-extra";
-import { DOMParser } from "xmldom";
 import { ImportFileCompiler } from "../../Compilation/ImportFileCompiler";
-import { XMLEditor } from "../../Serialization/XMLEditor";
+import { ImportCompilerTester } from "./TestComponents/Testers/ImportCompilerTester";
+import { ImportCompilerTestRunner } from "./TestComponents/TestRunners/ImportCompilerTestRunner";
 
 /**
  * Registers tests for the `ImportFileCompile` class.
  */
 export function ImportFileCompilerTests(): void
 {
-    suite(
-        "ImportFileCompiler",
-        () =>
+    new class extends ImportCompilerTestRunner<ImportCompilerTester<ImportFileCompiler<unknown>>, ImportFileCompiler<unknown>>
+    {
+        /**
+         * @inheritdoc
+         *
+         * @returns
+         * The new compiler-tester instance.
+         */
+        protected CreateTester(): ImportCompilerTester<ImportFileCompiler<unknown>>
         {
-            let tempFile: TempFile;
-            let compiler: ImportFileCompiler<unknown>;
-
-            suiteSetup(
-                () =>
+            return new ImportCompilerTester(
+                new class extends ImportFileCompiler<unknown>
                 {
-                    compiler = new class extends ImportFileCompiler<unknown>
+                    /**
+                     * @inheritdoc
+                     */
+                    protected get SchemaLocation(): string
                     {
-                        /**
-                         * @inheritdoc
-                         */
-                        protected get SchemaLocation(): string
-                        {
-                            return "http://example.com/mySchema.xsd";
-                        }
-                    }({});
-
-                    tempFile = new TempFile();
-                    compiler.DestinationPath = tempFile.FullName;
-                });
-
-            suite(
-                "Compile",
-                () =>
-                {
-                    suite(
-                        "General",
-                        () =>
-                        {
-                            test(
-                                "Checking whether the compiler can be executed…",
-                                async () =>
-                                {
-                                    await compiler.Execute();
-                                });
-                        });
-
-                    suite(
-                        "Checking the integrity of the file…",
-                        () =>
-                        {
-                            let editor: XMLEditor;
-
-                            suite(
-                                "General",
-                                () =>
-                                {
-                                    test(
-                                        "Checking whether the content of the compiled file is valid xml…",
-                                        async () =>
-                                        {
-                                            let document: Document = new DOMParser().parseFromString((await readFile(tempFile.FullName)).toString());
-                                            editor = new XMLEditor(document.documentElement);
-                                        });
-                                });
-
-                            suite(
-                                "Checking the integrity of the meta-data…",
-                                () =>
-                                {
-                                    test(
-                                        "Checking whether the import- and the delete-list are present…",
-                                        () =>
-                                        {
-                                            ok(editor.HasTag("import", true));
-                                            ok(editor.HasTag("delete", true));
-                                        });
-                                });
-                        });
-                });
-        });
+                        return "http://example.com/mySchema.xsd";
+                    }
+                }({}));
+        }
+    }("ImportFileCompiler").Register();
 }
