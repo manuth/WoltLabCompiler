@@ -522,7 +522,6 @@ export function XMLEditorTests(): void
                     let attributeName: string;
                     let alternativeName: string;
                     let attributeValue: string;
-                    let alternativeValue: string;
 
                     suiteSetup(
                         () =>
@@ -531,7 +530,6 @@ export function XMLEditorTests(): void
                             attributeName = "correctName";
                             alternativeName = "wrongName";
                             attributeValue = "correctValue";
-                            alternativeValue = "wrongValue";
                             attributeEditor.SetAttribute(attributeName, attributeValue);
                         });
 
@@ -540,11 +538,7 @@ export function XMLEditorTests(): void
                         () =>
                         {
                             ok(attributeEditor.HasAttribute(attributeName));
-                            ok(attributeEditor.HasAttribute(attributeName, attributeValue));
-                            strictEqual(attributeEditor.HasAttribute(attributeName, alternativeValue), false);
                             strictEqual(attributeEditor.HasAttribute(alternativeName), false);
-                            strictEqual(attributeEditor.HasAttribute(alternativeName, attributeValue), false);
-                            strictEqual(attributeEditor.HasAttribute(alternativeName, alternativeValue), false);
                         });
                 });
 

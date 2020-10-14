@@ -108,7 +108,7 @@ export function ObjectDeletionFileCompilerTests(): void
                                     {
                                         return (objectEntry.ParentNode.nodeType === objectEntry.Element.ELEMENT_NODE) &&
                                             ((objectEntry.ParentNode as Element).tagName === "delete") &&
-                                            objectEntry.HasAttribute("value", `${object}`);
+                                            (objectEntry.GetAttribute("value") === `${object}`);
                                     }));
                         });
                 });

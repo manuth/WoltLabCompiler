@@ -170,7 +170,7 @@ export function LocalizationFileCompilerTests(): void
                                                 "Checking whether the integrity of the name of the category…",
                                                 () =>
                                                 {
-                                                    ok(categoryEditor.HasAttribute(nameAttribute, category));
+                                                    strictEqual(categoryEditor.GetAttribute(nameAttribute), category);
                                                 });
                                         });
 
@@ -199,7 +199,7 @@ export function LocalizationFileCompilerTests(): void
                                                 "Checking whether the integrity of the name of the translation…",
                                                 () =>
                                                 {
-                                                    ok(itemEditor.HasAttribute(nameAttribute, `${category}.${messageName}`));
+                                                    strictEqual(itemEditor.GetAttribute(nameAttribute), `${category}.${messageName}`);
                                                 });
 
                                             test(

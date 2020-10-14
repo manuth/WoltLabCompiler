@@ -1,4 +1,4 @@
-import { ok } from "assert";
+import { ok, strictEqual } from "assert";
 import { TempFile } from "@manuth/temp-files";
 import FileSystem = require("fs-extra");
 import { DOMParser } from "xmldom";
@@ -191,7 +191,7 @@ export function ListenerFileCompilerTests(): void
                                         "Checking the integrity of the meta-data…",
                                         () =>
                                         {
-                                            ok(listenerEditor.HasAttribute(nameAttribute, name));
+                                            strictEqual(listenerEditor.GetAttribute(nameAttribute), name);
                                             ok(listenerEditor.HasText(environmentTag, environment));
                                             ok(listenerEditor.HasText(eventTag, event));
                                             ok(listenerEditor.HasText(executionOrderTag, executionOrder.toString()));

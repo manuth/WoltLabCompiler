@@ -363,15 +363,12 @@ export class XMLEditor
      * @param name
      * The name to look for.
      *
-     * @param value
-     * The expected value.
-     *
      * @returns
-     * Either a value indicating whether an attribute with the specified `name` exists or a value indicating whether the attribute has the specified `value`.
+     * A value indicating whether an attribute with the specified `name` exists.
      */
-    public HasAttribute(name: string, value?: string): boolean
+    public HasAttribute(name: string): boolean
     {
-        return this.Element.hasAttribute(name) && ((value ?? this.Element.getAttribute(name)) === this.Element.getAttribute(name));
+        return this.Element.hasAttribute(name);
     }
 
     /**

@@ -553,7 +553,7 @@ export function OptionFileCompilerTests(): void
                                                         "Checking whether the name is correct…",
                                                         () =>
                                                         {
-                                                            ok(optionEditor.HasAttribute(nameAttribute, option.Name));
+                                                            strictEqual(optionEditor.GetAttribute(nameAttribute), option.Name);
                                                         });
 
                                                     test(

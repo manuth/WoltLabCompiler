@@ -110,7 +110,7 @@ export function NamedObjectDeletionFileCompilerTests(): void
 
                     for (let objectToDelete of objectsToDelete)
                     {
-                        let matches = deletionEntry.filter((objectNode: XMLEditor) => objectNode.HasAttribute("name", objectToDelete.Name));
+                        let matches = deletionEntry.filter((objectNode: XMLEditor) => objectNode.GetAttribute("name") === objectToDelete.Name);
                         strictEqual(matches.length, 1);
                     }
                 });

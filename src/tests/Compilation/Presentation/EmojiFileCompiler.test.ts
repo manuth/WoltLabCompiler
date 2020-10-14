@@ -1,4 +1,4 @@
-import { ok } from "assert";
+import { ok, strictEqual } from "assert";
 import { TempFile } from "@manuth/temp-files";
 import { readFile } from "fs-extra";
 import { DOMParser } from "xmldom";
@@ -132,7 +132,7 @@ export function EmojiFileCompilerTests(): void
                                         "Checking the integrity of the meta-data…",
                                         () =>
                                         {
-                                            ok(emojiEditor.HasAttribute(nameAttribute, `:${name}:`));
+                                            strictEqual(emojiEditor.GetAttribute(nameAttribute), `:${name}:`);
                                             ok(emojiEditor.HasText(displayNameTag, displayName));
                                             ok(emojiEditor.HasText(aliasesTag, aliases.map((alias: string) => `:${alias}:`).join("\n")));
                                             ok(emojiEditor.HasText(showOrderTag, showOrder.toString()));

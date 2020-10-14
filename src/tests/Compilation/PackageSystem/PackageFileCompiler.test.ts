@@ -272,7 +272,7 @@ export function PackageFileCompilerTests(): void
                                         "Checking whether the identifier is correct…",
                                         () =>
                                         {
-                                            ok(extensionPackage.HasAttribute(identifierAttribute, identifier));
+                                            strictEqual(extensionPackage.GetAttribute(identifierAttribute), identifier);
                                         });
                                 });
 
