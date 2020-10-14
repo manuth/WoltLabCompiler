@@ -1,95 +1,76 @@
-import { ok, strictEqual } from "assert";
-import { TempFile } from "@manuth/temp-files";
-import { pathExists, readFile } from "fs-extra";
-import { DOMParser } from "xmldom";
+import { strictEqual } from "assert";
 import { XMLFileCompiler } from "../../Compilation/XMLFileCompiler";
+import { XMLFileCompilerTester } from "./TestComponents/Testers/XMLFileCompilerTester";
+import { XMLCompilerTestRunner } from "./TestComponents/TestRunners/XMLCompilerTestRunner";
 
 /**
  * Registers tests for the `XMLFileCompiler` class.
  */
 export function XMLFileCompilerTests(): void
 {
-    suite(
-        "XMLFileCompiler",
-        () =>
+    let rootTag: string;
+
+    new class extends XMLCompilerTestRunner<XMLFileCompilerTester<XMLFileCompiler<unknown>>, XMLFileCompiler<unknown>>
+    {
+        /**
+         * @inheritdoc
+         *
+         * @returns
+         * The new compiler-tester instance.
+         */
+        protected CreateTester(): XMLFileCompilerTester<XMLFileCompiler<unknown>>
         {
-            let tempFile: TempFile;
-            let rootTag: string;
-            let compiler: XMLFileCompiler<unknown>;
-
-            suiteSetup(
-                () =>
+            return new XMLFileCompilerTester(
+                new class extends XMLFileCompiler<unknown>
                 {
-                    tempFile = new TempFile();
-                    rootTag = "foo";
-
-                    compiler = new class extends XMLFileCompiler<unknown>
+                    /**
+                     * @inheritdoc
+                     */
+                    protected get TagName(): string
                     {
-                        /**
-                         * @inheritdoc
-                         */
-                        protected TagName = "foo";
+                        return rootTag;
+                    }
 
-                        /**
-                         * Initializes a new instance of the class.
-                         */
-                        public constructor()
-                        {
-                            super({});
-                        }
-                    }();
+                    /**
+                     * Initializes a new instance of the class.
+                     */
+                    public constructor()
+                    {
+                        super({});
+                    }
+                }());
+        }
 
-                    compiler.DestinationPath = tempFile.FullName;
-                });
+        /**
+         * @inheritdoc
+         */
+        protected async SuiteSetup(): Promise<void>
+        {
+            rootTag = "foo";
+        }
 
-            suiteTeardown(
+        /**
+         * @inheritdoc
+         */
+        protected ExecuteTests(): void
+        {
+            super.ExecuteTests();
+
+            test(
+                "Checking whether a processing-instruction for `xml` is present…",
                 () =>
                 {
-                    tempFile.Dispose();
+                    let firstChild = this.Tester.XMLEditor.ChildNodes[0];
+                    strictEqual(firstChild.nodeType, document.PROCESSING_INSTRUCTION_NODE);
+                    strictEqual((firstChild as ProcessingInstruction).target, "xml");
                 });
 
-            suite(
-                "Compile",
+            test(
+                "Checking whether the root-tag is set correct…",
                 () =>
                 {
-                    let document: Document;
-
-                    test(
-                        "Checking whether the compiler can be executed…",
-                        async () =>
-                        {
-                            await compiler.Execute();
-                        });
-
-                    test(
-                        "Checking whether the compiled file exists…",
-                        async () =>
-                        {
-                            ok(await pathExists(tempFile.FullName));
-                        });
-
-                    test(
-                        "Checking whether the compiled xml-file can be parsed…",
-                        async () =>
-                        {
-                            document = new DOMParser().parseFromString((await readFile(tempFile.FullName)).toString());
-                        });
-
-                    test(
-                        "Checking whether a processing-instruction for `xml` is present…",
-                        () =>
-                        {
-                            let firstChild = document.childNodes[0];
-                            strictEqual(firstChild.nodeType, document.PROCESSING_INSTRUCTION_NODE);
-                            strictEqual((firstChild as ProcessingInstruction).target, "xml");
-                        });
-
-                    test(
-                        "Checking whether the root-tag is set correct…",
-                        () =>
-                        {
-                            strictEqual(document.documentElement.tagName, rootTag);
-                        });
+                    strictEqual(this.Tester.XMLEditor.TagName, rootTag);
                 });
-        });
+        }
+    }("XMLFileCompiler").Register();
 }
