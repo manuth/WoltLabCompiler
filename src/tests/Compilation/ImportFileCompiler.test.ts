@@ -25,7 +25,7 @@ export function ImportFileCompilerTests(): void
                      */
                     protected get SchemaLocation(): string
                     {
-                        return "http://example.com/mySchema.xsd";
+                        return "";
                     }
                 }({}));
         }

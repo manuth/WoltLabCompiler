@@ -39,7 +39,7 @@ export function EJSFileCompilerTests(): void
          */
         protected get TagName(): string
         {
-            return "test";
+            return "";
         }
 
         /**
@@ -94,11 +94,11 @@ export function EJSFileCompilerTests(): void
          */
         protected async SuiteSetup(): Promise<void>
         {
-            await super.SuiteSetup();
             context = {};
             variableName = "foo";
             variableValue = "Hello World";
             context[variableName] = variableValue;
+            await super.SuiteSetup();
         }
 
         /**
