@@ -1,111 +1,83 @@
-import { ok, strictEqual } from "assert";
-import { TempFile } from "@manuth/temp-files";
-import { pathExists, readFile } from "fs-extra";
-import { DOMParser } from "xmldom";
+import { strictEqual } from "assert";
 import { WoltLabXMLCompiler } from "../../Compilation/WoltLabXMLCompiler";
+import { XMLFileCompilerTester } from "./TestComponents/Testers/XMLFileCompilerTester";
+import { XMLCompilerTestRunner } from "./TestComponents/TestRunners/XMLCompilerTestRunner";
 
 /**
  * Registers tests for the `WoltLabXMLCompiler` class.
  */
 export function WoltLabXMLCompilerTests(): void
 {
-    suite(
-        "WoltLabXMLCompiler",
-        () =>
+    let namespace: string;
+    let schemaLocation: string;
+
+    new class extends XMLCompilerTestRunner<XMLFileCompilerTester<WoltLabXMLCompiler<unknown>>, WoltLabXMLCompiler<unknown>>
+    {
+        /**
+         * @inheritdoc
+         *
+         * @returns
+         * The new compiler-tester instance.
+         */
+        protected CreateTester(): XMLFileCompilerTester<WoltLabXMLCompiler<unknown>>
         {
-            let tempFile: TempFile;
-            let namespace: string;
-            let schemaLocation: string;
-            let compiler: WoltLabXMLCompiler<unknown>;
-
-            suiteSetup(
-                () =>
+            return new XMLFileCompilerTester(
+                new class extends WoltLabXMLCompiler<unknown>
                 {
-                    tempFile = new TempFile();
-                    namespace = "http://www.woltlab.com";
-                    schemaLocation = "http://example.com/helloWorld.xsd";
-
-                    compiler = new class extends WoltLabXMLCompiler<unknown>
+                    /**
+                     * @inheritdoc
+                     */
+                    protected get SchemaLocation(): string
                     {
-                        /**
-                         * @inheritdoc
-                         */
-                        protected SchemaLocation = schemaLocation;
+                        return schemaLocation;
+                    }
 
-                        /**
-                         * Initializes a new instance of the class.
-                         */
-                        public constructor()
-                        {
-                            super({});
-                        }
-                    }();
+                    /**
+                     * Initializes a new instance of the class.
+                     */
+                    public constructor()
+                    {
+                        super({});
+                    }
+                }());
+        }
 
-                    compiler.DestinationPath = tempFile.FullName;
-                });
+        /**
+         * @inheritdoc
+         */
+        protected async SuiteSetup(): Promise<void>
+        {
+            namespace = "http://www.woltlab.com";
+            schemaLocation = "http://example.com/helloWorld.xsd";
+        }
 
-            suiteTeardown(
+        /**
+         * @inheritdoc
+         */
+        protected ExecuteTests(): void
+        {
+            super.ExecuteTests();
+
+            test(
+                "Checking whether the namespace is set correctly…",
                 () =>
                 {
-                    tempFile.Dispose();
+                    strictEqual(this.Tester.XMLEditor.GetAttribute("xmlns"), namespace);
                 });
 
-            suite(
-                "Compile",
+            test(
+                "Checking whether the schema-instance is correct…",
                 () =>
                 {
-                    suite(
-                        "General tests…",
-                        () =>
-                        {
-                            test(
-                                "Checking whether the item can be compiled…",
-                                async () =>
-                                {
-                                    await compiler.Execute();
-                                });
-
-                            test(
-                                "Checking whether the compiled file exists…",
-                                async () =>
-                                {
-                                    ok(await pathExists(tempFile.FullName));
-                                });
-                        });
-
-                    suite(
-                        "Testing the integrity of the compiled file…",
-                        () =>
-                        {
-                            let document: Document;
-
-                            suiteSetup(
-                                async () =>
-                                {
-                                    document = new DOMParser().parseFromString((await readFile(tempFile.FullName)).toString());
-                                });
-
-                            test(
-                                "Checking whether the namespace is correct…",
-                                () =>
-                                {
-                                    strictEqual(document.documentElement.getAttribute("xmlns"), namespace);
-                                });
-
-                            test(
-                                "Checking whether the schema-instance is correct…",
-                                () =>
-                                {
-                                    strictEqual(document.documentElement.getAttribute("xmlns:xsi"), "http://www.w3.org/2001/XMLSchema-instace");
-                                });
-
-                            test(
-                                "Checking whether the schema-location is correct…",
-                                () =>
-                                {
-                                    strictEqual(document.documentElement.getAttribute("xsi:schemaLocation"), `${namespace} ${schemaLocation}`);
-                                });
-                        });
+                    strictEqual(this.Tester.XMLEditor.GetAttribute("xmlns:xsi"), "http://www.w3.org/2001/XMLSchema-instace");
                 });
-        });
+
+            test(
+                "Checking whether the schema-location is set correctly…",
+                () =>
+                {
+                    strictEqual(this.Tester.XMLEditor.GetAttribute("xsi:schemaLocation"), `${namespace} ${schemaLocation}`);
+                });
+        }
+    }("WoltLabXMLCompiler").Register();
 }
