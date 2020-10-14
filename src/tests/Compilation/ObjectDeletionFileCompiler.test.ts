@@ -1,144 +1,117 @@
-import { strictEqual } from "assert";
-import { TempFile } from "@manuth/temp-files";
-import { readFile } from "fs-extra";
-import { DOMParser } from "xmldom";
+import { ok } from "assert";
 import { ObjectDeletionFileCompiler } from "../../Compilation/ObjectDeletionFileCompiler";
 import { IDeleteInstruction } from "../../PackageSystem/Instructions/IDeleteInstruction";
 import { Instruction } from "../../PackageSystem/Instructions/Instruction";
 import { XML } from "../../Serialization/XML";
 import { XMLEditor } from "../../Serialization/XMLEditor";
+import { ImportCompilerTester } from "./TestComponents/Testers/ImportCompilerTester";
+import { ImportCompilerTestRunner } from "./TestComponents/TestRunners/ImportCompilerTestRunner";
 
 /**
  * Registers tests for the `ObjectDeletionFileCompiler` class.
  */
 export function ObjectDeletionFileCompilerTests(): void
 {
-    suite(
-        "ObjectDeletionFileCompiler",
-        () =>
+    let objectTag: string;
+
+    new class extends ImportCompilerTestRunner<ImportCompilerTester<ObjectDeletionFileCompiler<IDeleteInstruction<unknown>, unknown>>, ObjectDeletionFileCompiler<IDeleteInstruction<unknown>, unknown>>
+    {
+        /**
+         * @inheritdoc
+         *
+         * @returns
+         * The new compiler-tester instance.
+         */
+        protected CreateTester(): ImportCompilerTester<ObjectDeletionFileCompiler<IDeleteInstruction<unknown>, unknown>>
         {
-            let tempFile: TempFile;
-            let objectTag: string;
-            let compiler: ObjectDeletionFileCompiler<IDeleteInstruction<unknown>, unknown>;
-
-            suiteSetup(
-                () =>
+            return new ImportCompilerTester(
+                new class extends ObjectDeletionFileCompiler<IDeleteInstruction<unknown>, unknown>
                 {
-                    tempFile = new TempFile();
-                    objectTag = "myObject";
+                    /**
+                     * @inheritdoc
+                     */
+                    protected get SchemaLocation(): string
+                    {
+                        return "";
+                    }
 
-                    compiler = new class extends ObjectDeletionFileCompiler<IDeleteInstruction<unknown>, unknown>
+                    /**
+                     * @inheritdoc
+                     *
+                     * @param object
+                     * The object to delete.
+                     *
+                     * @returns
+                     * The newly created deletion-entry.
+                     */
+                    protected CreateDeleteObject(object: unknown): Element
+                    {
+                        let editor = new XMLEditor(XML.CreateDocument(objectTag).documentElement);
+                        editor.SetAttribute("value", `${object}`);
+                        return editor.Element;
+                    }
+                }(
+                    new class extends Instruction implements IDeleteInstruction<unknown>
                     {
                         /**
                          * @inheritdoc
                          */
-                        protected get SchemaLocation(): string
-                        {
-                            return "http://example.com/mySchema.xsd";
-                        }
+                        public Type = "foo";
 
                         /**
                          * @inheritdoc
-                         *
-                         * @returns
-                         * The newly created deletion-entry.
                          */
-                        protected CreateDeleteObject(): Element
-                        {
-                            return XML.CreateDocument(objectTag).documentElement;
-                        }
-                    }(
-                        new class extends Instruction implements IDeleteInstruction<unknown>
-                        {
-                            /**
-                             * @inheritdoc
-                             */
-                            public Type = "foo";
+                        public ObjectsToDelete: unknown[] = [
+                            "test1",
+                            "test2"
+                        ];
 
-                            /**
-                             * @inheritdoc
-                             */
-                            public ObjectsToDelete: unknown[] = [
-                                {},
-                                {}
-                            ];
-
-                            /**
-                             * Initializes a new instance of the `Instruction` class.
-                             */
-                            public constructor()
-                            {
-                                super({
+                        /**
+                         * Initializes a new instance of the `Instruction` class.
+                         */
+                        public constructor()
+                        {
+                            super(
+                                {
                                     FileName: null
                                 });
-                            }
-                        }());
+                        }
+                    }()));
+        }
 
-                    compiler.DestinationPath = tempFile.FullName;
-                });
+        /**
+         * @inheritdoc
+         */
+        protected async SuiteSetup(): Promise<void>
+        {
+            objectTag = "myObject";
+            await super.SuiteSetup();
+        }
 
-            suiteTeardown(
+        /**
+         * @inheritdoc
+         */
+        protected ExecuteTests(): void
+        {
+            super.ExecuteTests();
+
+            test(
+                "Checking whether the deletion-entries are created correctly…",
                 () =>
                 {
-                    tempFile.Dispose();
-                });
-
-            suite(
-                "Compile",
-                () =>
-                {
-                    suite(
-                        "General",
-                        () =>
+                    this.Compiler.Item.ObjectsToDelete.every(
+                        (object) =>
                         {
-                            test(
-                                "Checking whether the compiler can be executed…",
-                                async () =>
-                                {
-                                    await compiler.Execute();
-                                });
-                        });
-
-                    suite(
-                        "Checking the integrity of the file…",
-                        () =>
-                        {
-                            let editor: XMLEditor;
-
-                            suite(
-                                "General",
-                                () =>
-                                {
-                                    test(
-                                        "Checking whether the content of the compiled file is valid xml…",
-                                        async () =>
-                                        {
-                                            let document: Document = new DOMParser().parseFromString((await readFile(tempFile.FullName)).toString());
-                                            editor = new XMLEditor(document.documentElement);
-                                        });
-                                });
-
-                            suite(
-                                "Checking the integrity of the meta-data…",
-                                () =>
-                                {
-                                    test(
-                                        "Checking whether the integrity of the deleted objects…",
-                                        () =>
-                                        {
-                                            let deletedObjects: XMLEditor[] = editor.GetElementsByTag(objectTag);
-
-                                            strictEqual(
-                                                deletedObjects.every(
-                                                    (object: XMLEditor) =>
-                                                    {
-                                                        return (object.ParentNode.nodeType === object.Element.ELEMENT_NODE) &&
-                                                            ((object.ParentNode as Element).tagName === "delete");
-                                                    }),
-                                                true);
-                                        });
-                                });
+                            ok(
+                                this.Tester.DeleteEditor.GetElementsByTag(objectTag).some(
+                                    (objectEntry) =>
+                                    {
+                                        return (objectEntry.ParentNode.nodeType === objectEntry.Element.ELEMENT_NODE) &&
+                                            ((objectEntry.ParentNode as Element).tagName === "delete") &&
+                                            objectEntry.HasAttribute("value", `${object}`);
+                                    }));
                         });
                 });
-        });
+        }
+    }("ObjectDeletionFileCompiler").Register();
 }
