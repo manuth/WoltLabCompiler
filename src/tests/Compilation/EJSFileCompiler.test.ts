@@ -39,7 +39,7 @@ export function EJSFileCompilerTests(): void
          */
         protected get TagName(): string
         {
-            return "";
+            return "tag";
         }
 
         /**
