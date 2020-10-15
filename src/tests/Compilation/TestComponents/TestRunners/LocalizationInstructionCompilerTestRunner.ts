@@ -1,6 +1,6 @@
-import { ok } from "assert";
+import { ok, strictEqual } from "assert";
 import { readdir } from "fs-extra";
-import { join } from "upath";
+import { join, parse } from "upath";
 import { InstructionCompiler } from "../../../../Compilation/PackageSystem/Instructions/InstructionCompiler";
 import { ILocalizationInstruction } from "../../../../PackageSystem/Instructions/Globalization/ILocalizationInstruction";
 import { Instruction } from "../../../../PackageSystem/Instructions/Instruction";
@@ -41,7 +41,9 @@ export abstract class LocalizationInstructionCompilerTestRunner<TTester extends 
                         this.Compiler.Item.TranslationDirectory));
 
                 let locales = Object.keys(this.Compiler.Item.GetMessages());
+                strictEqual(files.length, locales.length);
                 ok(locales.every((locale) => files.includes(`${locale}.xml`)));
+                ok(files.every((file) => locales.includes(parse(file).name)));
             });
     }
 }
