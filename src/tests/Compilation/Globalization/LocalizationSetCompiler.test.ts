@@ -1,92 +1,81 @@
 import { strictEqual } from "assert";
-import { TempDirectory } from "@manuth/temp-files";
 import { readdir } from "fs-extra";
 import { parse } from "upath";
 import { LocalizationSetCompiler } from "../../../Compilation/Globalization/LocalizationSetCompiler";
 import { ILocalization } from "../../../Globalization/ILocalization";
 import { TranslationInstruction } from "../../../PackageSystem/Instructions/Globalization/TranslationInstruction";
+import { CompilerTester } from "../TestComponents/Testers/CompilerTester";
+import { CompilerTestRunner } from "../TestComponents/TestRunners/CompilerTestRunner";
 
 /**
  * Registers tests for the `LocalizationInstructionCompiler` class.
  */
 export function LocalizationSetCompilerTests(): void
 {
-    suite(
-        "LocalizationInstructionCompiler",
-        () =>
+    new class extends CompilerTestRunner<CompilerTester<LocalizationSetCompiler>, LocalizationSetCompiler>
+    {
+        /**
+         * @inheritdoc
+         *
+         * @returns
+         * The new compiler-tester instance.
+         */
+        protected CreateTester(): CompilerTester<LocalizationSetCompiler>
         {
-            let locales: string[];
-            let tempDir: TempDirectory;
-            let compiler: LocalizationSetCompiler;
+            let localization: ILocalization = {};
+            let locales = ["en", "it", "fr"];
 
-            suiteSetup(
-                () =>
+            for (let locale of locales)
+            {
+                localization[locale] = "example";
+            }
+
+            let instruction = new TranslationInstruction(
                 {
-                    let localization: ILocalization = {};
-                    locales = ["en", "it", "fr"];
-                    tempDir = new TempDirectory();
-
-                    for (let locale of locales)
-                    {
-                        localization[locale] = "example";
-                    }
-
-                    let instruction: TranslationInstruction = new TranslationInstruction(
+                    FileName: "language",
+                    Nodes: [
                         {
-                            FileName: "language",
-                            Nodes: [
-                                {
-                                    Name: "foo",
-                                    Item: {
-                                        Translations: localization
-                                    }
-                                }
-                            ]
-                        });
-
-                    compiler = new LocalizationSetCompiler(instruction.GetMessages());
-                    compiler.DestinationPath = tempDir.FullName;
+                            Name: "foo",
+                            Item: {
+                                Translations: localization
+                            }
+                        }
+                    ]
                 });
 
-            suiteTeardown(
-                () =>
+            return new CompilerTester(new LocalizationSetCompiler(instruction.GetMessages()));
+        }
+
+        /**
+         * @inheritdoc
+         */
+        protected ExecuteTests(): void
+        {
+            super.ExecuteTests();
+
+            test(
+                "Checking whether all the expected files exist…",
+                async () =>
                 {
-                    tempDir.Dispose();
+                    let locales = Object.keys(this.Compiler.Item);
+                    let files = await readdir(this.Compiler.DestinationPath);
+
+                    strictEqual(
+                        files.every(
+                            (file: string) =>
+                            {
+                                return locales.includes(parse(file).name);
+                            }),
+                        true);
+
+                    strictEqual(
+                        locales.every(
+                            (locale: string) =>
+                            {
+                                return files.includes(`${locale}.xml`);
+                            }),
+                        true);
                 });
-
-            suite(
-                "Compile",
-                () =>
-                {
-                    test(
-                        "Checking whether the item can be compiled…",
-                        async () =>
-                        {
-                            await compiler.Execute();
-                        });
-
-                    test(
-                        "Checking whether all the expected files exist…",
-                        async () =>
-                        {
-                            let files: string[] = await readdir(tempDir.FullName);
-
-                            strictEqual(
-                                files.every(
-                                    (file: string) =>
-                                    {
-                                        return locales.includes(parse(file).name);
-                                    }),
-                                true);
-
-                            strictEqual(
-                                locales.every(
-                                    (locale: string) =>
-                                    {
-                                        return files.includes(`${locale}.xml`);
-                                    }),
-                                true);
-                        });
-                });
-        });
+        }
+    }("LocalizationInstructionCompiler").Register();
 }
