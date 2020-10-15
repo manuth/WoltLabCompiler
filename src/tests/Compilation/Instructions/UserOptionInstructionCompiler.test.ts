@@ -42,5 +42,5 @@ export function UserOptionInstructionCompilerTests(): void
                             ]
                         })));
         }
-    }("UserOptionInstructionCompiler");
+    }("UserOptionInstructionCompiler").Register();
 }
