@@ -1,5 +1,5 @@
 import { doesNotReject, ok } from "assert";
-import { ITempFileSystemOptions, TempFile } from "@manuth/temp-files";
+import { ITempFileSystemOptions, TempFileSystem } from "@manuth/temp-files";
 import { Compiler } from "../../../../Compilation/Compiler";
 import { CompilerTester } from "../Testers/CompilerTester";
 
@@ -9,9 +9,9 @@ import { CompilerTester } from "../Testers/CompilerTester";
 export abstract class CompilerTestRunner<TTester extends CompilerTester<TCompiler>, TCompiler extends Compiler<unknown>>
 {
     /**
-     * The file to write the compiler-output to.
+     * The path to write the compiler-output to.
      */
-    private tempFile: TempFile = null;
+    private destinationPath: string = null;
 
     /**
      * The compiler-tester.
@@ -61,14 +61,14 @@ export abstract class CompilerTestRunner<TTester extends CompilerTester<TCompile
     /**
      * Gets the file to write the compiler-output to.
      */
-    protected get TempFile(): TempFile
+    protected get DestinationPath(): string
     {
-        if (this.tempFile === null)
+        if (this.destinationPath === null)
         {
-            this.tempFile = new TempFile(this.TempFileOptions);
+            this.destinationPath = TempFileSystem.TempName();
         }
 
-        return this.tempFile;
+        return this.destinationPath;
     }
 
     /**
@@ -117,7 +117,7 @@ export abstract class CompilerTestRunner<TTester extends CompilerTester<TCompile
     protected async SuiteSetup(): Promise<void>
     {
         this.tester = this.CreateTester();
-        this.Compiler.DestinationPath = this.TempFile.FullName;
+        this.Compiler.DestinationPath = this.DestinationPath;
     }
 
     /**
