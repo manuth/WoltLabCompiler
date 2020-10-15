@@ -1,3 +1,4 @@
+import { ok } from "assert";
 import { EventListenerFileCompiler } from "../../../Compilation/Events/EventListenerFileCompiler";
 import { EventListener } from "../../../Events/EventListener";
 import { EventListenerInstruction } from "../../../PackageSystem/Instructions/Events/EventListenerInstruction";
@@ -14,23 +15,6 @@ export function EventListenerFileCompilerTests(): void
     {
         /**
          * @inheritdoc
-         */
-        protected get Listeners(): EventListener[]
-        {
-            return [
-                new EventListener(
-                    {
-                        Name: "test",
-                        EventName: "foo",
-                        EventHandlerClassName: "wcf\\system\\baz",
-                        ClassName: "wcf\\system\\foo\\bar",
-                        AllowInherited: Math.random() > 0.5
-                    })
-            ];
-        }
-
-        /**
-         * @inheritdoc
          *
          * @returns
          * The new compiler-tester instance.
@@ -42,7 +26,15 @@ export function EventListenerFileCompilerTests(): void
                     new EventListenerInstruction(
                         {
                             FileName: null,
-                            Listeners: this.Listeners
+                            Listeners: [
+                                {
+                                    Name: "test",
+                                    EventName: "foo",
+                                    EventHandlerClassName: "wcf\\system\\baz",
+                                    ClassName: "wcf\\system\\foo\\bar",
+                                    AllowInherited: Math.random() > 0.5
+                                }
+                            ]
                         })),
                 "eventlistener");
         }
@@ -58,6 +50,7 @@ export function EventListenerFileCompilerTests(): void
          */
         protected AssertListenerMetadata(listenerNode: XMLEditor, listener: EventListener): void
         {
+            ok(listenerNode.GetAttribute("name") === listener.Name);
             this.AssertTagContent(listenerNode, "eventclassname", listener.ClassName);
             this.AssertTagContent(listenerNode, "inherit", listener.AllowInherited ? "1" : "0");
             this.AssertTagContent(listenerNode, "listenerclassname", listener.EventHandlerClassName);
