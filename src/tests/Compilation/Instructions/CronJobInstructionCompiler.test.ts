@@ -1,6 +1,5 @@
 import { CronJobInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/CronJobInstructionCompiler";
 import { CronJobInstruction } from "../../../PackageSystem/Instructions/Tasks/CronJobInstruction";
-import { TimePeriod } from "../../../Tasks/TimePeriod";
 import { CompilerTester } from "../TestComponents/Testers/CompilerTester";
 import { InstructionCompilerTestRunner } from "../TestComponents/TestRunners/InstructionCompilerTestRunner";
 
@@ -24,13 +23,7 @@ export function CronJobInstructionCompilerTests(): void
                     new CronJobInstruction(
                         {
                             FileName: "cronJobs.xml",
-                            CronJobs: [
-                                {
-                                    Name: "foo",
-                                    ClassName: "bar",
-                                    Period: TimePeriod.Monthly
-                                }
-                            ]
+                            CronJobs: []
                         })));
         }
     }("CronJobInstructionCompiler").Register();

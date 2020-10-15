@@ -23,13 +23,7 @@ export function EmojiInstructionCompilerTests(): void
                     new EmojiInstruction(
                         {
                             FileName: "emojis.xml",
-                            Emojis: [
-                                {
-                                    DisplayName: "foo",
-                                    FileName: "foo.png",
-                                    Name: "bar"
-                                }
-                            ]
+                            Emojis: []
                         })));
         }
     }("EmojiInstructionCompiler").Register();
