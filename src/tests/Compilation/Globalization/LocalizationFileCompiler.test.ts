@@ -83,7 +83,7 @@ export function LocalizationFileCompilerTests(): void
                                                 return categoryNode.GetChildrenByTag("item").some(
                                                     (itemNode) =>
                                                     {
-                                                        return (itemNode.GetAttribute(nameAttribute) === messageName) &&
+                                                        return (itemNode.GetAttribute(nameAttribute) === `${categoryName}.${messageName}`) &&
                                                             itemNode.TextContent === messages[messageName];
                                                     });
                                             });
