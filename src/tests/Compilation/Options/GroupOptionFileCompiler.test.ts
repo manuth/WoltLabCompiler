@@ -1,39 +1,29 @@
-import { ok, strictEqual } from "assert";
-import { TempFile } from "@manuth/temp-files";
-import { readFile } from "fs-extra";
-import { DOMParser } from "xmldom";
 import { GroupOptionFileCompiler } from "../../../Compilation/Options/GroupOptionFileCompiler";
-import { IGroupOptionOptions } from "../../../Options/Groups/IGroupOptionOptions";
+import { GroupCategory } from "../../../Options/Groups/GroupCategory";
+import { GroupOption } from "../../../Options/Groups/GroupOption";
 import { GroupOptionInstruction } from "../../../PackageSystem/Instructions/Options/GroupOptionInstruction";
 import { XMLEditor } from "../../../Serialization/XMLEditor";
+import { OptionCompilerTester } from "../TestComponents/Testers/OptionCompilerTester";
+import { OptionFileCompilerTestRunner } from "../TestComponents/TestRunners/OptionFileCompilerTestRunner";
 
 /**
  * Registers tests for the `GroupOptionFileCompiler` class.
  */
 export function GroupOptionFileCompilerTests(): void
 {
-    suite(
-        "GroupOptionFileCompiler",
-        () =>
+    new class extends OptionFileCompilerTestRunner<OptionCompilerTester<GroupOptionFileCompiler>, GroupOptionFileCompiler, GroupCategory, GroupOption>
+    {
+        /**
+         * @inheritdoc
+         *
+         * @returns
+         * The new compiler-tester instance.
+         */
+        protected CreateTester(): OptionCompilerTester<GroupOptionFileCompiler>
         {
-            let tempFile: TempFile;
-            let compiler: GroupOptionFileCompiler;
-            let option: IGroupOptionOptions;
-
-            suiteSetup(
-                () =>
-                {
-                    tempFile = new TempFile();
-
-                    option = {
-                        Name: "test",
-                        UserDefaultValue: "foo",
-                        ModDefaultValue: "bar",
-                        AdminDefaultValue: "baz",
-                        RegisteredOnly: Math.random() > 0.5
-                    };
-
-                    let groupOptionInstruction: GroupOptionInstruction = new GroupOptionInstruction(
+            return new OptionCompilerTester(
+                new GroupOptionFileCompiler(
+                    new GroupOptionInstruction(
                         {
                             FileName: null,
                             Nodes: [
@@ -41,121 +31,47 @@ export function GroupOptionFileCompilerTests(): void
                                     Name: "example",
                                     Item: {
                                         Options: [
-                                            option
+                                            {
+                                                Name: "test",
+                                                UserDefaultValue: "foo",
+                                                ModDefaultValue: "bar",
+                                                AdminDefaultValue: "baz",
+                                                RegisteredOnly: Math.random() > 0.5
+                                            }
                                         ]
                                     }
                                 }
                             ]
-                        });
+                        })));
+        }
 
-                    compiler = new GroupOptionFileCompiler(groupOptionInstruction);
-                    compiler.DestinationPath = tempFile.FullName;
-                });
+        /**
+         * @inheritdoc
+         *
+         * @param categoryNode
+         * The category-node to check.
+         *
+         * @param category
+         * The category to check.
+         */
+        protected AssertCategoryMetadata(categoryNode: XMLEditor, category: GroupCategory): void
+        { }
 
-            suiteTeardown(
-                () =>
-                {
-                    tempFile.Dispose();
-                });
-
-            suite(
-                "Compile",
-                () =>
-                {
-                    suite(
-                        "General",
-                        () =>
-                        {
-                            test(
-                                "Checking whether the compiler can be executed…",
-                                async () =>
-                                {
-                                    await compiler.Execute();
-                                });
-                        });
-
-                    suite(
-                        "Checking the integrity of the compiled file…",
-                        () =>
-                        {
-                            let editor: XMLEditor;
-
-                            suite(
-                                "General",
-                                () =>
-                                {
-                                    test(
-                                        "Checking whether the file is a valid xml-file…",
-                                        async () =>
-                                        {
-                                            let document: Document = new DOMParser().parseFromString((await readFile(tempFile.FullName)).toString());
-                                            editor = new XMLEditor(document.documentElement);
-                                        });
-                                });
-
-                            suite(
-                                "Checking the integrity of the option",
-                                () =>
-                                {
-                                    let optionEditor: XMLEditor;
-
-                                    suite(
-                                        "General",
-                                        () =>
-                                        {
-                                            let optionTag: string;
-
-                                            suiteSetup(
-                                                () =>
-                                                {
-                                                    optionTag = "option";
-                                                });
-
-                                            test(
-                                                "Checking whether the option exists…",
-                                                () =>
-                                                {
-                                                    strictEqual(editor.GetElementsByTag(optionTag).length, 1);
-                                                    optionEditor = editor.GetElementsByTag(optionTag)[0];
-                                                });
-                                        });
-
-                                    suite(
-                                        "Checking the integrity of the meta-data…",
-                                        () =>
-                                        {
-                                            let userValueTag: string;
-                                            let modValueTag: string;
-                                            let adminValueTag: string;
-                                            let registeredTag: string;
-
-                                            suiteSetup(
-                                                () =>
-                                                {
-                                                    userValueTag = "userdefaultvalue";
-                                                    modValueTag = "moddefaultvalue";
-                                                    adminValueTag = "admindefaultvalue";
-                                                    registeredTag = "usersonly";
-                                                });
-
-                                            test(
-                                                "Checking whether the default values are correct…",
-                                                () =>
-                                                {
-                                                    ok(optionEditor.HasText(userValueTag, `${option.UserDefaultValue}`));
-                                                    ok(optionEditor.HasText(modValueTag, `${option.ModDefaultValue}`));
-                                                    ok(optionEditor.HasText(adminValueTag, `${option.AdminDefaultValue}`));
-                                                });
-
-                                            test(
-                                                "Checking whether the registered-restriction is correct…",
-                                                () =>
-                                                {
-                                                    ok(optionEditor.HasText(registeredTag, option.RegisteredOnly ? "1" : "0"));
-                                                });
-                                        });
-                                });
-                        });
-                });
-        });
+        /**
+         * Asserts the content of an option-node.
+         *
+         * @param optionNode
+         * The option-node to check.
+         *
+         * @param option
+         * The option to check.
+         */
+        protected AssertOptionMetadata(optionNode: XMLEditor, option: GroupOption): void
+        {
+            this.AssertTagContent(optionNode, "userdefaultvalue", `${option.UserDefaultValue}`);
+            this.AssertTagContent(optionNode, "moddefaultvalue", `${option.ModDefaultValue}`);
+            this.AssertTagContent(optionNode, "admindefaultvalue", `${option.AdminDefaultValue}`);
+            this.AssertTagContent(optionNode, "usersonly", option.RegisteredOnly ? "1" : "0");
+        }
+    }("GroupOptionFileCompiler").Register();
 }
