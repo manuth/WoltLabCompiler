@@ -39,7 +39,7 @@ export class ImportCompilerTester<TCompiler extends ImportFileCompiler<unknown>>
      */
     public get ImportEditor(): XMLEditor
     {
-        return this.XMLEditor.GetChildrenByTag("import")[0];
+        return this.XMLEditor.GetChildrenByTag(this.ImportTag)[0];
     }
 
     /**
@@ -47,6 +47,6 @@ export class ImportCompilerTester<TCompiler extends ImportFileCompiler<unknown>>
      */
     public get DeleteEditor(): XMLEditor
     {
-        return this.XMLEditor.GetChildrenByTag("delete")[0];
+        return this.XMLEditor.GetChildrenByTag(this.DeleteTag)[0];
     }
 }
