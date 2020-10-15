@@ -1,5 +1,6 @@
-import { ok } from "assert";
+import { ok, strictEqual } from "assert";
 import { XMLFileCompiler } from "../../../../Compilation/XMLFileCompiler";
+import { XMLEditor } from "../../../../Serialization/XMLEditor";
 import { XMLFileCompilerTester } from "../Testers/XMLFileCompilerTester";
 import { CompilerTestRunner } from "./CompilerTestRunner";
 
@@ -32,5 +33,59 @@ export abstract class XMLCompilerTestRunner<TTester extends XMLFileCompilerTeste
             {
                 ok(this.Tester.IsValidXML);
             });
+    }
+
+    /**
+     * Asserts the existence of a tag named `tagname` inside the `element`.
+     *
+     * @param element
+     * The element to check for the tag.
+     *
+     * @param tagName
+     * The name of the asserted tag.
+     *
+     * @param unique
+     * A value indicating whether the tag is unique inside the element.
+     */
+    protected AssertTag(element: XMLEditor, tagName: string, unique?: boolean): void
+    {
+        let elements = element.GetChildrenByTag(tagName);
+        ok(unique ? (elements.length === 1) : (elements.length > 0));
+    }
+
+    /**
+     * Gets the text of a child-tag with the speicifed `tagName`.
+     *
+     * @param element
+     * The element to check for the tag.
+     *
+     * @param tagName
+     * The name of the tag.
+     *
+     * @returns
+     * The text of the child-tag with the specified `tagName`.
+     */
+    protected GetText(element: XMLEditor, tagName: string): string
+    {
+        let elements = element.GetChildrenByTag(tagName);
+        strictEqual(elements.length, 1);
+        return elements[0].TextContent;
+    }
+
+    /**
+     * Asserts the content of a child-tag with the specified `tagName`.
+     *
+     * @param element
+     * The element to check for the tag.
+     *
+     * @param tagName
+     * The name of the asserted tag.
+     *
+     * @param content
+     * The asserted content.
+     */
+    protected AssertTagContent(element: XMLEditor, tagName: string, content: string): void
+    {
+        strictEqual(this.GetText(element, tagName), content);
     }
 }
