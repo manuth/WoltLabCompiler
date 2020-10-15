@@ -4,16 +4,15 @@ import { join } from "upath";
 import { ACPOptionInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/ACPOptionInstructionCompiler";
 import { ILocalization } from "../../../Globalization/ILocalization";
 import { ACPOptionInstruction } from "../../../PackageSystem/Instructions/Options/ACPOptionInstruction";
-import { Package } from "../../../PackageSystem/Package";
 import { CompilerTester } from "../TestComponents/Testers/CompilerTester";
-import { CompilerTestRunner } from "../TestComponents/TestRunners/CompilerTestRunner";
+import { InstructionCompilerTestRunner } from "../TestComponents/TestRunners/InstructionCompilerTestRunner";
 
 /**
  * Registers tests for the `ACPOptionInstructionCompiler` class.
  */
 export function ACPOptionInstructionCompilerTests(): void
 {
-    new class extends CompilerTestRunner<CompilerTester<ACPOptionInstructionCompiler>, ACPOptionInstructionCompiler>
+    new class extends InstructionCompilerTestRunner<CompilerTester<ACPOptionInstructionCompiler>, ACPOptionInstructionCompiler>
     {
         /**
          * @inheritdoc
@@ -31,7 +30,7 @@ export function ACPOptionInstructionCompilerTests(): void
                 displayName[locale] = "test";
             }
 
-            let tester = new CompilerTester(
+            return new CompilerTester(
                 new ACPOptionInstructionCompiler(
                     new ACPOptionInstruction(
                         {
@@ -45,17 +44,6 @@ export function ACPOptionInstructionCompilerTests(): void
                                 }
                             ]
                         })));
-
-            new Package(
-                {
-                    Identifier: "foo",
-                    DisplayName: {},
-                    InstallSet: {
-                        Instructions: []
-                    }
-                }).InstallSet.push(tester.Compiler.Item);
-
-            return tester;
         }
 
         /**
