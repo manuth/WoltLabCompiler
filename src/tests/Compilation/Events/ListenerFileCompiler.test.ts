@@ -55,7 +55,7 @@ export function ListenerFileCompilerTests(): void
          */
         protected get Listeners(): Listener[]
         {
-            return this.Tester.Compiler.Item.Listeners;
+            return this.Compiler.Item.Listeners;
         }
 
         /**

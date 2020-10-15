@@ -164,7 +164,7 @@ export abstract class CompilerTestRunner<TTester extends CompilerTester<TCompile
             "Checking whether the component can be compiled…",
             async () =>
             {
-                await doesNotReject(async () => this.Tester.Compiler.Execute());
+                await doesNotReject(async () => this.Compiler.Execute());
             });
 
         test(
@@ -192,7 +192,7 @@ export abstract class CompilerTestRunner<TTester extends CompilerTester<TCompile
      */
     protected async ExecuteSetup(): Promise<void>
     {
-        await this.Tester.Compiler.Execute();
+        await this.Compiler.Execute();
     }
 
     /**

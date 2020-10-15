@@ -25,7 +25,10 @@ export abstract class ListenerCompilerTestRunner<TTester extends ListenerCompile
     /**
      * Gets the listeners to test.
      */
-    protected abstract get Listeners(): TListener[];
+    protected get Listeners(): TListener[]
+    {
+        return this.Compiler.Item.Listeners;
+    }
 
     /**
      * @inheritdoc
