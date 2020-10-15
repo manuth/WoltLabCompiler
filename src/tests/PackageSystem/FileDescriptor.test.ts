@@ -41,9 +41,10 @@ export function FileDescriptorTests(): void
                     await ensureFile(fileName);
                     await writeFile(fileName, content);
 
-                    fileDescriptor = new FileDescriptor({
-                        Source: fileName
-                    });
+                    fileDescriptor = new FileDescriptor(
+                        {
+                            Source: fileName
+                        });
                 });
 
             suite(

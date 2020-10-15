@@ -158,35 +158,36 @@ export function OptionFileCompilerTests(): void
 
                     let rootCategoryID = "rootCategory";
                     let categoryID = "category";
-                    let optionInstruction = new MyOptionInstruction({
-                        FileName: null,
-                        Nodes: [
-                            {
-                                ID: rootCategoryID,
-                                Name: rootCategoryName,
-                                Parent: {
-                                    Name: section
-                                },
-                                Item: {
-                                    ShowOrder: rootShowOrder,
-                                    EnableOptions: enableOptions
-                                },
-                                Nodes: [
-                                    {
-                                        ID: categoryID,
-                                        Name: categoryName,
-                                        Item: {
-                                            ShowOrder: showOrder,
-                                            Options: [
-                                                option
-                                            ],
-                                            EnableOptions: enableOptions
+                    let optionInstruction = new MyOptionInstruction(
+                        {
+                            FileName: null,
+                            Nodes: [
+                                {
+                                    ID: rootCategoryID,
+                                    Name: rootCategoryName,
+                                    Parent: {
+                                        Name: section
+                                    },
+                                    Item: {
+                                        ShowOrder: rootShowOrder,
+                                        EnableOptions: enableOptions
+                                    },
+                                    Nodes: [
+                                        {
+                                            ID: categoryID,
+                                            Name: categoryName,
+                                            Item: {
+                                                ShowOrder: showOrder,
+                                                Options: [
+                                                    option
+                                                ],
+                                                EnableOptions: enableOptions
+                                            }
                                         }
-                                    }
-                                ]
-                            }
-                        ]
-                    });
+                                    ]
+                                }
+                            ]
+                        });
 
                     rootCategoryNode = optionInstruction.ObjectsByID[rootCategoryID] as any;
                     categoryNode = optionInstruction.ObjectsByID[categoryID] as any;

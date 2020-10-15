@@ -111,17 +111,18 @@ export function FileInstructionCompilerTests(): void
                         {
                             let files: string[] = [];
 
-                            await list({
-                                file: archiveFileName,
-                                onentry: (entry: FileStat): void =>
+                            await list(
                                 {
-                                    files.push(entry.header.path);
-                                },
-                                filter: (fileName: string, stat: FileStat): boolean =>
-                                {
-                                    return parse(fileName).dir.length === 0;
-                                }
-                            });
+                                    file: archiveFileName,
+                                    onentry: (entry: FileStat): void =>
+                                    {
+                                        files.push(entry.header.path);
+                                    },
+                                    filter: (fileName: string, stat: FileStat): boolean =>
+                                    {
+                                        return parse(fileName).dir.length === 0;
+                                    }
+                                });
 
                             ok(fileNames.every((fileName: string): boolean => files.includes(fileName)));
                             ok(files.every((fileName: string): boolean => fileNames.includes(fileName)));

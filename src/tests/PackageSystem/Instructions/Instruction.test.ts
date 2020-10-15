@@ -29,18 +29,20 @@ export function InstructionTests(): void
             suiteSetup(
                 () =>
                 {
-                    instruction = new MyInstruction({
-                        FileName: "example.txt",
-                        Standalone: Math.random() > 0.5
-                    });
+                    instruction = new MyInstruction(
+                        {
+                            FileName: "example.txt",
+                            Standalone: Math.random() > 0.5
+                        });
 
-                    extensionPackage = new Package({
-                        Identifier: "example",
-                        DisplayName: {},
-                        InstallSet: {
-                            Instructions: []
-                        }
-                    });
+                    extensionPackage = new Package(
+                        {
+                            Identifier: "example",
+                            DisplayName: {},
+                            InstallSet: {
+                                Instructions: []
+                            }
+                        });
                 });
 
             suite(

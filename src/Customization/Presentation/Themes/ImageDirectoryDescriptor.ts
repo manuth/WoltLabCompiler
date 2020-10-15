@@ -19,10 +19,11 @@ export class ImageDirectoryDescriptor extends FileDescriptor
      */
     public constructor(options: IImageDirectoryDescriptorOptions)
     {
-        super({
-            Source: options.Source,
-            FileName: options.FileName ?? "images.tar"
-        });
+        super(
+            {
+                Source: options.Source,
+                FileName: options.FileName ?? "images.tar"
+            });
 
         if (
             (options.DestinationRoot !== null) &&

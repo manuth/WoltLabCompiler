@@ -56,18 +56,19 @@ export class Package extends Component
      */
     public constructor(options: IPackageOptions)
     {
-        super({
-            Name: options.Name,
-            DisplayName: options.DisplayName,
-            Version: options.Version,
-            Author: options.Author || new Person(
-                {
-                    Name: null
-                }),
-            CreationDate: options.CreationDate,
-            Description: options.Description,
-            License: options.License
-        });
+        super(
+            {
+                Name: options.Name,
+                DisplayName: options.DisplayName,
+                Version: options.Version,
+                Author: options.Author || new Person(
+                    {
+                        Name: null
+                    }),
+                CreationDate: options.CreationDate,
+                Description: options.Description,
+                License: options.License
+            });
 
         this.Identifier = options.Identifier;
 

@@ -19,12 +19,13 @@ export function ThemeInstructionTests(): void
                 {
                     ThemeName = "Foo";
 
-                    themeInstruction = new ThemeInstruction({
-                        Theme: {
-                            Name: ThemeName,
-                            DisplayName: {}
-                        }
-                    });
+                    themeInstruction = new ThemeInstruction(
+                        {
+                            Theme: {
+                                Name: ThemeName,
+                                DisplayName: {}
+                            }
+                        });
                 });
 
             suite(

@@ -67,15 +67,16 @@ export class Theme extends Component
      */
     public constructor(instruction: ThemeInstruction, options: IThemeOptions)
     {
-        super({
-            Name: options.Name,
-            DisplayName: options.DisplayName,
-            Version: options.Version,
-            Author: options.Author,
-            CreationDate: options.CreationDate,
-            Description: options.Description,
-            License: options.License
-        });
+        super(
+            {
+                Name: options.Name,
+                DisplayName: options.DisplayName,
+                Version: options.Version,
+                Author: options.Author,
+                CreationDate: options.CreationDate,
+                Description: options.Description,
+                License: options.License
+            });
 
         let variables: Record<string, string> = {};
         this.instruction = instruction;

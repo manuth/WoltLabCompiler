@@ -22,9 +22,10 @@ export class ThemeInstruction extends Instruction
      */
     public constructor(options: IThemeInstructionOptions)
     {
-        super({
-            FileName: options.FileName || `${options.Theme.Name}.tar`
-        });
+        super(
+            {
+                FileName: options.FileName || `${options.Theme.Name}.tar`
+            });
 
         this.theme = new Theme(this, options.Theme);
     }
