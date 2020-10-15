@@ -54,7 +54,7 @@ export function LocalizationSetCompilerTests(): void
             super.ExecuteTests();
 
             test(
-                "Checking whether all the expected files exist…",
+                "Checking whether all expected files exist…",
                 async () =>
                 {
                     let locales = Object.keys(this.Compiler.Item);
