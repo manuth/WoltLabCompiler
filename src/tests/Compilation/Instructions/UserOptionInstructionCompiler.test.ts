@@ -1,99 +1,46 @@
-import { doesNotReject, ok } from "assert";
-import { TempDirectory } from "@manuth/temp-files";
-import { pathExists, readdir } from "fs-extra";
 import { UserOptionInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/UserOptionInstructionCompiler";
 import { ILocalization } from "../../../Globalization/ILocalization";
 import { UserOptionInstruction } from "../../../PackageSystem/Instructions/Options/UserOptionInstruction";
-import { Package } from "../../../PackageSystem/Package";
+import { CompilerTester } from "../TestComponents/Testers/CompilerTester";
+import { LocalizationInstructionCompilerTestRunner } from "../TestComponents/TestRunners/LocalizationInstructionCompilerTestRunner";
 
 /**
  * Registers tests for the `UserOptionInstructionCompiler` class.
  */
 export function UserOptionInstructionCompilerTests(): void
 {
-    suite(
-        "UserOptionInstructionCompiler",
-        () =>
+    new class extends LocalizationInstructionCompilerTestRunner<CompilerTester<UserOptionInstructionCompiler>, UserOptionInstructionCompiler>
+    {
+        /**
+         * @inheritdoc
+         *
+         * @returns
+         * The new compiler-tester instance.
+         */
+        protected CreateTester(): CompilerTester<UserOptionInstructionCompiler>
         {
-            let fileName: string;
-            let translationDir: string;
-            let tempDir: TempDirectory;
-            let compiler: UserOptionInstructionCompiler;
-            let locales: string[];
+            let locales = ["en", "cn", "es"];
+            let displayName: ILocalization = {};
 
-            suiteSetup(
-                () =>
-                {
-                    let displayName: ILocalization = {};
+            for (let locale of locales)
+            {
+                displayName[locale] = "test";
+            }
 
-                    let extensionPackage: Package = new Package(
+            return new CompilerTester(
+                new UserOptionInstructionCompiler(
+                    new UserOptionInstruction(
                         {
-                            Identifier: "foo",
-                            DisplayName: {},
-                            InstallSet: {
-                                Instructions: []
-                            }
-                        });
-
-                    tempDir = new TempDirectory();
-                    locales = ["en", "cn", "es"];
-
-                    for (let locale of locales)
-                    {
-                        displayName[locale] = "test";
-                    }
-
-                    let instruction: UserOptionInstruction = new UserOptionInstruction(
-                        {
-                            FileName: "options.xml",
+                            FileName: "userOptions.xml",
                             Nodes: [
                                 {
-                                    Name: "bar",
+                                    Name: "foo",
                                     Item: {
                                         DisplayName: displayName
                                     }
                                 }
                             ]
-                        });
-
-                    extensionPackage.InstallSet.push(instruction);
-                    compiler = new UserOptionInstructionCompiler(instruction);
-                    compiler.DestinationPath = tempDir.FullName;
-                    fileName = compiler.DestinationFileName;
-                    translationDir = tempDir.MakePath(instruction.DestinationRoot, instruction.TranslationDirectory);
-                });
-
-            suiteTeardown(
-                () =>
-                {
-                    tempDir.Dispose();
-                });
-
-            suite(
-                "Compile",
-                () =>
-                {
-                    test(
-                        "Checking whether the compiler can be executed…",
-                        async () =>
-                        {
-                            await doesNotReject(async () => compiler.Execute());
-                        });
-
-                    test(
-                        "Checking whether the option-file exists…",
-                        async () =>
-                        {
-                            ok(await pathExists(fileName));
-                        });
-
-                    test(
-                        "Checking whether the language-files exist…",
-                        async () =>
-                        {
-                            let files: string[] = await readdir(translationDir);
-                            ok(locales.every((locale: string) => files.includes(`${locale}.xml`)));
-                        });
-                });
-        });
+                        })));
+        }
+    }("UserOptionInstructionCompiler");
 }
