@@ -56,7 +56,7 @@ export class PackageFileCompiler extends WoltLabXMLCompiler<Package>
 
         for (let locale of this.Item.DisplayName.GetLocales())
         {
-            let displayNameElement = packageNode.CreateTextElement("packageName", this.Item.DisplayName.Data.get(locale));
+            let displayNameElement = packageNode.CreateTextElement("packagename", this.Item.DisplayName.Data.get(locale));
             packageNode.Add(displayNameElement);
 
             if (locale !== "inv")
