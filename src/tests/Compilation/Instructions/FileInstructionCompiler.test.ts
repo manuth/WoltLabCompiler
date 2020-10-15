@@ -1,192 +1,178 @@
-import { doesNotReject, ok, strictEqual } from "assert";
+import { ok, strictEqual } from "assert";
 import { TempDirectory } from "@manuth/temp-files";
-import { pathExists, writeFile } from "fs-extra";
-import { extract, FileStat, list } from "tar";
-import { parse } from "upath";
+import { writeFile } from "fs-extra";
+import { extract, list } from "tar";
+import { join, parse } from "upath";
 import { FileInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/FileInstructionCompiler";
 import { ApplicationFileSystemInstruction } from "../../../PackageSystem/Instructions/FileSystem/ApplicationFileSystemInstruction";
 import { Package } from "../../../PackageSystem/Package";
+import { XMLEditor } from "../../../Serialization/XMLEditor";
+import { CompilerTester } from "../TestComponents/Testers/CompilerTester";
+import { InstructionCompilerTestRunner } from "../TestComponents/TestRunners/InstructionCompilerTestRunner";
 
 /**
  * Registers tests for the `FileInstructionCompiler` class.
  */
 export function FileInstructionCompilerTests(): void
 {
-    suite(
-        "FileInstructionCompiler",
-        () =>
-        {
-            let sourceDir: TempDirectory;
-            let testDir: TempDirectory;
-            let tempDir: TempDirectory;
-            let archiveFileName: string;
-            let instruction: ApplicationFileSystemInstruction;
-            let compiler: FileInstructionCompiler;
-            let fileNames: string[];
-            let content: string;
+    let sourceDir: TempDirectory;
+    let tempDir: TempDirectory;
+    let fileNames: string[];
 
-            suiteSetup(
+    new class extends InstructionCompilerTestRunner<CompilerTester<FileInstructionCompiler>, FileInstructionCompiler>
+    {
+        /**
+         * @inheritdoc
+         *
+         * @returns
+         * The new compiler-tester instance.
+         */
+        protected CreateTester(): CompilerTester<FileInstructionCompiler>
+        {
+            return new CompilerTester(
+                new FileInstructionCompiler(
+                    new ApplicationFileSystemInstruction(
+                        {
+                            Source: sourceDir.FullName
+                        })));
+        }
+
+        /**
+         * @inheritdoc
+         */
+        protected async SuiteSetup(): Promise<void>
+        {
+            fileNames = [
+                "test1.txt",
+                "test2.txt",
+                "this-is-a-file.txt",
+                ".htaccess",
+                "picture.xcf"
+            ];
+
+            sourceDir = new TempDirectory();
+            tempDir = new TempDirectory();
+            await super.SuiteSetup();
+
+            for (let fileName of fileNames)
+            {
+                await writeFile(sourceDir.MakePath(fileName), "Hello world");
+            }
+        }
+
+        /**
+         * @inheritdoc
+         */
+        protected ExecuteTests(): void
+        {
+            test(
+                "Checking whether the archive can be extracted…",
                 async () =>
                 {
-                    sourceDir = new TempDirectory();
-                    testDir = new TempDirectory();
-                    tempDir = new TempDirectory();
-
-                    fileNames = [
-                        "test1.txt",
-                        "test2.txt",
-                        "this-is-a-file.txt",
-                        ".htaccess",
-                        "picture.xcf"
-                    ];
-
-                    content = "Hello World";
-
-                    let $package: Package = new Package(
+                    await extract(
                         {
-                            Identifier: "foo",
-                            DisplayName: {},
-                            InstallSet: {
-                                Instructions: []
+                            cwd: tempDir.FullName,
+                            file: this.Compiler.DestinationFileName
+                        });
+                });
+
+            test(
+                "Checking whether all files are present inside the the archive…",
+                async () =>
+                {
+                    let files: string[] = [];
+
+                    await list(
+                        {
+                            file: this.Compiler.DestinationFileName,
+                            onentry: (entry) =>
+                            {
+                                files.push(entry.header.path);
+                            },
+                            filter: (fileName, stat) =>
+                            {
+                                return parse(fileName).dir.length === 0;
                             }
                         });
 
-                    for (let fileName of fileNames)
-                    {
-                        await writeFile(sourceDir.MakePath(fileName), content);
-                    }
-
-                    instruction = new ApplicationFileSystemInstruction(
-                        {
-                            Source: sourceDir.FullName
-                        });
-
-                    $package.InstallSet.push(instruction);
-                    compiler = new FileInstructionCompiler(instruction);
-                    compiler.DestinationPath = tempDir.FullName;
-                    archiveFileName = compiler.DestinationFileName;
+                    strictEqual(fileNames.length, files.length);
+                    ok(fileNames.every((fileName) => files.includes(fileName)));
+                    ok(files.every((fileName: string) => fileNames.includes(fileName)));
                 });
+        }
 
-            suiteTeardown(
-                () =>
-                {
-                    sourceDir.Dispose();
-                    testDir.Dispose();
-                    tempDir.Dispose();
-                });
-
-            suite(
-                "Compile",
-                () =>
-                {
-                    test(
-                        "Checking whether the instruction can be compiled…",
-                        async () =>
-                        {
-                            await doesNotReject(async () => compiler.Execute());
-                            await compiler.Execute();
-                        });
-
-                    test(
-                        "Checking whether the archive has been created…",
-                        async () =>
-                        {
-                            ok(await pathExists(archiveFileName));
-                        });
-
-                    test(
-                        "Checking whether the archive can be extracted…",
-                        async () =>
-                        {
-                            await extract(
-                                {
-                                    cwd: testDir.FullName,
-                                    file: archiveFileName
-                                });
-                        });
-
-                    test(
-                        "Checking whether all files are present inside the archive…",
-                        async () =>
-                        {
-                            let files: string[] = [];
-
-                            await list(
-                                {
-                                    file: archiveFileName,
-                                    onentry: (entry: FileStat): void =>
-                                    {
-                                        files.push(entry.header.path);
-                                    },
-                                    filter: (fileName: string, stat: FileStat): boolean =>
-                                    {
-                                        return parse(fileName).dir.length === 0;
-                                    }
-                                });
-
-                            ok(fileNames.every((fileName: string): boolean => files.includes(fileName)));
-                            ok(files.every((fileName: string): boolean => fileNames.includes(fileName)));
-                        });
-                });
+        /**
+         * @inheritdoc
+         */
+        protected RegisterTests(): void
+        {
+            super.RegisterTests();
 
             suite(
                 "Serialize",
                 () =>
                 {
-                    let application: string;
-                    let normalDocument: Document;
-                    let applicationDocument: Document;
+                    let appliaction: string;
+                    let normalDocument: XMLEditor;
+                    let applicationDocument: XMLEditor;
 
                     suiteSetup(
                         () =>
                         {
-                            application = "gallery";
+                            appliaction = "gallery";
+                        });
 
-                            let normalInstruction: ApplicationFileSystemInstruction = new ApplicationFileSystemInstruction(
+                    setup(
+                        () =>
+                        {
+                            let normalInstruction = new ApplicationFileSystemInstruction(
                                 {
                                     Source: "files"
                                 });
 
-                            let applicationInstruction: ApplicationFileSystemInstruction = new ApplicationFileSystemInstruction(
+                            let applicationInstruction = new ApplicationFileSystemInstruction(
                                 {
-                                    Source: "gallery/files",
-                                    Application: application
+                                    Source: join("gallery", "files"),
+                                    Application: appliaction
                                 });
 
-                            let $package: Package = new Package(
+                            new Package(
                                 {
                                     Identifier: "example",
                                     DisplayName: {},
                                     InstallSet: {
                                         Instructions: []
                                     }
-                                });
+                                }).InstallSet.push(normalInstruction, applicationInstruction);
 
-                            $package.InstallSet.push(normalInstruction, applicationInstruction);
-                            normalDocument = new FileInstructionCompiler(normalInstruction).Serialize();
-                            applicationDocument = new FileInstructionCompiler(applicationInstruction).Serialize();
+                            normalDocument = new XMLEditor(
+                                new FileInstructionCompiler(normalInstruction).Serialize().documentElement);
+
+                            applicationDocument = new XMLEditor(
+                                new FileInstructionCompiler(applicationInstruction).Serialize().documentElement);
                         });
 
                     test(
                         "Checking whether the `application`-attribute is not present if the `Application` is not specified…",
                         () =>
                         {
-                            strictEqual(normalDocument.documentElement.hasAttribute("application"), false);
+                            ok(!normalDocument.HasAttribute("appliaction"));
                         });
 
                     test(
                         "Checking whether the `application`-attribute is present if the `Application` is specified…",
                         () =>
                         {
-                            ok(applicationDocument.documentElement.hasAttribute("application"));
+                            ok(applicationDocument.HasAttribute("application"));
                         });
 
                     test(
-                        "Checking whether the `application`-attribute is correct…",
+                        "Checking whether the `application`-attribute is set correctly…",
                         () =>
                         {
-                            strictEqual(applicationDocument.documentElement.getAttribute("application"), application);
+                            strictEqual(applicationDocument.GetAttribute("application"), appliaction);
                         });
                 });
-        });
+        }
+    }("FileInstructionCompiler").Register();
 }
