@@ -1,205 +1,152 @@
-import { ok, strictEqual } from "assert";
-import { TempFile } from "@manuth/temp-files";
-import FileSystem = require("fs-extra");
-import { DOMParser } from "xmldom";
+import { strictEqual } from "assert";
 import { ListenerFileCompiler } from "../../../Compilation/Events/ListenerFileCompiler";
 import { IListenerOptions } from "../../../Events/IListenerOptions";
 import { Listener } from "../../../Events/Listener";
 import { ListenerEnvironment } from "../../../Events/ListenerEnvironment";
-import { IListenerInstruction } from "../../../PackageSystem/Instructions/Events/IListenerInstruction";
 import { IListenerInstructionOptions } from "../../../PackageSystem/Instructions/Events/IListenerInstructionOptions";
 import { ListenerInstruction } from "../../../PackageSystem/Instructions/Events/ListenerInstruction";
 import { XMLEditor } from "../../../Serialization/XMLEditor";
+import { ListenerCompilerTester } from "../TestComponents/Testers/ListenerCompilerTester";
+import { ListenerCompilerTestRunner } from "../TestComponents/TestRunners/ListenerCompilerTestRunner";
 
 /**
  * Registers tests for the `ListenerFileCompiler` class.
  */
 export function ListenerFileCompilerTests(): void
 {
-    suite(
-        "ListenerFileCompiler",
-        () =>
+    let listenerTag: string;
+
+    /**
+     * Represenst an instruction which provides listeners.
+     */
+    class MyListenerInstruction extends ListenerInstruction<Listener, IListenerOptions>
+    {
+        /**
+         * Initializes a new instance of the `MyListenerInstruction` class.
+         *
+         * @param options
+         * The options for the initialization.
+         */
+        public constructor(options: IListenerInstructionOptions<IListenerOptions>)
         {
-            let tempFile: TempFile;
-            let listenerTag: string;
-            let compiler: ListenerFileCompiler<IListenerInstruction<Listener>, Listener>;
-            let name: string;
-            let environment: ListenerEnvironment;
-            let event: string;
-            let executionOrder: number;
-            let permissions: string[];
-            let enableOptions: string[];
-
-            suiteSetup(
-                () =>
+            super(
+                options,
+                (opts: IListenerOptions) =>
                 {
-                    listenerTag = "myListener";
-
-                    /**
-                     * Represenst an instruction which provides listeners.
-                     */
-                    class MyListenerInstruction extends ListenerInstruction<Listener, IListenerOptions>
+                    return new class extends Listener
                     {
-                        /**
-                         * Initializes a new instance of the `MyListenerInstruction` class.
-                         *
-                         * @param options
-                         * The options for the initialization.
-                         */
-                        public constructor(options: IListenerInstructionOptions<IListenerOptions>)
-                        {
-                            super(options,
-                                (opts: IListenerOptions) =>
-                                {
-                                    return new class extends Listener
-                                    {
-                                    }(opts);
-                                });
-                        }
+                    }(opts);
+                });
+        }
 
-                        /**
-                         * @inheritdoc
-                         */
-                        public get Type(): string
-                        {
-                            return "baz";
-                        }
+        /**
+         * @inheritdoc
+         */
+        public get Type(): string
+        {
+            return "baz";
+        }
+    }
+
+    new class extends ListenerCompilerTestRunner<ListenerCompilerTester<ListenerFileCompiler<MyListenerInstruction, Listener>>, ListenerFileCompiler<MyListenerInstruction, Listener>, Listener>
+    {
+        /**
+         * @inheritdoc
+         */
+        protected get Listeners(): Listener[]
+        {
+            return this.Tester.Compiler.Item.Listeners;
+        }
+
+        /**
+         * @inheritdoc
+         *
+         * @returns
+         * The new compiler-tester instance.
+         */
+        protected CreateTester(): ListenerCompilerTester<ListenerFileCompiler<MyListenerInstruction, Listener>>
+        {
+            return new ListenerCompilerTester(
+                new class extends ListenerFileCompiler<MyListenerInstruction, Listener>
+                {
+                    /**
+                     * @inheritdoc
+                     */
+                    protected get ObjectTagName(): string
+                    {
+                        return listenerTag;
                     }
 
                     /**
-                     * Provides the functionality to compile `MyListenerInstruction`s.
+                     * @inheritdoc
                      */
-                    class MyListenerFileCompiler extends ListenerFileCompiler<MyListenerInstruction, Listener>
+                    protected get SchemaLocation(): string
                     {
-                        /**
-                         * @inheritdoc
-                         */
-                        protected get ObjectTagName(): string
-                        {
-                            return listenerTag;
-                        }
-
-                        /**
-                         * @inheritdoc
-                         */
-                        protected get SchemaLocation(): string
-                        {
-                            return "http://example.com/myListener.xsd";
-                        }
+                        return "";
                     }
-
-                    tempFile = new TempFile();
-                    name = "test";
-                    environment = ListenerEnvironment.FrontEnd;
-                    event = "exampleEvent";
-                    executionOrder = Math.floor(Math.random() * 100);
-                    permissions = ["foo", "bar", "baz"];
-                    enableOptions = ["this", "is", "a", "test"];
-
-                    let instruction: ListenerInstruction<Listener, IListenerOptions> = new MyListenerInstruction(
+                }(
+                    new MyListenerInstruction(
                         {
                             FileName: null,
                             Listeners: [
                                 {
-                                    Name: name,
-                                    Environment: environment,
-                                    EventName: event,
-                                    ExecutionOrder: executionOrder,
-                                    Permissions: permissions,
-                                    Options: enableOptions
+                                    Name: "test",
+                                    Environment: (Math.random() > 0.5) ? ListenerEnvironment.FrontEnd : ListenerEnvironment.BackEnd,
+                                    EventName: "exampleEvent",
+                                    ExecutionOrder: Math.floor(Math.random() * 100),
+                                    Permissions: [
+                                        "foo",
+                                        "bar",
+                                        "baz"
+                                    ],
+                                    Options: [
+                                        "this",
+                                        "is",
+                                        "a",
+                                        "test"
+                                    ]
                                 }
                             ]
-                        });
+                        })),
+                listenerTag);
+        }
 
-                    compiler = new MyListenerFileCompiler(instruction);
-                    compiler.DestinationPath = tempFile.FullName;
-                });
+        /**
+         * @inheritdoc
+         */
+        protected async SuiteSetup(): Promise<void>
+        {
+            listenerTag = "myListener";
+            await super.SuiteSetup();
+        }
 
-            suiteTeardown(
-                () =>
+        /**
+         * @inheritdoc
+         *
+         * @param listenerNode
+         * The listener-node to check.
+         *
+         * @param listener
+         * The listener to check.
+         */
+        protected AssertListenerMetadata(listenerNode: XMLEditor, listener: Listener): void
+        {
+            strictEqual(listenerNode.GetAttribute("name"), listener.Name);
+            this.AssertTagContent(listenerNode, "environment", listener.Environment);
+            this.AssertTagContent(listenerNode, "eventname", listener.EventName);
+            this.AssertTagContent(listenerNode, "nice", listener.ExecutionOrder.toString());
+
+            listener.Permissions.every(
+                (permission) =>
                 {
-                    tempFile.Dispose();
+                    this.GetText(listenerNode, "permissions").split(",").includes(permission);
                 });
 
-            suite(
-                "Compile()",
-                () =>
+            listener.Options.every(
+                (option) =>
                 {
-                    suite(
-                        "General",
-                        () =>
-                        {
-                            test(
-                                "Checking whether the compiler can be executed…",
-                                async () =>
-                                {
-                                    await compiler.Execute();
-                                });
-                        });
-
-                    suite(
-                        "Checking the integrity of the file…",
-                        () =>
-                        {
-                            let importEditor: XMLEditor;
-
-                            suite(
-                                "General",
-                                () =>
-                                {
-                                    test(
-                                        "Checking whether the content of the compiled file is valid xml…",
-                                        async () =>
-                                        {
-                                            let document = new DOMParser().parseFromString((await FileSystem.readFile(tempFile.FullName)).toString());
-                                            importEditor = new XMLEditor(document.documentElement).GetChildrenByTag("import")[0];
-                                        });
-                                });
-
-                            suite(
-                                "Checking the integrity of the listener…",
-                                () =>
-                                {
-                                    let listenerEditor: XMLEditor;
-                                    let nameAttribute: string;
-                                    let environmentTag: string;
-                                    let eventTag: string;
-                                    let executionOrderTag: string;
-                                    let permissionsTag: string;
-                                    let optionsTag: string;
-
-                                    suiteSetup(
-                                        () =>
-                                        {
-                                            nameAttribute = "name";
-                                            environmentTag = "environment";
-                                            eventTag = "eventname";
-                                            executionOrderTag = "nice";
-                                            permissionsTag = "permissions";
-                                            optionsTag = "options";
-                                        });
-
-                                    test(
-                                        "Checking whether the listener is present…",
-                                        () =>
-                                        {
-                                            ok(importEditor.HasTag(listenerTag, true));
-                                            listenerEditor = importEditor.GetChildrenByTag(listenerTag)[0];
-                                        });
-
-                                    test(
-                                        "Checking the integrity of the meta-data…",
-                                        () =>
-                                        {
-                                            strictEqual(listenerEditor.GetAttribute(nameAttribute), name);
-                                            ok(listenerEditor.HasText(environmentTag, environment));
-                                            ok(listenerEditor.HasText(eventTag, event));
-                                            ok(listenerEditor.HasText(executionOrderTag, executionOrder.toString()));
-                                            ok(listenerEditor.HasText(permissionsTag, permissions.join(",")));
-                                            ok(listenerEditor.HasText(optionsTag, enableOptions.join(",")));
-                                        });
-                                });
-                        });
+                    this.GetText(listenerNode, "options").split(",").includes(option);
                 });
-        });
+        }
+    }("ListenerFileCompiler").Register();
 }
