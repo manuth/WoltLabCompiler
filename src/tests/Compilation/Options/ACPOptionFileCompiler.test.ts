@@ -1,4 +1,5 @@
 import { ACPOptionFileCompiler } from "../../../Compilation/Options/ACPOptionFileCompiler";
+import { INode } from "../../../NodeSystem/Generic/INode";
 import { ACPCategory } from "../../../Options/ControlPanel/ACPCategory";
 import { ACPOption } from "../../../Options/ControlPanel/ACPOption";
 import { ACPOptionInstruction } from "../../../PackageSystem/Instructions/Options/ACPOptionInstruction";
@@ -53,7 +54,7 @@ export function ACPOptionFileCompilerTests(): void
          * @param category
          * The category to check.
          */
-        protected AssertCategoryMetadata(categoryNode: XMLEditor, category: ACPCategory): void
+        protected AssertCategoryMetadata(categoryNode: XMLEditor, category: INode<ACPCategory>): void
         { }
 
         /**

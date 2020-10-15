@@ -27,14 +27,14 @@ export abstract class OptionFileCompilerTestRunner<TTester extends OptionCompile
     /**
      * Gets the categories to test.
      */
-    protected get Categories(): TCategory[]
+    protected get Categories(): Array<INode<TCategory>>
     {
-        let result: TCategory[] = [];
+        let result: Array<INode<TCategory>> = [];
 
-        let nodeCollector = (node: INode<TCategory>): TCategory[] =>
+        let nodeCollector = (node: INode<TCategory>): Array<INode<TCategory>> =>
         {
-            let result: TCategory[] = [];
-            result.push(node.Item);
+            let result: Array<INode<TCategory>> = [];
+            result.push(node);
 
             for (let subNode of node.Nodes)
             {
@@ -60,7 +60,7 @@ export abstract class OptionFileCompilerTestRunner<TTester extends OptionCompile
         return this.Categories.flatMap(
             (category) =>
             {
-                return category.Options;
+                return category.Item.Options;
             });
     }
 
@@ -157,7 +157,7 @@ export abstract class OptionFileCompilerTestRunner<TTester extends OptionCompile
      * @param category
      * The category to check.
      */
-    protected abstract AssertCategoryMetadata(categoryNode: XMLEditor, category: TCategory): void;
+    protected abstract AssertCategoryMetadata(categoryNode: XMLEditor, category: INode<TCategory>): void;
 
     /**
      * Asserts the content of an option-node.

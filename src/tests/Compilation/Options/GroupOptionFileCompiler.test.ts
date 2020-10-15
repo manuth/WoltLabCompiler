@@ -1,4 +1,5 @@
 import { GroupOptionFileCompiler } from "../../../Compilation/Options/GroupOptionFileCompiler";
+import { INode } from "../../../NodeSystem/Generic/INode";
 import { GroupCategory } from "../../../Options/Groups/GroupCategory";
 import { GroupOption } from "../../../Options/Groups/GroupOption";
 import { GroupOptionInstruction } from "../../../PackageSystem/Instructions/Options/GroupOptionInstruction";
@@ -54,7 +55,7 @@ export function GroupOptionFileCompilerTests(): void
          * @param category
          * The category to check.
          */
-        protected AssertCategoryMetadata(categoryNode: XMLEditor, category: GroupCategory): void
+        protected AssertCategoryMetadata(categoryNode: XMLEditor, category: INode<GroupCategory>): void
         { }
 
         /**
