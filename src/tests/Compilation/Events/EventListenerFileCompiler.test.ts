@@ -1,6 +1,7 @@
 import { EventListenerFileCompiler } from "../../../Compilation/Events/EventListenerFileCompiler";
 import { EventListener } from "../../../Events/EventListener";
 import { EventListenerInstruction } from "../../../PackageSystem/Instructions/Events/EventListenerInstruction";
+import { XMLEditor } from "../../../Serialization/XMLEditor";
 import { ListenerCompilerTester } from "../TestComponents/Testers/ListenerCompilerTester";
 import { ListenerCompilerTestRunner } from "../TestComponents/TestRunners/ListenerCompilerTestRunner";
 
@@ -48,29 +49,18 @@ export function EventListenerFileCompilerTests(): void
 
         /**
          * @inheritdoc
+         *
+         * @param listenerNode
+         * The listener-node to check.
+         *
+         * @param listener
+         * The listener to check.
          */
-        protected ExecuteTests(): void
+        protected AssertListenerMetadata(listenerNode: XMLEditor, listener: EventListener): void
         {
-            super.ExecuteTests();
-
-            test(
-                "Checking the integrity of the metadata…",
-                () =>
-                {
-                    let eventClassTag = "eventclassname";
-                    let inheritTag = "inherit";
-                    let eventHandlerTag = "listenerclassname";
-
-                    for (let listener of this.Listeners)
-                    {
-                        for (let listenerNode of this.Tester.ImportEditor.GetChildrenByTag(this.Tester.ListenerTag))
-                        {
-                            this.AssertTagContent(listenerNode, eventClassTag, listener.ClassName);
-                            this.AssertTagContent(listenerNode, inheritTag, listener.AllowInherited ? "1" : "0");
-                            this.AssertTagContent(listenerNode, eventHandlerTag, listener.EventHandlerClassName);
-                        }
-                    }
-                });
+            this.AssertTagContent(listenerNode, "eventclassname", listener.ClassName);
+            this.AssertTagContent(listenerNode, "inherit", listener.AllowInherited ? "1" : "0");
+            this.AssertTagContent(listenerNode, "listenerclassname", listener.EventHandlerClassName);
         }
     }("EventListenerFileCompiler").Register();
 }

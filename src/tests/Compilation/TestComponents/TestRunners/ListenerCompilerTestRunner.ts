@@ -1,7 +1,8 @@
-import { strictEqual } from "assert";
+import { AssertionError, ok, strictEqual } from "assert";
 import { ListenerFileCompiler } from "../../../../Compilation/Events/ListenerFileCompiler";
 import { Listener } from "../../../../Events/Listener";
 import { IListenerInstruction } from "../../../../PackageSystem/Instructions/Events/IListenerInstruction";
+import { XMLEditor } from "../../../../Serialization/XMLEditor";
 import { ListenerCompilerTester } from "../Testers/ListenerCompilerTester";
 import { XMLCompilerTestRunner } from "./XMLCompilerTestRunner";
 
@@ -39,5 +40,46 @@ export abstract class ListenerCompilerTestRunner<TTester extends ListenerCompile
             {
                 strictEqual(this.Tester.ImportEditor.GetChildrenByTag(this.Tester.ListenerTag).length, this.Listeners.length);
             });
+
+        test(
+            "Checking the integrity of the metadata…",
+            () =>
+            {
+                for (let listener of this.Listeners)
+                {
+                    ok(
+                        this.Tester.ImportEditor.GetChildrenByTag(this.Tester.ListenerTag).some(
+                            (listenerNode) =>
+                            {
+                                try
+                                {
+                                    this.AssertListenerMetadata(listenerNode, listener);
+                                    return true;
+                                }
+                                catch (error)
+                                {
+                                    if (error instanceof AssertionError)
+                                    {
+                                        return false;
+                                    }
+                                    else
+                                    {
+                                        throw error;
+                                    }
+                                }
+                            }));
+                }
+            });
     }
+
+    /**
+     * Asserts the content of a listener-node.
+     *
+     * @param listenerNode
+     * The listener-node to check.
+     *
+     * @param listener
+     * The listener to check.
+     */
+    protected abstract AssertListenerMetadata(listenerNode: XMLEditor, listener: TListener): void;
 }
