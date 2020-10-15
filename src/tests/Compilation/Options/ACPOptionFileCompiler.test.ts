@@ -1,163 +1,75 @@
-import { ok, strictEqual } from "assert";
-import { TempFile } from "@manuth/temp-files";
-import { readFile } from "fs-extra";
-import { DOMParser } from "xmldom";
 import { ACPOptionFileCompiler } from "../../../Compilation/Options/ACPOptionFileCompiler";
-import { IACPOptionOptions } from "../../../Options/ControlPanel/IACPOptionOptions";
+import { ACPCategory } from "../../../Options/ControlPanel/ACPCategory";
+import { ACPOption } from "../../../Options/ControlPanel/ACPOption";
 import { ACPOptionInstruction } from "../../../PackageSystem/Instructions/Options/ACPOptionInstruction";
 import { XMLEditor } from "../../../Serialization/XMLEditor";
+import { OptionCompilerTester } from "../TestComponents/Testers/OptionCompilerTester";
+import { OptionFileCompilerTestRunner } from "../TestComponents/TestRunners/OptionFileCompilerTestRunner";
 
 /**
  * Registers tests for the `ACPOptionFileCompiler` class.
  */
 export function ACPOptionFileCompilerTests(): void
 {
-    suite(
-        "ACPOptionFileCompiler",
-        () =>
+    new class extends OptionFileCompilerTestRunner<OptionCompilerTester<ACPOptionFileCompiler>, ACPOptionFileCompiler, ACPCategory, ACPOption>
+    {
+        /**
+         * @inheritdoc
+         *
+         * @returns
+         * The new compiler-tester instance.
+         */
+        protected CreateTester(): OptionCompilerTester<ACPOptionFileCompiler>
         {
-            let tempFile: TempFile;
-            let compiler: ACPOptionFileCompiler;
-            let option: IACPOptionOptions;
-
-            suiteSetup(
-                () =>
-                {
-                    tempFile = new TempFile();
-
-                    option = {
-                        Name: "foo",
-                        Localizable: Math.random() > 0.5,
-                        ForceLocalization: Math.random() > 0.5,
-                        Visible: Math.random() > 0.5
-                    };
-
-                    let acpInstruction: ACPOptionInstruction = new ACPOptionInstruction(
+            return new OptionCompilerTester(
+                new ACPOptionFileCompiler(
+                    new ACPOptionInstruction(
                         {
                             FileName: null,
                             Nodes: [
                                 {
-                                    Name: "bar",
+                                    Name: "foo",
                                     Item: {
                                         Options: [
-                                            option
+                                            {
+                                                Name: "bar",
+                                                Localizable: Math.random() > 0.5,
+                                                ForceLocalization: Math.random() > 0.5,
+                                                Visible: Math.random() > 0.5
+                                            }
                                         ]
                                     }
                                 }
                             ]
-                        });
+                        })));
+        }
 
-                    compiler = new ACPOptionFileCompiler(acpInstruction);
-                    compiler.DestinationPath = tempFile.FullName;
-                });
+        /**
+         * @inheritdoc
+         *
+         * @param categoryNode
+         * The category-node to check.
+         *
+         * @param category
+         * The category to check.
+         */
+        protected AssertCategoryMetadata(categoryNode: XMLEditor, category: ACPCategory): void
+        { }
 
-            suiteTeardown(
-                () =>
-                {
-                    tempFile.Dispose();
-                });
-
-            suite(
-                "Compile",
-                () =>
-                {
-                    suite(
-                        "General",
-                        () =>
-                        {
-                            test(
-                                "Checking whether the compiler can be executed…",
-                                async () =>
-                                {
-                                    await compiler.Execute();
-                                });
-                        });
-
-                    suite(
-                        "Checking the integrity of the compiled file…",
-                        () =>
-                        {
-                            let editor: XMLEditor;
-
-                            suite(
-                                "General",
-                                () =>
-                                {
-                                    test(
-                                        "Checking whether the file is a valid xml-file…",
-                                        async () =>
-                                        {
-                                            let document: Document = new DOMParser().parseFromString((await readFile(tempFile.FullName)).toString());
-                                            editor = new XMLEditor(document.documentElement);
-                                        });
-                                });
-
-                            suite(
-                                "Checking the integrity of the option…",
-                                () =>
-                                {
-                                    let optionEditor: XMLEditor;
-
-                                    suite(
-                                        "General",
-                                        () =>
-                                        {
-                                            let optionTag: string;
-
-                                            suiteSetup(
-                                                () =>
-                                                {
-                                                    optionTag = "option";
-                                                });
-
-                                            test(
-                                                "Checking whether the option exists…",
-                                                () =>
-                                                {
-                                                    strictEqual(editor.GetElementsByTag(optionTag).length, 1);
-                                                    optionEditor = editor.GetElementsByTag(optionTag)[0];
-                                                });
-                                        });
-
-                                    suite(
-                                        "Checking the integrity of the meta-data…",
-                                        () =>
-                                        {
-                                            let visibleTag: string;
-                                            let localizableTag: string;
-                                            let forceLocalizationTag: string;
-
-                                            suiteSetup(
-                                                () =>
-                                                {
-                                                    visibleTag = "hidden";
-                                                    localizableTag = "supporti18n";
-                                                    forceLocalizationTag = "requirei18n";
-                                                });
-
-                                            test(
-                                                "Checking whether the visibility is set correctly…",
-                                                () =>
-                                                {
-                                                    ok(optionEditor.HasText(visibleTag, option.Visible ? "0" : "1"));
-                                                });
-
-                                            test(
-                                                "Checking whether the localization-support is set correctly…",
-                                                () =>
-                                                {
-                                                    ok(optionEditor.HasText(localizableTag, option.Localizable ? "1" : "0"));
-                                                });
-
-                                            test(
-                                                "Checking whether the localization-requirement is set correctly…",
-                                                () =>
-                                                {
-                                                    ok(optionEditor.HasText(forceLocalizationTag, option.ForceLocalization ? "1" : "0"));
-                                                });
-                                        });
-                                });
-                        });
-                });
-        });
+        /**
+         * Asserts the content of an option-node.
+         *
+         * @param optionNode
+         * The option-node to check.
+         *
+         * @param option
+         * The option to check.
+         */
+        protected AssertOptionMetadata(optionNode: XMLEditor, option: ACPOption): void
+        {
+            this.AssertTagContent(optionNode, "hidden", option.Visible ? "0" : "1");
+            this.AssertTagContent(optionNode, "supporti18n", option.Localizable ? "1" : "0");
+            this.AssertTagContent(optionNode, "requirei18n", option.ForceLocalization ? "1" : "0");
+        }
+    }("ACPOptionFileCompiler").Register();
 }
