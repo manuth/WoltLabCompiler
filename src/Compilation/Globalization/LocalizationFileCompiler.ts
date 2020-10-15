@@ -48,17 +48,16 @@ export class LocalizationFileCompiler extends WoltLabXMLCompiler<[string, Record
 
         for (let categoryName of Object.keys(this.Item[1]))
         {
-            editor.AddElement(
-                "category",
-                (category: XMLEditor) =>
-                {
-                    category.SetAttribute("name", categoryName);
+            let categoryElement = editor.CreateElement("category");
+            categoryElement.SetAttribute("name", categoryName);
+            editor.Add(categoryElement);
 
-                    for (let messageName of Object.keys(this.Item[1][categoryName]))
-                    {
-                        category.AddCDATAElement("item", this.Item[1][categoryName][messageName], (item: XMLEditor) => item.SetAttribute("name", `${categoryName}.${messageName}`));
-                    }
-                });
+            for (let messageName of Object.keys(this.Item[1][categoryName]))
+            {
+                let itemElement = categoryElement.CreateCDATAElement("item", this.Item[1][categoryName][messageName]);
+                itemElement.SetAttribute("name", `${categoryName}.${messageName}`);
+                categoryElement.Add(itemElement);
+            }
         }
 
         return document;

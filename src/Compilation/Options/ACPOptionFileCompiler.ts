@@ -40,9 +40,9 @@ export class ACPOptionFileCompiler extends OptionFileCompiler<ACPOptionInstructi
     protected CreateOption(option: ACPOption): Element
     {
         let editor: XMLEditor = new XMLEditor(super.CreateOption(option));
-        editor.AddTextElement("hidden", option.Visible ? "0" : "1");
-        editor.AddTextElement("supporti18n", option.Localizable ? "1" : "0");
-        editor.AddTextElement("requirei18n", option.ForceLocalization ? "1" : "0");
+        editor.Add(editor.CreateTextElement("hidden", option.Visible ? "0" : "1"));
+        editor.Add(editor.CreateTextElement("supporti18n", option.Localizable ? "1" : "0"));
+        editor.Add(editor.CreateTextElement("requirei18n", option.ForceLocalization ? "1" : "0"));
         return editor.Element;
     }
 }

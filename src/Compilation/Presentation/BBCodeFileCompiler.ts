@@ -46,73 +46,64 @@ export class BBCodeFileCompiler extends NamedObjectDeletionFileCompiler<BBCodeIn
 
         for (let bbCode of this.Item.BBCodes)
         {
-            editor.AddElement(
-                this.ObjectTagName,
-                (bbCodeEditor) =>
+            let bbCodeNode = editor.CreateElement(this.ObjectTagName);
+            editor.Add(bbCodeNode);
+            bbCodeNode.SetAttribute("name", bbCode.Name);
+
+            if (bbCode.DisplayName.GetLocales().length > 0)
+            {
+                bbCodeNode.Add(bbCodeNode.CreateTextElement("buttonLabel", `wcf.editor.button.${bbCode.Name}`));
+            }
+
+            if (bbCode.Icon)
+            {
+                bbCodeNode.Add(bbCodeNode.CreateTextElement("wysiwygicon", bbCode.Icon));
+            }
+
+            if (bbCode.ClassName)
+            {
+                bbCodeNode.Add(bbCodeNode.CreateTextElement("classname", bbCode.ClassName));
+            }
+
+            if (bbCode.TagName)
+            {
+                bbCodeNode.Add(bbCodeNode.CreateTextElement("htmlopen", bbCode.TagName));
+
+                if (!bbCode.IsSelfClosing)
                 {
-                    bbCodeEditor.SetAttribute("name", bbCode.Name);
+                    bbCodeNode.Add(bbCodeNode.CreateTextElement("htmlclose", bbCode.TagName));
+                }
+            }
 
-                    if (bbCode.DisplayName.GetLocales().length > 0)
+            bbCodeNode.Add(bbCodeNode.CreateTextElement("isBlockElement", bbCode.IsBlockElement ? "1" : "0"));
+            bbCodeNode.Add(bbCodeNode.CreateTextElement("sourcecode", bbCode.ParseContent ? "0" : "1"));
+
+            if (bbCode.Attributes.length > 0)
+            {
+                let attributesNode = bbCodeNode.CreateElement("attributes");
+                bbCodeNode.Add(attributesNode);
+
+                for (let i = 0; i < bbCode.Attributes.length; i++)
+                {
+                    let attribute = bbCode.Attributes[i];
+                    let attributeNode = attributesNode.CreateElement("attribute");
+                    attributesNode.Add(attributeNode);
+                    attributeNode.SetAttribute("name", i.toString());
+
+                    attributeNode.Add(attributeNode.CreateTextElement("required", attribute.Required ? "1" : "0"));
+                    attributeNode.Add(attributeNode.CreateTextElement("useText", attribute.ValueByContent ? "1" : "0"));
+
+                    if (attribute.Code)
                     {
-                        bbCodeEditor.AddTextElement("buttonLabel", `wcf.editor.button.${bbCode.Name}`);
+                        attributeNode.Add(attributeNode.CreateTextElement("html", attribute.Code));
                     }
 
-                    if (bbCode.Icon)
+                    if (attribute.ValidationPattern)
                     {
-                        bbCodeEditor.AddTextElement("wysiwygicon", bbCode.Icon);
+                        attributeNode.Add(attributeNode.CreateTextElement("validationpattern", attribute.ValidationPattern.source));
                     }
-
-                    if (bbCode.ClassName)
-                    {
-                        bbCodeEditor.AddTextElement("classname", bbCode.ClassName);
-                    }
-
-                    if (bbCode.TagName)
-                    {
-                        bbCodeEditor.AddTextElement("htmlopen", bbCode.TagName);
-
-                        if (!bbCode.IsSelfClosing)
-                        {
-                            bbCodeEditor.AddTextElement("htmlclose", bbCode.TagName);
-                        }
-                    }
-
-                    bbCodeEditor.AddTextElement("isBlockElement", bbCode.IsBlockElement ? "1" : "0");
-                    bbCodeEditor.AddTextElement("sourcecode", bbCode.ParseContent ? "0" : "1");
-
-                    if (bbCode.Attributes.length > 0)
-                    {
-                        bbCodeEditor.AddElement(
-                            "attributes",
-                            (attributes) =>
-                            {
-                                for (let i = 0; i < bbCode.Attributes.length; i++)
-                                {
-                                    let attribute = bbCode.Attributes[i];
-
-                                    attributes.AddElement(
-                                        "attribute",
-                                        (attributeEditor) =>
-                                        {
-                                            attributeEditor.SetAttribute("name", i.toString());
-
-                                            attributeEditor.AddTextElement("required", attribute.Required ? "1" : "0");
-                                            attributeEditor.AddTextElement("useText", attribute.ValueByContent ? "1" : "0");
-
-                                            if (attribute.Code)
-                                            {
-                                                attributeEditor.AddTextElement("html", attribute.Code);
-                                            }
-
-                                            if (attribute.ValidationPattern)
-                                            {
-                                                attributeEditor.AddTextElement("validationpattern", attribute.ValidationPattern.source);
-                                            }
-                                        });
-                                }
-                            });
-                    }
-                });
+                }
+            }
         }
 
         return editor.Element;

@@ -53,112 +53,95 @@ export class ThemeFileCompiler extends WoltLabXMLCompiler<Theme>
     {
         let document = super.CreateDocument();
         let editor = new XMLEditor(document.documentElement);
+        let generalNode = editor.CreateElement("general");
+        let authorNode = editor.CreateElement("author");
+        let filesNode = editor.CreateElement("files");
+        editor.Add(generalNode);
+        editor.Add(authorNode);
+        editor.Add(filesNode);
 
-        editor.AddElement(
-            "general",
-            (general) =>
-            {
-                for (let locale of this.Item.DisplayName.GetLocales())
-                {
-                    general.AddTextElement(
-                        "stylename",
-                        this.Item.DisplayName.Data.get(locale),
-                        (name) =>
-                        {
-                            if (locale !== "inv")
-                            {
-                                name.SetAttribute("language", locale);
-                            }
-                        });
-                }
-
-                general.AddTextElement("version", this.Item.Version);
-
-                general.AddTextElement(
-                    "date",
-                    this.Item.CreationDate.getFullYear().toString() + "-" +
-                    (this.Item.CreationDate.getMonth() + 1).toString().padStart(2, "0") + "-" +
-                    this.Item.CreationDate.getDate().toString().padStart(2, "0"));
-
-                for (let locale of this.Item.Description.GetLocales())
-                {
-                    general.AddTextElement(
-                        "description",
-                        this.Item.Description.Data.get(locale),
-                        (description) =>
-                        {
-                            if (locale !== "inv")
-                            {
-                                description.SetAttribute("language", locale);
-                            }
-                        });
-                }
-
-                if (this.Item.License)
-                {
-                    general.AddTextElement("license", this.Item.License);
-                }
-
-                general.AddTextElement("packageName", this.Item.Instruction.Collection.Package.Identifier);
-                general.AddTextElement("apiVersion", "3.1");
-
-                if (this.Item.Thumbnail)
-                {
-                    general.AddTextElement("image", this.Item.Thumbnail.FileName);
-                }
-
-                if (this.Item.HighResThumbnail)
-                {
-                    general.AddTextElement("image2x", this.Item.HighResThumbnail.FileName);
-                }
-
-                if (this.Item.CoverPhoto)
-                {
-                    general.AddTextElement("coverPhoto", this.Item.CoverPhoto.FileName);
-                }
-            });
-
-        editor.AddElement(
-            "author",
-            (author) =>
-            {
-                if (this.Item.Author.Name)
-                {
-                    author.AddTextElement("authorname", this.Item.Author.Name);
-                }
-
-                if (this.Item.Author.URL)
-                {
-                    author.AddTextElement("authorurl", this.Item.Author.URL);
-                }
-            });
-
-        let files = new XMLEditor(document.createElement("files"));
-
+        for (let locale of this.Item.DisplayName.GetLocales())
         {
-            if (
-                Object.keys(this.Item.Variables).length > 0 ||
-                this.Item.CustomScss ||
-                this.Item.ScssOverride)
-            {
-                files.AddTextElement("variables", this.VariableFileName);
-            }
+            let styleNameNode = generalNode.CreateTextElement("stylename", this.Item.DisplayName.Data.get(locale));
+            generalNode.Add(styleNameNode);
 
-            if (this.Item.Images)
+            if (locale !== "inv")
             {
-                files.AddTextElement(
-                    "images",
-                    this.Item.Images.FileName,
-                    (images) =>
-                    {
-                        images.SetAttribute("path", this.Item.Images.DestinationRoot);
-                    });
+                styleNameNode.SetAttribute("language", locale);
             }
         }
 
-        if (files.ChildNodes.length > 0)
+        generalNode.Add(generalNode.CreateTextElement("version", this.Item.Version));
+
+        generalNode.Add(
+            generalNode.CreateTextElement(
+                "date",
+                this.Item.CreationDate.getFullYear().toString() + "-" +
+                (this.Item.CreationDate.getMonth() + 1).toString().padStart(2, "0") + "-" +
+                this.Item.CreationDate.getDate().toString().padStart(2, "0")));
+
+        for (let locale of this.Item.Description.GetLocales())
         {
-            editor.Add(files.Element);
+            let descriptionNode = generalNode.CreateTextElement("description", this.Item.Description.Data.get(locale));
+            generalNode.Add(descriptionNode);
+
+            if (locale !== "inv")
+            {
+                descriptionNode.SetAttribute("language", locale);
+            }
+        }
+
+        if (this.Item.License)
+        {
+            generalNode.Add(generalNode.CreateTextElement("license", this.Item.License));
+        }
+
+        generalNode.Add(generalNode.CreateTextElement("packageName", this.Item.Instruction.Collection.Package.Identifier));
+        generalNode.Add(generalNode.CreateTextElement("apiVersion", "3.1"));
+
+        if (this.Item.Thumbnail)
+        {
+            generalNode.Add(generalNode.CreateTextElement("image", this.Item.Thumbnail.FileName));
+        }
+
+        if (this.Item.HighResThumbnail)
+        {
+            generalNode.Add(generalNode.CreateTextElement("image2x", this.Item.HighResThumbnail.FileName));
+        }
+
+        if (this.Item.CoverPhoto)
+        {
+            generalNode.Add(generalNode.CreateTextElement("coverPhoto", this.Item.CoverPhoto.FileName));
+        }
+
+        if (this.Item.Author.Name)
+        {
+            authorNode.Add(authorNode.CreateTextElement("authorname", this.Item.Author.Name));
+        }
+
+        if (this.Item.Author.URL)
+        {
+            authorNode.Add(authorNode.CreateTextElement("authorurl", this.Item.Author.URL));
+        }
+
+        if (
+            Object.keys(this.Item.Variables).length > 0 ||
+            this.Item.CustomScss ||
+            this.Item.ScssOverride)
+        {
+            filesNode.Add(filesNode.CreateTextElement("variables", this.VariableFileName));
+        }
+
+        if (this.Item.Images)
+        {
+            let imagesNode = filesNode.CreateTextElement("images", this.Item.Images.FileName);
+            filesNode.Add(imagesNode);
+            imagesNode.SetAttribute("path", this.Item.Images.DestinationRoot);
+        }
+
+        if (filesNode.ChildNodes.length > 0)
+        {
+            editor.Add(filesNode.Element);
         }
 
         return document;

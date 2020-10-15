@@ -81,22 +81,12 @@ export class XMLEditor
      * @param tag
      * The tag of the element to create.
      *
-     * @param processor
-     * A method for manipulating the new element.
-     *
      * @returns
      * The editor for the newly created element.
      */
-    public CreateElement(tag: string, processor?: (element: XMLEditor) => void): XMLEditor
+    public CreateElement(tag: string): XMLEditor
     {
-        let editor = new XMLEditor(this.Document.createElement(tag));
-
-        if (processor)
-        {
-            processor(editor);
-        }
-
-        return editor;
+        return new XMLEditor(this.Document.createElement(tag));
     }
 
     /**
@@ -108,25 +98,14 @@ export class XMLEditor
      * @param textContent
      * The text to insert into the element.
      *
-     * @param processor
-     * A method for manipulating the new element.
-     *
      * @returns
      * The editor for the newly created element.
      */
-    public CreateCDATAElement(tag: string, textContent: string, processor?: (element: XMLEditor) => void): XMLEditor
+    public CreateCDATAElement(tag: string, textContent: string): XMLEditor
     {
-        return this.CreateElement(
-            tag,
-            (element) =>
-            {
-                element.Add(this.Document.createCDATASection(textContent));
-
-                if (processor)
-                {
-                    processor(element);
-                }
-            });
+        let result = this.CreateElement(tag);
+        result.Add(this.Document.createCDATASection(textContent));
+        return result;
     }
 
     /**
@@ -138,37 +117,23 @@ export class XMLEditor
      * @param textContent
      * The text to insert into the element.
      *
-     * @param processor
-     * A method for manipulating the new element.
-     *
      * @returns
      * The editor for the newly created element.
      */
-    public CreateTextElement(tag: string, textContent: string, processor?: (element: XMLEditor) => void): XMLEditor
+    public CreateTextElement(tag: string, textContent: string): XMLEditor
     {
-        return this.CreateElement(
-            tag,
-            (element) =>
-            {
-                element.TextContent = textContent;
-
-                if (processor)
-                {
-                    processor(element);
-                }
-            });
+        let result = this.CreateElement(tag);
+        result.TextContent = textContent;
+        return result;
     }
 
     /**
-     * Adds a new node.
+     * Adds a node.
      *
      * @param node
      * The node to add.
-     *
-     * @param processor
-     * A method for manipulating the new node.
      */
-    public Add<T extends Node | XMLEditor>(node: T, processor?: (node: T) => void): void
+    public Add<T extends Node | XMLEditor>(node: T): void
     {
         let element: Node;
 
@@ -182,59 +147,6 @@ export class XMLEditor
         }
 
         this.Element.appendChild(element);
-
-        if (processor)
-        {
-            processor(node);
-        }
-    }
-
-    /**
-     * Adds a new element.
-     *
-     * @param tag
-     * The tag of the element to create.
-     *
-     * @param processor
-     * A method for manipulating the new element.
-     */
-    public AddElement(tag: string, processor?: (element: XMLEditor) => void): void
-    {
-        this.Add(this.CreateElement(tag, processor));
-    }
-
-    /**
-     * Adds a new element with the specified `textContent` wrapped by a CDATA-section.
-     *
-     * @param tag
-     * The tag of the element to create.
-     *
-     * @param textContent
-     * The text to insert into the element.
-     *
-     * @param processor
-     * A method for manipulating the new element.
-     */
-    public AddCDATAElement(tag: string, textContent: string, processor?: (element: XMLEditor) => void): void
-    {
-        this.Add(this.CreateCDATAElement(tag, textContent, processor));
-    }
-
-    /**
-     * Adds a new element with the specified `textContent`.
-     *
-     * @param tag
-     * The tag of the element to create.
-     *
-     * @param textContent
-     * The text to insert into the element.
-     *
-     * @param processor
-     * A method for manipulating the new element.
-     */
-    public AddTextElement(tag: string, textContent: string, processor?: (element: XMLEditor) => void): void
-    {
-        this.Add(this.CreateTextElement(tag, textContent, processor));
     }
 
     /**
@@ -284,7 +196,10 @@ export class XMLEditor
      */
     public GetChildrenByTag(tag: string): XMLEditor[]
     {
-        return this.GetElementsByTag(tag).filter((node: XMLEditor) => node.ParentNode === this.Element);
+        return XMLEditor.ToArray(this.Element.childNodes).filter(
+            (childNode) => childNode.nodeType === this.Element.ELEMENT_NODE).map(
+                (childNode) => new XMLEditor(childNode as Element)).filter(
+                    (node: XMLEditor) => node.TagName === tag);
     }
 
     /**

@@ -43,20 +43,20 @@ export class GroupOptionFileCompiler extends OptionFileCompiler<GroupOptionInstr
 
         if (option.UserDefaultValue)
         {
-            editor.AddTextElement("userdefaultvalue", `${option.UserDefaultValue}`);
+            editor.Add(editor.CreateTextElement("userdefaultvalue", `${option.UserDefaultValue}`));
         }
 
         if (option.ModDefaultValue)
         {
-            editor.AddTextElement("moddefaultvalue", `${option.ModDefaultValue}`);
+            editor.Add(editor.CreateTextElement("moddefaultvalue", `${option.ModDefaultValue}`));
         }
 
         if (option.AdminDefaultValue)
         {
-            editor.AddTextElement("admindefaultvalue", `${option.AdminDefaultValue}`);
+            editor.Add(editor.CreateTextElement("admindefaultvalue", `${option.AdminDefaultValue}`));
         }
 
-        editor.AddTextElement("usersonly", option.RegisteredOnly ? "1" : "0");
+        editor.Add(editor.CreateTextElement("usersonly", option.RegisteredOnly ? "1" : "0"));
         return editor.Element;
     }
 }

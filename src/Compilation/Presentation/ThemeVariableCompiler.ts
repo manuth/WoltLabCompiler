@@ -46,7 +46,9 @@ export class ThemeVariableCompiler extends WoltLabXMLCompiler<Record<string, str
 
         for (let name in this.Item)
         {
-            editor.AddTextElement("variable", this.Item[name], (variable: XMLEditor) => variable.SetAttribute("name", name));
+            let variableNode = editor.CreateTextElement("variable", this.Item[name]);
+            variableNode.SetAttribute("name", name);
+            editor.Add(variableNode);
         }
 
         return document;

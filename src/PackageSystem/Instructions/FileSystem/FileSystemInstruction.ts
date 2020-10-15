@@ -22,9 +22,10 @@ export abstract class FileSystemInstruction extends Instruction
      */
     public constructor(options: IFileSystemInstructionOptions)
     {
-        super({
-            FileName: options.FileName
-        });
+        super(
+            {
+                FileName: options.FileName
+            });
 
         this.Source = options.Source;
     }

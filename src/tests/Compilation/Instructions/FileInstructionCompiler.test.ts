@@ -89,7 +89,7 @@ export function FileInstructionCompilerTests(): void
                             {
                                 files.push(entry.header.path);
                             },
-                            filter: (fileName, stat) =>
+                            filter: (fileName) =>
                             {
                                 return parse(fileName).dir.length === 0;
                             }

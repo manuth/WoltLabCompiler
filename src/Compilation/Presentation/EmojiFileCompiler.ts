@@ -46,30 +46,27 @@ export class EmojiFileCompiler extends NamedObjectDeletionFileCompiler<EmojiInst
 
         for (let emoji of this.Item.Emojis)
         {
-            editor.AddElement(
-                "smiley",
-                (smiley: XMLEditor) =>
-                {
-                    smiley.SetAttribute("name", `:${emoji.Name}:`);
-                    smiley.AddTextElement("title", emoji.DisplayName);
+            let smileyNode = editor.CreateElement("smiley");
+            editor.Add(smileyNode);
+            smileyNode.SetAttribute("name", `:${emoji.Name}:`);
+            smileyNode.Add(smileyNode.CreateTextElement("title", emoji.DisplayName));
 
-                    if (emoji.Aliases.length > 0)
-                    {
-                        smiley.AddCDATAElement("aliases", emoji.Aliases.map((alias: string) => `:${alias}:`).join("\n"));
-                    }
+            if (emoji.Aliases.length > 0)
+            {
+                smileyNode.Add(smileyNode.CreateCDATAElement("aliases", emoji.Aliases.map((alias: string) => `:${alias}:`).join("\n")));
+            }
 
-                    if (emoji.ShowOrder)
-                    {
-                        smiley.AddTextElement("showorder", emoji.ShowOrder.toString());
-                    }
+            if (emoji.ShowOrder)
+            {
+                smileyNode.Add(smileyNode.CreateTextElement("showorder", emoji.ShowOrder.toString()));
+            }
 
-                    smiley.AddTextElement("path", emoji.FileName);
+            smileyNode.Add(smileyNode.CreateTextElement("path", emoji.FileName));
 
-                    if (emoji.HighResFileName)
-                    {
-                        smiley.AddTextElement("path2x", emoji.HighResFileName);
-                    }
-                });
+            if (emoji.HighResFileName)
+            {
+                smileyNode.Add(smileyNode.CreateTextElement("path2x", emoji.HighResFileName));
+            }
         }
 
         return editor.Element;

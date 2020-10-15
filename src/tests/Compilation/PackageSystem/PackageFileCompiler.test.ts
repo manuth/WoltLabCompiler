@@ -505,8 +505,8 @@ export function PackageFileCompilerTests(): void
                                                                         (requiredPackageNode: XMLEditor) =>
                                                                         {
                                                                             return (requiredPackageNode.TextContent === requiredPackage.Identifier) &&
-                                                                                requiredPackageNode.HasAttribute("minversion", requiredPackage.MinVersion) &&
-                                                                                ((requiredPackage.FileName === undefined) || requiredPackageNode.HasAttribute("file", requiredPackage.FileName));
+                                                                                (requiredPackageNode.GetAttribute("minversion") === requiredPackage.MinVersion) &&
+                                                                                ((requiredPackage.FileName === undefined) || (requiredPackageNode.GetAttribute("file") === requiredPackage.FileName));
                                                                         }).length > 0,
                                                                     true);
                                                             }
@@ -575,7 +575,7 @@ export function PackageFileCompilerTests(): void
                                                                         (conflictingPackageNode: XMLEditor) =>
                                                                         {
                                                                             return (conflictingPackageNode.TextContent === conflictingPackage.Identifier) &&
-                                                                                conflictingPackageNode.HasAttribute("version", conflictingPackage.Version);
+                                                                                (conflictingPackageNode.GetAttribute("version") === conflictingPackage.Version);
                                                                         }).length > 0,
                                                                     true);
                                                             }
@@ -644,7 +644,7 @@ export function PackageFileCompilerTests(): void
                                                                         (optionalPackageNode: XMLEditor) =>
                                                                         {
                                                                             return (optionalPackageNode.TextContent === optionalPackage.Identifier) &&
-                                                                                optionalPackageNode.HasAttribute("file", optionalPackage.FileName);
+                                                                                (optionalPackageNode.GetAttribute("file") === optionalPackage.FileName);
                                                                         }).length > 0,
                                                                     true);
                                                             }
@@ -673,7 +673,7 @@ export function PackageFileCompilerTests(): void
                                                     ok(extensionPackage.HasTag(compatibilityTag, true));
                                                     let compatibility: XMLEditor = extensionPackage.GetChildrenByTag(compatibilityTag)[0];
                                                     ok(compatibility.HasTag(apiTag, true));
-                                                    ok(compatibility.GetChildrenByTag(apiTag)[0].HasAttribute("version", "2018"));
+                                                    strictEqual(compatibility.GetChildrenByTag(apiTag)[0].GetAttribute("version"), "2018");
                                                 });
                                         });
 
@@ -712,8 +712,8 @@ export function PackageFileCompilerTests(): void
                                                                             textContent = instruction.FullName;
                                                                         }
 
-                                                                        return instructionEditor.TextContent === textContent &&
-                                                                            instructionEditor.HasAttribute("type", instruction.Type);
+                                                                        return (instructionEditor.TextContent === textContent) &&
+                                                                            (instructionEditor.GetAttribute("type") === instruction.Type);
                                                                     }).length > 0,
                                                                 true);
                                                         }
@@ -735,7 +735,7 @@ export function PackageFileCompilerTests(): void
                                                                 () =>
                                                                 {
                                                                     let filtered: XMLEditor[] = instructionLists.filter(
-                                                                        (instructionList: XMLEditor) => instructionList.HasAttribute(typeAttribute, "install"));
+                                                                        (instructionList: XMLEditor) => instructionList.GetAttribute(typeAttribute) === "install");
 
                                                                     strictEqual(filtered.length, 1);
                                                                     installSetEditor = filtered[0];
@@ -772,8 +772,8 @@ export function PackageFileCompilerTests(): void
                                                                         let filtered: XMLEditor[] = instructionLists.filter(
                                                                             (instructionList: XMLEditor) =>
                                                                             {
-                                                                                return instructionList.HasAttribute(typeAttribute, "update") &&
-                                                                                    instructionList.HasAttribute("fromversion", updateSet.FromVersion);
+                                                                                return (instructionList.GetAttribute(typeAttribute) === "update") &&
+                                                                                    (instructionList.GetAttribute("fromversion") === updateSet.FromVersion);
                                                                             });
 
                                                                         strictEqual(filtered.length, 1);

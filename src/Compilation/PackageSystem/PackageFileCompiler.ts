@@ -44,132 +44,102 @@ export class PackageFileCompiler extends WoltLabXMLCompiler<Package>
     {
         let document = super.CreateDocument();
         let editor = new XMLEditor(document.documentElement);
+        let packageNode = editor.CreateElement("packageinformation");
+        let authorNode = editor.CreateElement("authorinformation");
+        let compatibilityNode = editor.CreateElement("compatibility");
+        let apiNode = compatibilityNode.CreateElement("api");
+        compatibilityNode.Add(apiNode);
         editor.SetAttribute("name", this.Item.Identifier);
+        apiNode.SetAttribute("version", "2018");
+        editor.Add(packageNode);
+        editor.Add(authorNode);
 
-        editor.AddElement(
-            "packageinformation",
-            (packageInfo) =>
+        for (let locale of this.Item.DisplayName.GetLocales())
+        {
+            let displayNameElement = packageNode.CreateTextElement("packageName", this.Item.DisplayName.Data.get(locale));
+            packageNode.Add(displayNameElement);
+
+            if (locale !== "inv")
             {
-                for (let locale of this.Item.DisplayName.GetLocales())
-                {
-                    packageInfo.AddTextElement(
-                        "packagename",
-                        this.Item.DisplayName.Data.get(locale),
-                        (displayName) =>
-                        {
-                            if (locale !== "inv")
-                            {
-                                displayName.SetAttribute("languagecode", locale);
-                            }
-                        });
-                }
+                displayNameElement.SetAttribute("languagecode", locale);
+            }
+        }
 
-                for (let locale of this.Item.Description.GetLocales())
-                {
-                    packageInfo.AddTextElement(
-                        "packagedescription",
-                        this.Item.Description.Data.get(locale),
-                        (description) =>
-                        {
-                            if (locale !== "inv")
-                            {
-                                description.SetAttribute("languagecode", locale);
-                            }
-                        });
-                }
+        for (let locale of this.Item.Description.GetLocales())
+        {
+            let description = packageNode.CreateTextElement("packagedescription", this.Item.Description.Data.get(locale));
+            packageNode.Add(description);
 
-                packageInfo.AddTextElement("version", this.Item.Version);
-                packageInfo.AddTextElement(
-                    "date",
-                    this.Item.CreationDate.getFullYear().toString() + "-" +
-                    (this.Item.CreationDate.getMonth() + 1).toString().padStart(2, "0") + "-" +
-                    this.Item.CreationDate.getDate().toString().padStart(2, "0"));
-            });
-
-        editor.AddElement(
-            "authorinformation",
-            (author) =>
+            if (locale !== "inv")
             {
-                if (this.Item.Author.Name)
-                {
-                    author.AddTextElement("author", this.Item.Author.Name);
-                }
+                description.SetAttribute("languagecode", locale);
+            }
+        }
 
-                if (this.Item.Author.URL)
-                {
-                    author.AddTextElement("authorurl", this.Item.Author.URL);
-                }
-            });
+        packageNode.Add(packageNode.CreateTextElement("version", this.Item.Version));
+
+        packageNode.Add(
+            packageNode.CreateTextElement(
+                "date",
+                this.Item.CreationDate.getFullYear().toString() + "-" +
+                (this.Item.CreationDate.getMonth() + 1).toString().padStart(2, "0") + "-" +
+                this.Item.CreationDate.getDate().toString().padStart(2, "0")));
+
+        if (this.Item.Author.Name)
+        {
+            authorNode.Add(authorNode.CreateTextElement("author", this.Item.Author.Name));
+        }
+
+        if (this.Item.Author.URL)
+        {
+            authorNode.Add(authorNode.CreateTextElement("authorurl", this.Item.Author.URL));
+        }
 
         if (this.Item.RequiredPackages.length > 0)
         {
-            editor.AddElement(
-                "requiredpackages",
-                (packages) =>
-                {
-                    for (let requiredPackage of this.Item.RequiredPackages)
-                    {
-                        packages.AddTextElement(
-                            "requiredpackage",
-                            requiredPackage.Identifier,
-                            (requiredPackageNode) =>
-                            {
-                                requiredPackageNode.SetAttribute("minversion", requiredPackage.MinVersion);
+            let requiredPackagesNode = editor.CreateElement("requiredpackages");
+            editor.Add(requiredPackagesNode);
 
-                                if (requiredPackage.FileName)
-                                {
-                                    requiredPackageNode.SetAttribute("file", requiredPackage.FileName);
-                                }
-                            });
-                    }
-                });
+            for (let requiredPackage of this.Item.RequiredPackages)
+            {
+                let requiredPackageNode = requiredPackagesNode.CreateTextElement("requiredpackage", requiredPackage.Identifier);
+                requiredPackagesNode.Add(requiredPackageNode);
+                requiredPackageNode.SetAttribute("minversion", requiredPackage.MinVersion);
+
+                if (requiredPackage.FileName)
+                {
+                    requiredPackageNode.SetAttribute("file", requiredPackage.FileName);
+                }
+            }
         }
 
         if (this.Item.ConflictingPackages.length > 0)
         {
-            editor.AddElement(
-                "excludedpackages",
-                (packages) =>
-                {
-                    for (let conflictingPackage of this.Item.ConflictingPackages)
-                    {
-                        packages.AddTextElement(
-                            "excludedpackage",
-                            conflictingPackage.Identifier,
-                            (conflictingPackageNode) =>
-                            {
-                                conflictingPackageNode.SetAttribute("version", conflictingPackage.Version);
-                            });
-                    }
-                });
+            let conflictingPackagesNode = editor.CreateElement("excludedpackages");
+            editor.Add(conflictingPackagesNode);
+
+            for (let conflictingPackage of this.Item.ConflictingPackages)
+            {
+                let conflictingPackageNode = conflictingPackagesNode.CreateTextElement("excludedpackage", conflictingPackage.Identifier);
+                conflictingPackagesNode.Add(conflictingPackageNode);
+                conflictingPackageNode.SetAttribute("version", conflictingPackage.Version);
+            }
         }
 
         if (this.Item.OptionalPackages.length > 0)
         {
-            editor.AddElement(
-                "optionalpackages",
-                (packages) =>
-                {
-                    for (let optionalPackage of this.Item.OptionalPackages)
-                    {
-                        packages.AddTextElement(
-                            "optionalpackage",
-                            optionalPackage.Identifier,
-                            (optionalPackageNode) =>
-                            {
-                                optionalPackageNode.SetAttribute("file", optionalPackage.FileName);
-                            });
-                    }
-                });
+            let optionalPackagesNode = editor.CreateElement("optionalpackages");
+            editor.Add(optionalPackagesNode);
+
+            for (let optionalPackage of this.Item.OptionalPackages)
+            {
+                let optionalPackageNode = optionalPackagesNode.CreateTextElement("optionalpackage", optionalPackage.Identifier);
+                optionalPackagesNode.Add(optionalPackageNode);
+                optionalPackageNode.SetAttribute("file", optionalPackage.FileName);
+            }
         }
 
-        editor.AddElement(
-            "compatibility",
-            (compatibility) =>
-            {
-                compatibility.AddElement("api", (api) => api.SetAttribute("version", "2018"));
-            });
-
+        editor.Add(compatibilityNode);
         editor.Add(this.Item.InstallSet.Serialize());
 
         for (let instructionSet of this.Item.UpdateSets)

@@ -82,7 +82,8 @@ export function XMLEditorTests(): void
                         () =>
                         {
                             parent = temp;
-                            parent.AddElement("bar", (childNode: XMLEditor) => child = childNode);
+                            child = parent.CreateElement("bar");
+                            parent.Add(child);
                         });
 
                     test(
@@ -120,7 +121,7 @@ export function XMLEditorTests(): void
 
                             for (let child of children)
                             {
-                                parent.AddElement(child);
+                                parent.Add(parent.CreateElement(child));
                             }
                         });
 
@@ -156,15 +157,6 @@ export function XMLEditorTests(): void
                             let element: XMLEditor = editor.CreateElement(tagName);
                             strictEqual(element.TagName, tagName);
                         });
-
-                    test(
-                        "Checking whether elements can be pre-processed…",
-                        () =>
-                        {
-                            let content = "hello world";
-                            let element = editor.CreateElement(tagName, (newChild: XMLEditor) => newChild.TextContent = content);
-                            strictEqual(element.TextContent, content);
-                        });
                 });
 
             suite(
@@ -190,22 +182,6 @@ export function XMLEditorTests(): void
                             strictEqual(element.ChildNodes[0].nodeType, element.Element.CDATA_SECTION_NODE);
                             strictEqual(element.TextContent, content);
                         });
-
-                    test(
-                        "Checking whether elements can be pre-processed…",
-                        () =>
-                        {
-                            let element: XMLEditor = editor.CreateCDATAElement(
-                                tagName,
-                                content,
-                                (newChild: XMLEditor) =>
-                                {
-                                    content = content.replace("Hello", "Good evening");
-                                    newChild.ChildNodes[0].textContent = content;
-                                });
-
-                            strictEqual(element.TextContent, content);
-                        });
                 });
 
             suite(
@@ -229,22 +205,6 @@ export function XMLEditorTests(): void
                             let element: XMLEditor = editor.CreateTextElement(tagName, content);
                             strictEqual(element.TagName, tagName);
                             strictEqual(element.ChildNodes[0].nodeType, element.Element.TEXT_NODE);
-                            strictEqual(element.TextContent, content);
-                        });
-
-                    test(
-                        "Checking whether elements can be pre-processed…",
-                        () =>
-                        {
-                            let element: XMLEditor = editor.CreateTextElement(
-                                tagName,
-                                content,
-                                (newChild: XMLEditor) =>
-                                {
-                                    content = content.replace("Hello", "Good evening");
-                                    newChild.ChildNodes[0].textContent = content;
-                                });
-
                             strictEqual(element.TextContent, content);
                         });
                 });
@@ -277,9 +237,7 @@ export function XMLEditorTests(): void
                         "Checking whether `Node`-instances can be added…",
                         () =>
                         {
-                            let node: Node;
-                            parent.Add(childNode, (newNode: Node) => node = newNode);
-                            ok(childNode === node);
+                            parent.Add(childNode);
                             ok(parent.ChildNodes.includes(childNode));
                         });
                 });
@@ -303,7 +261,8 @@ export function XMLEditorTests(): void
                         "Checking whether elements can be added…",
                         () =>
                         {
-                            parent.AddElement(tagName, (childNode: XMLEditor) => child = childNode);
+                            child = parent.CreateElement(tagName);
+                            parent.Add(child);
                             strictEqual(child.TagName, tagName);
                             ok(parent.ChildNodes.includes(child.Element));
                         });
@@ -380,7 +339,7 @@ export function XMLEditorTests(): void
 
                             for (let tag of tags)
                             {
-                                parent.AddElement(tag);
+                                parent.Add(parent.CreateElement(tag));
                             }
                         });
 
@@ -411,7 +370,7 @@ export function XMLEditorTests(): void
 
                             for (let tag of tags)
                             {
-                                parent.AddElement(tag);
+                                parent.Add(parent.CreateElement(tag));
                             }
                         });
 
@@ -453,7 +412,7 @@ export function XMLEditorTests(): void
                         "Checking whether querying text works correctly…",
                         () =>
                         {
-                            parent.AddTextElement(textTag, textContent);
+                            parent.Add(parent.CreateTextElement(textTag, textContent));
                             strictEqual(parent.GetText(textTag), textContent);
                         });
                 });
@@ -560,7 +519,7 @@ export function XMLEditorTests(): void
                             alternativeTag = "wrong";
                             text = "correctText";
                             alternativeText = "wrongText";
-                            textEditor.AddTextElement(tag, text);
+                            textEditor.Add(textEditor.CreateTextElement(tag, text));
                         });
 
                     test(
@@ -590,7 +549,7 @@ export function XMLEditorTests(): void
                             tagEditor = temp;
                             tag = "correctTag";
                             alternativeTag = "alternativeTag";
-                            tagEditor.AddElement(tag);
+                            tagEditor.Add(tagEditor.CreateElement(tag));
                         });
 
                     test(
@@ -602,7 +561,7 @@ export function XMLEditorTests(): void
                             ok(tagEditor.HasTag(tag, true));
                             strictEqual(tagEditor.HasTag(alternativeTag, true), false);
 
-                            tagEditor.AddElement(tag);
+                            tagEditor.Add(tagEditor.CreateElement(tag));
                             ok(tagEditor.HasTag(tag));
                             strictEqual(tagEditor.HasTag(alternativeTag), false);
                             strictEqual(tagEditor.HasTag(tag, true), false);

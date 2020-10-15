@@ -40,15 +40,15 @@ export class UserOptionFileCompiler extends OptionFileCompiler<UserOptionInstruc
     protected CreateOption(option: UserOption): Element
     {
         let editor: XMLEditor = new XMLEditor(super.CreateOption(option));
-        editor.AddTextElement("required", option.Required ? "1" : "0");
-        editor.AddTextElement("askduringregistration", option.AskOnRegistration ? "1" : "0");
-        editor.AddTextElement("editable", option.EditPermissions.toString());
-        editor.AddTextElement("visible", option.ViewPermissions.toString());
-        editor.AddTextElement("searchable", option.Searchable ? "1" : "0");
+        editor.Add(editor.CreateTextElement("required", option.Required ? "1" : "0"));
+        editor.Add(editor.CreateTextElement("askduringregistration", option.AskOnRegistration ? "1" : "0"));
+        editor.Add(editor.CreateTextElement("editable", option.EditPermissions.toString()));
+        editor.Add(editor.CreateTextElement("visible", option.ViewPermissions.toString()));
+        editor.Add(editor.CreateTextElement("searchable", option.Searchable ? "1" : "0"));
 
         if (option.OutputClass)
         {
-            editor.AddTextElement("outputclass", option.OutputClass);
+            editor.Add(editor.CreateTextElement("outputclass", option.OutputClass));
         }
 
         return editor.Element;

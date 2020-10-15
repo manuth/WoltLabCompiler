@@ -46,44 +46,39 @@ export class CronJobFileCompiler extends NamedObjectDeletionFileCompiler<CronJob
 
         for (let cronJob of this.Item.CronJobs)
         {
-            editor.AddElement(
-                "cronjob",
-                (cronJobEditor: XMLEditor) =>
+            let cronJobNode = editor.CreateElement("cronjob");
+            editor.Add(cronJobNode);
+
+            if (cronJob.Name)
+            {
+                cronJobNode.SetAttribute("name", cronJob.Name);
+            }
+
+            for (let locale of cronJob.Description.GetLocales())
+            {
+                let descriptionNode = cronJobNode.CreateTextElement("description", cronJob.Description.Data.get(locale));
+                cronJobNode.Add(descriptionNode);
+
+                if (locale !== "inv")
                 {
-                    if (cronJob.Name)
-                    {
-                        cronJobEditor.SetAttribute("name", cronJob.Name);
-                    }
+                    descriptionNode.SetAttribute("language", locale);
+                }
+            }
 
-                    for (let locale of cronJob.Description.GetLocales())
-                    {
-                        cronJobEditor.AddTextElement(
-                            "description",
-                            cronJob.Description.Data.get(locale),
-                            (description: XMLEditor) =>
-                            {
-                                if (locale !== "inv")
-                                {
-                                    description.SetAttribute("language", locale);
-                                }
-                            });
-                    }
+            cronJobNode.Add(cronJobNode.CreateTextElement("classname", cronJob.ClassName));
+            cronJobNode.Add(cronJobNode.CreateTextElement("canbeedited", cronJob.AllowEdit ? "1" : "0"));
+            cronJobNode.Add(cronJobNode.CreateTextElement("canbedisabled", cronJob.AllowDisable ? "1" : "0"));
 
-                    cronJobEditor.AddTextElement("classname", cronJob.ClassName);
-                    cronJobEditor.AddTextElement("canbeedited", cronJob.AllowEdit ? "1" : "0");
-                    cronJobEditor.AddTextElement("canbedisabled", cronJob.AllowDisable ? "1" : "0");
+            if (cronJob.Options.length > 0)
+            {
+                cronJobNode.Add(cronJobNode.CreateTextElement("options", cronJob.Options.join(",")));
+            }
 
-                    if (cronJob.Options.length > 0)
-                    {
-                        cronJobEditor.AddTextElement("options", cronJob.Options.join(","));
-                    }
-
-                    cronJobEditor.AddTextElement("startminute", cronJob.Period.Minute);
-                    cronJobEditor.AddTextElement("starthour", cronJob.Period.Hour);
-                    cronJobEditor.AddTextElement("startdom", cronJob.Period.DayOfMonth);
-                    cronJobEditor.AddTextElement("startmonth", cronJob.Period.Month);
-                    cronJobEditor.AddTextElement("startdow", cronJob.Period.DayOfWeek);
-                });
+            cronJobNode.Add(cronJobNode.CreateTextElement("startminute", cronJob.Period.Minute));
+            cronJobNode.Add(cronJobNode.CreateTextElement("starthour", cronJob.Period.Hour));
+            cronJobNode.Add(cronJobNode.CreateTextElement("startdom", cronJob.Period.DayOfMonth));
+            cronJobNode.Add(cronJobNode.CreateTextElement("startmonth", cronJob.Period.Month));
+            cronJobNode.Add(cronJobNode.CreateTextElement("startdow", cronJob.Period.DayOfWeek));
         }
 
         return editor.Element;

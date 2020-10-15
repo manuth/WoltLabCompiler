@@ -55,37 +55,32 @@ export abstract class OptionFileCompiler<T extends IOptionInstruction<TCategory,
     {
         let editor: XMLEditor = new XMLEditor(super.CreateImport());
 
-        editor.AddElement(
-            "categories",
-            (categories: XMLEditor) =>
-            {
-                for (let rootCategory of this.Item.Nodes)
-                {
-                    for (let category of rootCategory.GetAllNodes())
-                    {
-                        categories.Add(this.CreateCategory(category));
-                    }
-                }
-            });
+        let categoriesElement = editor.CreateElement("categories");
+        let optionsElement = editor.CreateElement("options");
+        editor.Add(categoriesElement);
+        editor.Add(optionsElement);
 
-        editor.AddElement(
-            "options",
-            (options: XMLEditor) =>
+        for (let rootCategory of this.Item.Nodes)
+        {
+            for (let category of rootCategory.GetAllNodes())
             {
-                for (let rootCategory of this.Item.Nodes)
+                categoriesElement.Add(this.CreateCategory(category));
+            }
+        }
+
+        for (let rootCategory of this.Item.Nodes)
+        {
+            for (let category of rootCategory.GetAllNodes())
+            {
+                if (category.Item)
                 {
-                    for (let category of rootCategory.GetAllNodes())
+                    for (let option of category.Item.Options)
                     {
-                        if (category.Item)
-                        {
-                            for (let option of category.Item.Options)
-                            {
-                                options.Add(this.CreateOption(option));
-                            }
-                        }
+                        optionsElement.Add(this.CreateOption(option));
                     }
                 }
-            });
+            }
+        }
 
         return editor.Element;
     }
@@ -102,22 +97,16 @@ export abstract class OptionFileCompiler<T extends IOptionInstruction<TCategory,
 
         for (let categoryToDelete of this.Item.CategoriesToDelete)
         {
-            editor.AddElement(
-                "category",
-                (category: XMLEditor) =>
-                {
-                    category.SetAttribute("name", categoryToDelete.Name);
-                });
+            let categoryElement = editor.CreateElement("category");
+            editor.Add(categoryElement);
+            categoryElement.SetAttribute("name", categoryToDelete.Name);
         }
 
         for (let optionToDelete of this.Item.OptionsToDelete)
         {
-            editor.AddElement(
-                "option",
-                (option: XMLEditor) =>
-                {
-                    option.SetAttribute("name", optionToDelete.Name);
-                });
+            let optionElement = editor.CreateElement("option");
+            editor.Add(optionElement);
+            optionElement.SetAttribute("name", optionToDelete.Name);
         }
 
         return editor.Element;
@@ -140,17 +129,17 @@ export abstract class OptionFileCompiler<T extends IOptionInstruction<TCategory,
 
         if (category.Parent)
         {
-            editor.AddTextElement("parent", category.Parent.FullName);
+            editor.Add(editor.CreateTextElement("parent", category.Parent.FullName));
         }
 
         if (category.Item?.ShowOrder)
         {
-            editor.AddTextElement("showorder", category.Item.ShowOrder.toString());
+            editor.Add(editor.CreateTextElement("showorder", category.Item.ShowOrder.toString()));
         }
 
         if (category.Item?.EnableOptions.length > 0)
         {
-            editor.AddTextElement("options", category.Item.EnableOptions.join(","));
+            editor.Add(editor.CreateTextElement("options", category.Item.EnableOptions.join(",")));
         }
 
         return editor.Element;
@@ -170,47 +159,48 @@ export abstract class OptionFileCompiler<T extends IOptionInstruction<TCategory,
         let document: Document = XML.CreateDocument("option");
         let editor: XMLEditor = new XMLEditor(document.documentElement);
         editor.SetAttribute("name", option.Name);
-        editor.AddTextElement("categoryname", option.Category.Node.FullName);
-        editor.AddTextElement("optiontype", option.Type);
+        editor.Add(editor.CreateTextElement("categoryname", option.Category.Node.FullName));
+        editor.Add(editor.CreateTextElement("optiontype", option.Type));
 
         if (option.DefaultValue)
         {
-            editor.AddTextElement("defaultvalue", `${option.DefaultValue}`);
+            editor.Add(editor.CreateTextElement("defaultvalue", `${option.DefaultValue}`));
         }
 
         if (option.ShowOrder)
         {
-            editor.AddTextElement("showorder", option.ShowOrder.toString());
+            editor.Add(editor.CreateTextElement("showorder", option.ShowOrder.toString()));
         }
 
         if (option.ValidationPattern)
         {
-            editor.AddTextElement("validationpattern", option.ValidationPattern.source);
+            editor.Add(editor.CreateTextElement("validationpattern", option.ValidationPattern.source));
         }
 
         if (option.Items.length > 0)
         {
-            editor.AddTextElement(
-                "selectoptions",
-                option.Items.map((optionItem: OptionItem) =>
-                {
-                    return `${optionItem.Value}:${this.LanguageCategory}.${option.Name}.${optionItem.Name}`;
-                }).join("\n"));
+            editor.Add(
+                editor.CreateTextElement(
+                    "selectoptions",
+                    option.Items.map((optionItem: OptionItem) =>
+                    {
+                        return `${optionItem.Value}:${this.LanguageCategory}.${option.Name}.${optionItem.Name}`;
+                    }).join("\n")));
         }
 
         if (option.Options.length > 0)
         {
-            editor.AddTextElement("options", option.Options.join(","));
+            editor.Add(editor.CreateTextElement("options", option.Options.join(",")));
         }
 
         if (option.EnableOptions.length > 0)
         {
-            editor.AddTextElement("enableoptions", option.EnableOptions.join(","));
+            editor.Add(editor.CreateTextElement("enableoptions", option.EnableOptions.join(",")));
         }
 
         for (let additionalProperty in option.AdditionalProperties)
         {
-            editor.AddTextElement(additionalProperty, `${option.AdditionalProperties[additionalProperty]}`);
+            editor.Add(editor.CreateTextElement(additionalProperty, `${option.AdditionalProperties[additionalProperty]}`));
         }
 
         return editor.Element;

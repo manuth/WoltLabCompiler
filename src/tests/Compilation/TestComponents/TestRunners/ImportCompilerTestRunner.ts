@@ -1,4 +1,4 @@
-import { ok } from "assert";
+import { strictEqual } from "assert";
 import { ImportFileCompiler } from "../../../../Compilation/ImportFileCompiler";
 import { ImportCompilerTester } from "../Testers/ImportCompilerTester";
 import { XMLCompilerTestRunner } from "./XMLCompilerTestRunner";
@@ -30,8 +30,8 @@ export abstract class ImportCompilerTestRunner<TTester extends ImportCompilerTes
             "Checking whether the import- and delete-sections are present…",
             () =>
             {
-                ok(this.Tester.XMLEditor.HasTag(this.Tester.ImportTag, true));
-                ok(this.Tester.XMLEditor.HasTag(this.Tester.DeleteTag, true));
+                strictEqual(this.Tester.XMLEditor.GetChildrenByTag(this.Tester.ImportTag).length, 1);
+                strictEqual(this.Tester.XMLEditor.GetChildrenByTag(this.Tester.DeleteTag).length, 1);
             });
     }
 }
