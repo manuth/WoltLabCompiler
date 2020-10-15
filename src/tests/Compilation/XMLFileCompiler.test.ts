@@ -46,6 +46,7 @@ export function XMLFileCompilerTests(): void
          */
         protected async SuiteSetup(): Promise<void>
         {
+            await super.SuiteSetup();
             rootTag = "foo";
         }
 
@@ -60,8 +61,8 @@ export function XMLFileCompilerTests(): void
                 "Checking whether a processing-instruction for `xml` is present…",
                 () =>
                 {
-                    let firstChild = this.Tester.XMLEditor.ChildNodes[0];
-                    strictEqual(firstChild.nodeType, document.PROCESSING_INSTRUCTION_NODE);
+                    let firstChild = this.Tester.XMLEditor.Document.childNodes[0];
+                    strictEqual(firstChild.nodeType, firstChild.PROCESSING_INSTRUCTION_NODE);
                     strictEqual((firstChild as ProcessingInstruction).target, "xml");
                 });
 
