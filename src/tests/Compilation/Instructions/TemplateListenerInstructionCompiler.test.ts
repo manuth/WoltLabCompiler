@@ -1,60 +1,30 @@
-import { ok } from "assert";
-import { TempDirectory } from "@manuth/temp-files";
-import { pathExists } from "fs-extra";
 import { TemplateListenerInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/TemplateListenerInstructionCompiler";
 import { TemplateListenerInstruction } from "../../../PackageSystem/Instructions/Events/TemplateListenerInstruction";
-import { Package } from "../../../PackageSystem/Package";
+import { CompilerTester } from "../TestComponents/Testers/CompilerTester";
+import { InstructionCompilerTestRunner } from "../TestComponents/TestRunners/InstructionCompilerTestRunner";
 
 /**
  * Registers tests for the `TemplateListenerInstructionCompiler` class.
  */
 export function TemplateListenerInstructionCompilerTests(): void
 {
-    suite(
-        "TemplateListenerInstructionCompiler",
-        () =>
+    new class extends InstructionCompilerTestRunner<CompilerTester<TemplateListenerInstructionCompiler>, TemplateListenerInstructionCompiler>
+    {
+        /**
+         * @inheritdoc
+         *
+         * @returns
+         * The new compiler-tester instance.
+         */
+        protected CreateTester(): CompilerTester<TemplateListenerInstructionCompiler>
         {
-            let tempDir: TempDirectory;
-            let fileName: string;
-            let compiler: TemplateListenerInstructionCompiler;
-
-            suiteSetup(
-                () =>
-                {
-                    let extensionPackage: Package = new Package(
+            return new CompilerTester(
+                new TemplateListenerInstructionCompiler(
+                    new TemplateListenerInstruction(
                         {
-                            Identifier: "test",
-                            DisplayName: {},
-                            InstallSet: {
-                                Instructions: []
-                            }
-                        });
-
-                    let instruction: TemplateListenerInstruction = new TemplateListenerInstruction(
-                        {
-                            FileName: "eventListeners.xml",
+                            FileName: "templateListeners.xml",
                             Listeners: []
-                        });
-
-                    tempDir = new TempDirectory();
-                    extensionPackage.InstallSet.push(instruction);
-                    compiler = new TemplateListenerInstructionCompiler(instruction);
-                    compiler.DestinationPath = tempDir.FullName;
-                    fileName = compiler.DestinationFileName;
-                });
-
-            test(
-                "Checking whether the compiler can be executed…",
-                async () =>
-                {
-                    await compiler.Execute();
-                });
-
-            test(
-                "Checking whether the compiled file exists…",
-                async () =>
-                {
-                    ok(await pathExists(fileName));
-                });
-        });
+                        })));
+        }
+    }("TemplateListenerInstructionCompiler").Register();
 }
