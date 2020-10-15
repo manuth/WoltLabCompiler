@@ -1,130 +1,76 @@
-import { ok, strictEqual } from "assert";
-import { TempFile } from "@manuth/temp-files";
-import { readFile } from "fs-extra";
-import { DOMParser } from "xmldom";
 import { EventListenerFileCompiler } from "../../../Compilation/Events/EventListenerFileCompiler";
+import { EventListener } from "../../../Events/EventListener";
 import { EventListenerInstruction } from "../../../PackageSystem/Instructions/Events/EventListenerInstruction";
-import { XMLEditor } from "../../../Serialization/XMLEditor";
+import { ListenerCompilerTester } from "../TestComponents/Testers/ListenerCompilerTester";
+import { ListenerCompilerTestRunner } from "../TestComponents/TestRunners/ListenerCompilerTestRunner";
 
 /**
  * Registers tests for the `EventListenerFileCompiler` class.
  */
 export function EventListenerFileCompilerTests(): void
 {
-    suite(
-        "EventListenerFileCompiler",
-        () =>
+    new class extends ListenerCompilerTestRunner<ListenerCompilerTester<EventListenerFileCompiler>, EventListenerFileCompiler, EventListener>
+    {
+        /**
+         * @inheritdoc
+         */
+        protected get Listeners(): EventListener[]
         {
-            let tempFile: TempFile;
-            let compiler: EventListenerFileCompiler;
-            let className: string;
-            let allowInherit: boolean;
-            let eventHandler: string;
+            return [
+                new EventListener(
+                    {
+                        Name: "test",
+                        EventName: "foo",
+                        EventHandlerClassName: "wcf\\system\\baz",
+                        ClassName: "wcf\\system\\foo\\bar",
+                        AllowInherited: Math.random() > 0.5
+                    })
+            ];
+        }
 
-            suiteSetup(
-                () =>
-                {
-                    tempFile = new TempFile();
-                    className = "wcf\\system\\foo\\bar";
-                    allowInherit = Math.random() > 0.5;
-                    eventHandler = "wcf\\system\\baz";
-
-                    let instruction: EventListenerInstruction = new EventListenerInstruction(
+        /**
+         * @inheritdoc
+         *
+         * @returns
+         * The new compiler-tester instance.
+         */
+        protected CreateTester(): ListenerCompilerTester<EventListenerFileCompiler>
+        {
+            return new ListenerCompilerTester(
+                new EventListenerFileCompiler(
+                    new EventListenerInstruction(
                         {
                             FileName: null,
-                            Listeners: [
-                                {
-                                    Name: "test",
-                                    EventName: "foo",
-                                    ClassName: className,
-                                    AllowInherited: allowInherit,
-                                    EventHandlerClassName: eventHandler
-                                }
-                            ]
-                        });
+                            Listeners: this.Listeners
+                        })),
+                "eventlistener");
+        }
 
-                    compiler = new EventListenerFileCompiler(instruction);
-                    compiler.DestinationPath = tempFile.FullName;
-                });
+        /**
+         * @inheritdoc
+         */
+        protected ExecuteTests(): void
+        {
+            super.ExecuteTests();
 
-            suiteTeardown(
+            test(
+                "Checking the integrity of the metadata…",
                 () =>
                 {
-                    tempFile.Dispose();
-                });
+                    let eventClassTag = "eventclassname";
+                    let inheritTag = "inherit";
+                    let eventHandlerTag = "listenerclassname";
 
-            suite(
-                "Compile",
-                () =>
-                {
-                    suite(
-                        "General",
-                        () =>
+                    for (let listener of this.Listeners)
+                    {
+                        for (let listenerNode of this.Tester.ImportEditor.GetChildrenByTag(this.Tester.ListenerTag))
                         {
-                            test(
-                                "Checking whether the compiler can be executed…",
-                                async () =>
-                                {
-                                    await compiler.Execute();
-                                });
-                        });
-
-                    suite(
-                        "Checking the integrity of the compiled file…",
-                        () =>
-                        {
-                            let editor: XMLEditor;
-
-                            suite(
-                                "General",
-                                () =>
-                                {
-                                    test(
-                                        "Checking whether the content of the file is valid xml…",
-                                        async () =>
-                                        {
-                                            let document: Document = new DOMParser().parseFromString((await readFile(tempFile.FullName)).toString());
-                                            editor = new XMLEditor(document.documentElement);
-                                        });
-                                });
-
-                            suite(
-                                "Checking the integrity of the event-listener…",
-                                () =>
-                                {
-                                    let eventListenerEditor: XMLEditor;
-                                    let listenerTag: string;
-                                    let eventClassTag: string;
-                                    let inheritTag: string;
-                                    let eventHandlerTag: string;
-
-                                    suiteSetup(
-                                        () =>
-                                        {
-                                            listenerTag = "eventlistener";
-                                            eventClassTag = "eventclassname";
-                                            inheritTag = "inherit";
-                                            eventHandlerTag = "listenerclassname";
-                                        });
-
-                                    test(
-                                        "Checking whether the event-listener is present…",
-                                        () =>
-                                        {
-                                            strictEqual(editor.GetElementsByTag(listenerTag).length, 1);
-                                            eventListenerEditor = editor.GetElementsByTag(listenerTag)[0];
-                                        });
-
-                                    test(
-                                        "Checking the integrity of the meta-data…",
-                                        () =>
-                                        {
-                                            ok(eventListenerEditor.HasText(eventClassTag, className));
-                                            ok(eventListenerEditor.HasText(inheritTag, allowInherit ? "1" : "0"));
-                                            ok(eventListenerEditor.HasText(eventHandlerTag, eventHandler));
-                                        });
-                                });
-                        });
+                            this.AssertTagContent(listenerNode, eventClassTag, listener.ClassName);
+                            this.AssertTagContent(listenerNode, inheritTag, listener.AllowInherited ? "1" : "0");
+                            this.AssertTagContent(listenerNode, eventHandlerTag, listener.EventHandlerClassName);
+                        }
+                    }
                 });
-        });
+        }
+    }("EventListenerFileCompiler").Register();
 }
