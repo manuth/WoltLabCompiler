@@ -1,58 +1,100 @@
 import { ok, strictEqual } from "assert";
-import { TempFile } from "@manuth/temp-files";
-import { readFile, writeFile } from "fs-extra";
+import { ensureFile, mkdirp, readFile, writeFile } from "fs-extra";
+import { dirname } from "upath";
 import { InstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/InstructionCompiler";
-import { IInstruction } from "../../../PackageSystem/Instructions/IInstruction";
 import { Instruction } from "../../../PackageSystem/Instructions/Instruction";
-import { Package } from "../../../PackageSystem/Package";
+import { XMLEditor } from "../../../Serialization/XMLEditor";
+import { CompilerTester } from "../TestComponents/Testers/CompilerTester";
+import { InstructionCompilerTestRunner } from "../TestComponents/TestRunners/InstructionCompilerTestRunner";
 
 /**
  * Registers tests for the `InstructionCompiler` class.
  */
 export function InstructionCompilerTests(): void
 {
-    suite(
-        "InstructionCompiler",
-        () =>
+    /**
+     * Provides an implementation of the `InstructionCompiler` class for testing.
+     */
+    class TestInstructionCompiler extends InstructionCompiler<Instruction>
+    {
+        /**
+         * Initializes a new instance of the `TestInstructionCompiler` class.
+         *
+         * @param item
+         * The options of the instruction.
+         */
+        public constructor(item: Instruction)
         {
-            let tempFile: TempFile;
-            let compiler: InstructionCompiler<IInstruction>;
-            let type: string;
-            let objectID: string;
-            let object: unknown;
+            super(item);
+        }
 
-            suiteSetup(
-                () =>
-                {
-                    let objects: Record<string, unknown> = {};
-                    tempFile = new TempFile();
-                    type = "test";
-                    objectID = "date";
-                    object = new Date();
-                    objects[objectID] = object;
+        /**
+         * @inheritdoc
+         *
+         * @param source
+         * The source to copy the files from.
+         *
+         * @param destination
+         * The destination to copy the files to.
+         *
+         * @param context
+         * The context to use.
+         *
+         * @param delimiter
+         * The delimiter of the ejs-tags.
+         */
+        public async CopyTemplate(source: string, destination: string, context?: Record<string, unknown>, delimiter?: string): Promise<void>
+        {
+            return super.CopyTemplate(source, destination, context, delimiter);
+        }
 
-                    let $package: Package = new Package(
-                        {
-                            Identifier: "foobar",
-                            DisplayName: {},
-                            InstallSet: {
-                                Instructions: []
-                            }
-                        });
+        /**
+         * @inheritdoc
+         */
+        protected async Compile(): Promise<void>
+        {
+            await super.Compile();
+            await mkdirp(dirname(this.DestinationFileName));
+            await ensureFile(this.DestinationFileName);
+        }
+    }
 
-                    let instruction: Instruction = new class extends Instruction
+    let objects: Record<string, unknown>;
+    let type: string;
+    let objectID: string;
+    let object: unknown;
+
+    new class extends InstructionCompilerTestRunner<CompilerTester<TestInstructionCompiler>, TestInstructionCompiler>
+    {
+        /**
+         * @inheritdoc
+         *
+         * @returns
+         * The new compiler-tester instance.
+         */
+        protected CreateTester(): CompilerTester<TestInstructionCompiler>
+        {
+            return new CompilerTester(
+                new TestInstructionCompiler(
+                    new class extends Instruction
                     {
-                        /**
-                         * @inheritdoc
-                         */
-                        public Type: string = type;
-
                         /**
                          * Initializes a new instance of the class.
                          */
                         public constructor()
                         {
-                            super({ FileName: "example.txt" });
+                            super(
+                                {
+                                    FileName: "example.txt"
+                                });
+                        }
+
+                        /**
+                         * @inheritdoc
+                         */
+                        public get Type(): string
+                        {
+                            return type;
                         }
 
                         /**
@@ -62,53 +104,28 @@ export function InstructionCompilerTests(): void
                         {
                             return objects;
                         }
-                    }();
+                    }()));
+        }
 
-                    $package.InstallSet.push(instruction);
+        /**
+         * @inheritdoc
+         */
+        protected async SuiteSetup(): Promise<void>
+        {
+            await super.SuiteSetup();
+            objects = {};
+            type = "test";
+            objectID = "date";
+            object = new Date();
+            objects[objectID] = object;
+        }
 
-                    compiler = new class extends InstructionCompiler<IInstruction>
-                    {
-                        /**
-                         * Initializes a new instance of the class.
-                         *
-                         * @param item
-                         * The options of the instruction.
-                         */
-                        public constructor(item: IInstruction)
-                        {
-                            super(item);
-                        }
-
-                        /**
-                         * @inheritdoc
-                         */
-                        protected async Compile(): Promise<void>
-                        {
-                            await writeFile(this.DestinationPath, `<%= Item.Type %>\n<%= $("${objectID}") %>`);
-                            await this.CopyTemplate(this.DestinationPath, this.DestinationPath);
-                        }
-                    }(instruction);
-
-                    compiler.DestinationPath = tempFile.FullName;
-                });
-
-            suiteTeardown(
-                () =>
-                {
-                    tempFile.Dispose();
-                });
-
-            suite(
-                "Compile",
-                () =>
-                {
-                    test(
-                        "Checking whether the item can be compiled…",
-                        async () =>
-                        {
-                            await compiler.Execute();
-                        });
-                });
+        /**
+         * @inheritdoc
+         */
+        protected RegisterTests(): void
+        {
+            super.RegisterTests();
 
             suite(
                 "CopyTemplate",
@@ -116,10 +133,13 @@ export function InstructionCompilerTests(): void
                 {
                     let content: string;
 
-                    suiteSetup(
+                    setup(
                         async () =>
                         {
-                            content = (await readFile(tempFile.FullName)).toString();
+                            await this.Compiler.Execute();
+                            await writeFile(this.Compiler.DestinationFileName, `<%= Item.Type %>\n<%= $("${objectID}") %>`);
+                            await this.Tester.Compiler.CopyTemplate(this.Compiler.DestinationFileName, this.Compiler.DestinationFileName);
+                            content = (await readFile(this.Compiler.DestinationFileName)).toString();
                         });
 
                     test(
@@ -130,7 +150,7 @@ export function InstructionCompilerTests(): void
                         });
 
                     test(
-                        "Checking whether $-substitutions are replaced using ejs…",
+                        "Checking whether `$`-substitutions are replaced using ejs…",
                         () =>
                         {
                             ok(content.includes(`${object}`));
@@ -141,39 +161,39 @@ export function InstructionCompilerTests(): void
                 "Serialize",
                 () =>
                 {
-                    let document: Document;
+                    let editor: XMLEditor;
 
-                    suiteSetup(
+                    setup(
                         () =>
                         {
-                            document = compiler.Serialize();
+                            this.Compiler.Item.Standalone = Math.random() > 0.5;
+                            editor = new XMLEditor(this.Compiler.Serialize().documentElement);
                         });
-
                     test(
                         "Checking whether the tag-name is correct…",
                         () =>
                         {
-                            strictEqual(document.documentElement.tagName, "instruction");
+                            strictEqual(editor.TagName, "instruction");
                         });
 
                     test(
                         "Checking whether the type-attribute is set correctly…",
                         () =>
                         {
-                            strictEqual(document.documentElement.getAttribute("type"), compiler.Item.Type);
+                            strictEqual(editor.GetAttribute("type"), this.Compiler.Item.Type);
                         });
 
                     test(
                         "Checking whether the execution-mode is set correctly…",
                         () =>
                         {
-                            if (compiler.Item.Standalone)
+                            if (this.Compiler.Item.Standalone)
                             {
-                                strictEqual(document.documentElement.getAttribute("run"), "standalone");
+                                strictEqual(editor.GetAttribute("run"), "standalone");
                             }
                             else
                             {
-                                strictEqual(document.documentElement.hasAttribute("run"), false);
+                                ok(!editor.HasAttribute("run"));
                             }
                         });
 
@@ -181,8 +201,9 @@ export function InstructionCompilerTests(): void
                         "Checking whether the filename is set correctly…",
                         () =>
                         {
-                            strictEqual(document.documentElement.textContent, compiler.Item.FullName);
+                            strictEqual(editor.TextContent, this.Compiler.Item.FullName);
                         });
                 });
-        });
+        }
+    }("InstructionCompiler").Register();
 }
