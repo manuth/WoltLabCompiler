@@ -36,6 +36,7 @@ export function TemplateListenerInstructionCompilerTests(): void
                             Listeners: []
                         });
 
+                    tempDir = new TempDirectory();
                     extensionPackage.InstallSet.push(instruction);
                     compiler = new TemplateListenerInstructionCompiler(instruction);
                     compiler.DestinationPath = tempDir.FullName;

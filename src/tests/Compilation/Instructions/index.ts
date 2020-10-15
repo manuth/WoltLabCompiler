@@ -1,3 +1,4 @@
+import { EventListenerFileCompilerTests } from "../Events/EventListenerFileCompiler.test";
 import { ACPOptionInstructionCompilerTests } from "./ACPOptionInstructionCompiler.test";
 import { BBCodeInstructionCompilerTests } from "./BBCodeInstructionCompiler.test";
 import { CronJobInstructionCompilerTests } from "./CronJobInstructionCompiler.test";
@@ -6,6 +7,7 @@ import { FileInstructionCompilerTests } from "./FileInstructionCompiler.test";
 import { GroupOptionInstructionCompilerTests } from "./GroupOptionInstructionCompiler.test";
 import { InstructionCompilerTests } from "./InstructionCompiler.test";
 import { LocalizationInstructionCompilerTests } from "./LocalizationInstructionCompiler.test";
+import { TemplateListenerInstructionCompilerTests } from "./TemplateListenerInstructionCompiler.test";
 import { ThemeInstructionCompilerTests } from "./ThemeInstructionCompiler.test";
 import { UserOptionInstructionCompilerTests } from "./UserOptionInstructionCompiler.test";
 
@@ -27,6 +29,8 @@ export function InstructionTests(): void
             CronJobInstructionCompilerTests();
             ThemeInstructionCompilerTests();
             EmojiInstructionCompilerTests();
+            EventListenerFileCompilerTests();
+            TemplateListenerInstructionCompilerTests();
             BBCodeInstructionCompilerTests();
         });
 }
