@@ -1,17 +1,16 @@
 import { ok } from "assert";
 import { readdir } from "fs-extra";
 import { join } from "upath";
-import { OptionInstructionCompiler } from "../../../../Compilation/PackageSystem/Instructions/OptionInstructionCompiler";
-import { Category } from "../../../../Options/Category";
-import { Option } from "../../../../Options/Option";
-import { OptionInstruction } from "../../../../PackageSystem/Instructions/Options/OptionInstruction";
+import { InstructionCompiler } from "../../../../Compilation/PackageSystem/Instructions/InstructionCompiler";
+import { ILocalizationInstruction } from "../../../../PackageSystem/Instructions/Globalization/ILocalizationInstruction";
+import { Instruction } from "../../../../PackageSystem/Instructions/Instruction";
 import { CompilerTester } from "../Testers/CompilerTester";
 import { InstructionCompilerTestRunner } from "./InstructionCompilerTestRunner";
 
 /**
  * Registers tests for option-instruction compilers.
  */
-export abstract class OptionInstructionCompilerTestRunner<TTester extends CompilerTester<TCompiler>, TCompiler extends OptionInstructionCompiler<OptionInstruction<Category<Option, unknown>, unknown, Option, unknown>, Category<Option, unknown>, Option>> extends InstructionCompilerTestRunner<TTester, TCompiler>
+export abstract class LocalizationInstructionCompilerTestRunner<TTester extends CompilerTester<TCompiler>, TCompiler extends InstructionCompiler<ILocalizationInstruction & Instruction>> extends InstructionCompilerTestRunner<TTester, TCompiler>
 {
     /**
      * Initializes a new instance of the `OptionInstructionCompilerTestRunner` class.

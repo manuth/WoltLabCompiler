@@ -2,14 +2,14 @@ import { ACPOptionInstructionCompiler } from "../../../Compilation/PackageSystem
 import { ILocalization } from "../../../Globalization/ILocalization";
 import { ACPOptionInstruction } from "../../../PackageSystem/Instructions/Options/ACPOptionInstruction";
 import { CompilerTester } from "../TestComponents/Testers/CompilerTester";
-import { OptionInstructionCompilerTestRunner } from "../TestComponents/TestRunners/OptionInstructionCompilerTestRunner";
+import { LocalizationInstructionCompilerTestRunner } from "../TestComponents/TestRunners/LocalizationInstructionCompilerTestRunner";
 
 /**
  * Registers tests for the `ACPOptionInstructionCompiler` class.
  */
 export function ACPOptionInstructionCompilerTests(): void
 {
-    new class extends OptionInstructionCompilerTestRunner<CompilerTester<ACPOptionInstructionCompiler>, ACPOptionInstructionCompiler>
+    new class extends LocalizationInstructionCompilerTestRunner<CompilerTester<ACPOptionInstructionCompiler>, ACPOptionInstructionCompiler>
     {
         /**
          * @inheritdoc
