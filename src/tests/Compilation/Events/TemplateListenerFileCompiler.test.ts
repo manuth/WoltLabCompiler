@@ -1,124 +1,55 @@
-import { ok, strictEqual } from "assert";
-import { TempFile } from "@manuth/temp-files";
-import { readFile } from "fs-extra";
-import { DOMParser } from "xmldom";
 import { TemplateListenerFileCompiler } from "../../../Compilation/Events/TemplateListenerFileCompiler";
+import { TemplateListener } from "../../../Customization/Presentation/TemplateListener";
 import { TemplateListenerInstruction } from "../../../PackageSystem/Instructions/Events/TemplateListenerInstruction";
 import { XMLEditor } from "../../../Serialization/XMLEditor";
+import { ListenerCompilerTester } from "../TestComponents/Testers/ListenerCompilerTester";
+import { ListenerCompilerTestRunner } from "../TestComponents/TestRunners/ListenerCompilerTestRunner";
 
 /**
  * Registers tests for the `TemplateListenerFileCompiler` class.
  */
 export function TemplateListenerFileCompilerTests(): void
 {
-    suite(
-        "TemplateListenerFileCompiler",
-        () =>
+    new class extends ListenerCompilerTestRunner<ListenerCompilerTester<TemplateListenerFileCompiler>, TemplateListenerFileCompiler, TemplateListener>
+    {
+        /**
+         * @inheritdoc
+         *
+         * @returns
+         * The new compiler-tester instance.
+         */
+        protected CreateTester(): ListenerCompilerTester<TemplateListenerFileCompiler>
         {
-            let tempFile: TempFile;
-            let compiler: TemplateListenerFileCompiler;
-            let templateName: string;
-            let code: string;
-
-            suiteSetup(
-                () =>
-                {
-                    tempFile = new TempFile();
-                    templateName = "fooTemplate";
-                    code = "{include file='__myFooScript'}";
-
-                    let instruction: TemplateListenerInstruction = new TemplateListenerInstruction(
+            return new ListenerCompilerTester(
+                new TemplateListenerFileCompiler(
+                    new TemplateListenerInstruction(
                         {
                             FileName: null,
                             Listeners: [
                                 {
                                     Name: "test",
                                     EventName: "foo",
-                                    TemplateName: templateName,
-                                    Code: code
+                                    TemplateName: "fooTemplate",
+                                    Code: "{include file='__myFooScript'}"
                                 }
                             ]
-                        });
+                        })),
+                "templatelistener");
+        }
 
-                    compiler = new TemplateListenerFileCompiler(instruction);
-                    compiler.DestinationPath = tempFile.FullName;
-                });
-
-            suiteTeardown(
-                () =>
-                {
-                    tempFile.Dispose();
-                });
-
-            suite(
-                "Compile",
-                () =>
-                {
-                    suite(
-                        "General",
-                        () =>
-                        {
-                            test(
-                                "Checking whether the compiler can be executed…",
-                                async () =>
-                                {
-                                    await compiler.Execute();
-                                });
-                        });
-
-                    suite(
-                        "Checking the integrity of the compiled file…",
-                        () =>
-                        {
-                            let editor: XMLEditor;
-
-                            suite(
-                                "General",
-                                () =>
-                                {
-                                    test(
-                                        "Checking whether the content of the file is valid xml…",
-                                        async () =>
-                                        {
-                                            let document: Document = new DOMParser().parseFromString((await readFile(tempFile.FullName)).toString());
-                                            editor = new XMLEditor(document.documentElement);
-                                        });
-                                });
-
-                            suite(
-                                "Checking the integrity of the template-listener…",
-                                () =>
-                                {
-                                    let templateListenerEditor: XMLEditor;
-                                    let listenerTag: string;
-                                    let templateTag: string;
-                                    let codeTag: string;
-
-                                    suiteSetup(
-                                        () =>
-                                        {
-                                            listenerTag = "templatelistener";
-                                            templateTag = "templatename";
-                                            codeTag = "code";
-                                        });
-
-                                    test(
-                                        "Checking whether the template-listener is present…",
-                                        () =>
-                                        {
-                                            strictEqual(editor.GetElementsByTag(listenerTag).length, 1);
-                                            templateListenerEditor = editor.GetElementsByTag(listenerTag)[0];
-                                        });
-
-                                    test(
-                                        "Checking the integrity of the meta-data…",
-                                        () =>
-                                        {
-                                            ok(templateListenerEditor.HasText(templateTag, templateName));
-                                            ok(templateListenerEditor.HasText(codeTag, code));
-                                        });
-                                });
-                        });
-                });
-        });
+        /**
+         * @inheritdoc
+         *
+         * @param listenerNode
+         * The listener-node to check.
+         *
+         * @param listener
+         * The listener to check.
+         */
+        protected AssertListenerMetadata(listenerNode: XMLEditor, listener: TemplateListener): void
+        {
+            this.AssertTagContent(listenerNode, "templatename", listener.TemplateName);
+            this.AssertTagContent(listenerNode, "code", listener.Code);
+        }
+    }("TemplateListenerFileCompiler").Register();
 }
