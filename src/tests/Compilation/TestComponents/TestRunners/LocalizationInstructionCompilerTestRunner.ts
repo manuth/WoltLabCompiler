@@ -3,14 +3,13 @@ import { readdir } from "fs-extra";
 import { join, parse } from "upath";
 import { InstructionCompiler } from "../../../../Compilation/PackageSystem/Instructions/InstructionCompiler";
 import { ILocalizationInstruction } from "../../../../PackageSystem/Instructions/Globalization/ILocalizationInstruction";
-import { Instruction } from "../../../../PackageSystem/Instructions/Instruction";
 import { CompilerTester } from "../Testers/CompilerTester";
 import { InstructionCompilerTestRunner } from "./InstructionCompilerTestRunner";
 
 /**
  * Registers tests for option-instruction compilers.
  */
-export abstract class LocalizationInstructionCompilerTestRunner<TTester extends CompilerTester<TCompiler>, TCompiler extends InstructionCompiler<ILocalizationInstruction & Instruction>> extends InstructionCompilerTestRunner<TTester, TCompiler>
+export abstract class LocalizationInstructionCompilerTestRunner<TTester extends CompilerTester<TCompiler>, TCompiler extends InstructionCompiler<ILocalizationInstruction>> extends InstructionCompilerTestRunner<TTester, TCompiler>
 {
     /**
      * Initializes a new instance of the `OptionInstructionCompilerTestRunner` class.
