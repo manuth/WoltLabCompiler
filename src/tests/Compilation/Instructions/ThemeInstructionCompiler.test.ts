@@ -1,121 +1,126 @@
 import { ok } from "assert";
+import { join } from "path";
 import { TempDirectory } from "@manuth/temp-files";
 import dedent = require("dedent");
-import { pathExists, writeFile } from "fs-extra";
-import { extract } from "tar";
+import { writeFile } from "fs-extra";
+import { extract, list } from "tar";
+import { parse } from "upath";
 import { ThemeInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/ThemeInstructionCompiler";
 import { ThemeInstruction } from "../../../PackageSystem/Instructions/Customization/Presentation/ThemeInstruction";
-import { Package } from "../../../PackageSystem/Package";
+import { CompilerTester } from "../TestComponents/Testers/CompilerTester";
+import { InstructionCompilerTestRunner } from "../TestComponents/TestRunners/InstructionCompilerTestRunner";
 
 /**
  * Registers tests for the `ThemeInstructionCompiler` class.
  */
 export function ThemeInstructionCompilerTests(): void
 {
-    suite(
-        "ThemeInstructionCompiler",
-        () =>
+    let resourceDir: TempDirectory;
+    let tempDir: TempDirectory;
+    let variableFile: string;
+    let stylesFile: string;
+    let overridesFile: string;
+    let themeArchiveFile: string;
+
+    new class extends InstructionCompilerTestRunner<CompilerTester<ThemeInstructionCompiler>, ThemeInstructionCompiler>
+    {
+        /**
+         * @inheritdoc
+         *
+         * @returns
+         * The new compiler-tester instance.
+         */
+        protected CreateTester(): CompilerTester<ThemeInstructionCompiler>
         {
-            let themeArchive: string;
-            let tempDir: TempDirectory;
-            let themeDir: TempDirectory;
-            let compiler: ThemeInstructionCompiler;
-            let instruction: ThemeInstruction;
-
-            suiteSetup(
-                async () =>
-                {
-                    tempDir = new TempDirectory();
-                    themeDir = new TempDirectory();
-
-                    let extensionPackage: Package = new Package(
-                        {
-                            Identifier: "foo",
-                            DisplayName: {},
-                            InstallSet: {
-                                Instructions: []
-                            }
-                        });
-
-                    let resourceDir: TempDirectory = new TempDirectory();
-
-                    await writeFile(
-                        resourceDir.MakePath("variables.json"),
-                        dedent(`
-                            {
-                                "wcfHeaderBackground": "red",
-                                "somethingSpecial": "test-value",
-                                "moreSpecialStuff": "foobar"
-                            }`));
-
-                    await writeFile(
-                        resourceDir.MakePath("main.scss"),
-                        dedent(`
-                            :root
-                            {
-                                color: red !important;
-                            }`));
-
-                    instruction = new ThemeInstruction(
+            return new CompilerTester(
+                new ThemeInstructionCompiler(
+                    new ThemeInstruction(
                         {
                             Theme: {
                                 Name: "test-theme",
                                 DisplayName: {},
-                                VariableFileName: resourceDir.MakePath("variables.json"),
-                                CustomScssFileName: resourceDir.MakePath("main.scss")
+                                VariableFileName: variableFile,
+                                CustomScssFileName: stylesFile,
+                                ScssOverrideFileName: overridesFile
+                            }
+                        })));
+        }
+
+        /**
+         * @inheritdoc
+         */
+        protected async SuiteSetup(): Promise<void>
+        {
+            resourceDir = new TempDirectory();
+            tempDir = new TempDirectory();
+            variableFile = resourceDir.MakePath("variables.json");
+            stylesFile = resourceDir.MakePath("main.scss");
+            overridesFile = resourceDir.MakePath("overrides.scss");
+
+            await writeFile(
+                variableFile,
+                dedent(
+                    `
+                    {
+                        "wcfHeaderBackground": "red",
+                        "somethingSpecial": "test-value",
+                        "moreSpecialStuff": "foobar"
+                    }`));
+
+            await writeFile(
+                stylesFile,
+                dedent(
+                    `
+                    :root
+                    {
+                        color: red !important;
+                    }`));
+
+            await writeFile(overridesFile, '$wcfHeaderBackground: "greend";');
+            await super.SuiteSetup();
+            themeArchiveFile = join(this.Compiler.DestinationPath, this.Compiler.Item.FullName);
+        }
+
+        /**
+         * @inheritdoc
+         */
+        protected ExecuteTests(): void
+        {
+            super.ExecuteTests();
+
+            test(
+                "Checking whether the tar-archive can be extracted without an error…",
+                async () =>
+                {
+                    await extract(
+                        {
+                            cwd: tempDir.FullName,
+                            file: themeArchiveFile
+                        });
+                });
+
+            test(
+                "Checking whether the filex expected in the tar-archive exist…",
+                async () =>
+                {
+                    let files: string[] = [];
+
+                    await list(
+                        {
+                            file: themeArchiveFile,
+                            onentry: (entry) =>
+                            {
+                                files.push(entry.header.path);
+                            },
+                            filter: (path) =>
+                            {
+                                return parse(path).dir.length === 0;
                             }
                         });
 
-                    resourceDir.Dispose();
-                    extensionPackage.InstallSet.push(instruction);
-                    compiler = new ThemeInstructionCompiler(instruction);
-                    compiler.DestinationPath = tempDir.FullName;
-                    themeArchive = tempDir.MakePath(instruction.FullName);
+                    ok(files.includes("style.xml"));
+                    ok(files.includes("variables.xml"));
                 });
-
-            suiteTeardown(
-                () =>
-                {
-                    tempDir.Dispose();
-                    themeDir.Dispose();
-                });
-
-            suite(
-                "Compile",
-                () =>
-                {
-                    test(
-                        "Checking whether the instruction can be compiled without any errors…",
-                        async () =>
-                        {
-                            await compiler.Execute();
-                        });
-
-                    test(
-                        "Checking whether the tar-archive has been created…",
-                        async () =>
-                        {
-                            ok(await pathExists(themeArchive));
-                        });
-
-                    test(
-                        "Checking whether the tar-archive can be extracted without an error…",
-                        async () =>
-                        {
-                            await extract(
-                                {
-                                    cwd: themeDir.FullName,
-                                    file: themeArchive
-                                });
-                        });
-
-                    test(
-                        "Checking whether the files expected in the tar-archive exist…",
-                        async () =>
-                        {
-                            ok(await pathExists(themeDir.MakePath("style.xml")));
-                            ok(await pathExists(themeDir.MakePath("variables.xml")));
-                        });
-                });
-        });
+        }
+    }("ThemeInstructionCompiler").Register();
 }
