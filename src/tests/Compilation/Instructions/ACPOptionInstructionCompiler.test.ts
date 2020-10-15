@@ -1,5 +1,5 @@
 import { ok } from "assert";
-import { pathExists, readdir } from "fs-extra";
+import { readdir } from "fs-extra";
 import { join } from "upath";
 import { ACPOptionInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/ACPOptionInstructionCompiler";
 import { ILocalization } from "../../../Globalization/ILocalization";
@@ -52,13 +52,6 @@ export function ACPOptionInstructionCompilerTests(): void
         protected ExecuteTests(): void
         {
             super.ExecuteTests();
-
-            test(
-                "Checking whether the options-file exists…",
-                async () =>
-                {
-                    ok(await pathExists(this.Compiler.DestinationFileName));
-                });
 
             test(
                 "Checking whether the language-files exist…",

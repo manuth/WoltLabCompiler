@@ -1,5 +1,5 @@
 import { ok } from "assert";
-import { pathExists, readdir } from "fs-extra";
+import { readdir } from "fs-extra";
 import { join } from "upath";
 import { BBCodeInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/BBCodeInstructionCompiler";
 import { ILocalization } from "../../../Globalization/ILocalization";
@@ -51,13 +51,6 @@ export function BBCodeInstructionCompilerTests(): void
         protected ExecuteTests(): void
         {
             super.ExecuteTests();
-
-            test(
-                "Checking whether the bb-code file exists…",
-                async () =>
-                {
-                    ok(await pathExists(this.Compiler.DestinationFileName));
-                });
 
             test(
                 "Checking whether the language-files exist…",

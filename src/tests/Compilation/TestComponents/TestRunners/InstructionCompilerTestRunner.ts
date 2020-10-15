@@ -1,3 +1,6 @@
+import { ok } from "assert";
+import { pathExists } from "fs-extra";
+import { join } from "upath";
 import { InstructionCompiler } from "../../../../Compilation/PackageSystem/Instructions/InstructionCompiler";
 import { Instruction } from "../../../../PackageSystem/Instructions/Instruction";
 import { Package } from "../../../../PackageSystem/Package";
@@ -35,5 +38,25 @@ export abstract class InstructionCompilerTestRunner<TTester extends CompilerTest
                     Instructions: []
                 }
             }).InstallSet.push(this.Tester.Compiler.Item);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    protected ExecuteTests(): void
+    {
+        super.ExecuteTests();
+
+        test(
+            "Checking whether the instruction-file exists…",
+            async () =>
+            {
+                ok(
+                    await pathExists(
+                        join(
+                            this.Compiler.DestinationPath,
+                            this.Compiler.Item.DestinationRoot,
+                            this.Compiler.Item.FileName)));
+            });
     }
 }
