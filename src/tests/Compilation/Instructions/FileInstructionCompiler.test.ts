@@ -113,8 +113,8 @@ export function FileInstructionCompilerTests(): void
                 () =>
                 {
                     let appliaction: string;
-                    let normalDocument: XMLEditor;
-                    let applicationDocument: XMLEditor;
+                    let normalEditor: XMLEditor;
+                    let applicationEditor: XMLEditor;
 
                     suiteSetup(
                         () =>
@@ -145,10 +145,10 @@ export function FileInstructionCompilerTests(): void
                                     }
                                 }).InstallSet.push(normalInstruction, applicationInstruction);
 
-                            normalDocument = new XMLEditor(
+                            normalEditor = new XMLEditor(
                                 new FileInstructionCompiler(normalInstruction).Serialize().documentElement);
 
-                            applicationDocument = new XMLEditor(
+                            applicationEditor = new XMLEditor(
                                 new FileInstructionCompiler(applicationInstruction).Serialize().documentElement);
                         });
 
@@ -156,21 +156,21 @@ export function FileInstructionCompilerTests(): void
                         "Checking whether the `application`-attribute is not present if the `Application` is not specified…",
                         () =>
                         {
-                            ok(!normalDocument.HasAttribute("appliaction"));
+                            ok(!normalEditor.HasAttribute("appliaction"));
                         });
 
                     test(
                         "Checking whether the `application`-attribute is present if the `Application` is specified…",
                         () =>
                         {
-                            ok(applicationDocument.HasAttribute("application"));
+                            ok(applicationEditor.HasAttribute("application"));
                         });
 
                     test(
                         "Checking whether the `application`-attribute is set correctly…",
                         () =>
                         {
-                            strictEqual(applicationDocument.GetAttribute("application"), appliaction);
+                            strictEqual(applicationEditor.GetAttribute("application"), appliaction);
                         });
                 });
         }
