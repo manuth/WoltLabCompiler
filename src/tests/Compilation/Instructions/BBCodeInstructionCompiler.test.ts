@@ -1,49 +1,38 @@
 import { ok } from "assert";
-import { TempDirectory } from "@manuth/temp-files";
 import { pathExists, readdir } from "fs-extra";
+import { join } from "upath";
 import { BBCodeInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/BBCodeInstructionCompiler";
 import { ILocalization } from "../../../Globalization/ILocalization";
 import { BBCodeInstruction } from "../../../PackageSystem/Instructions/Customization/BBCodeInstruction";
-import { Package } from "../../../PackageSystem/Package";
+import { CompilerTester } from "../TestComponents/Testers/CompilerTester";
+import { InstructionCompilerTestRunner } from "../TestComponents/TestRunners/InstructionCompilerTestRunner";
 
 /**
  * Registers tests for the `BBCodeInstructionCompiler` class.
  */
 export function BBCodeInstructionCompilerTests(): void
 {
-    suite(
-        "BBCodeInstructionCompiler",
-        () =>
+    new class extends InstructionCompilerTestRunner<CompilerTester<BBCodeInstructionCompiler>, BBCodeInstructionCompiler>
+    {
+        /**
+         * @inheritdoc
+         *
+         * @returns
+         * The new compiler-tester instance.
+         */
+        protected CreateTester(): CompilerTester<BBCodeInstructionCompiler>
         {
-            let fileName: string;
-            let translationDir: string;
-            let tempDir: TempDirectory;
-            let compiler: BBCodeInstructionCompiler;
-            let locales: string[];
+            let displayName: ILocalization = {};
+            let locales = ["de", "en", "it"];
 
-            suiteSetup(
-                () =>
-                {
-                    let displayName: ILocalization = {};
+            for (let locale of locales)
+            {
+                displayName[locale] = "test";
+            }
 
-                    let $package: Package = new Package(
-                        {
-                            Identifier: "foo",
-                            DisplayName: {},
-                            InstallSet: {
-                                Instructions: []
-                            }
-                        });
-
-                    tempDir = new TempDirectory();
-                    locales = ["en"];
-
-                    for (let locale of locales)
-                    {
-                        displayName[locale] = "test";
-                    }
-
-                    let instruction: BBCodeInstruction = new BBCodeInstruction(
+            return new CompilerTester(
+                new BBCodeInstructionCompiler(
+                    new BBCodeInstruction(
                         {
                             FileName: "bbCodes.xml",
                             BBCodes: [
@@ -53,46 +42,37 @@ export function BBCodeInstructionCompilerTests(): void
                                 }
                             ],
                             TranslationDirectory: "bbCodeLanguageStuff"
-                        });
+                        })));
+        }
 
-                    $package.InstallSet.push(instruction);
-                    compiler = new BBCodeInstructionCompiler(instruction);
-                    compiler.DestinationPath = tempDir.FullName;
-                    fileName = compiler.DestinationFileName;
-                    translationDir = tempDir.MakePath(instruction.DestinationRoot, instruction.TranslationDirectory);
-                });
+        /**
+         * @inheritdoc
+         */
+        protected ExecuteTests(): void
+        {
+            super.ExecuteTests();
 
-            suiteTeardown(
-                () =>
+            test(
+                "Checking whether the bb-code file exists…",
+                async () =>
                 {
-                    tempDir.Dispose();
+                    ok(await pathExists(this.Compiler.DestinationFileName));
                 });
 
-            suite(
-                "Compile",
-                () =>
+            test(
+                "Checking whether the language-files exist…",
+                async () =>
                 {
-                    test(
-                        "Checking whether the compiler can be executed…",
-                        async () =>
-                        {
-                            await compiler.Execute();
-                        });
+                    let locales = Object.keys(this.Compiler.Item.GetMessages());
 
-                    test(
-                        "Checking whether the bb-code file exists…",
-                        async () =>
-                        {
-                            ok(await pathExists(fileName));
-                        });
+                    let files = await readdir(
+                        join(
+                            this.Compiler.DestinationPath,
+                            this.Compiler.Item.DestinationRoot,
+                            this.Compiler.Item.TranslationDirectory));
 
-                    test(
-                        "Checking whether the language-files exist…",
-                        async () =>
-                        {
-                            let files: string[] = await readdir(translationDir);
-                            ok(locales.every((locale: string) => files.includes(`${locale}.xml`)));
-                        });
+                    ok(locales.every((locale: string) => files.includes(`${locale}.xml`)));
                 });
-        });
+        }
+    }("BBCodeInstructionCompiler").Register();
 }
