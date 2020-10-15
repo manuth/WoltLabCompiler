@@ -1,188 +1,83 @@
-import { ok, strictEqual } from "assert";
-import { TempFile } from "@manuth/temp-files";
-import { readFile } from "fs-extra";
-import { DOMParser } from "xmldom";
 import { UserOptionFileCompiler } from "../../../Compilation/Options/UserOptionFileCompiler";
+import { INode } from "../../../NodeSystem/Generic/INode";
 import { EditPermission } from "../../../Options/UserPanel/EditPermission";
-import { IUserOptionOptions } from "../../../Options/UserPanel/IUserOptionOptions";
+import { UserCategory } from "../../../Options/UserPanel/UserCategory";
+import { UserOption } from "../../../Options/UserPanel/UserOption";
 import { ViewPermission } from "../../../Options/UserPanel/ViewPermission";
 import { UserOptionInstruction } from "../../../PackageSystem/Instructions/Options/UserOptionInstruction";
 import { XMLEditor } from "../../../Serialization/XMLEditor";
+import { OptionCompilerTester } from "../TestComponents/Testers/OptionCompilerTester";
+import { OptionFileCompilerTestRunner } from "../TestComponents/TestRunners/OptionFileCompilerTestRunner";
 
 /**
  * Registers tests for the `UserOptionFileCompiler` class.
  */
 export function UserOptionFileCompilerTests(): void
 {
-    suite(
-        "UserOptionFileCompiler",
-        () =>
+    new class extends OptionFileCompilerTestRunner<OptionCompilerTester<UserOptionFileCompiler>, UserOptionFileCompiler, UserCategory, UserOption>
+    {
+        /**
+         * @inheritdoc
+         *
+         * @returns
+         * The new compiler-tester instance.
+         */
+        protected CreateTester(): OptionCompilerTester<UserOptionFileCompiler>
         {
-            let tempFile: TempFile;
-            let compiler: UserOptionFileCompiler;
-            let option: IUserOptionOptions;
-
-            suiteSetup(
-                () =>
-                {
-                    tempFile = new TempFile();
-
-                    option = {
-                        Name: "foo",
-                        Required: Math.random() > 0.5,
-                        AskOnRegistration: Math.random() > 0.5,
-                        EditPermissions: EditPermission.Owner | EditPermission.Admin,
-                        ViewPermissions: ViewPermission.Owner | ViewPermission.Admin | ViewPermission.RegisteredUser | ViewPermission.Guest,
-                        OutputClass: "wcf\\system\\foo\\bar\\BazUserOptionOutput"
-                    };
-
-                    let userOptionInstruction: UserOptionInstruction = new UserOptionInstruction(
+            return new OptionCompilerTester(
+                new UserOptionFileCompiler(
+                    new UserOptionInstruction(
                         {
                             FileName: null,
                             Nodes: [
                                 {
-                                    Name: "bar",
+                                    Name: "foo",
                                     Item: {
                                         Options: [
-                                            option
+                                            {
+                                                Name: "bar",
+                                                Required: Math.random() > 0.5,
+                                                AskOnRegistration: Math.random() > 0.5,
+                                                EditPermissions: EditPermission.Owner | EditPermission.Admin,
+                                                ViewPermissions: ViewPermission.Owner | ViewPermission.Admin | ViewPermission.RegisteredUser | ViewPermission.Guest,
+                                                OutputClass: "wcf\\system\\foo\\bar\\baz\\BazUserOptionOutput"
+                                            }
                                         ]
                                     }
                                 }
                             ]
-                        });
+                        })));
+        }
 
-                    compiler = new UserOptionFileCompiler(userOptionInstruction);
-                    compiler.DestinationPath = tempFile.FullName;
-                });
+        /**
+         * @inheritdoc
+         *
+         * @param categoryNode
+         * The category-node to check.
+         *
+         * @param category
+         * The category to check.
+         */
+        protected AssertCategoryMetadata(categoryNode: XMLEditor, category: INode<UserCategory>): void
+        { }
 
-            suiteTeardown(
-                () =>
-                {
-                    tempFile.Dispose();
-                });
-
-            suite(
-                "Compile",
-                () =>
-                {
-                    suite(
-                        "General",
-                        () =>
-                        {
-                            test(
-                                "Checking whether the compiler can be executed…",
-                                async () =>
-                                {
-                                    await compiler.Execute();
-                                });
-                        });
-
-                    suite(
-                        "Checking the integrity of the compiled file…",
-                        () =>
-                        {
-                            let editor: XMLEditor;
-
-                            suite(
-                                "General",
-                                () =>
-                                {
-                                    test(
-                                        "Checking whether the file is a valid xml-file…",
-                                        async () =>
-                                        {
-                                            let document: Document = new DOMParser().parseFromString((await readFile(tempFile.FullName)).toString());
-                                            editor = new XMLEditor(document.documentElement);
-                                        });
-                                });
-
-                            suite(
-                                "Checking the integrity of the option",
-                                () =>
-                                {
-                                    let optionEditor: XMLEditor;
-
-                                    suite(
-                                        "General",
-                                        () =>
-                                        {
-                                            let optionTag: string;
-
-                                            suiteSetup(
-                                                () =>
-                                                {
-                                                    optionTag = "option";
-                                                });
-
-                                            test(
-                                                "Checking whether the option exists…",
-                                                () =>
-                                                {
-                                                    strictEqual(editor.GetElementsByTag(optionTag).length, 1);
-                                                    optionEditor = editor.GetElementsByTag(optionTag)[0];
-                                                });
-                                        });
-
-                                    suite(
-                                        "Checking the integrity of the meta-data…",
-                                        () =>
-                                        {
-                                            let requiredTag: string;
-                                            let registrationTag: string;
-                                            let editTag: string;
-                                            let viewTag: string;
-                                            let searchableTag: string;
-                                            let outputTag: string;
-
-                                            suiteSetup(
-                                                () =>
-                                                {
-                                                    requiredTag = "required";
-                                                    registrationTag = "askduringregistration";
-                                                    editTag = "editable";
-                                                    viewTag = "visible";
-                                                    searchableTag = "searchable";
-                                                    outputTag = "outputclass";
-                                                });
-
-                                            test(
-                                                'Checking whether the "Required"-property is correct…',
-                                                () =>
-                                                {
-                                                    ok(optionEditor.HasText(requiredTag, option.Required ? "1" : "0"));
-                                                });
-
-                                            test(
-                                                'Checking whether the "AskOnRegistration"-property is correct…',
-                                                () =>
-                                                {
-                                                    ok(optionEditor.HasText(registrationTag, option.AskOnRegistration ? "1" : "0"));
-                                                });
-
-                                            test(
-                                                "Checking whether the permissions are set correctly…",
-                                                () =>
-                                                {
-                                                    ok(optionEditor.HasText(editTag, option.EditPermissions.toString()));
-                                                    ok(optionEditor.HasText(viewTag, option.ViewPermissions.toString()));
-                                                });
-
-                                            test(
-                                                'Checking whether the "Searchable"-property is correct…',
-                                                () =>
-                                                {
-                                                    ok(optionEditor.HasText(searchableTag, option.Searchable ? "1" : "0"));
-                                                });
-
-                                            test(
-                                                "Checking whether the output-class is correct…",
-                                                () =>
-                                                {
-                                                    ok(optionEditor.HasText(outputTag, option.OutputClass));
-                                                });
-                                        });
-                                });
-                        });
-                });
-        });
+        /**
+         * Asserts the content of an option-node.
+         *
+         * @param optionNode
+         * The option-node to check.
+         *
+         * @param option
+         * The option to check.
+         */
+        protected AssertOptionMetadata(optionNode: XMLEditor, option: UserOption): void
+        {
+            this.AssertTagContent(optionNode, "required", option.Required ? "1" : "0");
+            this.AssertTagContent(optionNode, "askduringregistration", option.AskOnRegistration ? "1" : "0");
+            this.AssertTagContent(optionNode, "editable", `${option.EditPermissions}`);
+            this.AssertTagContent(optionNode, "visible", `${option.ViewPermissions}`);
+            this.AssertTagContent(optionNode, "searchable", option.Searchable ? "1" : "0");
+            this.AssertTagContent(optionNode, "outputclass", option.OutputClass);
+        }
+    }("UserOptionFileCompiler").Register();
 }
