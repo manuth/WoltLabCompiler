@@ -89,8 +89,6 @@ export function BBCodeFileCompilerTests(): void
                                 {
                                     try
                                     {
-                                        let attributeNodes = this.GetElement(bbCodeNode, "attributes").GetChildrenByTag("attribute");
-
                                         if (bbCode.DisplayName.GetLocales().length > 0)
                                         {
                                             this.AssertTagContent(bbCodeNode, labelTag, `wcf.editor.button.${bbCode.Name}`);
@@ -141,44 +139,48 @@ export function BBCodeFileCompilerTests(): void
                                             }
                                         }
 
-                                        strictEqual(attributeNodes.length, bbCode.Attributes.length);
-
-                                        for (let attribute of bbCode.Attributes)
+                                        if (bbCode.Attributes.length > 0)
                                         {
-                                            ok(
-                                                attributeNodes.some(
-                                                    (attributeNode) =>
-                                                    {
-                                                        try
+                                            let attributeNodes = this.GetElement(bbCodeNode, "attributes").GetChildrenByTag("attribute");
+                                            strictEqual(attributeNodes.length, bbCode.Attributes.length);
+
+                                            for (let attribute of bbCode.Attributes)
+                                            {
+                                                ok(
+                                                    attributeNodes.some(
+                                                        (attributeNode) =>
                                                         {
-                                                            this.AssertTagContent(attributeNode, "required", attribute.Required ? "1" : "0");
-                                                            this.AssertTagContent(attributeNode, "useText", attribute.ValueByContent ? "1" : "0");
+                                                            try
+                                                            {
+                                                                this.AssertTagContent(attributeNode, "required", attribute.Required ? "1" : "0");
+                                                                this.AssertTagContent(attributeNode, "useText", attribute.ValueByContent ? "1" : "0");
 
-                                                            if (attribute.Code)
-                                                            {
-                                                                this.AssertTagContent(attributeNode, codeTag, attribute.Code);
-                                                            }
-                                                            else
-                                                            {
-                                                                strictEqual(attributeNode.GetChildrenByTag(codeTag).length, 0);
-                                                            }
+                                                                if (attribute.Code)
+                                                                {
+                                                                    this.AssertTagContent(attributeNode, codeTag, attribute.Code);
+                                                                }
+                                                                else
+                                                                {
+                                                                    strictEqual(attributeNode.GetChildrenByTag(codeTag).length, 0);
+                                                                }
 
-                                                            if (attribute.ValidationPattern)
-                                                            {
-                                                                this.AssertTagContent(attributeNode, patternTag, attribute.ValidationPattern.source);
-                                                            }
-                                                            else
-                                                            {
-                                                                strictEqual(attributeNode.GetChildrenByTag(patternTag).length, 0);
-                                                            }
+                                                                if (attribute.ValidationPattern)
+                                                                {
+                                                                    this.AssertTagContent(attributeNode, patternTag, attribute.ValidationPattern.source);
+                                                                }
+                                                                else
+                                                                {
+                                                                    strictEqual(attributeNode.GetChildrenByTag(patternTag).length, 0);
+                                                                }
 
-                                                            return true;
-                                                        }
-                                                        catch
-                                                        {
-                                                            return false;
-                                                        }
-                                                    }));
+                                                                return true;
+                                                            }
+                                                            catch
+                                                            {
+                                                                return false;
+                                                            }
+                                                        }));
+                                            }
                                         }
 
                                         return true;
