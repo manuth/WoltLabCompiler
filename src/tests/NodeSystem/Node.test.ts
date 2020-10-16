@@ -79,25 +79,19 @@ export function NodeTests(): void
                 "Parent",
                 () =>
                 {
-                    suite(
-                        "Checking whether the `Parent`-property is automatically set properly, when…",
+                    test(
+                        "Checking whether the `Parent`-property is automatically set properly, when setting the `Parent`-property…",
                         () =>
                         {
-                            test(
-                                "…setting the `Parent`-property…",
-                                () =>
-                                {
-                                    nodeA.Parent = nodeB;
-                                    strictEqual(nodeA.Parent, nodeB);
-                                });
-
-                            test(
-                                "…adding the node to another node's `Nodes`-array…",
-                                () =>
-                                {
-                                    nodeC.Nodes.push(nodeA);
-                                    strictEqual(nodeA.Parent, nodeC);
-                                });
+                            nodeA.Parent = nodeB;
+                            strictEqual(nodeA.Parent, nodeB);
+                        });
+                    test(
+                        "Checking whether the `Parent`-property is automatically set properly, when adding the node to another node's `Nodes`-array…",
+                        () =>
+                        {
+                            nodeA.Parent = nodeB;
+                            strictEqual(nodeA.Parent, nodeB);
                         });
                 });
 
@@ -105,29 +99,24 @@ export function NodeTests(): void
                 "Nodes",
                 () =>
                 {
-                    suite(
-                        "Checking whether the `Nodes`-property is automatically set properly, when…",
+                    test(
+                        "Checking whether the `Nodes`-property is automatically set properly, when setting the `Parent`-property of another node…",
                         () =>
                         {
-                            test(
-                                "…setting the `Parent`-property of another node…",
-                                () =>
-                                {
-                                    nodeB.Parent = nodeA;
+                            nodeB.Parent = nodeA;
 
-                                    strictEqual(nodeA.Nodes.length, 1);
-                                    strictEqual(nodeA.Nodes[0], nodeB);
-                                });
+                            strictEqual(nodeA.Nodes.length, 1);
+                            strictEqual(nodeA.Nodes[0], nodeB);
+                        });
 
-                            test(
-                                "…adding another node to the `Nodes`-array…",
-                                () =>
-                                {
-                                    nodeA.Nodes.push(nodeC);
+                    test(
+                        "Checking whether the `Nodes`-property is automatically set properly, when adding another node to the `Nodes`-array…",
+                        () =>
+                        {
+                            nodeA.Nodes.push(nodeC);
 
-                                    strictEqual(nodeA.Nodes.length, 1);
-                                    strictEqual(nodeA.Nodes[0], nodeC);
-                                });
+                            strictEqual(nodeA.Nodes.length, 1);
+                            strictEqual(nodeA.Nodes[0], nodeC);
                         });
                 });
 

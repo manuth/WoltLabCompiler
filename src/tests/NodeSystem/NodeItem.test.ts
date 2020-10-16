@@ -11,11 +11,12 @@ export function NodeItemTests(): void
         "NodeItem",
         () =>
         {
-            suite(
-                "Node",
+            let node: Node<NodeItem, unknown>;
+
+            setup(
                 () =>
                 {
-                    let node: Node<NodeItem, unknown> = new Node<NodeItem, unknown>(
+                    node = new Node<NodeItem, unknown>(
                         {
                             Name: "foo",
                             Item: {}
@@ -24,7 +25,12 @@ export function NodeItemTests(): void
                         {
                             return new NodeItem(parent);
                         });
+                });
 
+            suite(
+                "Node",
+                () =>
+                {
                     test(
                         "Checking whether the `Node`-property is set correctly after initializing a new `NodeItem`…",
                         () =>
