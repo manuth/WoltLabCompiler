@@ -54,6 +54,25 @@ export abstract class XMLCompilerTestRunner<TTester extends XMLFileCompilerTeste
     }
 
     /**
+     * Returns the element with the unique `tagName`.
+     *
+     * @param element
+     * The element to check for the tag.
+     *
+     * @param tagName
+     * The name of the tag.
+     *
+     * @returns
+     * The element with the unique `tagName`.
+     */
+    protected GetElement(element: XMLEditor, tagName: string): XMLEditor
+    {
+        let elements = element.GetChildrenByTag(tagName);
+        strictEqual(elements.length, 1);
+        return elements[0];
+    }
+
+    /**
      * Gets the text of a child-tag with the speicifed `tagName`.
      *
      * @param element
@@ -67,9 +86,7 @@ export abstract class XMLCompilerTestRunner<TTester extends XMLFileCompilerTeste
      */
     protected GetText(element: XMLEditor, tagName: string): string
     {
-        let elements = element.GetChildrenByTag(tagName);
-        strictEqual(elements.length, 1);
-        return elements[0].TextContent;
+        return this.GetElement(element, tagName).TextContent;
     }
 
     /**
