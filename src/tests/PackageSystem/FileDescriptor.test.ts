@@ -13,19 +13,43 @@ export function FileDescriptorTests(): void
         "FileDescriptor",
         () =>
         {
+            let tempFile: TempFile;
             let workingDir: TempDirectory;
             let currentDir: string;
             let fileName: string;
             let fileDescriptor: FileDescriptor;
             let content: string;
 
+            /**
+             * Creates a new file-descriptor and it's source-file with the specified `content`.
+             *
+             * @param fileName
+             * The name of the source-file.
+             *
+             * @param content
+             * The content to write to the source-file.
+             *
+             * @returns
+             * The newly created file-descriptor.
+             */
+            async function CreateFileDescriptor(fileName: string, content: string): Promise<FileDescriptor>
+            {
+                await ensureFile(fileName);
+                await writeFile(fileName, content);
+
+                return new FileDescriptor(
+                    {
+                        Source: fileName
+                    });
+            }
+
             suiteSetup(
                 () =>
                 {
+                    tempFile = new TempFile();
                     workingDir = new TempDirectory();
                     currentDir = process.cwd();
                     process.chdir(workingDir.FullName);
-                    content = "Hello World";
                 });
 
             suiteTeardown(
@@ -38,34 +62,15 @@ export function FileDescriptorTests(): void
             setup(
                 async () =>
                 {
-                    await ensureFile(fileName);
-                    await writeFile(fileName, content);
-
-                    fileDescriptor = new FileDescriptor(
-                        {
-                            Source: fileName
-                        });
+                    fileName = tempFile.FullName;
+                    content = "Hello World";
+                    fileDescriptor = await CreateFileDescriptor(fileName, content);
                 });
 
             suite(
                 "Checking whether absolute paths are handled correctly…",
                 () =>
                 {
-                    let tempFile: TempFile;
-
-                    suiteSetup(
-                        () =>
-                        {
-                            tempFile = new TempFile();
-                            fileName = tempFile.FullName;
-                        });
-
-                    suiteTeardown(
-                        () =>
-                        {
-                            tempFile.Dispose();
-                        });
-
                     test(
                         "Checking whether the `Source` points to the correct file…",
                         async () =>
@@ -85,14 +90,12 @@ export function FileDescriptorTests(): void
                 "Checking whether relative paths are handled correctly…",
                 () =>
                 {
-                    let relativeFile: string;
-
-                    suiteSetup(
-                        () =>
+                    setup(
+                        async () =>
                         {
-                            relativeFile = "./foo/bar/baz/test.txt";
-                            fileName = relativeFile;
+                            fileName = "./foo/bar/baz/test.txt";
                             content = "Hello Relative World";
+                            fileDescriptor = await CreateFileDescriptor(fileName, content);
                         });
 
                     test(
@@ -139,8 +142,6 @@ export function FileDescriptorTests(): void
                             current = process.cwd();
                             childDir = "foo";
                             relativeFile = "../bar/baz/test.txt";
-                            fileName = relativeFile;
-                            content = "Hello Parent World";
                             await ensureDir(childDir);
                             process.chdir(childDir);
                         });
@@ -149,6 +150,14 @@ export function FileDescriptorTests(): void
                         () =>
                         {
                             process.chdir(current);
+                        });
+
+                    setup(
+                        async () =>
+                        {
+                            fileName = relativeFile;
+                            content = "Hello Parent World";
+                            fileDescriptor = await CreateFileDescriptor(fileName, content);
                         });
 
                     test(
