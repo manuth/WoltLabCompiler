@@ -1,146 +1,112 @@
 import { ok, strictEqual } from "assert";
-import { TempFile } from "@manuth/temp-files";
-import { readFile } from "fs-extra";
-import { DOMParser } from "xmldom";
 import { EmojiFileCompiler } from "../../../Compilation/Presentation/EmojiFileCompiler";
 import { EmojiInstruction } from "../../../PackageSystem/Instructions/Customization/EmojiInstruction";
-import { XMLEditor } from "../../../Serialization/XMLEditor";
+import { ImportCompilerTester } from "../TestComponents/Testers/ImportCompilerTester";
+import { ImportCompilerTestRunner } from "../TestComponents/TestRunners/ImportCompilerTestRunner";
 
 /**
  * Registers tests for the `EmojiFileCompiler` class.
  */
 export function EmojiFileCompilerTests(): void
 {
-    suite(
-        "EmojiFileCompiler",
-        () =>
+    new class extends ImportCompilerTestRunner<ImportCompilerTester<EmojiFileCompiler>, EmojiFileCompiler>
+    {
+        /**
+         * @inheritdoc
+         *
+         * @returns
+         * The new compiler-tester instance.
+         */
+        protected CreateTester(): ImportCompilerTester<EmojiFileCompiler>
         {
-            let tempFile: TempFile;
-            let compiler: EmojiFileCompiler;
-            let name: string;
-            let displayName: string;
-            let aliases: string[];
-            let showOrder: number;
-            let fileName: string;
-            let highResFileName: string;
-
-            suiteSetup(
-                () =>
-                {
-                    tempFile = new TempFile();
-                    name = "foo";
-                    displayName = "bar";
-                    aliases = ["baz", "this", "is", "a", "test"];
-                    showOrder = Math.floor(Math.random() * 100);
-                    fileName = "lowRes.png";
-                    highResFileName = "highRes.png";
-
-                    let instruction: EmojiInstruction = new EmojiInstruction(
+            return new ImportCompilerTester(
+                new EmojiFileCompiler(
+                    new EmojiInstruction(
                         {
                             FileName: null,
                             Emojis: [
                                 {
-                                    Name: name,
-                                    DisplayName: displayName,
-                                    Aliases: aliases,
-                                    ShowOrder: showOrder,
-                                    FileName: fileName,
-                                    HighResFileName: highResFileName
+                                    Name: "foo",
+                                    DisplayName: "bar",
+                                    Aliases: [
+                                        "this",
+                                        "is",
+                                        "a",
+                                        "test"
+                                    ],
+                                    ShowOrder: Math.floor(Math.random() * 100),
+                                    FileName: "lowRes.png",
+                                    HighResFileName: "highRes.png"
+                                },
+                                {
+                                    Name: "fizz",
+                                    DisplayName: "buzz",
+                                    FileName: "fizzbuzz.png"
                                 }
                             ]
-                        });
+                        })));
+        }
 
-                    compiler = new EmojiFileCompiler(instruction);
-                    compiler.DestinationPath = tempFile.FullName;
-                });
+        /**
+         * @inheritdoc
+         */
+        protected ExecuteTests(): void
+        {
+            super.ExecuteTests();
 
-            suiteTeardown(
+            test(
+                "Checking the integrity of the metadata…",
                 () =>
                 {
-                    tempFile.Dispose();
+                    let showOrderTag = "showorder";
+                    let highResFileTag = "path2x";
+                    let emojiNodes = this.Tester.ImportEditor.GetChildrenByTag("smiley");
+                    strictEqual(emojiNodes.length, this.Compiler.Item.Emojis.length);
+
+                    for (let emoji of this.Compiler.Item.Emojis)
+                    {
+                        ok(
+                            emojiNodes.some(
+                                (emojiNode) =>
+                                {
+                                    try
+                                    {
+                                        strictEqual(emojiNode.GetAttribute("name"), `:${emoji.Name}:`);
+                                        this.AssertTagContent(emojiNode, "title", emoji.DisplayName);
+                                        this.AssertTagContent(emojiNode, "path", emoji.FileName);
+
+                                        for (let alias of emoji.Aliases)
+                                        {
+                                            ok(this.GetText(emojiNode, "aliases").split("\n").includes(`:${alias}:`));
+                                        }
+
+                                        if (emoji.ShowOrder)
+                                        {
+                                            this.AssertTagContent(emojiNode, showOrderTag, `${emoji.ShowOrder}`);
+                                        }
+                                        else
+                                        {
+                                            strictEqual(emojiNode.GetChildrenByTag(showOrderTag).length, 0);
+                                        }
+
+                                        if (emoji.HighResFileName)
+                                        {
+                                            this.AssertTagContent(emojiNode, highResFileTag, emoji.HighResFileName);
+                                        }
+                                        else
+                                        {
+                                            strictEqual(emojiNode.GetChildrenByTag(highResFileTag).length, 0);
+                                        }
+
+                                        return true;
+                                    }
+                                    catch
+                                    {
+                                        return false;
+                                    }
+                                }));
+                    }
                 });
-
-            suite(
-                "Compile",
-                () =>
-                {
-                    suite(
-                        "General",
-                        () =>
-                        {
-                            test(
-                                "Checking whether the compiler can be executed…",
-                                async () =>
-                                {
-                                    await compiler.Execute();
-                                });
-                        });
-
-                    suite(
-                        "Checking the integrity of the file…",
-                        () =>
-                        {
-                            let importEditor: XMLEditor;
-
-                            suite(
-                                "General",
-                                () =>
-                                {
-                                    test(
-                                        "Checking whether the content of the compiled file is valid xml…",
-                                        async () =>
-                                        {
-                                            let document: Document = new DOMParser().parseFromString((await readFile(tempFile.FullName)).toString());
-                                            importEditor = new XMLEditor(document.documentElement).GetChildrenByTag("import")[0];
-                                        });
-                                });
-
-                            suite(
-                                "Checking the integrity of the emoji…",
-                                () =>
-                                {
-                                    let emojiEditor: XMLEditor;
-                                    let emojiTag: string;
-                                    let nameAttribute: string;
-                                    let displayNameTag: string;
-                                    let aliasesTag: string;
-                                    let showOrderTag: string;
-                                    let fileNameTag: string;
-                                    let highResFileNameTag: string;
-
-                                    suiteSetup(
-                                        () =>
-                                        {
-                                            emojiTag = "smiley";
-                                            nameAttribute = "name";
-                                            displayNameTag = "title";
-                                            aliasesTag = "aliases";
-                                            showOrderTag = "showorder";
-                                            fileNameTag = "path";
-                                            highResFileNameTag = "path2x";
-                                        });
-
-                                    test(
-                                        "Checking whether the emoji is present…",
-                                        () =>
-                                        {
-                                            ok(importEditor.HasTag(emojiTag, true));
-                                            emojiEditor = importEditor.GetChildrenByTag(emojiTag)[0];
-                                        });
-
-                                    test(
-                                        "Checking the integrity of the meta-data…",
-                                        () =>
-                                        {
-                                            strictEqual(emojiEditor.GetAttribute(nameAttribute), `:${name}:`);
-                                            ok(emojiEditor.HasText(displayNameTag, displayName));
-                                            ok(emojiEditor.HasText(aliasesTag, aliases.map((alias: string) => `:${alias}:`).join("\n")));
-                                            ok(emojiEditor.HasText(showOrderTag, showOrder.toString()));
-                                            ok(emojiEditor.HasText(fileNameTag, fileName));
-                                            ok(emojiEditor.HasText(highResFileNameTag, highResFileName));
-                                        });
-                                });
-                        });
-                });
-        });
+        }
+    }("EmojiFileCompiler").Register();
 }
