@@ -26,7 +26,7 @@ export function InstructionTests(): void
             let extensionPackage: Package;
             let instruction: MyInstruction;
 
-            suiteSetup(
+            setup(
                 () =>
                 {
                     instruction = new MyInstruction(
@@ -43,6 +43,8 @@ export function InstructionTests(): void
                                 Instructions: []
                             }
                         });
+
+                    extensionPackage.InstallSet.push(instruction);
                 });
 
             suite(
@@ -50,11 +52,11 @@ export function InstructionTests(): void
                 () =>
                 {
                     suite(
-                        "Checking whether the `Collection`-property is automatically set properly, when…",
+                        "Checking whether the `Collection`-property is automatically set properly…",
                         () =>
                         {
                             test(
-                                "…setting the `Collection`-property…",
+                                "When setting the `Collection`-property…",
                                 () =>
                                 {
                                     instruction.Collection = extensionPackage.InstallSet;
@@ -62,7 +64,7 @@ export function InstructionTests(): void
                                 });
 
                             test(
-                                "…setting the `Collection`-property to `null`…",
+                                "When setting the `Collection`-property to `null`…",
                                 () =>
                                 {
                                     instruction.Collection = null;
@@ -70,7 +72,7 @@ export function InstructionTests(): void
                                 });
 
                             test(
-                                "…adding the instruction to an `InstructionSet`…",
+                                "When adding the instruction to an `InstructionSet`…",
                                 () =>
                                 {
                                     extensionPackage.InstallSet.push(instruction);
@@ -78,7 +80,7 @@ export function InstructionTests(): void
                                 });
 
                             test(
-                                "…removing the instruction from the `InstructionSet`…",
+                                "When removing the instruction from the `InstructionSet`…",
                                 () =>
                                 {
                                     extensionPackage.InstallSet.pop();
@@ -91,12 +93,6 @@ export function InstructionTests(): void
                 "DestinationRoot",
                 () =>
                 {
-                    suiteSetup(
-                        () =>
-                        {
-                            instruction.Collection = extensionPackage.InstallSet;
-                        });
-
                     test(
                         "Checking whether the `DestinationRoot` is correct…",
                         () =>

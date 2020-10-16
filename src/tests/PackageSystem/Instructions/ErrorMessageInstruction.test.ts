@@ -21,10 +21,14 @@ export function ErrorMessageInstructionTests(): void
             suiteSetup(
                 () =>
                 {
-                    let localization: ILocalization = {};
-
                     locale = "en";
                     messageValue = "This is an error";
+                });
+
+            setup(
+                () =>
+                {
+                    let localization: ILocalization = {};
                     localization[locale] = messageValue;
 
                     errorMessageInstruction = new ErrorMessageInstruction(
@@ -47,7 +51,7 @@ export function ErrorMessageInstructionTests(): void
                 {
                     let translations: Record<string, Record<string, Record<string, string>>>;
 
-                    suiteSetup(
+                    setup(
                         () =>
                         {
                             translations = errorMessageInstruction.GetMessages();

@@ -57,7 +57,7 @@ export function NodeSystemInstructionTests(): void
             let idNode: MyNode;
             let instruction: MyNodeInstruction;
 
-            suiteSetup(
+            setup(
                 () =>
                 {
                     id = "Foo";

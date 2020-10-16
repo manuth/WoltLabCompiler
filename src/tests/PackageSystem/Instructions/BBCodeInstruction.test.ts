@@ -13,7 +13,7 @@ export function BBCodeInstructionTests(): void
         {
             let locale = "en";
             let localization: Record<string, string> = {};
-
+            let bbCodeInstruction: BBCodeInstruction;
             localization[locale] = "bar";
 
             let bbCode = new BBCode(
@@ -22,9 +22,7 @@ export function BBCodeInstructionTests(): void
                     DisplayName: localization
                 });
 
-            let bbCodeInstruction: BBCodeInstruction;
-
-            suiteSetup(
+            setup(
                 () =>
                 {
                     bbCodeInstruction = new BBCodeInstruction(
@@ -52,10 +50,16 @@ export function BBCodeInstructionTests(): void
                 "GetMessages",
                 () =>
                 {
-                    let category = "wcf.editor.button";
+                    let category: string;
                     let translations: Record<string, Record<string, Record<string, string>>>;
 
                     suiteSetup(
+                        () =>
+                        {
+                            category = "wcf.editor.button";
+                        });
+
+                    setup(
                         () =>
                         {
                             translations = bbCodeInstruction.GetMessages();

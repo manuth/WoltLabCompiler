@@ -15,7 +15,7 @@ export function InstructionSetTests(): void
             let instructionSet: InstructionSet;
             let instruction: Instruction;
 
-            suiteSetup(
+            setup(
                 () =>
                 {
                     instructionSet = new Package(
@@ -48,11 +48,11 @@ export function InstructionSetTests(): void
                 });
 
             suite(
-                "Checking whether instructions automatically are pushed to the `InstructionSet`, when…",
+                "Checking whether instructions automatically are pushed to the `InstructionSet`…",
                 () =>
                 {
                     test(
-                        "…the `Collection`-member of an instruction is set…",
+                        "When the `Collection`-member of an instruction is set…",
                         () =>
                         {
                             instruction.Collection = instructionSet;
@@ -60,15 +60,16 @@ export function InstructionSetTests(): void
                         });
 
                     test(
-                        "…the `Collection`-member of an instruction is overwritten by another `InstructionSet`…",
+                        "When the `Collection`-member of an instruction is overwritten by another `InstructionSet`…",
                         () =>
                         {
+                            instructionSet.push(instruction);
                             instruction.Collection = null;
                             strictEqual(instructionSet.includes(instruction), false);
                         });
 
                     test(
-                        "…pushing an instruction to the `InstructionSet`…",
+                        "When pushing an instruction to the `InstructionSet`…",
                         () =>
                         {
                             instructionSet.push(instruction);
@@ -76,9 +77,10 @@ export function InstructionSetTests(): void
                         });
 
                     test(
-                        "…popping an instruction from the `InstructionSet`…",
+                        "When popping an instruction from the `InstructionSet`…",
                         () =>
                         {
+                            instructionSet.push(instruction);
                             instructionSet.pop();
                             strictEqual(instructionSet.includes(instruction), false);
                         });
