@@ -70,8 +70,10 @@ export function CompilerTests(): void
 
                             test(
                                 "Checking whether ejs-strings are replaced when copying the file to a new location…",
-                                async () =>
+                                async function()
                                 {
+                                    this.timeout(5 * 1000);
+                                    this.slow(2.5 * 1000);
                                     await writeFile(sourceFile.FullName, ejsString);
                                     await compiler.CopyTemplate(sourceFile.FullName, destinationFile.FullName, context);
                                     strictEqual((await readFile(destinationFile.FullName)).toString(), result);
@@ -79,8 +81,10 @@ export function CompilerTests(): void
 
                             test(
                                 "Checking whether ejs-strings are replaced when overwriting the source-file…",
-                                async () =>
+                                async function()
                                 {
+                                    this.timeout(5 * 1000);
+                                    this.slow(2.5 * 1000);
                                     await writeFile(sourceFile.FullName, ejsString);
                                     await compiler.CopyTemplate(sourceFile.FullName, sourceFile.FullName, context);
                                     strictEqual((await readFile(sourceFile.FullName)).toString(), result);
@@ -119,8 +123,10 @@ export function CompilerTests(): void
 
                             test(
                                 "Checking whether normal files are copied correctly…",
-                                async () =>
+                                async function()
                                 {
+                                    this.timeout(5 * 1000);
+                                    this.slow(2.5 * 1000);
                                     await writeFile(sourceDir.MakePath(fileName), ejsString);
                                     await compiler.CopyTemplate(sourceDir.FullName, destinationDir.FullName, context);
                                     strictEqual((await readFile(destinationDir.MakePath(fileName))).toString(), result);
@@ -128,8 +134,10 @@ export function CompilerTests(): void
 
                             test(
                                 "Checking whether hidden files are copied correctly…",
-                                async () =>
+                                async function()
                                 {
+                                    this.timeout(5 * 1000);
+                                    this.slow(2.5 * 1000);
                                     await writeFile(sourceDir.MakePath(hiddenFileName), ejsString);
                                     await compiler.CopyTemplate(sourceDir.FullName, destinationDir.FullName, context);
                                     strictEqual((await readFile(destinationDir.MakePath(hiddenFileName))).toString(), result);
@@ -201,8 +209,10 @@ export function CompilerTests(): void
 
                     test(
                         "Checking whether files are compressed correctly…",
-                        async () =>
+                        async function()
                         {
+                            this.timeout(5 * 1000);
+                            this.slow(2.5 * 1000);
                             let testDir: TempDirectory = new TempDirectory();
 
                             {

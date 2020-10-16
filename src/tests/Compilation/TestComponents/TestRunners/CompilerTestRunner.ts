@@ -160,11 +160,15 @@ export abstract class CompilerTestRunner<TTester extends CompilerTester<TCompile
      */
     protected ExecuteTests(): void
     {
+        let self = this;
+
         test(
             "Checking whether the component can be compiled…",
-            async () =>
+            async function()
             {
-                await doesNotReject(async () => this.Compiler.Execute());
+                this.timeout(10 * 1000);
+                this.slow(5 * 1000);
+                await doesNotReject(async () => self.Compiler.Execute());
             });
 
         test(
