@@ -209,7 +209,10 @@ export function PackageFileCompilerTests(): void
                             packageInformationNode.GetChildrenByTag("packagename").some(
                                 (displayNameNode) =>
                                 {
-                                    return ((locale === "inv") || (displayNameNode.HasAttribute(localeAttribute) && (displayNameNode.GetAttribute(localeAttribute) === locale))) &&
+                                    return (
+                                        (locale === "inv") ?
+                                            !displayNameNode.HasAttribute(localeAttribute) :
+                                            (displayNameNode.HasAttribute(localeAttribute) && displayNameNode.GetAttribute(localeAttribute) === locale)) &&
                                         (displayNameNode.TextContent === this.Compiler.Item.DisplayName.Data.get(locale));
                                 }));
                     }
@@ -220,7 +223,10 @@ export function PackageFileCompilerTests(): void
                             packageInformationNode.GetChildrenByTag("packagedescription").some(
                                 (descriptionNode) =>
                                 {
-                                    return ((locale === "inv") || (descriptionNode.HasAttribute(localeAttribute) && (descriptionNode.GetAttribute(localeAttribute) === locale))) &&
+                                    return (
+                                        (locale === "inv") ?
+                                            !descriptionNode.HasAttribute(localeAttribute) :
+                                            (descriptionNode.HasAttribute(localeAttribute) && descriptionNode.GetAttribute(localeAttribute) === locale)) &&
                                         (descriptionNode.TextContent === this.Compiler.Item.Description.Data.get(locale));
                                 }));
                     }
