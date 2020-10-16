@@ -60,7 +60,7 @@ export function XMLTests(): void
                                 is
                                 a
                                 test for the indentation of the XML-formatter
-                                Let's see it it works :')</baz></bar></foo>`);
+                                Let's see it it works ✨</baz></bar></foo>`);
 
                             let output: string = dedent(`
                                 <?xml version="1.0" encoding="UTF-8"?>
@@ -70,7 +70,7 @@ export function XMLTests(): void
                                 is
                                 a
                                 test for the indentation of the XML-formatter
-                                Let's see it it works :')</baz>
+                                Let's see it it works ✨</baz>
                                     </bar>
                                 </foo>`);
 

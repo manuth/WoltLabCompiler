@@ -11,27 +11,21 @@ export function XMLEditorTests(): void
         "XMLEditor",
         () =>
         {
-            let editorTag: string;
-            let editorElement: Element;
+            let tagName: string;
+            let documentElement: Element;
             let temp: XMLEditor;
-            let editor: XMLEditor;
 
             suiteSetup(
                 () =>
                 {
-                    editorTag = "data";
+                    tagName = "data";
                 });
 
             setup(
                 () =>
                 {
-                    temp = new XMLEditor(XML.CreateDocument("foo").documentElement);
-                });
-
-            teardown(
-                () =>
-                {
-                    temp = new XMLEditor(XML.CreateDocument("foo").documentElement);
+                    documentElement = XML.CreateDocument(tagName).documentElement;
+                    temp = new XMLEditor(documentElement);
                 });
 
             suite(
@@ -42,8 +36,7 @@ export function XMLEditorTests(): void
                         "Checking whether a new instance can be initialized…",
                         () =>
                         {
-                            editorElement = XML.CreateDocument(editorTag).documentElement;
-                            editor = new XMLEditor(editorElement);
+                            new XMLEditor(documentElement);
                         });
                 });
 
@@ -55,7 +48,7 @@ export function XMLEditorTests(): void
                         "Checking whether the name of the tag is correct…",
                         () =>
                         {
-                            strictEqual(editor.TagName, editorTag);
+                            strictEqual(temp.TagName, tagName);
                         });
                 });
 
@@ -67,7 +60,7 @@ export function XMLEditorTests(): void
                         "Checking whether the element of the editor is correct…",
                         () =>
                         {
-                            ok(editor.Element === editorElement);
+                            ok(temp.Element === documentElement);
                         });
                 });
 
@@ -75,22 +68,20 @@ export function XMLEditorTests(): void
                 "ParentNode",
                 () =>
                 {
-                    let parent: XMLEditor;
                     let child: XMLEditor;
 
-                    suiteSetup(
+                    setup(
                         () =>
                         {
-                            parent = temp;
-                            child = parent.CreateElement("bar");
-                            parent.Add(child);
+                            child = temp.CreateElement("bar");
+                            temp.Add(child);
                         });
 
                     test(
                         "Checking whether the ParentNode is correct…",
                         () =>
                         {
-                            ok(child.ParentNode === parent.Element);
+                            ok(child.ParentNode === temp.Element);
                         });
                 });
 
@@ -110,18 +101,20 @@ export function XMLEditorTests(): void
                 "ChildNodes",
                 () =>
                 {
-                    let parent: XMLEditor;
                     let children: string[];
 
                     suiteSetup(
                         () =>
                         {
-                            parent = temp;
                             children = ["foo", "bar", "baz"];
+                        });
 
+                    setup(
+                        () =>
+                        {
                             for (let child of children)
                             {
-                                parent.Add(parent.CreateElement(child));
+                                temp.Add(temp.CreateElement(child));
                             }
                         });
 
@@ -129,8 +122,9 @@ export function XMLEditorTests(): void
                         "Checking whether the children are correct…",
                         () =>
                         {
-                            strictEqual(parent.ChildNodes.length, children.length);
-                            parent.ChildNodes.every(
+                            strictEqual(temp.ChildNodes.length, children.length);
+
+                            temp.ChildNodes.every(
                                 (node: Node) =>
                                 {
                                     return node.nodeType === node.ELEMENT_NODE && children.includes((node as Element).tagName);
@@ -154,7 +148,7 @@ export function XMLEditorTests(): void
                         "Checking whether elements are created correctly…",
                         () =>
                         {
-                            let element: XMLEditor = editor.CreateElement(tagName);
+                            let element = temp.CreateElement(tagName);
                             strictEqual(element.TagName, tagName);
                         });
                 });
@@ -177,7 +171,7 @@ export function XMLEditorTests(): void
                         "Checking whether elements are created correctly…",
                         () =>
                         {
-                            let element: XMLEditor = editor.CreateCDATAElement(tagName, content);
+                            let element: XMLEditor = temp.CreateCDATAElement(tagName, content);
                             strictEqual(element.TagName, tagName);
                             strictEqual(element.ChildNodes[0].nodeType, element.Element.CDATA_SECTION_NODE);
                             strictEqual(element.TextContent, content);
@@ -202,7 +196,7 @@ export function XMLEditorTests(): void
                         "Checking whether elements are created correctly…",
                         () =>
                         {
-                            let element: XMLEditor = editor.CreateTextElement(tagName, content);
+                            let element = temp.CreateTextElement(tagName, content);
                             strictEqual(element.TagName, tagName);
                             strictEqual(element.ChildNodes[0].nodeType, element.Element.TEXT_NODE);
                             strictEqual(element.TextContent, content);
@@ -213,32 +207,30 @@ export function XMLEditorTests(): void
                 "Add",
                 () =>
                 {
-                    let parent: XMLEditor;
                     let child: XMLEditor;
                     let childNode: Node;
 
-                    suiteSetup(
+                    setup(
                         () =>
                         {
-                            parent = temp;
-                            childNode = parent.Document.createElement("foo");
-                            child = new XMLEditor(parent.Document.createElement("bar"));
+                            childNode = temp.Document.createElement("foo");
+                            child = new XMLEditor(temp.Document.createElement("bar"));
                         });
 
                     test(
                         "Checking whether `XMLEditor`-instances can be added…",
                         () =>
                         {
-                            parent.Add(child);
-                            ok(parent.ChildNodes.includes(child.Element));
+                            temp.Add(child);
+                            ok(temp.ChildNodes.includes(child.Element));
                         });
 
                     test(
                         "Checking whether `Node`-instances can be added…",
                         () =>
                         {
-                            parent.Add(childNode);
-                            ok(parent.ChildNodes.includes(childNode));
+                            temp.Add(childNode);
+                            ok(temp.ChildNodes.includes(childNode));
                         });
                 });
 
@@ -248,23 +240,26 @@ export function XMLEditorTests(): void
                 {
                     let tagName: string;
                     let child: XMLEditor;
-                    let parent: XMLEditor;
 
                     suiteSetup(
                         () =>
                         {
                             tagName = "foo";
-                            parent = temp;
+                        });
+
+                    setup(
+                        () =>
+                        {
+                            child = temp.CreateElement(tagName);
+                            temp.Add(child);
                         });
 
                     test(
                         "Checking whether elements can be added…",
                         () =>
                         {
-                            child = parent.CreateElement(tagName);
-                            parent.Add(child);
                             strictEqual(child.TagName, tagName);
-                            ok(parent.ChildNodes.includes(child.Element));
+                            ok(temp.ChildNodes.includes(child.Element));
                         });
                 });
 
@@ -272,28 +267,26 @@ export function XMLEditorTests(): void
                 "Insert",
                 () =>
                 {
-                    let parent: XMLEditor;
                     let tag: string;
                     let newElement: XMLEditor;
 
                     suiteSetup(
                         () =>
                         {
-                            parent = temp;
                             tag = "foo";
                         });
 
                     setup(
                         () =>
                         {
-                            newElement = parent.CreateElement(tag);
+                            newElement = temp.CreateElement(tag);
                         });
 
                     test(
                         "Checking whether inserting elements in inexistent-indexes causes an error…",
                         () =>
                         {
-                            throws(() => parent.Insert(1, newElement));
+                            throws(() => temp.Insert(1, newElement));
                         });
 
                     test(
@@ -301,26 +294,26 @@ export function XMLEditorTests(): void
                         () =>
                         {
                             let index = 0;
-                            parent.Insert(index, newElement);
-                            strictEqual(parent.ChildNodes.indexOf(newElement.Element), index);
+                            temp.Insert(index, newElement);
+                            strictEqual(temp.ChildNodes.indexOf(newElement.Element), index);
                         });
 
                     test(
                         "Checking whether items can be inserted at the end inside the element…",
                         () =>
                         {
-                            let index = parent.ChildNodes.length;
-                            parent.Insert(index, newElement);
-                            strictEqual(parent.ChildNodes.indexOf(newElement.Element), index);
+                            let index = temp.ChildNodes.length;
+                            temp.Insert(index, newElement);
+                            strictEqual(temp.ChildNodes.indexOf(newElement.Element), index);
                         });
 
                     test(
                         "Checking whether items can be inserted anywhere inside the childnode-list…",
                         () =>
                         {
-                            let index: number = Math.floor(Math.random() * parent.ChildNodes.length);
-                            parent.Insert(index, newElement);
-                            strictEqual(parent.ChildNodes.indexOf(newElement.Element), index);
+                            let index: number = Math.floor(Math.random() * temp.ChildNodes.length);
+                            temp.Insert(index, newElement);
+                            strictEqual(temp.ChildNodes.indexOf(newElement.Element), index);
                         });
                 });
 
@@ -328,18 +321,20 @@ export function XMLEditorTests(): void
                 "GetChildrenByTag",
                 () =>
                 {
-                    let parent: XMLEditor;
                     let tags: string[];
 
                     suiteSetup(
                         () =>
                         {
-                            parent = temp;
                             tags = ["foo", "bar", "baz", "this", "is", "a", "test"];
+                        });
 
+                    setup(
+                        () =>
+                        {
                             for (let tag of tags)
                             {
-                                parent.Add(parent.CreateElement(tag));
+                                temp.Add(temp.CreateElement(tag));
                             }
                         });
 
@@ -348,10 +343,10 @@ export function XMLEditorTests(): void
                         () =>
                         {
                             let randomTag = tags[Math.floor(Math.random() * tags.length)];
-                            parent.ChildNodes[Math.floor(Math.random() * parent.ChildNodes.length)].appendChild(parent.CreateElement(randomTag).Element);
-                            let result = parent.GetChildrenByTag(randomTag);
+                            temp.ChildNodes[Math.floor(Math.random() * temp.ChildNodes.length)].appendChild(temp.CreateElement(randomTag).Element);
+                            let result = temp.GetChildrenByTag(randomTag);
                             strictEqual(result.length, 1);
-                            ok(result[0].ParentNode === parent.Element);
+                            ok(result[0].ParentNode === temp.Element);
                         });
                 });
 
@@ -359,18 +354,20 @@ export function XMLEditorTests(): void
                 "GetElementsByTag",
                 () =>
                 {
-                    let parent: XMLEditor;
                     let tags: string[];
 
                     suiteSetup(
                         () =>
                         {
-                            parent = temp;
                             tags = ["foo", "bar", "baz", "this", "is", "a", "test"];
+                        });
 
+                    setup(
+                        () =>
+                        {
                             for (let tag of tags)
                             {
-                                parent.Add(parent.CreateElement(tag));
+                                temp.Add(temp.CreateElement(tag));
                             }
                         });
 
@@ -379,8 +376,8 @@ export function XMLEditorTests(): void
                         () =>
                         {
                             let randomTag = tags[Math.floor(Math.random() * tags.length)];
-                            parent.ChildNodes[Math.floor(Math.random() * parent.ChildNodes.length)].appendChild(parent.CreateElement(randomTag).Element);
-                            let result = parent.GetElementsByTag(randomTag);
+                            temp.ChildNodes[Math.floor(Math.random() * temp.ChildNodes.length)].appendChild(temp.CreateElement(randomTag).Element);
+                            let result = temp.GetElementsByTag(randomTag);
                             strictEqual(result.length, 2);
                         });
                 });
@@ -389,14 +386,12 @@ export function XMLEditorTests(): void
                 "GetText",
                 () =>
                 {
-                    let parent: XMLEditor;
                     let textTag: string;
                     let textContent: string;
 
                     suiteSetup(
                         () =>
                         {
-                            parent = temp;
                             textTag = "baz";
                             textContent = "lorem\nipsum";
                         });
@@ -405,15 +400,15 @@ export function XMLEditorTests(): void
                         "Checking whether querying text from inexistent children throws an error…",
                         () =>
                         {
-                            throws(() => parent.GetText(textTag));
+                            throws(() => temp.GetText(textTag));
                         });
 
                     test(
                         "Checking whether querying text works correctly…",
                         () =>
                         {
-                            parent.Add(parent.CreateTextElement(textTag, textContent));
-                            strictEqual(parent.GetText(textTag), textContent);
+                            temp.Add(temp.CreateTextElement(textTag, textContent));
+                            strictEqual(temp.GetText(textTag), textContent);
                         });
                 });
 
@@ -421,13 +416,11 @@ export function XMLEditorTests(): void
                 "GetAttribute",
                 () =>
                 {
-                    let attributeEditor: XMLEditor;
                     let attributeName: string;
 
                     suiteSetup(
                         () =>
                         {
-                            attributeEditor = temp;
                             attributeName = "testAttribute";
                         });
 
@@ -435,7 +428,7 @@ export function XMLEditorTests(): void
                         "Checking whether querying inexistent attributes throws an exception…",
                         () =>
                         {
-                            throws(() => attributeEditor.GetAttribute(attributeName));
+                            throws(() => temp.GetAttribute(attributeName));
                         });
 
                     test(
@@ -443,8 +436,8 @@ export function XMLEditorTests(): void
                         () =>
                         {
                             let value = "test";
-                            attributeEditor.SetAttribute(attributeName, value);
-                            strictEqual(attributeEditor.GetAttribute(attributeName), value);
+                            temp.SetAttribute(attributeName, value);
+                            strictEqual(temp.GetAttribute(attributeName), value);
                         });
                 });
 
@@ -452,14 +445,12 @@ export function XMLEditorTests(): void
                 "SetAttribute",
                 () =>
                 {
-                    let attributeEditor: XMLEditor;
                     let attributeName: string;
                     let attributeValue: string;
 
                     suiteSetup(
                         () =>
                         {
-                            attributeEditor = temp;
                             attributeName = "testAttribute";
                             attributeValue = "testValue";
                         });
@@ -468,8 +459,8 @@ export function XMLEditorTests(): void
                         "Checking whether the value is set correctly…",
                         () =>
                         {
-                            attributeEditor.SetAttribute(attributeName, attributeValue);
-                            strictEqual(attributeEditor.GetAttribute(attributeName), attributeValue);
+                            temp.SetAttribute(attributeName, attributeValue);
+                            strictEqual(temp.GetAttribute(attributeName), attributeValue);
                         });
                 });
 
@@ -477,7 +468,6 @@ export function XMLEditorTests(): void
                 "HasAttribute",
                 () =>
                 {
-                    let attributeEditor: XMLEditor;
                     let attributeName: string;
                     let alternativeName: string;
                     let attributeValue: string;
@@ -485,19 +475,23 @@ export function XMLEditorTests(): void
                     suiteSetup(
                         () =>
                         {
-                            attributeEditor = temp;
                             attributeName = "correctName";
                             alternativeName = "wrongName";
                             attributeValue = "correctValue";
-                            attributeEditor.SetAttribute(attributeName, attributeValue);
+                        });
+
+                    setup(
+                        () =>
+                        {
+                            temp.SetAttribute(attributeName, attributeValue);
                         });
 
                     test(
                         "Checking whether the method acts as expected…",
                         () =>
                         {
-                            ok(attributeEditor.HasAttribute(attributeName));
-                            strictEqual(attributeEditor.HasAttribute(alternativeName), false);
+                            ok(temp.HasAttribute(attributeName));
+                            strictEqual(temp.HasAttribute(alternativeName), false);
                         });
                 });
 
@@ -505,7 +499,6 @@ export function XMLEditorTests(): void
                 "HasText",
                 () =>
                 {
-                    let textEditor: XMLEditor;
                     let tag: string;
                     let alternativeTag: string;
                     let text: string;
@@ -514,24 +507,28 @@ export function XMLEditorTests(): void
                     suiteSetup(
                         () =>
                         {
-                            textEditor = temp;
                             tag = "correct";
                             alternativeTag = "wrong";
                             text = "correctText";
                             alternativeText = "wrongText";
-                            textEditor.Add(textEditor.CreateTextElement(tag, text));
+                        });
+
+                    setup(
+                        () =>
+                        {
+                            temp.Add(temp.CreateTextElement(tag, text));
                         });
 
                     test(
                         "Checking whether the method acts as expected…",
                         () =>
                         {
-                            ok(textEditor.HasText(null, text));
-                            strictEqual(textEditor.HasText(null, alternativeText), false);
-                            ok(textEditor.HasText(tag, text));
-                            strictEqual(textEditor.HasText(tag, alternativeText), false);
-                            strictEqual(textEditor.HasText(alternativeTag, text), false);
-                            strictEqual(textEditor.HasText(alternativeTag, alternativeText), false);
+                            ok(temp.HasText(null, text));
+                            strictEqual(temp.HasText(null, alternativeText), false);
+                            ok(temp.HasText(tag, text));
+                            strictEqual(temp.HasText(tag, alternativeText), false);
+                            strictEqual(temp.HasText(alternativeTag, text), false);
+                            strictEqual(temp.HasText(alternativeTag, alternativeText), false);
                         });
                 });
 
@@ -539,33 +536,36 @@ export function XMLEditorTests(): void
                 "HasTag",
                 () =>
                 {
-                    let tagEditor: XMLEditor;
                     let tag: string;
                     let alternativeTag: string;
 
                     suiteSetup(
                         () =>
                         {
-                            tagEditor = temp;
                             tag = "correctTag";
                             alternativeTag = "alternativeTag";
-                            tagEditor.Add(tagEditor.CreateElement(tag));
+                        });
+
+                    setup(
+                        () =>
+                        {
+                            temp.Add(temp.CreateElement(tag));
                         });
 
                     test(
                         "Checking whether the method acts as expected…",
                         () =>
                         {
-                            ok(tagEditor.HasTag(tag));
-                            strictEqual(tagEditor.HasTag(alternativeTag), false);
-                            ok(tagEditor.HasTag(tag, true));
-                            strictEqual(tagEditor.HasTag(alternativeTag, true), false);
+                            ok(temp.HasTag(tag));
+                            strictEqual(temp.HasTag(alternativeTag), false);
+                            ok(temp.HasTag(tag, true));
+                            strictEqual(temp.HasTag(alternativeTag, true), false);
 
-                            tagEditor.Add(tagEditor.CreateElement(tag));
-                            ok(tagEditor.HasTag(tag));
-                            strictEqual(tagEditor.HasTag(alternativeTag), false);
-                            strictEqual(tagEditor.HasTag(tag, true), false);
-                            strictEqual(tagEditor.HasTag(alternativeTag, true), false);
+                            temp.Add(temp.CreateElement(tag));
+                            ok(temp.HasTag(tag));
+                            strictEqual(temp.HasTag(alternativeTag), false);
+                            strictEqual(temp.HasTag(tag, true), false);
+                            strictEqual(temp.HasTag(alternativeTag, true), false);
                         });
                 });
         });
