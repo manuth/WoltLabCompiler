@@ -110,6 +110,7 @@ export function CategoryTests(): void
 
                     let allNodes: Array<Node<MyCategory, ICategoryOptions<IOptionOptions>>> = rootNode.GetAllNodes();
                     allNodes[Math.floor(Math.random() * allNodes.length)].Nodes.push(category);
+
                     allNodes[Math.floor(Math.random() * allNodes.length)].Nodes.push(
                         new MyNode(
                             {
