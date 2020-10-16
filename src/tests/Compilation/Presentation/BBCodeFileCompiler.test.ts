@@ -78,15 +78,19 @@ export function BBCodeFileCompilerTests(): void
                     let htmlCloseTag = "htmlclose";
                     let codeTag = "html";
                     let patternTag = "validationpattern";
+                    let bbCodeNodes = this.Tester.ImportEditor.GetChildrenByTag("bbcode");
+                    strictEqual(bbCodeNodes.length, this.Compiler.Item.BBCodes.length);
 
                     for (let bbCode of this.Compiler.Item.BBCodes)
                     {
                         ok(
-                            this.Tester.ImportEditor.GetChildrenByTag("bbcode").some(
+                            bbCodeNodes.some(
                                 (bbCodeNode) =>
                                 {
                                     try
                                     {
+                                        let attributeNodes = this.GetElement(bbCodeNode, "attributes").GetChildrenByTag("attribute");
+
                                         if (bbCode.DisplayName.GetLocales().length > 0)
                                         {
                                             this.AssertTagContent(bbCodeNode, labelTag, `wcf.editor.button.${bbCode.Name}`);
@@ -137,10 +141,12 @@ export function BBCodeFileCompilerTests(): void
                                             }
                                         }
 
+                                        strictEqual(attributeNodes.length, bbCode.Attributes.length);
+
                                         for (let attribute of bbCode.Attributes)
                                         {
                                             ok(
-                                                this.GetElement(bbCodeNode, "attributes").GetChildrenByTag("attribute").some(
+                                                attributeNodes.some(
                                                     (attributeNode) =>
                                                     {
                                                         try
