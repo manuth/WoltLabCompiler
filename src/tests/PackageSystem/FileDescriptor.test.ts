@@ -14,11 +14,18 @@ export function FileDescriptorTests(): void
         () =>
         {
             let tempFile: TempFile;
-            let workingDir: TempDirectory;
+            let tempDir: TempDirectory;
+            let workingDir: string;
             let currentDir: string;
-            let fileName: string;
-            let fileDescriptor: FileDescriptor;
-            let content: string;
+            let absoluteFileName: string;
+            let absoluteContent: string;
+            let absoluteDescriptor: FileDescriptor;
+            let relativeFileName: string;
+            let relativeContent: string;
+            let relativeDescriptor: FileDescriptor;
+            let parentFileName: string;
+            let parentContent: string;
+            let parentDescriptor: FileDescriptor;
 
             /**
              * Creates a new file-descriptor and it's source-file with the specified `content`.
@@ -44,69 +51,53 @@ export function FileDescriptorTests(): void
             }
 
             suiteSetup(
-                () =>
+                async () =>
                 {
                     tempFile = new TempFile();
-                    workingDir = new TempDirectory();
+                    tempDir = new TempDirectory();
                     currentDir = process.cwd();
-                    process.chdir(workingDir.FullName);
+                    workingDir = tempDir.MakePath("foo");
+                    await ensureDir(workingDir);
+                    process.chdir(workingDir);
+                    absoluteFileName = tempFile.FullName;
+                    absoluteContent = "Hello World";
+                    absoluteDescriptor = await CreateFileDescriptor(absoluteFileName, absoluteContent);
+                    relativeFileName = "./foo/bar/baz/test.txt";
+                    relativeContent = "Hello Relative World";
+                    relativeDescriptor = await CreateFileDescriptor(relativeFileName, relativeContent);
+                    parentFileName = "../bar/baz/test.txt";
+                    parentContent = "Hello Parent World";
+                    parentDescriptor = await CreateFileDescriptor(parentFileName, parentContent);
                 });
 
             suiteTeardown(
                 () =>
                 {
                     process.chdir(currentDir);
-                    workingDir.Dispose();
-                });
-
-            setup(
-                async () =>
-                {
-                    fileName = tempFile.FullName;
-                    content = "Hello World";
-                    fileDescriptor = await CreateFileDescriptor(fileName, content);
+                    tempFile.Dispose();
+                    tempDir.Dispose();
                 });
 
             suite(
-                "Checking whether absolute paths are handled correctly…",
+                "Source",
                 () =>
                 {
                     test(
-                        "Checking whether the `Source` points to the correct file…",
+                        "Checking whether the `Source`-property works properly with absolute paths…",
                         async () =>
                         {
-                            strictEqual((await readFile(fileDescriptor.Source)).toString(), content);
+                            strictEqual((await readFile(absoluteDescriptor.Source)).toString(), absoluteContent);
                         });
 
                     test(
-                        "Checking whether the `FileName` automatically is set to the basename of the source if no filename is specified…",
-                        () =>
-                        {
-                            strictEqual(fileDescriptor.FileName, basename(fileName));
-                        });
-                });
-
-            suite(
-                "Checking whether relative paths are handled correctly…",
-                () =>
-                {
-                    setup(
+                        "Checking whether the `Source`-property works properly with relative paths…",
                         async () =>
                         {
-                            fileName = "./foo/bar/baz/test.txt";
-                            content = "Hello Relative World";
-                            fileDescriptor = await CreateFileDescriptor(fileName, content);
+                            strictEqual((await readFile(relativeDescriptor.Source)).toString(), relativeContent);
                         });
 
                     test(
-                        "Checking whether `Source` points to the correct file…",
-                        async () =>
-                        {
-                            strictEqual((await readFile(fileDescriptor.Source)).toString(), content);
-                        });
-
-                    test(
-                        "Checking whether `Source` points to the correct file even if the working directory is changed…",
+                        "Checking whether the `Source`-property works properly with relative paths even if the working directory is changed…",
                         async () =>
                         {
                             let tempDir: TempDirectory = new TempDirectory();
@@ -114,64 +105,43 @@ export function FileDescriptorTests(): void
                             process.chdir(tempDir.FullName);
 
                             {
-                                strictEqual((await readFile(fileDescriptor.Source)).toString(), content);
+                                strictEqual((await readFile(relativeDescriptor.Source)).toString(), relativeContent);
                             }
 
                             process.chdir(current);
                         });
 
                     test(
-                        "Checking whether `FileName` is set to the relative path if no filename is specified…",
-                        () =>
+                        "Checking whether the `Source`-property works properly with paths outside of the working directory…",
+                        async () =>
                         {
-                            strictEqual(fileDescriptor.FileName, normalize(fileName));
+                            strictEqual((await readFile(parentDescriptor.Source)).toString(), parentContent);
                         });
                 });
 
             suite(
-                "Checking whether relative paths outside of the current directory are handled correctly…",
+                "FileName",
                 () =>
                 {
-                    let current: string;
-                    let childDir: string;
-                    let relativeFile: string;
-
-                    suiteSetup(
-                        async () =>
-                        {
-                            current = process.cwd();
-                            childDir = "foo";
-                            relativeFile = "../bar/baz/test.txt";
-                            await ensureDir(childDir);
-                            process.chdir(childDir);
-                        });
-
-                    suiteTeardown(
+                    test(
+                        "Checking whether the `FileName` automatically is set to the basename of the source if no filename is specified and the source is absolute…",
                         () =>
                         {
-                            process.chdir(current);
-                        });
-
-                    setup(
-                        async () =>
-                        {
-                            fileName = relativeFile;
-                            content = "Hello Parent World";
-                            fileDescriptor = await CreateFileDescriptor(fileName, content);
+                            strictEqual(absoluteDescriptor.FileName, basename(absoluteFileName));
                         });
 
                     test(
-                        "Checking whether `Source` points to the correct file…",
-                        async () =>
+                        "Checking whether the `FileName` is set to the relative path if no filename is specified and the source is relative…",
+                        () =>
                         {
-                            strictEqual((await readFile(fileDescriptor.Source)).toString(), content);
+                            strictEqual(relativeDescriptor.FileName, normalize(relativeFileName));
                         });
 
                     test(
-                        "Checking whether `FileName` is set to the basename of the path if no filename is specified…",
+                        "Checking whether `FileName` is set to the basename of the path if no filename is specified and the source is outside of the working directory…",
                         () =>
                         {
-                            strictEqual(fileDescriptor.FileName, basename(fileName));
+                            strictEqual(parentDescriptor.FileName, basename(parentFileName));
                         });
                 });
         });
