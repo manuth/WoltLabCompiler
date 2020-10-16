@@ -52,7 +52,7 @@ export class BBCodeFileCompiler extends NamedObjectDeletionFileCompiler<BBCodeIn
 
             if (bbCode.DisplayName.GetLocales().length > 0)
             {
-                bbCodeNode.Add(bbCodeNode.CreateTextElement("buttonLabel", `wcf.editor.button.${bbCode.Name}`));
+                bbCodeNode.Add(bbCodeNode.CreateTextElement("buttonlabel", `wcf.editor.button.${bbCode.Name}`));
             }
 
             if (bbCode.Icon)
