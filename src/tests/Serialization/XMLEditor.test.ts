@@ -383,36 +383,6 @@ export function XMLEditorTests(): void
                 });
 
             suite(
-                "GetText",
-                () =>
-                {
-                    let textTag: string;
-                    let textContent: string;
-
-                    suiteSetup(
-                        () =>
-                        {
-                            textTag = "baz";
-                            textContent = "lorem\nipsum";
-                        });
-
-                    test(
-                        "Checking whether querying text from inexistent children throws an error…",
-                        () =>
-                        {
-                            throws(() => temp.GetText(textTag));
-                        });
-
-                    test(
-                        "Checking whether querying text works correctly…",
-                        () =>
-                        {
-                            temp.Add(temp.CreateTextElement(textTag, textContent));
-                            strictEqual(temp.GetText(textTag), textContent);
-                        });
-                });
-
-            suite(
                 "GetAttribute",
                 () =>
                 {
@@ -492,80 +462,6 @@ export function XMLEditorTests(): void
                         {
                             ok(temp.HasAttribute(attributeName));
                             strictEqual(temp.HasAttribute(alternativeName), false);
-                        });
-                });
-
-            suite(
-                "HasText",
-                () =>
-                {
-                    let tag: string;
-                    let alternativeTag: string;
-                    let text: string;
-                    let alternativeText: string;
-
-                    suiteSetup(
-                        () =>
-                        {
-                            tag = "correct";
-                            alternativeTag = "wrong";
-                            text = "correctText";
-                            alternativeText = "wrongText";
-                        });
-
-                    setup(
-                        () =>
-                        {
-                            temp.Add(temp.CreateTextElement(tag, text));
-                        });
-
-                    test(
-                        "Checking whether the method acts as expected…",
-                        () =>
-                        {
-                            ok(temp.HasText(null, text));
-                            strictEqual(temp.HasText(null, alternativeText), false);
-                            ok(temp.HasText(tag, text));
-                            strictEqual(temp.HasText(tag, alternativeText), false);
-                            strictEqual(temp.HasText(alternativeTag, text), false);
-                            strictEqual(temp.HasText(alternativeTag, alternativeText), false);
-                        });
-                });
-
-            suite(
-                "HasTag",
-                () =>
-                {
-                    let tag: string;
-                    let alternativeTag: string;
-
-                    suiteSetup(
-                        () =>
-                        {
-                            tag = "correctTag";
-                            alternativeTag = "alternativeTag";
-                        });
-
-                    setup(
-                        () =>
-                        {
-                            temp.Add(temp.CreateElement(tag));
-                        });
-
-                    test(
-                        "Checking whether the method acts as expected…",
-                        () =>
-                        {
-                            ok(temp.HasTag(tag));
-                            strictEqual(temp.HasTag(alternativeTag), false);
-                            ok(temp.HasTag(tag, true));
-                            strictEqual(temp.HasTag(alternativeTag, true), false);
-
-                            temp.Add(temp.CreateElement(tag));
-                            ok(temp.HasTag(tag));
-                            strictEqual(temp.HasTag(alternativeTag), false);
-                            strictEqual(temp.HasTag(tag, true), false);
-                            strictEqual(temp.HasTag(alternativeTag, true), false);
                         });
                 });
         });

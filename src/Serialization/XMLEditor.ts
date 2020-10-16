@@ -217,27 +217,6 @@ export class XMLEditor
     }
 
     /**
-     * Gets the text of a child-node.
-     *
-     * @param tag
-     * The tag of the node to get the text.
-     *
-     * @returns
-     * The text of the child-node.
-     */
-    public GetText(tag: string): string
-    {
-        if (this.HasTag(tag, true))
-        {
-            return this.GetChildrenByTag(tag)[0].TextContent;
-        }
-        else
-        {
-            throw new RangeError(`The tag "${tag}" either is not unique or does not exist.`);
-        }
-    }
-
-    /**
      * Gets the value of an attribute.
      *
      * @param name
@@ -284,68 +263,6 @@ export class XMLEditor
     public HasAttribute(name: string): boolean
     {
         return this.Element.hasAttribute(name);
-    }
-
-    /**
-     * Asserts a tag to contain a text.
-     *
-     * @param tag
-     * The tag to check.
-     *
-     * @param text
-     * The text to assert.
-     *
-     * @returns
-     * A value indicating whether contains the specified `text`.
-     */
-    public HasText(tag: string, text: string): boolean
-    {
-        let original: string;
-
-        if (tag)
-        {
-            try
-            {
-                original = this.GetText(tag);
-            }
-            catch
-            {
-                original = null;
-            }
-        }
-        else
-        {
-            original = this.TextContent;
-        }
-
-        return original === text;
-    }
-
-    /**
-     * Asserts the element to have a tag.
-     *
-     * @param tag
-     * The tag to assert.
-     *
-     * @param unique
-     * A value indicating whether the tag is unique.
-     *
-     * @returns
-     * A value indicating whether the element has the specified `tag`.
-     */
-    public HasTag(tag: string, unique?: boolean): boolean
-    {
-        let children: XMLEditor[] = this.GetChildrenByTag(tag);
-        unique = unique || false;
-
-        if (unique)
-        {
-            return children.length === 1;
-        }
-        else
-        {
-            return children.length > 0;
-        }
     }
 
     /**
