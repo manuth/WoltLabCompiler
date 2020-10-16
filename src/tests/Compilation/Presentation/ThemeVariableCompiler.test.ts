@@ -1,156 +1,61 @@
 import { ok, strictEqual } from "assert";
-import { TempFile } from "@manuth/temp-files";
 import dedent = require("dedent");
-import { pathExists, readFile } from "fs-extra";
-import { DOMParser } from "xmldom";
 import { ThemeVariableCompiler } from "../../../Compilation/Presentation/ThemeVariableCompiler";
+import { XMLFileCompilerTester } from "../TestComponents/Testers/XMLFileCompilerTester";
+import { XMLCompilerTestRunner } from "../TestComponents/TestRunners/XMLCompilerTestRunner";
 
 /**
  * Registers tests for the `ThemeVariableCompiler` class.
  */
 export function ThemeVariableCompilerTests(): void
 {
-    suite(
-        "ThemeVariableCompiler",
-        () =>
+    new class extends XMLCompilerTestRunner<XMLFileCompilerTester<ThemeVariableCompiler>, ThemeVariableCompiler>
+    {
+        /**
+         * @inheritdoc
+         *
+         * @returns
+         * The new compiler-tester instance.
+         */
+        protected CreateTester(): XMLFileCompilerTester<ThemeVariableCompiler>
         {
-            let tempFile: TempFile;
-            let compiler: ThemeVariableCompiler;
-            let variableName: string;
-            let value: string;
-            let scssCodeName: string;
-            let scssCode: string;
+            return new XMLFileCompilerTester(
+                new ThemeVariableCompiler(
+                    {
+                        wcfHeaderBackground: "rgba(255, 0, 0, 1)",
+                        individualScss: dedent(
+                            `
+                                :root
+                                {
+                                    color: red !important;
+                                }`)
+                    }));
+        }
 
-            suiteSetup(
+        /**
+         * @inheritdoc
+         */
+        protected ExecuteTests(): void
+        {
+            super.ExecuteTests();
+
+            test(
+                "Checking the integrity of the metadata…",
                 () =>
                 {
-                    let variables: Record<string, string> = {};
-                    tempFile = new TempFile();
-                    variableName = "wcfHeaderBackground";
-                    value = "rgba(255, 0, 0, 1)";
-                    scssCodeName = "individualScss";
+                    strictEqual(this.Tester.XMLEditor.TagName, "variables");
 
-                    scssCode = dedent(
-                        `
-                        :root
-                        {
-                            color: red !important;
-                        }`);
-
-                    variables[variableName] = value;
-                    variables[scssCodeName] = scssCode;
-
-                    compiler = new ThemeVariableCompiler(variables);
-                    compiler.DestinationPath = tempFile.FullName;
+                    for (let variable of Object.keys(this.Compiler.Item))
+                    {
+                        ok(
+                            this.Tester.XMLEditor.GetChildrenByTag("variable").some(
+                                (variableNode) =>
+                                {
+                                    return (variableNode.GetAttribute("name") === variable) &&
+                                        (variableNode.TextContent === this.Compiler.Item[variable]);
+                                }));
+                    }
                 });
-
-            suiteTeardown(
-                () =>
-                {
-                    tempFile.Dispose();
-                });
-
-            suite(
-                "Compile",
-                () =>
-                {
-                    suite(
-                        "General tests…",
-                        () =>
-                        {
-                            test(
-                                "Checking whether the compiler executes without any errors…",
-                                async () =>
-                                {
-                                    await compiler.Execute();
-                                });
-
-                            test(
-                                "Checking whether the compiled file exists…",
-                                async () =>
-                                {
-                                    ok(await pathExists(tempFile.FullName));
-                                });
-                        });
-
-                    suite(
-                        "Testing the integrity of the file…",
-                        () =>
-                        {
-                            let document: Document;
-                            let rootTag: string;
-                            let variableTag: string;
-                            let rootElement: Element;
-                            let variableElement: Element;
-                            let scssElement: Element;
-                            let variableAttribute: string;
-
-                            suiteSetup(
-                                async () =>
-                                {
-                                    document = new DOMParser().parseFromString((await readFile(tempFile.FullName)).toString());
-                                    rootTag = "variables";
-                                    variableTag = "variable";
-                                    rootElement = document.documentElement;
-                                    variableAttribute = "name";
-
-                                    let variableElements: Element[] = [];
-                                    let variableNodeList = document.getElementsByTagName(variableTag);
-
-                                    for (let i = 0; i < variableNodeList.length; i++)
-                                    {
-                                        variableElements.push(variableNodeList.item(i));
-                                    }
-
-                                    for (let varElement of variableElements)
-                                    {
-                                        switch (varElement.getAttribute(variableAttribute))
-                                        {
-                                            case variableName:
-                                                variableElement = varElement;
-                                                break;
-
-                                            case scssCodeName:
-                                                scssElement = varElement;
-                                                break;
-                                        }
-                                    }
-
-                                    ok(variableElement.parentNode === rootElement);
-                                    ok(scssElement.parentNode === rootElement);
-                                });
-
-                            suite(
-                                "Testing the XML-Document…",
-                                () =>
-                                {
-                                    test(
-                                        "Checking whether the tag-name is correct…",
-                                        () =>
-                                        {
-                                            strictEqual(rootElement.tagName, rootTag);
-                                        });
-                                });
-
-                            suite(
-                                "Testing variables…",
-                                () =>
-                                {
-                                    test(
-                                        "Checking whether simple the values of simple variables are stored correctly…",
-                                        () =>
-                                        {
-                                            strictEqual(variableElement.textContent, value);
-                                        });
-
-                                    test(
-                                        "Checking whether scss-code is stored correctly…",
-                                        () =>
-                                        {
-                                            strictEqual(scssElement.textContent, scssCode);
-                                        });
-                                });
-                        });
-                });
-        });
+        }
+    }("ThemeVariableCompiler").Register();
 }
