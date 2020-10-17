@@ -50,25 +50,30 @@ export function ThemeInstructionCollectionTests(): void
                     themeRoot.Dispose();
                 });
 
-            test(
-                "Checking whether a new ThemeInstructionCollection can be initialized…",
+            suite(
+                "constructor",
                 () =>
                 {
-                    collection = new ThemeInstructionCollection(themeRoot.FullName);
-                });
+                    test(
+                        "Checking whether a new ThemeInstructionCollection can be initialized…",
+                        () =>
+                        {
+                            collection = new ThemeInstructionCollection(themeRoot.FullName);
+                        });
 
-            test(
-                "Checking whether themes are automatically added to the collection…",
-                () =>
-                {
-                    strictEqual(collection.length, themeDirectories.length);
-                });
+                    test(
+                        "Checking whether themes are automatically added to the collection…",
+                        () =>
+                        {
+                            strictEqual(collection.length, themeDirectories.length);
+                        });
 
-            test(
-                "Checking whether the meta-data is applied correctly…",
-                () =>
-                {
-                    ok(collection.every((themeInstruction: ThemeInstruction) => themeInstruction.Theme.Name === name));
+                    test(
+                        "Checking whether the meta-data is applied correctly…",
+                        () =>
+                        {
+                            ok(collection.every((themeInstruction: ThemeInstruction) => themeInstruction.Theme.Name === name));
+                        });
                 });
         });
 }

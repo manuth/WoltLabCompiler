@@ -61,6 +61,13 @@ export function SassVariableParserTests(): void
                 });
 
             suite(
+                "Parse",
+                () =>
+                {
+
+                });
+
+            suite(
                 "Testing scss-files without import-statements…",
                 () =>
                 {
