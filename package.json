@@ -1,5 +1,5 @@
 {
-  "name": "woltlab-compiler",
+  "name": "@manuth/woltlab-compiler",
   "version": "1.0.4",
   "description": "A compiler for WoltLab-Package Archives and WoltLab-Package Components",
   "author": "Manuel Thalmann <m@nuth.ch>",
