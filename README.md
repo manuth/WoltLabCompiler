@@ -5,7 +5,7 @@ A compiler for WoltLab-Package Archives and WoltLab-Package Components
 `WoltLabCompiler` can be installed using the `npm`-cli:
 
 ```bash
-npm install --save woltlab-compiler
+npm install --save @manuth/woltlab-compiler
 ```
 
 ## Using WoltLabCompiler
@@ -16,7 +16,7 @@ All classes and methods are documented using JSDoc-comments.
 ***Compiling a .tar-Package***
 ```ts
 import Path = require("path");
-import { ACPOptionInstruction, ApplicationFileSystemInstruction, OptionType, Package, PackageCompiler } from "woltlab-compiler";
+import { ACPOptionInstruction, ApplicationFileSystemInstruction, OptionType, Package, PackageCompiler } from "@manuth/woltlab-compiler";
 
 (async () =>
 {
@@ -79,8 +79,7 @@ This creates a `.tar`-package called `MyPackage.tar`.
 ***Compiling a set of Localizations***
 ```ts
 import Path = require("path");
-import { LocalizationSetCompiler } from "./System/Compilation/Globalization/LocalizationSetCompiler";
-import { TranslationInstruction } from "./System/PackageSystem/Instructions/Globalization/TranslationInstruction";
+import { LocalizationSetCompiler, TranslationInstruction } from "@manuth/woltlab-compiler";
 
 (async () =>
 {

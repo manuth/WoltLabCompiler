@@ -4,6 +4,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## WoltLabCompiler [Unreleased]
+
+[Show differences](https://github.com/manuth/WoltLabCompiler/compare/v1.1.0...dev)
+
+## WoltLabCompiler v1.1.0
+### Breaking
+  - Renamed the package to `@manuth/woltlab-compiler`
+### Fixed
+  - Broken `BidirectionalCollection`
+
+### Added
+  - An `All`-permission for user-options
+
+### Updated
+  - All dependencies
+  - The development-environment
+  - The directory structure
+  - The tests
+
+[Show differences](https://github.com/manuth/WoltLabCompiler/compare/v1.0.4...v1.1.0)
+
 ## WoltLabCompiler v1.0.4
   - Fix all vulnerabilities
   - Update all dependencies
