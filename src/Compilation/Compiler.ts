@@ -65,7 +65,7 @@ export abstract class Compiler<T>
     /**
      * Compiles the item.
      */
-    protected abstract async Compile(): Promise<void>;
+    protected abstract Compile(): Promise<void>;
 
     /**
      * Copies files using `EJS`.
