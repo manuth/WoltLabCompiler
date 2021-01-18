@@ -1,12 +1,13 @@
 import { ok, strictEqual } from "assert";
 import { TempDirectory } from "@manuth/temp-files";
 import { writeFile } from "fs-extra";
-import { extract, list } from "tar";
+import { extract } from "tar";
 import { join, parse } from "upath";
 import { FileInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/FileInstructionCompiler";
 import { ApplicationFileSystemInstruction } from "../../../PackageSystem/Instructions/FileSystem/ApplicationFileSystemInstruction";
 import { Package } from "../../../PackageSystem/Package";
 import { XMLEditor } from "../../../Serialization/XMLEditor";
+import { Tar } from "../../Tar";
 import { CompilerTester } from "../TestComponents/Testers/CompilerTester";
 import { InstructionCompilerTestRunner } from "../TestComponents/TestRunners/InstructionCompilerTestRunner";
 
@@ -80,15 +81,9 @@ export function FileInstructionCompilerTests(): void
                 "Checking whether all files are present inside the the archive…",
                 async () =>
                 {
-                    let files: string[] = [];
-
-                    await list(
+                    let files = await Tar.ListTarFiles(
                         {
                             file: this.Compiler.DestinationFileName,
-                            onentry: (entry) =>
-                            {
-                                files.push(entry.header.path);
-                            },
                             filter: (fileName) =>
                             {
                                 return parse(fileName).dir.length === 0;
