@@ -47,7 +47,7 @@
     "fs-extra": "^9.0.1",
     "hex-to-rgba": "^2.0.1",
     "mem-fs": "^1.2.0",
-    "mem-fs-editor": "^7.1.0",
+    "mem-fs-editor": "^8.0.0",
     "sass-variable-parser": "^1.2.2",
     "tar": "^6.0.5",
     "upath": "^2.0.1",
