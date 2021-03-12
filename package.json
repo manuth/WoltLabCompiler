@@ -51,7 +51,7 @@
     "sass-variable-parser": "^1.2.2",
     "tar": "^6.0.5",
     "upath": "^2.0.1",
-    "xmldom": "^0.4.0"
+    "xmldom": "^0.5.0"
   },
   "devDependencies": {
     "@manuth/eslint-plugin-typescript": "^2.3.4",
