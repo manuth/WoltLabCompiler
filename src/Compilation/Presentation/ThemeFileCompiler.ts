@@ -45,14 +45,6 @@ export class ThemeFileCompiler extends WoltLabXMLCompiler<Theme>
 
     /**
      * @inheritdoc
-     */
-    protected override async Compile(): Promise<void>
-    {
-        return super.Compile();
-    }
-
-    /**
-     * @inheritdoc
      *
      * @returns
      * The serialized document.
