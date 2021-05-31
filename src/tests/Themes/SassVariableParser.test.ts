@@ -25,8 +25,22 @@ export function SassVariableParserTests(): void
             let var2RawValue: string;
             let var3Name: string;
 
-            let variablesWithoutImport: Record<string, string>;
-            let variablesWithImport: Record<string, string>;
+            let variablesWithoutImport: Map<string, string>;
+            let variablesWithImport: Map<string, string>;
+
+            /**
+             * Prefixes a variable-name for scss.
+             *
+             * @param varName
+             * The variable-name to prefix.
+             *
+             * @returns
+             * The prefixed variable-name.
+             */
+            function prefix(varName: string): string
+            {
+                return `$${varName}`;
+            }
 
             suiteSetup(
                 async () =>
@@ -40,21 +54,21 @@ export function SassVariableParserTests(): void
                     var2Name = "b";
                     var2Value = "Hello World";
                     var2RawValue = `"${var2Value}"`;
+                    var3Name = "c";
 
-                    await writeFile(tempDir.MakePath(mainFile), `$${var1Name}: ${var1Value};`);
+                    await writeFile(tempDir.MakePath(mainFile), `${prefix(var1Name)}: ${var1Value};`);
 
                     await writeFile(
                         tempDir.MakePath(importFile),
                         dedent(
                             `
                             @import "${basename(mainFile)}";
-                            $${var2Name}: ${var2RawValue};
-                            $${var3Name}: $${var1Name};`
+                            ${prefix(var2Name)}: ${var2RawValue};
+                            ${prefix(var3Name)}: ${prefix(var1Name)};`
                         ));
 
-                    variablesWithoutImport = await new SassVariableParser(tempDir.MakePath(mainFile)).Parse();
-                    variablesWithImport = await new SassVariableParser(tempDir.MakePath(importFile)).Parse();
-                    console.log();
+                    variablesWithoutImport = new Map(Object.entries(await new SassVariableParser(tempDir.MakePath(mainFile)).Parse()));
+                    variablesWithImport = new Map(Object.entries(await new SassVariableParser(tempDir.MakePath(importFile)).Parse()));
                 });
 
             suiteTeardown(
@@ -67,53 +81,64 @@ export function SassVariableParserTests(): void
                 "Parse",
                 () =>
                 {
-
-                });
-
-            suite(
-                "Testing scss-files without import-statements…",
-                () =>
-                {
-                    test(
-                        "Checking whether expected variable is present…",
-                        () => strictEqual(var1Name in variablesWithoutImport, true));
-
-                    test(
-                        "Checking whether the value of the expected variable is correct…",
-                        () => strictEqual(variablesWithoutImport[var1Name], var1Value));
-                });
-
-            suite(
-                "Testing scss-files with import-statements…",
-                () =>
-                {
-                    test(
-                        "Checking whether the expected variables are present…",
+                    suite(
+                        "General",
                         () =>
                         {
-                            ok(var2Name in variablesWithImport);
-                            ok(var3Name in variablesWithImport);
+                            test(
+                                "Checking whether dollar-signs are stripped from the variable-names…",
+                                () =>
+                                {
+                                    ok(!variablesWithoutImport.has(prefix(var1Name)));
+                                    ok(variablesWithoutImport.has(var1Name));
+                                });
                         });
 
-                    test(
-                        "Checking whether variables imported variables are not present…",
+                    suite(
+                        "Testing scss-files without import-statements…",
                         () =>
                         {
-                            strictEqual(var1Name in variablesWithImport, false);
+                            test(
+                                "Checking whether expected variable is present…",
+                                () => ok(variablesWithoutImport.has(var1Name)));
+
+                            test(
+                                "Checking whether the value of the expected variable is correct…",
+                                () => strictEqual(variablesWithoutImport.get(var1Name), var1Value));
                         });
 
-                    test(
-                        "Checking whether independent variables have the correct value…",
+                    suite(
+                        "Testing scss-files with import-statements…",
                         () =>
                         {
-                            strictEqual(variablesWithImport[var2Name], var2Value);
-                        });
+                            test(
+                                "Checking whether the expected variables are present…",
+                                () =>
+                                {
+                                    ok(variablesWithImport.has(var2Name));
+                                    ok(variablesWithImport.has(var3Name));
+                                });
 
-                    test(
-                        "Checking whether variables which depend on imports have the correct value…",
-                        () =>
-                        {
-                            strictEqual(variablesWithImport[var3Name], var1Value);
+                            test(
+                                "Checking whether variables imported variables are not present…",
+                                () =>
+                                {
+                                    ok(!variablesWithImport.has(var1Name));
+                                });
+
+                            test(
+                                "Checking whether independent variables have the correct value…",
+                                () =>
+                                {
+                                    strictEqual(variablesWithImport.get(var2Name), var2Value);
+                                });
+
+                            test(
+                                "Checking whether variables which depend on imports have the correct value…",
+                                () =>
+                                {
+                                    strictEqual(variablesWithImport.get(var3Name), var1Value);
+                                });
                         });
                 });
         });
