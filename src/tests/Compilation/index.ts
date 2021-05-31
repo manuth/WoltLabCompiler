@@ -9,6 +9,7 @@ import { OptionTests } from "./Options";
 import { PackageSystemTests } from "./PackageSystem";
 import { PresentationTests } from "./Presentation";
 import { TaskTests } from "./Tasks";
+import { WoltLabXMLCompilerTests } from "./WoltLabXMLCompiler.test";
 import { XMLFileCompilerTests } from "./XMLFileCompiler.test";
 
 /**
@@ -23,6 +24,7 @@ export function CompilationTests(): void
             CompilerTests();
             XMLFileCompilerTests();
             EJSFileCompilerTests();
+            WoltLabXMLCompilerTests();
             ImportFileCompilerTests();
             ObjectDeletionFileCompilerTests();
             NamedObjectDeletionFileCompilerTests();
