@@ -36,7 +36,7 @@ export function NamedObjectDeletionFileCompilerTests(): void
                 }
             ];
 
-            await super.SuiteSetup();
+            return super.SuiteSetup();
         }
 
         /**

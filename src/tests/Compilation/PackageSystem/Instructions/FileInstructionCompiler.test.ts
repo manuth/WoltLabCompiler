@@ -53,12 +53,13 @@ export function FileInstructionCompilerTests(): void
 
             sourceDir = new TempDirectory();
             tempDir = new TempDirectory();
-            await super.SuiteSetup();
 
             for (let fileName of fileNames)
             {
                 await writeFile(sourceDir.MakePath(fileName), "Hello world");
             }
+
+            return super.SuiteSetup();
         }
 
         /**

@@ -42,7 +42,7 @@ export function PackageCompilerTests(): void
         protected override async SuiteSetup(): Promise<void>
         {
             tempDir = new TempDirectory();
-            await super.SuiteSetup();
+            return super.SuiteSetup();
         }
 
         /**

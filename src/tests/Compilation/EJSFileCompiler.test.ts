@@ -98,7 +98,7 @@ export function EJSFileCompilerTests(): void
             variableName = "foo";
             variableValue = "Hello World";
             context[variableName] = variableValue;
-            await super.SuiteSetup();
+            return super.SuiteSetup();
         }
 
         /**
@@ -107,6 +107,7 @@ export function EJSFileCompilerTests(): void
         protected override async Setup(): Promise<void>
         {
             delimiter = "%";
+            return super.Setup();
         }
 
         /**

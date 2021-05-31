@@ -77,7 +77,7 @@ export function ThemeFileCompilerTests(): void
                 }).InstallSet.push(themeInstruction);
 
             theme = await themeInstruction.ThemeLoader.Load();
-            await super.SuiteSetup();
+            return super.SuiteSetup();
         }
 
         /**

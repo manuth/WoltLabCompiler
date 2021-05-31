@@ -52,7 +52,7 @@ export function ThemeCompilerTests(): void
 
             extensionPackage.InstallSet.push(instruction);
             theme = await instruction.ThemeLoader.Load();
-            await super.SuiteSetup();
+            return super.SuiteSetup();
         }
 
         /**

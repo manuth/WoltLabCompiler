@@ -117,7 +117,7 @@ export function ListenerFileCompilerTests(): void
         protected override async SuiteSetup(): Promise<void>
         {
             listenerTag = "myListener";
-            await super.SuiteSetup();
+            return super.SuiteSetup();
         }
 
         /**

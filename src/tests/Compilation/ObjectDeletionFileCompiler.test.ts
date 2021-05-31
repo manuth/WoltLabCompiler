@@ -85,7 +85,7 @@ export function ObjectDeletionFileCompilerTests(): void
         protected override async SuiteSetup(): Promise<void>
         {
             objectTag = "myObject";
-            await super.SuiteSetup();
+            return super.SuiteSetup();
         }
 
         /**

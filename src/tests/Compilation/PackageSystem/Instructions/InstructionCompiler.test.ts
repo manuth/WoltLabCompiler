@@ -112,12 +112,12 @@ export function InstructionCompilerTests(): void
          */
         protected override async SuiteSetup(): Promise<void>
         {
-            await super.SuiteSetup();
             objects = {};
             type = "test";
             objectID = "date";
             object = new Date();
             objects[objectID] = object;
+            return super.SuiteSetup();
         }
 
         /**

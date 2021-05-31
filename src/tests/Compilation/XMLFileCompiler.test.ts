@@ -46,8 +46,8 @@ export function XMLFileCompilerTests(): void
          */
         protected override async SuiteSetup(): Promise<void>
         {
-            await super.SuiteSetup();
             rootTag = "foo";
+            return super.SuiteSetup();
         }
 
         /**
