@@ -1,6 +1,5 @@
-import { parseExpression } from "cron-parser";
+import { CronExpression, parseExpression } from "cron-parser";
 import { TimePeriod } from "../../Tasks/TimePeriod";
-import { CronExpression } from "./CronExpression";
 
 /**
  * Provides the functionaolity to test `TimePeriod`-instances.
@@ -39,7 +38,7 @@ export class PeriodTester
     /**
      * Gets the cron-expression representing the time-preiod.
      */
-    public get CronExpression(): CronExpression
+    public get CronExpression(): CronExpression<true>
     {
         return parseExpression(
             `${this.Period.Minute} ${this.Period.Hour} ${this.Period.DayOfMonth} ${this.Period.Month} ${this.Period.DayOfWeek}`);
@@ -52,7 +51,7 @@ export class PeriodTester
     {
         if (this.startDate === null)
         {
-            this.startDate = new Date(this.CronExpression.next().getTime());
+            this.startDate = new Date(this.CronExpression.next().value.getTime());
         }
 
         return this.startDate;
@@ -65,6 +64,6 @@ export class PeriodTester
     {
         let expression = this.CronExpression;
         expression.reset(this.StartDate);
-        return new Date(expression.next().getTime());
+        return new Date(expression.next().value.getTime());
     }
 }
