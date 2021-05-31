@@ -1,5 +1,5 @@
 import { readFileSync } from "fs-extra";
-import { parse } from "sass-variable-parser";
+import sassVars = require("get-sass-vars");
 import { dirname } from "upath";
 
 /**
@@ -29,28 +29,26 @@ export class SassVariableParser
      * @returns
      * The variables inside the scss-file.
      */
-    public Parse(): Record<string, string>
+    public async Parse(): Promise<Record<string, string>>
     {
-        let currentDir: string = process.cwd();
+        let variables: Record<string, string> = await sassVars(
+            readFileSync(this.fileName).toString(),
+            {
+                sassOptions: {
+                    includePaths: [
+                        dirname(this.fileName)
+                    ]
+                }
+            }) as Record<string, string>;
 
-        try
-        {
-            let variables: Record<string, string> = parse(
-                readFileSync(this.fileName).toString(),
+        return Object.fromEntries(
+            Object.entries(variables).map(
+                (entry) =>
                 {
-                    camelCase: false,
-                    cwd: dirname(this.fileName)
-                }) as Record<string, string>;
-
-            return variables;
-        }
-        catch (exception)
-        {
-            throw exception;
-        }
-        finally
-        {
-            process.chdir(currentDir);
-        }
+                    return [
+                        entry[0].replace(/^\$/, ""),
+                        entry[1]
+                    ];
+                }));
     }
 }

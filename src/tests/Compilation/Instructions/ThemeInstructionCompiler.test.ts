@@ -77,7 +77,7 @@ export function ThemeInstructionCompilerTests(): void
                         color: red !important;
                     }`));
 
-            await writeFile(overridesFile, '$wcfHeaderBackground: "greend";');
+            await writeFile(overridesFile, '$wcfHeaderBackground: "green";');
             await super.SuiteSetup();
             themeArchiveFile = join(this.Compiler.DestinationPath, this.Compiler.Item.FullName);
         }

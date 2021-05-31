@@ -23,7 +23,7 @@ export function ThemeCompilerTests(): void
          * @returns
          * The new compiler-tester instance.
          */
-        protected CreateTester(): CompilerTester<ThemeCompiler>
+        protected override CreateTester(): CompilerTester<ThemeCompiler>
         {
             let variableFileName = "myVariableFile.xml";
 

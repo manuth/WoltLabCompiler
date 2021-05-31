@@ -1,6 +1,6 @@
 import { EOL } from "os";
 import { get } from "colornames";
-import { readFileSync } from "fs-extra";
+import { readFile } from "fs-extra";
 import hexToRgba = require("hex-to-rgba");
 import { isAbsolute, join } from "upath";
 import { Component } from "../../../PackageSystem/Component";
@@ -37,14 +37,29 @@ export class Theme extends Component
     private coverPhoto: FileDescriptor = null;
 
     /**
+     * The name of the file containing custom scss-code.
+     */
+    private customScssFileName: string = null;
+
+    /**
      * The `scss`-code of the theme.
      */
     private customSCSS: string = null;
 
     /**
+     * The name of the file containing scss-overrides.
+     */
+    private scssOverrideFileName: string;
+
+    /**
      * The variable-overrides of special `scss`-variables.
      */
     private scssOverride: string = null;
+
+    /**
+     * The name of the file containing variables.
+     */
+    private variableFileName: string = null;
 
     /**
      * The variables of the theme.
@@ -78,7 +93,6 @@ export class Theme extends Component
                 License: options.License
             });
 
-        let variables: Record<string, string> = {};
         this.instruction = instruction;
 
         if (
@@ -106,26 +120,21 @@ export class Theme extends Component
             (options.CustomScssFileName !== null) &&
             (options.CustomScssFileName !== undefined))
         {
-            this.CustomScss = readFileSync(options.CustomScssFileName).toString();
+            this.CustomScssFileName = options.CustomScssFileName;
         }
 
         if (
             (options.ScssOverrideFileName !== null) &&
             (options.ScssOverrideFileName !== undefined))
         {
-            Object.assign(variables, new SassVariableParser(options.ScssOverrideFileName).Parse());
+            this.ScssOverrideFileName = options.ScssOverrideFileName;
         }
 
         if (
             (options.VariableFileName !== null) &&
             (options.VariableFileName !== undefined))
         {
-            Object.assign(
-                variables,
-                // eslint-disable-next-line @typescript-eslint/no-var-requires
-                require(
-                    join(
-                        ...(isAbsolute(options.VariableFileName) ? [options.VariableFileName] : [process.cwd(), options.VariableFileName]))));
+            this.VariableFileName = options.VariableFileName;
         }
 
         if (
@@ -134,8 +143,6 @@ export class Theme extends Component
         {
             this.images = new ImageDirectoryDescriptor(options.Images);
         }
-
-        this.ParseVariables(variables);
     }
 
     /**
@@ -248,6 +255,86 @@ export class Theme extends Component
     public get Images(): ImageDirectoryDescriptor
     {
         return this.images;
+    }
+
+    /**
+     * Gets or sets the name of the file containing custom scss-code.
+     */
+    protected get CustomScssFileName(): string
+    {
+        return this.customScssFileName;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    protected set CustomScssFileName(value: string)
+    {
+        this.customScssFileName = value;
+    }
+
+    /**
+     * Gets the name of the file containing scss-overrides.
+     */
+    protected get ScssOverrideFileName(): string
+    {
+        return this.scssOverrideFileName;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    protected set ScssOverrideFileName(value: string)
+    {
+        this.scssOverrideFileName = value;
+    }
+
+    /**
+     * Gets the name of the file containing variables.
+     */
+    protected get VariableFileName(): string
+    {
+        return this.variableFileName;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    protected set VariableFileName(value: string)
+    {
+        this.variableFileName = value;
+    }
+
+    /**
+     * Initializes the theme.
+     */
+    public async Initialize(): Promise<void>
+    {
+        let variables: Record<string, string> = {};
+
+        if (
+            (this.CustomScssFileName !== null) &&
+            (this.CustomScssFileName !== undefined))
+        {
+            this.CustomScss = (await readFile(this.CustomScssFileName)).toString();
+        }
+
+        if (
+            (this.ScssOverrideFileName !== null) &&
+            (this.ScssOverrideFileName !== undefined))
+        {
+            Object.assign(variables, await new SassVariableParser(this.ScssOverrideFileName).Parse());
+        }
+
+        if (
+            (this.VariableFileName !== null) &&
+            (this.VariableFileName !== undefined))
+        {
+            let fileName = join(...(isAbsolute(this.VariableFileName) ? [this.VariableFileName] : [process.cwd(), this.VariableFileName]));
+            Object.assign(variables, await import(fileName));
+        }
+
+        this.ParseVariables(variables);
     }
 
     /**

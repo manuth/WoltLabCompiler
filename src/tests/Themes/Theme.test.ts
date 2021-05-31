@@ -173,6 +173,7 @@ export function ThemeTests(): void
 
                     $package.InstallSet.push(instruction);
                     theme = instruction.Theme;
+                    await theme.Initialize();
                 });
 
             suiteTeardown(

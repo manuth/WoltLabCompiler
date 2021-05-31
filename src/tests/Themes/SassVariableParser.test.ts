@@ -22,6 +22,7 @@ export function SassVariableParserTests(): void
             let var1Value: string;
             let var2Name: string;
             let var2Value: string;
+            let var2RawValue: string;
             let var3Name: string;
 
             let variablesWithoutImport: Record<string, string>;
@@ -37,7 +38,8 @@ export function SassVariableParserTests(): void
                     var1Name = "a";
                     var1Value = "#000";
                     var2Name = "b";
-                    var2Value = '"Hello World"';
+                    var2Value = "Hello World";
+                    var2RawValue = `"${var2Value}"`;
 
                     await writeFile(tempDir.MakePath(mainFile), `$${var1Name}: ${var1Value};`);
 
@@ -46,12 +48,13 @@ export function SassVariableParserTests(): void
                         dedent(
                             `
                             @import "${basename(mainFile)}";
-                            $${var2Name}: ${var2Value};
+                            $${var2Name}: ${var2RawValue};
                             $${var3Name}: $${var1Name};`
                         ));
 
-                    variablesWithoutImport = new SassVariableParser(tempDir.MakePath(mainFile)).Parse();
-                    variablesWithImport = new SassVariableParser(tempDir.MakePath(importFile)).Parse();
+                    variablesWithoutImport = await new SassVariableParser(tempDir.MakePath(mainFile)).Parse();
+                    variablesWithImport = await new SassVariableParser(tempDir.MakePath(importFile)).Parse();
+                    console.log();
                 });
 
             suiteTeardown(
