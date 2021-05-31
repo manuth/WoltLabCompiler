@@ -49,6 +49,7 @@ export function WoltLabXMLCompilerTests(): void
         {
             namespace = "http://www.woltlab.com";
             schemaLocation = "http://example.com/helloWorld.xsd";
+            return super.SuiteSetup();
         }
 
         /**
