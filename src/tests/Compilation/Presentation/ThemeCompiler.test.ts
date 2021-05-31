@@ -3,6 +3,7 @@ import { TempFile } from "@manuth/temp-files";
 import { pathExists, writeJSON } from "fs-extra";
 import { join } from "upath";
 import { ThemeCompiler } from "../../../Compilation/Presentation/ThemeCompiler";
+import { Theme } from "../../../Customization/Presentation/Themes/Theme";
 import { ThemeInstruction } from "../../../PackageSystem/Instructions/Customization/Presentation/ThemeInstruction";
 import { Package } from "../../../PackageSystem/Package";
 import { CompilerTester } from "../TestComponents/Testers/CompilerTester";
@@ -13,19 +14,17 @@ import { CompilerTestRunner } from "../TestComponents/TestRunners/CompilerTestRu
  */
 export function ThemeCompilerTests(): void
 {
+    let theme: Theme;
     let variableSource: TempFile;
 
     new class extends CompilerTestRunner<CompilerTester<ThemeCompiler>, ThemeCompiler>
     {
         /**
          * @inheritdoc
-         *
-         * @returns
-         * The new compiler-tester instance.
          */
-        protected override CreateTester(): CompilerTester<ThemeCompiler>
+        protected override async SuiteSetup(): Promise<void>
         {
-            let variableFileName = "myVariableFile.xml";
+            variableSource = new TempFile({ Suffix: ".json" });
 
             let instruction: ThemeInstruction = new ThemeInstruction(
                 {
@@ -45,24 +44,26 @@ export function ThemeCompilerTests(): void
                     }
                 });
 
-            extensionPackage.InstallSet.push(instruction);
-            return new CompilerTester(new ThemeCompiler(instruction.Theme, variableFileName));
-        }
-
-        /**
-         * @inheritdoc
-         */
-        protected override async SuiteSetup(): Promise<void>
-        {
-            variableSource = new TempFile({ Suffix: ".json" });
-
             await writeJSON(
                 variableSource.FullName,
                 {
                     wcfHeaderBackground: "red"
                 });
 
+            extensionPackage.InstallSet.push(instruction);
+            theme = await instruction.ThemeLoader.Load();
             await super.SuiteSetup();
+        }
+
+        /**
+         * @inheritdoc
+         *
+         * @returns
+         * The new compiler-tester instance.
+         */
+        protected override CreateTester(): CompilerTester<ThemeCompiler>
+        {
+            return new CompilerTester(new ThemeCompiler(theme, "myVariableFile.xml"));
         }
 
         /**

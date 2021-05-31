@@ -1,4 +1,4 @@
-import { IThemeOptions } from "../../../../Customization/Presentation/Themes/IThemeOptions";
+import { IThemeLoaderOptions } from "../../../../Customization/Presentation/Themes/IThemeLoaderOptions";
 import { IInstructionOptions } from "../../IInstructionOptions";
 
 /**
@@ -9,5 +9,5 @@ export interface IThemeInstructionOptions extends Partial<IInstructionOptions>
     /**
      * The theme provided by the instruction.
      */
-    Theme: IThemeOptions;
+    Theme: IThemeLoaderOptions;
 }

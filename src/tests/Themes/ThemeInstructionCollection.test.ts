@@ -72,7 +72,7 @@ export function ThemeInstructionCollectionTests(): void
                         "Checking whether the meta-data is applied correctly…",
                         () =>
                         {
-                            ok(collection.every((themeInstruction: ThemeInstruction) => themeInstruction.Theme.Name === name));
+                            ok(collection.every((themeInstruction: ThemeInstruction) => themeInstruction.ThemeLoader.Name === name));
                         });
                 });
         });

@@ -48,7 +48,6 @@ export class ThemeFileCompiler extends WoltLabXMLCompiler<Theme>
      */
     protected override async Compile(): Promise<void>
     {
-        await this.Item.Initialize();
         return super.Compile();
     }
 
