@@ -37,7 +37,7 @@ export abstract class BidirectionalCollection<TParent, TChild> extends Array<TCh
      * @returns
      * The new length of the array.
      */
-    public push(...items: TChild[]): number
+    public override push(...items: TChild[]): number
     {
         for (let item of items)
         {
@@ -53,7 +53,7 @@ export abstract class BidirectionalCollection<TParent, TChild> extends Array<TCh
      * @returns
      * The removed item.
      */
-    public pop(): TChild
+    public override pop(): TChild
     {
         let index = this.length - 1;
         let result = this[index];
@@ -66,7 +66,7 @@ export abstract class BidirectionalCollection<TParent, TChild> extends Array<TCh
      * @returns
      * The removed element.
      */
-    public shift(): TChild
+    public override shift(): TChild
     {
         let index = 0;
         let result = this[index];
@@ -82,7 +82,7 @@ export abstract class BidirectionalCollection<TParent, TChild> extends Array<TCh
      * @returns
      * The new length of the array.
      */
-    public unshift(...items: TChild[]): number
+    public override unshift(...items: TChild[]): number
     {
         for (let item of items)
         {

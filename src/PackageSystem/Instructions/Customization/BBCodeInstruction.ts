@@ -80,7 +80,7 @@ export class BBCodeInstruction extends NamedDeleteInstruction implements ILocali
     /**
      * @inheritdoc
      */
-    public get Compiler(): InstructionCompiler<BBCodeInstruction>
+    public override get Compiler(): InstructionCompiler<BBCodeInstruction>
     {
         return new BBCodeInstructionCompiler(this);
     }

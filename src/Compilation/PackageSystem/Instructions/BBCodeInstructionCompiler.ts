@@ -21,7 +21,7 @@ export class BBCodeInstructionCompiler extends LocalizationProviderCompiler<BBCo
     /**
      * @inheritdoc
      */
-    protected async Compile(): Promise<void>
+    protected override async Compile(): Promise<void>
     {
         await super.Compile();
         let bbCodeFileCompiler: BBCodeFileCompiler = new BBCodeFileCompiler(this.Item);

@@ -25,7 +25,7 @@ export class FileInstructionCompiler extends InstructionCompiler<ApplicationFile
      * @returns
      * The serialized document.
      */
-    public Serialize(): Document
+    public override Serialize(): Document
     {
         let document = super.Serialize();
         let editor = new XMLEditor(document.documentElement);
@@ -41,7 +41,7 @@ export class FileInstructionCompiler extends InstructionCompiler<ApplicationFile
     /**
      * @inheritdoc
      */
-    protected async Compile(): Promise<void>
+    protected override async Compile(): Promise<void>
     {
         let tempDir = new TempDirectory();
         await this.CopyTemplate(this.Item.Source, tempDir.FullName);

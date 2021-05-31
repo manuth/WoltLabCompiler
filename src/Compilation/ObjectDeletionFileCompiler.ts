@@ -24,7 +24,7 @@ export abstract class ObjectDeletionFileCompiler<T extends IDeleteInstruction<TO
      * @returns
      * The serialized deletion.
      */
-    protected CreateDelete(): Element
+    protected override CreateDelete(): Element
     {
         let editor: XMLEditor = new XMLEditor(super.CreateDelete());
 

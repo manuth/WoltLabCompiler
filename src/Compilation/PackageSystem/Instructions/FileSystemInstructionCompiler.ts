@@ -20,7 +20,7 @@ export class FileSystemInstructionCompiler extends InstructionCompiler<FileSyste
     /**
      * @inheritdoc
      */
-    protected async Compile(): Promise<void>
+    protected override async Compile(): Promise<void>
     {
         await this.CopyTemplate(this.Item.Source, this.DestinationFileName);
     }

@@ -25,7 +25,7 @@ export class ErrorMessageInstruction extends TranslationInstruction
      * @returns
      * The messages of the options-instruction.
      */
-    public GetMessages(): Record<string, Record<string, Record<string, string>>>
+    public override GetMessages(): Record<string, Record<string, Record<string, string>>>
     {
         let result: TranslationInstruction = new TranslationInstruction(
             {

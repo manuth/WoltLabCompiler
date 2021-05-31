@@ -34,7 +34,7 @@ export class InstructionSet extends BidirectionalCollection<InstructionSet, Inst
     /**
      * @inheritdoc
      */
-    public get Owner(): InstructionSet
+    public override get Owner(): InstructionSet
     {
         return this;
     }

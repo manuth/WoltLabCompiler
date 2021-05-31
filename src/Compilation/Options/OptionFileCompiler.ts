@@ -51,7 +51,7 @@ export abstract class OptionFileCompiler<T extends IOptionInstruction<TCategory,
      * @returns
      * The serialized import.
      */
-    protected CreateImport(): Element
+    protected override CreateImport(): Element
     {
         let editor: XMLEditor = new XMLEditor(super.CreateImport());
 
@@ -91,7 +91,7 @@ export abstract class OptionFileCompiler<T extends IOptionInstruction<TCategory,
      * @returns
      * The serialized deletion.
      */
-    protected CreateDelete(): Element
+    protected override CreateDelete(): Element
     {
         let editor: XMLEditor = new XMLEditor(super.CreateDelete());
 

@@ -141,7 +141,7 @@ export class Theme extends Component
     /**
      * @inheritdoc
      */
-    public get Author(): Person
+    public override get Author(): Person
     {
         return super.Author ?? this.Instruction?.Collection?.Package?.Author ?? null;
     }

@@ -49,7 +49,7 @@ export abstract class FileSystemInstruction extends Instruction
     /**
      * @inheritdoc
      */
-    public get FileName(): string
+    public override get FileName(): string
     {
         return super.FileName ?? this.MakeDefaultFileName(this.Source);
     }
@@ -57,7 +57,7 @@ export abstract class FileSystemInstruction extends Instruction
     /**
      * @inheritdoc
      */
-    public set FileName(value: string)
+    public override set FileName(value: string)
     {
         super.FileName = value;
     }
@@ -65,7 +65,7 @@ export abstract class FileSystemInstruction extends Instruction
     /**
      * @inheritdoc
      */
-    public get Compiler(): InstructionCompiler<FileSystemInstruction>
+    public override get Compiler(): InstructionCompiler<FileSystemInstruction>
     {
         return new FileSystemInstructionCompiler(this);
     }

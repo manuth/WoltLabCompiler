@@ -40,7 +40,7 @@ export class BBCodeFileCompiler extends NamedObjectDeletionFileCompiler<BBCodeIn
      * @returns
      * The serialized import.
      */
-    protected CreateImport(): Element
+    protected override CreateImport(): Element
     {
         let editor = new XMLEditor(super.CreateImport());
 

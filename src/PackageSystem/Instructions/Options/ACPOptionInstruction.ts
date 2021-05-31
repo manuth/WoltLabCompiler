@@ -48,7 +48,7 @@ export class ACPOptionInstruction extends OptionInstruction<ACPCategory, ICatego
     /**
      * @inheritdoc
      */
-    public get Compiler(): InstructionCompiler<ACPOptionInstruction>
+    public override get Compiler(): InstructionCompiler<ACPOptionInstruction>
     {
         return new ACPOptionInstructionCompiler(this);
     }

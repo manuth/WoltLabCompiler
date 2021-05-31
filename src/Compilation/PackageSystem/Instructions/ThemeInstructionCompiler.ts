@@ -22,7 +22,7 @@ export class ThemeInstructionCompiler extends InstructionCompiler<ThemeInstructi
     /**
      * @inheritdoc
      */
-    protected async Compile(): Promise<void>
+    protected override async Compile(): Promise<void>
     {
         let tempDir: TempDirectory = new TempDirectory();
         let themeDir: TempDirectory = new TempDirectory();

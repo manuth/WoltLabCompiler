@@ -24,7 +24,7 @@ export class LocalizationProviderCompiler<T extends ILocalizationInstruction> ex
      * @returns
      * The serialized document.
      */
-    public Serialize(): Document
+    public override Serialize(): Document
     {
         let document = super.Serialize();
 
@@ -45,7 +45,7 @@ export class LocalizationProviderCompiler<T extends ILocalizationInstruction> ex
     /**
      * @inheritdoc
      */
-    protected async Compile(): Promise<void>
+    protected override async Compile(): Promise<void>
     {
         let compiler = new LocalizationInstructionCompiler(this.Item);
         compiler.DestinationPath = this.DestinationPath;

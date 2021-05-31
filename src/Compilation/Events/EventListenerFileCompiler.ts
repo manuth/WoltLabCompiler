@@ -44,7 +44,7 @@ export class EventListenerFileCompiler extends ListenerFileCompiler<EventListene
      * @returns
      * The serialized listener.
      */
-    protected CreateListener(listener: EventListener): Element
+    protected override CreateListener(listener: EventListener): Element
     {
         let editor: XMLEditor = new XMLEditor(super.CreateListener(listener));
         editor.Insert(2, editor.CreateTextElement("eventclassname", listener.ClassName));

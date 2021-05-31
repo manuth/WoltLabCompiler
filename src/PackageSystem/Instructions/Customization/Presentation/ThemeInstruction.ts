@@ -49,7 +49,7 @@ export class ThemeInstruction extends Instruction
     /**
      * @inheritdoc
      */
-    public get Compiler(): InstructionCompiler<ThemeInstruction>
+    public override get Compiler(): InstructionCompiler<ThemeInstruction>
     {
         return new ThemeInstructionCompiler(this);
     }

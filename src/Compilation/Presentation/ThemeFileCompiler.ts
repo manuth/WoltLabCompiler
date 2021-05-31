@@ -30,7 +30,7 @@ export class ThemeFileCompiler extends WoltLabXMLCompiler<Theme>
     /**
      * @inheritdoc
      */
-    protected get TagName(): string
+    protected override get TagName(): string
     {
         return "style";
     }
@@ -49,7 +49,7 @@ export class ThemeFileCompiler extends WoltLabXMLCompiler<Theme>
      * @returns
      * The serialized document.
      */
-    protected CreateDocument(): Document
+    protected override CreateDocument(): Document
     {
         let document = super.CreateDocument();
         let editor = new XMLEditor(document.documentElement);

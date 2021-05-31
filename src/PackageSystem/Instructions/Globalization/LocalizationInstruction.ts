@@ -44,7 +44,7 @@ export abstract class LocalizationInstruction<T extends LocalizationItem, TOptio
     /**
      * @inheritdoc
      */
-    public get Compiler(): InstructionCompiler<ILocalizationInstruction>
+    public override get Compiler(): InstructionCompiler<ILocalizationInstruction>
     {
         return new LocalizationInstructionCompiler(this);
     }

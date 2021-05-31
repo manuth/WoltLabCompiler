@@ -49,7 +49,7 @@ export class UpdateInstructionSet extends InstructionSet
      * @returns
      * An element representing this instruction.
      */
-    public Serialize(): Element
+    public override Serialize(): Element
     {
         let editor: XMLEditor = new XMLEditor(super.Serialize());
         editor.SetAttribute("type", "update");

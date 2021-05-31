@@ -32,7 +32,7 @@ export class SelfContainedPHPInstruction extends ApplicationFileSystemInstructio
     /**
      * @inheritdoc
      */
-    public get Compiler(): InstructionCompiler<SelfContainedPHPInstruction>
+    public override get Compiler(): InstructionCompiler<SelfContainedPHPInstruction>
     {
         return new SelfContainedPHPInstructionCompiler(this);
     }
@@ -40,7 +40,7 @@ export class SelfContainedPHPInstruction extends ApplicationFileSystemInstructio
     /**
      * Gets or sets the path to load the `php`-file from.
      */
-    public get Source(): string
+    public override get Source(): string
     {
         return super.Source;
     }
@@ -48,7 +48,7 @@ export class SelfContainedPHPInstruction extends ApplicationFileSystemInstructio
     /**
      * @inheritdoc
      */
-    public set Source(value: string)
+    public override set Source(value: string)
     {
         super.Source = value;
     }
@@ -56,7 +56,7 @@ export class SelfContainedPHPInstruction extends ApplicationFileSystemInstructio
     /**
      * @inheritdoc
      */
-    public get FileName(): string
+    public override get FileName(): string
     {
         return super.FileName;
     }
@@ -64,7 +64,7 @@ export class SelfContainedPHPInstruction extends ApplicationFileSystemInstructio
     /**
      * @inheritdoc
      */
-    public set FileName(value: string)
+    public override set FileName(value: string)
     {
         super.FileName = value;
     }
@@ -132,7 +132,7 @@ export class SelfContainedPHPInstruction extends ApplicationFileSystemInstructio
      * @returns
      * The default filename.
      */
-    protected MakeDefaultFileName(source: string): string
+    protected override MakeDefaultFileName(source: string): string
     {
         return join("scripts", "php", this.Application, super.MakeDefaultFileName(source));
     }

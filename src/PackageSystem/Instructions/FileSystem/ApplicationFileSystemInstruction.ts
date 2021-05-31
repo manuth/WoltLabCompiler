@@ -62,7 +62,7 @@ export class ApplicationFileSystemInstruction extends FileSystemInstruction
     /**
      * @inheritdoc
      */
-    public get Compiler(): InstructionCompiler<ApplicationFileSystemInstruction>
+    public override get Compiler(): InstructionCompiler<ApplicationFileSystemInstruction>
     {
         return new FileInstructionCompiler(this);
     }
@@ -76,7 +76,7 @@ export class ApplicationFileSystemInstruction extends FileSystemInstruction
      * @returns
      * The default filename.
      */
-    protected MakeDefaultFileName(source: string): string
+    protected override MakeDefaultFileName(source: string): string
     {
         return `${super.MakeDefaultFileName(source)}.tar`;
     }

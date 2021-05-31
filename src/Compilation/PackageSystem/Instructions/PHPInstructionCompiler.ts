@@ -13,7 +13,7 @@ export class PHPInstructionCompiler extends InstructionCompiler<PHPInstruction>
      * @returns
      * The serialized document.
      */
-    public Serialize(): Document
+    public override Serialize(): Document
     {
         let document = super.Serialize();
         let editor = new XMLEditor(document.documentElement);

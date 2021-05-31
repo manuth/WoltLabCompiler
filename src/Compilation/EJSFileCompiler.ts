@@ -35,7 +35,7 @@ export abstract class EJSFileCompiler<T> extends XMLFileCompiler<T>
     /**
      * @inheritdoc
      */
-    protected get Document(): Document
+    protected override get Document(): Document
     {
         let document = super.Document;
         this.FixEJSTags(document);

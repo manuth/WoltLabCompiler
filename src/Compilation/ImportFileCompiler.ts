@@ -24,7 +24,7 @@ export abstract class ImportFileCompiler<T> extends WoltLabXMLCompiler<T>
      * @returns
      * The serialized document.
      */
-    protected CreateDocument(): Document
+    protected override CreateDocument(): Document
     {
         let document: Document = super.CreateDocument();
         let editor: XMLEditor = new XMLEditor(document.documentElement);

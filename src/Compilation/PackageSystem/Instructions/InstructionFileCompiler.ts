@@ -26,7 +26,7 @@ export abstract class InstructionFileCompiler<T extends IInstruction> extends In
     /**
      * @inheritdoc
      */
-    protected async Compile(): Promise<void>
+    protected override async Compile(): Promise<void>
     {
         let compiler: Compiler<T> = this.FileCompiler;
         compiler.DestinationPath = this.DestinationFileName;

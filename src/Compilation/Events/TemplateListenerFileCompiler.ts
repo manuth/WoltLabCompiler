@@ -44,7 +44,7 @@ export class TemplateListenerFileCompiler extends ListenerFileCompiler<TemplateL
      * @returns
      * The serialized listener.
      */
-    protected CreateListener(listener: TemplateListener): Element
+    protected override CreateListener(listener: TemplateListener): Element
     {
         let editor: XMLEditor = new XMLEditor(super.CreateListener(listener));
         editor.Insert(2, editor.CreateTextElement("templatename", listener.TemplateName));

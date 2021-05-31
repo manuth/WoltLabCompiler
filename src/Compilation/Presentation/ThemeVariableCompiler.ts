@@ -20,7 +20,7 @@ export class ThemeVariableCompiler extends WoltLabXMLCompiler<Record<string, str
     /**
      * @inheritdoc
      */
-    protected get TagName(): string
+    protected override get TagName(): string
     {
         return "variables";
     }
@@ -39,7 +39,7 @@ export class ThemeVariableCompiler extends WoltLabXMLCompiler<Record<string, str
      * @returns
      * The serialized document.
      */
-    protected CreateDocument(): Document
+    protected override CreateDocument(): Document
     {
         let document: Document = super.CreateDocument();
         let editor: XMLEditor = new XMLEditor(document.documentElement);

@@ -48,7 +48,7 @@ export class UserOptionInstruction extends OptionInstruction<UserCategory, ICate
     /**
      * @inheritdoc
      */
-    public get Compiler(): InstructionCompiler<UserOptionInstruction>
+    public override get Compiler(): InstructionCompiler<UserOptionInstruction>
     {
         return new UserOptionInstructionCompiler(this);
     }

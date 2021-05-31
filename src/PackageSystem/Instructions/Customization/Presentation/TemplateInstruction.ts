@@ -21,7 +21,7 @@ export class TemplateInstruction extends ApplicationFileSystemInstruction
     /**
      * @inheritdoc
      */
-    public get Type(): string
+    public override get Type(): string
     {
         return "template";
     }
@@ -35,7 +35,7 @@ export class TemplateInstruction extends ApplicationFileSystemInstruction
      * @returns
      * The default filename.
      */
-    public MakeDefaultFileName(source: string): string
+    public override MakeDefaultFileName(source: string): string
     {
         return join("templates", super.MakeDefaultFileName(source));
     }

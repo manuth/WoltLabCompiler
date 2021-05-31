@@ -25,7 +25,7 @@ export class SelfContainedPHPInstructionCompiler extends InstructionCompiler<Sel
      * @returns
      * The serialized document.
      */
-    public Serialize(): Document
+    public override Serialize(): Document
     {
         let document = this.Item.FileInstruction.Compiler.Serialize();
         let childNodes = this.Item.PHPInstruction.Compiler.Serialize().childNodes;
@@ -41,7 +41,7 @@ export class SelfContainedPHPInstructionCompiler extends InstructionCompiler<Sel
     /**
      * @inheritdoc
      */
-    protected async Compile(): Promise<void>
+    protected override async Compile(): Promise<void>
     {
         let fileInstruction = this.Item.FileInstruction;
         let tempDir = new TempDirectory();

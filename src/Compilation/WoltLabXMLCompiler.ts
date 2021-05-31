@@ -35,7 +35,7 @@ export abstract class WoltLabXMLCompiler<T> extends EJSFileCompiler<T>
      * @returns
      * The serialized document.
      */
-    protected CreateDocument(): Document
+    protected override CreateDocument(): Document
     {
         let document: Document = super.CreateDocument();
         document.documentElement.setAttribute("xmlns", "http://www.woltlab.com");
