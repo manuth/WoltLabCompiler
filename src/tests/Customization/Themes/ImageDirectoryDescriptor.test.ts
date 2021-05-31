@@ -1,5 +1,5 @@
 import { strictEqual } from "assert";
-import { ImageDirectoryDescriptor } from "../../Customization/Presentation/Themes/ImageDirectoryDescriptor";
+import { ImageDirectoryDescriptor } from "../../../Customization/Presentation/Themes/ImageDirectoryDescriptor";
 
 /**
  * Registers tests for the `ImageDirectoryDescriptor` class.

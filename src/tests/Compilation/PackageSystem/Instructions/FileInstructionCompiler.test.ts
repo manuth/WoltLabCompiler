@@ -3,13 +3,13 @@ import { TempDirectory } from "@manuth/temp-files";
 import { writeFile } from "fs-extra";
 import { extract } from "tar";
 import { join, parse } from "upath";
-import { FileInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/FileInstructionCompiler";
-import { ApplicationFileSystemInstruction } from "../../../PackageSystem/Instructions/FileSystem/ApplicationFileSystemInstruction";
-import { Package } from "../../../PackageSystem/Package";
-import { XMLEditor } from "../../../Serialization/XMLEditor";
-import { Tar } from "../../Tar";
-import { CompilerTester } from "../TestComponents/Testers/CompilerTester";
-import { InstructionCompilerTestRunner } from "../TestComponents/TestRunners/InstructionCompilerTestRunner";
+import { FileInstructionCompiler } from "../../../../Compilation/PackageSystem/Instructions/FileInstructionCompiler";
+import { ApplicationFileSystemInstruction } from "../../../../PackageSystem/Instructions/FileSystem/ApplicationFileSystemInstruction";
+import { Package } from "../../../../PackageSystem/Package";
+import { XMLEditor } from "../../../../Serialization/XMLEditor";
+import { Tar } from "../../../Tar";
+import { CompilerTester } from "../../TestComponents/Testers/CompilerTester";
+import { InstructionCompilerTestRunner } from "../../TestComponents/TestRunners/InstructionCompilerTestRunner";
 
 /**
  * Registers tests for the `FileInstructionCompiler` class.

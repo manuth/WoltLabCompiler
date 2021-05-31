@@ -3,7 +3,7 @@ import { TempDirectory } from "@manuth/temp-files";
 import dedent = require("dedent");
 import { writeFile } from "fs-extra";
 import { basename } from "upath";
-import { SassVariableParser } from "../../Customization/Presentation/Themes/SassVariableParser";
+import { SassVariableParser } from "../../../Customization/Presentation/Themes/SassVariableParser";
 
 /**
  * Registers tests for the `SassVariableParser` class.

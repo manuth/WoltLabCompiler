@@ -1,8 +1,8 @@
-import { ACPOptionInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/ACPOptionInstructionCompiler";
-import { ILocalization } from "../../../Globalization/ILocalization";
-import { ACPOptionInstruction } from "../../../PackageSystem/Instructions/Options/ACPOptionInstruction";
-import { CompilerTester } from "../TestComponents/Testers/CompilerTester";
-import { LocalizationInstructionCompilerTestRunner } from "../TestComponents/TestRunners/LocalizationInstructionCompilerTestRunner";
+import { ACPOptionInstructionCompiler } from "../../../../Compilation/PackageSystem/Instructions/ACPOptionInstructionCompiler";
+import { ILocalization } from "../../../../Globalization/ILocalization";
+import { ACPOptionInstruction } from "../../../../PackageSystem/Instructions/Options/ACPOptionInstruction";
+import { CompilerTester } from "../../TestComponents/Testers/CompilerTester";
+import { LocalizationInstructionCompilerTestRunner } from "../../TestComponents/TestRunners/LocalizationInstructionCompilerTestRunner";
 
 /**
  * Registers tests for the `ACPOptionInstructionCompiler` class.

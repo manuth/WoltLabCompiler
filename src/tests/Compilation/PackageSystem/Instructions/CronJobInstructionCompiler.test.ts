@@ -1,7 +1,7 @@
-import { CronJobInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/CronJobInstructionCompiler";
-import { CronJobInstruction } from "../../../PackageSystem/Instructions/Tasks/CronJobInstruction";
-import { CompilerTester } from "../TestComponents/Testers/CompilerTester";
-import { InstructionCompilerTestRunner } from "../TestComponents/TestRunners/InstructionCompilerTestRunner";
+import { CronJobInstructionCompiler } from "../../../../Compilation/PackageSystem/Instructions/CronJobInstructionCompiler";
+import { CronJobInstruction } from "../../../../PackageSystem/Instructions/Tasks/CronJobInstruction";
+import { CompilerTester } from "../../TestComponents/Testers/CompilerTester";
+import { InstructionCompilerTestRunner } from "../../TestComponents/TestRunners/InstructionCompilerTestRunner";
 
 /**
  * Registers tests for the `CronJobInstructionCompiler` class.

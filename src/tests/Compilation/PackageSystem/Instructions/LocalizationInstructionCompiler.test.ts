@@ -1,10 +1,10 @@
-import { InstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/InstructionCompiler";
-import { LocalizationInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/LocalizationInstructionCompiler";
-import { ILocalization } from "../../../Globalization/ILocalization";
-import { ILocalizationInstruction } from "../../../PackageSystem/Instructions/Globalization/ILocalizationInstruction";
-import { TranslationInstruction } from "../../../PackageSystem/Instructions/Globalization/TranslationInstruction";
-import { CompilerTester } from "../TestComponents/Testers/CompilerTester";
-import { LocalizationInstructionCompilerTestRunner } from "../TestComponents/TestRunners/LocalizationInstructionCompilerTestRunner";
+import { InstructionCompiler } from "../../../../Compilation/PackageSystem/Instructions/InstructionCompiler";
+import { LocalizationInstructionCompiler } from "../../../../Compilation/PackageSystem/Instructions/LocalizationInstructionCompiler";
+import { ILocalization } from "../../../../Globalization/ILocalization";
+import { ILocalizationInstruction } from "../../../../PackageSystem/Instructions/Globalization/ILocalizationInstruction";
+import { TranslationInstruction } from "../../../../PackageSystem/Instructions/Globalization/TranslationInstruction";
+import { CompilerTester } from "../../TestComponents/Testers/CompilerTester";
+import { LocalizationInstructionCompilerTestRunner } from "../../TestComponents/TestRunners/LocalizationInstructionCompilerTestRunner";
 
 /**
  * Registers tests for the `LocalizationInstructionCompiler` class.

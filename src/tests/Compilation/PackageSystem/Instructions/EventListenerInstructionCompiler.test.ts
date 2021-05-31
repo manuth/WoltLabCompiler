@@ -1,7 +1,7 @@
-import { EventListenerInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/EventListenerInstructionCompiler";
-import { EventListenerInstruction } from "../../../PackageSystem/Instructions/Events/EventListenerInstruction";
-import { CompilerTester } from "../TestComponents/Testers/CompilerTester";
-import { InstructionCompilerTestRunner } from "../TestComponents/TestRunners/InstructionCompilerTestRunner";
+import { EventListenerInstructionCompiler } from "../../../../Compilation/PackageSystem/Instructions/EventListenerInstructionCompiler";
+import { EventListenerInstruction } from "../../../../PackageSystem/Instructions/Events/EventListenerInstruction";
+import { CompilerTester } from "../../TestComponents/Testers/CompilerTester";
+import { InstructionCompilerTestRunner } from "../../TestComponents/TestRunners/InstructionCompilerTestRunner";
 
 /**
  * Registers tests for the `EventListenerInstructionCompiler` class.

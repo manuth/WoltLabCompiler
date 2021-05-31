@@ -1,6 +1,6 @@
 import { strictEqual } from "assert";
 import { parse } from "upath";
-import { ThemeInstruction } from "../../../PackageSystem/Instructions/Customization/Presentation/ThemeInstruction";
+import { ThemeInstruction } from "../../../../../PackageSystem/Instructions/Customization/Presentation/ThemeInstruction";
 
 /**
  * Registers tests for the `ThemeInstruction` class.

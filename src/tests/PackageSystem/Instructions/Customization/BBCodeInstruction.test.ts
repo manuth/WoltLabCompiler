@@ -1,6 +1,6 @@
 import { ok, strictEqual } from "assert";
-import { BBCode } from "../../../Customization/BBCodes/BBCode";
-import { BBCodeInstruction } from "../../../PackageSystem/Instructions/Customization/BBCodeInstruction";
+import { BBCode } from "../../../../Customization/BBCodes/BBCode";
+import { BBCodeInstruction } from "../../../../PackageSystem/Instructions/Customization/BBCodeInstruction";
 
 /**
  * Registers tests for the `BBCodeInstruction` class.

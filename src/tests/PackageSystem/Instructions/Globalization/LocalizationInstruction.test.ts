@@ -1,9 +1,9 @@
 import { ok, strictEqual } from "assert";
-import { ILocalization } from "../../../Globalization/ILocalization";
-import { ILocalizationItemOptions } from "../../../Globalization/ILocalizationItemOptions";
-import { LocalizationItem } from "../../../Globalization/LocalizationItem";
-import { LocalizationInstruction } from "../../../PackageSystem/Instructions/Globalization/LocalizationInstruction";
-import { TranslationInstruction } from "../../../PackageSystem/Instructions/Globalization/TranslationInstruction";
+import { ILocalization } from "../../../../Globalization/ILocalization";
+import { ILocalizationItemOptions } from "../../../../Globalization/ILocalizationItemOptions";
+import { LocalizationItem } from "../../../../Globalization/LocalizationItem";
+import { LocalizationInstruction } from "../../../../PackageSystem/Instructions/Globalization/LocalizationInstruction";
+import { TranslationInstruction } from "../../../../PackageSystem/Instructions/Globalization/TranslationInstruction";
 
 /**
  * Registers tests for the `LocalizationInstruction` class.

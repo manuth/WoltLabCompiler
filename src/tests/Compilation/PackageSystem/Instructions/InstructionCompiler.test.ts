@@ -1,11 +1,11 @@
 import { ok, strictEqual } from "assert";
 import { ensureFile, mkdirp, readFile, writeFile } from "fs-extra";
 import { dirname } from "upath";
-import { InstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/InstructionCompiler";
-import { Instruction } from "../../../PackageSystem/Instructions/Instruction";
-import { XMLEditor } from "../../../Serialization/XMLEditor";
-import { CompilerTester } from "../TestComponents/Testers/CompilerTester";
-import { InstructionCompilerTestRunner } from "../TestComponents/TestRunners/InstructionCompilerTestRunner";
+import { InstructionCompiler } from "../../../../Compilation/PackageSystem/Instructions/InstructionCompiler";
+import { Instruction } from "../../../../PackageSystem/Instructions/Instruction";
+import { XMLEditor } from "../../../../Serialization/XMLEditor";
+import { CompilerTester } from "../../TestComponents/Testers/CompilerTester";
+import { InstructionCompilerTestRunner } from "../../TestComponents/TestRunners/InstructionCompilerTestRunner";
 
 /**
  * Registers tests for the `InstructionCompiler` class.

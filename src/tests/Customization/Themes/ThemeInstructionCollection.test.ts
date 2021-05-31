@@ -1,9 +1,9 @@
 import { ok, strictEqual } from "assert";
 import { TempDirectory } from "@manuth/temp-files";
 import { ensureDir, ensureFile, writeFile } from "fs-extra";
-import { IThemeOptions } from "../../Customization/Presentation/Themes/IThemeOptions";
-import { ThemeInstructionCollection } from "../../Customization/Presentation/Themes/ThemeInstructionCollection";
-import { ThemeInstruction } from "../../PackageSystem/Instructions/Customization/Presentation/ThemeInstruction";
+import { IThemeOptions } from "../../../Customization/Presentation/Themes/IThemeOptions";
+import { ThemeInstructionCollection } from "../../../Customization/Presentation/Themes/ThemeInstructionCollection";
+import { ThemeInstruction } from "../../../PackageSystem/Instructions/Customization/Presentation/ThemeInstruction";
 
 /**
  * Registers tests for the `ThemeInstructionCollection` class.

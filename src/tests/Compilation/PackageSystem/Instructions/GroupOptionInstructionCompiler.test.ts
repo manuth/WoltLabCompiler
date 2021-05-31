@@ -1,8 +1,8 @@
-import { GroupOptionInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/GroupOptionInstructionCompiler";
-import { ILocalization } from "../../../Globalization/ILocalization";
-import { GroupOptionInstruction } from "../../../PackageSystem/Instructions/Options/GroupOptionInstruction";
-import { CompilerTester } from "../TestComponents/Testers/CompilerTester";
-import { LocalizationInstructionCompilerTestRunner } from "../TestComponents/TestRunners/LocalizationInstructionCompilerTestRunner";
+import { GroupOptionInstructionCompiler } from "../../../../Compilation/PackageSystem/Instructions/GroupOptionInstructionCompiler";
+import { ILocalization } from "../../../../Globalization/ILocalization";
+import { GroupOptionInstruction } from "../../../../PackageSystem/Instructions/Options/GroupOptionInstruction";
+import { CompilerTester } from "../../TestComponents/Testers/CompilerTester";
+import { LocalizationInstructionCompilerTestRunner } from "../../TestComponents/TestRunners/LocalizationInstructionCompilerTestRunner";
 
 /**
  * Registers tests for the `GroupOptionInstructionCompiler` class.

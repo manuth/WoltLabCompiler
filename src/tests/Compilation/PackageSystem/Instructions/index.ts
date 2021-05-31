@@ -1,4 +1,4 @@
-import { EventListenerFileCompilerTests } from "../Events/EventListenerFileCompiler.test";
+import { EventListenerFileCompilerTests } from "../../Events/EventListenerFileCompiler.test";
 import { ACPOptionInstructionCompilerTests } from "./ACPOptionInstructionCompiler.test";
 import { BBCodeInstructionCompilerTests } from "./BBCodeInstructionCompiler.test";
 import { CronJobInstructionCompilerTests } from "./CronJobInstructionCompiler.test";

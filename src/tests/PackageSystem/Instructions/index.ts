@@ -1,11 +1,9 @@
-import { BBCodeInstructionTests } from "./BBCodeInstruction.test";
-import { ErrorMessageInstructionTests } from "./ErrorMessageInstruction.test";
-import { FileSystemInstructionTests } from "./FileSystemInstruction.test";
+import { CustomizationTests } from "./Customization";
+import { FileSystemTests } from "./FileSystem";
+import { GlobalizationTests } from "./Globalization";
 import { InstructionTests as InstructionClassTests } from "./Instruction.test";
 import { InstructionSetTests } from "./InstructionSet.test";
-import { LocalizationInstructionTests } from "./LocalizationInstruction.test";
-import { NodeSystemInstructionTests } from "./NodeSystemInstruction.test";
-import { ThemeInstructionTests } from "./ThemeInstruction.test";
+import { NodeSystemTests } from "./NodeSystem";
 
 /**
  * Registers tests for instruction components.
@@ -18,11 +16,9 @@ export function InstructionTests(): void
         {
             InstructionSetTests();
             InstructionClassTests();
-            FileSystemInstructionTests();
-            NodeSystemInstructionTests();
-            LocalizationInstructionTests();
-            ErrorMessageInstructionTests();
-            BBCodeInstructionTests();
-            ThemeInstructionTests();
+            FileSystemTests();
+            NodeSystemTests();
+            GlobalizationTests();
+            CustomizationTests();
         });
 }

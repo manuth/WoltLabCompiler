@@ -1,5 +1,5 @@
 import { strictEqual } from "assert";
-import { FileSystemInstruction } from "../../../PackageSystem/Instructions/FileSystem/FileSystemInstruction";
+import { FileSystemInstruction } from "../../../../PackageSystem/Instructions/FileSystem/FileSystemInstruction";
 
 /**
  * Registers tests for the `FileSystemInstruction` class.

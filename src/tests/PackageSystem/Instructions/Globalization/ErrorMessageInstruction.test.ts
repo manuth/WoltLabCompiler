@@ -1,6 +1,6 @@
 import { ok, strictEqual } from "assert";
-import { ILocalization } from "../../../Globalization/ILocalization";
-import { ErrorMessageInstruction } from "../../../PackageSystem/Instructions/Globalization/ErrorMessageInstruction";
+import { ILocalization } from "../../../../Globalization/ILocalization";
+import { ErrorMessageInstruction } from "../../../../PackageSystem/Instructions/Globalization/ErrorMessageInstruction";
 
 /**
  * Registers tests for the `ErrorMessageInstruction` class.

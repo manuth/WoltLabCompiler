@@ -1,8 +1,8 @@
-import { UserOptionInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/UserOptionInstructionCompiler";
-import { ILocalization } from "../../../Globalization/ILocalization";
-import { UserOptionInstruction } from "../../../PackageSystem/Instructions/Options/UserOptionInstruction";
-import { CompilerTester } from "../TestComponents/Testers/CompilerTester";
-import { LocalizationInstructionCompilerTestRunner } from "../TestComponents/TestRunners/LocalizationInstructionCompilerTestRunner";
+import { UserOptionInstructionCompiler } from "../../../../Compilation/PackageSystem/Instructions/UserOptionInstructionCompiler";
+import { ILocalization } from "../../../../Globalization/ILocalization";
+import { UserOptionInstruction } from "../../../../PackageSystem/Instructions/Options/UserOptionInstruction";
+import { CompilerTester } from "../../TestComponents/Testers/CompilerTester";
+import { LocalizationInstructionCompilerTestRunner } from "../../TestComponents/TestRunners/LocalizationInstructionCompilerTestRunner";
 
 /**
  * Registers tests for the `UserOptionInstructionCompiler` class.

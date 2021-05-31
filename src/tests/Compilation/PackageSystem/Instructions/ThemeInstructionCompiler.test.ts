@@ -5,11 +5,11 @@ import dedent = require("dedent");
 import { writeFile } from "fs-extra";
 import { extract } from "tar";
 import { parse } from "upath";
-import { ThemeInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/ThemeInstructionCompiler";
-import { ThemeInstruction } from "../../../PackageSystem/Instructions/Customization/Presentation/ThemeInstruction";
-import { Tar } from "../../Tar";
-import { CompilerTester } from "../TestComponents/Testers/CompilerTester";
-import { InstructionCompilerTestRunner } from "../TestComponents/TestRunners/InstructionCompilerTestRunner";
+import { ThemeInstructionCompiler } from "../../../../Compilation/PackageSystem/Instructions/ThemeInstructionCompiler";
+import { ThemeInstruction } from "../../../../PackageSystem/Instructions/Customization/Presentation/ThemeInstruction";
+import { Tar } from "../../../Tar";
+import { CompilerTester } from "../../TestComponents/Testers/CompilerTester";
+import { InstructionCompilerTestRunner } from "../../TestComponents/TestRunners/InstructionCompilerTestRunner";
 
 /**
  * Registers tests for the `ThemeInstructionCompiler` class.

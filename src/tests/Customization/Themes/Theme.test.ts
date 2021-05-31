@@ -3,10 +3,10 @@ import { EOL } from "os";
 import { TempDirectory } from "@manuth/temp-files";
 import dedent = require("dedent");
 import { writeFile, writeJSON } from "fs-extra";
-import { Theme } from "../../Customization/Presentation/Themes/Theme";
-import { ThemeInstruction } from "../../PackageSystem/Instructions/Customization/Presentation/ThemeInstruction";
-import { Package } from "../../PackageSystem/Package";
-import { Person } from "../../PackageSystem/Person";
+import { Theme } from "../../../Customization/Presentation/Themes/Theme";
+import { ThemeInstruction } from "../../../PackageSystem/Instructions/Customization/Presentation/ThemeInstruction";
+import { Package } from "../../../PackageSystem/Package";
+import { Person } from "../../../PackageSystem/Person";
 
 /**
  * Registers tests for the `Theme` class.

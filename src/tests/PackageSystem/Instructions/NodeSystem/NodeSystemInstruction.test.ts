@@ -1,9 +1,9 @@
 import { ok, strictEqual } from "assert";
-import { INodeOptions } from "../../../NodeSystem/INodeOptions";
-import { Node } from "../../../NodeSystem/Node";
-import { NodeItem } from "../../../NodeSystem/NodeItem";
-import { INodeSystemInstructionOptions } from "../../../PackageSystem/Instructions/NodeSystem/INodeSystemInstructionOptions";
-import { NodeSystemInstruction } from "../../../PackageSystem/Instructions/NodeSystem/NodeSystemInstruction";
+import { INodeOptions } from "../../../../NodeSystem/INodeOptions";
+import { Node } from "../../../../NodeSystem/Node";
+import { NodeItem } from "../../../../NodeSystem/NodeItem";
+import { INodeSystemInstructionOptions } from "../../../../PackageSystem/Instructions/NodeSystem/INodeSystemInstructionOptions";
+import { NodeSystemInstruction } from "../../../../PackageSystem/Instructions/NodeSystem/NodeSystemInstruction";
 
 /**
  * Registers tests for the `NodeSystemInstruction` class.
