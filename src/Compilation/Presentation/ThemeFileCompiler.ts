@@ -133,7 +133,7 @@ export class ThemeFileCompiler extends WoltLabXMLCompiler<Theme>
         }
 
         if (
-            Object.keys(this.Item.Variables).length > 0 ||
+            this.Item.Variables.size > 0 ||
             this.Item.CustomScss ||
             this.Item.ScssOverride)
         {

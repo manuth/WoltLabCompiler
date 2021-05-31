@@ -4,7 +4,7 @@ import { WoltLabXMLCompiler } from "../WoltLabXMLCompiler";
 /**
  * Provides the functionality to compile theme-variables.
  */
-export class ThemeVariableCompiler extends WoltLabXMLCompiler<Record<string, string>>
+export class ThemeVariableCompiler extends WoltLabXMLCompiler<Map<string, string>>
 {
     /**
      * Initializes a new instance of the `ThemeVariableCompiler` class.
@@ -12,7 +12,7 @@ export class ThemeVariableCompiler extends WoltLabXMLCompiler<Record<string, str
      * @param item
      * The item to compile.
      */
-    public constructor(item: Record<string, string>)
+    public constructor(item: Map<string, string>)
     {
         super(item);
     }
@@ -44,10 +44,10 @@ export class ThemeVariableCompiler extends WoltLabXMLCompiler<Record<string, str
         let document: Document = super.CreateDocument();
         let editor: XMLEditor = new XMLEditor(document.documentElement);
 
-        for (let name in this.Item)
+        for (let variableEntry of this.Item)
         {
-            let variableNode = editor.CreateTextElement("variable", this.Item[name]);
-            variableNode.SetAttribute("name", name);
+            let variableNode = editor.CreateTextElement("variable", variableEntry[1]);
+            variableNode.SetAttribute("name", variableEntry[0]);
             editor.Add(variableNode);
         }
 

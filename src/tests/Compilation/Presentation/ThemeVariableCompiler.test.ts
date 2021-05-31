@@ -21,15 +21,17 @@ export function ThemeVariableCompilerTests(): void
         {
             return new XMLFileCompilerTester(
                 new ThemeVariableCompiler(
-                    {
-                        wcfHeaderBackground: "rgba(255, 0, 0, 1)",
-                        individualScss: dedent(
-                            `
-                                :root
-                                {
-                                    color: red !important;
-                                }`)
-                    }));
+                    new Map(
+                        Object.entries(
+                            {
+                                wcfHeaderBackground: "rgba(255, 0, 0, 1)",
+                                individualScss: dedent(
+                                    `
+                                    :root
+                                    {
+                                        color: red !important;
+                                    }`)
+                            }))));
         }
 
         /**
@@ -45,14 +47,14 @@ export function ThemeVariableCompilerTests(): void
                 {
                     strictEqual(this.Tester.XMLEditor.TagName, "variables");
 
-                    for (let variable of Object.keys(this.Compiler.Item))
+                    for (let variableEntry of this.Compiler.Item)
                     {
                         ok(
                             this.Tester.XMLEditor.GetChildrenByTag("variable").some(
                                 (variableNode) =>
                                 {
-                                    return (variableNode.GetAttribute("name") === variable) &&
-                                        (variableNode.TextContent === this.Compiler.Item[variable]);
+                                    return (variableNode.GetAttribute("name") === variableEntry[0]) &&
+                                        (variableNode.TextContent === variableEntry[1]);
                                 }));
                     }
                 });

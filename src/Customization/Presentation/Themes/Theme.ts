@@ -43,7 +43,7 @@ export class Theme extends Component
     /**
      * The variables of the theme.
      */
-    private variables: Record<string, string> = {};
+    private variables: Map<string, string> = new Map();
 
     /**
      * The image-directory provided by the theme.
@@ -113,7 +113,10 @@ export class Theme extends Component
             (options.Variables !== null) &&
             (options.Variables !== undefined))
         {
-            Object.assign(this.Variables, options.Variables);
+            for (let entry of Object.entries(options.Variables))
+            {
+                this.Variables.set(entry[0], entry[1]);
+            }
         }
 
         if (
@@ -223,7 +226,7 @@ export class Theme extends Component
     /**
      * Gets the variables of the theme.
      */
-    public get Variables(): Record<string, string>
+    public get Variables(): Map<string, string>
     {
         return this.variables;
     }

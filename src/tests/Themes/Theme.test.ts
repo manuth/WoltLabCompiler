@@ -263,14 +263,14 @@ export function ThemeTests(): void
                                 "Checking whether variables written in scss are added…",
                                 () =>
                                 {
-                                    ok(scssVariable.Name in theme.Variables);
+                                    ok(theme.Variables.has(scssVariable.Name));
                                 });
 
                             test(
                                 "Checking whether variables written in json are added…",
                                 () =>
                                 {
-                                    ok(jsonVariable.Name in theme.Variables);
+                                    ok(theme.Variables.has(jsonVariable.Name));
                                 });
                         });
 
@@ -286,7 +286,7 @@ export function ThemeTests(): void
                                         `Checking whether "${variable.Input}" is parsed correctly (expecting "${variable.Output}")…`,
                                         () =>
                                         {
-                                            strictEqual(theme.Variables[variable.Name], variable.Output);
+                                            strictEqual(theme.Variables.get(variable.Name), variable.Output);
                                         });
                                 }
                             }
