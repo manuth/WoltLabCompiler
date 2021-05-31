@@ -4,8 +4,7 @@
         "declaration": true,
         "module": "CommonJS",
         "lib": [
-            "ES2020",
-            "DOM"
+            "ES2020"
         ],
         "plugins": [
             {
