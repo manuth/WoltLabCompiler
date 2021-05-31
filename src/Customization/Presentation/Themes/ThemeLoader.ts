@@ -348,7 +348,7 @@ export class ThemeLoader extends Component
 
         if (scssOverrides.size > 0)
         {
-            themeOptions.ScssOverride = Array.from(scssOverrides.entries()).map(
+            themeOptions.ScssOverride = Array.from(scssOverrides).map(
                 (overrideEntry) =>
                 {
                     return `$${overrideEntry[0]}: ${overrideEntry[1]};`;
