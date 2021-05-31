@@ -25,7 +25,7 @@ export abstract class LocalizationInstructionCompilerTestRunner<TTester extends 
     /**
      * @inheritdoc
      */
-    protected ExecuteTests(): void
+    protected override ExecuteTests(): void
     {
         super.ExecuteTests();
 

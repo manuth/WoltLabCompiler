@@ -55,7 +55,7 @@ export function CronJobFileCompilerTests(): void
         /**
          * @inheritdoc
          */
-        protected ExecuteTests(): void
+        protected override ExecuteTests(): void
         {
             super.ExecuteTests();
 

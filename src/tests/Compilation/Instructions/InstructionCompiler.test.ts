@@ -43,7 +43,7 @@ export function InstructionCompilerTests(): void
          * @param delimiter
          * The delimiter of the ejs-tags.
          */
-        public async CopyTemplate(source: string, destination: string, context?: Record<string, unknown>, delimiter?: string): Promise<void>
+        public override async CopyTemplate(source: string, destination: string, context?: Record<string, unknown>, delimiter?: string): Promise<void>
         {
             return super.CopyTemplate(source, destination, context, delimiter);
         }
@@ -51,7 +51,7 @@ export function InstructionCompilerTests(): void
         /**
          * @inheritdoc
          */
-        protected async Compile(): Promise<void>
+        protected override async Compile(): Promise<void>
         {
             await super.Compile();
             await mkdirp(dirname(this.DestinationFileName));
@@ -100,7 +100,7 @@ export function InstructionCompilerTests(): void
                         /**
                          * @inheritdoc
                          */
-                        public get ObjectsByID(): Record<string, unknown>
+                        public override get ObjectsByID(): Record<string, unknown>
                         {
                             return objects;
                         }
@@ -110,7 +110,7 @@ export function InstructionCompilerTests(): void
         /**
          * @inheritdoc
          */
-        protected async SuiteSetup(): Promise<void>
+        protected override async SuiteSetup(): Promise<void>
         {
             await super.SuiteSetup();
             objects = {};
@@ -123,7 +123,7 @@ export function InstructionCompilerTests(): void
         /**
          * @inheritdoc
          */
-        protected RegisterTests(): void
+        protected override RegisterTests(): void
         {
             super.RegisterTests();
 

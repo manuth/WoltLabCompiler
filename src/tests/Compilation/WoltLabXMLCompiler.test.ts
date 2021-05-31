@@ -45,7 +45,7 @@ export function WoltLabXMLCompilerTests(): void
         /**
          * @inheritdoc
          */
-        protected async SuiteSetup(): Promise<void>
+        protected override async SuiteSetup(): Promise<void>
         {
             namespace = "http://www.woltlab.com";
             schemaLocation = "http://example.com/helloWorld.xsd";
@@ -54,7 +54,7 @@ export function WoltLabXMLCompilerTests(): void
         /**
          * @inheritdoc
          */
-        protected ExecuteTests(): void
+        protected override ExecuteTests(): void
         {
             super.ExecuteTests();
 

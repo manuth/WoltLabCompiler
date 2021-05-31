@@ -29,7 +29,7 @@ export function EJSFileCompilerTests(): void
         /**
          * @inheritdoc
          */
-        public get Delimiter(): string
+        public override get Delimiter(): string
         {
             return delimiter;
         }
@@ -57,7 +57,7 @@ export function EJSFileCompilerTests(): void
          * @param delimiter
          * The delimiter of the ejs-tags.
          */
-        public async CopyTemplate(source: string, destination: string, context: Record<string, unknown>, delimiter?: string): Promise<void>
+        public override async CopyTemplate(source: string, destination: string, context: Record<string, unknown>, delimiter?: string): Promise<void>
         {
             return super.CopyTemplate(source, destination, context, delimiter);
         }
@@ -68,7 +68,7 @@ export function EJSFileCompilerTests(): void
          * @returns
          * The serialized document.
          */
-        protected CreateDocument(): Document
+        protected override CreateDocument(): Document
         {
             let document = super.CreateDocument();
             document.documentElement.appendChild(document.createTextNode(`<${this.Delimiter}= ${variableName} ${this.Delimiter}>`));
@@ -92,7 +92,7 @@ export function EJSFileCompilerTests(): void
         /**
          * @inheritdoc
          */
-        protected async SuiteSetup(): Promise<void>
+        protected override async SuiteSetup(): Promise<void>
         {
             context = {};
             variableName = "foo";
@@ -104,7 +104,7 @@ export function EJSFileCompilerTests(): void
         /**
          * @inheritdoc
          */
-        protected async Setup(): Promise<void>
+        protected override async Setup(): Promise<void>
         {
             delimiter = "%";
         }
@@ -112,7 +112,7 @@ export function EJSFileCompilerTests(): void
         /**
          * @inheritdoc
          */
-        protected ExecuteTests(): void
+        protected override ExecuteTests(): void
         {
             super.ExecuteTests();
 

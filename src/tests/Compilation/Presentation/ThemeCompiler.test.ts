@@ -52,7 +52,7 @@ export function ThemeCompilerTests(): void
         /**
          * @inheritdoc
          */
-        protected async SuiteSetup(): Promise<void>
+        protected override async SuiteSetup(): Promise<void>
         {
             variableSource = new TempFile({ Suffix: ".json" });
 
@@ -68,7 +68,7 @@ export function ThemeCompilerTests(): void
         /**
          * @inheritdoc
          */
-        protected ExecuteTests(): void
+        protected override ExecuteTests(): void
         {
             super.ExecuteTests();
 

@@ -39,7 +39,7 @@ export function PackageCompilerTests(): void
         /**
          * @inheritdoc
          */
-        protected async SuiteSetup(): Promise<void>
+        protected override async SuiteSetup(): Promise<void>
         {
             tempDir = new TempDirectory();
             await super.SuiteSetup();
@@ -48,7 +48,7 @@ export function PackageCompilerTests(): void
         /**
          * @inheritdoc
          */
-        protected ExecuteTests(): void
+        protected override ExecuteTests(): void
         {
             super.ExecuteTests();
 

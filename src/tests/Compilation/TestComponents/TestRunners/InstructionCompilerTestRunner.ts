@@ -27,7 +27,7 @@ export abstract class InstructionCompilerTestRunner<TTester extends CompilerTest
     /**
      * @inheritdoc
      */
-    protected async SuiteSetup(): Promise<void>
+    protected override async SuiteSetup(): Promise<void>
     {
         await super.SuiteSetup();
 
@@ -44,7 +44,7 @@ export abstract class InstructionCompilerTestRunner<TTester extends CompilerTest
     /**
      * @inheritdoc
      */
-    protected ExecuteTests(): void
+    protected override ExecuteTests(): void
     {
         super.ExecuteTests();
 

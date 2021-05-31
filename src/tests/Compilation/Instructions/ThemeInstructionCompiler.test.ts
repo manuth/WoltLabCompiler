@@ -50,7 +50,7 @@ export function ThemeInstructionCompilerTests(): void
         /**
          * @inheritdoc
          */
-        protected async SuiteSetup(): Promise<void>
+        protected override async SuiteSetup(): Promise<void>
         {
             resourceDir = new TempDirectory();
             tempDir = new TempDirectory();
@@ -85,7 +85,7 @@ export function ThemeInstructionCompilerTests(): void
         /**
          * @inheritdoc
          */
-        protected ExecuteTests(): void
+        protected override ExecuteTests(): void
         {
             super.ExecuteTests();
 

@@ -20,7 +20,7 @@ export function NamedObjectDeletionFileCompilerTests(): void
         /**
          * @inheritdoc
          */
-        protected async SuiteSetup(): Promise<void>
+        protected override async SuiteSetup(): Promise<void>
         {
             objectTag = "myObject";
 
@@ -97,7 +97,7 @@ export function NamedObjectDeletionFileCompilerTests(): void
         /**
          * @inheritdoc
          */
-        protected ExecuteTests(): void
+        protected override ExecuteTests(): void
         {
             super.ExecuteTests();
 

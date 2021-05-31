@@ -41,7 +41,7 @@ export function FileInstructionCompilerTests(): void
         /**
          * @inheritdoc
          */
-        protected async SuiteSetup(): Promise<void>
+        protected override async SuiteSetup(): Promise<void>
         {
             fileNames = [
                 "test1.txt",
@@ -64,7 +64,7 @@ export function FileInstructionCompilerTests(): void
         /**
          * @inheritdoc
          */
-        protected ExecuteTests(): void
+        protected override ExecuteTests(): void
         {
             test(
                 "Checking whether the archive can be extracted…",
@@ -99,7 +99,7 @@ export function FileInstructionCompilerTests(): void
         /**
          * @inheritdoc
          */
-        protected RegisterTests(): void
+        protected override RegisterTests(): void
         {
             super.RegisterTests();
 

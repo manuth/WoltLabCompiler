@@ -53,7 +53,7 @@ export function ListenerFileCompilerTests(): void
         /**
          * @inheritdoc
          */
-        protected get Listeners(): Listener[]
+        protected override get Listeners(): Listener[]
         {
             return this.Compiler.Item.Listeners;
         }
@@ -114,7 +114,7 @@ export function ListenerFileCompilerTests(): void
         /**
          * @inheritdoc
          */
-        protected async SuiteSetup(): Promise<void>
+        protected override async SuiteSetup(): Promise<void>
         {
             listenerTag = "myListener";
             await super.SuiteSetup();
