@@ -1,8 +1,4 @@
-import { ok, strictEqual } from "assert";
-import { EOL } from "os";
-import { TempDirectory } from "@manuth/temp-files";
-import dedent = require("dedent");
-import { writeFile, writeJSON } from "fs-extra";
+import { strictEqual } from "assert";
 import { Theme } from "../../../Customization/Presentation/Themes/Theme";
 import { ThemeInstruction } from "../../../PackageSystem/Instructions/Customization/Presentation/ThemeInstruction";
 import { Package } from "../../../PackageSystem/Package";
@@ -17,87 +13,10 @@ export function ThemeTests(): void
         "Theme",
         () =>
         {
-            /**
-             * Represents a variable.
-             */
-            interface IVariable
-            {
-                /**
-                 * @inheritdoc
-                 */
-                Name: string;
-
-                /**
-                 * @inheritdoc
-                 */
-                Input: string;
-
-                /**
-                 * @inheritdoc
-                 */
-                Output: string;
-
-                /**
-                 * @inheritdoc
-                 */
-                Special?: boolean;
-
-                /**
-                 * @inheritdoc
-                 */
-                Source: "scss" | "json";
-            }
-
             let theme: Theme;
+            let themeWithAuthor: Theme;
             let author: Person;
-            let tempDir: TempDirectory;
-            let customScss: string;
-            let variables: IVariable[] = [
-                {
-                    Name: "wcfHeaderBackground",
-                    Input: "#056",
-                    Output: "rgba(0, 85, 102, 1)",
-                    Source: "scss"
-                },
-                {
-                    Name: "wcfHeaderText",
-                    Input: "#056C",
-                    Output: "rgba(0, 85, 102, 0.8)",
-                    Source: "json"
-                },
-                {
-                    Name: "wcfHeaderLinkActive",
-                    Input: "#056CA5",
-                    Output: "rgba(5, 108, 165, 1)",
-                    Source: "json"
-                },
-                {
-                    Name: "wcfHeaderSearchBoxBackground",
-                    Input: "#056CA5C7",
-                    Output: "rgba(5, 108, 165, 0.78)",
-                    Source: "json"
-                },
-                {
-                    Name: "wcfHeaderSearchBoxText",
-                    Input: "teal",
-                    Output: "rgba(0, 128, 128, 1)",
-                    Source: "json"
-                },
-                {
-                    Name: "foo",
-                    Input: "#000",
-                    Output: "#000",
-                    Source: "json",
-                    Special: true
-                },
-                {
-                    Name: "bar",
-                    Input: "#000",
-                    Output: "#000",
-                    Source: "scss",
-                    Special: true
-                }
-            ];
+            let customAuthor: Person;
 
             suiteSetup(
                 async () =>
@@ -106,6 +25,12 @@ export function ThemeTests(): void
                         {
                             Name: "John Doe",
                             URL: "example.com"
+                        });
+
+                    customAuthor = new Person(
+                        {
+                            Name: "Jane Doe",
+                            URL: "contoso.com"
                         });
 
                     let $package = new Package(
@@ -118,67 +43,32 @@ export function ThemeTests(): void
                             }
                         });
 
-                    tempDir = new TempDirectory();
-
-                    customScss = dedent(
-                        `
-                            :root
-                            {
-                                color: red !important;
-                            }`);
-
-                    let customScssFileName: string = tempDir.MakePath("custom.scss");
-                    let scssOverrideFileName: string = tempDir.MakePath("override.scss");
-                    let variableFileName: string = tempDir.MakePath("variables.json");
-
-                    await writeFile(customScssFileName, customScss);
-
-                    await writeFile(
-                        scssOverrideFileName,
-                        variables.filter(
-                            (variable: IVariable) =>
-                            {
-                                return variable.Source === "scss";
-                            }).map(
-                                (variable: IVariable) =>
-                                {
-                                    return `$${variable.Name}: ${variable.Input};`;
-                                }
-                            ).join(EOL));
-
-                    await writeJSON(
-                        variableFileName,
-                        variables.filter(
-                            (variable: IVariable) =>
-                            {
-                                return variable.Source === "json";
-                            }).reduce<Record<string, unknown>>(
-                                (previousValue: Record<string, unknown>, currentValue: IVariable) =>
-                                {
-                                    previousValue[currentValue.Name] = currentValue.Input;
-                                    return previousValue;
-                                },
-                                {}));
-
                     let instruction = new ThemeInstruction(
                         {
                             Theme: {
                                 Name: "test",
-                                DisplayName: {},
-                                CustomScssFileName: customScssFileName,
-                                ScssOverrideFileName: scssOverrideFileName,
-                                VariableFileName: variableFileName
+                                DisplayName: {}
                             }
                         });
 
                     $package.InstallSet.push(instruction);
-                    theme = await instruction.ThemeLoader.Load();
-                });
 
-            suiteTeardown(
-                () =>
-                {
-                    tempDir.Dispose();
+                    theme = new Theme(
+                        instruction,
+                        {
+                            Name: "test",
+                            DisplayName: {}
+                        });
+
+                    themeWithAuthor = new Theme(
+                        instruction,
+                        {
+                            Name: "test",
+                            DisplayName: {},
+                            Author: customAuthor
+                        });
+
+                    theme = await instruction.ThemeLoader.Load();
                 });
 
             suite(
@@ -192,104 +82,13 @@ export function ThemeTests(): void
                             strictEqual(theme.Author.Name, author.Name);
                             strictEqual(theme.Author.URL, author.URL);
                         });
-                });
 
-            suite(
-                "CustomScss",
-                () =>
-                {
                     test(
-                        "Checking whether the `CustomScss`-property equals the content of the scss-file…",
-                        () => strictEqual(theme.CustomScss, customScss));
-                });
-
-            suite(
-                "ScssOverride",
-                () =>
-                {
-                    let specialScssVariable: IVariable;
-                    let specialJsonVariable: IVariable;
-
-                    suiteSetup(
+                        "Checking whether the theme's `Author` overrides the package's `Author`…",
                         () =>
                         {
-                            specialScssVariable = variables.find(
-                                (variable: IVariable) => (variable.Source === "scss") && (variable.Special));
-                            specialJsonVariable = variables.find(
-                                (variable: IVariable) => (variable.Source === "json") && (variable.Special));
-                        });
-
-                    suite(
-                        "Testing whether special scss-variables are added to `ScssOverride`…",
-                        () =>
-                        {
-                            test(
-                                "Checking whether special scss-variables written in scss are added…",
-                                () =>
-                                {
-                                    ok(theme.ScssOverride.includes(`$${specialScssVariable.Name}: ${specialScssVariable.Input};`));
-                                });
-
-                            test(
-                                "Checking whether special scss-variables written in json are added…",
-                                () =>
-                                {
-                                    ok(theme.ScssOverride.includes(`$${specialJsonVariable.Name}: ${specialJsonVariable.Input};`));
-                                });
-                        });
-                });
-
-            suite(
-                "Variables",
-                () =>
-                {
-                    let scssVariable: IVariable;
-                    let jsonVariable: IVariable;
-
-                    suiteSetup(
-                        () =>
-                        {
-                            scssVariable = variables.find(
-                                (variable: IVariable) => (variable.Source === "scss") && (!variable.Special));
-                            jsonVariable = variables.find(
-                                (variable: IVariable) => (variable.Source === "json") && (!variable.Special));
-                        });
-
-                    suite(
-                        "Testing whether normal variables are added to to `Variables`…",
-                        () =>
-                        {
-                            test(
-                                "Checking whether variables written in scss are added…",
-                                () =>
-                                {
-                                    ok(theme.Variables.has(scssVariable.Name));
-                                });
-
-                            test(
-                                "Checking whether variables written in json are added…",
-                                () =>
-                                {
-                                    ok(theme.Variables.has(jsonVariable.Name));
-                                });
-                        });
-
-                    suite(
-                        "Testing whether normal variables are parsed correctly…",
-                        () =>
-                        {
-                            for (let variable of variables)
-                            {
-                                if (!variable.Special)
-                                {
-                                    test(
-                                        `Checking whether "${variable.Input}" is parsed correctly (expecting "${variable.Output}")…`,
-                                        () =>
-                                        {
-                                            strictEqual(theme.Variables.get(variable.Name), variable.Output);
-                                        });
-                                }
-                            }
+                            strictEqual(themeWithAuthor.Author.Name, customAuthor.Name);
+                            strictEqual(themeWithAuthor.Author.URL, customAuthor.URL);
                         });
                 });
         });
