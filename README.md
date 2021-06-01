@@ -15,7 +15,7 @@ All classes and methods are documented using JSDoc-comments.
 ### Examples
 ***Compiling a .tar-Package***
 ```ts
-import Path = require("path");
+import { join } from "path";
 import { ACPOptionInstruction, ApplicationFileSystemInstruction, OptionType, Package, PackageCompiler } from "@manuth/woltlab-compiler";
 
 (async () =>
@@ -34,7 +34,7 @@ import { ACPOptionInstruction, ApplicationFileSystemInstruction, OptionType, Pac
                         new ApplicationFileSystemInstruction(
                             {
                                 Application: "wcf",
-                                Source: Path.join(__dirname, "..", "assets", "files", "wcf")
+                                Source: join(__dirname, "..", "assets", "files", "wcf")
                             }),
                         new ACPOptionInstruction(
                             {
@@ -69,7 +69,7 @@ import { ACPOptionInstruction, ApplicationFileSystemInstruction, OptionType, Pac
                 }
             }));
 
-    compiler.DestinationPath = Path.join(__dirname, "..", "bin", "MyPackage.tar");
+    compiler.DestinationPath = join(__dirname, "..", "bin", "MyPackage.tar");
     await compiler.Execute();
 })();
 ```
@@ -78,7 +78,7 @@ This creates a `.tar`-package called `MyPackage.tar`.
 
 ***Compiling a set of Localizations***
 ```ts
-import Path = require("path");
+import { join } from "path";
 import { LocalizationSetCompiler, TranslationInstruction } from "@manuth/woltlab-compiler";
 
 (async () =>
@@ -120,7 +120,7 @@ import { LocalizationSetCompiler, TranslationInstruction } from "@manuth/woltlab
                 ]
             }).GetMessages());
 
-    compiler.DestinationPath = Path.join(__dirname, "..", "bin", "translations");
+    compiler.DestinationPath = join(__dirname, "..", "bin", "translations");
     await compiler.Execute();
 })();
 ```
