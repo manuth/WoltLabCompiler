@@ -1,7 +1,6 @@
 import { ImageDirectoryDescriptorTests } from "./ImageDirectoryDescriptor.test";
 import { SassVariableParserTests } from "./SassVariableParser.test";
 import { ThemeTests as ThemeClassTests } from "./Theme.test";
-import { ThemeInstructionCollectionTests } from "./ThemeInstructionCollection.test";
 import { ThemeLoaderTests } from "./ThemeLoader.test";
 
 /**
@@ -17,6 +16,5 @@ export function ThemeTests(): void
             ImageDirectoryDescriptorTests();
             ThemeLoaderTests();
             ThemeClassTests();
-            ThemeInstructionCollectionTests();
         });
 }
