@@ -6,7 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## WoltLabCompiler [Unreleased]
 
-[Show differences](https://github.com/manuth/WoltLabCompiler/compare/v2.0.0...dev)
+[Show differences](https://github.com/manuth/WoltLabCompiler/compare/v2.0.1...dev)
+
+## WoltLabCompiler v2.0.1
+### Updated
+  - The `README`-file
+
+[Show differences](https://github.com/manuth/WoltLabCompiler/compare/v2.0.0...v2.0.1)
 
 ## WoltLabCompiler v2.0.0
 ### Breaking
