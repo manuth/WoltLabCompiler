@@ -36,7 +36,7 @@ export class PHPInstruction extends Instruction
     /**
      * @inheritdoc
      */
-    public get Compiler(): InstructionCompiler<PHPInstruction>
+    public override get Compiler(): InstructionCompiler<PHPInstruction>
     {
         return new PHPInstructionCompiler(this);
     }
@@ -60,7 +60,7 @@ export class PHPInstruction extends Instruction
     /**
      * Gets or sets the name of the file to load the php-script from.
      */
-    public get FileName(): string
+    public override get FileName(): string
     {
         return super.FileName;
     }
@@ -68,7 +68,7 @@ export class PHPInstruction extends Instruction
     /**
      * @inheritdoc
      */
-    public set FileName(value: string)
+    public override set FileName(value: string)
     {
         super.FileName = value;
     }
@@ -76,7 +76,7 @@ export class PHPInstruction extends Instruction
     /**
      * @inheritdoc
      */
-    public get FullName(): string
+    public override get FullName(): string
     {
         return this.FileName;
     }

@@ -22,11 +22,11 @@ export class ThemeInstructionCompiler extends InstructionCompiler<ThemeInstructi
     /**
      * @inheritdoc
      */
-    protected async Compile(): Promise<void>
+    protected override async Compile(): Promise<void>
     {
         let tempDir: TempDirectory = new TempDirectory();
         let themeDir: TempDirectory = new TempDirectory();
-        let themeCompiler: ThemeCompiler = new ThemeCompiler(this.Item.Theme);
+        let themeCompiler: ThemeCompiler = new ThemeCompiler(await this.Item.ThemeLoader.Load());
         themeCompiler.DestinationPath = tempDir.FullName;
         await themeCompiler.Execute();
         await this.CopyTemplate(tempDir.FullName, themeDir.FullName);

@@ -40,7 +40,7 @@ export class EmojiFileCompiler extends NamedObjectDeletionFileCompiler<EmojiInst
      * @returns
      * The serialized import.
      */
-    protected CreateImport(): Element
+    protected override CreateImport(): Element
     {
         let editor: XMLEditor = new XMLEditor(super.CreateImport());
 

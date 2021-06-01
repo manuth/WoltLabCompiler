@@ -152,7 +152,7 @@ export class Category<TOption extends Option, TOptionOptions> extends NodeItem i
      * @returns
      * The objects of the node.
      */
-    public GetObjects(): Record<string, unknown>
+    public override GetObjects(): Record<string, unknown>
     {
         let result: Record<string, unknown> = {};
 

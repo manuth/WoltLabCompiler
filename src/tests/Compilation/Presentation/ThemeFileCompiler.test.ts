@@ -2,6 +2,7 @@ import { strictEqual } from "assert";
 import { TempFile } from "@manuth/temp-files";
 import { writeJSON } from "fs-extra";
 import { ThemeFileCompiler } from "../../../Compilation/Presentation/ThemeFileCompiler";
+import { Theme } from "../../../Customization/Presentation/Themes/Theme";
 import { ILocalization } from "../../../Globalization/ILocalization";
 import { ThemeInstruction } from "../../../PackageSystem/Instructions/Customization/Presentation/ThemeInstruction";
 import { Package } from "../../../PackageSystem/Package";
@@ -14,17 +15,18 @@ import { XMLCompilerTestRunner } from "../TestComponents/TestRunners/XMLCompiler
 export function ThemeFileCompilerTests(): void
 {
     let variableSource: TempFile;
+    let theme: Theme;
 
     new class extends XMLCompilerTestRunner<XMLFileCompilerTester<ThemeFileCompiler>, ThemeFileCompiler>
     {
         /**
          * @inheritdoc
-         *
-         * @returns
-         * The new compiler-tester instance.
          */
-        protected CreateTester(): XMLFileCompilerTester<ThemeFileCompiler>
+        protected override async SuiteSetup(): Promise<void>
         {
+            variableSource = new TempFile({ Suffix: ".json" });
+            await writeJSON(variableSource.FullName, { wcfHeaderBackground: "red" });
+
             let locales = [
                 "inv",
                 "de",
@@ -74,24 +76,25 @@ export function ThemeFileCompilerTests(): void
                     }
                 }).InstallSet.push(themeInstruction);
 
-            return new XMLFileCompilerTester(
-                new ThemeFileCompiler(themeInstruction.Theme, "variablex.xml"));
+            theme = await themeInstruction.ThemeLoader.Load();
+            return super.SuiteSetup();
         }
 
         /**
          * @inheritdoc
+         *
+         * @returns
+         * The new compiler-tester instance.
          */
-        protected async SuiteSetup(): Promise<void>
+        protected CreateTester(): XMLFileCompilerTester<ThemeFileCompiler>
         {
-            variableSource = new TempFile({ Suffix: ".json" });
-            await writeJSON(variableSource.FullName, { wcfHeaderBackground: "red" });
-            await super.SuiteSetup();
+            return new XMLFileCompilerTester(new ThemeFileCompiler(theme, "variablex.xml"));
         }
 
         /**
          * @inheritdoc
          */
-        protected ExecuteTests(): void
+        protected override ExecuteTests(): void
         {
             super.ExecuteTests();
 

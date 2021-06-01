@@ -56,7 +56,6 @@ export { ImageDirectoryDescriptor } from "./Customization/Presentation/Themes/Im
 export { IThemeOptions } from "./Customization/Presentation/Themes/IThemeOptions";
 export { SassVariableParser } from "./Customization/Presentation/Themes/SassVariableParser";
 export { Theme } from "./Customization/Presentation/Themes/Theme";
-export { ThemeInstructionCollection } from "./Customization/Presentation/Themes/ThemeInstructionCollection";
 export { EventListener } from "./Events/EventListener";
 export { IEventListenerOptions } from "./Events/IEventListenerOptions";
 export { IListenerOptions } from "./Events/IListenerOptions";

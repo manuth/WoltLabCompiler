@@ -67,7 +67,7 @@ export abstract class OptionFileCompilerTestRunner<TTester extends OptionCompile
     /**
      * @inheritdoc
      */
-    protected ExecuteTests(): void
+    protected override ExecuteTests(): void
     {
         super.ExecuteTests();
 

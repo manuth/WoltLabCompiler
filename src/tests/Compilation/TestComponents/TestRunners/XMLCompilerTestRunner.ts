@@ -23,7 +23,7 @@ export abstract class XMLCompilerTestRunner<TTester extends XMLFileCompilerTeste
     /**
      * @inheritdoc
      */
-    protected ExecuteTests(): void
+    protected override ExecuteTests(): void
     {
         super.ExecuteTests();
 

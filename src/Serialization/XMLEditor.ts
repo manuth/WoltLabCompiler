@@ -143,7 +143,7 @@ export class XMLEditor
         }
         else
         {
-            element = node as Node;
+            element = node;
         }
 
         this.Element.appendChild(element);

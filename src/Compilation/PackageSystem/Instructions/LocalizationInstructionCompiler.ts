@@ -26,7 +26,7 @@ export class LocalizationInstructionCompiler extends InstructionCompiler<ILocali
      * @returns
      * The serialized document.
      */
-    public Serialize(): Document
+    public override Serialize(): Document
     {
         let document: Document = super.Serialize();
 
@@ -49,7 +49,7 @@ export class LocalizationInstructionCompiler extends InstructionCompiler<ILocali
     /**
      * @inheritdoc
      */
-    protected async Compile(): Promise<void>
+    protected override async Compile(): Promise<void>
     {
         let messages = this.Item.GetMessages();
 

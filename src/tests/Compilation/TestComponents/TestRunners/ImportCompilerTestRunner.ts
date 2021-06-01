@@ -22,7 +22,7 @@ export abstract class ImportCompilerTestRunner<TTester extends ImportCompilerTes
     /**
      * @inheritdoc
      */
-    protected ExecuteTests(): void
+    protected override ExecuteTests(): void
     {
         super.ExecuteTests();
 

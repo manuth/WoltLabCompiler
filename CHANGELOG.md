@@ -6,7 +6,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## WoltLabCompiler [Unreleased]
 
-[Show differences](https://github.com/manuth/WoltLabCompiler/compare/v1.1.1...dev)
+[Show differences](https://github.com/manuth/WoltLabCompiler/compare/v2.0.0...dev)
+
+## WoltLabCompiler v2.0.0
+### Breaking
+  - Removed the `ThemeInstructionCollection`-class  
+    Use multiple `ThemeInstruction`-instances instead
+
+### Fixed
+  - Broken drone-pipeline
+  - Drone-pipeline for multi-digit version-numbers
+  - Modern `node`-version support by replacing `sass-variable-parser` with `get-sass-vars`
+  - Vulnerabilities in dependencies
+
+### Added
+  - A workflow for analyzing source-code
+  - A workflow for automatically merging Dependabot-PRs
+  - Separate class for loading themes asynchronously
+
+### Updated
+  - Drone-pipeline to use smaller docker-images
+  - All dependencies
+  - `Theme`-class to store variables in a `Map`
+
+[Show differences](https://github.com/manuth/WoltLabCompiler/compare/v1.1.1...v2.0.0)
 
 ## WoltLabCompiler v1.1.1
 ### Fixed

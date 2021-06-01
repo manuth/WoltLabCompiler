@@ -1,6 +1,6 @@
 import { InstructionCompiler } from "../../../../Compilation/PackageSystem/Instructions/InstructionCompiler";
 import { ThemeInstructionCompiler } from "../../../../Compilation/PackageSystem/Instructions/ThemeInstructionCompiler";
-import { Theme } from "../../../../Customization/Presentation/Themes/Theme";
+import { ThemeLoader } from "../../../../Customization/Presentation/Themes/ThemeLoader";
 import { Instruction } from "../../Instruction";
 import { IThemeInstructionOptions } from "./IThemeInstructionOptions";
 
@@ -10,9 +10,9 @@ import { IThemeInstructionOptions } from "./IThemeInstructionOptions";
 export class ThemeInstruction extends Instruction
 {
     /**
-     * The theme provided by the instruction.
+     * The theme-loader provided by the instruction.
      */
-    private theme: Theme;
+    private themeLoader: ThemeLoader;
 
     /**
      * Initializes a new instance of the `ThemeInstruction` class.
@@ -27,7 +27,7 @@ export class ThemeInstruction extends Instruction
                 FileName: options.FileName || `${options.Theme.Name}.tar`
             });
 
-        this.theme = new Theme(this, options.Theme);
+        this.themeLoader = new ThemeLoader(this, options.Theme);
     }
 
     /**
@@ -39,17 +39,17 @@ export class ThemeInstruction extends Instruction
     }
 
     /**
-     * Gets the theme provided by the instruction.
+     * Gets the theme-loader provided by the instruction.
      */
-    public get Theme(): Theme
+    public get ThemeLoader(): ThemeLoader
     {
-        return this.theme;
+        return this.themeLoader;
     }
 
     /**
      * @inheritdoc
      */
-    public get Compiler(): InstructionCompiler<ThemeInstruction>
+    public override get Compiler(): InstructionCompiler<ThemeInstruction>
     {
         return new ThemeInstructionCompiler(this);
     }

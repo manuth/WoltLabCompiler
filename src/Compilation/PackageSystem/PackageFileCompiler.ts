@@ -21,7 +21,7 @@ export class PackageFileCompiler extends WoltLabXMLCompiler<Package>
     /**
      * @inheritdoc
      */
-    protected get TagName(): string
+    protected override get TagName(): string
     {
         return "package";
     }
@@ -40,7 +40,7 @@ export class PackageFileCompiler extends WoltLabXMLCompiler<Package>
      * @returns
      * The serialized document.
      */
-    protected CreateDocument(): Document
+    protected override CreateDocument(): Document
     {
         let document = super.CreateDocument();
         let editor = new XMLEditor(document.documentElement);

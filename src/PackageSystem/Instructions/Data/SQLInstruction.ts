@@ -35,7 +35,7 @@ export class SQLInstruction extends FileSystemInstruction
      * @returns
      * The default filename.
      */
-    protected MakeDefaultFileName(source: string): string
+    protected override MakeDefaultFileName(source: string): string
     {
         return join("scripts", "sql", super.MakeDefaultFileName(source));
     }

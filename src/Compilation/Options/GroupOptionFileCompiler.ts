@@ -37,7 +37,7 @@ export class GroupOptionFileCompiler extends OptionFileCompiler<GroupOptionInstr
      * @returns
      * The serialized option.
      */
-    protected CreateOption(option: GroupOption): Element
+    protected override CreateOption(option: GroupOption): Element
     {
         let editor: XMLEditor = new XMLEditor(super.CreateOption(option));
 

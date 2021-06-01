@@ -1,8 +1,9 @@
 import { ok } from "assert";
 import { TempDirectory } from "@manuth/temp-files";
-import { extract, list } from "tar";
+import { extract } from "tar";
 import { PackageCompiler } from "../../../Compilation/PackageSystem/PackageCompiler";
 import { Package } from "../../../PackageSystem/Package";
+import { Tar } from "../../Tar";
 import { CompilerTester } from "../TestComponents/Testers/CompilerTester";
 import { CompilerTestRunner } from "../TestComponents/TestRunners/CompilerTestRunner";
 
@@ -38,16 +39,16 @@ export function PackageCompilerTests(): void
         /**
          * @inheritdoc
          */
-        protected async SuiteSetup(): Promise<void>
+        protected override async SuiteSetup(): Promise<void>
         {
             tempDir = new TempDirectory();
-            await super.SuiteSetup();
+            return super.SuiteSetup();
         }
 
         /**
          * @inheritdoc
          */
-        protected ExecuteTests(): void
+        protected override ExecuteTests(): void
         {
             super.ExecuteTests();
 
@@ -66,15 +67,9 @@ export function PackageCompilerTests(): void
                 "Checking whether the package-manifest exists inside the tar-archive…",
                 async () =>
                 {
-                    let files: string[] = [];
-
-                    await list(
+                    let files = await Tar.ListTarFiles(
                         {
-                            file: this.Compiler.DestinationPath,
-                            onentry: (entry) =>
-                            {
-                                files.push(entry.header.path);
-                            }
+                            file: this.Compiler.DestinationPath
                         });
 
                     ok(files.includes("package.xml"));

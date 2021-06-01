@@ -48,7 +48,7 @@ export class GroupOptionInstruction extends OptionInstruction<GroupCategory, ICa
     /**
      * @inheritdoc
      */
-    public get OptionCategory(): string
+    public override get OptionCategory(): string
     {
         return "option";
     }
@@ -56,7 +56,7 @@ export class GroupOptionInstruction extends OptionInstruction<GroupCategory, ICa
     /**
      * @inheritdoc
      */
-    public get Compiler(): InstructionCompiler<GroupOptionInstruction>
+    public override get Compiler(): InstructionCompiler<GroupOptionInstruction>
     {
         return new GroupOptionInstructionCompiler(this);
     }

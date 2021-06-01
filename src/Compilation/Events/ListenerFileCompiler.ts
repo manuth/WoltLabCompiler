@@ -26,7 +26,7 @@ export abstract class ListenerFileCompiler<T extends IListenerInstruction<TListe
      * @returns
      * The serialized import.
      */
-    protected CreateImport(): Element
+    protected override CreateImport(): Element
     {
         let editor: XMLEditor = new XMLEditor(super.CreateImport());
 

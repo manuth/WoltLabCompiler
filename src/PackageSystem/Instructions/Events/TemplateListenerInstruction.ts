@@ -37,7 +37,7 @@ export class TemplateListenerInstruction extends ListenerInstruction<TemplateLis
     /**
      * @inheritdoc
      */
-    public get Compiler(): InstructionCompiler<TemplateListenerInstruction>
+    public override get Compiler(): InstructionCompiler<TemplateListenerInstruction>
     {
         return new TemplateListenerInstructionCompiler(this);
     }

@@ -37,7 +37,7 @@ export class ACPOptionFileCompiler extends OptionFileCompiler<ACPOptionInstructi
      * @returns
      * The serialized option.
      */
-    protected CreateOption(option: ACPOption): Element
+    protected override CreateOption(option: ACPOption): Element
     {
         let editor: XMLEditor = new XMLEditor(super.CreateOption(option));
         editor.Add(editor.CreateTextElement("hidden", option.Visible ? "0" : "1"));

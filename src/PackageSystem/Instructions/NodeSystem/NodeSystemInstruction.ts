@@ -44,7 +44,7 @@ export abstract class NodeSystemInstruction<T extends NodeItem, TOptions> extend
     /**
      * @inheritdoc
      */
-    public get ObjectsByID(): Record<string, unknown>
+    public override get ObjectsByID(): Record<string, unknown>
     {
         let result: Record<string, unknown> = {};
 

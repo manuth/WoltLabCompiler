@@ -11,7 +11,7 @@ export abstract class TemplateInstructionCompiler<T extends IInstruction> extend
     /**
      * @inheritdoc
      */
-    protected async Compile(): Promise<void>
+    protected override async Compile(): Promise<void>
     {
         await super.Compile();
         let tempFile: TempFile = new TempFile();

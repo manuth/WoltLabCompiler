@@ -54,24 +54,23 @@ export class ThemeCompiler extends Compiler<Theme>
      */
     protected async Compile(): Promise<void>
     {
-        let variables: Record<string, string> = {};
-        Object.assign(variables, this.Item.Variables);
+        let variables = new Map(this.Item.Variables);
 
         if (this.Item.CustomScss)
         {
-            variables.individualScss = this.Item.CustomScss;
+            variables.set("individualScss", this.Item.CustomScss);
         }
 
         if (this.Item.ScssOverride)
         {
-            variables.overrideScss = this.Item.ScssOverride;
+            variables.set("overrideScss", this.Item.ScssOverride);
         }
 
         let themeFileCompiler = new ThemeFileCompiler(this.Item, this.VariableFileName);
         themeFileCompiler.DestinationPath = this.MakeDestinationPath("style.xml");
         await themeFileCompiler.Execute();
 
-        if (Object.keys(variables).length > 0)
+        if (variables.size > 0)
         {
             let variableCompiler = new ThemeVariableCompiler(variables);
             variableCompiler.DestinationPath = this.MakeDestinationPath(this.VariableFileName);

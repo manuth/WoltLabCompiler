@@ -1,6 +1,5 @@
-import { parseExpression } from "cron-parser";
+import { CronExpression, parseExpression } from "cron-parser";
 import { TimePeriod } from "../../Tasks/TimePeriod";
-import { CronExpression } from "./CronExpression";
 
 /**
  * Provides the functionaolity to test `TimePeriod`-instances.

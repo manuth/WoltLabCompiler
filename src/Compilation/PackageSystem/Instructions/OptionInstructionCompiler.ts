@@ -28,7 +28,7 @@ export abstract class OptionInstructionCompiler<T extends IOptionInstruction<TCa
     /**
      * @inheritdoc
      */
-    protected async Compile(): Promise<void>
+    protected override async Compile(): Promise<void>
     {
         await super.Compile();
         let compiler: Compiler<T> = this.OptionFileCompiler;

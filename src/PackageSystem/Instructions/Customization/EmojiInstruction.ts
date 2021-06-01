@@ -49,7 +49,7 @@ export class EmojiInstruction extends NamedDeleteInstruction
     /**
      * @inheritdoc
      */
-    public get Compiler(): InstructionCompiler<EmojiInstruction>
+    public override get Compiler(): InstructionCompiler<EmojiInstruction>
     {
         return new EmojiInstructionCompiler(this);
     }

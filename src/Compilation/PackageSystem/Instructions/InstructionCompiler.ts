@@ -68,7 +68,7 @@ export class InstructionCompiler<T extends IInstruction> extends Compiler<T>
      * @param delimiter
      * The delimiter of the ejs-tags.
      */
-    protected async CopyTemplate(source: string, destination: string, context?: Record<string, unknown>, delimiter?: string): Promise<void>
+    protected override async CopyTemplate(source: string, destination: string, context?: Record<string, unknown>, delimiter?: string): Promise<void>
     {
         context = context || {};
 
@@ -105,7 +105,7 @@ export class InstructionCompiler<T extends IInstruction> extends Compiler<T>
      * @returns
      * The joined path relative to the destination-folder.
      */
-    protected MakeDestinationPath(...path: string[]): string
+    protected override MakeDestinationPath(...path: string[]): string
     {
         return join(this.DestinationFileName, ...path);
     }

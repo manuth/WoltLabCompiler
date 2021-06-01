@@ -57,7 +57,7 @@ export class CronJobInstruction extends NamedDeleteInstruction
     /**
      * @inheritdoc
      */
-    public get Compiler(): InstructionCompiler<CronJobInstruction>
+    public override get Compiler(): InstructionCompiler<CronJobInstruction>
     {
         return new CronJobInstructionCompiler(this);
     }

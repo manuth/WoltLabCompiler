@@ -33,7 +33,7 @@ export abstract class ListenerCompilerTestRunner<TTester extends ListenerCompile
     /**
      * @inheritdoc
      */
-    protected ExecuteTests(): void
+    protected override ExecuteTests(): void
     {
         super.ExecuteTests();
 

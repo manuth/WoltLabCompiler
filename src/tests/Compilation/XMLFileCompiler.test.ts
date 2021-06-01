@@ -44,16 +44,16 @@ export function XMLFileCompilerTests(): void
         /**
          * @inheritdoc
          */
-        protected async SuiteSetup(): Promise<void>
+        protected override async SuiteSetup(): Promise<void>
         {
-            await super.SuiteSetup();
             rootTag = "foo";
+            return super.SuiteSetup();
         }
 
         /**
          * @inheritdoc
          */
-        protected ExecuteTests(): void
+        protected override ExecuteTests(): void
         {
             super.ExecuteTests();
 

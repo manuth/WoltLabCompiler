@@ -1,3 +1,4 @@
+import { InstructionTests } from "./Instructions";
 import { PackageCompilerTests } from "./PackageCompiler.test";
 import { PackageFileCompilerTests } from "./PackageFileCompiler.test";
 
@@ -10,6 +11,7 @@ export function PackageSystemTests(): void
         "PackageSystem",
         () =>
         {
+            InstructionTests();
             PackageFileCompilerTests();
             PackageCompilerTests();
         });

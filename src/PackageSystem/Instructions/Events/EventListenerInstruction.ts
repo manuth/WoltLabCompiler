@@ -37,7 +37,7 @@ export class EventListenerInstruction extends ListenerInstruction<EventListener,
     /**
      * @inheritdoc
      */
-    public get Compiler(): InstructionCompiler<EventListenerInstruction>
+    public override get Compiler(): InstructionCompiler<EventListenerInstruction>
     {
         return new EventListenerInstructionCompiler(this);
     }

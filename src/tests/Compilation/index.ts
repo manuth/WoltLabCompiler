@@ -3,13 +3,13 @@ import { EJSFileCompilerTests } from "./EJSFileCompiler.test";
 import { EventTests } from "./Events";
 import { GlobalizationTests } from "./Globalization";
 import { ImportFileCompilerTests } from "./ImportFileCompiler.test";
-import { InstructionTests } from "./Instructions";
 import { NamedObjectDeletionFileCompilerTests } from "./NamedObjectDeletionFileCompiler.test";
 import { ObjectDeletionFileCompilerTests } from "./ObjectDeletionFileCompiler.test";
 import { OptionTests } from "./Options";
 import { PackageSystemTests } from "./PackageSystem";
 import { PresentationTests } from "./Presentation";
 import { TaskTests } from "./Tasks";
+import { WoltLabXMLCompilerTests } from "./WoltLabXMLCompiler.test";
 import { XMLFileCompilerTests } from "./XMLFileCompiler.test";
 
 /**
@@ -24,6 +24,7 @@ export function CompilationTests(): void
             CompilerTests();
             XMLFileCompilerTests();
             EJSFileCompilerTests();
+            WoltLabXMLCompilerTests();
             ImportFileCompilerTests();
             ObjectDeletionFileCompilerTests();
             NamedObjectDeletionFileCompilerTests();
@@ -32,7 +33,6 @@ export function CompilationTests(): void
             TaskTests();
             EventTests();
             PresentationTests();
-            InstructionTests();
             PackageSystemTests();
         });
 }

@@ -20,7 +20,7 @@ export class LocalizationFileCompiler extends WoltLabXMLCompiler<[string, Record
     /**
      * @inheritdoc
      */
-    protected get TagName(): string
+    protected override get TagName(): string
     {
         return "language";
     }
@@ -39,7 +39,7 @@ export class LocalizationFileCompiler extends WoltLabXMLCompiler<[string, Record
      * @returns
      * The serialized document.
      */
-    protected CreateDocument(): Document
+    protected override CreateDocument(): Document
     {
         let document: Document = super.CreateDocument();
         let editor: XMLEditor = new XMLEditor(document.documentElement);

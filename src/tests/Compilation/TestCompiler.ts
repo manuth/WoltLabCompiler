@@ -26,7 +26,7 @@ export class TestCompiler extends Compiler<unknown>
      * @param delimiter
      * The delimiter of the ejs-tags.
      */
-    public async CopyTemplate(source: string, destination: string, context: Record<string, unknown>, delimiter?: string): Promise<void>
+    public override async CopyTemplate(source: string, destination: string, context: Record<string, unknown>, delimiter?: string): Promise<void>
     {
         return super.CopyTemplate(source, destination, context, delimiter);
     }
@@ -40,7 +40,7 @@ export class TestCompiler extends Compiler<unknown>
      * @returns
      * The joined path relative to the destination-folder.
      */
-    public MakeDestinationPath(...path: string[]): string
+    public override MakeDestinationPath(...path: string[]): string
     {
         return super.MakeDestinationPath(...path);
     }
@@ -54,7 +54,7 @@ export class TestCompiler extends Compiler<unknown>
      * @param destination
      * The filename to save the compressed file to.
      */
-    public async Compress(source: string, destination: string): Promise<void>
+    public override async Compress(source: string, destination: string): Promise<void>
     {
         return super.Compress(source, destination);
     }

@@ -37,7 +37,7 @@ export class UserOptionFileCompiler extends OptionFileCompiler<UserOptionInstruc
      * @returns
      * The serialized option.
      */
-    protected CreateOption(option: UserOption): Element
+    protected override CreateOption(option: UserOption): Element
     {
         let editor: XMLEditor = new XMLEditor(super.CreateOption(option));
         editor.Add(editor.CreateTextElement("required", option.Required ? "1" : "0"));
