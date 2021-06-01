@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Broken drone-pipeline
   - Drone-pipeline for multi-digit version-numbers
   - Modern `node`-version support by replacing `sass-variable-parser` with `get-sass-vars`
+  - Vulnerabilities in dependencies
 
 ### Added
   - A workflow for analyzing source-code
