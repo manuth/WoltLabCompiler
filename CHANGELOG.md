@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## WoltLabCompiler [Unreleased]
+
+[Show differences](https://github.com/manuth/WoltLabCompiler/compare/v2.0.0...dev)
+
+## WoltLabCompiler v2.0.0
 ### Breaking
   - Removed the `ThemeInstructionCollection`-class  
     Use multiple `ThemeInstruction`-instances instead
@@ -25,7 +29,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - All dependencies
   - `Theme`-class to store variables in a `Map`
 
-[Show differences](https://github.com/manuth/WoltLabCompiler/compare/v1.1.1...dev)
+[Show differences](https://github.com/manuth/WoltLabCompiler/compare/v1.1.1...v2.0.0)
 
 ## WoltLabCompiler v1.1.1
 ### Fixed
