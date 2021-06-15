@@ -1,3 +1,4 @@
+/// <reference lib="DOM" />
 export { BidirectionalCollection } from "./Collections/BidirectionalCollection";
 export { Compiler } from "./Compilation/Compiler";
 export { EJSFileCompiler } from "./Compilation/EJSFileCompiler";

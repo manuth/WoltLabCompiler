@@ -6,7 +6,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## WoltLabCompiler [Unreleased]
 
-[Show differences](https://github.com/manuth/WoltLabCompiler/compare/v2.0.1...dev)
+[Show differences](https://github.com/manuth/WoltLabCompiler/compare/v2.1.0...dev)
+
+## WoltLabCompiler v2.1.0
+### Fixed
+  - Vulnerabilities in dependencies
+
+### Added
+  - A reference to the `DOM`-library
+
+### Updated
+  - Package to replace `get-sass-vars.d.ts` with `@types/get-sass-vars`
+  - All dependencies
+
+[Show differences](https://github.com/manuth/WoltLabCompiler/compare/v2.0.1...v2.1.0)
 
 ## WoltLabCompiler v2.0.1
 ### Updated
