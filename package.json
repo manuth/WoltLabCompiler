@@ -60,6 +60,7 @@
     "@types/colornames": "^1.1.1",
     "@types/dedent": "^0.7.0",
     "@types/fs-extra": "^9.0.11",
+    "@types/get-sass-vars": "^3.0.0",
     "@types/mem-fs": "^1.1.2",
     "@types/mem-fs-editor": "^7.0.0",
     "@types/mocha": "^8.2.2",
