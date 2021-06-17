@@ -26,7 +26,7 @@ export class EventListener extends Listener
     private eventHandlerClassName: string;
 
     /**
-     * Initializes a new instance of the `EventListener` class.
+     * Initializes a new instance of the {@link EventListener `EventListener`} class.
      *
      * @param options
      * The options of the event-listener.

@@ -10,7 +10,7 @@ import { OptionFileCompiler } from "./OptionFileCompiler";
 export class ACPOptionFileCompiler extends OptionFileCompiler<ACPOptionInstruction, ACPCategory, ACPOption>
 {
     /**
-     * Initializes a new instance of the `ACPOptionFileCompiler` class.
+     * Initializes a new instance of the {@link ACPOptionFileCompiler `ACPOptionFileCompiler}` class.
      *
      * @param item
      * The item to compile.

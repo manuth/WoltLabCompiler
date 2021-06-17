@@ -14,7 +14,7 @@ export class ListenerCompilerTester<TCompiler extends ListenerFileCompiler<IList
     private listenerTag: string;
 
     /**
-     * Initializes a new instance of the `ListenerCompilerTester` class.
+     * Initializes a new instance of the {@link ListenerCompilerTester `ListenerCompilerTester<TCompiler>`} class.
      *
      * @param compiler
      * The compiler to test.

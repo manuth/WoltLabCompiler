@@ -82,7 +82,7 @@ export function NamedObjectDeletionFileCompilerTests(): void
                         }
 
                         /**
-                         * Initializes a new instance of the `Instruction` class.
+                         * Initializes a new instance of the {@link Instruction `Instruction`} class.
                          */
                         public constructor()
                         {

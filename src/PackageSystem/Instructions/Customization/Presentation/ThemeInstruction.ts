@@ -15,7 +15,7 @@ export class ThemeInstruction extends Instruction
     private themeLoader: ThemeLoader;
 
     /**
-     * Initializes a new instance of the `ThemeInstruction` class.
+     * Initializes a new instance of the {@link ThemeInstruction `ThemeInstruction`} class.
      *
      * @param options
      * The options for the theme-instruction.

@@ -7,7 +7,7 @@ import { PackageFileDescriptor } from "./PackageFileDescriptor";
 export class OptionalPackageDescriptor extends PackageFileDescriptor
 {
     /**
-     * Initializes a new instance of the `OptionalPackageDescriptor` class.
+     * Initializes a new instance of the {@link OptionalPackageDescriptor `OptionalPackageDescriptor`} class.
      *
      * @param options
      * The options of the file-descriptor.

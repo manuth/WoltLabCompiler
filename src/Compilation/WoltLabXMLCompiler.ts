@@ -6,7 +6,7 @@ import { EJSFileCompiler } from "./EJSFileCompiler";
 export abstract class WoltLabXMLCompiler<T> extends EJSFileCompiler<T>
 {
     /**
-     * Initializes a new instance of the `WoltLabXMLCompiler<T>` class.
+     * Initializes a new instance of the {@link WoltLabXMLCompiler `WoltLabXMLCompiler<T>`} class.
      *
      * @param item
      * The item to compile.

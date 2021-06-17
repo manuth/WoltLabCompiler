@@ -12,7 +12,7 @@ export class CompilerTester<TCompiler extends Compiler<unknown>>
     private compiler: TCompiler;
 
     /**
-     * Initializes a new instance of the `CompilerTester` class.
+     * Initializes a new instance of the {@link CompilerTester `CompilerTester<TCompiler>`} class.
      *
      * @param compiler
      * The compiler to test.

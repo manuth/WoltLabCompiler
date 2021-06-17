@@ -11,7 +11,7 @@ import { ImportCompilerTester } from "./ImportCompilerTester";
 export class OptionCompilerTester<TCompiler extends OptionFileCompiler<IOptionInstruction<ICategory<Option>, Option>, ICategory<Option>, Option>> extends ImportCompilerTester<TCompiler>
 {
     /**
-     * Initializes a new instance of the `OptionCompilerTester` class.
+     * Initializes a new instance of the {@link OptionCompilerTester `OptionCompilerTester<TCompiler>`} class.
      *
      * @param compiler
      * The compiler to test.

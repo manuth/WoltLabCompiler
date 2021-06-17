@@ -8,7 +8,7 @@ import { IApplicationFileSystemInstructionOptions } from "../../FileSystem/IAppl
 export class TemplateInstruction extends ApplicationFileSystemInstruction
 {
     /**
-     * Initializes a new instance of the `TemplateInstruction` class.
+     * Initializes a new instance of the {@link TemplateInstruction `TemplateInstruction`} class.
      *
      * @param options
      * The options of the template-instruction.

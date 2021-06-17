@@ -14,7 +14,7 @@ export abstract class NamedDeleteInstruction extends Instruction implements INam
     private objectsToDelete: INamedObject[] = [];
 
     /**
-     * Initializes a new instance of the `NamedDeleteInstruction` class.
+     * Initializes a new instance of the {@link NamedDeleteInstruction `NamedDeleteInstruction`} class.
      *
      * @param options
      * The options for the named deletion-instruction.

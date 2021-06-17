@@ -7,7 +7,7 @@ import { WoltLabXMLCompiler } from "../WoltLabXMLCompiler";
 export class ThemeVariableCompiler extends WoltLabXMLCompiler<Map<string, string>>
 {
     /**
-     * Initializes a new instance of the `ThemeVariableCompiler` class.
+     * Initializes a new instance of the {@link ThemeVariableCompiler `ThemeVariableCompiler`} class.
      *
      * @param item
      * The item to compile.

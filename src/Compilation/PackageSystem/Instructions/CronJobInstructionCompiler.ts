@@ -9,7 +9,7 @@ import { TemplateInstructionCompiler } from "./TemplateInstructionCompiler";
 export class CronJobInstructionCompiler extends TemplateInstructionCompiler<CronJobInstruction>
 {
     /**
-     * Initializes a new instance of the `CronJobInstructionCompiler` class.
+     * Initializes a new instance of the {@link CronJobInstructionCompiler `CronJobInstructionCompiler`} class.
      *
      * @param item
      * The item to compile.

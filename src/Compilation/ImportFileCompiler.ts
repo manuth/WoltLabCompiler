@@ -8,7 +8,7 @@ import { WoltLabXMLCompiler } from "./WoltLabXMLCompiler";
 export abstract class ImportFileCompiler<T> extends WoltLabXMLCompiler<T>
 {
     /**
-     * Initializes a new instance of the `ImportFileCompiler<T>` class.
+     * Initializes a new instance of the {@link ImportFileCompiler `ImportFileCompiler<T>`} class.
      *
      * @param item
      * The item to compile.

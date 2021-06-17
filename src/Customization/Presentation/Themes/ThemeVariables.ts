@@ -9,7 +9,7 @@ export abstract class ThemeVariables
     private static variableNames: string[] = null;
 
     /**
-     * Initializes a new instance of the `ThemeVariables` class.
+     * Initializes a new instance of the {@link ThemeVariables `ThemeVariables`} class.
      */
     private constructor()
     { }

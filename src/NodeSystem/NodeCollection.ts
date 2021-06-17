@@ -8,7 +8,7 @@ import { NodeItem } from "./NodeItem";
 export class NodeCollection<T extends INode<TItem>, TItem extends NodeItem> extends BidirectionalCollection<INode<TItem>, T>
 {
     /**
-     * Initializes a new instance of the `NodeCollection<T>` class.
+     * Initializes a new instance of the {@link NodeCollection `NodeCollection<T, TItem>`} class.
      *
      * @param owner
      * The owner of the collection.

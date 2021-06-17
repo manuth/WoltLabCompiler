@@ -10,7 +10,7 @@ import { IGroupOptionOptions } from "./IGroupOptionOptions";
 export class GroupCategory extends Category<GroupOption, IGroupOptionOptions>
 {
     /**
-     * Initializes a new instance of the `GroupCategory` class.
+     * Initializes a new instance of the {@link GroupCategory `GroupCategory`} class.
      *
      * @param node
      * The node of the category.

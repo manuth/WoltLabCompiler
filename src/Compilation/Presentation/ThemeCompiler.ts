@@ -15,7 +15,7 @@ export class ThemeCompiler extends Compiler<Theme>
     private variableFileName = "variables.xml";
 
     /**
-     * Initializes a new instance of the `ThemeCompiler<T>` class.
+     * Initializes a new instance of the {@link ThemeCompiler `ThemeCompiler`} class.
      *
      * @param item
      * The item to compile.

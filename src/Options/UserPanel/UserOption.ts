@@ -42,7 +42,7 @@ export class UserOption extends Option
     private outputClass: string = null;
 
     /**
-     * Initializes a new instance of the `UserOption` class.
+     * Initializes a new instance of the {@link UserOption `UserOption`} class.
      *
      * @param category
      * The category of the option.

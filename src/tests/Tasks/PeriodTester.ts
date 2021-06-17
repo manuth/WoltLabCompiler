@@ -17,7 +17,7 @@ export class PeriodTester
     private startDate: Date = null;
 
     /**
-     * Initializes a new instance of the `PeriodTester` class.
+     * Initializes a new instance of the {@link PeriodTester `PeriodTester`} class.
      *
      * @param period
      * The period to test.

@@ -12,7 +12,7 @@ import { XMLCompilerTestRunner } from "./XMLCompilerTestRunner";
 export abstract class ListenerCompilerTestRunner<TTester extends ListenerCompilerTester<TCompiler>, TCompiler extends ListenerFileCompiler<IListenerInstruction<TListener>, TListener>, TListener extends Listener> extends XMLCompilerTestRunner<TTester, TCompiler>
 {
     /**
-     * Initializes a new instance of the `ListenerCompilerTestRunner` class.
+     * Initializes a new instance of the {@link ListenerCompilerTestRunner `ListenerCompilerTestRunner<TTester, TCompiler>`} class.
      *
      * @param title
      * The title of the suite.

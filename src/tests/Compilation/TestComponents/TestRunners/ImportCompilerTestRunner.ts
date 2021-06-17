@@ -9,7 +9,7 @@ import { XMLCompilerTestRunner } from "./XMLCompilerTestRunner";
 export abstract class ImportCompilerTestRunner<TTester extends ImportCompilerTester<TCompiler>, TCompiler extends ImportFileCompiler<unknown>> extends XMLCompilerTestRunner<TTester, TCompiler>
 {
     /**
-     * Initializes a new instance of the `ImportCompilerTestRunner` class.
+     * Initializes a new instance of the {@link ImportCompilerTestRunner `ImportCompilerTestRunner<TTester, TCompiler>`} class.
      *
      * @param title
      * The title of the suite.

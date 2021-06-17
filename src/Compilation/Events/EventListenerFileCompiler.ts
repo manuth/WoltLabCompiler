@@ -9,7 +9,7 @@ import { ListenerFileCompiler } from "./ListenerFileCompiler";
 export class EventListenerFileCompiler extends ListenerFileCompiler<EventListenerInstruction, EventListener>
 {
     /**
-     * Initializes a new instance of the `EventListenerFileCompiler` class.
+     * Initializes a new instance of the {@link EventListenerFileCompiler `EventListenerFileCompiler`} class.
      *
      * @param item
      * The item to compile.

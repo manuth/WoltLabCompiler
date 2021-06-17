@@ -9,7 +9,7 @@ import { TemplateInstructionCompiler } from "./TemplateInstructionCompiler";
 export class EmojiInstructionCompiler extends TemplateInstructionCompiler<EmojiInstruction>
 {
     /**
-     * Initializes a new instance of the `EmojiInstructionCompiler` class.
+     * Initializes a new instance of the {@link EmojiInstructionCompiler `EmojiInstructionCompiler`} class.
      *
      * @param item
      * The item to compile.

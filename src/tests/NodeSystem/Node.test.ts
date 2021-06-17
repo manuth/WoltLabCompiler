@@ -18,7 +18,7 @@ export function NodeTests(): void
             class MyNode extends Node<NodeItem, unknown>
             {
                 /**
-                 * Initializes a new instance of the `MyNode` class.
+                 * Initializes a new instance of the {@link MyNode `MyNode`} class.
                  *
                  * @param options
                  * The options for creationg `NodeItem`s.

@@ -13,7 +13,7 @@ export class ThemeFileCompiler extends WoltLabXMLCompiler<Theme>
     private variableFileName: string;
 
     /**
-     * Initializes a new instance of the `ThemeFileCompiler<T>` class.
+     * Initializes a new instance of the {@link ThemeFileCompiler `ThemeFileCompiler`} class.
      *
      * @param item
      * The item to compile.

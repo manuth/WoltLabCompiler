@@ -8,7 +8,7 @@ import { NamedObjectDeletionFileCompiler } from "../NamedObjectDeletionFileCompi
 export class BBCodeFileCompiler extends NamedObjectDeletionFileCompiler<BBCodeInstruction>
 {
     /**
-     * Initializes a new instance of the `BBCodeFileCompiler` class.
+     * Initializes a new instance of the {@link BBCodeFileCompiler `BBCodeFileCompiler`} class.
      *
      * @param item
      * The item to compile.

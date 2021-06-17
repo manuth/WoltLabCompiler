@@ -10,7 +10,7 @@ import { UserOption } from "./UserOption";
 export class UserCategory extends Category<UserOption, IUserOptionOptions>
 {
     /**
-     * Initializes a new instance of the `UserCategory` class.
+     * Initializes a new instance of the {@link UserCategory `UserCategory`} class.
      *
      * @param node
      * The node of the category.

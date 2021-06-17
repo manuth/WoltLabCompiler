@@ -12,7 +12,7 @@ import { ILocalizationInstruction } from "./ILocalizationInstruction";
 export abstract class LocalizationInstruction<T extends LocalizationItem, TOptions> extends NodeSystemInstruction<T, TOptions> implements ILocalizationInstruction
 {
     /**
-     * Initializes a new instance of the `TranslationInstruction<T>` class.
+     * Initializes a new instance of the {@link LocalizationInstruction `LocalizationInstruction<T, TOptions>`} class.
      *
      * @param options
      * The options for generating the object.

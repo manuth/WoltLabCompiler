@@ -9,7 +9,7 @@ export class XMLEditor
     private element: Element;
 
     /**
-     * Initializes a new instance of the `XMLEditor` class.
+     * Initializes a new instance of the {@link XMLEditor `XMLEditor`} class.
      *
      * @param element
      * The element to edit.

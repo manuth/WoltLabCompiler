@@ -36,7 +36,7 @@ export class Emoji
     private highResFileName: string = null;
 
     /**
-     * Initializes a new instance of the `Emoji` class.
+     * Initializes a new instance of the {@link Emoji `Emoji`} class.
      *
      * @param options
      * The options of the emoji.

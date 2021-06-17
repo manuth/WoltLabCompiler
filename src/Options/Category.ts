@@ -36,7 +36,7 @@ export class Category<TOption extends Option, TOptionOptions> extends NodeItem i
     private options: TOption[] = [];
 
     /**
-     * Initializes a new instance of the `Category` class.
+     * Initializes a new instance of the {@link Category `Category<TOption, TOptionOptions>`} class.
      *
      * @param node
      * The node of the category.

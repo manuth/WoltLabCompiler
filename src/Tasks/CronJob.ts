@@ -43,7 +43,7 @@ export class CronJob
     private period: TimePeriod;
 
     /**
-     * Initializes a new instance of the `CronJob` class.
+     * Initializes a new instance of the {@link CronJob `CronJob`} class.
      *
      * @param options
      * The options of the cron-job.

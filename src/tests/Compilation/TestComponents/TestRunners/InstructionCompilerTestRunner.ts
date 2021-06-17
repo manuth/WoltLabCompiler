@@ -14,7 +14,7 @@ import { CompilerTestRunner } from "./CompilerTestRunner";
 export abstract class InstructionCompilerTestRunner<TTester extends CompilerTester<TCompiler>, TCompiler extends InstructionCompiler<IInstruction>> extends CompilerTestRunner<TTester, TCompiler>
 {
     /**
-     * Initializes a new instance of the `InstructionCompilerTestRunner` class.
+     * Initializes a new instance of the {@link InstructionCompilerTestRunner `InstructionCompilerTestRunner<TTester, TCompiler>`} class.
      *
      * @param title
      * The title of the suite.

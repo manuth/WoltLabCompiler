@@ -28,7 +28,7 @@ export class GroupOption extends Option
     private registeredOnly = false;
 
     /**
-     * Initializes a new instance of the `GroupOption` class.
+     * Initializes a new instance of the {@link GroupOption `GroupOption`} class.
      *
      * @param category
      * The category of the group-option.

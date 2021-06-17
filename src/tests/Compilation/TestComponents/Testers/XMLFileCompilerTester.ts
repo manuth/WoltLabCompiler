@@ -10,7 +10,7 @@ import { CompilerTester } from "./CompilerTester";
 export class XMLFileCompilerTester<TCompiler extends XMLFileCompiler<unknown>> extends CompilerTester<TCompiler>
 {
     /**
-     * Initializes a new instance of the `XMLFileCompilerTester` class.
+     * Initializes a new instance of the {@link XMLFileCompilerTester `XMLFileCompilerTester<TCompiler>`} class.
      *
      * @param compiler
      * The compiler to test.

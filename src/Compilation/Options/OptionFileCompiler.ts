@@ -18,7 +18,7 @@ export abstract class OptionFileCompiler<T extends IOptionInstruction<TCategory,
     private languageCategory: string;
 
     /**
-     * Initializes a new instance of the `OptionFileCompiler<T, TCategory, TOption>` class.
+     * Initializes a new instance of the {@link OptionFileCompiler `OptionFileCompiler<T, TCategory, TOption>`} class.
      *
      * @param item
      * The item to compile.

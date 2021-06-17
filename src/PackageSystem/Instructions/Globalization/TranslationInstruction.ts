@@ -10,7 +10,7 @@ import { LocalizationInstruction } from "./LocalizationInstruction";
 export class TranslationInstruction extends LocalizationInstruction<LocalizationItem, ILocalizationItemOptions>
 {
     /**
-     * Initializes a new instance of the `TranslationInstruction` class.
+     * Initializes a new instance of the {@link TranslationInstruction `TranslationInstruction`} class.
      *
      * @param options
      * The options of the node-system instruction.

@@ -8,7 +8,7 @@ import { WoltLabXMLCompiler } from "../WoltLabXMLCompiler";
 export class PackageFileCompiler extends WoltLabXMLCompiler<Package>
 {
     /**
-     * Initializes a new instance of the `PackageFileCompiler` class.
+     * Initializes a new instance of the {@link PackageFileCompiler `PackageFileCompiler`} class.
      *
      * @param item
      * The item to compile.

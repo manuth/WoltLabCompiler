@@ -14,7 +14,7 @@ import { OptionInstruction } from "./OptionInstruction";
 export class ACPOptionInstruction extends OptionInstruction<ACPCategory, ICategoryOptions<IACPOptionOptions>, ACPOption, IACPOptionOptions>
 {
     /**
-     * Initializes a new instance of the `ACPOptionInstruction` class.
+     * Initializes a new instance of the {@link ACPOptionInstruction `ACPOptionInstruction`} class.
      *
      * @param options
      * The options for the acp-option instruction.

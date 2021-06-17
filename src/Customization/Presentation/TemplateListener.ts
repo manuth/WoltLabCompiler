@@ -17,7 +17,7 @@ export class TemplateListener extends Listener
     private code: string;
 
     /**
-     * Initializes a new instance of the `TemplateListener` class.
+     * Initializes a new instance of the {@link TemplateListener `TemplateListener`} class.
      *
      * @param options
      * The options of the template-listener.

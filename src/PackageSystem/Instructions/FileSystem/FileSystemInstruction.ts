@@ -15,7 +15,7 @@ export abstract class FileSystemInstruction extends Instruction
     private source: string;
 
     /**
-     * Initializes a new instance of the `FileSystemInstruction` class.
+     * Initializes a new instance of the {@link FileSystemInstruction `FileSystemInstruction`} class.
      *
      * @param options
      * The options of the file-system instruction.

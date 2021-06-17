@@ -8,7 +8,7 @@ import { InstructionCompiler } from "./InstructionCompiler";
 export abstract class InstructionFileCompiler<T extends IInstruction> extends InstructionCompiler<T>
 {
     /**
-     * Initializes a new instance of the `InstructionFileCompiler<T>` class.
+     * Initializes a new instance of the {@link InstructionFileCompiler `InstructionFileCompiler<T>`} class.
      *
      * @param item
      * The item to compile.

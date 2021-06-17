@@ -8,7 +8,7 @@ import { NamedObjectDeletionFileCompiler } from "../NamedObjectDeletionFileCompi
 export class EmojiFileCompiler extends NamedObjectDeletionFileCompiler<EmojiInstruction>
 {
     /**
-     * Initializes a new instance of the `EmojiFileCompiler` class.
+     * Initializes a new instance of the {@link EmojiFileCompiler `EmojiFileCompiler`} class.
      *
      * @param item
      * The item to compile.

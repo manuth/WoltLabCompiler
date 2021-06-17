@@ -9,7 +9,7 @@ import { TranslationInstruction } from "./TranslationInstruction";
 export class ErrorMessageInstruction extends TranslationInstruction
 {
     /**
-     * Initializes a new instance of the `ErrorMessageInstruction` class.
+     * Initializes a new instance of the {@link ErrorMessageInstruction `ErrorMessageInstruction`} class.
      *
      * @param options
      * The options of the error-message.

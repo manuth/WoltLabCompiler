@@ -9,7 +9,7 @@ import { Compiler } from "../../Compiler";
 export class InstructionCompiler<T extends IInstruction> extends Compiler<T>
 {
     /**
-     * Initializes a new instance of the `InstructionCompiler<T>` class.
+     * Initializes a new instance of the {@link InstructionCompiler `InstructionCompiler<T>`} class.
      *
      * @param item
      * The item to compile.

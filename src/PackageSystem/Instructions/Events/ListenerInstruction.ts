@@ -14,7 +14,7 @@ export abstract class ListenerInstruction<T extends Listener, TOptions> extends 
     private listeners: T[] = [];
 
     /**
-     * Initializes a new instance of the `ListenerInstruction<T, TOptions>` class.
+     * Initializes a new instance of the {@link ListenerInstruction `ListenerInstruction<T, TOptions>`} class.
      *
      * @param options
      * The options of the listener-instruction.

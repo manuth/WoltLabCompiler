@@ -25,7 +25,7 @@ export abstract class OptionInstruction<TCategory extends Category<TOption, TOpt
     private optionsToDelete: INamedObject[] = [];
 
     /**
-     * Initializes a new instance of the `OptionInstruction<TCategory, TCategoryOptions, TOption, TOptionOptions>` class.
+     * Initializes a new instance of the {@link OptionInstruction `OptionInstruction<TCategory, TCategoryOptions, TOption, TOptionOptions>`} class.
      *
      * @param options
      * The options of the option-instruction.

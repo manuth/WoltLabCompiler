@@ -12,7 +12,7 @@ export class ImageDirectoryDescriptor extends FileDescriptor
     private destinationRoot: string;
 
     /**
-     * Initializes a new instance of the `ImageFolderDescriptor` class.
+     * Initializes a new instance of the {@link ImageDirectoryDescriptor `ImageDirectoryDescriptor`} class.
      *
      * @param options
      * The options of the image-directory descriptor.

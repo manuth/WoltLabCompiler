@@ -14,7 +14,7 @@ export class LocalizationItem extends NodeItem
     private translations: Localization = new Localization();
 
     /**
-     * Initializes a new instance of the `LocalizationItem` class.
+     * Initializes a new instance of the {@link LocalizationItem `LocalizationItem`} class.
      *
      * @param node
      * The node of the item.

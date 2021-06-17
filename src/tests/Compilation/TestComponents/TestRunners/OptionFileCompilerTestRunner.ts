@@ -14,7 +14,7 @@ import { ImportCompilerTestRunner } from "./ImportCompilerTestRunner";
 export abstract class OptionFileCompilerTestRunner<TTester extends OptionCompilerTester<TCompiler>, TCompiler extends OptionFileCompiler<IOptionInstruction<TCategory, TOption>, TCategory, TOption>, TCategory extends ICategory<TOption>, TOption extends Option> extends ImportCompilerTestRunner<TTester, TCompiler>
 {
     /**
-     * Initializes a new instance of the `OptionFileCompilerTestRunner` class.
+     * Initializes a new instance of the {@link OptionFileCompilerTestRunner `OptionFileCompilerTestRunner<TTester, TCompiler, TCategory, TOption>`} class.
      *
      * @param title
      * The title of the suite.

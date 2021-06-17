@@ -15,7 +15,7 @@ export abstract class NodeSystemInstruction<T extends NodeItem, TOptions> extend
     private nodes: Array<Node<T, TOptions>> = [];
 
     /**
-     * Initializes a new instance of the `NodeSystemInstruction<T>` class.
+     * Initializes a new instance of the {@link NodeSystemInstruction `NodeSystemInstruction<T, TOptions>`} class.
      *
      * @param options
      * The options for generating the object.

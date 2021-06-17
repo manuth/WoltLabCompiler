@@ -23,7 +23,7 @@ export class ACPOption extends Option
     private forceLocalization = false;
 
     /**
-     * Initializes a new instance of the `ACPOption` class.
+     * Initializes a new instance of the {@link ACPOption `ACPOption`} class.
      *
      * @param category
      * The category of the option.

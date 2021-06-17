@@ -9,7 +9,7 @@ import { Compiler } from "./Compiler";
 export abstract class XMLFileCompiler<T> extends Compiler<T>
 {
     /**
-     * Initializes a new instance of the `XMLFileCompiler<T>` class.
+     * Initializes a new instance of the {@link XMLFileCompiler `XMLFileCompiler<T>`} class.
      *
      * @param item
      * The item to compile.

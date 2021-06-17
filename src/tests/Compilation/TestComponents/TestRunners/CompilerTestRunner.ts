@@ -24,7 +24,7 @@ export abstract class CompilerTestRunner<TTester extends CompilerTester<TCompile
     private title: string;
 
     /**
-     * Initializes a new instance of the `CompilerTestRunner` class.
+     * Initializes a new instance of the {@link CompilerTestRunner `CompilerTestRunner<TTester, TCompiler>`} class.
      *
      * @param title
      * The title of the suite.

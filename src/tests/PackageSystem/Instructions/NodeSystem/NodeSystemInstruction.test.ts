@@ -20,7 +20,7 @@ export function NodeSystemInstructionTests(): void
             class MyNode extends Node<NodeItem, unknown>
             {
                 /**
-                 * Initializes a new instance of the `MyNode` class.
+                 * Initializes a new instance of the {@link MyNode `MyNode`} class.
                  *
                  * @param options
                  * The options of the node.
@@ -42,7 +42,7 @@ export function NodeSystemInstructionTests(): void
                 public Type: string;
 
                 /**
-                 * Initializes a new instance of the `MyNodeInstruction` class.
+                 * Initializes a new instance of the {@link MyNodeInstruction `MyNodeInstruction`} class.
                  *
                  * @param options
                  * The options of the node.

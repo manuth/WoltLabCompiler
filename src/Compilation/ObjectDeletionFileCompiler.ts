@@ -8,7 +8,7 @@ import { ImportFileCompiler } from "./ImportFileCompiler";
 export abstract class ObjectDeletionFileCompiler<T extends IDeleteInstruction<TObject>, TObject> extends ImportFileCompiler<T>
 {
     /**
-     * Initializes a new instance of the `DeleteInstructionFileCompiler<T, TObject>` class.
+     * Initializes a new instance of the {@link ObjectDeletionFileCompiler `ObjectDeletionFileCompiler<T, TObject>`} class.
      *
      * @param item
      * The item to compile.

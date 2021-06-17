@@ -10,7 +10,7 @@ import { OptionFileCompiler } from "./OptionFileCompiler";
 export class UserOptionFileCompiler extends OptionFileCompiler<UserOptionInstruction, UserCategory, UserOption>
 {
     /**
-     * Initializes a new instance of the `UserOptionFileCompiler` class.
+     * Initializes a new instance of the {@link UserOptionFileCompiler `UserOptionFileCompiler`} class.
      *
      * @param item
      * The item to compile.

@@ -34,7 +34,7 @@ export class Node<T extends NodeItem, TOptions> implements INode<T>
     private nodes: Array<Node<T, TOptions>> = new NodeCollection(this);
 
     /**
-     * Initializes a new instance of the `Node` class.
+     * Initializes a new instance of the {@link Node `Node<T, TOptions>`} class.
      *
      * @param options
      * The options for generating the object.

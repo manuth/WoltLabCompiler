@@ -11,7 +11,7 @@ export class PackageDescriptor
     private identifier: string;
 
     /**
-     * Initializes a new instance of the `PackageDescriptor` class.
+     * Initializes a new instance of the {@link PackageDescriptor `PackageDescriptor`} class.
      *
      * @param options
      * The options of the descriptor.

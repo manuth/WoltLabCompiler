@@ -12,7 +12,7 @@ export class ConflictingPackageDescriptor extends PackageDescriptor
     private version: string;
 
     /**
-     * Initializes a new instance of the `ConflictingPackageDescriptor` class.
+     * Initializes a new instance of the {@link ConflictingPackageDescriptor `ConflictingPackageDescriptor`} class.
      *
      * @param options
      * The options of the confilcting package descriptor.

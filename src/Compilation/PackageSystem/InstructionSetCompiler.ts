@@ -9,7 +9,7 @@ import { InstructionCompiler } from "./Instructions/InstructionCompiler";
 export class InstructionSetCompiler extends Compiler<InstructionSet>
 {
     /**
-     * Initializes a new instance of the `InstructionSetCompiler` class.
+     * Initializes a new instance of the {@link InstructionSetCompiler `InstructionSetCompiler`} class.
      *
      * @param item
      * The item to compile.

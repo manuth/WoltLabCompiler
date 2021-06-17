@@ -8,7 +8,7 @@ import { LocalizationInstructionCompiler } from "./LocalizationInstructionCompil
 export class LocalizationProviderCompiler<T extends ILocalizationInstruction> extends InstructionCompiler<T>
 {
     /**
-     * Initializes a new instance of the `LocalizationProviderCompiler<T>` class.
+     * Initializes a new instance of the {@link LocalizationProviderCompiler `LocalizationProviderCompiler<T>`} class.
      *
      * @param item
      * The item to compile.

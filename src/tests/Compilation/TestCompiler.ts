@@ -1,7 +1,7 @@
 import { Compiler } from "../../Compilation/Compiler";
 
 /**
- * Provides a test-implementation of the `Compiler` class.
+ * Provides a test-implementation of the {@link Compiler `Compiler`} class.
  */
 export class TestCompiler extends Compiler<unknown>
 {

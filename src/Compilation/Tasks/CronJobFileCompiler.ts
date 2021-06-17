@@ -8,7 +8,7 @@ import { NamedObjectDeletionFileCompiler } from "../NamedObjectDeletionFileCompi
 export class CronJobFileCompiler extends NamedObjectDeletionFileCompiler<CronJobInstruction>
 {
     /**
-     * Initializes a new instance of the `CronJobFileCompiler` class.
+     * Initializes a new instance of the {@link CronJobFileCompiler `CronJobFileCompiler`} class.
      *
      * @param item
      * The item to compile.

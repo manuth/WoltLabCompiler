@@ -8,7 +8,7 @@ import { IFileSystemInstructionOptions } from "../FileSystem/IFileSystemInstruct
 export class SQLInstruction extends FileSystemInstruction
 {
     /**
-     * Initializes a new instance of the `SQLInstruction` class.
+     * Initializes a new instance of the {@link SQLInstruction `SQLInstruction`} class.
      *
      * @param options
      * The options of the sql-instruction.

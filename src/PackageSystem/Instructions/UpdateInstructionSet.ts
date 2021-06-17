@@ -13,7 +13,7 @@ export class UpdateInstructionSet extends InstructionSet
     private fromVersion: string;
 
     /**
-     * Initializes a new instance of the `UpdateInstructionSet` class.
+     * Initializes a new instance of the {@link UpdateInstructionSet `UpdateInstructionSet`} class.
      *
      * @param extensionPackage
      * The package of the update-instruction.

@@ -23,7 +23,7 @@ export class BBCodeInstruction extends NamedDeleteInstruction implements ILocali
     private translationDirectory: string = this.Type;
 
     /**
-     * Initializes a new instance of the `BBCodeInstruction` class.
+     * Initializes a new instance of the {@link BBCodeInstruction `BBCodeInstruction`} class.
      *
      * @param options
      * The options of the bbcode-instruction.

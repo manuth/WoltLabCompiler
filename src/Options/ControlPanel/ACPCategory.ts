@@ -10,7 +10,7 @@ import { IACPOptionOptions } from "./IACPOptionOptions";
 export class ACPCategory extends Category<ACPOption, IACPOptionOptions>
 {
     /**
-     * Initializes a new instance of the `ACPCategory` class.
+     * Initializes a new instance of the {@link ACPCategory `ACPCategory`} class.
      *
      * @param node
      * The node of the category.
