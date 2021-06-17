@@ -11,6 +11,18 @@ import { IOptionInstructionOptions } from "./IOptionInstructionOptions";
 
 /**
  * Represents an instruction which provides options.
+ *
+ * @template TCategory
+ * The type of the categories.
+ *
+ * @template TCategoryOptions
+ * The type of the options for generating categories.
+ *
+ * @template TOption
+ * The type of the options.
+ *
+ * @template TOptionOptions
+ * The type of the data for generating options.
  */
 export abstract class OptionInstruction<TCategory extends Category<TOption, TOptionOptions>, TCategoryOptions, TOption extends Option, TOptionOptions> extends NodeSystemInstruction<TCategory, TCategoryOptions> implements IOptionInstruction<TCategory, TOption>, ILocalizationInstruction
 {
@@ -25,7 +37,7 @@ export abstract class OptionInstruction<TCategory extends Category<TOption, TOpt
     private optionsToDelete: INamedObject[] = [];
 
     /**
-     * Initializes a new instance of the `OptionInstruction<TCategory, TCategoryOptions, TOption, TOptionOptions>` class.
+     * Initializes a new instance of the {@link OptionInstruction `OptionInstruction<TCategory, TCategoryOptions, TOption, TOptionOptions>`} class.
      *
      * @param options
      * The options of the option-instruction.

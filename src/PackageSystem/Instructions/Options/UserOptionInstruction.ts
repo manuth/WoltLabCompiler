@@ -14,7 +14,7 @@ import { OptionInstruction } from "./OptionInstruction";
 export class UserOptionInstruction extends OptionInstruction<UserCategory, ICategoryOptions<IUserOptionOptions>, UserOption, IUserOptionOptions>
 {
     /**
-     * Initializes a new instance of the `UserOptionInstruction` class.
+     * Initializes a new instance of the {@link UserOptionInstruction `UserOptionInstruction`} class.
      *
      * @param options
      * The options of the user-option instruction.

@@ -5,11 +5,17 @@ import { XMLCompilerTestRunner } from "./XMLCompilerTestRunner";
 
 /**
  * Provides the functionality to register tests for the `ImportFileCompiler`.
+ *
+ * @template TTester
+ * The type of the compiler-tester.
+ *
+ * @template TCompiler
+ * The type of the compiler.
  */
 export abstract class ImportCompilerTestRunner<TTester extends ImportCompilerTester<TCompiler>, TCompiler extends ImportFileCompiler<unknown>> extends XMLCompilerTestRunner<TTester, TCompiler>
 {
     /**
-     * Initializes a new instance of the `ImportCompilerTestRunner` class.
+     * Initializes a new instance of the {@link ImportCompilerTestRunner `ImportCompilerTestRunner<TTester, TCompiler>`} class.
      *
      * @param title
      * The title of the suite.

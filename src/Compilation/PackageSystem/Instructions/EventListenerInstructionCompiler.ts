@@ -9,7 +9,7 @@ import { TemplateInstructionCompiler } from "./TemplateInstructionCompiler";
 export class EventListenerInstructionCompiler extends TemplateInstructionCompiler<EventListenerInstruction>
 {
     /**
-     * Initializes a new instance of the `EventListenerInstructionCompiler<T>` class.
+     * Initializes a new instance of the {@link EventListenerInstructionCompiler `EventListenerInstructionCompiler`} class.
      *
      * @param item
      * The item to compile.

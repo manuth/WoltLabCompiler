@@ -4,11 +4,17 @@ import { NodeItem } from "./NodeItem";
 
 /**
  * Represents a collection of items.
+ *
+ * @template T
+ * The type of the nodes.
+ *
+ * @template TItem
+ * The type of the item provided by the nodes.
  */
 export class NodeCollection<T extends INode<TItem>, TItem extends NodeItem> extends BidirectionalCollection<INode<TItem>, T>
 {
     /**
-     * Initializes a new instance of the `NodeCollection<T>` class.
+     * Initializes a new instance of the {@link NodeCollection `NodeCollection<T, TItem>`} class.
      *
      * @param owner
      * The owner of the collection.

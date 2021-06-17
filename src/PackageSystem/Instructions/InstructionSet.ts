@@ -20,7 +20,7 @@ export class InstructionSet extends BidirectionalCollection<InstructionSet, Inst
     private directory = "components";
 
     /**
-     * Initializes a new instance of the `InstructionSet` class.
+     * Initializes a new instance of the {@link InstructionSet `InstructionSet`} class.
      *
      * @param extensionPackage
      * The extension of the instruction-set.

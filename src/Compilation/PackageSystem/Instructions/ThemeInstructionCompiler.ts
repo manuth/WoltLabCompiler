@@ -9,7 +9,7 @@ import { InstructionCompiler } from "./InstructionCompiler";
 export class ThemeInstructionCompiler extends InstructionCompiler<ThemeInstruction>
 {
     /**
-     * Initializes a new instance of the `ThemeInstructionCompiler` class.
+     * Initializes a new instance of the {@link ThemeInstructionCompiler `ThemeInstructionCompiler`} class.
      *
      * @param item
      * The item to compile.

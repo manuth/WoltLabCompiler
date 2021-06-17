@@ -22,7 +22,7 @@ export function ListenerFileCompilerTests(): void
     class MyListenerInstruction extends ListenerInstruction<Listener, IListenerOptions>
     {
         /**
-         * Initializes a new instance of the `MyListenerInstruction` class.
+         * Initializes a new instance of the {@link MyListenerInstruction `MyListenerInstruction`} class.
          *
          * @param options
          * The options for the initialization.

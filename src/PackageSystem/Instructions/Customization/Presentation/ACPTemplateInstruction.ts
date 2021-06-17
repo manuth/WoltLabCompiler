@@ -8,7 +8,7 @@ import { IApplicationFileSystemInstructionOptions } from "../../FileSystem/IAppl
 export class ACPTemplateInstruction extends ApplicationFileSystemInstruction
 {
     /**
-     * Initializes a new instance of the `ACPTemplateInstruction` class.
+     * Initializes a new instance of the {@link ACPTemplateInstruction `ACPTemplateInstruction`} class.
      *
      * @param options
      * The options of the acp-template instruction.

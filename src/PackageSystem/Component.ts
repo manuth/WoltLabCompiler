@@ -43,7 +43,7 @@ export abstract class Component
     private license: string = null;
 
     /**
-     * Initializes a new instance of the `Component` class.
+     * Initializes a new instance of the {@link Component `Component`} class.
      *
      * @param options
      * The options of the component.

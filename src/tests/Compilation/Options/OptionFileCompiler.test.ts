@@ -26,7 +26,7 @@ export function OptionFileCompilerTests(): void
     class MyOption extends Option
     {
         /**
-         * Initializes a new instance of the `MyOption` class.
+         * Initializes a new instance of the {@link MyOption `MyOption`} class.
          *
          * @param category
          * The category of the option.
@@ -46,7 +46,7 @@ export function OptionFileCompilerTests(): void
     class MyCategory extends Category<MyOption, IOptionOptions>
     {
         /**
-         * Initializes a new instance of the `MyCategory` class.
+         * Initializes a new instance of the {@link MyCategory `MyCategory`} class.
          *
          * @param node
          * The node of the category.
@@ -72,7 +72,7 @@ export function OptionFileCompilerTests(): void
     class MyOptionInstruction extends OptionInstruction<MyCategory, ICategoryOptions<IOptionOptions>, MyOption, IOptionOptions>
     {
         /**
-         * Initializes a new instance of the `MyOptionInstruction` class.
+         * Initializes a new instance of the {@link MyOptionInstruction `MyOptionInstruction`} class.
          *
          * @param options
          * The options of the instruction.

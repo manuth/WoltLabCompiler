@@ -2,11 +2,14 @@ import { XMLFileCompiler } from "./XMLFileCompiler";
 
 /**
  * Provides the functionality to compile `xml`-files which contain `EJS`-strings.
+ *
+ * @template T
+ * The type of the item which can be compiled by this compiler.
  */
 export abstract class EJSFileCompiler<T> extends XMLFileCompiler<T>
 {
     /**
-     * Initializes a new instance of the `EJSFileCompiler<T>` class.
+     * Initializes a new instance of the {@link EJSFileCompiler `EJSFileCompiler<T>`} class.
      *
      * @param item
      * The item to compile.

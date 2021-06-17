@@ -9,7 +9,7 @@ import { InstructionCompiler } from "./InstructionCompiler";
 export class SelfContainedPHPInstructionCompiler extends InstructionCompiler<SelfContainedPHPInstruction>
 {
     /**
-     * Initializes a new instance of the `SelfContainedPHPInstructionCompiler` class.
+     * Initializes a new instance of the {@link SelfContainedPHPInstructionCompiler `SelfContainedPHPInstructionCompiler`} class.
      *
      * @param item
      * The item to compile.

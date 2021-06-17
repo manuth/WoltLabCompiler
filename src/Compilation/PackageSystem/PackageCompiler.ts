@@ -11,7 +11,7 @@ import { PackageFileCompiler } from "./PackageFileCompiler";
 export class PackageCompiler extends Compiler<Package>
 {
     /**
-     * Initializes a new instance of the `PackageCompiler` class.
+     * Initializes a new instance of the {@link PackageCompiler `PackageCompiler`} class.
      *
      * @param item
      * The item to compile.
@@ -45,7 +45,7 @@ export class PackageCompiler extends Compiler<Package>
             {
                 let updateSetCompiler: InstructionSetCompiler = new InstructionSetCompiler(updateSet);
                 updateSetCompiler.DestinationPath = tempDir.FullName;
-                await installSetCompiler.Execute();
+                await updateSetCompiler.Execute();
             }
 
             await this.Compress(tempDir.FullName, this.DestinationPath);

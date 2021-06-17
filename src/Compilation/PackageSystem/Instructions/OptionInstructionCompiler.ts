@@ -6,11 +6,20 @@ import { LocalizationProviderCompiler } from "./LocalizationProviderCompiler";
 
 /**
  * Provides the functionality to compile instructions which provide options for the control-panel.
+ *
+ * @template T
+ * The type of the item which can be compiled by this compiler.
+ *
+ * @template TCategory
+ * The type of the option-categories.
+ *
+ * @template TOption
+ * The type of the options.
  */
 export abstract class OptionInstructionCompiler<T extends IOptionInstruction<TCategory, TOption>, TCategory extends ICategory<TOption>, TOption extends Option> extends LocalizationProviderCompiler<T>
 {
     /**
-     * Initializes a new instance of the `OptionInstructionCompiler` class.
+     * Initializes a new instance of the {@link OptionInstructionCompiler `OptionInstructionCompiler<T, TCategory, TOption>`} class.
      *
      * @param item
      * The item to compile.

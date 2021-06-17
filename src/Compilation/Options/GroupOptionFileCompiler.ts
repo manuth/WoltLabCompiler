@@ -10,7 +10,7 @@ import { OptionFileCompiler } from "./OptionFileCompiler";
 export class GroupOptionFileCompiler extends OptionFileCompiler<GroupOptionInstruction, GroupCategory, GroupOption>
 {
     /**
-     * Initializes a new instance of the `GroupOptionFileCompiler` class.
+     * Initializes a new instance of the {@link GroupOptionFileCompiler `GroupOptionFileCompiler`} class.
      *
      * @param item
      * The item to compile.

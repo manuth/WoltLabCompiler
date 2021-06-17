@@ -11,7 +11,7 @@ import { ListenerInstruction } from "./ListenerInstruction";
 export class TemplateListenerInstruction extends ListenerInstruction<TemplateListener, ITemplateListenerOptions>
 {
     /**
-     * Initializes a new instance of the `TemplateListenerInstruction` class.
+     * Initializes a new instance of the {@link TemplateListenerInstruction `TemplateListenerInstruction`} class.
      *
      * @param options
      * The options of the template-listener instruction.

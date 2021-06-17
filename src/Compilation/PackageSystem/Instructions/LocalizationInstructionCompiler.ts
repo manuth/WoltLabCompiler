@@ -10,7 +10,7 @@ import { InstructionCompiler } from "./InstructionCompiler";
 export class LocalizationInstructionCompiler extends InstructionCompiler<ILocalizationInstruction>
 {
     /**
-     * Initializes a new instance of the `LocalizationInstructionCompiler` class.
+     * Initializes a new instance of the {@link LocalizationInstructionCompiler `LocalizationInstructionCompiler`} class.
      *
      * @param item
      * The item to compile.

@@ -9,6 +9,15 @@ import { ImportFileCompiler } from "../ImportFileCompiler";
 
 /**
  * Provides the functionality to compile option-files.
+ *
+ * @template T
+ * The type of the item which can be compiled by this compiler.
+ *
+ * @template TCategory
+ * The type of the option-categories.
+ *
+ * @template TOption
+ * The type of the options.
  */
 export abstract class OptionFileCompiler<T extends IOptionInstruction<TCategory, TOption>, TCategory extends ICategory<TOption>, TOption extends Option> extends ImportFileCompiler<T>
 {
@@ -18,7 +27,7 @@ export abstract class OptionFileCompiler<T extends IOptionInstruction<TCategory,
     private languageCategory: string;
 
     /**
-     * Initializes a new instance of the `OptionFileCompiler<T, TCategory, TOption>` class.
+     * Initializes a new instance of the {@link OptionFileCompiler `OptionFileCompiler<T, TCategory, TOption>`} class.
      *
      * @param item
      * The item to compile.

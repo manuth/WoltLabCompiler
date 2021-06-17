@@ -7,7 +7,7 @@ import { WoltLabXMLCompiler } from "../WoltLabXMLCompiler";
 export class LocalizationFileCompiler extends WoltLabXMLCompiler<[string, Record<string, Record<string, string>>]>
 {
     /**
-     * Initializes a new instance of the `LocalizationFileCompiler` class.
+     * Initializes a new instance of the {@link LocalizationFileCompiler `LocalizationFileCompiler`} class.
      *
      * @param item
      * The item to compile.

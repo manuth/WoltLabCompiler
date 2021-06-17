@@ -14,7 +14,7 @@ import { OptionInstruction } from "./OptionInstruction";
 export class GroupOptionInstruction extends OptionInstruction<GroupCategory, ICategoryOptions<IGroupOptionOptions>, GroupOption, IGroupOptionOptions>
 {
     /**
-     * Initializes a new instance of the `GroupOptionInstruction` class.
+     * Initializes a new instance of the {@link GroupOptionInstruction `GroupOptionInstruction`} class.
      *
      * @param options
      * The options of the group-option instruction.

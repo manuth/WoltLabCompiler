@@ -4,11 +4,14 @@ import { WoltLabXMLCompiler } from "./WoltLabXMLCompiler";
 
 /**
  * Provides the functionality to compile files with an import- and a delete-section.
+ *
+ * @template T
+ * The type of the item which can be compiled by this compiler.
  */
 export abstract class ImportFileCompiler<T> extends WoltLabXMLCompiler<T>
 {
     /**
-     * Initializes a new instance of the `ImportFileCompiler<T>` class.
+     * Initializes a new instance of the {@link ImportFileCompiler `ImportFileCompiler<T>`} class.
      *
      * @param item
      * The item to compile.

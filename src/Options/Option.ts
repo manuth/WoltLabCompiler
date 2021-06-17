@@ -81,7 +81,7 @@ export abstract class Option
     private additionalProperties: Record<string, unknown> = {};
 
     /**
-     * Initializes a new instance of the `Option` class.
+     * Initializes a new instance of the {@link Option `Option`} class.
      *
      * @param category
      * The category of the option.

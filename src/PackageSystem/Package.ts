@@ -49,7 +49,7 @@ export class Package extends Component
     private updateSets: UpdateInstructionSet[] = [];
 
     /**
-     * Initializes a new instance of the `Package` class.
+     * Initializes a new instance of the {@link Package `Package`} class.
      *
      * @param options
      * The options of the packge.

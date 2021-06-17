@@ -6,6 +6,9 @@ import { dirname, join, resolve } from "upath";
 
 /**
  * Provides the functionality to compile a component.
+ *
+ * @template T
+ * The type of the item which can be compiled by this compiler.
  */
 export abstract class Compiler<T>
 {
@@ -20,7 +23,7 @@ export abstract class Compiler<T>
     private destinationPath = "";
 
     /**
-     * Initializes a new instance of the `Compiler<T>` class.
+     * Initializes a new instance of the {@link Compiler `Compiler<T>`} class.
      *
      * @param item
      * The item to compile.

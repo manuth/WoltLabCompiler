@@ -51,7 +51,7 @@ export class Theme extends Component
     private images: ImageDirectoryDescriptor = null;
 
     /**
-     * Initializes a new instance of the `Theme` class.
+     * Initializes a new instance of the {@link Theme `Theme`} class.
      *
      * @param instruction
      * The instruction of the theme.

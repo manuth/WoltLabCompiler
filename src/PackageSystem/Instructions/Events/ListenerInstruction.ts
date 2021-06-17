@@ -5,6 +5,12 @@ import { IListenerInstructionOptions } from "./IListenerInstructionOptions";
 
 /**
  * Represents an instruction which provides listeners.
+ *
+ * @template T
+ * The type of the listeners.
+ *
+ * @template TOptions
+ * The type of the options for generating listeners.
  */
 export abstract class ListenerInstruction<T extends Listener, TOptions> extends NamedDeleteInstruction implements IListenerInstruction<T>
 {
@@ -14,7 +20,7 @@ export abstract class ListenerInstruction<T extends Listener, TOptions> extends 
     private listeners: T[] = [];
 
     /**
-     * Initializes a new instance of the `ListenerInstruction<T, TOptions>` class.
+     * Initializes a new instance of the {@link ListenerInstruction `ListenerInstruction<T, TOptions>`} class.
      *
      * @param options
      * The options of the listener-instruction.

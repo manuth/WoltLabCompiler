@@ -11,7 +11,7 @@ export class NodeItem
     private node: INode;
 
     /**
-     * Initializes a new instance of the `NodeItem` class.
+     * Initializes a new instance of the {@link NodeItem `NodeItem`} class.
      *
      * @param node
      * The node of the item.

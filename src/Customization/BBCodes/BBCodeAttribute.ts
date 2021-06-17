@@ -28,7 +28,7 @@ export class BBCodeAttribute
     private validationPattern: RegExp = null;
 
     /**
-     * Initializes a new instance of the `BBCodeAttribute` class.
+     * Initializes a new instance of the {@link BBCodeAttribute `BBCodeAttribute`} class.
      *
      * @param options
      * The options of the attribute.

@@ -15,7 +15,7 @@ export class CronJobInstruction extends NamedDeleteInstruction
     private cronJobs: CronJob[] = [];
 
     /**
-     * Initializes a new instance of the `CronJobInstruction` class.
+     * Initializes a new instance of the {@link CronJobInstruction `CronJobInstruction`} class.
      *
      * @param options
      * The options of the cron-job instruction.

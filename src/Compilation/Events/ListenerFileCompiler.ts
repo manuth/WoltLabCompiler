@@ -6,11 +6,17 @@ import { NamedObjectDeletionFileCompiler } from "../NamedObjectDeletionFileCompi
 
 /**
  * Provides the functionality to compile listener-files.
+ *
+ * @template T
+ * The type of the item which can be compiled by this compiler.
+ *
+ * @template TListener
+ * The type of the listeners provided by the {@link ListenerFileCompiler.Item `Item`}.
  */
 export abstract class ListenerFileCompiler<T extends IListenerInstruction<TListener>, TListener extends Listener> extends NamedObjectDeletionFileCompiler<T>
 {
     /**
-     * Initializes a new instance of the `ListenerFileCompiler<T, TListener>` class.
+     * Initializes a new instance of the {@link ListenerFileCompiler `ListenerFileCompiler<T, TListener>`} class.
      *
      * @param item
      * The item to compile.

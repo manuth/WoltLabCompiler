@@ -9,7 +9,7 @@ import { LocalizationItem } from "./LocalizationItem";
 export class LocalizationNode extends Node<LocalizationItem, ILocalizationItemOptions>
 {
     /**
-     * Initializes a new instance of the `LocalizationNode` class.
+     * Initializes a new instance of the {@link LocalizationNode `LocalizationNode`} class.
      *
      * @param options
      * The options of the localization-node.

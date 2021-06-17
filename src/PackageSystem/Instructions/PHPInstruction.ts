@@ -14,7 +14,7 @@ export class PHPInstruction extends Instruction
     private application: string;
 
     /**
-     * Initializes a new instance of the `PHPInstruction` class.
+     * Initializes a new instance of the {@link PHPInstruction `PHPInstruction`} class.
      *
      * @param options
      * The options of the php-instruction.

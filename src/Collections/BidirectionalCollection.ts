@@ -1,5 +1,11 @@
 /**
  * Represents a collection which is bidirectional.
+ *
+ * @template TParent
+ * The type of the parent of the collection.
+ *
+ * @template TChild
+ * The type of the children of the collection.
  */
 export abstract class BidirectionalCollection<TParent, TChild> extends Array<TChild>
 {
@@ -9,7 +15,7 @@ export abstract class BidirectionalCollection<TParent, TChild> extends Array<TCh
     private owner: TParent;
 
     /**
-     * Initializes a new instance of the `BidirectionalCollection<TParent, TChild>` class.
+     * Initializes a new instance of the {@link BidirectionalCollection `BidirectionalCollection<TParent, TChild>`} class.
      *
      * @param owner
      * The owner of the collection.
@@ -77,7 +83,7 @@ export abstract class BidirectionalCollection<TParent, TChild> extends Array<TCh
      * @inheritdoc
      *
      * @param items
-     * Elements to insert at the start of the Array.
+     * Elements to insert at the start of the array.
      *
      * @returns
      * The new length of the array.
@@ -99,7 +105,7 @@ export abstract class BidirectionalCollection<TParent, TChild> extends Array<TCh
      * The child whose parent to return.
      *
      * @returns
-     * The parent of the `child`.
+     * The parent of the {@link child `child`}.
      */
     protected abstract GetParent(child: TChild): TParent;
 

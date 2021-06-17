@@ -15,7 +15,7 @@ export class EmojiInstruction extends NamedDeleteInstruction
     private emojis: Emoji[] = [];
 
     /**
-     * Initializes a new instance of the `EmojiInstruction` class.
+     * Initializes a new instance of the {@link EmojiInstruction `EmojiInstruction`} class.
      *
      * @param options
      * The options of the emoji-instruction.

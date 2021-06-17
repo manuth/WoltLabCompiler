@@ -5,6 +5,9 @@ import { InstructionFileCompiler } from "./InstructionFileCompiler";
 
 /**
  * Provides the functionality to compile files which make use of EJS-templates.
+ *
+ * @template T
+ * The type of the item which can be compiled by this compiler.
  */
 export abstract class TemplateInstructionCompiler<T extends IInstruction> extends InstructionFileCompiler<T>
 {

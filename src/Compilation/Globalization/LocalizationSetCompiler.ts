@@ -7,7 +7,7 @@ import { LocalizationFileCompiler } from "./LocalizationFileCompiler";
 export class LocalizationSetCompiler extends Compiler<Record<string, Record<string, Record<string, string>>>>
 {
     /**
-     * Initializes a new instance of the `LocalizationSetCompiler` class.
+     * Initializes a new instance of the {@link LocalizationSetCompiler `LocalizationSetCompiler`} class.
      *
      * @param item
      * The item to compile.

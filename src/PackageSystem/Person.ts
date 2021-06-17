@@ -16,7 +16,7 @@ export class Person
     private url: string = null;
 
     /**
-     * Initializes a new instance of the `Person` class.
+     * Initializes a new instance of the {@link Person `Person`} class.
      *
      * @param options
      * The options of the person.

@@ -25,7 +25,7 @@ export abstract class Instruction implements IInstruction
     private standalone = false;
 
     /**
-     * Initializes a new instance of the `Instruction` class.
+     * Initializes a new instance of the {@link Instruction `Instruction`} class.
      *
      * @param options
      * The options of the instruction.

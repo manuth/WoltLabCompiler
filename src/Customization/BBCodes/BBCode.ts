@@ -53,7 +53,7 @@ export class BBCode
     private attributes: BBCodeAttribute[] = [];
 
     /**
-     * Initializes a new instance of the `BBCode` class.
+     * Initializes a new instance of the {@link BBCode `BBCode`} class.
      *
      * @param options
      * The options of the bbcode.

@@ -4,11 +4,14 @@ import { ImportFileCompiler } from "./ImportFileCompiler";
 
 /**
  * Provides the functionality to compile files with an import- and a delete-section.
+ *
+ * @template T
+ * The type of the item which can be compiled by this compiler.
  */
 export abstract class ObjectDeletionFileCompiler<T extends IDeleteInstruction<TObject>, TObject> extends ImportFileCompiler<T>
 {
     /**
-     * Initializes a new instance of the `DeleteInstructionFileCompiler<T, TObject>` class.
+     * Initializes a new instance of the {@link ObjectDeletionFileCompiler `ObjectDeletionFileCompiler<T, TObject>`} class.
      *
      * @param item
      * The item to compile.

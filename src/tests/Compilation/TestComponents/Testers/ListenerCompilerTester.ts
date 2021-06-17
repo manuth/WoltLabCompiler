@@ -5,6 +5,9 @@ import { ImportCompilerTester } from "./ImportCompilerTester";
 
 /**
  * Provides the functionality to test a listener-compiler.
+ *
+ * @template TCompiler
+ * The type of the compiler to test.
  */
 export class ListenerCompilerTester<TCompiler extends ListenerFileCompiler<IListenerInstruction<Listener>, Listener>> extends ImportCompilerTester<TCompiler>
 {
@@ -14,7 +17,7 @@ export class ListenerCompilerTester<TCompiler extends ListenerFileCompiler<IList
     private listenerTag: string;
 
     /**
-     * Initializes a new instance of the `ListenerCompilerTester` class.
+     * Initializes a new instance of the {@link ListenerCompilerTester `ListenerCompilerTester<TCompiler>`} class.
      *
      * @param compiler
      * The compiler to test.

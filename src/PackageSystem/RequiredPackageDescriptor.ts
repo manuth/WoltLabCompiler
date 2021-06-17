@@ -12,7 +12,7 @@ export class RequiredPackageDescriptor extends PackageFileDescriptor
     private minVersion: string;
 
     /**
-     * Initializes a new instance of the `RequiredPackageDescriptor` class.
+     * Initializes a new instance of the {@link RequiredPackageDescriptor `RequiredPackageDescriptor`} class.
      *
      * @param options
      * The options of the descriptor.

@@ -28,7 +28,7 @@ export class OptionItem
     private option: Option;
 
     /**
-     * Initializes a new instance of the `OptionItem` class.
+     * Initializes a new instance of the {@link OptionItem `OptionItem`} class.
      *
      * @param option
      * The option of the item.

@@ -9,7 +9,7 @@ import { TemplateInstructionCompiler } from "./TemplateInstructionCompiler";
 export class TemplateListenerInstructionCompiler extends TemplateInstructionCompiler<TemplateListenerInstruction>
 {
     /**
-     * Initializes a new instance of the `TemplateListenerInstructionCompiler<T>` class.
+     * Initializes a new instance of the {@link TemplateListenerInstructionCompiler `TemplateListenerInstructionCompiler`} class.
      *
      * @param item
      * The item to compile.

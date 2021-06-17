@@ -12,7 +12,7 @@ export class PackageFileDescriptor extends PackageDescriptor
     private fileName: string = null;
 
     /**
-     * Initializes a new instance of the `PackageFileDescriptor` class.
+     * Initializes a new instance of the {@link PackageFileDescriptor `PackageFileDescriptor`} class.
      *
      * @param options
      * The options of the descriptor.

@@ -6,11 +6,14 @@ import { CompilerTester } from "./CompilerTester";
 
 /**
  * Provides the functionality to test an xml compiler.
+ *
+ * @template TCompiler
+ * The type of the compiler to test.
  */
 export class XMLFileCompilerTester<TCompiler extends XMLFileCompiler<unknown>> extends CompilerTester<TCompiler>
 {
     /**
-     * Initializes a new instance of the `XMLFileCompilerTester` class.
+     * Initializes a new instance of the {@link XMLFileCompilerTester `XMLFileCompilerTester<TCompiler>`} class.
      *
      * @param compiler
      * The compiler to test.

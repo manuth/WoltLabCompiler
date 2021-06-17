@@ -6,7 +6,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## WoltLabCompiler [Unreleased]
 
-[Show differences](https://github.com/manuth/WoltLabCompiler/compare/v2.1.0...dev)
+[Show differences](https://github.com/manuth/WoltLabCompiler/compare/v2.1.1...dev)
+
+## WoltLabCompiler v2.1.1
+### Fixed
+  - Broken `PackageCompiler`
+
+### Added
+  - New tests
+  - `@link`s to jsdoc-comments
+  - Missing `@template`-comments
+
+### Updated
+  - All dependencies
+
+[Show differences](https://github.com/manuth/WoltLabCompiler/compare/v2.1.0...v2.1.1)
 
 ## WoltLabCompiler v2.1.0
 ### Fixed

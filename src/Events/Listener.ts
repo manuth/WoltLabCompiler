@@ -37,7 +37,7 @@ export abstract class Listener
     private options: string[] = [];
 
     /**
-     * Initializes a new instance of the `Listener` class.
+     * Initializes a new instance of the {@link Listener `Listener`} class.
      *
      * @param options
      * The options of the listener.

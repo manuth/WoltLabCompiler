@@ -66,7 +66,7 @@ export class ThemeLoader extends Component
     private images: ImageDirectoryDescriptor = null;
 
     /**
-     * Initializes a new instance of the `ThemeLoader` class.
+     * Initializes a new instance of the {@link ThemeLoader `ThemeLoader`} class.
      *
      * @param instruction
      * The instruction of the theme-loader.

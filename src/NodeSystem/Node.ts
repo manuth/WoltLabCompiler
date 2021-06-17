@@ -5,6 +5,12 @@ import { NodeItem } from "./NodeItem";
 
 /**
  * Represents a node.
+ *
+ * @template T
+ * The type of the node-item.
+ *
+ * @template TOptions
+ * The type of the options for generating nodes.
  */
 export class Node<T extends NodeItem, TOptions> implements INode<T>
 {
@@ -34,7 +40,7 @@ export class Node<T extends NodeItem, TOptions> implements INode<T>
     private nodes: Array<Node<T, TOptions>> = new NodeCollection(this);
 
     /**
-     * Initializes a new instance of the `Node` class.
+     * Initializes a new instance of the {@link Node `Node<T, TOptions>`} class.
      *
      * @param options
      * The options for generating the object.

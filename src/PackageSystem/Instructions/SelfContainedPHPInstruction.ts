@@ -18,7 +18,7 @@ export class SelfContainedPHPInstruction extends ApplicationFileSystemInstructio
     private destination: string;
 
     /**
-     * Initializes a new instance of the `SelfContainedPHPInstruction` class.
+     * Initializes a new instance of the {@link SelfContainedPHPInstruction `SelfContainedPHPInstruction`} class.
      *
      * @param options
      * The options of the self-contained php instruction.

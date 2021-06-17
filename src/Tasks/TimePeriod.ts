@@ -29,7 +29,7 @@ export class TimePeriod
     private dayOfWeek: string;
 
     /**
-     * Initializes a new instance of the `TimePeriod` class.
+     * Initializes a new instance of the {@link TimePeriod `TimePeriod`} class.
      *
      * @param minute
      * The minute of the period.

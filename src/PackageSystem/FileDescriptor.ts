@@ -17,7 +17,7 @@ export class FileDescriptor
     private fileName: string;
 
     /**
-     * Initializes a new instance of the `FileDescriptor` class.
+     * Initializes a new instance of the {@link FileDescriptor `FileDescriptor`} class.
      *
      * @param options
      * The options of the file-descriptor.

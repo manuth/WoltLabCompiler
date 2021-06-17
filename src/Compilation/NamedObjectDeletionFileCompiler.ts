@@ -6,6 +6,9 @@ import { ObjectDeletionFileCompiler } from "./ObjectDeletionFileCompiler";
 
 /**
  * Provides the functionality to compile files with a named delete-section.
+ *
+ * @template T
+ * The type of the item which can be compiled by this compiler.
  */
 export abstract class NamedObjectDeletionFileCompiler<T extends INamedDeleteInstruction> extends ObjectDeletionFileCompiler<T, INamedObject>
 {

@@ -7,7 +7,7 @@ import { InstructionCompiler } from "./InstructionCompiler";
 export class FileSystemInstructionCompiler extends InstructionCompiler<FileSystemInstruction>
 {
     /**
-     * Initializes a new instance of the `FileSystemInstructionCompiler` class.
+     * Initializes a new instance of the {@link FileSystemInstructionCompiler `FileSystemInstructionCompiler`} class.
      *
      * @param item
      * The item to compile.

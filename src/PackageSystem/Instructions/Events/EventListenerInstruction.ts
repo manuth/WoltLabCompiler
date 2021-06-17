@@ -11,7 +11,7 @@ import { ListenerInstruction } from "./ListenerInstruction";
 export class EventListenerInstruction extends ListenerInstruction<EventListener, IEventListenerOptions>
 {
     /**
-     * Initializes a new instance of the `EventListenerInstruction` class.
+     * Initializes a new instance of the {@link EventListenerInstruction `EventListenerInstruction`} class.
      *
      * @param options
      * The options of the event-listener instruction.

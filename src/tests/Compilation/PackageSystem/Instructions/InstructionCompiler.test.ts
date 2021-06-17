@@ -13,12 +13,12 @@ import { InstructionCompilerTestRunner } from "../../TestComponents/TestRunners/
 export function InstructionCompilerTests(): void
 {
     /**
-     * Provides an implementation of the `InstructionCompiler` class for testing.
+     * Provides an implementation of the {@link InstructionCompiler `InstructionCompiler<T>`} class for testing.
      */
     class TestInstructionCompiler extends InstructionCompiler<Instruction>
     {
         /**
-         * Initializes a new instance of the `TestInstructionCompiler` class.
+         * Initializes a new instance of the {@link TestInstructionCompiler `TestInstructionCompiler`} class.
          *
          * @param item
          * The options of the instruction.
