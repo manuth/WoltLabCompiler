@@ -3,7 +3,7 @@ import { TimePeriod } from "../../Tasks/TimePeriod";
 import { PeriodTester } from "./PeriodTester";
 
 /**
- * Registers tests for the `TimePeriod` class.
+ * Registers tests for the {@link TimePeriod `TimePeriod`} class.
  */
 export function TimePeriodTests(): void
 {

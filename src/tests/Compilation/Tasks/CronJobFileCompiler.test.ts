@@ -7,7 +7,7 @@ import { ImportCompilerTester } from "../TestComponents/Testers/ImportCompilerTe
 import { ImportCompilerTestRunner } from "../TestComponents/TestRunners/ImportCompilerTestRunner";
 
 /**
- * Registers tests for the `CronJobFileCompiler` class.
+ * Registers tests for the {@link CronJobFileCompiler `CronJobFileCompiler`} class.
  */
 export function CronJobFileCompilerTests(): void
 {

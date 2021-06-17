@@ -5,7 +5,7 @@ import { XMLFileCompilerTester } from "../TestComponents/Testers/XMLFileCompiler
 import { XMLCompilerTestRunner } from "../TestComponents/TestRunners/XMLCompilerTestRunner";
 
 /**
- * Registers tests for the `ThemeVariableCompiler` class.
+ * Registers tests for the {@link ThemeVariableCompiler `ThemeVariableCompiler`} class.
  */
 export function ThemeVariableCompilerTests(): void
 {

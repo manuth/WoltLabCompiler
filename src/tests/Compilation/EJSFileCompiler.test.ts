@@ -4,7 +4,7 @@ import { XMLFileCompilerTester } from "./TestComponents/Testers/XMLFileCompilerT
 import { XMLCompilerTestRunner } from "./TestComponents/TestRunners/XMLCompilerTestRunner";
 
 /**
- * Registers tests for the `EJSFileCompiler` class.
+ * Registers tests for the {@link EJSFileCompiler `EJSFileCompiler<T>`} class.
  */
 export function EJSFileCompilerTests(): void
 {
@@ -14,7 +14,7 @@ export function EJSFileCompilerTests(): void
     let delimiter: string;
 
     /**
-     * Provides an implementation of the `EJSFileCompiler` for testing.
+     * Provides an implementation of the {@link EJSFileCompiler `EJSFileCompiler<T>`} for testing.
      */
     class TestEJSFileCompiler extends EJSFileCompiler<unknown>
     {
@@ -43,7 +43,7 @@ export function EJSFileCompilerTests(): void
         }
 
         /**
-         * Copies files using `EJS`.
+         * Copies files using `ejs`.
          *
          * @param source
          * The source to copy the files from.

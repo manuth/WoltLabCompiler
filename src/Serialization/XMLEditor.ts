@@ -90,7 +90,7 @@ export class XMLEditor
     }
 
     /**
-     * Creates a new element with the specified `textContent` wrapped by a CDATA-section.
+     * Creates a new element with the specified {@link textContent `textContent`} wrapped by a CDATA-section.
      *
      * @param tag
      * The tag of the element to create.
@@ -109,7 +109,7 @@ export class XMLEditor
     }
 
     /**
-     * Creates a new element with the specified `textContent`.
+     * Creates a new element with the specified {@link textContent `textContent`}.
      *
      * @param tag
      * The tag of the element to create.
@@ -261,7 +261,7 @@ export class XMLEditor
      * The name to look for.
      *
      * @returns
-     * A value indicating whether an attribute with the specified `name` exists.
+     * A value indicating whether an attribute with the specified {@link name `name`} exists.
      */
     public HasAttribute(name: string): boolean
     {
@@ -278,7 +278,7 @@ export class XMLEditor
      * The type of the nodes.
      *
      * @returns
-     * An array representing the specified `nodeList`.
+     * An array representing the specified {@link nodeList `nodeList`}.
      */
     protected static ToArray<T extends Node>(nodeList: Pick<NodeListOf<T>, "length" | "item">): T[]
     {

@@ -1,8 +1,10 @@
 import { ILocalization } from "../Globalization/ILocalization";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { CronJob } from "./CronJob";
 import { TimePeriod } from "./TimePeriod";
 
 /**
- * Provides options for the `CronJob` class.
+ * Provides options for the {@link CronJob `CronJob`} class.
  */
 export interface ICronJobOptions
 {

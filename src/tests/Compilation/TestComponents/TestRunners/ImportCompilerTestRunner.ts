@@ -4,7 +4,7 @@ import { ImportCompilerTester } from "../Testers/ImportCompilerTester";
 import { XMLCompilerTestRunner } from "./XMLCompilerTestRunner";
 
 /**
- * Provides the functionality to register tests for the `ImportFileCompiler`.
+ * Provides the functionality to register tests for the {@link ImportFileCompiler `ImportFileCompiler<T>`}.
  *
  * @template TTester
  * The type of the compiler-tester.

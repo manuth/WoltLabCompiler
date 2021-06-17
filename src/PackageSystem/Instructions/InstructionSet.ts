@@ -107,7 +107,7 @@ export class InstructionSet extends BidirectionalCollection<InstructionSet, Inst
      * The child whose parent to return.
      *
      * @returns
-     * The parent of the `child`.
+     * The parent of the {@link child `child`}.
      */
     protected GetParent(child: Instruction): InstructionSet
     {

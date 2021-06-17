@@ -5,7 +5,7 @@ import { CompilerTester } from "../../TestComponents/Testers/CompilerTester";
 import { LocalizationInstructionCompilerTestRunner } from "../../TestComponents/TestRunners/LocalizationInstructionCompilerTestRunner";
 
 /**
- * Registers tests for the `UserOptionInstructionCompiler` class.
+ * Registers tests for the {@link UserOptionInstructionCompiler `UserOptionInstructionCompiler`} class.
  */
 export function UserOptionInstructionCompilerTests(): void
 {

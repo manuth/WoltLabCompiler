@@ -1,5 +1,8 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { Person } from "./Person";
+
 /**
- * Provides options for the `Person` class.
+ * Provides options for the {@link Person `Person`} class.
  */
 export interface IPersonOptions
 {

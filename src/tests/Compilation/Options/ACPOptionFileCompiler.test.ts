@@ -8,7 +8,7 @@ import { OptionCompilerTester } from "../TestComponents/Testers/OptionCompilerTe
 import { OptionFileCompilerTestRunner } from "../TestComponents/TestRunners/OptionFileCompilerTestRunner";
 
 /**
- * Registers tests for the `ACPOptionFileCompiler` class.
+ * Registers tests for the {@link ACPOptionFileCompiler `ACPOptionFileCompiler`} class.
  */
 export function ACPOptionFileCompilerTests(): void
 {

@@ -4,7 +4,7 @@ import { Instruction } from "../../../PackageSystem/Instructions/Instruction";
 import { Package } from "../../../PackageSystem/Package";
 
 /**
- * Registers tests for the `Instruction` class.
+ * Registers tests for the {@link Instruction `Instruction`} class.
  */
 export function InstructionTests(): void
 {

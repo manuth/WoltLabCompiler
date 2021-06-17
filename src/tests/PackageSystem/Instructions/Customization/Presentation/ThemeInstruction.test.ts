@@ -3,7 +3,7 @@ import { parse } from "upath";
 import { ThemeInstruction } from "../../../../../PackageSystem/Instructions/Customization/Presentation/ThemeInstruction";
 
 /**
- * Registers tests for the `ThemeInstruction` class.
+ * Registers tests for the {@link ThemeInstruction `ThemeInstruction`} class.
  */
 export function ThemeInstructionTests(): void
 {

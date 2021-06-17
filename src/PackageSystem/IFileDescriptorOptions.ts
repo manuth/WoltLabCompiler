@@ -1,5 +1,7 @@
+import { FileDescriptor } from "./FileDescriptor";
+
 /**
- * Provides options for the `FileDescriptor` class.
+ * Provides options for the {@link FileDescriptor `FileDescriptor`} class.
  */
 export interface IFileDescriptorOptions
 {

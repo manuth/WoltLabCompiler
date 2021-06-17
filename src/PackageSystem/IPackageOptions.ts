@@ -6,9 +6,11 @@ import { IInstructionSetOptions } from "./Instructions/IInstructionSetOptions";
 import { IUpdateInstructionSetOptions } from "./Instructions/IUpdateInstructionSetOptions";
 import { IPackageFileDescriptorOptions } from "./IPackageFileDescriptorOptions";
 import { IRequiredPackageDescriptorOptions } from "./IRequiredPackageDescriptorOptions";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { Package } from "./Package";
 
 /**
- * Provides options for the `Package` class.
+ * Provides options for the {@link Package `Package`} class.
  */
 export interface IPackageOptions extends Partial<IComponentOptions>
 {

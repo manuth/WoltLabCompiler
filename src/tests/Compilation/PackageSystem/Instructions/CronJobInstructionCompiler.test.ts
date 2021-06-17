@@ -4,7 +4,7 @@ import { CompilerTester } from "../../TestComponents/Testers/CompilerTester";
 import { InstructionCompilerTestRunner } from "../../TestComponents/TestRunners/InstructionCompilerTestRunner";
 
 /**
- * Registers tests for the `CronJobInstructionCompiler` class.
+ * Registers tests for the {@link CronJobInstructionCompiler `CronJobInstructionCompiler`} class.
  */
 export function CronJobInstructionCompilerTests(): void
 {

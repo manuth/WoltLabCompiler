@@ -7,7 +7,7 @@ import { ListenerCompilerTester } from "../Testers/ListenerCompilerTester";
 import { XMLCompilerTestRunner } from "./XMLCompilerTestRunner";
 
 /**
- * Provides the functionality to register tests for `ListenerFileCompiler`s.
+ * Provides the functionality to register tests for {@link ListenerFileCompiler `ListenerFileCompiler<T, TListener>`}s.
  *
  * @template TTester
  * The type of the compiler-tester.

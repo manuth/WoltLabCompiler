@@ -1,8 +1,10 @@
 import { ILocalization } from "../../Globalization/ILocalization";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { BBCode } from "./BBCode";
 import { IBBCodeAttributeOptions } from "./IBBCodeAttributeOptions";
 
 /**
- * Provides options for the `BBCode` class.
+ * Provides options for the {@link BBCode `BBCode`} class.
  */
 export interface IBBCodeOptions
 {

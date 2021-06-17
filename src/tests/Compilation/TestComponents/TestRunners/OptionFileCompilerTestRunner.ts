@@ -9,7 +9,7 @@ import { OptionCompilerTester } from "../Testers/OptionCompilerTester";
 import { ImportCompilerTestRunner } from "./ImportCompilerTestRunner";
 
 /**
- * Provides the functionality to register tests for `OptionFileCompiler`s.
+ * Provides the functionality to register tests for {@link OptionFileCompiler `OptionFileCompiler<T, TCategory, TOption>`}s.
  *
  * @template TTester
  * The type of the compiler-tester.

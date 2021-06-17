@@ -5,7 +5,7 @@ import { CompilerTester } from "../../TestComponents/Testers/CompilerTester";
 import { LocalizationInstructionCompilerTestRunner } from "../../TestComponents/TestRunners/LocalizationInstructionCompilerTestRunner";
 
 /**
- * Registers tests for the `BBCodeInstructionCompiler` class.
+ * Registers tests for the {@link BBCodeInstructionCompiler `BBCodeInstructionCompiler`} class.
  */
 export function BBCodeInstructionCompilerTests(): void
 {

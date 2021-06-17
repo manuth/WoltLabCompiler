@@ -5,7 +5,7 @@ import { XMLFileCompilerTester } from "../Testers/XMLFileCompilerTester";
 import { CompilerTestRunner } from "./CompilerTestRunner";
 
 /**
- * Provides the functionality to register tests for the `XMLFileCompiler`.
+ * Provides the functionality to register tests for the {@link XMLFileCompiler `XMLFileCompiler<T>`}.
  *
  * @template TTester
  * The type of the compiler-tester.
@@ -42,7 +42,7 @@ export abstract class XMLCompilerTestRunner<TTester extends XMLFileCompilerTeste
     }
 
     /**
-     * Asserts the existence of a tag named `tagname` inside the `element`.
+     * Asserts the existence of a tag named {@link tagname `tagname`} inside the {@link element `element`}.
      *
      * @param element
      * The element to check for the tag.
@@ -60,7 +60,7 @@ export abstract class XMLCompilerTestRunner<TTester extends XMLFileCompilerTeste
     }
 
     /**
-     * Returns the element with the unique `tagName`.
+     * Returns the element with the unique {@link tagName `tagName`}.
      *
      * @param element
      * The element to check for the tag.
@@ -69,7 +69,7 @@ export abstract class XMLCompilerTestRunner<TTester extends XMLFileCompilerTeste
      * The name of the tag.
      *
      * @returns
-     * The element with the unique `tagName`.
+     * The element with the unique {@link tagName `tagName`}.
      */
     protected GetElement(element: XMLEditor, tagName: string): XMLEditor
     {
@@ -79,7 +79,7 @@ export abstract class XMLCompilerTestRunner<TTester extends XMLFileCompilerTeste
     }
 
     /**
-     * Gets the text of a child-tag with the speicifed `tagName`.
+     * Gets the text of a child-tag with the speicifed {@link tagName `tagName`}.
      *
      * @param element
      * The element to check for the tag.
@@ -88,7 +88,7 @@ export abstract class XMLCompilerTestRunner<TTester extends XMLFileCompilerTeste
      * The name of the tag.
      *
      * @returns
-     * The text of the child-tag with the specified `tagName`.
+     * The text of the child-tag with the specified {@link tagName `tagName`}.
      */
     protected GetText(element: XMLEditor, tagName: string): string
     {
@@ -96,7 +96,7 @@ export abstract class XMLCompilerTestRunner<TTester extends XMLFileCompilerTeste
     }
 
     /**
-     * Asserts the content of a child-tag with the specified `tagName`.
+     * Asserts the content of a child-tag with the specified {@link tagName `tagName`}.
      *
      * @param element
      * The element to check for the tag.

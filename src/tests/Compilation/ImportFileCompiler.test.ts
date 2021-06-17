@@ -3,7 +3,7 @@ import { ImportCompilerTester } from "./TestComponents/Testers/ImportCompilerTes
 import { ImportCompilerTestRunner } from "./TestComponents/TestRunners/ImportCompilerTestRunner";
 
 /**
- * Registers tests for the `ImportFileCompile` class.
+ * Registers tests for the {@link ImportFileCompiler `ImportFileCompiler<T>`} class.
  */
 export function ImportFileCompilerTests(): void
 {

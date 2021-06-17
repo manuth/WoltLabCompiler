@@ -6,7 +6,7 @@ import { LocalizationInstruction } from "../../../../PackageSystem/Instructions/
 import { TranslationInstruction } from "../../../../PackageSystem/Instructions/Globalization/TranslationInstruction";
 
 /**
- * Registers tests for the `LocalizationInstruction` class.
+ * Registers tests for the {@link LocalizationInstruction `LocalizationInstruction<T, TOptions>`} class.
  */
 export function LocalizationInstructionTests(): void
 {

@@ -3,7 +3,7 @@ import { BBCode } from "../../../../Customization/BBCodes/BBCode";
 import { BBCodeInstruction } from "../../../../PackageSystem/Instructions/Customization/BBCodeInstruction";
 
 /**
- * Registers tests for the `BBCodeInstruction` class.
+ * Registers tests for the {@link BBCodeInstruction `BBCodeInstruction`} class.
  */
 export function BBCodeInstructionTests(): void
 {

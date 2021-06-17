@@ -1,7 +1,9 @@
 import { IOptionOptions } from "../IOptionOptions";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { ACPOption } from "./ACPOption";
 
 /**
- * Provides options for the `Option` class.
+ * Provides options for the {@link ACPOption `ACPOption`} class.
  */
 export interface IACPOptionOptions extends IOptionOptions
 {

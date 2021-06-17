@@ -6,7 +6,7 @@ import { INodeSystemInstructionOptions } from "../../../../PackageSystem/Instruc
 import { NodeSystemInstruction } from "../../../../PackageSystem/Instructions/NodeSystem/NodeSystemInstruction";
 
 /**
- * Registers tests for the `NodeSystemInstruction` class.
+ * Registers tests for the {@link NodeSystemInstruction `NodeSystemInstruction<T, TOptions>`} class.
  */
 export function NodeSystemInstructionTests(): void
 {
@@ -32,7 +32,7 @@ export function NodeSystemInstructionTests(): void
             }
 
             /**
-             * Represents an instruction which provides `MyNode`s.
+             * Represents an instruction which provides {@link MyNode `MyNode`}s.
              */
             class MyNodeInstruction extends NodeSystemInstruction<NodeItem, unknown>
             {

@@ -16,7 +16,7 @@ import { OptionCompilerTester } from "../TestComponents/Testers/OptionCompilerTe
 import { OptionFileCompilerTestRunner } from "../TestComponents/TestRunners/OptionFileCompilerTestRunner";
 
 /**
- * Registers tests for the `OptionFileCompiler` class.
+ * Registers tests for the {@link OptionFileCompiler `OptionFileCompiler<T, TCategory, TOption>`} class.
  */
 export function OptionFileCompilerTests(): void
 {
@@ -67,7 +67,7 @@ export function OptionFileCompilerTests(): void
     }
 
     /**
-     * Represents an instruction which provides `MyOption`s.
+     * Represents an instruction which provides {@link MyOption `MyOption`}s.
      */
     class MyOptionInstruction extends OptionInstruction<MyCategory, ICategoryOptions<IOptionOptions>, MyOption, IOptionOptions>
     {
@@ -105,7 +105,7 @@ export function OptionFileCompilerTests(): void
     }
 
     /**
-     * Represents a compiler for compiling `MyOptionInstruction`s.
+     * Represents a compiler for compiling {@link MyOptionInstruction `MyOptionInstruction`}s.
      */
     class MyOptionInstructionCompiler extends OptionFileCompiler<MyOptionInstruction, MyCategory, MyOption>
     {

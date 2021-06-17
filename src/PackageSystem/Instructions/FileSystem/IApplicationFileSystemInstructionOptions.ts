@@ -1,7 +1,8 @@
+import { ApplicationFileSystemInstruction } from "./ApplicationFileSystemInstruction";
 import { IFileSystemInstructionOptions } from "./IFileSystemInstructionOptions";
 
 /**
- * Provides options for the `ApplicationFileSystemInstruction` class.
+ * Provides options for the {@link ApplicationFileSystemInstruction `ApplicationFileSystemInstruction`} class.
  */
 export interface IApplicationFileSystemInstructionOptions extends IFileSystemInstructionOptions
 {

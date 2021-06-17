@@ -8,7 +8,7 @@ import { ImportCompilerTester } from "./TestComponents/Testers/ImportCompilerTes
 import { ImportCompilerTestRunner } from "./TestComponents/TestRunners/ImportCompilerTestRunner";
 
 /**
- * Registers tests for the `ObjectDeletionFileCompiler` class.
+ * Registers tests for the {@link ObjectDeletionFileCompiler `ObjectDeletionFileCompiler<T, TObject>`} class.
  */
 export function ObjectDeletionFileCompilerTests(): void
 {

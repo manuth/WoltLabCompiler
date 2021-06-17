@@ -2,7 +2,7 @@ import { CronExpression, parseExpression } from "cron-parser";
 import { TimePeriod } from "../../Tasks/TimePeriod";
 
 /**
- * Provides the functionaolity to test `TimePeriod`-instances.
+ * Provides the functionaolity to test {@link TimePeriod `TimePeriod`}-instances.
  */
 export class PeriodTester
 {
@@ -58,7 +58,7 @@ export class PeriodTester
     }
 
     /**
-     * Gets the next execution-time after the `StartDate`.
+     * Gets the next execution-time after the {@link PeriodTester.StartDate `StartDate`}.
      */
     public get NextDate(): Date
     {

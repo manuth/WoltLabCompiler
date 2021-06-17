@@ -6,7 +6,7 @@ import { XMLFileCompilerTester } from "../TestComponents/Testers/XMLFileCompiler
 import { XMLCompilerTestRunner } from "../TestComponents/TestRunners/XMLCompilerTestRunner";
 
 /**
- * Registers tests for the `LocalizationFileCompiler` class.
+ * Registers tests for the {@link LocalizationFileCompiler `LocalizationFileCompiler`} class.
  */
 export function LocalizationFileCompilerTests(): void
 {

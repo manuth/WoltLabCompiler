@@ -4,7 +4,7 @@ import { Option } from "../../Options/Option";
 import { OptionType } from "../../Options/OptionType";
 
 /**
- * Registers tests for the `Option` class.
+ * Registers tests for the {@link Option `Option`} class.
  */
 export function OptionTests(): void
 {

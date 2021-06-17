@@ -2,7 +2,7 @@ import { strictEqual } from "assert";
 import { FileSystemInstruction } from "../../../../PackageSystem/Instructions/FileSystem/FileSystemInstruction";
 
 /**
- * Registers tests for the `FileSystemInstruction` class.
+ * Registers tests for the {@link FileSystemInstruction `FileSystemInstruction`} class.
  */
 export function FileSystemInstructionTests(): void
 {

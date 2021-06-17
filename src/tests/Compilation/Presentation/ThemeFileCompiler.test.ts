@@ -10,7 +10,7 @@ import { XMLFileCompilerTester } from "../TestComponents/Testers/XMLFileCompiler
 import { XMLCompilerTestRunner } from "../TestComponents/TestRunners/XMLCompilerTestRunner";
 
 /**
- * Registers tests for the `ThemeFileCompiler` class.
+ * Registers tests for the {@link ThemeFileCompiler `ThemeFileCompiler`} class.
  */
 export function ThemeFileCompilerTests(): void
 {

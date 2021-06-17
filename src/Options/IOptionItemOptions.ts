@@ -1,7 +1,9 @@
 import { ILocalization } from "../Globalization/ILocalization";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { OptionItem } from "./OptionItem";
 
 /**
- * Provides options for the `OptionItem` class.
+ * Provides options for the {@link OptionItem `OptionItem`} class.
  */
 export interface IOptionItemOptions
 {

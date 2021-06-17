@@ -1,7 +1,8 @@
 import { IInstructionOptions } from "../IInstructionOptions";
+import { FileSystemInstruction } from "./FileSystemInstruction";
 
 /**
- * Provides options for the `FileSystemInstruction` class.
+ * Provides options for the {@link FileSystemInstruction `FileSystemInstruction`} class.
  */
 export interface IFileSystemInstructionOptions extends Partial<IInstructionOptions>
 {

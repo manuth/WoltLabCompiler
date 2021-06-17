@@ -5,7 +5,7 @@ import { ImportCompilerTester } from "../TestComponents/Testers/ImportCompilerTe
 import { ImportCompilerTestRunner } from "../TestComponents/TestRunners/ImportCompilerTestRunner";
 
 /**
- * Registers tests for the `BBCodeFileCompiler` class.
+ * Registers tests for the {@link BBCodeFileCompiler `BBCodeFileCompiler`} class.
  */
 export function BBCodeFileCompilerTests(): void
 {

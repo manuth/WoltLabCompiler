@@ -1,7 +1,7 @@
 import { XMLFileCompiler } from "./XMLFileCompiler";
 
 /**
- * Provides the functionality to compile `xml`-files which contain `EJS`-strings.
+ * Provides the functionality to compile `.xml`-files which contain `ejs`-strings.
  *
  * @template T
  * The type of the item which can be compiled by this compiler.

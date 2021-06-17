@@ -9,7 +9,7 @@ export class XML
      * Creates a new xml-document.
      *
      * @param tagName
-     * The name of the tag of the `documentElement`.
+     * The name of the tag of the {@link Document.documentElement `documentElement`}.
      *
      * @returns
      * The newly created document.

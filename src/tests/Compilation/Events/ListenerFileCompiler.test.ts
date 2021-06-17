@@ -10,7 +10,7 @@ import { ListenerCompilerTester } from "../TestComponents/Testers/ListenerCompil
 import { ListenerCompilerTestRunner } from "../TestComponents/TestRunners/ListenerCompilerTestRunner";
 
 /**
- * Registers tests for the `ListenerFileCompiler` class.
+ * Registers tests for the {@link ListenerFileCompiler `ListenerFileCompiler<T, TListener>`} class.
  */
 export function ListenerFileCompilerTests(): void
 {

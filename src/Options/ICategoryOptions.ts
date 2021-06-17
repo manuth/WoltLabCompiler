@@ -1,7 +1,9 @@
 import { ILocalization } from "../Globalization/ILocalization";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { Category } from "./Category";
 
 /**
- * Provides options for the `Category` class.
+ * Provides options for the {@link Category `Category<TOption, TOptionOptions>`} class.
  */
 export interface ICategoryOptions<T>
 {

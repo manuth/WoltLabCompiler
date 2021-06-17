@@ -1,7 +1,7 @@
 import { IThemeOptionBase } from "./IThemeOptionBase";
 
 /**
- * Provides options for the `Theme`-class.
+ * Provides options for the {@link Theme `Theme`}-class.
  */
 export interface IThemeOptions extends IThemeOptionBase
 {

@@ -3,7 +3,7 @@ import dedent = require("dedent");
 import { XML } from "../../Serialization/XML";
 
 /**
- * Registers tests for the `XML` class.
+ * Registers tests for the {@link XML `XML`} class.
  */
 export function XMLTests(): void
 {

@@ -4,7 +4,7 @@ import { CompilerTester } from "../../TestComponents/Testers/CompilerTester";
 import { InstructionCompilerTestRunner } from "../../TestComponents/TestRunners/InstructionCompilerTestRunner";
 
 /**
- * Registers tests for the `TemplateListenerInstructionCompiler` class.
+ * Registers tests for the {@link TemplateListenerInstructionCompiler `TemplateListenerInstructionCompiler`} class.
  */
 export function TemplateListenerInstructionCompilerTests(): void
 {

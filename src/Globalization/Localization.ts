@@ -9,7 +9,7 @@ export class Localization
     public Data: Map<string, string> = new Map();
 
     /**
-     * Loads localizations from the `values`.
+     * Loads localizations from the {@link values `values`}.
      *
      * @param values
      * The values to load.

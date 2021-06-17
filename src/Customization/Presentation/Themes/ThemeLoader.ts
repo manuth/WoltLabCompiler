@@ -359,13 +359,13 @@ export class ThemeLoader extends Component
     }
 
     /**
-     * Loads the file-descriptor from the specified `options`.
+     * Loads the file-descriptor from the specified {@link options `options`}.
      *
      * @param options
-     * The options for creating the `FileDescriptor`.
+     * The options for creating the {@link FileDescriptor `FileDescriptor`}.
      *
      * @returns
-     * The newly created `FileDescriptor`.
+     * The newly created {@link FileDescriptor `FileDescriptor`}.
      */
     protected LoadFileDescriptor(options: string | IFileDescriptorOptions): FileDescriptor
     {

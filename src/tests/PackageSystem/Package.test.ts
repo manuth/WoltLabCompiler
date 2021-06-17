@@ -4,7 +4,7 @@ import { join } from "upath";
 import { Package } from "../../PackageSystem/Package";
 
 /**
- * Registers tests for the `Package` class.
+ * Registers tests for the {@link Package `Package`} class.
  */
 export function PackageTests(): void
 {

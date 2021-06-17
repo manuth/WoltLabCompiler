@@ -10,7 +10,7 @@ import { OptionCompilerTester } from "../TestComponents/Testers/OptionCompilerTe
 import { OptionFileCompilerTestRunner } from "../TestComponents/TestRunners/OptionFileCompilerTestRunner";
 
 /**
- * Registers tests for the `UserOptionFileCompiler` class.
+ * Registers tests for the {@link UserOptionFileCompiler `UserOptionFileCompiler`} class.
  */
 export function UserOptionFileCompilerTests(): void
 {

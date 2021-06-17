@@ -1,7 +1,9 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { Listener } from "./Listener";
 import { ListenerEnvironment } from "./ListenerEnvironment";
 
 /**
- * Provides options for the `Listener` class.
+ * Provides options for the {@link Listener `Listener`} class.
  */
 export interface IListenerOptions
 {

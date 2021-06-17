@@ -2,7 +2,7 @@ import { ok } from "assert";
 import { Localization } from "../../Globalization/Localization";
 
 /**
- * Registers tests for the `Localization` class.
+ * Registers tests for the {@link Localization `Localization`} class.
  */
 export function LocalizationTests(): void
 {

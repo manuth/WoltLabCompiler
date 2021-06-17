@@ -1,7 +1,7 @@
 import { EJSFileCompiler } from "./EJSFileCompiler";
 
 /**
- * Provides the functionality to compile components to `xml`-files optimized for woltlab.
+ * Provides the functionality to compile components to `.xml`-files optimized for woltlab.
  *
  * @template T
  * The type of the item which can be compiled by this compiler.
