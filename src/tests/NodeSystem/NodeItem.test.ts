@@ -3,7 +3,7 @@ import { Node } from "../../NodeSystem/Node";
 import { NodeItem } from "../../NodeSystem/NodeItem";
 
 /**
- * Registers tests for the `NodeItem` class.
+ * Registers tests for the {@link NodeItem `NodeItem`} class.
  */
 export function NodeItemTests(): void
 {

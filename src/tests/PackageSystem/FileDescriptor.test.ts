@@ -5,7 +5,7 @@ import { basename, normalize } from "upath";
 import { FileDescriptor } from "../../PackageSystem/FileDescriptor";
 
 /**
- * Registers tests for the `FileDescriptor` class.
+ * Registers tests for the {@link FileDescriptor `FileDescriptor`} class.
  */
 export function FileDescriptorTests(): void
 {
@@ -28,7 +28,7 @@ export function FileDescriptorTests(): void
             let parentDescriptor: FileDescriptor;
 
             /**
-             * Creates a new file-descriptor and it's source-file with the specified `content`.
+             * Creates a new file-descriptor and its source-file with the specified {@link content `content`}.
              *
              * @param fileName
              * The name of the source-file.

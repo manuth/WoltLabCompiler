@@ -4,7 +4,7 @@ import { Instruction } from "./Instruction";
 import { IPHPInstructionOptions } from "./IPHPInstructionOptions";
 
 /**
- * Represents an instruction which executes an already existing `php`-file on the server.
+ * Represents an instruction which executes an already existing `.php`-file on the server.
  */
 export class PHPInstruction extends Instruction
 {

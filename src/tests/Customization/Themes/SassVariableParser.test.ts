@@ -6,7 +6,7 @@ import { basename } from "upath";
 import { SassVariableParser } from "../../../Customization/Presentation/Themes/SassVariableParser";
 
 /**
- * Registers tests for the `SassVariableParser` class.
+ * Registers tests for the {@link SassVariableParser `SassVariableParser`} class.
  */
 export function SassVariableParserTests(): void
 {

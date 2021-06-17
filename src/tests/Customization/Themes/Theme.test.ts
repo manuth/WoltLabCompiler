@@ -5,7 +5,7 @@ import { Package } from "../../../PackageSystem/Package";
 import { Person } from "../../../PackageSystem/Person";
 
 /**
- * Registers tests for the `Theme` class.
+ * Registers tests for the {@link Theme `Theme`} class.
  */
 export function ThemeTests(): void
 {

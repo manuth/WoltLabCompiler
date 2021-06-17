@@ -1,3 +1,4 @@
+import { join } from "upath";
 import { Component } from "./Component";
 import { ConflictingPackageDescriptor } from "./ConflictingPackageDescriptor";
 import { FileDescriptor } from "./FileDescriptor";
@@ -128,12 +129,7 @@ export class Package extends Component
             for (let updateSet of options.UpdateSets)
             {
                 let updateInstructionSet: UpdateInstructionSet = new UpdateInstructionSet(this, updateSet.FromVersion);
-
-                if (updateSet.Directory)
-                {
-                    updateInstructionSet.Directory = updateSet.Directory;
-                }
-
+                updateInstructionSet.Directory = updateSet.Directory ?? join("update", updateSet.FromVersion);
                 updateInstructionSet.push(...updateSet.Instructions);
                 this.UpdateSets.push(updateInstructionSet);
             }

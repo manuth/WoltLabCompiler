@@ -8,7 +8,7 @@ import { CompilerTester } from "../TestComponents/Testers/CompilerTester";
 import { CompilerTestRunner } from "../TestComponents/TestRunners/CompilerTestRunner";
 
 /**
- * Registers tests for the `LocalizationInstructionCompiler` class.
+ * Registers tests for the {@link LocalizationSetCompiler `LocalizationSetCompiler`} class.
  */
 export function LocalizationSetCompilerTests(): void
 {

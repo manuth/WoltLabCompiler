@@ -6,7 +6,7 @@ import { ListenerCompilerTester } from "../TestComponents/Testers/ListenerCompil
 import { ListenerCompilerTestRunner } from "../TestComponents/TestRunners/ListenerCompilerTestRunner";
 
 /**
- * Registers tests for the `TemplateListenerFileCompiler` class.
+ * Registers tests for the {@link TemplateListenerFileCompiler `TemplateListenerFileCompiler`} class.
  */
 export function TemplateListenerFileCompilerTests(): void
 {

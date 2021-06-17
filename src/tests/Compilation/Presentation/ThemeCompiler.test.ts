@@ -10,7 +10,7 @@ import { CompilerTester } from "../TestComponents/Testers/CompilerTester";
 import { CompilerTestRunner } from "../TestComponents/TestRunners/CompilerTestRunner";
 
 /**
- * Registers tests for the `ThemeCompiler` class.
+ * Registers tests for the {@link ThemeCompiler `ThemeCompiler`} class.
  */
 export function ThemeCompilerTests(): void
 {

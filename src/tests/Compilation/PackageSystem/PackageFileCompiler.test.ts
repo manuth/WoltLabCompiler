@@ -14,7 +14,7 @@ import { XMLFileCompilerTester } from "../TestComponents/Testers/XMLFileCompiler
 import { XMLCompilerTestRunner } from "../TestComponents/TestRunners/XMLCompilerTestRunner";
 
 /**
- * Registers tests for the `PackageFileCompiler` class.
+ * Registers tests for the {@link PackageFileCompiler `PackageFileCompiler`} class.
  */
 export function PackageFileCompilerTests(): void
 {
@@ -299,7 +299,7 @@ export function PackageFileCompilerTests(): void
         }
 
         /**
-         * Asserts the existence of the metadata inside the `instructionSetNode`.
+         * Asserts the existence of the metadata inside the {@link instructionSetNode `instructionSetNode`}.
          *
          * @param instructionSet
          * The asserted meta-data.

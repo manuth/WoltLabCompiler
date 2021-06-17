@@ -1,5 +1,8 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { Node } from "./Node";
+
 /**
- * Provides options for the `Node` class.
+ * Provides options for the {@link Node `Node<T, TOptions>`} class.
  */
 export interface INodeOptions<T>
 {

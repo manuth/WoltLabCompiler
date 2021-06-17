@@ -2,9 +2,11 @@ import { ILocalization } from "../../../Globalization/ILocalization";
 import { IComponentOptions } from "../../../PackageSystem/IComponentOptions";
 import { IFileDescriptorOptions } from "../../../PackageSystem/IFileDescriptorOptions";
 import { IImageDirectoryDescriptorOptions } from "./IImageDirectoryDescriptorOptions";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { Theme } from "./Theme";
 
 /**
- * Provides base-options for the `Theme` class.
+ * Provides base-options for the {@link Theme `Theme`} class.
  */
 export interface IThemeOptionBase extends Partial<IComponentOptions>
 {

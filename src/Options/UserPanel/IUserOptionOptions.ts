@@ -1,9 +1,11 @@
 import { IOptionOptions } from "../IOptionOptions";
 import { EditPermission } from "./EditPermission";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { UserOption } from "./UserOption";
 import { ViewPermission } from "./ViewPermission";
 
 /**
- * Provides options for the `UserOption` class.
+ * Provides options for the {@link UserOption `UserOption`} class.
  */
 export interface IUserOptionOptions extends IOptionOptions
 {

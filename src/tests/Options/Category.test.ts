@@ -8,7 +8,7 @@ import { IOptionOptions } from "../../Options/IOptionOptions";
 import { Option } from "../../Options/Option";
 
 /**
- * Registers tests for the `Category` class.
+ * Registers tests for the {@link Category `Category<TOption, TOptionOptions>`} class.
  */
 export function CategoryTests(): void
 {

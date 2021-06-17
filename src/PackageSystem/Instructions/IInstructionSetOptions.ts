@@ -1,7 +1,9 @@
 import { Instruction } from "./Instruction";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { InstructionSet } from "./InstructionSet";
 
 /**
- * Provides options for the `InstructionSet` class.
+ * Provides options for the {@link InstructionSet `InstructionSet`} class.
  */
 export interface IInstructionSetOptions
 {

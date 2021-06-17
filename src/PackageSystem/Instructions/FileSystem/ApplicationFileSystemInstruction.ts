@@ -14,7 +14,7 @@ export class ApplicationFileSystemInstruction extends FileSystemInstruction
     private application: string = null;
 
     /**
-     * Initializes a new instance of the `ApplicationFileSystemInstruction`.
+     * Initializes a new instance of the {@link ApplicationFileSystemInstruction `ApplicationFileSystemInstruction`}.
      *
      * @param options
      * The options of the application file-system instruction.

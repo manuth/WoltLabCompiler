@@ -31,7 +31,7 @@ export class NodeCollection<T extends INode<TItem>, TItem extends NodeItem> exte
      * The child whose parent to return.
      *
      * @returns
-     * The parent of the `child`.
+     * The parent of the {@link child `child`}.
      */
     protected GetParent(child: T): INode<TItem>
     {

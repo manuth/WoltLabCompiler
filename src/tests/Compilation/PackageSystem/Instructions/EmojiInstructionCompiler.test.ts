@@ -4,7 +4,7 @@ import { CompilerTester } from "../../TestComponents/Testers/CompilerTester";
 import { InstructionCompilerTestRunner } from "../../TestComponents/TestRunners/InstructionCompilerTestRunner";
 
 /**
- * Registers tests for the `EmojiInstructionCompiler` class.
+ * Registers tests for the {@link EmojiInstructionCompiler `EmojiInstructionCompiler`} class.
  */
 export function EmojiInstructionCompilerTests(): void
 {

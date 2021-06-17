@@ -8,7 +8,7 @@ import { LocalizationProviderCompiler } from "./LocalizationProviderCompiler";
 export class BBCodeInstructionCompiler extends LocalizationProviderCompiler<BBCodeInstruction>
 {
     /**
-     * Initializes a new instance of the `BBCodeInstructionCompiler`.
+     * Initializes a new instance of the {@link BBCodeInstructionCompiler `BBCodeInstructionCompiler`} class.
      *
      * @param item
      * The instruction to compile.

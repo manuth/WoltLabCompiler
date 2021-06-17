@@ -1,5 +1,8 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { PackageDescriptor } from "./PackageDescriptor";
+
 /**
- * Provides options for the `PackageDescriptor` class.
+ * Provides options for the {@link PackageDescriptor `PackageDescriptor`} class.
  */
 export interface IPackageDescriptorOptions
 {

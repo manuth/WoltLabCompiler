@@ -1,7 +1,9 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { EventListener } from "./EventListener";
 import { IListenerOptions } from "./IListenerOptions";
 
 /**
- * Provides options for the `EventListener` class.
+ * Provides options for the {@link EventListener `EventListener`} class.
  */
 export interface IEventListenerOptions extends IListenerOptions
 {
@@ -11,7 +13,7 @@ export interface IEventListenerOptions extends IListenerOptions
     ClassName: string;
 
     /**
-     * A value indicating whether listening to the event thrown by a class inheriting from `className` is allowed.
+     * A value indicating whether listening to the event thrown by a class inheriting from {@link IEventListenerOptions.ClassName `ClassName`} is allowed.
      */
     AllowInherited?: boolean;
 

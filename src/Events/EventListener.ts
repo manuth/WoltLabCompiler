@@ -4,7 +4,7 @@ import { Listener } from "./Listener";
 /**
  * Represents the declaration of a PHP-class that should be executed when a specific event occurs.
  *
- * Please note that you have to provide your PHP-files using a `FilesInstruction`.
+ * Please note that you have to provide your PHP-files using a {@link ApplicationFileSystemInstruction `ApplicationFileSystemInstruction`}.
  */
 export class EventListener extends Listener
 {
@@ -14,7 +14,7 @@ export class EventListener extends Listener
     private className: string;
 
     /**
-     * A value indicating whether listening to the event thrown by a class inheriting from `className` is allowed.
+     * A value indicating whether listening to the event thrown by a class inheriting from {@link EventListener.className `className`} is allowed.
      */
     private allowInherited = false;
 
@@ -63,7 +63,7 @@ export class EventListener extends Listener
     }
 
     /**
-     * Gets or sets a value indicating whether listening to the event thrown by a class inheriting from `className` is allowed.
+     * Gets or sets a value indicating whether listening to the event thrown by a class inheriting from {@link EventListener.ClassName `ClassName`} is allowed.
      */
     public get AllowInherited(): boolean
     {

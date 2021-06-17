@@ -1,7 +1,9 @@
 import { IFileDescriptorOptions } from "../../../PackageSystem/IFileDescriptorOptions";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { ImageDirectoryDescriptor } from "./ImageDirectoryDescriptor";
 
 /**
- * Provides options for the `ImageDirectoryDescriptor` class.
+ * Provides options for the {@link ImageDirectoryDescriptor `ImageDirectoryDescriptor`} class.
  */
 export interface IImageDirectoryDescriptorOptions extends Partial<IFileDescriptorOptions>
 {

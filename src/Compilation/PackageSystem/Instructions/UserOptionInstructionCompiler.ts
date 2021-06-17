@@ -5,7 +5,7 @@ import { UserOptionFileCompiler } from "../../Options/UserOptionFileCompiler";
 import { OptionInstructionCompiler } from "./OptionInstructionCompiler";
 
 /**
- * Provides the functionality to compile `UserOptionInstruction`s.
+ * Provides the functionality to compile {@link UserOptionInstruction `UserOptionInstruction`}s.
  */
 export class UserOptionInstructionCompiler extends OptionInstructionCompiler<UserOptionInstruction, UserCategory, UserOption>
 {

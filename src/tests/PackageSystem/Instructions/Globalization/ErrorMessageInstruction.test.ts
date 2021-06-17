@@ -3,7 +3,7 @@ import { ILocalization } from "../../../../Globalization/ILocalization";
 import { ErrorMessageInstruction } from "../../../../PackageSystem/Instructions/Globalization/ErrorMessageInstruction";
 
 /**
- * Registers tests for the `ErrorMessageInstruction` class.
+ * Registers tests for the {@link ErrorMessageInstruction `ErrorMessageInstruction`} class.
  */
 export function ErrorMessageInstructionTests(): void
 {

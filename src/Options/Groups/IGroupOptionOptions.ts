@@ -1,7 +1,9 @@
 import { IOptionOptions } from "../IOptionOptions";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { GroupOption } from "./GroupOption";
 
 /**
- * Provides options for the `GroupOption` class.
+ * Provides options for the {@link GroupOption `GroupOption`} class.
  */
 export interface IGroupOptionOptions extends IOptionOptions
 {

@@ -71,7 +71,7 @@ export abstract class Compiler<T>
     protected abstract Compile(): Promise<void>;
 
     /**
-     * Copies files using `EJS`.
+     * Copies files using `ejs`.
      *
      * @param source
      * The source to copy the files from.

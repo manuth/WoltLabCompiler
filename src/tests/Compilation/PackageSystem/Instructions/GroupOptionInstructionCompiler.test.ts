@@ -5,7 +5,7 @@ import { CompilerTester } from "../../TestComponents/Testers/CompilerTester";
 import { LocalizationInstructionCompilerTestRunner } from "../../TestComponents/TestRunners/LocalizationInstructionCompilerTestRunner";
 
 /**
- * Registers tests for the `GroupOptionInstructionCompiler` class.
+ * Registers tests for the {@link GroupOptionInstructionCompiler `GroupOptionInstructionCompiler`} class.
  */
 export function GroupOptionInstructionCompilerTests(): void
 {

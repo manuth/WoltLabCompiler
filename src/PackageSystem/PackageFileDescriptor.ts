@@ -1,4 +1,6 @@
 import { IPackageFileDescriptorOptions } from "./IPackageFileDescriptorOptions";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { Package } from "./Package";
 import { PackageDescriptor } from "./PackageDescriptor";
 
 /**
@@ -32,7 +34,7 @@ export class PackageFileDescriptor extends PackageDescriptor
     /**
      * The filename of the package.
      *
-     * Keep in mind to provide the file using the `Package.AdditionalFiles`-property.
+     * Keep in mind to provide the file using the {@link Package.AdditionalFiles `Package.AdditionalFiles`}-property.
      */
     public get FileName(): string
     {

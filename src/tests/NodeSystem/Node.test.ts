@@ -4,7 +4,7 @@ import { Node } from "../../NodeSystem/Node";
 import { NodeItem } from "../../NodeSystem/NodeItem";
 
 /**
- * Registers tests for the `Node` class.
+ * Registers tests for the {@link Node `Node<T, TOptions>`} class.
  */
 export function NodeTests(): void
 {
@@ -21,7 +21,7 @@ export function NodeTests(): void
                  * Initializes a new instance of the {@link MyNode `MyNode`} class.
                  *
                  * @param options
-                 * The options for creationg `NodeItem`s.
+                 * The options for creating {@link NodeItem `NodeItem`}s.
                  */
                 public constructor(options: INodeOptions<unknown>)
                 {

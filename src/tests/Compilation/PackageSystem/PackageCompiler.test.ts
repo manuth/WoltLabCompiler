@@ -11,7 +11,7 @@ import { CompilerTester } from "../TestComponents/Testers/CompilerTester";
 import { CompilerTestRunner } from "../TestComponents/TestRunners/CompilerTestRunner";
 
 /**
- * Registers tests for the `PackageCompiler` class.
+ * Registers tests for the {@link PackageCompiler `PackageCompiler`} class.
  */
 export function PackageCompilerTests(): void
 {

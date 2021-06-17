@@ -4,7 +4,7 @@ import { XMLFileCompilerTester } from "./TestComponents/Testers/XMLFileCompilerT
 import { XMLCompilerTestRunner } from "./TestComponents/TestRunners/XMLCompilerTestRunner";
 
 /**
- * Registers tests for the `XMLFileCompiler` class.
+ * Registers tests for the {@link XMLFileCompiler `XMLFileCompiler<T>`} class.
  */
 export function XMLFileCompilerTests(): void
 {

@@ -31,7 +31,7 @@ export class InstructionCompiler<T extends IInstruction> extends Compiler<T>
     }
 
     /**
-     * Returns an XML `Document` which represents the compiled instruction.
+     * Returns an xml-{@link Document `Document`} which represents the compiled instruction.
      *
      * @returns
      * The serialized document.
@@ -57,7 +57,7 @@ export class InstructionCompiler<T extends IInstruction> extends Compiler<T>
     { }
 
     /**
-     * Copies files using `EJS`.
+     * Copies files using `ejs`.
      *
      * @param source
      * The source to copy the files from.

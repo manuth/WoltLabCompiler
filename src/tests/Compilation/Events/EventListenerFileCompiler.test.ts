@@ -7,7 +7,7 @@ import { ListenerCompilerTester } from "../TestComponents/Testers/ListenerCompil
 import { ListenerCompilerTestRunner } from "../TestComponents/TestRunners/ListenerCompilerTestRunner";
 
 /**
- * Registers tests for the `EventListenerFileCompiler` class.
+ * Registers tests for the {@link EventListenerFileCompiler `EventListenerFileCompiler`} class.
  */
 export function EventListenerFileCompilerTests(): void
 {

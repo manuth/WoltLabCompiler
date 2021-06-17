@@ -4,7 +4,7 @@ import { InstructionSet } from "../../../PackageSystem/Instructions/InstructionS
 import { Package } from "../../../PackageSystem/Package";
 
 /**
- * Registers tests for the `InstructionSet` class.
+ * Registers tests for the {@link InstructionSet `InstructionSet`} class.
  */
 export function InstructionSetTests(): void
 {

@@ -1,8 +1,10 @@
 import { ILocalization } from "../Globalization/ILocalization";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { Component } from "./Component";
 import { IPersonOptions } from "./IPersonOptions";
 
 /**
- * Provides options for the `Component` class.
+ * Provides options for the {@link Component `Component`} class.
  */
 export interface IComponentOptions
 {

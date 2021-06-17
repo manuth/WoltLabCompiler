@@ -2,7 +2,7 @@ import { strictEqual } from "assert";
 import { BidirectionalCollection } from "../../Collections/BidirectionalCollection";
 
 /**
- * Registers tests for the `BidirectionalCollection` class.
+ * Registers tests for the {@link BidirectionalCollection `BidirectionalCollection<TParent, TChild>`} class.
  */
 export function BidirectionalCollectionTests(): void
 {
@@ -39,7 +39,7 @@ export function BidirectionalCollectionTests(): void
                  * The child whose parent to return.
                  *
                  * @returns
-                 * The parent of the `child`.
+                 * The parent of the specified {@link child `child`}.
                  */
                 protected GetParent(child: Child): Parent
                 {

@@ -5,7 +5,7 @@ import { LocalizationSetCompiler } from "../../Globalization/LocalizationSetComp
 import { InstructionCompiler } from "./InstructionCompiler";
 
 /**
- * Provides the functionality to compile `ILocalizationInstruction`s.
+ * Provides the functionality to compile {@link ILocalizationInstruction `ILocalizationInstruction`}s.
  */
 export class LocalizationInstructionCompiler extends InstructionCompiler<ILocalizationInstruction>
 {

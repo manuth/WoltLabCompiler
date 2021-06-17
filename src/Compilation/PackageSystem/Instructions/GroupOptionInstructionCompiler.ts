@@ -5,7 +5,7 @@ import { GroupOptionFileCompiler } from "../../Options/GroupOptionFileCompiler";
 import { OptionInstructionCompiler } from "./OptionInstructionCompiler";
 
 /**
- * Provides the functionality to compile `GroupOptionInstruction`s.
+ * Provides the functionality to compile {@link GroupOptionInstruction `GroupOptionInstruction`}s.
  */
 export class GroupOptionInstructionCompiler extends OptionInstructionCompiler<GroupOptionInstruction, GroupCategory, GroupOption>
 {

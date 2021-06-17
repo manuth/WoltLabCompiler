@@ -3,7 +3,7 @@ import { XML } from "../../Serialization/XML";
 import { XMLEditor } from "../../Serialization/XMLEditor";
 
 /**
- * Registers tests for the `XMLEditor` class.
+ * Registers tests for the {@link XMLEditor `XMLEditor`} class.
  */
 export function XMLEditorTests(): void
 {

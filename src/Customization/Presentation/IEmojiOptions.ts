@@ -1,5 +1,8 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { Emoji } from "./Emoji";
+
 /**
- * Provides options for the `Emoji` class.
+ * Provides options for the {@link Emoji `Emoji`} class.
  */
 export interface IEmojiOptions
 {

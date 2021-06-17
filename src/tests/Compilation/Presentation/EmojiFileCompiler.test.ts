@@ -5,7 +5,7 @@ import { ImportCompilerTester } from "../TestComponents/Testers/ImportCompilerTe
 import { ImportCompilerTestRunner } from "../TestComponents/TestRunners/ImportCompilerTestRunner";
 
 /**
- * Registers tests for the `EmojiFileCompiler` class.
+ * Registers tests for the {@link EmojiFileCompiler `EmojiFileCompiler`} class.
  */
 export function EmojiFileCompilerTests(): void
 {

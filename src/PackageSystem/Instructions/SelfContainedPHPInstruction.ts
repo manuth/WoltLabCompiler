@@ -8,12 +8,12 @@ import { ISelfContainedPHPInstructionOptions } from "./ISelfContainedPHPInstruct
 import { PHPInstruction } from "./PHPInstruction";
 
 /**
- * Represents an instruction which uploads and executes `php`-code.
+ * Represents an instruction which uploads and executes `.php`-code.
  */
 export class SelfContainedPHPInstruction extends ApplicationFileSystemInstruction
 {
     /**
-     * The path to save the `php`-file to.
+     * The path to save the `.php`-file to.
      */
     private destination: string;
 
@@ -38,7 +38,7 @@ export class SelfContainedPHPInstruction extends ApplicationFileSystemInstructio
     }
 
     /**
-     * Gets or sets the path to load the `php`-file from.
+     * Gets or sets the path to load the `.php`-file from.
      */
     public override get Source(): string
     {
@@ -70,7 +70,7 @@ export class SelfContainedPHPInstruction extends ApplicationFileSystemInstructio
     }
 
     /**
-     * Gets or sets the path to save the `php`-file to.
+     * Gets or sets the path to save the `.php`-file to.
      */
     public get Destination(): string
     {

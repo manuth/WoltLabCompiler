@@ -2,7 +2,7 @@ import { strictEqual } from "assert";
 import { ImageDirectoryDescriptor } from "../../../Customization/Presentation/Themes/ImageDirectoryDescriptor";
 
 /**
- * Registers tests for the `ImageDirectoryDescriptor` class.
+ * Registers tests for the {@link ImageDirectoryDescriptor `ImageDirectoryDescriptor`} class.
  */
 export function ImageDirectoryDescriptorTests(): void
 {

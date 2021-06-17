@@ -1,7 +1,7 @@
 import { IThemeOptionBase } from "./IThemeOptionBase";
 
 /**
- * Provides options for the `ThemeLoader`-class.
+ * Provides options for the {@link ThemeLoader `ThemeLoader`}-class.
  */
 export interface IThemeLoaderOptions extends IThemeOptionBase
 {

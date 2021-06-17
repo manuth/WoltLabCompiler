@@ -3,10 +3,12 @@ import { TempDirectory, TempFile } from "@manuth/temp-files";
 import { readdir, readFile, writeFile } from "fs-extra";
 import { extract } from "tar";
 import { join } from "upath";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { Compiler } from "../../Compilation/Compiler";
 import { TestCompiler } from "./TestCompiler";
 
 /**
- * Registers tests for the `Compiler` class.
+ * Registers tests for the {@link Compiler `Compiler<T>`} class.
  */
 export function CompilerTests(): void
 {
