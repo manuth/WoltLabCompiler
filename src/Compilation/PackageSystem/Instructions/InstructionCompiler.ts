@@ -5,6 +5,9 @@ import { Compiler } from "../../Compiler";
 
 /**
  * Provides the functionality to compile an instruction.
+ *
+ * @template T
+ * The type of the item which can be compiled by this compiler.
  */
 export class InstructionCompiler<T extends IInstruction> extends Compiler<T>
 {

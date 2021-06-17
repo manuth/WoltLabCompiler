@@ -5,6 +5,9 @@ import { Compiler } from "./Compiler";
 
 /**
  * Provides the functionality to compile components to `.xml`-files.
+ *
+ * @template T
+ * The type of the item which can be compiled by this compiler.
  */
 export abstract class XMLFileCompiler<T> extends Compiler<T>
 {

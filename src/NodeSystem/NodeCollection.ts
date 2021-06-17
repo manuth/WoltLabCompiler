@@ -4,6 +4,12 @@ import { NodeItem } from "./NodeItem";
 
 /**
  * Represents a collection of items.
+ *
+ * @template T
+ * The type of the nodes.
+ *
+ * @template TItem
+ * The type of the item provided by the nodes.
  */
 export class NodeCollection<T extends INode<TItem>, TItem extends NodeItem> extends BidirectionalCollection<INode<TItem>, T>
 {

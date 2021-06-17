@@ -4,6 +4,9 @@ import { XMLFileCompilerTester } from "./XMLFileCompilerTester";
 
 /**
  * Provides the functionality to test an import file compiler.
+ *
+ * @template TCompiler
+ * The type of the compiler to test.
  */
 export class ImportCompilerTester<TCompiler extends ImportFileCompiler<unknown>> extends XMLFileCompilerTester<TCompiler>
 {

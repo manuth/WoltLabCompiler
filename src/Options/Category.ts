@@ -7,6 +7,12 @@ import { Option } from "./Option";
 
 /**
  * Represents an option-category.
+ *
+ * @template TOption
+ * The type of the options.
+ *
+ * @template TOptionOptions
+ * The type of the data for generating options.
  */
 export class Category<TOption extends Option, TOptionOptions> extends NodeItem implements ICategory<TOption>
 {

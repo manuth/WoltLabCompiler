@@ -132,6 +132,9 @@ export class XMLEditor
      *
      * @param node
      * The node to add.
+     *
+     * @template T
+     * The type of the node to add.
      */
     public Add<T extends Node | XMLEditor>(node: T): void
     {
@@ -270,6 +273,9 @@ export class XMLEditor
      *
      * @param nodeList
      * The node-list to convert.
+     *
+     * @template T
+     * The type of the nodes.
      *
      * @returns
      * An array representing the specified `nodeList`.

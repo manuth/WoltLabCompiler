@@ -6,6 +6,12 @@ import { CompilerTestRunner } from "./CompilerTestRunner";
 
 /**
  * Provides the functionality to register tests for the `XMLFileCompiler`.
+ *
+ * @template TTester
+ * The type of the compiler-tester.
+ *
+ * @template TCompiler
+ * The type of the compiler.
  */
 export abstract class XMLCompilerTestRunner<TTester extends XMLFileCompilerTester<TCompiler>, TCompiler extends XMLFileCompiler<unknown>> extends CompilerTestRunner<TTester, TCompiler>
 {

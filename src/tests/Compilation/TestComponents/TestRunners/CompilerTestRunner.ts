@@ -5,6 +5,12 @@ import { CompilerTester } from "../Testers/CompilerTester";
 
 /**
  * Provides the functionality to register tests for a compiler.
+ *
+ * @template TTester
+ * The type of the compiler-tester.
+ *
+ * @template TCompiler
+ * The type of the compiler.
  */
 export abstract class CompilerTestRunner<TTester extends CompilerTester<TCompiler>, TCompiler extends Compiler<unknown>>
 {

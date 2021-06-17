@@ -10,6 +10,12 @@ import { CompilerTestRunner } from "./CompilerTestRunner";
 
 /**
  * Provides the functionality to register tests for an instruction-compiler.
+ *
+ * @template TTester
+ * The type of the compiler-tester.
+ *
+ * @template TCompiler
+ * The type of the compiler.
  */
 export abstract class InstructionCompilerTestRunner<TTester extends CompilerTester<TCompiler>, TCompiler extends InstructionCompiler<IInstruction>> extends CompilerTestRunner<TTester, TCompiler>
 {

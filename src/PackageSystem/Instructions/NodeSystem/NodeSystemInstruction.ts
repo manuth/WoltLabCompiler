@@ -6,6 +6,12 @@ import { INodeSystemInstructionOptions } from "./INodeSystemInstructionOptions";
 
 /**
  * Represents an instruction which provides nodes.
+ *
+ * @template T
+ * The type of the nodes.
+ *
+ * @template TOptions
+ * The type of the options for generating nodes.
  */
 export abstract class NodeSystemInstruction<T extends NodeItem, TOptions> extends Instruction implements INodeSystemInstruction<T>
 {

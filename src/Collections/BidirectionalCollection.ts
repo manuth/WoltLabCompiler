@@ -1,5 +1,11 @@
 /**
  * Represents a collection which is bidirectional.
+ *
+ * @template TParent
+ * The type of the parent of the collection.
+ *
+ * @template TChild
+ * The type of the children of the collection.
  */
 export abstract class BidirectionalCollection<TParent, TChild> extends Array<TChild>
 {

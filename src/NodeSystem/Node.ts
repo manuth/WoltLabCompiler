@@ -5,6 +5,12 @@ import { NodeItem } from "./NodeItem";
 
 /**
  * Represents a node.
+ *
+ * @template T
+ * The type of the node-item.
+ *
+ * @template TOptions
+ * The type of the options for generating nodes.
  */
 export class Node<T extends NodeItem, TOptions> implements INode<T>
 {

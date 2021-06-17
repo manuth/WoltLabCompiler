@@ -3,6 +3,9 @@ import { Compiler } from "../../../../Compilation/Compiler";
 
 /**
  * Provides the functionality to test a compiler.
+ *
+ * @template TCompiler
+ * The type of the compiler to test.
  */
 export class CompilerTester<TCompiler extends Compiler<unknown>>
 {

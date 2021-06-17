@@ -8,6 +8,15 @@ import { XMLCompilerTestRunner } from "./XMLCompilerTestRunner";
 
 /**
  * Provides the functionality to register tests for `ListenerFileCompiler`s.
+ *
+ * @template TTester
+ * The type of the compiler-tester.
+ *
+ * @template TCompiler
+ * The type of the compiler.
+ *
+ * @template TListener
+ * The type of the listeners provided by the instruction.
  */
 export abstract class ListenerCompilerTestRunner<TTester extends ListenerCompilerTester<TCompiler>, TCompiler extends ListenerFileCompiler<IListenerInstruction<TListener>, TListener>, TListener extends Listener> extends XMLCompilerTestRunner<TTester, TCompiler>
 {

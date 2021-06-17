@@ -4,6 +4,9 @@ import { InstructionCompiler } from "./InstructionCompiler";
 
 /**
  * Provides the functionality to compile instructions which only depend on one file-compiler.
+ *
+ * @template T
+ * The type of the item which can be compiled by this compiler.
  */
 export abstract class InstructionFileCompiler<T extends IInstruction> extends InstructionCompiler<T>
 {

@@ -5,6 +5,12 @@ import { IListenerInstructionOptions } from "./IListenerInstructionOptions";
 
 /**
  * Represents an instruction which provides listeners.
+ *
+ * @template T
+ * The type of the listeners.
+ *
+ * @template TOptions
+ * The type of the options for generating listeners.
  */
 export abstract class ListenerInstruction<T extends Listener, TOptions> extends NamedDeleteInstruction implements IListenerInstruction<T>
 {

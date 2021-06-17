@@ -6,6 +6,9 @@ import { dirname, join, resolve } from "upath";
 
 /**
  * Provides the functionality to compile a component.
+ *
+ * @template T
+ * The type of the item which can be compiled by this compiler.
  */
 export abstract class Compiler<T>
 {

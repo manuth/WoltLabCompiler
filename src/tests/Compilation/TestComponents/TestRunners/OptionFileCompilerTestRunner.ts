@@ -10,6 +10,18 @@ import { ImportCompilerTestRunner } from "./ImportCompilerTestRunner";
 
 /**
  * Provides the functionality to register tests for `OptionFileCompiler`s.
+ *
+ * @template TTester
+ * The type of the compiler-tester.
+ *
+ * @template TCompiler
+ * The type of the compiler.
+ *
+ * @template TCategory
+ * The type of the categories provided by the instruction.
+ *
+ * @template TOption
+ * The type of the options provided by the instruction.
  */
 export abstract class OptionFileCompilerTestRunner<TTester extends OptionCompilerTester<TCompiler>, TCompiler extends OptionFileCompiler<IOptionInstruction<TCategory, TOption>, TCategory, TOption>, TCategory extends ICategory<TOption>, TOption extends Option> extends ImportCompilerTestRunner<TTester, TCompiler>
 {

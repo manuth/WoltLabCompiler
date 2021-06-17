@@ -7,6 +7,9 @@ import { ImportCompilerTester } from "./ImportCompilerTester";
 
 /**
  * Provides the functionality to test an option-compiler.
+ *
+ * @template TCompiler
+ * The type of the compiler to test.
  */
 export class OptionCompilerTester<TCompiler extends OptionFileCompiler<IOptionInstruction<ICategory<Option>, Option>, ICategory<Option>, Option>> extends ImportCompilerTester<TCompiler>
 {
