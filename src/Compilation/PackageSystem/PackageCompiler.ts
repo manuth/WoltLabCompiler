@@ -45,7 +45,7 @@ export class PackageCompiler extends Compiler<Package>
             {
                 let updateSetCompiler: InstructionSetCompiler = new InstructionSetCompiler(updateSet);
                 updateSetCompiler.DestinationPath = tempDir.FullName;
-                await installSetCompiler.Execute();
+                await updateSetCompiler.Execute();
             }
 
             await this.Compress(tempDir.FullName, this.DestinationPath);
