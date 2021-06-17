@@ -12,7 +12,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
   - New tests reflecting the changes
 
-[Show differences](https://github.com/manuth/WoltLabCompiler/compare/v2.1.1...dev)
+[Show differences](https://github.com/manuth/WoltLabCompiler/compare/v2.1.2...dev)
+
+## WoltLabCompiler v2.1.2
+### Updated
+  - Code to set a default directory for `UpdateInstructionSet`s
+  - The jsdoc-comments
+
+### Added
+  - New tests reflecting the changes
+
+[Show differences](https://github.com/manuth/WoltLabCompiler/compare/v2.1.1...v2.1.2)
 
 ## WoltLabCompiler v2.1.1
 ### Fixed
