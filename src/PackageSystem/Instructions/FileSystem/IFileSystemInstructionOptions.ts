@@ -1,4 +1,5 @@
 import { IInstructionOptions } from "../IInstructionOptions";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { FileSystemInstruction } from "./FileSystemInstruction";
 
 /**
