@@ -64,7 +64,7 @@
     "@types/mem-fs": "^1.1.2",
     "@types/mem-fs-editor": "^7.0.0",
     "@types/mocha": "^8.2.2",
-    "@types/node": "^15.12.2",
+    "@types/node": "^16.7.1",
     "@types/sass": "^1.16.0",
     "@types/tar": "^4.0.4",
     "@types/xmldom": "^0.1.30",
