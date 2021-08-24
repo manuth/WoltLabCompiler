@@ -1,5 +1,5 @@
+import { XMLSerializer } from "@xmldom/xmldom";
 import { ensureFile, writeFile } from "fs-extra";
-import { XMLSerializer } from "xmldom";
 import { XML } from "../Serialization/XML";
 import { Compiler } from "./Compiler";
 

@@ -1,5 +1,5 @@
+import { DOMParser } from "@xmldom/xmldom";
 import { join } from "upath";
-import { DOMParser } from "xmldom";
 import { IInstruction } from "../../../PackageSystem/Instructions/IInstruction";
 import { Compiler } from "../../Compiler";
 
