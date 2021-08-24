@@ -1,6 +1,7 @@
 import { ok, strictEqual } from "assert";
 import { join } from "upath";
 import { PackageFileCompiler } from "../../../Compilation/PackageSystem/PackageFileCompiler";
+import { Constants } from "../../../Constants";
 import { ILocalization } from "../../../Globalization/ILocalization";
 import { BBCodeInstruction } from "../../../PackageSystem/Instructions/Customization/BBCodeInstruction";
 import { TemplateListenerInstruction } from "../../../PackageSystem/Instructions/Events/TemplateListenerInstruction";
@@ -28,7 +29,7 @@ export function PackageFileCompilerTests(): void
          */
         protected CreateTester(): XMLFileCompilerTester<PackageFileCompiler>
         {
-            let locales = ["inv", "de"];
+            let locales = [Constants.InvariantCultureName, "de"];
             let displayName: ILocalization = {};
             let description: ILocalization = {};
 
@@ -210,7 +211,7 @@ export function PackageFileCompilerTests(): void
                                 (displayNameNode) =>
                                 {
                                     return (
-                                        (locale === "inv") ?
+                                        (locale === Constants.InvariantCultureName) ?
                                             !displayNameNode.HasAttribute(localeAttribute) :
                                             (displayNameNode.HasAttribute(localeAttribute) && displayNameNode.GetAttribute(localeAttribute) === locale)) &&
                                         (displayNameNode.TextContent === this.Compiler.Item.DisplayName.Data.get(locale));
@@ -224,7 +225,7 @@ export function PackageFileCompilerTests(): void
                                 (descriptionNode) =>
                                 {
                                     return (
-                                        (locale === "inv") ?
+                                        (locale === Constants.InvariantCultureName) ?
                                             !descriptionNode.HasAttribute(localeAttribute) :
                                             (descriptionNode.HasAttribute(localeAttribute) && descriptionNode.GetAttribute(localeAttribute) === locale)) &&
                                         (descriptionNode.TextContent === this.Compiler.Item.Description.Data.get(locale));

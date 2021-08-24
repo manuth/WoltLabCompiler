@@ -1,3 +1,4 @@
+import { Constants } from "../../Constants";
 import { Package } from "../../PackageSystem/Package";
 import { XMLEditor } from "../../Serialization/XMLEditor";
 import { WoltLabXMLCompiler } from "../WoltLabXMLCompiler";
@@ -59,7 +60,7 @@ export class PackageFileCompiler extends WoltLabXMLCompiler<Package>
             let displayNameElement = packageNode.CreateTextElement("packagename", this.Item.DisplayName.Data.get(locale));
             packageNode.Add(displayNameElement);
 
-            if (locale !== "inv")
+            if (locale !== Constants.InvariantCultureName)
             {
                 displayNameElement.SetAttribute("languagecode", locale);
             }
@@ -70,7 +71,7 @@ export class PackageFileCompiler extends WoltLabXMLCompiler<Package>
             let description = packageNode.CreateTextElement("packagedescription", this.Item.Description.Data.get(locale));
             packageNode.Add(description);
 
-            if (locale !== "inv")
+            if (locale !== Constants.InvariantCultureName)
             {
                 description.SetAttribute("languagecode", locale);
             }

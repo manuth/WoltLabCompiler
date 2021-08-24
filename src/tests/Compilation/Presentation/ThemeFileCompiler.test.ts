@@ -2,6 +2,7 @@ import { strictEqual } from "assert";
 import { TempFile } from "@manuth/temp-files";
 import { writeJSON } from "fs-extra";
 import { ThemeFileCompiler } from "../../../Compilation/Presentation/ThemeFileCompiler";
+import { Constants } from "../../../Constants";
 import { Theme } from "../../../Customization/Presentation/Themes/Theme";
 import { ILocalization } from "../../../Globalization/ILocalization";
 import { ThemeInstruction } from "../../../PackageSystem/Instructions/Customization/Presentation/ThemeInstruction";
@@ -28,7 +29,7 @@ export function ThemeFileCompilerTests(): void
             await writeJSON(variableSource.FullName, { wcfHeaderBackground: "red" });
 
             let locales = [
-                "inv",
+                Constants.InvariantCultureName,
                 "de",
                 "en"
             ];
@@ -115,7 +116,7 @@ export function ThemeFileCompilerTests(): void
                             (nameNode) =>
                             {
                                 return (
-                                    (locale === "inv") ?
+                                    (locale === Constants.InvariantCultureName) ?
                                         !nameNode.HasAttribute(localeAttribute) :
                                         (nameNode.HasAttribute(localeAttribute) && nameNode.GetAttribute(localeAttribute) === locale)) &&
                                     (nameNode.TextContent === this.Compiler.Item.DisplayName.Data.get(locale));
@@ -128,7 +129,7 @@ export function ThemeFileCompilerTests(): void
                             (descriptionNode) =>
                             {
                                 return (
-                                    (locale === "inv") ?
+                                    (locale === Constants.InvariantCultureName) ?
                                         !descriptionNode.HasAttribute(localeAttribute) :
                                         (descriptionNode.HasAttribute(localeAttribute) && descriptionNode.GetAttribute(localeAttribute) === locale)) &&
                                     (descriptionNode.TextContent === this.Compiler.Item.Description.Data.get(locale));

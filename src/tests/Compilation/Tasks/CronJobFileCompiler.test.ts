@@ -1,5 +1,6 @@
 import { ok, strictEqual } from "assert";
 import { CronJobFileCompiler } from "../../../Compilation/Tasks/CronJobFileCompiler";
+import { Constants } from "../../../Constants";
 import { ILocalization } from "../../../Globalization/ILocalization";
 import { CronJobInstruction } from "../../../PackageSystem/Instructions/Tasks/CronJobInstruction";
 import { TimePeriod } from "../../../Tasks/TimePeriod";
@@ -21,7 +22,7 @@ export function CronJobFileCompilerTests(): void
          */
         protected CreateTester(): ImportCompilerTester<CronJobFileCompiler>
         {
-            let locales = ["inv", "de", "en"];
+            let locales = [Constants.InvariantCultureName, "de", "en"];
             let description: ILocalization = {};
 
             for (let locale of locales)
@@ -84,7 +85,7 @@ export function CronJobFileCompilerTests(): void
                                                 (nameNode) =>
                                                 {
                                                     return (
-                                                        (locale === "inv") ?
+                                                        (locale === Constants.InvariantCultureName) ?
                                                             !nameNode.HasAttribute(localeAttribute) :
                                                             (nameNode.HasAttribute(localeAttribute) && nameNode.GetAttribute(localeAttribute) === locale)) &&
                                                         (nameNode.TextContent === cronJob.Description.Data.get(locale));
