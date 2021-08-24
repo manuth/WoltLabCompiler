@@ -7,8 +7,8 @@ import { LocalizationProviderCompiler } from "./LocalizationProviderCompiler";
 /**
  * Provides the functionality to compile instructions which provide options for the control-panel.
  *
- * @template T
- * The type of the item which can be compiled by this compiler.
+ * @template TInstruction
+ * The type of the instruction which can be compiled by this compiler.
  *
  * @template TCategory
  * The type of the option-categories.
@@ -16,23 +16,23 @@ import { LocalizationProviderCompiler } from "./LocalizationProviderCompiler";
  * @template TOption
  * The type of the options.
  */
-export abstract class OptionInstructionCompiler<T extends IOptionInstruction<TCategory, TOption>, TCategory extends ICategory<TOption>, TOption extends Option> extends LocalizationProviderCompiler<T>
+export abstract class OptionInstructionCompiler<TInstruction extends IOptionInstruction<TCategory, TOption>, TCategory extends ICategory<TOption>, TOption extends Option> extends LocalizationProviderCompiler<TInstruction>
 {
     /**
-     * Initializes a new instance of the {@link OptionInstructionCompiler `OptionInstructionCompiler<T, TCategory, TOption>`} class.
+     * Initializes a new instance of the {@link OptionInstructionCompiler `OptionInstructionCompiler<TInstruction, TCategory, TOption>`} class.
      *
-     * @param item
-     * The item to compile.
+     * @param instruction
+     * The instruction to compile.
      */
-    public constructor(item: T)
+    public constructor(instruction: TInstruction)
     {
-        super(item);
+        super(instruction);
     }
 
     /**
      * Gets a component for compiling the option-file.
      */
-    protected abstract get OptionFileCompiler(): Compiler<T>;
+    protected abstract get OptionFileCompiler(): Compiler<TInstruction>;
 
     /**
      * @inheritdoc
@@ -40,7 +40,7 @@ export abstract class OptionInstructionCompiler<T extends IOptionInstruction<TCa
     protected override async Compile(): Promise<void>
     {
         await super.Compile();
-        let compiler: Compiler<T> = this.OptionFileCompiler;
+        let compiler: Compiler<TInstruction> = this.OptionFileCompiler;
         compiler.DestinationPath = this.DestinationFileName;
         await compiler.Execute();
         await this.CopyTemplate(this.DestinationFileName, this.DestinationFileName);

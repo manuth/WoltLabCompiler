@@ -6,13 +6,13 @@ import { NodeItem } from "./NodeItem";
 /**
  * Represents a node.
  *
- * @template T
+ * @template TItem
  * The type of the node-item.
  *
  * @template TOptions
  * The type of the options for generating nodes.
  */
-export class Node<T extends NodeItem, TOptions> implements INode<T>
+export class Node<TItem extends NodeItem, TOptions> implements INode<TItem>
 {
     /**
      * The id of the node.
@@ -27,20 +27,20 @@ export class Node<T extends NodeItem, TOptions> implements INode<T>
     /**
      * The item of the node.
      */
-    private item: T = null;
+    private item: TItem = null;
 
     /**
      * The parent of the node.
      */
-    private parent: Node<T, TOptions> = null;
+    private parent: Node<TItem, TOptions> = null;
 
     /**
      * The children of the node.
      */
-    private nodes: Array<Node<T, TOptions>> = new NodeCollection(this);
+    private nodes: Array<Node<TItem, TOptions>> = new NodeCollection(this);
 
     /**
-     * Initializes a new instance of the {@link Node `Node<T, TOptions>`} class.
+     * Initializes a new instance of the {@link Node `Node<TItem, TOptions>`} class.
      *
      * @param options
      * The options for generating the object.
@@ -48,7 +48,7 @@ export class Node<T extends NodeItem, TOptions> implements INode<T>
      * @param generator
      * The generator-function for generating sub-nodes.
      */
-    public constructor(options: INodeOptions<TOptions>, generator: (node: Node<T, TOptions>, options: TOptions) => T)
+    public constructor(options: INodeOptions<TOptions>, generator: (node: Node<TItem, TOptions>, options: TOptions) => TItem)
     {
         if (
             (options.ID !== null) &&
@@ -87,11 +87,11 @@ export class Node<T extends NodeItem, TOptions> implements INode<T>
     /**
      * Gets the parents of the node.
      */
-    protected get Parents(): Array<Node<T, TOptions>>
+    protected get Parents(): Array<Node<TItem, TOptions>>
     {
-        let result: Array<Node<T, TOptions>> = [];
+        let result: Array<Node<TItem, TOptions>> = [];
 
-        for (let node: Node<T, TOptions> = this.Parent; node !== null; node = node.Parent)
+        for (let node: Node<TItem, TOptions> = this.Parent; node !== null; node = node.Parent)
         {
             result.push(node);
         }
@@ -136,13 +136,13 @@ export class Node<T extends NodeItem, TOptions> implements INode<T>
      */
     public get FullName(): string
     {
-        return this.Parents.reverse().concat([this]).map((node: Node<T, TOptions>) => node.Name).join(".");
+        return this.Parents.reverse().concat([this]).map((node: Node<TItem, TOptions>) => node.Name).join(".");
     }
 
     /**
      * @inheritdoc
      */
-    public get Item(): T
+    public get Item(): TItem
     {
         return this.item;
     }
@@ -150,7 +150,7 @@ export class Node<T extends NodeItem, TOptions> implements INode<T>
     /**
      * @inheritdoc
      */
-    public get Parent(): Node<T, TOptions>
+    public get Parent(): Node<TItem, TOptions>
     {
         return this.parent;
     }
@@ -158,7 +158,7 @@ export class Node<T extends NodeItem, TOptions> implements INode<T>
     /**
      * @inheritdoc
      */
-    public set Parent(value: Node<T, TOptions>)
+    public set Parent(value: Node<TItem, TOptions>)
     {
         if (this.Parent !== value)
         {
@@ -181,7 +181,7 @@ export class Node<T extends NodeItem, TOptions> implements INode<T>
     /**
      * @inheritdoc
      */
-    public get Nodes(): Array<Node<T, TOptions>>
+    public get Nodes(): Array<Node<TItem, TOptions>>
     {
         return this.nodes;
     }
@@ -192,9 +192,9 @@ export class Node<T extends NodeItem, TOptions> implements INode<T>
      * @returns
      * All nodes inside this node.
      */
-    public GetAllNodes(): Array<Node<T, TOptions>>
+    public GetAllNodes(): Array<Node<TItem, TOptions>>
     {
-        let result: Array<Node<T, TOptions>> = [];
+        let result: Array<Node<TItem, TOptions>> = [];
         result.push(this);
 
         for (let node of this.Nodes)

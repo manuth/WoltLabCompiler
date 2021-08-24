@@ -10,8 +10,8 @@ import { ImportFileCompiler } from "../ImportFileCompiler";
 /**
  * Provides the functionality to compile option-files.
  *
- * @template T
- * The type of the item which can be compiled by this compiler.
+ * @template TInstruction
+ * The type of the instruction which can be compiled by this compiler.
  *
  * @template TCategory
  * The type of the option-categories.
@@ -19,7 +19,7 @@ import { ImportFileCompiler } from "../ImportFileCompiler";
  * @template TOption
  * The type of the options.
  */
-export abstract class OptionFileCompiler<T extends IOptionInstruction<TCategory, TOption>, TCategory extends ICategory<TOption>, TOption extends Option> extends ImportFileCompiler<T>
+export abstract class OptionFileCompiler<TInstruction extends IOptionInstruction<TCategory, TOption>, TCategory extends ICategory<TOption>, TOption extends Option> extends ImportFileCompiler<TInstruction>
 {
     /**
      * The language-category which contains translations for options.
@@ -27,15 +27,15 @@ export abstract class OptionFileCompiler<T extends IOptionInstruction<TCategory,
     private languageCategory: string;
 
     /**
-     * Initializes a new instance of the {@link OptionFileCompiler `OptionFileCompiler<T, TCategory, TOption>`} class.
+     * Initializes a new instance of the {@link OptionFileCompiler `OptionFileCompiler<TInstruction, TCategory, TOption>`} class.
      *
-     * @param item
-     * The item to compile.
+     * @param instruction
+     * The instruction to compile.
      */
-    public constructor(item: T)
+    public constructor(instruction: TInstruction)
     {
-        super(item);
-        this.LanguageCategory = `${item.RootCategory}${item.OptionCategory ? `.${item.OptionCategory}` : ""}`;
+        super(instruction);
+        this.LanguageCategory = `${instruction.RootCategory}${instruction.OptionCategory ? `.${instruction.OptionCategory}` : ""}`;
     }
 
     /**

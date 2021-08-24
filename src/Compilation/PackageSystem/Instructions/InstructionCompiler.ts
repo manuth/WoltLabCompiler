@@ -7,19 +7,19 @@ import { Compiler } from "../../Compiler";
  * Provides the functionality to compile an instruction.
  *
  * @template T
- * The type of the item which can be compiled by this compiler.
+ * The type of the instruction which can be compiled by this compiler.
  */
 export class InstructionCompiler<T extends IInstruction> extends Compiler<T>
 {
     /**
      * Initializes a new instance of the {@link InstructionCompiler `InstructionCompiler<T>`} class.
      *
-     * @param item
-     * The item to compile.
+     * @param instruction
+     * The instruction to compile.
      */
-    public constructor(item: T)
+    public constructor(instruction: T)
     {
-        super(item);
+        super(instruction);
     }
 
     /**
