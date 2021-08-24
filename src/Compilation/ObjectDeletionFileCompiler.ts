@@ -7,6 +7,9 @@ import { ImportFileCompiler } from "./ImportFileCompiler";
  *
  * @template T
  * The type of the item which can be compiled by this compiler.
+ *
+ * @template TObject
+ * The type of the information that is required for serializing an object-deletion.
  */
 export abstract class ObjectDeletionFileCompiler<T extends IDeleteInstruction<TObject>, TObject> extends ImportFileCompiler<T>
 {
