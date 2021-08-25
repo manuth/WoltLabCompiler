@@ -1,3 +1,4 @@
+/// <reference lib="DOM" />
 import { Constants } from "./Constants";
 
 export { BidirectionalCollection } from "./Collections/BidirectionalCollection";
