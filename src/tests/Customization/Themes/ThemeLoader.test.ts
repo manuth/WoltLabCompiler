@@ -189,7 +189,7 @@ export function ThemeLoaderTests(): void
                         () =>
                         {
                             test(
-                                "Checking whether the `CustomScss`-property is loaded from the `.scss`-file…",
+                                "Checking whether the `CustomScss`-property is loaded from the corresponding `.scss`-file…",
                                 () =>
                                 {
                                     strictEqual(theme.CustomScss, customScss);

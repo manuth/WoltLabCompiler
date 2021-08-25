@@ -25,7 +25,7 @@ export function XMLTests(): void
                         });
 
                     test(
-                        "Checking whether document can be created…",
+                        "Checking whether documents can be created…",
                         () =>
                         {
                             document = XML.CreateDocument(tag);
@@ -39,7 +39,7 @@ export function XMLTests(): void
                         });
 
                     test(
-                        "Checking whether the tag-name is correct…",
+                        "Checking whether the tag-name is set correctly…",
                         () =>
                         {
                             strictEqual(document.documentElement.tagName, tag);

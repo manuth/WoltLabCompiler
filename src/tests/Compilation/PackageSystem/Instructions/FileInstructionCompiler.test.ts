@@ -79,7 +79,7 @@ export function FileInstructionCompilerTests(): void
                 });
 
             test(
-                "Checking whether all files are present inside the the archive…",
+                "Checking whether all files are present inside the archive…",
                 async () =>
                 {
                     let files = await Tar.ListTarFiles(
@@ -108,14 +108,14 @@ export function FileInstructionCompilerTests(): void
                 "Serialize",
                 () =>
                 {
-                    let appliaction: string;
+                    let application: string;
                     let normalEditor: XMLEditor;
                     let applicationEditor: XMLEditor;
 
                     suiteSetup(
                         () =>
                         {
-                            appliaction = "gallery";
+                            application = "gallery";
                         });
 
                     setup(
@@ -129,7 +129,7 @@ export function FileInstructionCompilerTests(): void
                             let applicationInstruction = new ApplicationFileSystemInstruction(
                                 {
                                     Source: join("gallery", "files"),
-                                    Application: appliaction
+                                    Application: application
                                 });
 
                             new Package(
@@ -152,7 +152,7 @@ export function FileInstructionCompilerTests(): void
                         "Checking whether the `application`-attribute is not present if the `Application` is not specified…",
                         () =>
                         {
-                            ok(!normalEditor.HasAttribute("appliaction"));
+                            ok(!normalEditor.HasAttribute("application"));
                         });
 
                     test(

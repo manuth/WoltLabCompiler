@@ -28,7 +28,7 @@ export function CategoryTests(): void
             class MyCategory extends Category<Option, IOptionOptions>
             {
                 /**
-                 * Initializes a new instance of the {@link MyCategor `MyCategor`} class.
+                 * Initializes a new instance of the {@link MyCategory `MyCategory`} class.
                  *
                  * @param node
                  * The node of the category.

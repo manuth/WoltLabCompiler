@@ -53,7 +53,7 @@ export class Package extends Component
      * Initializes a new instance of the {@link Package `Package`} class.
      *
      * @param options
-     * The options of the packge.
+     * The options of the package.
      */
     public constructor(options: IPackageOptions)
     {

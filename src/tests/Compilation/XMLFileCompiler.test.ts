@@ -67,7 +67,7 @@ export function XMLFileCompilerTests(): void
                 });
 
             test(
-                "Checking whether the root-tag is set correct…",
+                "Checking whether the root-tag is set correctly…",
                 () =>
                 {
                     strictEqual(this.Tester.XMLEditor.TagName, rootTag);

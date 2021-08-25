@@ -54,7 +54,7 @@ export function ThemeFileCompilerTests(): void
                         Description: description,
                         Thumbnail: "thumb.png",
                         HighResThumbnail: "highResThumb.png",
-                        CoverPhoto: "covr.jpg",
+                        CoverPhoto: "cover.jpg",
                         Author: {
                             Name: "John Doe",
                             URL: "https://example.com/"
@@ -89,7 +89,7 @@ export function ThemeFileCompilerTests(): void
          */
         protected CreateTester(): XMLFileCompilerTester<ThemeFileCompiler>
         {
-            return new XMLFileCompilerTester(new ThemeFileCompiler(theme, "variablex.xml"));
+            return new XMLFileCompilerTester(new ThemeFileCompiler(theme, "variables.xml"));
         }
 
         /**

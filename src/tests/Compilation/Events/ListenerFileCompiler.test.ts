@@ -17,7 +17,7 @@ export function ListenerFileCompilerTests(): void
     let listenerTag: string;
 
     /**
-     * Represenst an instruction which provides listeners.
+     * Represents an instruction which provides listeners.
      */
     class MyListenerInstruction extends ListenerInstruction<Listener, IListenerOptions>
     {

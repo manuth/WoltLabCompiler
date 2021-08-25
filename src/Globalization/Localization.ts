@@ -34,7 +34,7 @@ export class Localization
     }
 
     /**
-     * Creates an object which represents this localizaion.
+     * Creates an object which represents this localization.
      *
      * @returns
      * An object which represents this localization.

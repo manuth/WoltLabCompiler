@@ -15,7 +15,7 @@ export class ConflictingPackageDescriptor extends PackageDescriptor
      * Initializes a new instance of the {@link ConflictingPackageDescriptor `ConflictingPackageDescriptor`} class.
      *
      * @param options
-     * The options of the confilcting package descriptor.
+     * The options of the conflicting package descriptor.
      */
     public constructor(options: IConflictingPackageDescriptorOptions)
     {
