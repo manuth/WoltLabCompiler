@@ -1,3 +1,4 @@
+import { basename } from "path";
 import { FileDescriptorTests } from "./FileDescriptor.test";
 import { InstructionTests } from "./Instructions";
 import { PackageTests } from "./Package.test";
@@ -8,7 +9,7 @@ import { PackageTests } from "./Package.test";
 export function PackageSystemTests(): void
 {
     suite(
-        "PackageSystem",
+        basename(__dirname),
         () =>
         {
             FileDescriptorTests();

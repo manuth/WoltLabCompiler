@@ -1,3 +1,4 @@
+import { basename } from "path";
 import { FileSystemInstructionTests } from "./FileSystemInstruction.test";
 
 /**
@@ -6,7 +7,7 @@ import { FileSystemInstructionTests } from "./FileSystemInstruction.test";
 export function FileSystemTests(): void
 {
     suite(
-        "FileSystem",
+        basename(__dirname),
         () =>
         {
             FileSystemInstructionTests();

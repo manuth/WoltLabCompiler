@@ -1,3 +1,4 @@
+import { basename } from "path";
 import { LocalizationFileCompilerTests } from "./LocalizationFileCompiler.test";
 import { LocalizationSetCompilerTests } from "./LocalizationSetCompiler.test";
 
@@ -7,7 +8,7 @@ import { LocalizationSetCompilerTests } from "./LocalizationSetCompiler.test";
 export function GlobalizationTests(): void
 {
     suite(
-        "Globalization",
+        basename(__dirname),
         () =>
         {
             LocalizationFileCompilerTests();

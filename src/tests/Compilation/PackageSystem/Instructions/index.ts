@@ -1,3 +1,4 @@
+import { basename } from "path";
 import { EventListenerFileCompilerTests } from "../../Events/EventListenerFileCompiler.test";
 import { ACPOptionInstructionCompilerTests } from "./ACPOptionInstructionCompiler.test";
 import { BBCodeInstructionCompilerTests } from "./BBCodeInstructionCompiler.test";
@@ -17,7 +18,7 @@ import { UserOptionInstructionCompilerTests } from "./UserOptionInstructionCompi
 export function InstructionTests(): void
 {
     suite(
-        "Instructions",
+        basename(__dirname),
         () =>
         {
             InstructionCompilerTests();

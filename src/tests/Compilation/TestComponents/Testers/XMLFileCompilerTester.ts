@@ -1,5 +1,5 @@
-import { readFileSync } from "fs-extra";
 import { DOMParser } from "@xmldom/xmldom";
+import { readFileSync } from "fs-extra";
 import { XMLFileCompiler } from "../../../../Compilation/XMLFileCompiler";
 import { XMLEditor } from "../../../../Serialization/XMLEditor";
 import { CompilerTester } from "./CompilerTester";

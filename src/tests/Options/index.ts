@@ -1,3 +1,4 @@
+import { basename } from "path";
 import { CategoryTests } from "./Category.test";
 import { OptionTests as OptionClassTests } from "./Option.test";
 
@@ -7,7 +8,7 @@ import { OptionTests as OptionClassTests } from "./Option.test";
 export function OptionTests(): void
 {
     suite(
-        "Options",
+        basename(__dirname),
         () =>
         {
             OptionClassTests();

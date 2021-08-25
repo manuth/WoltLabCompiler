@@ -1,3 +1,4 @@
+import { basename } from "path";
 import { CompilerTests } from "./Compiler.test";
 import { EJSFileCompilerTests } from "./EJSFileCompiler.test";
 import { EventTests } from "./Events";
@@ -18,7 +19,7 @@ import { XMLFileCompilerTests } from "./XMLFileCompiler.test";
 export function CompilationTests(): void
 {
     suite(
-        "Compilation",
+        basename(__dirname),
         () =>
         {
             CompilerTests();

@@ -1,3 +1,4 @@
+import { basename } from "path";
 import { ErrorMessageInstructionTests } from "./ErrorMessageInstruction.test";
 import { LocalizationInstructionTests } from "./LocalizationInstruction.test";
 
@@ -7,7 +8,7 @@ import { LocalizationInstructionTests } from "./LocalizationInstruction.test";
 export function GlobalizationTests(): void
 {
     suite(
-        "Globalization",
+        basename(__dirname),
         () =>
         {
             LocalizationInstructionTests();

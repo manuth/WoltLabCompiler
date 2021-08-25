@@ -1,3 +1,4 @@
+import { basename } from "path";
 import { BBCodeFileCompilerTests } from "./BBCodeFileCompiler.test";
 import { EmojiFileCompilerTests } from "./EmojiFileCompiler.test";
 import { ThemeCompilerTests } from "./ThemeCompiler.test";
@@ -10,7 +11,7 @@ import { ThemeVariableCompilerTests } from "./ThemeVariableCompiler.test";
 export function PresentationTests(): void
 {
     suite(
-        "Presentation",
+        basename(__dirname),
         () =>
         {
             ThemeFileCompilerTests();

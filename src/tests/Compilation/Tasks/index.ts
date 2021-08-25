@@ -1,3 +1,4 @@
+import { basename } from "path";
 import { CronJobFileCompilerTests } from "./CronJobFileCompiler.test";
 
 /**
@@ -6,7 +7,7 @@ import { CronJobFileCompilerTests } from "./CronJobFileCompiler.test";
 export function TaskTests(): void
 {
     suite(
-        "Tasks",
+        basename(__dirname),
         () =>
         {
             CronJobFileCompilerTests();

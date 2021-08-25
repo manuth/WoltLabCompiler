@@ -1,3 +1,4 @@
+import { basename } from "path";
 import { TimePeriodTests } from "./TimePeriod.test";
 
 /**
@@ -6,7 +7,7 @@ import { TimePeriodTests } from "./TimePeriod.test";
 export function TaskTests(): void
 {
     suite(
-        "Tasks",
+        basename(__dirname),
         () =>
         {
             TimePeriodTests();
