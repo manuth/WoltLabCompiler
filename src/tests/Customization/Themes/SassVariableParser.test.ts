@@ -11,7 +11,7 @@ import { SassVariableParser } from "../../../Customization/Presentation/Themes/S
 export function SassVariableParserTests(): void
 {
     suite(
-        "SassVariableParser",
+        nameof(SassVariableParser),
         () =>
         {
             let mainFile: string;
@@ -78,7 +78,7 @@ export function SassVariableParserTests(): void
                 });
 
             suite(
-                "Parse",
+                nameof<SassVariableParser>((parser) => parser.Parse),
                 () =>
                 {
                     suite(
@@ -99,7 +99,7 @@ export function SassVariableParserTests(): void
                         () =>
                         {
                             test(
-                                "Checking whether expected variable is present…",
+                                "Checking whether the expected variable is present…",
                                 () => ok(variablesWithoutImport.has(var1Name)));
 
                             test(
@@ -120,7 +120,7 @@ export function SassVariableParserTests(): void
                                 });
 
                             test(
-                                "Checking whether variables imported variables are not present…",
+                                "Checking whether imported variables are not present…",
                                 () =>
                                 {
                                     ok(!variablesWithImport.has(var1Name));

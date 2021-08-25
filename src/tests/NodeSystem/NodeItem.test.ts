@@ -8,7 +8,7 @@ import { NodeItem } from "../../NodeSystem/NodeItem";
 export function NodeItemTests(): void
 {
     suite(
-        "NodeItem",
+        nameof(NodeItem),
         () =>
         {
             let node: Node<NodeItem, unknown>;
@@ -28,11 +28,11 @@ export function NodeItemTests(): void
                 });
 
             suite(
-                "Node",
+                nameof<NodeItem>((i) => i.Node),
                 () =>
                 {
                     test(
-                        "Checking whether the `Node`-property is set correctly after initializing a new `NodeItem`…",
+                        `Checking whether the \`${nameof<NodeItem>((i) => i.Node)}\`-property is set correctly after initializing a new \`${nameof(NodeItem)}\`…`,
                         () =>
                         {
                             strictEqual(node.Item.Node, node);

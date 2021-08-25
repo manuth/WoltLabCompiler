@@ -6,19 +6,19 @@ import { InstructionCompiler } from "./InstructionCompiler";
  * Provides the functionality to compile instructions which only depend on one file-compiler.
  *
  * @template T
- * The type of the item which can be compiled by this compiler.
+ * The type of the instruction which can be compiled by this compiler.
  */
 export abstract class InstructionFileCompiler<T extends IInstruction> extends InstructionCompiler<T>
 {
     /**
      * Initializes a new instance of the {@link InstructionFileCompiler `InstructionFileCompiler<T>`} class.
      *
-     * @param item
-     * The item to compile.
+     * @param instruction
+     * The instruction to compile.
      */
-    public constructor(item: T)
+    public constructor(instruction: T)
     {
-        super(item);
+        super(instruction);
     }
 
     /**

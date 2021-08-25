@@ -7,15 +7,14 @@ import { ImageDirectoryDescriptor } from "../../../Customization/Presentation/Th
 export function ImageDirectoryDescriptorTests(): void
 {
     suite(
-        "ImageDirectoryDescriptor",
+        nameof(ImageDirectoryDescriptor),
         () =>
         {
             let customFileName: string;
             let customDestination: string;
-
             let imageDirectory: ImageDirectoryDescriptor;
-
             let customImageDirectory: ImageDirectoryDescriptor;
+            let defaultFileName = "images.tar";
 
             suiteSetup(
                 () =>
@@ -37,28 +36,28 @@ export function ImageDirectoryDescriptorTests(): void
                 });
 
             suite(
-                "FileName",
+                nameof<ImageDirectoryDescriptor>((descriptor) => descriptor.FileName),
                 () =>
                 {
                     test(
-                        'Checking whether the `FileName`-property is set to "images.tar" when no filename is specified…',
-                        () => strictEqual(imageDirectory.FileName, "images.tar"));
+                        `Checking whether the \`${nameof<ImageDirectoryDescriptor>((d) => d.FileName)}\`-property is set to "${defaultFileName}" when no filename is specified…`,
+                        () => strictEqual(imageDirectory.FileName, defaultFileName));
 
                     test(
-                        "Checking whether the `FileName`-property is set properly when a filename is specified…",
+                        `Checking whether the \`${nameof<ImageDirectoryDescriptor>((d) => d.FileName)}\`-property is set properly when a filename is specified…`,
                         () => strictEqual(customImageDirectory.FileName, customFileName));
                 });
 
             suite(
-                "DestinationRoot",
+                nameof<ImageDirectoryDescriptor>((descriptor) => descriptor.DestinationRoot),
                 () =>
                 {
                     test(
-                        "Checking whether `DestinationRoot` is set to `Source` when no destination-root is specified…",
+                        `Checking whether \`${nameof<ImageDirectoryDescriptor>((d) => d.DestinationRoot)}\` is set to the \`${nameof<ImageDirectoryDescriptor>((d) => d.Source)}\` if no destination-root is specified…`,
                         () => strictEqual(imageDirectory.DestinationRoot, imageDirectory.Source));
 
                     test(
-                        "Checking whether `DestinationRoot` is set properly when a destination-root is specified…",
+                        `Checking whether \`${nameof<ImageDirectoryDescriptor>((d) => d.DestinationRoot)}\` is set properly when a destination-root is specified…`,
                         () => strictEqual(customImageDirectory.DestinationRoot, customDestination));
                 });
         });

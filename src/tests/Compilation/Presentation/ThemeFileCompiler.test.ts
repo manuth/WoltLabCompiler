@@ -2,6 +2,7 @@ import { strictEqual } from "assert";
 import { TempFile } from "@manuth/temp-files";
 import { writeJSON } from "fs-extra";
 import { ThemeFileCompiler } from "../../../Compilation/Presentation/ThemeFileCompiler";
+import { Constants } from "../../../Constants";
 import { Theme } from "../../../Customization/Presentation/Themes/Theme";
 import { ILocalization } from "../../../Globalization/ILocalization";
 import { ThemeInstruction } from "../../../PackageSystem/Instructions/Customization/Presentation/ThemeInstruction";
@@ -28,7 +29,7 @@ export function ThemeFileCompilerTests(): void
             await writeJSON(variableSource.FullName, { wcfHeaderBackground: "red" });
 
             let locales = [
-                "inv",
+                Constants.InvariantCultureName,
                 "de",
                 "en"
             ];
@@ -53,7 +54,7 @@ export function ThemeFileCompilerTests(): void
                         Description: description,
                         Thumbnail: "thumb.png",
                         HighResThumbnail: "highResThumb.png",
-                        CoverPhoto: "covr.jpg",
+                        CoverPhoto: "cover.jpg",
                         Author: {
                             Name: "John Doe",
                             URL: "https://example.com/"
@@ -88,7 +89,7 @@ export function ThemeFileCompilerTests(): void
          */
         protected CreateTester(): XMLFileCompilerTester<ThemeFileCompiler>
         {
-            return new XMLFileCompilerTester(new ThemeFileCompiler(theme, "variablex.xml"));
+            return new XMLFileCompilerTester(new ThemeFileCompiler(theme, "variables.xml"));
         }
 
         /**
@@ -115,7 +116,7 @@ export function ThemeFileCompilerTests(): void
                             (nameNode) =>
                             {
                                 return (
-                                    (locale === "inv") ?
+                                    (locale === Constants.InvariantCultureName) ?
                                         !nameNode.HasAttribute(localeAttribute) :
                                         (nameNode.HasAttribute(localeAttribute) && nameNode.GetAttribute(localeAttribute) === locale)) &&
                                     (nameNode.TextContent === this.Compiler.Item.DisplayName.Data.get(locale));
@@ -128,7 +129,7 @@ export function ThemeFileCompilerTests(): void
                             (descriptionNode) =>
                             {
                                 return (
-                                    (locale === "inv") ?
+                                    (locale === Constants.InvariantCultureName) ?
                                         !descriptionNode.HasAttribute(localeAttribute) :
                                         (descriptionNode.HasAttribute(localeAttribute) && descriptionNode.GetAttribute(localeAttribute) === locale)) &&
                                     (descriptionNode.TextContent === this.Compiler.Item.Description.Data.get(locale));
@@ -150,5 +151,5 @@ export function ThemeFileCompilerTests(): void
                     strictEqual(imageNode.TextContent, this.Compiler.Item.Images.FileName);
                 });
         }
-    }("ThemeFileCompiler").Register();
+    }(nameof(ThemeFileCompiler)).Register();
 }

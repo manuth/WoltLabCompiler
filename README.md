@@ -16,7 +16,7 @@ All classes and methods are documented using JSDoc-comments.
 ***Compiling a .tar-Package***
 ```ts
 import { join } from "path";
-import { ACPOptionInstruction, ApplicationFileSystemInstruction, OptionType, Package, PackageCompiler } from "@manuth/woltlab-compiler";
+import { ACPOptionInstruction, ApplicationFileSystemInstruction, InvariantCultureName, OptionType, Package, PackageCompiler } from "@manuth/woltlab-compiler";
 
 (async () =>
 {
@@ -25,7 +25,7 @@ import { ACPOptionInstruction, ApplicationFileSystemInstruction, OptionType, Pac
             {
                 Name: "MyPackage",
                 DisplayName: {
-                    inv: "My Package"
+                    [InvariantCultureName]: "My Package"
                 },
                 Identifier: "com.example.my-package",
                 InstallSet: {

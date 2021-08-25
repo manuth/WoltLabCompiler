@@ -1,3 +1,4 @@
+import { basename } from "path";
 import { XMLTests } from "./XML.test";
 import { XMLEditorTests } from "./XMLEditor.test";
 
@@ -7,7 +8,7 @@ import { XMLEditorTests } from "./XMLEditor.test";
 export function SerializationTests(): void
 {
     suite(
-        "Serialization",
+        basename(__dirname),
         () =>
         {
             XMLTests();

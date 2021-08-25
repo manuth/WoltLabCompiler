@@ -17,7 +17,7 @@ export function ListenerFileCompilerTests(): void
     let listenerTag: string;
 
     /**
-     * Represenst an instruction which provides listeners.
+     * Represents an instruction which provides listeners.
      */
     class MyListenerInstruction extends ListenerInstruction<Listener, IListenerOptions>
     {
@@ -148,5 +148,5 @@ export function ListenerFileCompilerTests(): void
                     this.GetText(listenerNode, "options").split(",").includes(option);
                 });
         }
-    }("ListenerFileCompiler").Register();
+    }(nameof(ListenerFileCompiler)).Register();
 }

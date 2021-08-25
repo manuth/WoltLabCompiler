@@ -8,7 +8,7 @@ import { ErrorMessageInstruction } from "../../../../PackageSystem/Instructions/
 export function ErrorMessageInstructionTests(): void
 {
     suite(
-        "ErrorMessageInstruction",
+        nameof(ErrorMessageInstruction),
         () =>
         {
             let locale: string;
@@ -46,7 +46,7 @@ export function ErrorMessageInstructionTests(): void
                 });
 
             suite(
-                "GetMessage()",
+                nameof<ErrorMessageInstruction>((instruction) => instruction.GetMessages),
                 () =>
                 {
                     let translations: Record<string, Record<string, Record<string, string>>>;
@@ -58,7 +58,7 @@ export function ErrorMessageInstructionTests(): void
                         });
 
                     test(
-                        "Checking whether the locale is present…",
+                        "Checking whether the expected locales are present…",
                         () =>
                         {
                             ok(locale in translations);

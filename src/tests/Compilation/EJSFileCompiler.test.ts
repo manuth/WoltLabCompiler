@@ -136,5 +136,5 @@ export function EJSFileCompilerTests(): void
                     strictEqual(this.Tester.XMLEditor.TextContent, variableValue);
                 });
         }
-    }("EJSFileCompiler").Register();
+    }(nameof(EJSFileCompiler)).Register();
 }

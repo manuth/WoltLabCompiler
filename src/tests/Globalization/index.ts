@@ -1,3 +1,4 @@
+import { basename } from "path";
 import { LocalizationTests } from "./Localization.test";
 
 /**
@@ -6,7 +7,7 @@ import { LocalizationTests } from "./Localization.test";
 export function GlobalizationTests(): void
 {
     suite(
-        "Globalization",
+        basename(__dirname),
         () =>
         {
             LocalizationTests();

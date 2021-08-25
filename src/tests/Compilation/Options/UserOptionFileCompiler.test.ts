@@ -79,5 +79,5 @@ export function UserOptionFileCompilerTests(): void
             this.AssertTagContent(optionNode, "searchable", option.Searchable ? "1" : "0");
             this.AssertTagContent(optionNode, "outputclass", option.OutputClass);
         }
-    }("UserOptionFileCompiler").Register();
+    }(nameof(UserOptionFileCompiler)).Register();
 }

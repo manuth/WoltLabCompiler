@@ -26,5 +26,5 @@ export function EmojiInstructionCompilerTests(): void
                             Emojis: []
                         })));
         }
-    }("EmojiInstructionCompiler").Register();
+    }(nameof(EmojiInstructionCompiler)).Register();
 }

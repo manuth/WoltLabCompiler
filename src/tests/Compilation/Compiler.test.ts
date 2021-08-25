@@ -3,7 +3,6 @@ import { TempDirectory, TempFile } from "@manuth/temp-files";
 import { readdir, readFile, writeFile } from "fs-extra";
 import { extract } from "tar";
 import { join } from "upath";
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { Compiler } from "../../Compilation/Compiler";
 import { TestCompiler } from "./TestCompiler";
 
@@ -13,7 +12,7 @@ import { TestCompiler } from "./TestCompiler";
 export function CompilerTests(): void
 {
     suite(
-        "Compiler",
+        nameof(Compiler),
         () =>
         {
             let tempDir: TempDirectory;
@@ -34,7 +33,7 @@ export function CompilerTests(): void
                 });
 
             suite(
-                "CopyTemplate",
+                nameof<TestCompiler>((compiler) => compiler.CopyTemplate),
                 () =>
                 {
                     let ejsString: string;
@@ -157,7 +156,7 @@ export function CompilerTests(): void
                 });
 
             suite(
-                "MakeDestinationPath",
+                nameof<TestCompiler>((compiler) => compiler.MakeDestinationPath),
                 () =>
                 {
                     let path: string[];
@@ -177,7 +176,7 @@ export function CompilerTests(): void
                 });
 
             suite(
-                "Compress",
+                nameof<TestCompiler>((compiler) => compiler.Compress),
                 async () =>
                 {
                     let files: string[];

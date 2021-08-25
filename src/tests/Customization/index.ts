@@ -1,3 +1,4 @@
+import { basename } from "path";
 import { ThemeTests } from "./Themes";
 
 /**
@@ -6,7 +7,7 @@ import { ThemeTests } from "./Themes";
 export function CustomizationTests(): void
 {
     suite(
-        "Customization",
+        basename(__dirname),
         () =>
         {
             ThemeTests();

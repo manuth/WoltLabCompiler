@@ -87,5 +87,5 @@ export function ThemeCompilerTests(): void
                     ok(await pathExists(join(this.Compiler.DestinationPath, this.Compiler.VariableFileName)));
                 });
         }
-    }("ThemeCompiler").Register();
+    }(nameof(ThemeCompiler)).Register();
 }

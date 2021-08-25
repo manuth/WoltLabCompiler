@@ -1,3 +1,4 @@
+import { basename } from "path";
 import { BidirectionalCollectionTests } from "./BidirectionalCollection.test";
 
 /**
@@ -6,7 +7,7 @@ import { BidirectionalCollectionTests } from "./BidirectionalCollection.test";
 export function CollectionTests(): void
 {
     suite(
-        "Collections",
+        basename(__dirname),
         () =>
         {
             BidirectionalCollectionTests();

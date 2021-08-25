@@ -7,21 +7,21 @@ import { INodeSystemInstructionOptions } from "./INodeSystemInstructionOptions";
 /**
  * Represents an instruction which provides nodes.
  *
- * @template T
+ * @template TItem
  * The type of the nodes.
  *
  * @template TOptions
  * The type of the options for generating nodes.
  */
-export abstract class NodeSystemInstruction<T extends NodeItem, TOptions> extends Instruction implements INodeSystemInstruction<T>
+export abstract class NodeSystemInstruction<TItem extends NodeItem, TOptions> extends Instruction implements INodeSystemInstruction<TItem>
 {
     /**
      * The nodes provides by the instruction.
      */
-    private nodes: Array<Node<T, TOptions>> = [];
+    private nodes: Array<Node<TItem, TOptions>> = [];
 
     /**
-     * Initializes a new instance of the {@link NodeSystemInstruction `NodeSystemInstruction<T, TOptions>`} class.
+     * Initializes a new instance of the {@link NodeSystemInstruction `NodeSystemInstruction<TItem, TOptions>`} class.
      *
      * @param options
      * The options for generating the object.
@@ -29,20 +29,20 @@ export abstract class NodeSystemInstruction<T extends NodeItem, TOptions> extend
      * @param generator
      * The generator-function for generating sub-nodes.
      */
-    public constructor(options: INodeSystemInstructionOptions<TOptions>, generator: (node: Node<T, TOptions>, options: TOptions) => T)
+    public constructor(options: INodeSystemInstructionOptions<TOptions>, generator: (node: Node<TItem, TOptions>, options: TOptions) => TItem)
     {
         super(options);
 
         for (let node of options.Nodes)
         {
-            this.nodes.push(new Node<T, TOptions>(node, generator));
+            this.nodes.push(new Node<TItem, TOptions>(node, generator));
         }
     }
 
     /**
      * @inheritdoc
      */
-    public get Nodes(): Array<Node<T, TOptions>>
+    public get Nodes(): Array<Node<TItem, TOptions>>
     {
         return this.nodes;
     }

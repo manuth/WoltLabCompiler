@@ -42,5 +42,5 @@ export function GroupOptionInstructionCompilerTests(): void
                             ]
                         })));
         }
-    }("GroupOptionInstructionCompiler").Register();
+    }(nameof(GroupOptionInstructionCompiler)).Register();
 }

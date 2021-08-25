@@ -1,3 +1,4 @@
+import { basename } from "path";
 import { InstructionTests } from "./Instructions";
 import { PackageCompilerTests } from "./PackageCompiler.test";
 import { PackageFileCompilerTests } from "./PackageFileCompiler.test";
@@ -8,7 +9,7 @@ import { PackageFileCompilerTests } from "./PackageFileCompiler.test";
 export function PackageSystemTests(): void
 {
     suite(
-        "PackageSystem",
+        basename(__dirname),
         () =>
         {
             InstructionTests();

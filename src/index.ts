@@ -1,5 +1,7 @@
-/// <reference lib="DOM" />
+import { Constants } from "./Constants";
+
 export { BidirectionalCollection } from "./Collections/BidirectionalCollection";
+export { Constants } from "./Constants";
 export { Compiler } from "./Compilation/Compiler";
 export { EJSFileCompiler } from "./Compilation/EJSFileCompiler";
 export { EventListenerFileCompiler } from "./Compilation/Events/EventListenerFileCompiler";
@@ -166,3 +168,8 @@ export { XMLEditor } from "./Serialization/XMLEditor";
 export { CronJob } from "./Tasks/CronJob";
 export { ICronJobOptions } from "./Tasks/ICronJobOptions";
 export { TimePeriod } from "./Tasks/TimePeriod";
+
+/**
+ * The name of the invariant culture.
+ */
+export let InvariantCultureName = Constants.InvariantCultureName;

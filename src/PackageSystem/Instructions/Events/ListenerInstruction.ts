@@ -6,21 +6,21 @@ import { IListenerInstructionOptions } from "./IListenerInstructionOptions";
 /**
  * Represents an instruction which provides listeners.
  *
- * @template T
+ * @template TListener
  * The type of the listeners.
  *
  * @template TOptions
  * The type of the options for generating listeners.
  */
-export abstract class ListenerInstruction<T extends Listener, TOptions> extends NamedDeleteInstruction implements IListenerInstruction<T>
+export abstract class ListenerInstruction<TListener extends Listener, TOptions> extends NamedDeleteInstruction implements IListenerInstruction<TListener>
 {
     /**
      * The listeners provided by the instruction.
      */
-    private listeners: T[] = [];
+    private listeners: TListener[] = [];
 
     /**
-     * Initializes a new instance of the {@link ListenerInstruction `ListenerInstruction<T, TOptions>`} class.
+     * Initializes a new instance of the {@link ListenerInstruction `ListenerInstruction<TListener, TOptions>`} class.
      *
      * @param options
      * The options of the listener-instruction.
@@ -28,7 +28,7 @@ export abstract class ListenerInstruction<T extends Listener, TOptions> extends 
      * @param generator
      * A component for generating listeners.
      */
-    public constructor(options: IListenerInstructionOptions<TOptions>, generator: (opts: TOptions) => T)
+    public constructor(options: IListenerInstructionOptions<TOptions>, generator: (opts: TOptions) => TListener)
     {
         super(options);
 
@@ -41,7 +41,7 @@ export abstract class ListenerInstruction<T extends Listener, TOptions> extends 
     /**
      * @inheritdoc
      */
-    public get Listeners(): T[]
+    public get Listeners(): TListener[]
     {
         return this.listeners;
     }

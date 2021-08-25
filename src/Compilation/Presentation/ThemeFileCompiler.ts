@@ -1,3 +1,4 @@
+import { Constants } from "../../Constants";
 import { Theme } from "../../Customization/Presentation/Themes/Theme";
 import { XMLEditor } from "../../Serialization/XMLEditor";
 import { WoltLabXMLCompiler } from "../WoltLabXMLCompiler";
@@ -65,7 +66,7 @@ export class ThemeFileCompiler extends WoltLabXMLCompiler<Theme>
             let styleNameNode = generalNode.CreateTextElement("stylename", this.Item.DisplayName.Data.get(locale));
             generalNode.Add(styleNameNode);
 
-            if (locale !== "inv")
+            if (locale !== Constants.InvariantCultureName)
             {
                 styleNameNode.SetAttribute("language", locale);
             }
@@ -85,7 +86,7 @@ export class ThemeFileCompiler extends WoltLabXMLCompiler<Theme>
             let descriptionNode = generalNode.CreateTextElement("description", this.Item.Description.Data.get(locale));
             generalNode.Add(descriptionNode);
 
-            if (locale !== "inv")
+            if (locale !== Constants.InvariantCultureName)
             {
                 descriptionNode.SetAttribute("language", locale);
             }

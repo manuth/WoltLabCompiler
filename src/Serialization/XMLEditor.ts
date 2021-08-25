@@ -130,11 +130,11 @@ export class XMLEditor
     /**
      * Adds a node.
      *
-     * @param node
-     * The node to add.
-     *
      * @template T
      * The type of the node to add.
+     *
+     * @param node
+     * The node to add.
      */
     public Add<T extends Node | XMLEditor>(node: T): void
     {

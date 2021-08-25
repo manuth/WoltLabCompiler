@@ -2,7 +2,7 @@ import { CronExpression, parseExpression } from "cron-parser";
 import { TimePeriod } from "../../Tasks/TimePeriod";
 
 /**
- * Provides the functionaolity to test {@link TimePeriod `TimePeriod`}-instances.
+ * Provides the functionality to test {@link TimePeriod `TimePeriod`}-instances.
  */
 export class PeriodTester
 {
@@ -36,7 +36,7 @@ export class PeriodTester
     }
 
     /**
-     * Gets the cron-expression representing the time-preiod.
+     * Gets the cron-expression representing the time-period.
      */
     public get CronExpression(): CronExpression
     {

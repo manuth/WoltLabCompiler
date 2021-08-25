@@ -8,11 +8,11 @@ import { XML } from "../../Serialization/XML";
 export function XMLTests(): void
 {
     suite(
-        "XML",
+        nameof(XML),
         () =>
         {
             suite(
-                "CreateDocument",
+                nameof(XML.CreateDocument),
                 () =>
                 {
                     let tag: string;
@@ -25,7 +25,7 @@ export function XMLTests(): void
                         });
 
                     test(
-                        "Checking whether document can be created…",
+                        "Checking whether documents can be created…",
                         () =>
                         {
                             document = XML.CreateDocument(tag);
@@ -39,7 +39,7 @@ export function XMLTests(): void
                         });
 
                     test(
-                        "Checking whether the tag-name is correct…",
+                        "Checking whether the tag-name is set correctly…",
                         () =>
                         {
                             strictEqual(document.documentElement.tagName, tag);
@@ -47,7 +47,7 @@ export function XMLTests(): void
                 });
 
             suite(
-                "Format",
+                nameof(XML.Format),
                 () =>
                 {
                     test(

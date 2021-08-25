@@ -1,3 +1,4 @@
+import { basename } from "path";
 import { CustomizationTests } from "./Customization";
 import { FileSystemTests } from "./FileSystem";
 import { GlobalizationTests } from "./Globalization";
@@ -11,7 +12,7 @@ import { NodeSystemTests } from "./NodeSystem";
 export function InstructionTests(): void
 {
     suite(
-        "Instructions",
+        basename(__dirname),
         () =>
         {
             InstructionSetTests();

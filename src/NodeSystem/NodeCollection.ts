@@ -5,21 +5,21 @@ import { NodeItem } from "./NodeItem";
 /**
  * Represents a collection of items.
  *
- * @template T
+ * @template TNode
  * The type of the nodes.
  *
  * @template TItem
  * The type of the item provided by the nodes.
  */
-export class NodeCollection<T extends INode<TItem>, TItem extends NodeItem> extends BidirectionalCollection<INode<TItem>, T>
+export class NodeCollection<TNode extends INode<TItem>, TItem extends NodeItem> extends BidirectionalCollection<INode<TItem>, TNode>
 {
     /**
-     * Initializes a new instance of the {@link NodeCollection `NodeCollection<T, TItem>`} class.
+     * Initializes a new instance of the {@link NodeCollection `NodeCollection<TNode, TItem>`} class.
      *
      * @param owner
      * The owner of the collection.
      */
-    public constructor(owner: T)
+    public constructor(owner: TNode)
     {
         super(owner);
     }
@@ -33,7 +33,7 @@ export class NodeCollection<T extends INode<TItem>, TItem extends NodeItem> exte
      * @returns
      * The parent of the {@link child `child`}.
      */
-    protected GetParent(child: T): INode<TItem>
+    protected GetParent(child: TNode): INode<TItem>
     {
         return child?.Parent;
     }
@@ -47,7 +47,7 @@ export class NodeCollection<T extends INode<TItem>, TItem extends NodeItem> exte
      * @param parent
      * The parent to set.
      */
-    protected SetParent(child: INode<TItem>, parent: T): void
+    protected SetParent(child: INode<TItem>, parent: TNode): void
     {
         child.Parent = parent;
     }

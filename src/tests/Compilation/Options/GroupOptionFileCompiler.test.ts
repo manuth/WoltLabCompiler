@@ -74,5 +74,5 @@ export function GroupOptionFileCompilerTests(): void
             this.AssertTagContent(optionNode, "admindefaultvalue", `${option.AdminDefaultValue}`);
             this.AssertTagContent(optionNode, "usersonly", option.RegisteredOnly ? "1" : "0");
         }
-    }("GroupOptionFileCompiler").Register();
+    }(nameof(GroupOptionFileCompiler)).Register();
 }

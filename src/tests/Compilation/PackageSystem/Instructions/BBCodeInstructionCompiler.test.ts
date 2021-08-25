@@ -41,5 +41,5 @@ export function BBCodeInstructionCompilerTests(): void
                             TranslationDirectory: "bbCodeLanguageStuff"
                         })));
         }
-    }("BBCodeInstructionCompiler").Register();
+    }(nameof(BBCodeInstructionCompiler)).Register();
 }

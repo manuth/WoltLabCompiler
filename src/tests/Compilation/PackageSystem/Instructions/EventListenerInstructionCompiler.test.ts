@@ -26,5 +26,5 @@ export function EventListenerInstructionCompilerTests(): void
                             Listeners: []
                         })));
         }
-    }("EventListenerInstructionCompiler").Register();
+    }(nameof(EventListenerInstructionCompiler)).Register();
 }

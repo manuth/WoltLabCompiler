@@ -1,3 +1,4 @@
+import { basename } from "path";
 import { NodeSystemInstructionTests } from "./NodeSystemInstruction.test";
 
 /**
@@ -6,7 +7,7 @@ import { NodeSystemInstructionTests } from "./NodeSystemInstruction.test";
 export function NodeSystemTests(): void
 {
     suite(
-        "NodeSystem",
+        basename(__dirname),
         () =>
         {
             NodeSystemInstructionTests();

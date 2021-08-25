@@ -1,3 +1,4 @@
+import { basename } from "path";
 import { NodeTests } from "./Node.test";
 import { NodeItemTests } from "./NodeItem.test";
 
@@ -7,7 +8,7 @@ import { NodeItemTests } from "./NodeItem.test";
 export function NodeSystemTests(): void
 {
     suite(
-        "NodeSystem",
+        basename(__dirname),
         () =>
         {
             NodeTests();

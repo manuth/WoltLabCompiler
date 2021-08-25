@@ -9,7 +9,7 @@ import { Package } from "../../../PackageSystem/Package";
 export function InstructionSetTests(): void
 {
     suite(
-        "InstructionSet",
+        nameof(InstructionSet),
         () =>
         {
             let instructionSet: InstructionSet;
@@ -48,11 +48,11 @@ export function InstructionSetTests(): void
                 });
 
             suite(
-                "Checking whether instructions automatically are pushed to the `InstructionSet`…",
+                `Checking whether instructions automatically are pushed to the \`${nameof(InstructionSet)}\`…`,
                 () =>
                 {
                     test(
-                        "When the `Collection`-member of an instruction is set…",
+                        `When the \`${nameof<Instruction>((i) => i.Collection)}\`-member of an instruction is set…`,
                         () =>
                         {
                             instruction.Collection = instructionSet;
@@ -60,7 +60,7 @@ export function InstructionSetTests(): void
                         });
 
                     test(
-                        "When the `Collection`-member of an instruction is overwritten by another `InstructionSet`…",
+                        `When the \`${nameof<Instruction>((i) => i.Collection)}\`-member of an instruction is overwritten by another \`${nameof(InstructionSet)}\`…`,
                         () =>
                         {
                             instructionSet.push(instruction);
@@ -69,7 +69,7 @@ export function InstructionSetTests(): void
                         });
 
                     test(
-                        "When pushing an instruction to the `InstructionSet`…",
+                        `When pushing an instruction to the \`${nameof(InstructionSet)}\`…`,
                         () =>
                         {
                             instructionSet.push(instruction);
@@ -77,7 +77,7 @@ export function InstructionSetTests(): void
                         });
 
                     test(
-                        "When popping an instruction from the `InstructionSet`…",
+                        `When popping an instruction from the \`${nameof(InstructionSet)}\`…`,
                         () =>
                         {
                             instructionSet.push(instruction);

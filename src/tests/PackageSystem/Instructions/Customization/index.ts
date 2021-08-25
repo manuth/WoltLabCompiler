@@ -1,3 +1,4 @@
+import { basename } from "path";
 import { BBCodeInstructionTests } from "./BBCodeInstruction.test";
 import { PresentationTests } from "./Presentation";
 
@@ -7,7 +8,7 @@ import { PresentationTests } from "./Presentation";
 export function CustomizationTests(): void
 {
     suite(
-        "Customization",
+        basename(__dirname),
         () =>
         {
             BBCodeInstructionTests();

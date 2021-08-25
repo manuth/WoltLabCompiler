@@ -44,5 +44,5 @@ export function LocalizationInstructionCompilerTests(): void
                             ]
                         })));
         }
-    }("LocalizationInstructionCompiler").Register();
+    }(nameof(LocalizationInstructionCompiler)).Register();
 }

@@ -13,7 +13,7 @@ import { Option } from "../../Options/Option";
 export function CategoryTests(): void
 {
     suite(
-        "Category",
+        nameof(Category),
         () =>
         {
             /**
@@ -28,7 +28,7 @@ export function CategoryTests(): void
             class MyCategory extends Category<Option, IOptionOptions>
             {
                 /**
-                 * Initializes a new instance of the {@link MyCategor `MyCategor`} class.
+                 * Initializes a new instance of the {@link MyCategory `MyCategory`} class.
                  *
                  * @param node
                  * The node of the category.
@@ -70,9 +70,7 @@ export function CategoryTests(): void
                 }
             }
 
-            let rootNode: MyNode;
-            let names: string[];
-            let category: MyNode;
+            let category: MyCategory;
             let categoryID: string;
             let optionID: string;
             let optionName: string;
@@ -80,54 +78,27 @@ export function CategoryTests(): void
             suiteSetup(
                 () =>
                 {
-                    names = ["foo", "bar", "baz", "this", "is", "a", "test", "and", "tests", "stuff"];
                     categoryID = "foo";
                     optionID = "bar";
                     optionName = "test-option";
 
-                    category = new MyNode(
-                        {
-                            ID: categoryID,
-                            Name: "test-category"
-                        });
-
-                    for (let name of names.reverse())
-                    {
-                        let child: MyNode = rootNode;
-
-                        rootNode = new MyNode(
-                            {
-                                Name: name,
-                                Item: {
-                                }
-                            });
-
-                        if (child)
-                        {
-                            rootNode.Nodes.push(child);
-                        }
-                    }
-
-                    let allNodes: Array<Node<MyCategory, ICategoryOptions<IOptionOptions>>> = rootNode.GetAllNodes();
-                    allNodes[Math.floor(Math.random() * allNodes.length)].Nodes.push(category);
-
-                    allNodes[Math.floor(Math.random() * allNodes.length)].Nodes.push(
+                    category = new MyCategory(
                         new MyNode(
                             {
-                                Name: "option-container",
-                                Item: {
-                                    Options: [
-                                        {
-                                            ID: optionID,
-                                            Name: optionName
-                                        }
-                                    ]
-                                }
-                            }));
+                                Name: categoryID
+                            }),
+                            {
+                                Options: [
+                                    {
+                                        ID: optionID,
+                                        Name: optionName
+                                    }
+                                ]
+                            });
                 });
 
             suite(
-                "GetObjects",
+                nameof<MyCategory>((category) => category.GetObjects),
                 () =>
                 {
                     let objects: Record<string, unknown>;
@@ -135,19 +106,11 @@ export function CategoryTests(): void
                     suiteSetup(
                         () =>
                         {
-                            objects = rootNode.GetObjects();
+                            objects = category.GetObjects();
                         });
 
                     test(
-                        "Checking whether sub-nodes can be found by their ID…",
-                        () =>
-                        {
-                            ok(categoryID in objects);
-                            strictEqual(objects[categoryID], category);
-                        });
-
-                    test(
-                        "Checking whether options can be found by their ID…",
+                        `Checking whether options can be found by their \`${nameof<MyOption>((o) => o.ID)}\`…`,
                         () =>
                         {
                             ok(optionID in objects);

@@ -1,6 +1,7 @@
 import { strictEqual } from "assert";
 import { join } from "upath";
 import { Instruction } from "../../../PackageSystem/Instructions/Instruction";
+import { InstructionSet } from "../../../PackageSystem/Instructions/InstructionSet";
 import { Package } from "../../../PackageSystem/Package";
 
 /**
@@ -9,7 +10,7 @@ import { Package } from "../../../PackageSystem/Package";
 export function InstructionTests(): void
 {
     suite(
-        "Instruction",
+        nameof(Instruction),
         () =>
         {
             /**
@@ -48,15 +49,15 @@ export function InstructionTests(): void
                 });
 
             suite(
-                "Collection",
+                nameof<Instruction>((instruction) => instruction.Collection),
                 () =>
                 {
                     suite(
-                        "Checking whether the `Collection`-property is automatically set properly…",
+                        `Checking whether the \`${nameof<Instruction>((i) => i.Collection)}\`-property is automatically set properly…`,
                         () =>
                         {
                             test(
-                                "When setting the `Collection`-property…",
+                                `When setting the \`${nameof<Instruction>((i) => i.Collection)}\`-property…`,
                                 () =>
                                 {
                                     instruction.Collection = extensionPackage.InstallSet;
@@ -64,7 +65,7 @@ export function InstructionTests(): void
                                 });
 
                             test(
-                                "When setting the `Collection`-property to `null`…",
+                                `When setting the \`${nameof<Instruction>((i) => i.Collection)}\`-property to \`${null}\`…`,
                                 () =>
                                 {
                                     instruction.Collection = null;
@@ -72,7 +73,7 @@ export function InstructionTests(): void
                                 });
 
                             test(
-                                "When adding the instruction to an `InstructionSet`…",
+                                `When adding the instruction to an \`${nameof(InstructionSet)}\`…`,
                                 () =>
                                 {
                                     extensionPackage.InstallSet.push(instruction);
@@ -80,7 +81,7 @@ export function InstructionTests(): void
                                 });
 
                             test(
-                                "When removing the instruction from the `InstructionSet`…",
+                                `When removing the instruction from its \`${nameof(InstructionSet)}\`…`,
                                 () =>
                                 {
                                     extensionPackage.InstallSet.pop();
@@ -90,11 +91,11 @@ export function InstructionTests(): void
                 });
 
             suite(
-                "DestinationRoot",
+                nameof<Instruction>((instruction) => instruction.DestinationRoot),
                 () =>
                 {
                     test(
-                        "Checking whether the `DestinationRoot` is correct…",
+                        `Checking whether the \`${nameof<Instruction>((i) => i.DestinationRoot)}\` is correct…`,
                         () =>
                         {
                             strictEqual(instruction.DestinationRoot, extensionPackage.InstallSet.Directory);
@@ -102,11 +103,11 @@ export function InstructionTests(): void
                 });
 
             suite(
-                "FullName",
+                nameof<Instruction>((instruction) => instruction.FullName),
                 () =>
                 {
                     test(
-                        "Checking whether the `FullName`-property is correct…",
+                        `Checking whether the \`${nameof<Instruction>((i) => i.FullName)}\`-property is correct…`,
                         () =>
                         {
                             strictEqual(

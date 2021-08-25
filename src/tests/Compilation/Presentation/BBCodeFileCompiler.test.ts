@@ -193,5 +193,5 @@ export function BBCodeFileCompilerTests(): void
                     }
                 });
         }
-    }("BBCodeFileCompiler").Register();
+    }(nameof(BBCodeFileCompiler)).Register();
 }

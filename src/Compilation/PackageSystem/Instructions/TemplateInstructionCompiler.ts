@@ -12,6 +12,17 @@ import { InstructionFileCompiler } from "./InstructionFileCompiler";
 export abstract class TemplateInstructionCompiler<T extends IInstruction> extends InstructionFileCompiler<T>
 {
     /**
+     * Initializes a new instance of the {@link TemplateInstructionCompiler `TemplateInstructionCompiler<T>`} class.
+     *
+     * @param instruction
+     * The instruction to compile.
+     */
+    public constructor(instruction: T)
+    {
+        super(instruction);
+    }
+
+    /**
      * @inheritdoc
      */
     protected override async Compile(): Promise<void>

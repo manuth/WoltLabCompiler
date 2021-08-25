@@ -5,18 +5,21 @@ import { ImportFileCompiler } from "./ImportFileCompiler";
 /**
  * Provides the functionality to compile files with an import- and a delete-section.
  *
- * @template T
+ * @template TItem
  * The type of the item which can be compiled by this compiler.
+ *
+ * @template TObject
+ * The type of the information that is required for serializing an object-deletion.
  */
-export abstract class ObjectDeletionFileCompiler<T extends IDeleteInstruction<TObject>, TObject> extends ImportFileCompiler<T>
+export abstract class ObjectDeletionFileCompiler<TItem extends IDeleteInstruction<TObject>, TObject> extends ImportFileCompiler<TItem>
 {
     /**
-     * Initializes a new instance of the {@link ObjectDeletionFileCompiler `ObjectDeletionFileCompiler<T, TObject>`} class.
+     * Initializes a new instance of the {@link ObjectDeletionFileCompiler `ObjectDeletionFileCompiler<TItem, TObject>`} class.
      *
      * @param item
      * The item to compile.
      */
-    public constructor(item: T)
+    public constructor(item: TItem)
     {
         super(item);
     }

@@ -5,6 +5,7 @@ import { extract } from "tar";
 import { join, parse } from "upath";
 import { FileInstructionCompiler } from "../../../../Compilation/PackageSystem/Instructions/FileInstructionCompiler";
 import { ApplicationFileSystemInstruction } from "../../../../PackageSystem/Instructions/FileSystem/ApplicationFileSystemInstruction";
+import { IApplicationFileSystemInstructionOptions } from "../../../../PackageSystem/Instructions/FileSystem/IApplicationFileSystemInstructionOptions";
 import { Package } from "../../../../PackageSystem/Package";
 import { XMLEditor } from "../../../../Serialization/XMLEditor";
 import { Tar } from "../../../Tar";
@@ -19,6 +20,7 @@ export function FileInstructionCompilerTests(): void
     let sourceDir: TempDirectory;
     let tempDir: TempDirectory;
     let fileNames: string[];
+    let applicationAttribute = "application";
 
     new class extends InstructionCompilerTestRunner<CompilerTester<FileInstructionCompiler>, FileInstructionCompiler>
     {
@@ -79,7 +81,7 @@ export function FileInstructionCompilerTests(): void
                 });
 
             test(
-                "Checking whether all files are present inside the the archive…",
+                "Checking whether all files are present inside the archive…",
                 async () =>
                 {
                     let files = await Tar.ListTarFiles(
@@ -105,17 +107,17 @@ export function FileInstructionCompilerTests(): void
             super.RegisterTests();
 
             suite(
-                "Serialize",
+                nameof<FileInstructionCompiler>((compiler) => compiler.Serialize),
                 () =>
                 {
-                    let appliaction: string;
+                    let application: string;
                     let normalEditor: XMLEditor;
                     let applicationEditor: XMLEditor;
 
                     suiteSetup(
                         () =>
                         {
-                            appliaction = "gallery";
+                            application = "gallery";
                         });
 
                     setup(
@@ -129,7 +131,7 @@ export function FileInstructionCompilerTests(): void
                             let applicationInstruction = new ApplicationFileSystemInstruction(
                                 {
                                     Source: join("gallery", "files"),
-                                    Application: appliaction
+                                    Application: application
                                 });
 
                             new Package(
@@ -149,26 +151,26 @@ export function FileInstructionCompilerTests(): void
                         });
 
                     test(
-                        "Checking whether the `application`-attribute is not present if the `Application` is not specified…",
+                        `Checking whether the \`${applicationAttribute}\`-attribute is not present if the \`${nameof<IApplicationFileSystemInstructionOptions>((o) => o.Application)}\` is not specified…`,
                         () =>
                         {
-                            ok(!normalEditor.HasAttribute("appliaction"));
+                            ok(!normalEditor.HasAttribute(applicationAttribute));
                         });
 
                     test(
-                        "Checking whether the `application`-attribute is present if the `Application` is specified…",
+                        `Checking whether the \`${applicationAttribute}\`-attribute is present if the \`${nameof<IApplicationFileSystemInstructionOptions>((o) => o.Application)}\` is specified…`,
                         () =>
                         {
-                            ok(applicationEditor.HasAttribute("application"));
+                            ok(applicationEditor.HasAttribute(applicationAttribute));
                         });
 
                     test(
-                        "Checking whether the `application`-attribute is set correctly…",
+                        `Checking whether the \`${applicationAttribute}\`-attribute is set correctly…`,
                         () =>
                         {
-                            strictEqual(applicationEditor.GetAttribute("application"), appliaction);
+                            strictEqual(applicationEditor.GetAttribute(applicationAttribute), application);
                         });
                 });
         }
-    }("FileInstructionCompiler").Register();
+    }(nameof(FileInstructionCompiler)).Register();
 }

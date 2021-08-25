@@ -42,5 +42,5 @@ export function ACPOptionInstructionCompilerTests(): void
                             ]
                         })));
         }
-    }("ACPOptionInstructionCompiler").Register();
+    }(nameof(ACPOptionInstructionCompiler)).Register();
 }

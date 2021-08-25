@@ -10,7 +10,7 @@ import { Person } from "../../../PackageSystem/Person";
 export function ThemeTests(): void
 {
     suite(
-        "Theme",
+        nameof(Theme),
         () =>
         {
             let theme: Theme;
@@ -72,11 +72,11 @@ export function ThemeTests(): void
                 });
 
             suite(
-                "Author",
+                nameof<Theme>((theme) => theme.Author),
                 () =>
                 {
                     test(
-                        "Checking whether the `Author`-property equals the author of the package if no author is specified…",
+                        `Checking whether the \`${nameof<Theme>((t) => t.Author)}\`-property equals the author of the package if no author is specified…`,
                         () =>
                         {
                             strictEqual(theme.Author.Name, author.Name);
@@ -84,7 +84,7 @@ export function ThemeTests(): void
                         });
 
                     test(
-                        "Checking whether the theme's `Author` overrides the package's `Author`…",
+                        `Checking whether the theme's \`${nameof<Theme>((t) => t.Author)}\` overrides the package's \`${nameof<Package>((p) => p.Author)}\`…`,
                         () =>
                         {
                             strictEqual(themeWithAuthor.Author.Name, customAuthor.Name);

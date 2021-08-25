@@ -101,7 +101,7 @@ export function ThemeInstructionCompilerTests(): void
                 });
 
             test(
-                "Checking whether the filex expected in the tar-archive exist…",
+                "Checking whether the files expected in the tar-archive exist…",
                 async () =>
                 {
                     let files = await Tar.ListTarFiles(
@@ -117,5 +117,5 @@ export function ThemeInstructionCompilerTests(): void
                     ok(files.includes("variables.xml"));
                 });
         }
-    }("ThemeInstructionCompiler").Register();
+    }(nameof(ThemeInstructionCompiler)).Register();
 }

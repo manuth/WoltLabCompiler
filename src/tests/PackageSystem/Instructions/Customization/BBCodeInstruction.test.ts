@@ -8,11 +8,12 @@ import { BBCodeInstruction } from "../../../../PackageSystem/Instructions/Custom
 export function BBCodeInstructionTests(): void
 {
     suite(
-        "BBCodeInstruction",
+        nameof(BBCodeInstruction),
         () =>
         {
             let locale = "en";
             let localization: Record<string, string> = {};
+            let bbCodeDirName = "bbcode";
             let bbCodeInstruction: BBCodeInstruction;
             localization[locale] = "bar";
 
@@ -35,19 +36,19 @@ export function BBCodeInstructionTests(): void
                 });
 
             suite(
-                "TranslationDirectory",
+                nameof<BBCodeInstruction>((instruction) => instruction.TranslationDirectory),
                 () =>
                 {
                     test(
-                        "Checking whether `TranslationDirectory` is set to `bbcode` if no directory is specified…",
+                        `Checking whether \`${nameof<BBCodeInstruction>((i) => i.TranslationDirectory)}\` is set to \`${bbCodeDirName}\` if no directory is specified…`,
                         () =>
                         {
-                            strictEqual(bbCodeInstruction.TranslationDirectory, "bbcode");
+                            strictEqual(bbCodeInstruction.TranslationDirectory, bbCodeDirName);
                         });
                 });
 
             suite(
-                "GetMessages",
+                nameof<BBCodeInstruction>((instruction) => instruction.GetMessages),
                 () =>
                 {
                     let category: string;

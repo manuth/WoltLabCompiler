@@ -1,3 +1,4 @@
+import { basename } from "path";
 import { EventListenerFileCompilerTests } from "./EventListenerFileCompiler.test";
 import { ListenerFileCompilerTests } from "./ListenerFileCompiler.test";
 import { TemplateListenerFileCompilerTests } from "./TemplateListenerFileCompiler.test";
@@ -8,7 +9,7 @@ import { TemplateListenerFileCompilerTests } from "./TemplateListenerFileCompile
 export function EventTests(): void
 {
     suite(
-        "Events",
+        basename(__dirname),
         () =>
         {
             ListenerFileCompilerTests();

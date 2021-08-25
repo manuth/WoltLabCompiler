@@ -1,4 +1,4 @@
-import { DOMParser, XMLSerializer } from "xmldom";
+import { DOMParser, XMLSerializer } from "@xmldom/xmldom";
 
 /**
  * Provides utilities for the xml-serialization.

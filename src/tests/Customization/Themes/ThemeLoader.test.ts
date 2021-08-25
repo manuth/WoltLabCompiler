@@ -14,7 +14,7 @@ import { Package } from "../../../PackageSystem/Package";
 export function ThemeLoaderTests(): void
 {
     suite(
-        "ThemeLoader",
+        nameof(ThemeLoader),
         () =>
         {
             /**
@@ -181,7 +181,7 @@ export function ThemeLoaderTests(): void
                 });
 
             suite(
-                "Load",
+                nameof<ThemeLoader>((loader) => loader.Load),
                 () =>
                 {
                     suite(
@@ -189,7 +189,7 @@ export function ThemeLoaderTests(): void
                         () =>
                         {
                             test(
-                                "Checking whether the `CustomScss`-property is loaded from the `.scss`-file…",
+                                `Checking whether the \`${nameof<Theme>((t) => t.CustomScss)}\`-property is loaded from the corresponding \`.scss\`-file…`,
                                 () =>
                                 {
                                     strictEqual(theme.CustomScss, customScss);
@@ -218,14 +218,14 @@ export function ThemeLoaderTests(): void
                                 () =>
                                 {
                                     test(
-                                        "Checking whether woltlab-variables written in `.scss` are added to the theme's `Variables`…",
+                                        `Checking whether woltlab-variables written in \`.scss\`-files are added to the theme's \`${nameof<Theme>((theme) => theme.Variables)}\`…`,
                                         () =>
                                         {
                                             ok(theme.Variables.has(scssVariable.Name));
                                         });
 
                                     test(
-                                        "Checking whether woltlab-variables written in `.json` are added to the theme's `Variables`…",
+                                        `Checking whether woltlab-variables written in \`.json\`-files are added to the theme's \`${nameof<Theme>((theme) => theme.Variables)}\`…`,
                                         () =>
                                         {
                                             ok(theme.Variables.has(jsonVariable.Name));
@@ -269,14 +269,14 @@ export function ThemeLoaderTests(): void
                                 });
 
                             test(
-                                "Checking whether custom scss-variables written in `.scss` are added to the overrides…",
+                                `Checking whether custom scss-variables written in \`.scss\`-files are added to the ${nameof<Theme>((theme) => theme.ScssOverride)}…`,
                                 () =>
                                 {
                                     ok(theme.ScssOverride.includes(`$${scssVariable.Name}: ${scssVariable.Input};`));
                                 });
 
                             test(
-                                "Checking whether custom scss-variables written in `.json` are added to the overrides…",
+                                `Checking whether custom scss-variables written in \`.json\`-files are added to the ${nameof<Theme>((theme) => theme.ScssOverride)}…`,
                                 () =>
                                 {
                                     ok(theme.ScssOverride.includes(`$${jsonVariable.Name}: ${jsonVariable.Input};`));

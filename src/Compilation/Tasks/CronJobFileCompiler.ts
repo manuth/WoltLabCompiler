@@ -1,3 +1,4 @@
+import { Constants } from "../../Constants";
 import { CronJobInstruction } from "../../PackageSystem/Instructions/Tasks/CronJobInstruction";
 import { XMLEditor } from "../../Serialization/XMLEditor";
 import { NamedObjectDeletionFileCompiler } from "../NamedObjectDeletionFileCompiler";
@@ -59,7 +60,7 @@ export class CronJobFileCompiler extends NamedObjectDeletionFileCompiler<CronJob
                 let descriptionNode = cronJobNode.CreateTextElement("description", cronJob.Description.Data.get(locale));
                 cronJobNode.Add(descriptionNode);
 
-                if (locale !== "inv")
+                if (locale !== Constants.InvariantCultureName)
                 {
                     descriptionNode.SetAttribute("language", locale);
                 }

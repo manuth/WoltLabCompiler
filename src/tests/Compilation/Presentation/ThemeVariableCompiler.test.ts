@@ -59,5 +59,5 @@ export function ThemeVariableCompilerTests(): void
                     }
                 });
         }
-    }("ThemeVariableCompiler").Register();
+    }(nameof(ThemeVariableCompiler)).Register();
 }

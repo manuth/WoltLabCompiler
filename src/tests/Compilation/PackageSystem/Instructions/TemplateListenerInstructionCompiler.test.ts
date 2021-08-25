@@ -26,5 +26,5 @@ export function TemplateListenerInstructionCompilerTests(): void
                             Listeners: []
                         })));
         }
-    }("TemplateListenerInstructionCompiler").Register();
+    }(nameof(TemplateListenerInstructionCompiler)).Register();
 }

@@ -9,7 +9,7 @@ import { Package } from "../../PackageSystem/Package";
 export function PackageTests(): void
 {
     suite(
-        "Package",
+        nameof(Package),
         () =>
         {
             let versionNumber: string;
@@ -22,11 +22,11 @@ export function PackageTests(): void
                 });
 
             suite(
-                "UpdateSet",
+                nameof<Package>((pkg) => pkg.UpdateSets),
                 () =>
                 {
                     test(
-                        "Checking whether the directory of update-sets is being set if none is provided…",
+                        `Checking whether the directory of the \`${nameof<Package>((p) => p.UpdateSets)}\` is being set automatically if none is provided…`,
                         async () =>
                         {
                             strictEqual(

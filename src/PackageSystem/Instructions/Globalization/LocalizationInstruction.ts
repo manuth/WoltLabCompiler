@@ -9,16 +9,16 @@ import { ILocalizationInstruction } from "./ILocalizationInstruction";
 /**
  * Represents an instruction which provides localizations.
  *
- * @template T
+ * @template TItem
  * The type of the localization-items.
  *
  * @template TOptions
  * THe type of the options for generating the localization-items.
  */
-export abstract class LocalizationInstruction<T extends LocalizationItem, TOptions> extends NodeSystemInstruction<T, TOptions> implements ILocalizationInstruction
+export abstract class LocalizationInstruction<TItem extends LocalizationItem, TOptions> extends NodeSystemInstruction<TItem, TOptions> implements ILocalizationInstruction
 {
     /**
-     * Initializes a new instance of the {@link LocalizationInstruction `LocalizationInstruction<T, TOptions>`} class.
+     * Initializes a new instance of the {@link LocalizationInstruction `LocalizationInstruction<TItem, TOptions>`} class.
      *
      * @param options
      * The options for generating the object.
@@ -26,7 +26,7 @@ export abstract class LocalizationInstruction<T extends LocalizationItem, TOptio
      * @param generator
      * The generator-function for generating sub-nodes.
      */
-    public constructor(options: INodeSystemInstructionOptions<TOptions>, generator: (node: Node<T, TOptions>, options: TOptions) => T)
+    public constructor(options: INodeSystemInstructionOptions<TOptions>, generator: (node: Node<TItem, TOptions>, options: TOptions) => TItem)
     {
         super(options, generator);
     }

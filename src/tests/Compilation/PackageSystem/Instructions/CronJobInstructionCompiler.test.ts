@@ -26,5 +26,5 @@ export function CronJobInstructionCompilerTests(): void
                             CronJobs: []
                         })));
         }
-    }("CronJobInstructionCompiler").Register();
+    }(nameof(CronJobInstructionCompiler)).Register();
 }
