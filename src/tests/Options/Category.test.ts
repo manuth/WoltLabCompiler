@@ -70,9 +70,7 @@ export function CategoryTests(): void
                 }
             }
 
-            let rootNode: MyNode;
-            let names: string[];
-            let category: MyNode;
+            let category: MyCategory;
             let categoryID: string;
             let optionID: string;
             let optionName: string;
@@ -80,50 +78,23 @@ export function CategoryTests(): void
             suiteSetup(
                 () =>
                 {
-                    names = ["foo", "bar", "baz", "this", "is", "a", "test", "and", "tests", "stuff"];
                     categoryID = "foo";
                     optionID = "bar";
                     optionName = "test-option";
 
-                    category = new MyNode(
-                        {
-                            ID: categoryID,
-                            Name: "test-category"
-                        });
-
-                    for (let name of names.reverse())
-                    {
-                        let child: MyNode = rootNode;
-
-                        rootNode = new MyNode(
-                            {
-                                Name: name,
-                                Item: {
-                                }
-                            });
-
-                        if (child)
-                        {
-                            rootNode.Nodes.push(child);
-                        }
-                    }
-
-                    let allNodes: Array<Node<MyCategory, ICategoryOptions<IOptionOptions>>> = rootNode.GetAllNodes();
-                    allNodes[Math.floor(Math.random() * allNodes.length)].Nodes.push(category);
-
-                    allNodes[Math.floor(Math.random() * allNodes.length)].Nodes.push(
+                    category = new MyCategory(
                         new MyNode(
                             {
-                                Name: "option-container",
-                                Item: {
-                                    Options: [
-                                        {
-                                            ID: optionID,
-                                            Name: optionName
-                                        }
-                                    ]
-                                }
-                            }));
+                                Name: categoryID
+                            }),
+                            {
+                                Options: [
+                                    {
+                                        ID: optionID,
+                                        Name: optionName
+                                    }
+                                ]
+                            });
                 });
 
             suite(
@@ -135,7 +106,7 @@ export function CategoryTests(): void
                     suiteSetup(
                         () =>
                         {
-                            objects = rootNode.Item.GetObjects();
+                            objects = category.GetObjects();
                         });
 
                     test(

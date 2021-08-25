@@ -237,7 +237,6 @@ export function XMLEditorTests(): void
                         "Checking whether elements can be added…",
                         () =>
                         {
-                            strictEqual(child.TagName, tagName);
                             temp.Add(child.Element);
                             ok(temp.ChildNodes.includes(child.Element));
                         });
