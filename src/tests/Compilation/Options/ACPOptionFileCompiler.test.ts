@@ -72,5 +72,5 @@ export function ACPOptionFileCompilerTests(): void
             this.AssertTagContent(optionNode, "supporti18n", option.Localizable ? "1" : "0");
             this.AssertTagContent(optionNode, "requirei18n", option.ForceLocalization ? "1" : "0");
         }
-    }("ACPOptionFileCompiler").Register();
+    }(nameof(ACPOptionFileCompiler)).Register();
 }

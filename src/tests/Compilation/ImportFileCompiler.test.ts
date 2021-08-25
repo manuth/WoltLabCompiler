@@ -29,5 +29,5 @@ export function ImportFileCompilerTests(): void
                     }
                 }({}));
         }
-    }("ImportFileCompiler").Register();
+    }(nameof(ImportFileCompiler)).Register();
 }

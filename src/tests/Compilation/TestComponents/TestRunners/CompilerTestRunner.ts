@@ -145,12 +145,12 @@ export abstract class CompilerTestRunner<TTester extends CompilerTester<TCompile
     { }
 
     /**
-     * Registers tests for the `Execute` method.
+     * Registers tests for the {@link Compiler.Execute `Execute`} method.
      */
     protected RegisterExecuteTests(): void
     {
         suite(
-            "Execute",
+            nameof<Compiler<any>>((compiler) => compiler.Execute),
             () =>
             {
                 suiteSetup(async () => this.ExecuteSuiteSetup());
@@ -162,7 +162,7 @@ export abstract class CompilerTestRunner<TTester extends CompilerTester<TCompile
     }
 
     /**
-     * Registers tests for the `Execute` suite.
+     * Registers tests for the {@link Compiler.Execute `Execute`} suite.
      */
     protected ExecuteTests(): void
     {
@@ -186,7 +186,7 @@ export abstract class CompilerTestRunner<TTester extends CompilerTester<TCompile
     }
 
     /**
-     * Prepares the `Execute`-suite.
+     * Prepares the {@link Compiler.Execute `Execute`}-suite.
      */
     protected async ExecuteSuiteSetup(): Promise<void>
     { }
@@ -198,7 +198,7 @@ export abstract class CompilerTestRunner<TTester extends CompilerTester<TCompile
     { }
 
     /**
-     * Prepares the `Execute` test-cases.
+     * Prepares the {@link Compiler.Execute `Execute`} test-cases.
      */
     protected async ExecuteSetup(): Promise<void>
     {
@@ -206,7 +206,7 @@ export abstract class CompilerTestRunner<TTester extends CompilerTester<TCompile
     }
 
     /**
-     * Disposes the `Execute` test-cases.
+     * Disposes the {@link Compiler.Execute `Execute`} test-cases.
      */
     protected async ExecuteTeardown(): Promise<void>
     { }

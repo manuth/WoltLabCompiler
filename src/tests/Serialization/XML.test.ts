@@ -8,11 +8,11 @@ import { XML } from "../../Serialization/XML";
 export function XMLTests(): void
 {
     suite(
-        "XML",
+        nameof(XML),
         () =>
         {
             suite(
-                "CreateDocument",
+                nameof(XML.CreateDocument),
                 () =>
                 {
                     let tag: string;
@@ -47,7 +47,7 @@ export function XMLTests(): void
                 });
 
             suite(
-                "Format",
+                nameof(XML.Format),
                 () =>
                 {
                     test(

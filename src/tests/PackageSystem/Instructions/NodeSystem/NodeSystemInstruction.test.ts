@@ -11,7 +11,7 @@ import { NodeSystemInstruction } from "../../../../PackageSystem/Instructions/No
 export function NodeSystemInstructionTests(): void
 {
     suite(
-        "NodeSystemInstruction",
+        nameof(NodeSystemInstruction),
         () =>
         {
             /**
@@ -99,18 +99,18 @@ export function NodeSystemInstructionTests(): void
                 });
 
             suite(
-                "ObjectsByID",
+                nameof<NodeSystemInstruction<any, any>>((instruction) => instruction.ObjectsByID),
                 () =>
                 {
                     test(
-                        "Checking whether object-ids are queried correctly…",
+                        `Checking whether \`${nameof<MyNode>((n) => n.ID)}\`s of the objects are queried correctly…`,
                         () =>
                         {
                             ok(id in instruction.ObjectsByID);
                         });
 
                     test(
-                        "Checking whether the objects are assigned to the ids correctly…",
+                        `Checking whether the objects are assigned to their \`${nameof<MyNode>((n) => n.ID)}\`s correctly…`,
                         () =>
                         {
                             strictEqual(instruction.ObjectsByID[id], idNode);

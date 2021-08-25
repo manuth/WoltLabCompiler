@@ -13,7 +13,7 @@ import { Option } from "../../Options/Option";
 export function CategoryTests(): void
 {
     suite(
-        "Category",
+        nameof(Category),
         () =>
         {
             /**
@@ -127,7 +127,7 @@ export function CategoryTests(): void
                 });
 
             suite(
-                "GetObjects",
+                nameof<MyCategory>((category) => category.GetObjects),
                 () =>
                 {
                     let objects: Record<string, unknown>;
@@ -135,19 +135,11 @@ export function CategoryTests(): void
                     suiteSetup(
                         () =>
                         {
-                            objects = rootNode.GetObjects();
+                            objects = rootNode.Item.GetObjects();
                         });
 
                     test(
-                        "Checking whether sub-nodes can be found by their ID…",
-                        () =>
-                        {
-                            ok(categoryID in objects);
-                            strictEqual(objects[categoryID], category);
-                        });
-
-                    test(
-                        "Checking whether options can be found by their ID…",
+                        `Checking whether options can be found by their \`${nameof<MyOption>((o) => o.ID)}\`…`,
                         () =>
                         {
                             ok(optionID in objects);

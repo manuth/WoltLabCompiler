@@ -10,7 +10,7 @@ import { FileDescriptor } from "../../PackageSystem/FileDescriptor";
 export function FileDescriptorTests(): void
 {
     suite(
-        "FileDescriptor",
+        nameof(FileDescriptor),
         () =>
         {
             let tempFile: TempFile;
@@ -79,25 +79,25 @@ export function FileDescriptorTests(): void
                 });
 
             suite(
-                "Source",
+                nameof<FileDescriptor>((descriptor) => descriptor.Source),
                 () =>
                 {
                     test(
-                        "Checking whether the `Source`-property works properly with absolute paths…",
+                        `Checking whether the \`${nameof<FileDescriptor>((d) => d.Source)}\`-property works properly with absolute paths…`,
                         async () =>
                         {
                             strictEqual((await readFile(absoluteDescriptor.Source)).toString(), absoluteContent);
                         });
 
                     test(
-                        "Checking whether the `Source`-property works properly with relative paths…",
+                        `Checking whether the \`${nameof<FileDescriptor>((d) => d.Source)}\`-property works properly with relative paths…`,
                         async () =>
                         {
                             strictEqual((await readFile(relativeDescriptor.Source)).toString(), relativeContent);
                         });
 
                     test(
-                        "Checking whether the `Source`-property works properly with relative paths even if the working directory is changed…",
+                        `Checking whether the \`${nameof<FileDescriptor>((d) => d.Source)}\`-property works properly with relative paths even if the working directory is changed…`,
                         async () =>
                         {
                             let tempDir: TempDirectory = new TempDirectory();
@@ -112,7 +112,7 @@ export function FileDescriptorTests(): void
                         });
 
                     test(
-                        "Checking whether the `Source`-property works properly with paths outside of the working directory…",
+                        `Checking whether the \`${nameof<FileDescriptor>((d) => d.Source)}\`-property works properly with paths outside of the working directory…`,
                         async () =>
                         {
                             strictEqual((await readFile(parentDescriptor.Source)).toString(), parentContent);
@@ -120,25 +120,25 @@ export function FileDescriptorTests(): void
                 });
 
             suite(
-                "FileName",
+                nameof<FileDescriptor>((descriptor) => descriptor.FileName),
                 () =>
                 {
                     test(
-                        "Checking whether the `FileName` automatically is set to the basename of the source if no filename is specified and the source is absolute…",
+                        `Checking whether the \`${nameof<FileDescriptor>((d) => d.FileName)}\` automatically is set to the basename of the \`${nameof<FileDescriptor>((d) => d.Source)}\`-property if it is absolute and no filename was specified…`,
                         () =>
                         {
                             strictEqual(absoluteDescriptor.FileName, basename(absoluteFileName));
                         });
 
                     test(
-                        "Checking whether the `FileName` is set to the relative path if no filename is specified and the source is relative…",
+                        `Checking whether the \`${nameof<FileDescriptor>((d) => d.FileName)}\` is set to the \`${nameof<FileDescriptor>((d) => d.Source)}\`-property if the source is relative and no filename is specified…`,
                         () =>
                         {
                             strictEqual(relativeDescriptor.FileName, normalize(relativeFileName));
                         });
 
                     test(
-                        "Checking whether `FileName` is set to the basename of the path if no filename is specified and the source is outside of the working directory…",
+                        `Checking whether \`${nameof<FileDescriptor>((d) => d.FileName)}\` is set to the basename of the path if no filename is specified and the \`${nameof<FileDescriptor>((d) => d.Source)}\` is outside of the working directory…`,
                         () =>
                         {
                             strictEqual(parentDescriptor.FileName, basename(parentFileName));

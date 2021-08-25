@@ -77,5 +77,5 @@ export function LocalizationSetCompilerTests(): void
                         true);
                 });
         }
-    }("LocalizationSetCompiler").Register();
+    }(nameof(LocalizationSetCompiler)).Register();
 }

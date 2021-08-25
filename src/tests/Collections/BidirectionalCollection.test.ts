@@ -7,7 +7,7 @@ import { BidirectionalCollection } from "../../Collections/BidirectionalCollecti
 export function BidirectionalCollectionTests(): void
 {
     suite(
-        "BidirectionalCollection",
+        nameof(BidirectionalCollection),
         () =>
         {
             /**
@@ -74,7 +74,7 @@ export function BidirectionalCollectionTests(): void
                 });
 
             suite(
-                "push",
+                nameof<BidirectionalCollection<any, any>>((collection) => collection.push),
                 () =>
                 {
                     test(
@@ -87,7 +87,7 @@ export function BidirectionalCollectionTests(): void
                 });
 
             suite(
-                "pop",
+                nameof<BidirectionalCollection<any, any>>((collection) => collection.pop),
                 () =>
                 {
                     test(

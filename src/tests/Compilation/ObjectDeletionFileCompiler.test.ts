@@ -113,5 +113,5 @@ export function ObjectDeletionFileCompilerTests(): void
                         });
                 });
         }
-    }("ObjectDeletionFileCompiler").Register();
+    }(nameof(ObjectDeletionFileCompiler)).Register();
 }

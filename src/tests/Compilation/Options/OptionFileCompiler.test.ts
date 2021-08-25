@@ -275,5 +275,5 @@ export function OptionFileCompilerTests(): void
                         return this.GetText(optionNode, "enableoptions").split(",").includes(enableOption);
                     }));
         }
-    }("OptionFileCompiler").Register();
+    }(nameof(OptionFileCompiler)).Register();
 }

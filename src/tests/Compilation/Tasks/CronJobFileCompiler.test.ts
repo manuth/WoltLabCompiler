@@ -115,5 +115,5 @@ export function CronJobFileCompilerTests(): void
                     }
                 });
         }
-    }("CronJobFileCompiler").Register();
+    }(nameof(CronJobFileCompiler)).Register();
 }

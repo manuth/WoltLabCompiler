@@ -11,7 +11,7 @@ import { SassVariableParser } from "../../../Customization/Presentation/Themes/S
 export function SassVariableParserTests(): void
 {
     suite(
-        "SassVariableParser",
+        nameof(SassVariableParser),
         () =>
         {
             let mainFile: string;
@@ -78,7 +78,7 @@ export function SassVariableParserTests(): void
                 });
 
             suite(
-                "Parse",
+                nameof<SassVariableParser>((parser) => parser.Parse),
                 () =>
                 {
                     suite(

@@ -91,5 +91,5 @@ export function LocalizationFileCompilerTests(): void
                     }
                 });
         }
-    }("LocalizationFileCompiler").Register();
+    }(nameof(LocalizationFileCompiler)).Register();
 }

@@ -11,7 +11,7 @@ import { TranslationInstruction } from "../../../../PackageSystem/Instructions/G
 export function LocalizationInstructionTests(): void
 {
     suite(
-        "LocalizationInstruction",
+        nameof(LocalizationInstruction),
         () =>
         {
             let locale: string;
@@ -55,7 +55,7 @@ export function LocalizationInstructionTests(): void
                 });
 
             suite(
-                "GetMessages()",
+                nameof<LocalizationInstruction<any, any>>((instruction) => instruction.GetMessages),
                 () =>
                 {
                     test(

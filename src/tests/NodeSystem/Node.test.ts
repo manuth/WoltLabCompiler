@@ -9,7 +9,7 @@ import { NodeItem } from "../../NodeSystem/NodeItem";
 export function NodeTests(): void
 {
     suite(
-        "Node",
+        nameof(Node),
         () =>
         {
             /**
@@ -61,11 +61,11 @@ export function NodeTests(): void
                 });
 
             suite(
-                "FullName",
+                nameof<MyNode>((node) => node.FullName),
                 () =>
                 {
                     test(
-                        "Checking whether the `FullName`-property is built correctly…",
+                        `Checking whether the \`${nameof<MyNode>((n) => n.FullName)}\`-property is built correctly…`,
                         () =>
                         {
                             nodeA.Parent = nodeB;
@@ -76,18 +76,19 @@ export function NodeTests(): void
                 });
 
             suite(
-                "Parent",
+                nameof<MyNode>((node) => node.Parent),
                 () =>
                 {
                     test(
-                        "Checking whether the `Parent`-property is automatically set properly, when setting the `Parent`-property…",
+                        `Checking whether the \`${nameof<MyNode>((n) => n.Parent)}\`-property is automatically set properly, when setting the \`${nameof<MyNode>((n) => n.Parent)}\`-property`,
                         () =>
                         {
                             nodeA.Parent = nodeB;
                             strictEqual(nodeA.Parent, nodeB);
                         });
+
                     test(
-                        "Checking whether the `Parent`-property is automatically set properly, when adding the node to another node's `Nodes`-array…",
+                        `Checking whether the \`${nameof<MyNode>((n) => n.Parent)}\`-property is automatically set properly, when adding the node to another node's \`${nameof<MyNode>((n) => n.Nodes)}\`-array…`,
                         () =>
                         {
                             nodeA.Parent = nodeB;
@@ -96,11 +97,11 @@ export function NodeTests(): void
                 });
 
             suite(
-                "Nodes",
+                nameof<MyNode>((node) => node.Nodes),
                 () =>
                 {
                     test(
-                        "Checking whether the `Nodes`-property is automatically set properly, when setting the `Parent`-property of another node…",
+                        `Checking whether the \`${nameof<MyNode>((n) => n.Nodes)}\`-property is automatically set properly, when setting the \`${nameof<MyNode>((n) => n.Parent)}\`-property of another node…`,
                         () =>
                         {
                             nodeB.Parent = nodeA;
@@ -110,7 +111,7 @@ export function NodeTests(): void
                         });
 
                     test(
-                        "Checking whether the `Nodes`-property is automatically set properly, when adding another node to the `Nodes`-array…",
+                        `Checking whether nodes can be added to the \`${nameof<MyNode>((n) => n.Nodes)}\`--array properly…`,
                         () =>
                         {
                             nodeA.Nodes.push(nodeC);
@@ -121,11 +122,11 @@ export function NodeTests(): void
                 });
 
             suite(
-                "GetAllNodes",
+                nameof<MyNode>((node) => node.GetAllNodes),
                 () =>
                 {
                     test(
-                        "Checking whether `GetAllNodes()` gets all nodes recursively…",
+                        `Checking whether \`${nameof<MyNode>((n) => n.GetAllNodes)}\` gets all nodes recursively…`,
                         () =>
                         {
                             nodeA.Parent = nodeB;
@@ -139,7 +140,7 @@ export function NodeTests(): void
                 });
 
             suite(
-                "GetObjects",
+                nameof<MyNode>((node) => node.GetObjects),
                 () =>
                 {
                     let id: string;
@@ -149,6 +150,7 @@ export function NodeTests(): void
                         () =>
                         {
                             id = "Foo";
+
                             idNode = new MyNode(
                                 {
                                     ID: id,
@@ -157,7 +159,7 @@ export function NodeTests(): void
                         });
 
                     test(
-                        "Checking whether the node returns itself if an ID is assigned…",
+                        `Checking whether the node returns itself if an \`${nameof<MyNode>((n) => n.ID)}\` is assigned…`,
                         () =>
                         {
                             ok(id in idNode.GetObjects());
@@ -165,7 +167,7 @@ export function NodeTests(): void
                         });
 
                     test(
-                        "Checking whether nodes with IDs are recognized correctly if they are nested deeply…",
+                        `Checking whether nodes with \`${nameof<MyNode>((n) => n.ID)}\`s are recognized correctly if they are nested deeply…`,
                         () =>
                         {
                             let rootNode = new MyNode(

@@ -73,5 +73,5 @@ export function XMLFileCompilerTests(): void
                     strictEqual(this.Tester.XMLEditor.TagName, rootTag);
                 });
         }
-    }("XMLFileCompiler").Register();
+    }(nameof(XMLFileCompiler)).Register();
 }

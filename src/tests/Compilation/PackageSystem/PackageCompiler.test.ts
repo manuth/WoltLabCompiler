@@ -144,5 +144,5 @@ export function PackageCompilerTests(): void
                 ok(files.includes(join(instructionSet.Directory, component.FileName)));
             }
         }
-    }("PackageCompiler").Register();
+    }(nameof(PackageCompiler)).Register();
 }

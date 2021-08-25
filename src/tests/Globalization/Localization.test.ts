@@ -7,11 +7,11 @@ import { Localization } from "../../Globalization/Localization";
 export function LocalizationTests(): void
 {
     suite(
-        "Localization",
+        nameof(Localization),
         () =>
         {
             suite(
-                "GetLocales",
+                nameof<Localization>((localization) => localization.GetLocales),
                 () =>
                 {
                     let locales1: string[];
@@ -41,7 +41,7 @@ export function LocalizationTests(): void
                         });
 
                     test(
-                        "Checking whether the locales of the `Localization` are evaluated correctly…",
+                        `Checking whether the locales of the \`${nameof(Localization)}\` are evaluated correctly…`,
                         () =>
                         {
                             ok(locales1.every((locale: string) => localization1.GetLocales().includes(locale)));

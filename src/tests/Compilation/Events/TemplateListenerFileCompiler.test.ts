@@ -51,5 +51,5 @@ export function TemplateListenerFileCompilerTests(): void
             this.AssertTagContent(listenerNode, "templatename", listener.TemplateName);
             this.AssertTagContent(listenerNode, "code", listener.Code);
         }
-    }("TemplateListenerFileCompiler").Register();
+    }(nameof(TemplateListenerFileCompiler)).Register();
 }

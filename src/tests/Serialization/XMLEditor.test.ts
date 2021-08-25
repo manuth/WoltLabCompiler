@@ -8,7 +8,7 @@ import { XMLEditor } from "../../Serialization/XMLEditor";
 export function XMLEditorTests(): void
 {
     suite(
-        "XMLEditor",
+        nameof(XMLEditor),
         () =>
         {
             let tagName: string;
@@ -29,7 +29,7 @@ export function XMLEditorTests(): void
                 });
 
             suite(
-                "constructor",
+                nameof(XMLEditor.constructor),
                 () =>
                 {
                     test(
@@ -41,7 +41,7 @@ export function XMLEditorTests(): void
                 });
 
             suite(
-                "TagName",
+                nameof<XMLEditor>((editor) => editor.TagName),
                 () =>
                 {
                     test(
@@ -53,7 +53,7 @@ export function XMLEditorTests(): void
                 });
 
             suite(
-                "Element",
+                nameof<XMLEditor>((editor) => editor.Element),
                 () =>
                 {
                     test(
@@ -65,7 +65,7 @@ export function XMLEditorTests(): void
                 });
 
             suite(
-                "ParentNode",
+                nameof<XMLEditor>((editor) => editor.ParentNode),
                 () =>
                 {
                     let child: XMLEditor;
@@ -78,7 +78,7 @@ export function XMLEditorTests(): void
                         });
 
                     test(
-                        "Checking whether the ParentNode is correct…",
+                        `Checking whether the \`${nameof<XMLEditor>((e) => e.ParentNode)}\` is set correctly…`,
                         () =>
                         {
                             ok(child.ParentNode === temp.Element);
@@ -86,11 +86,11 @@ export function XMLEditorTests(): void
                 });
 
             suite(
-                "Document",
+                nameof<XMLEditor>((editor) => editor.Document),
                 () =>
                 {
                     test(
-                        "Checking whether the `Document`-property is a document-node…",
+                        `Checking whether the \`${nameof<XMLEditor>((e) => e.Document)}\`-property is a document-node…`,
                         () =>
                         {
                             strictEqual(temp.Document.nodeType, temp.Element.DOCUMENT_NODE);
@@ -98,7 +98,7 @@ export function XMLEditorTests(): void
                 });
 
             suite(
-                "ChildNodes",
+                nameof<XMLEditor>((editor) => editor.ChildNodes),
                 () =>
                 {
                     let children: string[];
@@ -119,7 +119,7 @@ export function XMLEditorTests(): void
                         });
 
                     test(
-                        "Checking whether the children are correct…",
+                        `Checking whether the \`${nameof<XMLEditor>((e) => e.ChildNodes)}\`-property is set correctly…`,
                         () =>
                         {
                             strictEqual(temp.ChildNodes.length, children.length);
@@ -133,7 +133,7 @@ export function XMLEditorTests(): void
                 });
 
             suite(
-                "CreateElement",
+                nameof<XMLEditor>((editor) => editor.CreateElement),
                 () =>
                 {
                     let tagName: string;
@@ -154,7 +154,7 @@ export function XMLEditorTests(): void
                 });
 
             suite(
-                "CreateCDATAElement",
+                nameof<XMLEditor>((editor) => editor.CreateCDATAElement),
                 () =>
                 {
                     let tagName: string;
@@ -179,7 +179,7 @@ export function XMLEditorTests(): void
                 });
 
             suite(
-                "CreateTextElement",
+                nameof<XMLEditor>((editor) => editor.CreateTextElement),
                 () =>
                 {
                     let tagName: string;
@@ -204,7 +204,7 @@ export function XMLEditorTests(): void
                 });
 
             suite(
-                "Add",
+                nameof<XMLEditor>((editor) => editor.Add),
                 () =>
                 {
                     let child: XMLEditor;
@@ -218,7 +218,7 @@ export function XMLEditorTests(): void
                         });
 
                     test(
-                        "Checking whether `XMLEditor`-instances can be added…",
+                        `Checking whether \`${nameof(XMLEditor)}\`-instances can be added…`,
                         () =>
                         {
                             temp.Add(child);
@@ -226,32 +226,11 @@ export function XMLEditorTests(): void
                         });
 
                     test(
-                        "Checking whether `Node`-instances can be added…",
+                        `Checking whether \`${nameof<Node>()}\`-instances can be added…`,
                         () =>
                         {
                             temp.Add(childNode);
                             ok(temp.ChildNodes.includes(childNode));
-                        });
-                });
-
-            suite(
-                "AddElement",
-                () =>
-                {
-                    let tagName: string;
-                    let child: XMLEditor;
-
-                    suiteSetup(
-                        () =>
-                        {
-                            tagName = "foo";
-                        });
-
-                    setup(
-                        () =>
-                        {
-                            child = temp.CreateElement(tagName);
-                            temp.Add(child);
                         });
 
                     test(
@@ -259,12 +238,13 @@ export function XMLEditorTests(): void
                         () =>
                         {
                             strictEqual(child.TagName, tagName);
+                            temp.Add(child.Element);
                             ok(temp.ChildNodes.includes(child.Element));
                         });
                 });
 
             suite(
-                "Insert",
+                nameof<XMLEditor>((editor) => editor.Insert),
                 () =>
                 {
                     let tag: string;
@@ -283,7 +263,7 @@ export function XMLEditorTests(): void
                         });
 
                     test(
-                        "Checking whether inserting elements in inexistent-indexes causes an error…",
+                        "Checking whether inserting elements at inexistent indexes causes an error…",
                         () =>
                         {
                             throws(() => temp.Insert(1, newElement));
@@ -308,7 +288,7 @@ export function XMLEditorTests(): void
                         });
 
                     test(
-                        "Checking whether items can be inserted anywhere inside the childnode-list…",
+                        `Checking whether items can be inserted anywhere inside the \`${nameof<XMLEditor>((e) => e.ChildNodes)}\`-list…`,
                         () =>
                         {
                             let index: number = Math.floor(Math.random() * temp.ChildNodes.length);
@@ -318,7 +298,7 @@ export function XMLEditorTests(): void
                 });
 
             suite(
-                "GetChildrenByTag",
+                nameof<XMLEditor>((editor) => editor.GetChildrenByTag),
                 () =>
                 {
                     let tags: string[];
@@ -351,7 +331,7 @@ export function XMLEditorTests(): void
                 });
 
             suite(
-                "GetElementsByTag",
+                nameof<XMLEditor>((editor) => editor.GetElementsByTag),
                 () =>
                 {
                     let tags: string[];
@@ -383,7 +363,7 @@ export function XMLEditorTests(): void
                 });
 
             suite(
-                "GetAttribute",
+                nameof<XMLEditor>((editor) => editor.GetAttribute),
                 () =>
                 {
                     let attributeName: string;
@@ -412,7 +392,7 @@ export function XMLEditorTests(): void
                 });
 
             suite(
-                "SetAttribute",
+                nameof<XMLEditor>((editor) => editor.SetAttribute),
                 () =>
                 {
                     let attributeName: string;
@@ -435,7 +415,7 @@ export function XMLEditorTests(): void
                 });
 
             suite(
-                "HasAttribute",
+                nameof<XMLEditor>((editor) => editor.HasAttribute),
                 () =>
                 {
                     let attributeName: string;

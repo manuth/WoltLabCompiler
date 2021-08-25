@@ -8,7 +8,7 @@ import { ThemeInstruction } from "../../../../../PackageSystem/Instructions/Cust
 export function ThemeInstructionTests(): void
 {
     suite(
-        "ThemeInstruction",
+        nameof(ThemeInstruction),
         () =>
         {
             let ThemeName: string;
@@ -29,11 +29,11 @@ export function ThemeInstructionTests(): void
                 });
 
             suite(
-                "FileName",
+                nameof<ThemeInstruction>((instruction) => instruction.FileName),
                 () =>
                 {
                     test(
-                        "Checking whether the filename is set to the name of the theme if no filename is specified…",
+                        `Checking whether the \`${nameof<ThemeInstruction>((i) => i.FileName)}\`-property is set to the name of the theme if no filename is specified…`,
                         () =>
                         {
                             strictEqual(parse(themeInstruction.FileName).name, ThemeName);

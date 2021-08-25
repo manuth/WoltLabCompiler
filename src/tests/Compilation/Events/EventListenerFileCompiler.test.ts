@@ -55,5 +55,5 @@ export function EventListenerFileCompilerTests(): void
             this.AssertTagContent(listenerNode, "inherit", listener.AllowInherited ? "1" : "0");
             this.AssertTagContent(listenerNode, "listenerclassname", listener.EventHandlerClassName);
         }
-    }("EventListenerFileCompiler").Register();
+    }(nameof(EventListenerFileCompiler)).Register();
 }

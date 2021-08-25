@@ -80,5 +80,5 @@ export function WoltLabXMLCompilerTests(): void
                     strictEqual(this.Tester.XMLEditor.GetAttribute("xsi:schemaLocation"), `${namespace} ${schemaLocation}`);
                 });
         }
-    }("WoltLabXMLCompiler").Register();
+    }(nameof(WoltLabXMLCompiler)).Register();
 }

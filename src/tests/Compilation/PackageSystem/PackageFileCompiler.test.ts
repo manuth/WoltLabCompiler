@@ -329,5 +329,5 @@ export function PackageFileCompilerTests(): void
                         }));
             }
         }
-    }("PackageFileCompiler").Register();
+    }(nameof(PackageFileCompiler)).Register();
 }

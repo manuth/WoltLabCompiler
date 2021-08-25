@@ -8,7 +8,7 @@ import { PeriodTester } from "./PeriodTester";
 export function TimePeriodTests(): void
 {
     suite(
-        "TimePeriod",
+        nameof(TimePeriod),
         () =>
         {
             let tester: PeriodTester;
@@ -20,7 +20,7 @@ export function TimePeriodTests(): void
                 });
 
             suite(
-                "Yearly",
+                nameof(TimePeriod.Yearly),
                 () =>
                 {
                     setup(
@@ -30,7 +30,7 @@ export function TimePeriodTests(): void
                         });
 
                     test(
-                        "Checking whether the `TimePeriod.Yearly`-period is triggered every year…",
+                        `Checking whether the \`${nameof(TimePeriod)}.${nameof(TimePeriod.Yearly)}\`-period is triggered every year…`,
                         () =>
                         {
                             let nextDate = new Date(tester.StartDate);
@@ -43,7 +43,7 @@ export function TimePeriodTests(): void
                 });
 
             suite(
-                "Monthly",
+                nameof(TimePeriod.Monthly),
                 () =>
                 {
                     setup(
@@ -53,7 +53,7 @@ export function TimePeriodTests(): void
                         });
 
                     test(
-                        "Checking whether the `TimePeriod.Monthly`-period is triggered every month…",
+                        `Checking whether the \`${nameof(TimePeriod)}.${nameof(TimePeriod.Monthly)}\`-period is triggered every month…`,
                         () =>
                         {
                             let nextDate = new Date(tester.StartDate);
@@ -66,7 +66,7 @@ export function TimePeriodTests(): void
                 });
 
             suite(
-                "Weekly",
+                nameof(TimePeriod.Weekly),
                 () =>
                 {
                     setup(
@@ -76,7 +76,7 @@ export function TimePeriodTests(): void
                         });
 
                     test(
-                        "Checking whether the `TimePeriod.Weekly`-period is triggered every week…",
+                        `Checking whether the \`${nameof(TimePeriod)}.${nameof(TimePeriod.Weekly)}\`-period is triggered every week…`,
                         () =>
                         {
                             let nextDate = new Date(tester.StartDate);
@@ -89,7 +89,7 @@ export function TimePeriodTests(): void
                 });
 
             suite(
-                "Daily",
+                nameof(TimePeriod.Daily),
                 () =>
                 {
                     setup(
@@ -99,7 +99,7 @@ export function TimePeriodTests(): void
                         });
 
                     test(
-                        "Checking whether the `TimePeriod.Daily`-period is triggered every day…",
+                        `Checking whether the \`${nameof(TimePeriod)}.${nameof(TimePeriod.Daily)}\`-period is triggered every day…`,
                         () =>
                         {
                             let nextDate = new Date(tester.StartDate);
@@ -112,7 +112,7 @@ export function TimePeriodTests(): void
                 });
 
             suite(
-                "Hourly",
+                nameof(TimePeriod.Hourly),
                 () =>
                 {
                     setup(
@@ -122,7 +122,7 @@ export function TimePeriodTests(): void
                         });
 
                     test(
-                        "Checking whether the `TimePeriod.Hourly`-period is triggered every hour…",
+                        `Checking whether the \`${nameof(TimePeriod)}.${nameof(TimePeriod.Hourly)}\`-period is triggered every hour…`,
                         () =>
                         {
                             let nextDate = new Date(tester.StartDate);

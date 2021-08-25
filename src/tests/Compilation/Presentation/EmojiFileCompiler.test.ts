@@ -108,5 +108,5 @@ export function EmojiFileCompilerTests(): void
                     }
                 });
         }
-    }("EmojiFileCompiler").Register();
+    }(nameof(EmojiFileCompiler)).Register();
 }

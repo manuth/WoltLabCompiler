@@ -7,7 +7,7 @@ import { FileSystemInstruction } from "../../../../PackageSystem/Instructions/Fi
 export function FileSystemInstructionTests(): void
 {
     suite(
-        "FileSystemInstruction",
+        nameof(FileSystemInstruction),
         () =>
         {
             let fileName: string;
@@ -31,11 +31,11 @@ export function FileSystemInstructionTests(): void
                 });
 
             suite(
-                "FileName",
+                nameof<FileSystemInstruction>((instruction) => instruction.FileName),
                 () =>
                 {
                     test(
-                        "Checking whether the `FileName` is set to `Source` automatically…",
+                        `Checking whether the \`${nameof<FileSystemInstruction>((i) => i.FileName)}\` is set to \`${nameof<FileSystemInstruction>((i) => i.Source)}\` automatically…`,
                         () =>
                         {
                             strictEqual(instruction.FileName, instruction.Source);

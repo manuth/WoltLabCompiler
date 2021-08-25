@@ -117,5 +117,5 @@ export function ThemeInstructionCompilerTests(): void
                     ok(files.includes("variables.xml"));
                 });
         }
-    }("ThemeInstructionCompiler").Register();
+    }(nameof(ThemeInstructionCompiler)).Register();
 }

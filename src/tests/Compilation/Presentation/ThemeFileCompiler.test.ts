@@ -151,5 +151,5 @@ export function ThemeFileCompilerTests(): void
                     strictEqual(imageNode.TextContent, this.Compiler.Item.Images.FileName);
                 });
         }
-    }("ThemeFileCompiler").Register();
+    }(nameof(ThemeFileCompiler)).Register();
 }

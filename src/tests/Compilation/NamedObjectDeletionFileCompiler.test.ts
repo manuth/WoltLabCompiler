@@ -102,7 +102,7 @@ export function NamedObjectDeletionFileCompilerTests(): void
             super.ExecuteTests();
 
             test(
-                "Checking whether a `delete`-entry is created for each pending deletion…",
+                `Checking whether a \`${this.Tester.DeleteTag}\`-entry is created for each pending deletion…`,
                 () =>
                 {
                     let deletionEntry = this.Tester.DeleteEditor.GetElementsByTag(objectTag);
@@ -115,5 +115,5 @@ export function NamedObjectDeletionFileCompilerTests(): void
                     }
                 });
         }
-    }("NamedObjectDeletionFileCompiler").Register();
+    }(nameof(NamedObjectDeletionFileCompiler)).Register();
 }

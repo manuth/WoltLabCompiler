@@ -128,7 +128,7 @@ export function InstructionCompilerTests(): void
             super.RegisterTests();
 
             suite(
-                "CopyTemplate",
+                nameof<TestInstructionCompiler>((compiler) => compiler.CopyTemplate),
                 () =>
                 {
                     let content: string;
@@ -158,7 +158,7 @@ export function InstructionCompilerTests(): void
                 });
 
             suite(
-                "Serialize",
+                nameof<TestInstructionCompiler>((compiler) => compiler.Serialize),
                 () =>
                 {
                     let editor: XMLEditor;
@@ -205,5 +205,5 @@ export function InstructionCompilerTests(): void
                         });
                 });
         }
-    }("InstructionCompiler").Register();
+    }(nameof(InstructionCompiler)).Register();
 }
