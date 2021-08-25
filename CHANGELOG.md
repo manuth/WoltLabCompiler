@@ -5,10 +5,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## WoltLabCompiler [Unreleased]
+
+[Show differences](https://github.com/manuth/WoltLabCompiler/compare/v2.1.4...dev)
+
+## WoltLabCompiler v2.1.4
 ### Fixed
   - Broken package by adding a reference to the `DOM`-library
 
-[Show differences](https://github.com/manuth/WoltLabCompiler/compare/v2.1.3...dev)
+[Show differences](https://github.com/manuth/WoltLabCompiler/compare/v2.1.3...v2.1.4)
 
 ## WoltLabCompiler v2.1.3
 ### Fixed
