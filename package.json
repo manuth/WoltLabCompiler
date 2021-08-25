@@ -50,7 +50,7 @@
     "get-sass-vars": "^3.1.0",
     "hex-to-rgba": "^2.0.1",
     "mem-fs": "^2.2.1",
-    "mem-fs-editor": "^9.1.0",
+    "mem-fs-editor": "^9.2.0",
     "tar": "^6.1.10",
     "upath": "^2.0.1"
   },
