@@ -57,9 +57,13 @@ export { ITemplateListenerOptions } from "./Customization/Presentation/ITemplate
 export { TemplateListener } from "./Customization/Presentation/TemplateListener";
 export { IImageDirectoryDescriptorOptions } from "./Customization/Presentation/Themes/IImageDirectoryDescriptorOptions";
 export { ImageDirectoryDescriptor } from "./Customization/Presentation/Themes/ImageDirectoryDescriptor";
+export { IThemeLoaderOptions } from "./Customization/Presentation/Themes/IThemeLoaderOptions";
+export { IThemeOptionBase } from "./Customization/Presentation/Themes/IThemeOptionBase";
 export { IThemeOptions } from "./Customization/Presentation/Themes/IThemeOptions";
 export { SassVariableParser } from "./Customization/Presentation/Themes/SassVariableParser";
 export { Theme } from "./Customization/Presentation/Themes/Theme";
+export { ThemeLoader } from "./Customization/Presentation/Themes/ThemeLoader";
+export { ThemeVariables } from "./Customization/Presentation/Themes/ThemeVariables";
 export { EventListener } from "./Events/EventListener";
 export { IEventListenerOptions } from "./Events/IEventListenerOptions";
 export { IListenerOptions } from "./Events/IListenerOptions";

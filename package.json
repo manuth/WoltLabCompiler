@@ -1,6 +1,6 @@
 {
   "name": "@manuth/woltlab-compiler",
-  "version": "2.1.4",
+  "version": "2.1.5",
   "description": "A compiler for WoltLab-Package Archives and WoltLab-Package Components",
   "author": "Manuel Thalmann <m@nuth.ch>",
   "license": "MIT",
@@ -44,14 +44,14 @@
   },
   "dependencies": {
     "@manuth/temp-files": "^2.0.7",
-    "@xmldom/xmldom": "^0.7.2",
+    "@xmldom/xmldom": "^0.7.3",
     "colornames": "^1.1.1",
     "fs-extra": "^10.0.0",
     "get-sass-vars": "^3.1.0",
     "hex-to-rgba": "^2.0.1",
     "mem-fs": "^2.2.1",
-    "mem-fs-editor": "^9.2.0",
-    "tar": "^6.1.10",
+    "mem-fs-editor": "^9.3.0",
+    "tar": "^6.1.11",
     "upath": "^2.0.1"
   },
   "devDependencies": {
@@ -65,19 +65,19 @@
     "@types/mem-fs": "^1.1.2",
     "@types/mem-fs-editor": "^7.0.1",
     "@types/mocha": "^9.0.0",
-    "@types/node": "^16.7.1",
+    "@types/node": "^16.7.9",
     "@types/sass": "^1.16.1",
     "@types/tar": "^4.0.5",
     "@types/ts-nameof": "^4.2.1",
     "cron-parser": "^3.5.0",
     "dedent": "^0.7.0",
     "eslint": "^7.32.0",
-    "mocha": "^9.1.0",
+    "mocha": "^9.1.1",
     "rimraf": "^3.0.2",
     "source-map-support": "^0.5.19",
     "ts-nameof": "^5.0.0",
     "ts-node": "^10.2.1",
-    "ts-patch": "^1.4.3",
-    "typescript": "^4.3.5"
+    "ts-patch": "^1.4.4",
+    "typescript": "^4.4.2"
   }
 }
