@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
   - Missing exports to the package
 
+### Updated
+  - All dependencies
+
 [Show differences](https://github.com/manuth/WoltLabCompiler/compare/v2.1.4...dev)
 
 ## WoltLabCompiler v2.1.4
