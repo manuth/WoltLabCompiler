@@ -39,8 +39,8 @@
     "lint": "npm run lint-base -- --ext .js,.jsx,.ts,.tsx ./src .eslintrc.js",
     "lint-ide": "npm run lint || exit 0",
     "test": "mocha",
-    "prepare": "npm run patchTypeScript && npm run rebuild",
-    "patchTypeScript": "ts-patch install && ts-patch --persist"
+    "prepare": "npm run patch-ts && npm run rebuild",
+    "patch-ts": "ts-patch install"
   },
   "dependencies": {
     "@manuth/temp-files": "^2.0.7",
