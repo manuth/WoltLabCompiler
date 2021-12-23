@@ -44,7 +44,7 @@
   },
   "dependencies": {
     "@manuth/temp-files": "^2.0.8",
-    "@xmldom/xmldom": "^0.7.5",
+    "@xmldom/xmldom": "^0.8.0",
     "colornames": "^1.1.1",
     "fs-extra": "^10.0.0",
     "get-sass-vars": "^3.2.1",
