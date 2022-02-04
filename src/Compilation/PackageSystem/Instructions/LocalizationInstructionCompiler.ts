@@ -33,7 +33,7 @@ export class LocalizationInstructionCompiler extends InstructionCompiler<ILocali
         if (Object.keys(this.Item.GetMessages()).length > 0)
         {
             document.documentElement.textContent = normalize(
-                this.MakePackagePath(
+                join(
                     this.Item.DestinationRoot,
                     this.Item.TranslationDirectory,
                     "*"));
