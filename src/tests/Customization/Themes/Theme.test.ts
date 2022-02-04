@@ -38,6 +38,7 @@ export function ThemeTests(): void
                             DisplayName: {},
                             Author: author,
                             Identifier: "test",
+                            Version: "",
                             InstallSet: {
                                 Instructions: []
                             }
