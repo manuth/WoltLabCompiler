@@ -173,11 +173,11 @@ export abstract class OptionInstruction<TCategory extends Category<TOption, TOpt
                     Name: this.CategoryCategory
                 });
 
-            optionNode.Nodes.push(categoryNode);
+            translationRoot.Nodes.push(categoryNode);
         }
         else
         {
-            categoryNode = optionNode;
+            categoryNode = translationRoot;
         }
 
         for (let rootNode of this.Nodes)
