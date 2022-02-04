@@ -1,5 +1,5 @@
 import { TempDirectory } from "@manuth/temp-files";
-import { normalize } from "upath";
+import { join, normalize } from "upath";
 import { ILocalizationInstruction } from "../../../PackageSystem/Instructions/Globalization/ILocalizationInstruction";
 import { LocalizationSetCompiler } from "../../Globalization/LocalizationSetCompiler";
 import { InstructionCompiler } from "./InstructionCompiler";
@@ -33,10 +33,10 @@ export class LocalizationInstructionCompiler extends InstructionCompiler<ILocali
         if (Object.keys(this.Item.GetMessages()).length > 0)
         {
             document.documentElement.textContent = normalize(
-                this.MakePackagePath(
+                join(
                     this.Item.DestinationRoot,
                     this.Item.TranslationDirectory,
-                    "*"));
+                    "*.xml"));
 
             return document;
         }
