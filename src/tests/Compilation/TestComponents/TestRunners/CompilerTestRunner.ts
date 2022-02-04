@@ -169,7 +169,7 @@ export abstract class CompilerTestRunner<TTester extends CompilerTester<TCompile
     { }
 
     /**
-     * Disposes
+     * Disposes the {@link Compiler.Execute `Execute`}-suite.
      */
     protected async ExecuteSuiteTeardown(): Promise<void>
     { }

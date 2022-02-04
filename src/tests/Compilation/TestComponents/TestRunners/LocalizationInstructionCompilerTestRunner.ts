@@ -7,7 +7,7 @@ import { CompilerTester } from "../Testers/CompilerTester";
 import { InstructionCompilerTestRunner } from "./InstructionCompilerTestRunner";
 
 /**
- * Registers tests for option-instruction compilers.
+ * Registers tests for localization-instruction compilers.
  *
  * @template TTester
  * The type of the compiler-tester.
@@ -18,7 +18,7 @@ import { InstructionCompilerTestRunner } from "./InstructionCompilerTestRunner";
 export abstract class LocalizationInstructionCompilerTestRunner<TTester extends CompilerTester<TCompiler>, TCompiler extends InstructionCompiler<ILocalizationInstruction>> extends InstructionCompilerTestRunner<TTester, TCompiler>
 {
     /**
-     * Initializes a new instance of the {@link OptionInstructionCompilerTestRunner `OptionInstructionCompilerTestRunner<TTester, TCompiler>`} class.
+     * Initializes a new instance of the {@link LocalizationInstructionCompilerTestRunner `LocalizationInstructionCompilerTestRunner<TTester, TCompiler>`} class.
      *
      * @param title
      * The title of the suite.
