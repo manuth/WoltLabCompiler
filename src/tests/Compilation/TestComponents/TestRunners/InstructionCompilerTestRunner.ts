@@ -31,6 +31,15 @@ export abstract class InstructionCompilerTestRunner<TTester extends CompilerTest
     }
 
     /**
+     * Registers root tests.
+     */
+    protected override RegisterTests(): void
+    {
+        super.RegisterTests();
+        this.RegisterSerializeTests();
+    }
+
+    /**
      * @inheritdoc
      */
     protected override async SuiteSetup(): Promise<void>
@@ -66,4 +75,51 @@ export abstract class InstructionCompilerTestRunner<TTester extends CompilerTest
                             this.Compiler.Item.FileName)));
             });
     }
+
+    /**
+     * Registers tests for the serialization.
+     */
+    protected RegisterSerializeTests(): void
+    {
+        suite(
+            nameof<InstructionCompiler<any>>((compiler) => compiler.Serialize),
+            () =>
+            {
+                suiteSetup(async () => this.SerializeSuiteSetup());
+                suiteTeardown(async () => this.SerializeSuiteTeardown());
+                setup(async () => this.SerializeSetup());
+                teardown(async () => this.SerializeTeardown());
+                this.SerializeTests();
+            });
+    }
+
+    /**
+     * Prepares the {@link InstructionCompiler.Serialize `Serialize`} suite.
+     */
+    protected async SerializeSuiteSetup(): Promise<void>
+    { }
+
+    /**
+     * Disposes the {@link InstructionCompiler.Serialize `Serialize`} suite.
+     */
+    protected async SerializeSuiteTeardown(): Promise<void>
+    { }
+
+    /**
+     * Prepares the {@link InstructionCompiler.Serialize `Serialize`} test-cases.
+     */
+    protected async SerializeSetup(): Promise<void>
+    { }
+
+    /**
+     * Disposes the {@link InstructionCompiler.Serialize `Serialize`} test-cases.
+     */
+    protected async SerializeTeardown(): Promise<void>
+    { }
+
+    /**
+     * Registers tests for the {@link InstructionCompiler.Serialize `Serialize`} suite.
+     */
+    protected SerializeTests(): void
+    { }
 }
