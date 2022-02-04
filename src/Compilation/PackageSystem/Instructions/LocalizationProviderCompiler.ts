@@ -1,4 +1,5 @@
 import { ILocalizationInstruction } from "../../../PackageSystem/Instructions/Globalization/ILocalizationInstruction";
+import { LocalizationProviderInstruction } from "../../../PackageSystem/Instructions/Globalization/LocalizationProviderInstruction";
 import { InstructionCompiler } from "./InstructionCompiler";
 import { LocalizationInstructionCompiler } from "./LocalizationInstructionCompiler";
 
@@ -33,7 +34,7 @@ export class LocalizationProviderCompiler<T extends ILocalizationInstruction> ex
 
         if (Object.keys(this.Item.GetMessages()).length > 0)
         {
-            let childNodes = new LocalizationInstructionCompiler(this.Item).Serialize().childNodes;
+            let childNodes = new LocalizationInstructionCompiler(new LocalizationProviderInstruction(this.Item)).Serialize().childNodes;
 
             for (let i = 0; i < childNodes.length; i++)
             {
