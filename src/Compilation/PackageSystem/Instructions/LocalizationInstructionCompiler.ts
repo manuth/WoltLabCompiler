@@ -1,5 +1,5 @@
 import { TempDirectory } from "@manuth/temp-files";
-import { normalize } from "upath";
+import { join, normalize } from "upath";
 import { ILocalizationInstruction } from "../../../PackageSystem/Instructions/Globalization/ILocalizationInstruction";
 import { LocalizationSetCompiler } from "../../Globalization/LocalizationSetCompiler";
 import { InstructionCompiler } from "./InstructionCompiler";
@@ -36,7 +36,7 @@ export class LocalizationInstructionCompiler extends InstructionCompiler<ILocali
                 join(
                     this.Item.DestinationRoot,
                     this.Item.TranslationDirectory,
-                    "*"));
+                    "*.xml"));
 
             return document;
         }
