@@ -102,74 +102,68 @@ export function FileInstructionCompilerTests(): void
         /**
          * @inheritdoc
          */
-        protected override RegisterTests(): void
+        protected override SerializeTests(): void
         {
-            super.RegisterTests();
+            let application: string;
+            let normalEditor: XMLEditor;
+            let applicationEditor: XMLEditor;
+            super.SerializeTests();
 
-            suite(
-                nameof<FileInstructionCompiler>((compiler) => compiler.Serialize),
+            suiteSetup(
                 () =>
                 {
-                    let application: string;
-                    let normalEditor: XMLEditor;
-                    let applicationEditor: XMLEditor;
+                    application = "gallery";
+                });
 
-                    suiteSetup(
-                        () =>
+            setup(
+                () =>
+                {
+                    let normalInstruction = new ApplicationFileSystemInstruction(
                         {
-                            application = "gallery";
+                            Source: "files"
                         });
 
-                    setup(
-                        () =>
+                    let applicationInstruction = new ApplicationFileSystemInstruction(
                         {
-                            let normalInstruction = new ApplicationFileSystemInstruction(
-                                {
-                                    Source: "files"
-                                });
-
-                            let applicationInstruction = new ApplicationFileSystemInstruction(
-                                {
-                                    Source: join("gallery", "files"),
-                                    Application: application
-                                });
-
-                            new Package(
-                                {
-                                    Identifier: "example",
-                                    DisplayName: {},
-                                    InstallSet: {
-                                        Instructions: []
-                                    }
-                                }).InstallSet.push(normalInstruction, applicationInstruction);
-
-                            normalEditor = new XMLEditor(
-                                new FileInstructionCompiler(normalInstruction).Serialize().documentElement);
-
-                            applicationEditor = new XMLEditor(
-                                new FileInstructionCompiler(applicationInstruction).Serialize().documentElement);
+                            Source: join("gallery", "files"),
+                            Application: application
                         });
 
-                    test(
-                        `Checking whether the \`${applicationAttribute}\`-attribute is not present if the \`${nameof<IApplicationFileSystemInstructionOptions>((o) => o.Application)}\` is not specified…`,
-                        () =>
+                    new Package(
                         {
-                            ok(!normalEditor.HasAttribute(applicationAttribute));
-                        });
+                            Identifier: "example",
+                            DisplayName: {},
+                            InstallSet: {
+                                Instructions: []
+                            }
+                        }).InstallSet.push(normalInstruction, applicationInstruction);
 
-                    test(
-                        `Checking whether the \`${applicationAttribute}\`-attribute is present if the \`${nameof<IApplicationFileSystemInstructionOptions>((o) => o.Application)}\` is specified…`,
-                        () =>
-                        {
-                            ok(applicationEditor.HasAttribute(applicationAttribute));
-                        });
+                    normalEditor = new XMLEditor(
+                        new FileInstructionCompiler(normalInstruction).Serialize().documentElement);
 
-                    test(
-                        `Checking whether the \`${applicationAttribute}\`-attribute is set correctly…`,
-                        () =>
-                        {
-                            strictEqual(applicationEditor.GetAttribute(applicationAttribute), application);
-                        });
+                    applicationEditor = new XMLEditor(
+                        new FileInstructionCompiler(applicationInstruction).Serialize().documentElement);
+                });
+
+            test(
+                `Checking whether the \`${applicationAttribute}\`-attribute is not present if the \`${nameof<IApplicationFileSystemInstructionOptions>((o) => o.Application)}\` is not specified…`,
+                () =>
+                {
+                    ok(!normalEditor.HasAttribute(applicationAttribute));
+                });
+
+            test(
+                `Checking whether the \`${applicationAttribute}\`-attribute is present if the \`${nameof<IApplicationFileSystemInstructionOptions>((o) => o.Application)}\` is specified…`,
+                () =>
+                {
+                    ok(applicationEditor.HasAttribute(applicationAttribute));
+                });
+
+            test(
+                `Checking whether the \`${applicationAttribute}\`-attribute is set correctly…`,
+                () =>
+                {
+                    strictEqual(applicationEditor.GetAttribute(applicationAttribute), application);
                 });
         }
     }(nameof(FileInstructionCompiler)).Register();
