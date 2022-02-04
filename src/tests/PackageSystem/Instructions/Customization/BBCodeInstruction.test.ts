@@ -25,6 +25,12 @@ export function BBCodeInstructionTests(): void
                     DisplayName: localization
                 });
 
+            suiteSetup(
+                () =>
+                {
+                    random = new Random();
+                });
+
             setup(
                 () =>
                 {
