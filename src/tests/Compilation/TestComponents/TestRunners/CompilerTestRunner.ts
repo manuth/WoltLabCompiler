@@ -99,7 +99,6 @@ export abstract class CompilerTestRunner<TTester extends CompilerTester<TCompile
                 setup(async () => this.Setup());
                 teardown(async () => this.Teardown());
                 this.RegisterTests();
-                this.RegisterExecuteTests();
             });
     }
 
@@ -115,7 +114,9 @@ export abstract class CompilerTestRunner<TTester extends CompilerTester<TCompile
      * Registers root tests.
      */
     protected RegisterTests(): void
-    { }
+    {
+        this.RegisterExecuteTests();
+    }
 
     /**
      * Prepares the suite.
