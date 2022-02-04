@@ -2,14 +2,14 @@ import { UserOptionInstructionCompiler } from "../../../../Compilation/PackageSy
 import { ILocalization } from "../../../../Globalization/ILocalization";
 import { UserOptionInstruction } from "../../../../PackageSystem/Instructions/Options/UserOptionInstruction";
 import { CompilerTester } from "../../TestComponents/Testers/CompilerTester";
-import { LocalizationInstructionCompilerTestRunner } from "../../TestComponents/TestRunners/LocalizationInstructionCompilerTestRunner";
+import { LocalizationProviderCompilerTestRunner } from "../../TestComponents/TestRunners/LocalizationProviderCompilerTestRunner";
 
 /**
  * Registers tests for the {@link UserOptionInstructionCompiler `UserOptionInstructionCompiler`} class.
  */
 export function UserOptionInstructionCompilerTests(): void
 {
-    new class extends LocalizationInstructionCompilerTestRunner<CompilerTester<UserOptionInstructionCompiler>, UserOptionInstructionCompiler>
+    new class extends LocalizationProviderCompilerTestRunner<CompilerTester<UserOptionInstructionCompiler>, UserOptionInstructionCompiler>
     {
         /**
          * @inheritdoc
