@@ -220,6 +220,18 @@ export abstract class OptionInstruction<TCategory extends Category<TOption, TOpt
                                     undefined
                             });
 
+                        if (option.Description.GetLocales().length > 0)
+                        {
+                            optionTranslations.Nodes.push(
+                                new LocalizationNode(
+                                    {
+                                        Name: "description",
+                                        Item: {
+                                            Translations: option.Description.ToJSON()
+                                        }
+                                    }));
+                        }
+
                         for (let optionItem of option.Items)
                         {
                             if (optionItem.DisplayName.GetLocales().length > 0)
