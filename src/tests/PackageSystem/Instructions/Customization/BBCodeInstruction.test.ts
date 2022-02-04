@@ -1,4 +1,5 @@
 import { ok, strictEqual } from "assert";
+import { Random } from "random-js";
 import { BBCode } from "../../../../Customization/BBCodes/BBCode";
 import { BBCodeInstruction } from "../../../../PackageSystem/Instructions/Customization/BBCodeInstruction";
 
@@ -11,6 +12,7 @@ export function BBCodeInstructionTests(): void
         nameof(BBCodeInstruction),
         () =>
         {
+            let random: Random;
             let locale = "en";
             let localization: Record<string, string> = {};
             let bbCodeDirName = "bbcode";
@@ -23,6 +25,12 @@ export function BBCodeInstructionTests(): void
                     DisplayName: localization
                 });
 
+            suiteSetup(
+                () =>
+                {
+                    random = new Random();
+                });
+
             setup(
                 () =>
                 {
@@ -33,6 +41,33 @@ export function BBCodeInstructionTests(): void
                         });
 
                     bbCodeInstruction.BBCodes.push(bbCode);
+                });
+
+            suite(
+                nameof(BBCodeInstruction.constructor),
+                () =>
+                {
+                    let translationDirectory: string;
+
+                    setup(
+                        () =>
+                        {
+                            translationDirectory = random.string(10);
+                        });
+
+                    test(
+                        `Checking whether a custom \`${nameof<BBCodeInstruction>((i) => i.TranslationDirectory)}\` can be passed…`,
+                        () =>
+                        {
+                            strictEqual(
+                                new BBCodeInstruction(
+                                    {
+                                        FileName: bbCodeInstruction.FileName,
+                                        BBCodes: [],
+                                        TranslationDirectory: translationDirectory
+                                    }).TranslationDirectory,
+                                translationDirectory);
+                        });
                 });
 
             suite(

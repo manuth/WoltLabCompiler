@@ -72,6 +72,7 @@ export function ThemeFileCompilerTests(): void
                 {
                     DisplayName: {},
                     Identifier: "foo.bar",
+                    Version: "",
                     InstallSet: {
                         Instructions: []
                     }

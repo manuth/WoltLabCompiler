@@ -18,6 +18,11 @@ import { ILocalizationInstruction } from "./ILocalizationInstruction";
 export abstract class LocalizationInstruction<TItem extends LocalizationItem, TOptions> extends NodeSystemInstruction<TItem, TOptions> implements ILocalizationInstruction
 {
     /**
+     * The name of the type of localization instructions.
+     */
+    public static readonly LOCALIZATION_INSTRUCTION_TYPE = "language";
+
+    /**
      * Initializes a new instance of the {@link LocalizationInstruction `LocalizationInstruction<TItem, TOptions>`} class.
      *
      * @param options
@@ -36,7 +41,7 @@ export abstract class LocalizationInstruction<TItem extends LocalizationItem, TO
      */
     public get Type(): string
     {
-        return "language";
+        return LocalizationInstruction.LOCALIZATION_INSTRUCTION_TYPE;
     }
 
     /**

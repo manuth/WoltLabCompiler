@@ -2,14 +2,14 @@ import { GroupOptionInstructionCompiler } from "../../../../Compilation/PackageS
 import { ILocalization } from "../../../../Globalization/ILocalization";
 import { GroupOptionInstruction } from "../../../../PackageSystem/Instructions/Options/GroupOptionInstruction";
 import { CompilerTester } from "../../TestComponents/Testers/CompilerTester";
-import { LocalizationInstructionCompilerTestRunner } from "../../TestComponents/TestRunners/LocalizationInstructionCompilerTestRunner";
+import { LocalizationProviderCompilerTestRunner } from "../../TestComponents/TestRunners/LocalizationProviderCompilerTestRunner";
 
 /**
  * Registers tests for the {@link GroupOptionInstructionCompiler `GroupOptionInstructionCompiler`} class.
  */
 export function GroupOptionInstructionCompilerTests(): void
 {
-    new class extends LocalizationInstructionCompilerTestRunner<CompilerTester<GroupOptionInstructionCompiler>, GroupOptionInstructionCompiler>
+    new class extends LocalizationProviderCompilerTestRunner<CompilerTester<GroupOptionInstructionCompiler>, GroupOptionInstructionCompiler>
     {
         /**
          * @inheritdoc

@@ -37,6 +37,11 @@ export abstract class OptionInstruction<TCategory extends Category<TOption, TOpt
     private optionsToDelete: INamedObject[] = [];
 
     /**
+     * The path to save the translations to. Gets the path to save the translations to.
+     */
+    private translationDirectory: string = null;
+
+    /**
      * Initializes a new instance of the {@link OptionInstruction `OptionInstruction<TCategory, TCategoryOptions, TOption, TOptionOptions>`} class.
      *
      * @param options
@@ -48,6 +53,13 @@ export abstract class OptionInstruction<TCategory extends Category<TOption, TOpt
     public constructor(options: IOptionInstructionOptions<TCategoryOptions>, generator: (node: Node<TCategory, TCategoryOptions>, options: TCategoryOptions) => TCategory)
     {
         super(options, generator);
+
+        if (
+            (options.TranslationDirectory !== null) &&
+            (options.TranslationDirectory !== undefined))
+        {
+            this.TranslationDirectory = options.TranslationDirectory;
+        }
 
         if (
             (options.CategoriesToDelete !== null) &&
@@ -69,7 +81,15 @@ export abstract class OptionInstruction<TCategory extends Category<TOption, TOpt
      */
     public get TranslationDirectory(): string
     {
-        return this.Type;
+        return this.translationDirectory ?? this.Type;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public set TranslationDirectory(value: string)
+    {
+        this.translationDirectory = value;
     }
 
     /**
@@ -153,11 +173,11 @@ export abstract class OptionInstruction<TCategory extends Category<TOption, TOpt
                     Name: this.CategoryCategory
                 });
 
-            optionNode.Nodes.push(categoryNode);
+            translationRoot.Nodes.push(categoryNode);
         }
         else
         {
-            categoryNode = optionNode;
+            categoryNode = translationRoot;
         }
 
         for (let rootNode of this.Nodes)
@@ -199,6 +219,18 @@ export abstract class OptionInstruction<TCategory extends Category<TOption, TOpt
                                     } :
                                     undefined
                             });
+
+                        if (option.Description.GetLocales().length > 0)
+                        {
+                            optionTranslations.Nodes.push(
+                                new LocalizationNode(
+                                    {
+                                        Name: "description",
+                                        Item: {
+                                            Translations: option.Description.ToJSON()
+                                        }
+                                    }));
+                        }
 
                         for (let optionItem of option.Items)
                         {

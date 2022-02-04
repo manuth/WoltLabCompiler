@@ -31,7 +31,8 @@ export class SassVariableParser
      */
     public async Parse(): Promise<Record<string, string>>
     {
-        let variables: Record<string, string> = await sassVars(
+        // ToDo: Remove workaround
+        let variables: Record<string, string> = await (sassVars as any)(
             readFileSync(this.fileName).toString(),
             {
                 sassOptions: {

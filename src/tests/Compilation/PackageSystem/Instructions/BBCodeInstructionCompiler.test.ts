@@ -2,14 +2,14 @@ import { BBCodeInstructionCompiler } from "../../../../Compilation/PackageSystem
 import { ILocalization } from "../../../../Globalization/ILocalization";
 import { BBCodeInstruction } from "../../../../PackageSystem/Instructions/Customization/BBCodeInstruction";
 import { CompilerTester } from "../../TestComponents/Testers/CompilerTester";
-import { LocalizationInstructionCompilerTestRunner } from "../../TestComponents/TestRunners/LocalizationInstructionCompilerTestRunner";
+import { LocalizationProviderCompilerTestRunner } from "../../TestComponents/TestRunners/LocalizationProviderCompilerTestRunner";
 
 /**
  * Registers tests for the {@link BBCodeInstructionCompiler `BBCodeInstructionCompiler`} class.
  */
 export function BBCodeInstructionCompilerTests(): void
 {
-    new class extends LocalizationInstructionCompilerTestRunner<CompilerTester<BBCodeInstructionCompiler>, BBCodeInstructionCompiler>
+    new class extends LocalizationProviderCompilerTestRunner<CompilerTester<BBCodeInstructionCompiler>, BBCodeInstructionCompiler>
     {
         /**
          * @inheritdoc

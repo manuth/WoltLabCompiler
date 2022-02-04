@@ -22,6 +22,7 @@ export function InstructionSetTests(): void
                         {
                             Identifier: "foo",
                             DisplayName: {},
+                            Version: "",
                             InstallSet: {
                                 Instructions: []
                             }

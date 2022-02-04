@@ -39,6 +39,7 @@ export function ThemeCompilerTests(): void
                 {
                     Identifier: "bar",
                     DisplayName: {},
+                    Version: "",
                     InstallSet: {
                         Instructions: []
                     }

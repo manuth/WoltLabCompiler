@@ -40,6 +40,7 @@ export function InstructionTests(): void
                         {
                             Identifier: "example",
                             DisplayName: {},
+                            Version: "",
                             InstallSet: {
                                 Instructions: []
                             }

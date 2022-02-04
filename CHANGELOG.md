@@ -6,7 +6,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## WoltLabCompiler [Unreleased]
 
-[Show differences](https://github.com/manuth/WoltLabCompiler/compare/v2.1.6...dev)
+[Show differences](https://github.com/manuth/WoltLabCompiler/compare/v2.1.7...dev)
+
+## WoltLabCompiler v2.1.7
+### Fixed
+  - Error causing translation byproducts to have an incorrect `type` attribute value in the `package.xml` file
+  - Type declarations to make specifying a `Package`s `Version` **mandatory**
+  - Error causing descriptions of options to not appear in language files
+  - Broken `OptionInstruction` file creation
+  - Broken creation of language files
+  - Vulnerabilities in dependencies
+
+### Added
+  - The functionality to customize the translation directory of `ACPOption`-, `GroupOption`- and `OptionInstructions`
+
+### Updated
+  - All dependencies
+
+[Show differences](https://github.com/manuth/WoltLabCompiler/compare/v2.1.6...v2.1.7)
 
 ## WoltLabCompiler v2.1.6
 ### Fixed

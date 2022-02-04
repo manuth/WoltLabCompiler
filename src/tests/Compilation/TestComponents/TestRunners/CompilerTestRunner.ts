@@ -99,7 +99,6 @@ export abstract class CompilerTestRunner<TTester extends CompilerTester<TCompile
                 setup(async () => this.Setup());
                 teardown(async () => this.Teardown());
                 this.RegisterTests();
-                this.RegisterExecuteTests();
             });
     }
 
@@ -115,7 +114,9 @@ export abstract class CompilerTestRunner<TTester extends CompilerTester<TCompile
      * Registers root tests.
      */
     protected RegisterTests(): void
-    { }
+    {
+        this.RegisterExecuteTests();
+    }
 
     /**
      * Prepares the suite.
@@ -162,6 +163,32 @@ export abstract class CompilerTestRunner<TTester extends CompilerTester<TCompile
     }
 
     /**
+     * Prepares the {@link Compiler.Execute `Execute`}-suite.
+     */
+    protected async ExecuteSuiteSetup(): Promise<void>
+    { }
+
+    /**
+     * Disposes the {@link Compiler.Execute `Execute`}-suite.
+     */
+    protected async ExecuteSuiteTeardown(): Promise<void>
+    { }
+
+    /**
+     * Prepares the {@link Compiler.Execute `Execute`} test-cases.
+     */
+    protected async ExecuteSetup(): Promise<void>
+    {
+        await this.Compiler.Execute();
+    }
+
+    /**
+     * Disposes the {@link Compiler.Execute `Execute`} test-cases.
+     */
+    protected async ExecuteTeardown(): Promise<void>
+    { }
+
+    /**
      * Registers tests for the {@link Compiler.Execute `Execute`} suite.
      */
     protected ExecuteTests(): void
@@ -184,30 +211,4 @@ export abstract class CompilerTestRunner<TTester extends CompilerTester<TCompile
                 ok(this.Tester.DestinationExists);
             });
     }
-
-    /**
-     * Prepares the {@link Compiler.Execute `Execute`}-suite.
-     */
-    protected async ExecuteSuiteSetup(): Promise<void>
-    { }
-
-    /**
-     * Disposes
-     */
-    protected async ExecuteSuiteTeardown(): Promise<void>
-    { }
-
-    /**
-     * Prepares the {@link Compiler.Execute `Execute`} test-cases.
-     */
-    protected async ExecuteSetup(): Promise<void>
-    {
-        await this.Compiler.Execute();
-    }
-
-    /**
-     * Disposes the {@link Compiler.Execute `Execute`} test-cases.
-     */
-    protected async ExecuteTeardown(): Promise<void>
-    { }
 }

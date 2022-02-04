@@ -6,7 +6,7 @@
         "outDir": "./lib",
         "paths": {
             "get-sass-vars": [
-                "./node_modules/@types/get-sass-vars"
+                "./src/get-sass-vars.d.ts"
             ]
         }
     },

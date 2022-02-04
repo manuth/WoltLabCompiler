@@ -78,13 +78,13 @@ export function LocalizationFileCompilerTests(): void
                                 {
                                     return (categoryNode.GetAttribute(nameAttribute) === categoryName) &&
                                         Object.keys(messages).every(
-                                            (messageName) =>
+                                            (fullName) =>
                                             {
                                                 return categoryNode.GetChildrenByTag("item").some(
                                                     (itemNode) =>
                                                     {
-                                                        return (itemNode.GetAttribute(nameAttribute) === `${categoryName}.${messageName}`) &&
-                                                            itemNode.TextContent === messages[messageName];
+                                                        return (itemNode.GetAttribute(nameAttribute) === fullName) &&
+                                                            itemNode.TextContent === messages[fullName];
                                                     });
                                             });
                                 }));

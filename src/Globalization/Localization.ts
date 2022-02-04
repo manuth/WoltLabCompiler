@@ -4,9 +4,23 @@
 export class Localization
 {
     /**
-     * Strings translated to the specified `locale`.
+     * The translations of this localization mapped to their corresponding locale.
      */
-    public Data: Map<string, string> = new Map();
+    private data: Map<string, string> = new Map();
+
+    /**
+     * Initializes a new instance of the {@link Localization `Localization`} class.
+     */
+    public constructor()
+    { }
+
+    /**
+     * Gets the translations of this localization mapped to their corresponding locale.
+     */
+    public get Data(): Map<string, string>
+    {
+        return this.data;
+    }
 
     /**
      * Loads localizations from the {@link values `values`}.

@@ -25,6 +25,11 @@ export interface IPackageOptions extends Partial<IComponentOptions>
     DisplayName: ILocalization;
 
     /**
+     * @inheritdoc
+     */
+    Version: string;
+
+    /**
      * A set of files which will be added to the package.
      */
     AdditionalFiles?: IFileDescriptorOptions[];

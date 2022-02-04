@@ -5,6 +5,7 @@ import { GlobalizationTests } from "./Globalization";
 import { InstructionTests as InstructionClassTests } from "./Instruction.test";
 import { InstructionSetTests } from "./InstructionSet.test";
 import { NodeSystemTests } from "./NodeSystem";
+import { OptionTests } from "./Options";
 
 /**
  * Registers tests for instruction components.
@@ -19,6 +20,7 @@ export function InstructionTests(): void
             InstructionClassTests();
             FileSystemTests();
             NodeSystemTests();
+            OptionTests();
             GlobalizationTests();
             CustomizationTests();
         });

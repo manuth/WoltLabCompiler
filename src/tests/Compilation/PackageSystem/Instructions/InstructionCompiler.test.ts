@@ -156,53 +156,64 @@ export function InstructionCompilerTests(): void
                             ok(content.includes(`${object}`));
                         });
                 });
+        }
 
-            suite(
-                nameof<TestInstructionCompiler>((compiler) => compiler.Serialize),
+        /**
+         * @inheritdoc
+         */
+        protected override async SerializeSetup(): Promise<void>
+        {
+            this.Compiler.Item.Standalone = Math.random() > 0.5;
+        }
+
+        /**
+         * @inheritdoc
+         */
+        protected override SerializeTests(): void
+        {
+            let editor: XMLEditor;
+            super.SerializeTests();
+
+            setup(
                 () =>
                 {
-                    let editor: XMLEditor;
+                    this.Compiler.Item.Standalone = Math.random() > 0.5;
+                    editor = new XMLEditor(this.Compiler.Serialize().documentElement);
+                });
 
-                    setup(
-                        () =>
-                        {
-                            this.Compiler.Item.Standalone = Math.random() > 0.5;
-                            editor = new XMLEditor(this.Compiler.Serialize().documentElement);
-                        });
-                    test(
-                        "Checking whether the tag-name is correct…",
-                        () =>
-                        {
-                            strictEqual(editor.TagName, "instruction");
-                        });
+            test(
+                "Checking whether the tag-name is correct…",
+                () =>
+                {
+                    strictEqual(editor.TagName, "instruction");
+                });
 
-                    test(
-                        "Checking whether the type-attribute is set correctly…",
-                        () =>
-                        {
-                            strictEqual(editor.GetAttribute("type"), this.Compiler.Item.Type);
-                        });
+            test(
+                "Checking whether the type-attribute is set correctly…",
+                () =>
+                {
+                    strictEqual(editor.GetAttribute("type"), this.Compiler.Item.Type);
+                });
 
-                    test(
-                        "Checking whether the execution-mode is set correctly…",
-                        () =>
-                        {
-                            if (this.Compiler.Item.Standalone)
-                            {
-                                strictEqual(editor.GetAttribute("run"), "standalone");
-                            }
-                            else
-                            {
-                                ok(!editor.HasAttribute("run"));
-                            }
-                        });
+            test(
+                "Checking whether the execution-mode is set correctly…",
+                () =>
+                {
+                    if (this.Compiler.Item.Standalone)
+                    {
+                        strictEqual(editor.GetAttribute("run"), "standalone");
+                    }
+                    else
+                    {
+                        ok(!editor.HasAttribute("run"));
+                    }
+                });
 
-                    test(
-                        "Checking whether the filename is set correctly…",
-                        () =>
-                        {
-                            strictEqual(editor.TextContent, this.Compiler.Item.FullName);
-                        });
+            test(
+                "Checking whether the filename is set correctly…",
+                () =>
+                {
+                    strictEqual(editor.TextContent, this.Compiler.Item.FullName);
                 });
         }
     }(nameof(InstructionCompiler)).Register();
