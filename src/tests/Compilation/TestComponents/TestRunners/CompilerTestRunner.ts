@@ -163,30 +163,6 @@ export abstract class CompilerTestRunner<TTester extends CompilerTester<TCompile
     }
 
     /**
-     * Registers tests for the {@link Compiler.Execute `Execute`} suite.
-     */
-    protected ExecuteTests(): void
-    {
-        let self = this;
-
-        test(
-            "Checking whether the component can be compiled…",
-            async function()
-            {
-                this.timeout(10 * 1000);
-                this.slow(5 * 1000);
-                await doesNotReject(async () => self.Compiler.Execute());
-            });
-
-        test(
-            "Checking whether the compiled file exists…",
-            () =>
-            {
-                ok(this.Tester.DestinationExists);
-            });
-    }
-
-    /**
      * Prepares the {@link Compiler.Execute `Execute`}-suite.
      */
     protected async ExecuteSuiteSetup(): Promise<void>
@@ -211,4 +187,28 @@ export abstract class CompilerTestRunner<TTester extends CompilerTester<TCompile
      */
     protected async ExecuteTeardown(): Promise<void>
     { }
+
+    /**
+     * Registers tests for the {@link Compiler.Execute `Execute`} suite.
+     */
+    protected ExecuteTests(): void
+    {
+        let self = this;
+
+        test(
+            "Checking whether the component can be compiled…",
+            async function()
+            {
+                this.timeout(10 * 1000);
+                this.slow(5 * 1000);
+                await doesNotReject(async () => self.Compiler.Execute());
+            });
+
+        test(
+            "Checking whether the compiled file exists…",
+            () =>
+            {
+                ok(this.Tester.DestinationExists);
+            });
+    }
 }
