@@ -171,8 +171,8 @@ export function InstructionCompilerTests(): void
          */
         protected override SerializeTests(): void
         {
-            super.SerializeTests();
             let editor: XMLEditor;
+            super.SerializeTests();
 
             setup(
                 () =>
