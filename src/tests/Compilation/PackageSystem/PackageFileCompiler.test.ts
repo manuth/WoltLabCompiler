@@ -321,7 +321,7 @@ export function PackageFileCompilerTests(): void
 
                             if (instruction.Type === "language")
                             {
-                                assertedContent = join(assertedContent, "*");
+                                assertedContent = join(assertedContent, "*.xml");
                             }
 
                             return (instructionNode.GetAttribute("type") === instruction.Type) &&
