@@ -3,12 +3,16 @@ import { join } from "upath";
 import { PackageFileCompiler } from "../../../Compilation/PackageSystem/PackageFileCompiler";
 import { Constants } from "../../../Constants";
 import { ILocalization } from "../../../Globalization/ILocalization";
+import { ConflictingPackageDescriptor } from "../../../PackageSystem/ConflictingPackageDescriptor";
 import { BBCodeInstruction } from "../../../PackageSystem/Instructions/Customization/BBCodeInstruction";
 import { TemplateListenerInstruction } from "../../../PackageSystem/Instructions/Events/TemplateListenerInstruction";
 import { TranslationInstruction } from "../../../PackageSystem/Instructions/Globalization/TranslationInstruction";
 import { InstructionSet } from "../../../PackageSystem/Instructions/InstructionSet";
 import { CronJobInstruction } from "../../../PackageSystem/Instructions/Tasks/CronJobInstruction";
+import { UpdateInstructionSet } from "../../../PackageSystem/Instructions/UpdateInstructionSet";
+import { OptionalPackageDescriptor } from "../../../PackageSystem/OptionalPackageDescriptor";
 import { Package } from "../../../PackageSystem/Package";
+import { RequiredPackageDescriptor } from "../../../PackageSystem/RequiredPackageDescriptor";
 import { XMLEditor } from "../../../Serialization/XMLEditor";
 import { TimePeriod } from "../../../Tasks/TimePeriod";
 import { XMLFileCompilerTester } from "../TestComponents/Testers/XMLFileCompilerTester";
@@ -29,151 +33,16 @@ export function PackageFileCompilerTests(): void
          */
         protected CreateTester(): XMLFileCompilerTester<PackageFileCompiler>
         {
-            let locales = [Constants.InvariantCultureName, "de"];
-            let displayName: ILocalization = {};
-            let description: ILocalization = {};
-
-            for (let locale of locales)
-            {
-                displayName[locale] = `${locale}-name`;
-                description[locale] = `${locale}-description`;
-            }
-
             return new XMLFileCompilerTester(
                 new PackageFileCompiler(
                     new Package(
                         {
-                            Identifier: "com.example.mypackage",
-                            DisplayName: displayName,
-                            Description: description,
-                            Version: "2.0 Beta 3",
-                            CreationDate: new Date("2001-03-04"),
-                            Author: {
-                                Name: "John Doe",
-                                URL: "https://example.com"
-                            },
-                            RequiredPackages: [
-                                {
-                                    Identifier: "com.woltlab.wcf",
-                                    MinVersion: "3.1.0"
-                                },
-                                {
-                                    Identifier: "com.woltlab.gallery",
-                                    MinVersion: "3.0.0",
-                                    FileName: "gallery.tar"
-                                }
-                            ],
-                            ConflictingPackages: [
-                                {
-                                    Identifier: "com.woltlab.wbb",
-                                    Version: "3.0.0"
-                                }
-                            ],
-                            OptionalPackages: [
-                                {
-                                    Identifier: "com.example.optional",
-                                    FileName: "optional.tar"
-                                }
-                            ],
+                            Identifier: "",
+                            DisplayName: {},
+                            Version: "",
                             InstallSet: {
-                                Directory: "install",
-                                Instructions: [
-                                    new TranslationInstruction(
-                                        {
-                                            FileName: "language",
-                                            Nodes: [
-                                                {
-                                                    Name: "mypackage",
-                                                    Nodes: [
-                                                        {
-                                                            Name: "forms",
-                                                            Nodes: [
-                                                                {
-                                                                    Name: "main",
-                                                                    Nodes: [
-                                                                        {
-                                                                            Name: "title",
-                                                                            Item: {
-                                                                                Translations: {
-                                                                                    en: "Main Form",
-                                                                                    de: "Hauptformular"
-                                                                                }
-                                                                            }
-                                                                        }
-                                                                    ]
-                                                                }
-                                                            ]
-                                                        }
-                                                    ]
-                                                }
-                                            ]
-                                        }),
-                                    new CronJobInstruction(
-                                        {
-                                            FileName: "cronJobs.xml",
-                                            CronJobs: [
-                                                {
-                                                    Name: "myCronJob",
-                                                    ClassName: "wcf\\system\\mypackage\\MyCronJob",
-                                                    Period: TimePeriod.Yearly
-                                                }
-                                            ]
-                                        })
-                                ]
-                            },
-                            UpdateSets: [
-                                {
-                                    FromVersion: "1.0",
-                                    Directory: "update/1.0",
-                                    Instructions: [
-                                        new BBCodeInstruction(
-                                            {
-                                                FileName: "bbCodes.xml",
-                                                BBCodes: [
-                                                    {
-                                                        Name: "newAnchor",
-                                                        Icon: "fa-anchor",
-                                                        TagName: "div",
-                                                        Attributes: [
-                                                            {
-                                                                Required: true,
-                                                                Code: 'id="%s"'
-                                                            }
-                                                        ]
-                                                    }
-                                                ],
-                                                ObjectsToDelete: [
-                                                    {
-                                                        Name: "anchor"
-                                                    }
-                                                ]
-                                            })
-                                    ]
-                                },
-                                {
-                                    FromVersion: "2.0",
-                                    Directory: "update/2.0",
-                                    Instructions: [
-                                        new TemplateListenerInstruction(
-                                            {
-                                                FileName: "templateListeners.xml",
-                                                Listeners: [
-                                                    {
-                                                        Name: "myNewListener",
-                                                        EventName: "headIncludeJavaScript",
-                                                        TemplateName: "javascriptInclude",
-                                                        Code: "{include file='__myCustomJavaScript'}"
-                                                    }
-                                                ],
-                                                ObjectsToDelete: [
-                                                    {
-                                                        Name: "myListener"
-                                                    }
-                                                ]
-                                            })
-                                    ]
-                                }
-                            ]
+                                Instructions: []
+                            }
                         })));
         }
 
@@ -182,7 +51,157 @@ export function PackageFileCompilerTests(): void
          */
         protected override ExecuteTests(): void
         {
+            let compatibilityNodeName = "compatibility";
             super.ExecuteTests();
+
+            setup(
+                () =>
+                {
+                    let wscPackage = this.Compiler.Item;
+                    let locales = [Constants.InvariantCultureName, "de"];
+                    let displayName: ILocalization = {};
+                    let description: ILocalization = {};
+
+                    for (let locale of locales)
+                    {
+                        displayName[locale] = `${locale}-name`;
+                        description[locale] = `${locale}-description`;
+                    }
+
+                    wscPackage.Identifier = "com.example.mypackage";
+                    wscPackage.DisplayName.Load(displayName);
+                    wscPackage.Description.Load(description);
+                    wscPackage.Version = "2.0 Beta 3";
+                    wscPackage.CreationDate = new Date("2001-03-04");
+                    wscPackage.Author.Name = "John Doe";
+                    wscPackage.Author.URL = "https://example.com";
+                    wscPackage.RequiredPackages.splice(0);
+                    wscPackage.ConflictingPackages.splice(0);
+                    wscPackage.OptionalPackages.splice(0);
+
+                    wscPackage.RequiredPackages.push(
+                        new RequiredPackageDescriptor(
+                            {
+                                Identifier: "com.woltlab.wcf",
+                                MinVersion: "3.1.0"
+                            }),
+                        new RequiredPackageDescriptor(
+                            {
+                                Identifier: "com.woltlab.gallery",
+                                MinVersion: "3.0.0",
+                                FileName: "gallery.tar"
+                            }));
+
+                    wscPackage.ConflictingPackages.push(
+                        new ConflictingPackageDescriptor(
+                            {
+                                Identifier: "com.woltlab.wbb",
+                                Version: "3.0.0"
+                            }));
+
+                    wscPackage.OptionalPackages.push(
+                        new OptionalPackageDescriptor(
+                            {
+                                Identifier: "com.example.optional",
+                                FileName: "optional.tar"
+                            }));
+
+                    wscPackage.InstallSet.Directory = "install";
+                    wscPackage.InstallSet.splice(0);
+
+                    wscPackage.InstallSet.push(
+                        new TranslationInstruction(
+                            {
+                                FileName: "language",
+                                Nodes: [
+                                    {
+                                        Name: "mypackage",
+                                        Nodes: [
+                                            {
+                                                Name: "forms",
+                                                Nodes: [
+                                                    {
+                                                        Name: "main",
+                                                        Nodes: [
+                                                            {
+                                                                Name: "title",
+                                                                Item: {
+                                                                    Translations: {
+                                                                        en: "Main Form",
+                                                                        de: "Hauptformular"
+                                                                    }
+                                                                }
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }),
+                        new CronJobInstruction(
+                            {
+                                FileName: "cronJobs.xml",
+                                CronJobs: [
+                                    {
+                                        Name: "myCronJob",
+                                        ClassName: "wcf\\system\\mypackage\\MyCronJob",
+                                        Period: TimePeriod.Yearly
+                                    }
+                                ]
+                            }));
+
+                    let v1UpdateSet = new UpdateInstructionSet(wscPackage, "1.0");
+                    let v2UpdateSet = new UpdateInstructionSet(wscPackage, "2.0");
+                    wscPackage.UpdateSets.splice(0);
+                    wscPackage.UpdateSets.push(v1UpdateSet, v2UpdateSet);
+                    v1UpdateSet.Directory = "update/1.0";
+                    v2UpdateSet.Directory = "update/2.0";
+
+                    v1UpdateSet.push(
+                        new BBCodeInstruction(
+                            {
+                                FileName: "bbCodes.xml",
+                                BBCodes: [
+                                    {
+                                        Name: "newAnchor",
+                                        Icon: "fa-anchor",
+                                        TagName: "div",
+                                        Attributes: [
+                                            {
+                                                Required: true,
+                                                Code: 'id="%s"'
+                                            }
+                                        ]
+                                    }
+                                ],
+                                ObjectsToDelete: [
+                                    {
+                                        Name: "anchor"
+                                    }
+                                ]
+                            }));
+
+                    v2UpdateSet.push(
+                        new TemplateListenerInstruction(
+                            {
+                                FileName: "templateListeners.xml",
+                                Listeners: [
+                                    {
+                                        Name: "myNewListener",
+                                        EventName: "headIncludeJavaScript",
+                                        TemplateName: "javascriptInclude",
+                                        Code: "{include file='__myCustomJavaScript'}"
+                                    }
+                                ],
+                                ObjectsToDelete: [
+                                    {
+                                        Name: "myListener"
+                                    }
+                                ]
+                            }));
+                });
 
             test(
                 "Checking the integrity of the metadata…",
@@ -197,8 +216,6 @@ export function PackageFileCompilerTests(): void
                     let conflictingPackageNodes = conflictingPackageListNode.GetChildrenByTag("excludedpackage");
                     let optionalPackageListNode = this.GetElement(this.Tester.XMLEditor, "optionalpackages");
                     let optionalPackageNodes = optionalPackageListNode.GetChildrenByTag("optionalpackage");
-                    let compatibilityNode = this.GetElement(this.Tester.XMLEditor, "compatibility");
-                    let apiNode = this.GetElement(compatibilityNode, "api");
                     let instructionSetNodes = this.Tester.XMLEditor.GetChildrenByTag("instructions");
                     let installSetNodes = instructionSetNodes.filter((instructionSetNode) => instructionSetNode.GetAttribute("type") === "install");
                     strictEqual(this.Tester.XMLEditor.TagName, "package");
@@ -273,7 +290,6 @@ export function PackageFileCompilerTests(): void
                             });
                     }
 
-                    strictEqual(apiNode.GetAttribute("version"), "2018");
                     strictEqual(installSetNodes.length, 1);
                     this.ValidateInstructionSet(this.Compiler.Item.InstallSet, installSetNodes[0]);
 
@@ -296,6 +312,20 @@ export function PackageFileCompilerTests(): void
                                     }
                                 }));
                     }
+                });
+
+            test(
+                `Checking whether the \`${compatibilityNodeName}\`-node is added only if an API-version was specified…`,
+                async () =>
+                {
+                    let apiVersion = "2018";
+                    strictEqual(this.Tester.XMLEditor.GetChildrenByTag(compatibilityNodeName).length, 0);
+                    this.Compiler.Item.APIVersion = apiVersion;
+                    await this.Compiler.Execute();
+                    strictEqual(this.Tester.XMLEditor.GetChildrenByTag(compatibilityNodeName).length, 1);
+                    let compatibilityNode = this.GetElement(this.Tester.XMLEditor, compatibilityNodeName);
+                    let apiNode = this.GetElement(compatibilityNode, "api");
+                    strictEqual(apiNode.GetAttribute("version"), apiVersion);
                 });
         }
 
