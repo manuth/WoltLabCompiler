@@ -2,6 +2,7 @@ import { ILocalization } from "../Globalization/ILocalization";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { Component } from "./Component";
 import { IPersonOptions } from "./IPersonOptions";
+import { VersionNumber } from "./VersionNumber";
 
 /**
  * Provides options for the {@link Component `Component`} class.
@@ -16,7 +17,7 @@ export interface IComponentOptions
     /**
      * The version of the component.
      */
-    Version: string;
+    Version: VersionNumber;
 
     /**
      * The author of the component.

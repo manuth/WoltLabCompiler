@@ -1,6 +1,7 @@
 import { Localization } from "../Globalization/Localization";
 import { IComponentOptions } from "./IComponentOptions";
 import { Person } from "./Person";
+import { VersionNumber } from "./VersionNumber";
 
 /**
  * Represents a component.
@@ -15,7 +16,7 @@ export abstract class Component
     /**
      * The version of the component.
      */
-    private version: string;
+    private version: VersionNumber;
 
     /**
      * The author of the component.
@@ -88,7 +89,7 @@ export abstract class Component
     /**
      * Gets or sets the version of the component.
      */
-    public get Version(): string
+    public get Version(): VersionNumber
     {
         return this.version;
     }
@@ -96,7 +97,7 @@ export abstract class Component
     /**
      * @inheritdoc
      */
-    public set Version(value: string)
+    public set Version(value: VersionNumber)
     {
         this.version = value;
     }
