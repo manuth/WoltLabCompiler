@@ -26,7 +26,7 @@ export class ThemeLoader extends Component
     private instruction: ThemeInstruction;
 
     /**
-     * The tumbnail of the theme to load.
+     * The thumbnail of the theme to load.
      */
     private thumbnail: FileDescriptor;
 
