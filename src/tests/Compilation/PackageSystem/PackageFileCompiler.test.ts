@@ -5,6 +5,7 @@ import { Constants } from "../../../Constants";
 import { ILocalization } from "../../../Globalization/ILocalization";
 import { ConflictingPackageDescriptor } from "../../../PackageSystem/ConflictingPackageDescriptor";
 import { BBCodeInstruction } from "../../../PackageSystem/Instructions/Customization/BBCodeInstruction";
+import { EmojiInstruction } from "../../../PackageSystem/Instructions/Customization/EmojiInstruction";
 import { TemplateListenerInstruction } from "../../../PackageSystem/Instructions/Events/TemplateListenerInstruction";
 import { TranslationInstruction } from "../../../PackageSystem/Instructions/Globalization/TranslationInstruction";
 import { InstructionSet } from "../../../PackageSystem/Instructions/InstructionSet";
@@ -52,6 +53,7 @@ export function PackageFileCompilerTests(): void
         protected override ExecuteTests(): void
         {
             let compatibilityNodeName = "compatibility";
+            let voidNodeName = "void";
             super.ExecuteTests();
 
             setup(
@@ -326,6 +328,30 @@ export function PackageFileCompilerTests(): void
                     let compatibilityNode = this.GetElement(this.Tester.XMLEditor, compatibilityNodeName);
                     let apiNode = this.GetElement(compatibilityNode, "api");
                     strictEqual(apiNode.GetAttribute("version"), apiVersion);
+                });
+
+            test(
+                `Checking whether a \`${voidNodeName}\`-element is added if an instruction-set is empty…`,
+                async () =>
+                {
+                    let selector = `instructions > ${voidNodeName}`;
+                    let wscPackage = this.Compiler.Item;
+                    let dummyInstruction = new EmojiInstruction({ FileName: "emojis.xml", Emojis: [] });
+                    wscPackage.InstallSet.push(dummyInstruction);
+                    await this.Compiler.Execute();
+
+                    for (let instructionSet of wscPackage.UpdateSets)
+                    {
+                        instructionSet.push(dummyInstruction);
+                    }
+
+                    strictEqual(this.Tester.Cheerio(selector).length, 0);
+                    wscPackage.InstallSet.splice(0);
+                    await this.Compiler.Execute();
+                    strictEqual(this.Tester.Cheerio(selector).length, 1);
+                    wscPackage.UpdateSets.push(new UpdateInstructionSet(wscPackage, "1.0"));
+                    await this.Compiler.Execute();
+                    strictEqual(this.Tester.Cheerio(selector).length, 2);
                 });
         }
 
