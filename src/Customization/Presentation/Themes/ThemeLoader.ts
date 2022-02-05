@@ -26,6 +26,11 @@ export class ThemeLoader extends Component
     private instruction: ThemeInstruction;
 
     /**
+     * The name of the theme to load.
+     */
+    private name: string;
+
+    /**
      * The thumbnail of the theme to load.
      */
     private thumbnail: FileDescriptor;
@@ -78,7 +83,6 @@ export class ThemeLoader extends Component
     {
         super(
             {
-                Name: options.Name,
                 DisplayName: options.DisplayName,
                 Author: options.Author,
                 Version: options.Version,
@@ -88,6 +92,7 @@ export class ThemeLoader extends Component
             });
 
         this.instruction = instruction;
+        this.Name = options.Name;
 
         if (
             (options.Thumbnail !== null) &&
@@ -145,6 +150,22 @@ export class ThemeLoader extends Component
     public get Instruction(): ThemeInstruction
     {
         return this.instruction;
+    }
+
+    /**
+     * Gets or sets the name of the theme to load.
+     */
+    public get Name(): string
+    {
+        return this.name;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public set Name(value: string)
+    {
+        this.name = value;
     }
 
     /**

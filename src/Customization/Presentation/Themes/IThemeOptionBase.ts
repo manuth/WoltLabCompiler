@@ -11,7 +11,7 @@ import { Theme } from "./Theme";
 export interface IThemeOptionBase extends Partial<IComponentOptions>
 {
     /**
-     * @inheritdoc
+     * The name of the theme.
      */
     Name: string;
 

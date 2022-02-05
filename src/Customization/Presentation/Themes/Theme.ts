@@ -11,6 +11,11 @@ import { IThemeOptions } from "./IThemeOptions";
 export class Theme extends Component
 {
     /**
+     * The name of the theme.
+     */
+    private name: string;
+
+    /**
      * The thumbnail of the theme.
      */
     private thumbnail: FileDescriptor = null;
@@ -63,7 +68,6 @@ export class Theme extends Component
     {
         super(
             {
-                Name: options.Name,
                 DisplayName: options.DisplayName,
                 Version: options.Version,
                 Author: options.Author,
@@ -73,6 +77,7 @@ export class Theme extends Component
             });
 
         this.instruction = instruction;
+        this.Name = options.Name;
 
         if (
             (options.Thumbnail !== null) &&
@@ -125,6 +130,22 @@ export class Theme extends Component
         {
             this.images = new ImageDirectoryDescriptor(options.Images);
         }
+    }
+
+    /**
+     * Gets or sets the name of the theme.
+     */
+    public get Name(): string
+    {
+        return this.name;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public set Name(value: string)
+    {
+        this.name = value;
     }
 
     /**

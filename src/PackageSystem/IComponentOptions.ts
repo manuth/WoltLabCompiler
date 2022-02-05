@@ -9,11 +9,6 @@ import { IPersonOptions } from "./IPersonOptions";
 export interface IComponentOptions
 {
     /**
-     * The name of the package.
-     */
-    Name: string;
-
-    /**
      * The human-readable name of the component.
      */
     DisplayName: ILocalization;

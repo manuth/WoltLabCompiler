@@ -8,11 +8,6 @@ import { Person } from "./Person";
 export abstract class Component
 {
     /**
-     * The name of the package.
-     */
-    private name: string;
-
-    /**
      * The human-readable name of the component.
      */
     private displayName: Localization = new Localization();
@@ -50,7 +45,6 @@ export abstract class Component
      */
     public constructor(options: IComponentOptions)
     {
-        this.Name = options.Name;
         this.DisplayName.Load(options.DisplayName);
         this.Version = options.Version;
 
@@ -81,22 +75,6 @@ export abstract class Component
         {
             this.License = options.License;
         }
-    }
-
-    /**
-     * Gets or sets the name of the package.
-     */
-    public get Name(): string
-    {
-        return this.name;
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public set Name(value: string)
-    {
-        this.name = value;
     }
 
     /**
