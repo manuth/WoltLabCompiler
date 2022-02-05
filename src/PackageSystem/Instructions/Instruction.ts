@@ -1,5 +1,6 @@
 import { join } from "upath";
 import { InstructionCompiler } from "../../Compilation/PackageSystem/Instructions/InstructionCompiler";
+import { Package } from "../Package";
 import { IInstruction } from "./IInstruction";
 import { IInstructionOptions } from "./IInstructionOptions";
 import { InstructionSet } from "./InstructionSet";
@@ -69,6 +70,14 @@ export abstract class Instruction implements IInstruction
                 value.push(this);
             }
         }
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public get Package(): Package
+    {
+        return this.Collection.Package;
     }
 
     /**
