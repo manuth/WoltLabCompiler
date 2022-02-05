@@ -1,4 +1,5 @@
 import { DOMParser } from "@xmldom/xmldom";
+import { CheerioAPI, load } from "cheerio";
 import { readFileSync } from "fs-extra";
 import { XMLFileCompiler } from "../../../../Compilation/XMLFileCompiler";
 import { XMLEditor } from "../../../../Serialization/XMLEditor";
@@ -39,12 +40,24 @@ export class XMLFileCompilerTester<TCompiler extends XMLFileCompiler<unknown>> e
     }
 
     /**
+     * Gets a component for querying the compiled `.xml`-content.
+     */
+    public get Cheerio(): CheerioAPI
+    {
+        return load(
+            readFileSync(this.Compiler.DestinationPath).toString(),
+            {
+                xmlMode: true
+            });
+    }
+
+    /**
      * Gets an editor for manipulating the xml-content.
      */
     public get XMLEditor(): XMLEditor
     {
         return new XMLEditor(
             new DOMParser().parseFromString(
-                readFileSync(this.Compiler.DestinationPath).toString()).documentElement);
+                this.Cheerio.html()).documentElement);
     }
 }
