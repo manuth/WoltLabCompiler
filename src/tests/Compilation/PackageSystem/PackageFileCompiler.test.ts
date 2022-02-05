@@ -52,6 +52,8 @@ export function PackageFileCompilerTests(): void
          */
         protected override ExecuteTests(): void
         {
+            let tester: typeof this.Tester;
+            let compiler: PackageFileCompiler;
             let compatibilityNodeName = "compatibility";
             let voidNodeName = "void";
             super.ExecuteTests();
@@ -63,6 +65,8 @@ export function PackageFileCompilerTests(): void
                     let locales = [Constants.InvariantCultureName, "de"];
                     let displayName: ILocalization = {};
                     let description: ILocalization = {};
+                    tester = this.Tester;
+                    compiler = this.Compiler;
 
                     for (let locale of locales)
                     {
@@ -332,26 +336,29 @@ export function PackageFileCompilerTests(): void
 
             test(
                 `Checking whether a \`${voidNodeName}\`-element is added if an instruction-set is empty…`,
-                async () =>
+                async function()
                 {
+                    this.slow(7.5 * 1000);
+                    this.timeout(15 * 1000);
+
                     let selector = `instructions > ${voidNodeName}`;
-                    let wscPackage = this.Compiler.Item;
+                    let wscPackage = compiler.Item;
                     let dummyInstruction = new EmojiInstruction({ FileName: "emojis.xml", Emojis: [] });
                     wscPackage.InstallSet.push(dummyInstruction);
-                    await this.Compiler.Execute();
+                    await compiler.Execute();
 
                     for (let instructionSet of wscPackage.UpdateSets)
                     {
                         instructionSet.push(dummyInstruction);
                     }
 
-                    strictEqual(this.Tester.Cheerio(selector).length, 0);
+                    strictEqual(tester.Cheerio(selector).length, 0);
                     wscPackage.InstallSet.splice(0);
-                    await this.Compiler.Execute();
-                    strictEqual(this.Tester.Cheerio(selector).length, 1);
+                    await compiler.Execute();
+                    strictEqual(tester.Cheerio(selector).length, 1);
                     wscPackage.UpdateSets.push(new UpdateInstructionSet(wscPackage, "1.0"));
-                    await this.Compiler.Execute();
-                    strictEqual(this.Tester.Cheerio(selector).length, 2);
+                    await compiler.Execute();
+                    strictEqual(tester.Cheerio(selector).length, 2);
                 });
         }
 
