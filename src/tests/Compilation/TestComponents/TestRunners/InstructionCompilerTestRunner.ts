@@ -50,7 +50,7 @@ export abstract class InstructionCompilerTestRunner<TTester extends CompilerTest
             {
                 Identifier: "foo",
                 DisplayName: {},
-                Version: "",
+                Version: "0.0.0",
                 InstallSet: {
                     Instructions: []
                 }

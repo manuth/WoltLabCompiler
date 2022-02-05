@@ -33,7 +33,7 @@ export function PackageCompilerTests(): void
                         {
                             Identifier: "com.example.mypackage",
                             DisplayName: {},
-                            Version: "",
+                            Version: "0.0.0",
                             InstallSet: {
                                 Instructions: [
                                     new BBCodeInstruction(

@@ -133,7 +133,7 @@ export function FileInstructionCompilerTests(): void
                         {
                             Identifier: "example",
                             DisplayName: {},
-                            Version: "",
+                            Version: "0.0.0",
                             InstallSet: {
                                 Instructions: []
                             }

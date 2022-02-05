@@ -120,7 +120,7 @@ export function ThemeLoaderTests(): void
                         {
                             DisplayName: {},
                             Identifier: "test",
-                            Version: "",
+                            Version: "0.0.0",
                             InstallSet: {
                                 Instructions: []
                             }
