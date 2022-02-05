@@ -30,6 +30,13 @@ export interface IPackageOptions extends Partial<IComponentOptions>
     Version: string;
 
     /**
+     * The API-Version of the package.
+     *
+     * @deprecated
+     */
+    APIVersion?: string;
+
+    /**
      * A set of files which will be added to the package.
      */
     AdditionalFiles?: IFileDescriptorOptions[];

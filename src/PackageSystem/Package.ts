@@ -20,6 +20,13 @@ export class Package extends Component
     private identifier: string;
 
     /**
+     * The API-version of the package.
+     *
+     * @deprecated
+     */
+    private apiVersion: string;
+
+    /**
      * A set of files which will be added to the package.
      */
     private additionalFiles: FileDescriptor[] = [];
@@ -72,6 +79,8 @@ export class Package extends Component
             });
 
         this.Identifier = options.Identifier;
+        // eslint-disable-next-line @delagen/deprecation/deprecation
+        this.apiVersion = options.APIVersion ?? null;
 
         if (
             (options.AdditionalFiles !== null) &&
@@ -150,6 +159,27 @@ export class Package extends Component
     public set Identifier(value: string)
     {
         this.identifier = value;
+    }
+
+    /**
+     * Gets or sets the API-Version required by the package.
+     *
+     * @deprecated
+     */
+    public get APIVersion(): string
+    {
+        // eslint-disable-next-line @delagen/deprecation/deprecation
+        return this.apiVersion;
+    }
+
+    /**
+     * @inheritdoc
+     * @deprecated
+     */
+    public set APIVersion(value: string)
+    {
+        // eslint-disable-next-line @delagen/deprecation/deprecation
+        this.apiVersion = value;
     }
 
     /**
