@@ -1,4 +1,4 @@
-import { EJSFileCompiler } from "./EJSFileCompiler";
+import { XMLFileCompiler } from "./XMLFileCompiler";
 
 /**
  * Provides the functionality to compile components to `.xml`-files optimized for woltlab.
@@ -6,7 +6,7 @@ import { EJSFileCompiler } from "./EJSFileCompiler";
  * @template T
  * The type of the item which can be compiled by this compiler.
  */
-export abstract class WoltLabXMLCompiler<T> extends EJSFileCompiler<T>
+export abstract class WoltLabXMLCompiler<T> extends XMLFileCompiler<T>
 {
     /**
      * Initializes a new instance of the {@link WoltLabXMLCompiler `WoltLabXMLCompiler<T>`} class.

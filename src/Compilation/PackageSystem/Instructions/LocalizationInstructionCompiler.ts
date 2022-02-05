@@ -57,9 +57,8 @@ export class LocalizationInstructionCompiler extends InstructionCompiler<ILocali
         {
             let tempDir: TempDirectory = new TempDirectory();
             let compiler = new LocalizationSetCompiler(this.Item.GetMessages());
-            compiler.DestinationPath = tempDir.FullName;
+            compiler.DestinationPath = this.MakePackagePath(this.Item.DestinationRoot, this.Item.TranslationDirectory);
             await compiler.Execute();
-            await this.CopyTemplate(tempDir.FullName, this.MakePackagePath(this.Item.DestinationRoot, this.Item.TranslationDirectory));
             tempDir.Dispose();
         }
     }

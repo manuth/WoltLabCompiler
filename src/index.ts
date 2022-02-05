@@ -4,7 +4,6 @@ import { Constants } from "./Constants";
 export { BidirectionalCollection } from "./Collections/BidirectionalCollection";
 export { Constants } from "./Constants";
 export { Compiler } from "./Compilation/Compiler";
-export { EJSFileCompiler } from "./Compilation/EJSFileCompiler";
 export { EventListenerFileCompiler } from "./Compilation/Events/EventListenerFileCompiler";
 export { ListenerFileCompiler } from "./Compilation/Events/ListenerFileCompiler";
 export { TemplateListenerFileCompiler } from "./Compilation/Events/TemplateListenerFileCompiler";
@@ -32,7 +31,6 @@ export { LocalizationProviderCompiler } from "./Compilation/PackageSystem/Instru
 export { OptionInstructionCompiler } from "./Compilation/PackageSystem/Instructions/OptionInstructionCompiler";
 export { PHPInstructionCompiler } from "./Compilation/PackageSystem/Instructions/PHPInstructionCompiler";
 export { SelfContainedPHPInstructionCompiler } from "./Compilation/PackageSystem/Instructions/SelfContainedPHPInstructionCompiler";
-export { TemplateInstructionCompiler } from "./Compilation/PackageSystem/Instructions/TemplateInstructionCompiler";
 export { TemplateListenerInstructionCompiler } from "./Compilation/PackageSystem/Instructions/TemplateListenerInstructionCompiler";
 export { ThemeInstructionCompiler } from "./Compilation/PackageSystem/Instructions/ThemeInstructionCompiler";
 export { UserOptionInstructionCompiler } from "./Compilation/PackageSystem/Instructions/UserOptionInstructionCompiler";

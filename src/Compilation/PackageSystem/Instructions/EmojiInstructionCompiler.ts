@@ -1,12 +1,12 @@
 import { EmojiInstruction } from "../../../PackageSystem/Instructions/Customization/EmojiInstruction";
 import { Compiler } from "../../Compiler";
 import { EmojiFileCompiler } from "../../Presentation/EmojiFileCompiler";
-import { TemplateInstructionCompiler } from "./TemplateInstructionCompiler";
+import { InstructionFileCompiler } from "./InstructionFileCompiler";
 
 /**
  * Provides the functionality to compile emoji-instructions.
  */
-export class EmojiInstructionCompiler extends TemplateInstructionCompiler<EmojiInstruction>
+export class EmojiInstructionCompiler extends InstructionFileCompiler<EmojiInstruction>
 {
     /**
      * Initializes a new instance of the {@link EmojiInstructionCompiler `EmojiInstructionCompiler`} class.
