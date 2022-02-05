@@ -7,7 +7,7 @@ import { IUpdateInstructionSetOptions } from "./Instructions/IUpdateInstructionS
 import { IPackageFileDescriptorOptions } from "./IPackageFileDescriptorOptions";
 import { IRequiredPackageDescriptorOptions } from "./IRequiredPackageDescriptorOptions";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { Package } from "./Package";
+import type { Package } from "./Package";
 import { VersionNumber } from "./VersionNumber";
 
 /**
