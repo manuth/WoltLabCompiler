@@ -51,6 +51,7 @@
     "hex-to-rgba": "^2.0.1",
     "mem-fs": "^2.2.1",
     "mem-fs-editor": "^9.4.0",
+    "parse-sass-value": "^2.3.0",
     "tar": "^6.1.11",
     "upath": "^2.0.1"
   },

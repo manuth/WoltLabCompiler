@@ -2,6 +2,7 @@ import { EOL } from "os";
 import { get } from "colornames";
 import { readFile } from "fs-extra";
 import hexToRgba = require("hex-to-rgba");
+import parseSassValue = require("parse-sass-value");
 import { isAbsolute, join } from "upath";
 import { Component } from "../../../PackageSystem/Component";
 import { FileDescriptor } from "../../../PackageSystem/FileDescriptor";
@@ -348,7 +349,9 @@ export class ThemeLoader extends Component
                 {
                     themeOptions.Variables[name] = hexToRgba(value);
                 }
-                else if (get.css(value))
+                else if (
+                    typeof value === "string" &&
+                    get.css(value))
                 {
                     themeOptions.Variables[name] = hexToRgba(get.css(value).value);
                 }
@@ -372,7 +375,7 @@ export class ThemeLoader extends Component
             themeOptions.ScssOverride = Array.from(scssOverrides).map(
                 (overrideEntry) =>
                 {
-                    return `$${overrideEntry[0]}: ${overrideEntry[1]};`;
+                    return `$${overrideEntry[0]}: ${(parseSassValue as any as typeof parseSassValue.default)(overrideEntry[1], { quote: "double" })};`;
                 }).join(EOL);
         }
 
