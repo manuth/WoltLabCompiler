@@ -5,6 +5,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## WoltLabCompiler [Unreleased]
+### Updated
+  - The type-declarations for enforcing the correct format of version numbers
+  - The interpretation of `.scss`-variables
+
+### Added
+  - A `Package`-property to the `Instruction`-class for receiving the package of the `Instruction`
+
+### Removed
+   - Support for substituting contents of `.xml`-files using ejs
+   - The `Name` property from the `Package` class
 
 [Show differences](https://github.com/manuth/WoltLabCompiler/compare/v2.1.9...dev)
 
