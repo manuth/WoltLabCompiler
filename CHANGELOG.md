@@ -5,6 +5,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## WoltLabCompiler [Unreleased]
+### Fixed
+  - Broken `ThemeCompiler`  
+    So far, the theme-compiler wouldn't at images as specified in the `Theme`-settings. This issue is now fixed.
+
+### Updated
+  - The `PackageCompiler` to add a `<void>`-tag in empty instruction-sets  
+    According to WoltLab's docs, this is useful for if you'd like to update nothing but the package's metadata. Check out [WoltLab's docs](https://docs.woltlab.com/5.4/package/package-xml/#void) for further information.
+
+### Removed
+  - The creation of the `<api>`-tag inside the `package.xml`-file  
+    If you still want to have an `<api>`-tag inside your `package.xml`-file, you might want to pass the `APIVersion` to the package. However, please note that the use of the `<api>`-tag is deprecated according to [WoltLab's docs](https://docs.woltlab.com/5.4/package/package-xml/#compatibility)
 
 [Show differences](https://github.com/manuth/WoltLabCompiler/compare/v2.1.8...dev)
 
