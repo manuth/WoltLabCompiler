@@ -1,5 +1,6 @@
 import { IRequiredPackageDescriptorOptions } from "./IRequiredPackageDescriptorOptions";
 import { PackageFileDescriptor } from "./PackageFileDescriptor";
+import { VersionNumber } from "./VersionNumber";
 
 /**
  * Provides an abstraction of a required package.
@@ -9,7 +10,7 @@ export class RequiredPackageDescriptor extends PackageFileDescriptor
     /**
      * The minimal version of the package which must bee installed.
      */
-    private minVersion: string;
+    private minVersion: VersionNumber;
 
     /**
      * Initializes a new instance of the {@link RequiredPackageDescriptor `RequiredPackageDescriptor`} class.
@@ -26,7 +27,7 @@ export class RequiredPackageDescriptor extends PackageFileDescriptor
     /**
      * Gets or sets the minimal version of the package which must bee installed.
      */
-    public get MinVersion(): string
+    public get MinVersion(): VersionNumber
     {
         return this.minVersion;
     }
@@ -34,7 +35,7 @@ export class RequiredPackageDescriptor extends PackageFileDescriptor
     /**
      * @inheritdoc
      */
-    public set MinVersion(value: string)
+    public set MinVersion(value: VersionNumber)
     {
         this.minVersion = value;
     }

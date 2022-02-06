@@ -1,5 +1,6 @@
 import { IConflictingPackageDescriptorOptions } from "./IConflictingPackageDescriptorOptions";
 import { PackageDescriptor } from "./PackageDescriptor";
+import { VersionNumber } from "./VersionNumber";
 
 /**
  * Provides the abstraction of a package which causes a conflict.
@@ -9,7 +10,7 @@ export class ConflictingPackageDescriptor extends PackageDescriptor
     /**
      * The version of the package.
      */
-    private version: string;
+    private version: VersionNumber;
 
     /**
      * Initializes a new instance of the {@link ConflictingPackageDescriptor `ConflictingPackageDescriptor`} class.
@@ -26,7 +27,7 @@ export class ConflictingPackageDescriptor extends PackageDescriptor
     /**
      * Gets or sets the version of the package.
      */
-    public get Version(): string
+    public get Version(): VersionNumber
     {
         return this.version;
     }
@@ -34,7 +35,7 @@ export class ConflictingPackageDescriptor extends PackageDescriptor
     /**
      * @inheritdoc
      */
-    public set Version(value: string)
+    public set Version(value: VersionNumber)
     {
         this.version = value;
     }
