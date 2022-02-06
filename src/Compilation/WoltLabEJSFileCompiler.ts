@@ -1,4 +1,4 @@
-import { WoltLabXMLCompiler } from "..";
+import { WoltLabXMLCompiler } from "./WoltLabXMLCompiler";
 
 /**
  * Provides the functionality to compile `.xml`-files which contain `ejs`-strings.
