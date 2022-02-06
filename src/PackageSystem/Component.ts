@@ -1,17 +1,13 @@
 import { Localization } from "../Globalization/Localization";
 import { IComponentOptions } from "./IComponentOptions";
 import { Person } from "./Person";
+import { VersionNumber } from "./VersionNumber";
 
 /**
  * Represents a component.
  */
 export abstract class Component
 {
-    /**
-     * The name of the package.
-     */
-    private name: string;
-
     /**
      * The human-readable name of the component.
      */
@@ -20,7 +16,7 @@ export abstract class Component
     /**
      * The version of the component.
      */
-    private version: string;
+    private version: VersionNumber;
 
     /**
      * The author of the component.
@@ -50,7 +46,6 @@ export abstract class Component
      */
     public constructor(options: IComponentOptions)
     {
-        this.Name = options.Name;
         this.DisplayName.Load(options.DisplayName);
         this.Version = options.Version;
 
@@ -84,22 +79,6 @@ export abstract class Component
     }
 
     /**
-     * Gets or sets the name of the package.
-     */
-    public get Name(): string
-    {
-        return this.name;
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public set Name(value: string)
-    {
-        this.name = value;
-    }
-
-    /**
      * Gets the human-readable name of the component.
      */
     public get DisplayName(): Localization
@@ -110,7 +89,7 @@ export abstract class Component
     /**
      * Gets or sets the version of the component.
      */
-    public get Version(): string
+    public get Version(): VersionNumber
     {
         return this.version;
     }
@@ -118,7 +97,7 @@ export abstract class Component
     /**
      * @inheritdoc
      */
-    public set Version(value: string)
+    public set Version(value: VersionNumber)
     {
         this.version = value;
     }

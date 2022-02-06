@@ -2,6 +2,7 @@ import { EOL } from "os";
 import { get } from "colornames";
 import { readFile } from "fs-extra";
 import hexToRgba = require("hex-to-rgba");
+import parseSassValue = require("parse-sass-value");
 import { isAbsolute, join } from "upath";
 import { Component } from "../../../PackageSystem/Component";
 import { FileDescriptor } from "../../../PackageSystem/FileDescriptor";
@@ -26,7 +27,12 @@ export class ThemeLoader extends Component
     private instruction: ThemeInstruction;
 
     /**
-     * The tumbnail of the theme to load.
+     * The name of the theme to load.
+     */
+    private name: string;
+
+    /**
+     * The thumbnail of the theme to load.
      */
     private thumbnail: FileDescriptor;
 
@@ -78,7 +84,6 @@ export class ThemeLoader extends Component
     {
         super(
             {
-                Name: options.Name,
                 DisplayName: options.DisplayName,
                 Author: options.Author,
                 Version: options.Version,
@@ -88,6 +93,7 @@ export class ThemeLoader extends Component
             });
 
         this.instruction = instruction;
+        this.Name = options.Name;
 
         if (
             (options.Thumbnail !== null) &&
@@ -145,6 +151,22 @@ export class ThemeLoader extends Component
     public get Instruction(): ThemeInstruction
     {
         return this.instruction;
+    }
+
+    /**
+     * Gets or sets the name of the theme to load.
+     */
+    public get Name(): string
+    {
+        return this.name;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public set Name(value: string)
+    {
+        this.name = value;
     }
 
     /**
@@ -327,7 +349,9 @@ export class ThemeLoader extends Component
                 {
                     themeOptions.Variables[name] = hexToRgba(value);
                 }
-                else if (get.css(value))
+                else if (
+                    typeof value === "string" &&
+                    get.css(value))
                 {
                     themeOptions.Variables[name] = hexToRgba(get.css(value).value);
                 }
@@ -351,7 +375,7 @@ export class ThemeLoader extends Component
             themeOptions.ScssOverride = Array.from(scssOverrides).map(
                 (overrideEntry) =>
                 {
-                    return `$${overrideEntry[0]}: ${overrideEntry[1]};`;
+                    return `$${overrideEntry[0]}: ${(parseSassValue as any as typeof parseSassValue.default)(overrideEntry[1], { quote: "double" })};`;
                 }).join(EOL);
         }
 

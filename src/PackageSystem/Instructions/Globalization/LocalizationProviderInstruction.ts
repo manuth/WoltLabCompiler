@@ -1,3 +1,4 @@
+import { Package } from "../../Package";
 import { InstructionSet } from "../InstructionSet";
 import { ILocalizationInstruction } from "./ILocalizationInstruction";
 import { LocalizationInstruction } from "./LocalizationInstruction";
@@ -45,6 +46,14 @@ export class LocalizationProviderInstruction implements ILocalizationInstruction
     public get Collection(): InstructionSet
     {
         return this.Instruction.Collection;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public get Package(): Package
+    {
+        return this.Instruction.Package;
     }
 
     /**

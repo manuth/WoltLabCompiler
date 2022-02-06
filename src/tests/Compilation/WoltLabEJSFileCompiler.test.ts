@@ -1,12 +1,12 @@
 import { strictEqual } from "assert";
-import { EJSFileCompiler } from "../../Compilation/EJSFileCompiler";
+import { WoltLabEJSFileCompiler } from "../../Compilation/WoltLabEJSFileCompiler";
 import { XMLFileCompilerTester } from "./TestComponents/Testers/XMLFileCompilerTester";
 import { XMLCompilerTestRunner } from "./TestComponents/TestRunners/XMLCompilerTestRunner";
 
 /**
- * Registers tests for the {@link EJSFileCompiler `EJSFileCompiler<T>`} class.
+ * Registers tests for the {@link WoltLabEJSFileCompiler `WoltLabEJSFileCompiler<T>`} class.
  */
-export function EJSFileCompilerTests(): void
+export function WoltLabEJSFileCompilerTests(): void
 {
     let context: Record<string, string>;
     let variableName: string;
@@ -14,9 +14,9 @@ export function EJSFileCompilerTests(): void
     let delimiter: string;
 
     /**
-     * Provides an implementation of the {@link EJSFileCompiler `EJSFileCompiler<T>`} for testing.
+     * Provides an implementation of the {@link WoltLabEJSFileCompiler `WoltLabEJSFileCompiler<T>`} for testing.
      */
-    class TestEJSFileCompiler extends EJSFileCompiler<unknown>
+    class TestWoltlabEJSFileCompiler extends WoltLabEJSFileCompiler<unknown>
     {
         /**
          * Initializes a new instance of the class.
@@ -37,9 +37,9 @@ export function EJSFileCompilerTests(): void
         /**
          * @inheritdoc
          */
-        protected get TagName(): string
+        protected get SchemaLocation(): string
         {
-            return "tag";
+            return "https://example.com";
         }
 
         /**
@@ -76,7 +76,7 @@ export function EJSFileCompilerTests(): void
         }
     }
 
-    new class extends XMLCompilerTestRunner<XMLFileCompilerTester<TestEJSFileCompiler>, TestEJSFileCompiler>
+    new class extends XMLCompilerTestRunner<XMLFileCompilerTester<TestWoltlabEJSFileCompiler>, TestWoltlabEJSFileCompiler>
     {
         /**
          * @inheritdoc
@@ -84,9 +84,9 @@ export function EJSFileCompilerTests(): void
          * @returns
          * The new compiler-tester instance.
          */
-        protected CreateTester(): XMLFileCompilerTester<TestEJSFileCompiler>
+        protected CreateTester(): XMLFileCompilerTester<TestWoltlabEJSFileCompiler>
         {
-            return new XMLFileCompilerTester(new TestEJSFileCompiler());
+            return new XMLFileCompilerTester(new TestWoltlabEJSFileCompiler());
         }
 
         /**
@@ -136,5 +136,5 @@ export function EJSFileCompilerTests(): void
                     strictEqual(this.Tester.XMLEditor.TextContent, variableValue);
                 });
         }
-    }(nameof(EJSFileCompiler)).Register();
+    }(nameof(WoltLabEJSFileCompiler)).Register();
 }

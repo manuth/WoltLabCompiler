@@ -1,12 +1,12 @@
 import { TemplateListenerInstruction } from "../../../PackageSystem/Instructions/Events/TemplateListenerInstruction";
 import { Compiler } from "../../Compiler";
 import { TemplateListenerFileCompiler } from "../../Events/TemplateListenerFileCompiler";
-import { TemplateInstructionCompiler } from "./TemplateInstructionCompiler";
+import { InstructionFileCompiler } from "./InstructionFileCompiler";
 
 /**
  * Provides the functionality to compile event-listener instructions.
  */
-export class TemplateListenerInstructionCompiler extends TemplateInstructionCompiler<TemplateListenerInstruction>
+export class TemplateListenerInstructionCompiler extends InstructionFileCompiler<TemplateListenerInstruction>
 {
     /**
      * Initializes a new instance of the {@link TemplateListenerInstructionCompiler `TemplateListenerInstructionCompiler`} class.

@@ -48,7 +48,7 @@ export function ThemeFileCompilerTests(): void
                     Theme: {
                         Name: null,
                         DisplayName: themeName,
-                        Version: "1.0 Beta 3",
+                        Version: "1.0.0 Beta 3",
                         CreationDate: new Date("2019-06-12"),
                         License: "MIT",
                         Description: description,
@@ -72,7 +72,7 @@ export function ThemeFileCompilerTests(): void
                 {
                     DisplayName: {},
                     Identifier: "foo.bar",
-                    Version: "",
+                    Version: "0.0.0",
                     InstallSet: {
                         Instructions: []
                     }

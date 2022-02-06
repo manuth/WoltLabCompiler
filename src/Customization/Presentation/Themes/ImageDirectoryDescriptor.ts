@@ -1,3 +1,4 @@
+import { basename, isAbsolute, normalize, sep } from "path";
 import { FileDescriptor } from "../../../PackageSystem/FileDescriptor";
 import { IImageDirectoryDescriptorOptions } from "./IImageDirectoryDescriptorOptions";
 
@@ -31,9 +32,15 @@ export class ImageDirectoryDescriptor extends FileDescriptor
         {
             this.destinationRoot = options.DestinationRoot;
         }
+        else if (
+            isAbsolute(options.Source) ||
+            (normalize(options.Source).split(sep)[0] === ".."))
+        {
+            this.DestinationRoot = basename(options.Source);
+        }
         else
         {
-            this.destinationRoot = this.Source;
+            this.destinationRoot = options.Source;
         }
     }
 

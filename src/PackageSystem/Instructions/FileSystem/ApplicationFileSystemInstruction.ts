@@ -1,3 +1,4 @@
+import { join } from "upath";
 import { FileInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/FileInstructionCompiler";
 import { InstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/InstructionCompiler";
 import { FileSystemInstruction } from "./FileSystemInstruction";
@@ -78,6 +79,6 @@ export class ApplicationFileSystemInstruction extends FileSystemInstruction
      */
     protected override MakeDefaultFileName(source: string): string
     {
-        return `${super.MakeDefaultFileName(source)}.tar`;
+        return join(...(this.Application ? [this.Application] : []), `${super.MakeDefaultFileName(source)}.tar`);
     }
 }

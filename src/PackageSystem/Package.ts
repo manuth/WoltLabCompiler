@@ -66,7 +66,6 @@ export class Package extends Component
     {
         super(
             {
-                Name: options.Name,
                 DisplayName: options.DisplayName,
                 Version: options.Version,
                 Author: options.Author || new Person(

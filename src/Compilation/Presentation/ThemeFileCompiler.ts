@@ -1,12 +1,12 @@
 import { Constants } from "../../Constants";
 import { Theme } from "../../Customization/Presentation/Themes/Theme";
 import { XMLEditor } from "../../Serialization/XMLEditor";
-import { WoltLabXMLCompiler } from "../WoltLabXMLCompiler";
+import { WoltLabEJSFileCompiler } from "../WoltLabEJSFileCompiler";
 
 /**
  * Provides the functionality to compile theme-files.
  */
-export class ThemeFileCompiler extends WoltLabXMLCompiler<Theme>
+export class ThemeFileCompiler extends WoltLabEJSFileCompiler<Theme>
 {
     /**
      * The name to save the variables to.

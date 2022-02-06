@@ -1,3 +1,4 @@
+import { Package } from "../Package";
 import { InstructionSet } from "./InstructionSet";
 
 /**
@@ -11,9 +12,14 @@ export interface IInstruction
     Type: string;
 
     /**
-     * Gets or sets the package this instruction belongs to.
+     * Gets or sets the collection this instruction belongs to.
      */
     Collection: InstructionSet;
+
+    /**
+     * Gets the package of this instruction.
+     */
+    readonly Package: Package;
 
     /**
      * Gets the directory to save the instruction to.

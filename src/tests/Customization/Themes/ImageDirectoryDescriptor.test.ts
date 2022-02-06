@@ -1,4 +1,6 @@
 import { strictEqual } from "assert";
+import { basename, resolve } from "path";
+import { IImageDirectoryDescriptorOptions } from "../../../Customization/Presentation/Themes/IImageDirectoryDescriptorOptions";
 import { ImageDirectoryDescriptor } from "../../../Customization/Presentation/Themes/ImageDirectoryDescriptor";
 
 /**
@@ -12,7 +14,9 @@ export function ImageDirectoryDescriptorTests(): void
         {
             let customFileName: string;
             let customDestination: string;
+            let imageDirectoryOptions: IImageDirectoryDescriptorOptions;
             let imageDirectory: ImageDirectoryDescriptor;
+            let customOptions: IImageDirectoryDescriptorOptions;
             let customImageDirectory: ImageDirectoryDescriptor;
             let defaultFileName = "images.tar";
 
@@ -22,17 +26,18 @@ export function ImageDirectoryDescriptorTests(): void
                     customFileName = "example.tar";
                     customDestination = "dist";
 
-                    imageDirectory = new ImageDirectoryDescriptor(
-                        {
-                            Source: "example"
-                        });
+                    imageDirectoryOptions = {
+                        Source: "example"
+                    };
 
-                    customImageDirectory = new ImageDirectoryDescriptor(
-                        {
-                            Source: "example",
-                            FileName: customFileName,
-                            DestinationRoot: customDestination
-                        });
+                    customOptions = {
+                        ...imageDirectoryOptions,
+                        FileName: customFileName,
+                        DestinationRoot: customDestination
+                    };
+
+                    imageDirectory = new ImageDirectoryDescriptor(imageDirectoryOptions);
+                    customImageDirectory = new ImageDirectoryDescriptor(customOptions);
                 });
 
             suite(
@@ -54,7 +59,19 @@ export function ImageDirectoryDescriptorTests(): void
                 {
                     test(
                         `Checking whether \`${nameof<ImageDirectoryDescriptor>((d) => d.DestinationRoot)}\` is set to the \`${nameof<ImageDirectoryDescriptor>((d) => d.Source)}\` if no destination-root is specified…`,
-                        () => strictEqual(imageDirectory.DestinationRoot, imageDirectory.Source));
+                        () =>
+                        {
+                            strictEqual(imageDirectory.DestinationRoot, imageDirectoryOptions.Source);
+                        });
+
+                    test(
+                        `Checking whether the \`${nameof<ImageDirectoryDescriptor>((d) => d.DestinationRoot)}\` is set to the basename of the \`${nameof<ImageDirectoryDescriptor>((d) => d.Source)}\` if no destination-root is specified and the source is absolute or starts with \`..\`…`,
+                        () =>
+                        {
+                            strictEqual(
+                                new ImageDirectoryDescriptor({ Source: resolve(__dirname) }).DestinationRoot,
+                                basename(__dirname));
+                        });
 
                     test(
                         `Checking whether \`${nameof<ImageDirectoryDescriptor>((d) => d.DestinationRoot)}\` is set properly when a destination-root is specified…`,

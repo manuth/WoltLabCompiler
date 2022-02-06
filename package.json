@@ -1,6 +1,6 @@
 {
   "name": "@manuth/woltlab-compiler",
-  "version": "2.1.9",
+  "version": "3.0.0",
   "description": "A compiler for WoltLab-Package Archives and WoltLab-Package Components",
   "author": "Manuel Thalmann <m@nuth.ch>",
   "license": "MIT",
@@ -51,6 +51,7 @@
     "hex-to-rgba": "^2.0.1",
     "mem-fs": "^2.2.1",
     "mem-fs-editor": "^9.4.0",
+    "parse-sass-value": "^2.3.0",
     "tar": "^6.1.11",
     "upath": "^2.0.1"
   },
@@ -63,7 +64,7 @@
     "@types/mem-fs": "^1.1.2",
     "@types/mem-fs-editor": "^7.0.1",
     "@types/mocha": "^9.1.0",
-    "@types/node": "^17.0.14",
+    "@types/node": "^17.0.15",
     "@types/sass": "^1.43.1",
     "@types/sinon": "^10.0.10",
     "@types/tar": "^6.1.1",

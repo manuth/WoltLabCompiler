@@ -43,6 +43,5 @@ export abstract class OptionInstructionCompiler<TInstruction extends IOptionInst
         let compiler: Compiler<TInstruction> = this.OptionFileCompiler;
         compiler.DestinationPath = this.DestinationFileName;
         await compiler.Execute();
-        await this.CopyTemplate(this.DestinationFileName, this.DestinationFileName);
     }
 }

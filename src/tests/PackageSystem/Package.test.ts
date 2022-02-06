@@ -34,7 +34,7 @@ export function PackageTests(): void
                                     {
                                         Identifier: "",
                                         DisplayName: {},
-                                        Version: "",
+                                        Version: "0.0.0",
                                         InstallSet: {
                                             Instructions: []
                                         },
@@ -59,7 +59,7 @@ export function PackageTests(): void
                                     {
                                         Identifier: "",
                                         DisplayName: {},
-                                        Version: "",
+                                        Version: "0.0.0",
                                         InstallSet: {
                                             Instructions: []
                                         },

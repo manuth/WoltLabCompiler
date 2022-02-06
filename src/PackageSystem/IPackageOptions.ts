@@ -7,7 +7,8 @@ import { IUpdateInstructionSetOptions } from "./Instructions/IUpdateInstructionS
 import { IPackageFileDescriptorOptions } from "./IPackageFileDescriptorOptions";
 import { IRequiredPackageDescriptorOptions } from "./IRequiredPackageDescriptorOptions";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { Package } from "./Package";
+import type { Package } from "./Package";
+import { VersionNumber } from "./VersionNumber";
 
 /**
  * Provides options for the {@link Package `Package`} class.
@@ -27,7 +28,7 @@ export interface IPackageOptions extends Partial<IComponentOptions>
     /**
      * @inheritdoc
      */
-    Version: string;
+    Version: VersionNumber;
 
     /**
      * The API-Version of the package.

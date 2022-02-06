@@ -40,7 +40,7 @@ export function PackageFileCompilerTests(): void
                         {
                             Identifier: "",
                             DisplayName: {},
-                            Version: "",
+                            Version: "0.0.0",
                             InstallSet: {
                                 Instructions: []
                             }
@@ -77,7 +77,7 @@ export function PackageFileCompilerTests(): void
                     wscPackage.Identifier = "com.example.mypackage";
                     wscPackage.DisplayName.Load(displayName);
                     wscPackage.Description.Load(description);
-                    wscPackage.Version = "2.0 Beta 3";
+                    wscPackage.Version = "2.0.0 Beta 3";
                     wscPackage.CreationDate = new Date("2001-03-04");
                     wscPackage.Author.Name = "John Doe";
                     wscPackage.Author.URL = "https://example.com";

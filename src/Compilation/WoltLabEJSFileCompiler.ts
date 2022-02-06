@@ -1,4 +1,4 @@
-import { XMLFileCompiler } from "./XMLFileCompiler";
+import { WoltLabXMLCompiler } from "./WoltLabXMLCompiler";
 
 /**
  * Provides the functionality to compile `.xml`-files which contain `ejs`-strings.
@@ -6,10 +6,10 @@ import { XMLFileCompiler } from "./XMLFileCompiler";
  * @template T
  * The type of the item which can be compiled by this compiler.
  */
-export abstract class EJSFileCompiler<T> extends XMLFileCompiler<T>
+export abstract class WoltLabEJSFileCompiler<T> extends WoltLabXMLCompiler<T>
 {
     /**
-     * Initializes a new instance of the {@link EJSFileCompiler `EJSFileCompiler<T>`} class.
+     * Initializes a new instance of the {@link WoltLabEJSFileCompiler `WoltLabEJSFileCompiler<T>`} class.
      *
      * @param item
      * The item to compile.
