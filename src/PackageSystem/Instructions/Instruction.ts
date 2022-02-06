@@ -77,7 +77,7 @@ export abstract class Instruction implements IInstruction
      */
     public get Package(): Package
     {
-        return this.Collection.Package;
+        return this.Collection?.Package;
     }
 
     /**
