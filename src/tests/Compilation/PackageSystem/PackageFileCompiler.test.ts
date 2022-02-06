@@ -326,6 +326,7 @@ export function PackageFileCompilerTests(): void
                 {
                     let apiVersion = "2018";
                     strictEqual(this.Tester.XMLEditor.GetChildrenByTag(compatibilityNodeName).length, 0);
+                    // eslint-disable-next-line @delagen/deprecation/deprecation
                     this.Compiler.Item.APIVersion = apiVersion;
                     await this.Compiler.Execute();
                     strictEqual(this.Tester.XMLEditor.GetChildrenByTag(compatibilityNodeName).length, 1);
