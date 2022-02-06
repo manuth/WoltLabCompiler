@@ -83,18 +83,25 @@ export class InstructionSet extends BidirectionalCollection<InstructionSet, Inst
         let editor = new XMLEditor(document.documentElement);
         editor.SetAttribute("type", "install");
 
-        for (let instruction of this)
+        if (this.length > 0)
         {
-            if (instruction.Compiler)
+            for (let instruction of this)
             {
-                let childNodes = instruction.Compiler.Serialize().childNodes;
-
-                for (let i = 0; i < childNodes.length; i++)
+                if (instruction.Compiler)
                 {
-                    let node: Node = childNodes.item(i);
-                    editor.Add(node);
+                    let childNodes = instruction.Compiler.Serialize().childNodes;
+
+                    for (let i = 0; i < childNodes.length; i++)
+                    {
+                        let node: Node = childNodes.item(i);
+                        editor.Add(node);
+                    }
                 }
             }
+        }
+        else
+        {
+            editor.Add(editor.CreateElement("void"));
         }
 
         return editor.Element;

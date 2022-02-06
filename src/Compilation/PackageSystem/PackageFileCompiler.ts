@@ -51,7 +51,8 @@ export class PackageFileCompiler extends WoltLabXMLCompiler<Package>
         let apiNode = compatibilityNode.CreateElement("api");
         compatibilityNode.Add(apiNode);
         editor.SetAttribute("name", this.Item.Identifier);
-        apiNode.SetAttribute("version", "2018");
+        // eslint-disable-next-line @delagen/deprecation/deprecation
+        apiNode.SetAttribute("version", this.Item.APIVersion);
         editor.Add(packageNode);
         editor.Add(authorNode);
 
@@ -140,7 +141,12 @@ export class PackageFileCompiler extends WoltLabXMLCompiler<Package>
             }
         }
 
-        editor.Add(compatibilityNode);
+        // eslint-disable-next-line @delagen/deprecation/deprecation
+        if (this.Item.APIVersion)
+        {
+            editor.Add(compatibilityNode);
+        }
+
         editor.Add(this.Item.InstallSet.Serialize());
 
         for (let instructionSet of this.Item.UpdateSets)

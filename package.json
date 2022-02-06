@@ -1,6 +1,6 @@
 {
   "name": "@manuth/woltlab-compiler",
-  "version": "2.1.8",
+  "version": "2.1.9",
   "description": "A compiler for WoltLab-Package Archives and WoltLab-Package Components",
   "author": "Manuel Thalmann <m@nuth.ch>",
   "license": "MIT",
@@ -68,6 +68,7 @@
     "@types/sinon": "^10.0.10",
     "@types/tar": "^6.1.1",
     "@types/ts-nameof": "^4.2.1",
+    "cheerio": "^1.0.0-rc.10",
     "cron-parser": "^4.2.1",
     "dedent": "^0.7.0",
     "eslint": "^8.8.0",

@@ -83,7 +83,16 @@ export function PackageCompilerTests(): void
          */
         protected override ExecuteTests(): void
         {
+            let testRunner: typeof this;
+            let compiler: PackageCompiler;
             super.ExecuteTests();
+
+            setup(
+                () =>
+                {
+                    testRunner = this;
+                    compiler = testRunner.Compiler;
+                });
 
             test(
                 "Checking whether the tar-archive can be extracted…",
@@ -110,17 +119,20 @@ export function PackageCompilerTests(): void
 
             test(
                 "Checking whether all instruction-sets are compiled…",
-                async () =>
+                async function()
                 {
+                    this.slow(2 * 1000);
+                    this.timeout(4 * 1000);
+
                     let tempFile = new TempFile();
-                    this.Compiler.DestinationPath = tempFile.FullName;
-                    await this.Compiler.Execute();
+                    compiler.DestinationPath = tempFile.FullName;
+                    await compiler.Execute();
 
-                    await this.ValidateComponentFiles(this.Compiler.Item.InstallSet);
+                    await testRunner.ValidateComponentFiles(compiler.Item.InstallSet);
 
-                    for (let instructionSet of this.Compiler.Item.UpdateSets)
+                    for (let instructionSet of compiler.Item.UpdateSets)
                     {
-                        await this.ValidateComponentFiles(instructionSet);
+                        await testRunner.ValidateComponentFiles(instructionSet);
                     }
                 });
         }
