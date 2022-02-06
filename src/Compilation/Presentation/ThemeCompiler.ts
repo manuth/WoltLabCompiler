@@ -91,5 +91,10 @@ export class ThemeCompiler extends Compiler<Theme>
         {
             await copy(this.Item.CoverPhoto.Source, this.MakeDestinationPath(this.Item.CoverPhoto.FileName));
         }
+
+        if (this.Item.Images)
+        {
+            await this.Compress(this.Item.Images.Source, this.MakeDestinationPath(this.Item.Images.FileName));
+        }
     }
 }
