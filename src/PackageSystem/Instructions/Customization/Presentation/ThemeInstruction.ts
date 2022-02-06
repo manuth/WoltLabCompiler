@@ -1,8 +1,14 @@
+import { join } from "path";
 import { InstructionCompiler } from "../../../../Compilation/PackageSystem/Instructions/InstructionCompiler";
 import { ThemeInstructionCompiler } from "../../../../Compilation/PackageSystem/Instructions/ThemeInstructionCompiler";
 import { ThemeLoader } from "../../../../Customization/Presentation/Themes/ThemeLoader";
 import { Instruction } from "../../Instruction";
 import { IThemeInstructionOptions } from "./IThemeInstructionOptions";
+
+/**
+ * The name of the {@link ThemeInstruction `ThemeInstruction`}-type.
+ */
+const STYLE_TYPENAME = "style";
 
 /**
  * Represents an instruction which provides a theme.
@@ -24,7 +30,7 @@ export class ThemeInstruction extends Instruction
     {
         super(
             {
-                FileName: options.FileName || `${options.Theme.Name}.tar`
+                FileName: options.FileName || join(STYLE_TYPENAME, `${options.Theme.Name}.tar`)
             });
 
         this.themeLoader = new ThemeLoader(this, options.Theme);
@@ -35,7 +41,7 @@ export class ThemeInstruction extends Instruction
      */
     public get Type(): string
     {
-        return "style";
+        return STYLE_TYPENAME;
     }
 
     /**
