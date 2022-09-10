@@ -1,4 +1,6 @@
 import { IThemeOptionBase } from "./IThemeOptionBase.js";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import type { Theme } from "./Theme.js";
 
 /**
  * Provides options for the {@link Theme `Theme`}-class.
