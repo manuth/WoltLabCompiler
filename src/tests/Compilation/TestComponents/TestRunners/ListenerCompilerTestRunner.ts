@@ -1,10 +1,10 @@
 import { AssertionError, ok, strictEqual } from "assert";
-import { ListenerFileCompiler } from "../../../../Compilation/Events/ListenerFileCompiler";
-import { Listener } from "../../../../Events/Listener";
-import { IListenerInstruction } from "../../../../PackageSystem/Instructions/Events/IListenerInstruction";
-import { XMLEditor } from "../../../../Serialization/XMLEditor";
-import { ListenerCompilerTester } from "../Testers/ListenerCompilerTester";
-import { XMLCompilerTestRunner } from "./XMLCompilerTestRunner";
+import { ListenerFileCompiler } from "../../../../Compilation/Events/ListenerFileCompiler.js";
+import { Listener } from "../../../../Events/Listener.js";
+import { IListenerInstruction } from "../../../../PackageSystem/Instructions/Events/IListenerInstruction.js";
+import { XMLEditor } from "../../../../Serialization/XMLEditor.js";
+import { ListenerCompilerTester } from "../Testers/ListenerCompilerTester.js";
+import { XMLCompilerTestRunner } from "./XMLCompilerTestRunner.js";
 
 /**
  * Provides the functionality to register tests for {@link ListenerFileCompiler `ListenerFileCompiler<T, TListener>`}s.

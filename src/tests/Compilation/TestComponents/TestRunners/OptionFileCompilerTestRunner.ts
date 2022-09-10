@@ -1,12 +1,12 @@
 import { AssertionError, ok, strictEqual } from "assert";
-import { OptionFileCompiler } from "../../../../Compilation/Options/OptionFileCompiler";
-import { INode } from "../../../../NodeSystem/Generic/INode";
-import { ICategory } from "../../../../Options/Generic/ICategory";
-import { Option } from "../../../../Options/Option";
-import { IOptionInstruction } from "../../../../PackageSystem/Instructions/Options/IOptionInstruction";
-import { XMLEditor } from "../../../../Serialization/XMLEditor";
-import { OptionCompilerTester } from "../Testers/OptionCompilerTester";
-import { ImportCompilerTestRunner } from "./ImportCompilerTestRunner";
+import { OptionFileCompiler } from "../../../../Compilation/Options/OptionFileCompiler.js";
+import { INode } from "../../../../NodeSystem/Generic/INode.js";
+import { ICategory } from "../../../../Options/Generic/ICategory.js";
+import { Option } from "../../../../Options/Option.js";
+import { IOptionInstruction } from "../../../../PackageSystem/Instructions/Options/IOptionInstruction.js";
+import { XMLEditor } from "../../../../Serialization/XMLEditor.js";
+import { OptionCompilerTester } from "../Testers/OptionCompilerTester.js";
+import { ImportCompilerTestRunner } from "./ImportCompilerTestRunner.js";
 
 /**
  * Provides the functionality to register tests for {@link OptionFileCompiler `OptionFileCompiler<T, TCategory, TOption>`}s.

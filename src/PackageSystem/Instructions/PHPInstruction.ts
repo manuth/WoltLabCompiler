@@ -1,7 +1,7 @@
-import { InstructionCompiler } from "../../Compilation/PackageSystem/Instructions/InstructionCompiler";
-import { PHPInstructionCompiler } from "../../Compilation/PackageSystem/Instructions/PHPInstructionCompiler";
-import { Instruction } from "./Instruction";
-import { IPHPInstructionOptions } from "./IPHPInstructionOptions";
+import { InstructionCompiler } from "../../Compilation/PackageSystem/Instructions/InstructionCompiler.js";
+import { PHPInstructionCompiler } from "../../Compilation/PackageSystem/Instructions/PHPInstructionCompiler.js";
+import { Instruction } from "./Instruction.js";
+import { IPHPInstructionOptions } from "./IPHPInstructionOptions.js";
 
 /**
  * Represents an instruction which executes an already existing `.php`-file on the server.

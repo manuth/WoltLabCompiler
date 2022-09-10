@@ -1,9 +1,9 @@
-import { InstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/InstructionCompiler";
-import { TemplateListenerInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/TemplateListenerInstructionCompiler";
-import { ITemplateListenerOptions } from "../../../Customization/Presentation/ITemplateListenerOptions";
-import { TemplateListener } from "../../../Customization/Presentation/TemplateListener";
-import { IListenerInstructionOptions } from "./IListenerInstructionOptions";
-import { ListenerInstruction } from "./ListenerInstruction";
+import { InstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/InstructionCompiler.js";
+import { TemplateListenerInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/TemplateListenerInstructionCompiler.js";
+import { ITemplateListenerOptions } from "../../../Customization/Presentation/ITemplateListenerOptions.js";
+import { TemplateListener } from "../../../Customization/Presentation/TemplateListener.js";
+import { IListenerInstructionOptions } from "./IListenerInstructionOptions.js";
+import { ListenerInstruction } from "./ListenerInstruction.js";
 
 /**
  * Represents an instruction which provides template-listeners.

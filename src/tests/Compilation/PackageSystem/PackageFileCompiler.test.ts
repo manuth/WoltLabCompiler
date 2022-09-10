@@ -1,23 +1,25 @@
 import { ok, strictEqual } from "assert";
-import { join } from "upath";
-import { PackageFileCompiler } from "../../../Compilation/PackageSystem/PackageFileCompiler";
-import { Constants } from "../../../Constants";
-import { ILocalization } from "../../../Globalization/ILocalization";
-import { ConflictingPackageDescriptor } from "../../../PackageSystem/ConflictingPackageDescriptor";
-import { BBCodeInstruction } from "../../../PackageSystem/Instructions/Customization/BBCodeInstruction";
-import { EmojiInstruction } from "../../../PackageSystem/Instructions/Customization/EmojiInstruction";
-import { TemplateListenerInstruction } from "../../../PackageSystem/Instructions/Events/TemplateListenerInstruction";
-import { TranslationInstruction } from "../../../PackageSystem/Instructions/Globalization/TranslationInstruction";
-import { InstructionSet } from "../../../PackageSystem/Instructions/InstructionSet";
-import { CronJobInstruction } from "../../../PackageSystem/Instructions/Tasks/CronJobInstruction";
-import { UpdateInstructionSet } from "../../../PackageSystem/Instructions/UpdateInstructionSet";
-import { OptionalPackageDescriptor } from "../../../PackageSystem/OptionalPackageDescriptor";
-import { Package } from "../../../PackageSystem/Package";
-import { RequiredPackageDescriptor } from "../../../PackageSystem/RequiredPackageDescriptor";
-import { XMLEditor } from "../../../Serialization/XMLEditor";
-import { TimePeriod } from "../../../Tasks/TimePeriod";
-import { XMLFileCompilerTester } from "../TestComponents/Testers/XMLFileCompilerTester";
-import { XMLCompilerTestRunner } from "../TestComponents/TestRunners/XMLCompilerTestRunner";
+import path from "upath";
+import { PackageFileCompiler } from "../../../Compilation/PackageSystem/PackageFileCompiler.js";
+import { Constants } from "../../../Constants.js";
+import { ILocalization } from "../../../Globalization/ILocalization.js";
+import { ConflictingPackageDescriptor } from "../../../PackageSystem/ConflictingPackageDescriptor.js";
+import { BBCodeInstruction } from "../../../PackageSystem/Instructions/Customization/BBCodeInstruction.js";
+import { EmojiInstruction } from "../../../PackageSystem/Instructions/Customization/EmojiInstruction.js";
+import { TemplateListenerInstruction } from "../../../PackageSystem/Instructions/Events/TemplateListenerInstruction.js";
+import { TranslationInstruction } from "../../../PackageSystem/Instructions/Globalization/TranslationInstruction.js";
+import { InstructionSet } from "../../../PackageSystem/Instructions/InstructionSet.js";
+import { CronJobInstruction } from "../../../PackageSystem/Instructions/Tasks/CronJobInstruction.js";
+import { UpdateInstructionSet } from "../../../PackageSystem/Instructions/UpdateInstructionSet.js";
+import { OptionalPackageDescriptor } from "../../../PackageSystem/OptionalPackageDescriptor.js";
+import { Package } from "../../../PackageSystem/Package.js";
+import { RequiredPackageDescriptor } from "../../../PackageSystem/RequiredPackageDescriptor.js";
+import { XMLEditor } from "../../../Serialization/XMLEditor.js";
+import { TimePeriod } from "../../../Tasks/TimePeriod.js";
+import { XMLFileCompilerTester } from "../TestComponents/Testers/XMLFileCompilerTester.js";
+import { XMLCompilerTestRunner } from "../TestComponents/TestRunners/XMLCompilerTestRunner.js";
+
+const { join } = path;
 
 /**
  * Registers tests for the {@link PackageFileCompiler `PackageFileCompiler`} class.

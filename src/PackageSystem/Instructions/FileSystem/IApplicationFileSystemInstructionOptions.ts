@@ -1,6 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { ApplicationFileSystemInstruction } from "./ApplicationFileSystemInstruction";
-import { IFileSystemInstructionOptions } from "./IFileSystemInstructionOptions";
+import { ApplicationFileSystemInstruction } from "./ApplicationFileSystemInstruction.js";
+import { IFileSystemInstructionOptions } from "./IFileSystemInstructionOptions.js";
 
 /**
  * Provides options for the {@link ApplicationFileSystemInstruction `ApplicationFileSystemInstruction`} class.

@@ -1,7 +1,8 @@
 import { strictEqual } from "assert";
 import { basename, resolve } from "path";
-import { IImageDirectoryDescriptorOptions } from "../../../Customization/Presentation/Themes/IImageDirectoryDescriptorOptions";
-import { ImageDirectoryDescriptor } from "../../../Customization/Presentation/Themes/ImageDirectoryDescriptor";
+import { fileURLToPath } from "url";
+import { IImageDirectoryDescriptorOptions } from "../../../Customization/Presentation/Themes/IImageDirectoryDescriptorOptions.js";
+import { ImageDirectoryDescriptor } from "../../../Customization/Presentation/Themes/ImageDirectoryDescriptor.js";
 
 /**
  * Registers tests for the {@link ImageDirectoryDescriptor `ImageDirectoryDescriptor`} class.
@@ -12,6 +13,7 @@ export function ImageDirectoryDescriptorTests(): void
         nameof(ImageDirectoryDescriptor),
         () =>
         {
+            let dirName: string;
             let customFileName: string;
             let customDestination: string;
             let imageDirectoryOptions: IImageDirectoryDescriptorOptions;
@@ -23,6 +25,7 @@ export function ImageDirectoryDescriptorTests(): void
             suiteSetup(
                 () =>
                 {
+                    dirName = fileURLToPath(new URL(".", import.meta.url));
                     customFileName = "example.tar";
                     customDestination = "dist";
 
@@ -69,8 +72,8 @@ export function ImageDirectoryDescriptorTests(): void
                         () =>
                         {
                             strictEqual(
-                                new ImageDirectoryDescriptor({ Source: resolve(__dirname) }).DestinationRoot,
-                                basename(__dirname));
+                                new ImageDirectoryDescriptor({ Source: resolve(dirName) }).DestinationRoot,
+                                basename(dirName));
                         });
 
                     test(

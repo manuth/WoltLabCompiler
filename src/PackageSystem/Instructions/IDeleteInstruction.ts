@@ -1,4 +1,4 @@
-import { IInstruction } from "./IInstruction";
+import { IInstruction } from "./IInstruction.js";
 
 /**
  * Represents an instruction which provides the functionality to delete objects.

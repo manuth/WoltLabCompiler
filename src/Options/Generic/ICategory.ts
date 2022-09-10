@@ -1,4 +1,4 @@
-import { ICategory as ICategoryBase } from "../ICategory";
+import { ICategory as ICategoryBase } from "../ICategory.js";
 
 /**
  * Represents a category.

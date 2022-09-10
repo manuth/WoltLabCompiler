@@ -1,5 +1,5 @@
 import { basename } from "path";
-import { CronJobFileCompilerTests } from "./CronJobFileCompiler.test";
+import { CronJobFileCompilerTests } from "./CronJobFileCompiler.test.js";
 
 /**
  * Registers tests for task-compilers.
@@ -7,7 +7,7 @@ import { CronJobFileCompilerTests } from "./CronJobFileCompiler.test";
 export function TaskTests(): void
 {
     suite(
-        basename(__dirname),
+        basename(new URL(".", import.meta.url).pathname),
         () =>
         {
             CronJobFileCompilerTests();

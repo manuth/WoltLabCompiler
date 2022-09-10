@@ -1,8 +1,8 @@
-import { ICategory } from "../ICategory";
-import { Option } from "../Option";
-import { EditPermission } from "./EditPermission";
-import { IUserOptionOptions } from "./IUserOptionOptions";
-import { ViewPermission } from "./ViewPermission";
+import { ICategory } from "../ICategory.js";
+import { Option } from "../Option.js";
+import { EditPermission } from "./EditPermission.js";
+import { IUserOptionOptions } from "./IUserOptionOptions.js";
+import { ViewPermission } from "./ViewPermission.js";
 
 /**
  * Represents an option for users.

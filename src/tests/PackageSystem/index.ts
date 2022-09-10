@@ -1,7 +1,7 @@
 import { basename } from "path";
-import { FileDescriptorTests } from "./FileDescriptor.test";
-import { InstructionTests } from "./Instructions";
-import { PackageTests } from "./Package.test";
+import { FileDescriptorTests } from "./FileDescriptor.test.js";
+import { InstructionTests } from "./Instructions/index.js";
+import { PackageTests } from "./Package.test.js";
 
 /**
  * Registers tests for package-system components.
@@ -9,7 +9,7 @@ import { PackageTests } from "./Package.test";
 export function PackageSystemTests(): void
 {
     suite(
-        basename(__dirname),
+        basename(new URL(".", import.meta.url).pathname),
         () =>
         {
             FileDescriptorTests();

@@ -1,6 +1,9 @@
-import { readFileSync } from "fs-extra";
-import sassVars = require("get-sass-vars");
-import { dirname } from "upath";
+import fs from "fs-extra";
+import sassVars from "get-sass-vars";
+import path from "upath";
+
+const { readFileSync } = fs;
+const { dirname } = path;
 
 /**
  * Provides the functionality to parse `sass`-variable files.

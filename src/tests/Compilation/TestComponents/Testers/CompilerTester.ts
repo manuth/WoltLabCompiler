@@ -1,5 +1,7 @@
-import { pathExistsSync } from "fs-extra";
-import { Compiler } from "../../../../Compilation/Compiler";
+import fs from "fs-extra";
+import { Compiler } from "../../../../Compilation/Compiler.js";
+
+const { pathExistsSync } = fs;
 
 /**
  * Provides the functionality to test a compiler.

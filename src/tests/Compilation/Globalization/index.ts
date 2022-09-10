@@ -1,6 +1,6 @@
 import { basename } from "path";
-import { LocalizationFileCompilerTests } from "./LocalizationFileCompiler.test";
-import { LocalizationSetCompilerTests } from "./LocalizationSetCompiler.test";
+import { LocalizationFileCompilerTests } from "./LocalizationFileCompiler.test.js";
+import { LocalizationSetCompilerTests } from "./LocalizationSetCompiler.test.js";
 
 /**
  * Registers globalization tests.
@@ -8,7 +8,7 @@ import { LocalizationSetCompilerTests } from "./LocalizationSetCompiler.test";
 export function GlobalizationTests(): void
 {
     suite(
-        basename(__dirname),
+        basename(new URL(".", import.meta.url).pathname),
         () =>
         {
             LocalizationFileCompilerTests();

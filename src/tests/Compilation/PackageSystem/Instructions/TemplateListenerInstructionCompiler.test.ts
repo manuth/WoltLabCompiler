@@ -1,7 +1,7 @@
-import { TemplateListenerInstructionCompiler } from "../../../../Compilation/PackageSystem/Instructions/TemplateListenerInstructionCompiler";
-import { TemplateListenerInstruction } from "../../../../PackageSystem/Instructions/Events/TemplateListenerInstruction";
-import { CompilerTester } from "../../TestComponents/Testers/CompilerTester";
-import { InstructionCompilerTestRunner } from "../../TestComponents/TestRunners/InstructionCompilerTestRunner";
+import { TemplateListenerInstructionCompiler } from "../../../../Compilation/PackageSystem/Instructions/TemplateListenerInstructionCompiler.js";
+import { TemplateListenerInstruction } from "../../../../PackageSystem/Instructions/Events/TemplateListenerInstruction.js";
+import { CompilerTester } from "../../TestComponents/Testers/CompilerTester.js";
+import { InstructionCompilerTestRunner } from "../../TestComponents/TestRunners/InstructionCompilerTestRunner.js";
 
 /**
  * Registers tests for the {@link TemplateListenerInstructionCompiler `TemplateListenerInstructionCompiler`} class.

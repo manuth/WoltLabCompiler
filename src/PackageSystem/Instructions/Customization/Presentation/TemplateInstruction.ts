@@ -1,6 +1,8 @@
-import { join } from "upath";
-import { ApplicationFileSystemInstruction } from "../../FileSystem/ApplicationFileSystemInstruction";
-import { IApplicationFileSystemInstructionOptions } from "../../FileSystem/IApplicationFileSystemInstructionOptions";
+import path from "upath";
+import { ApplicationFileSystemInstruction } from "../../FileSystem/ApplicationFileSystemInstruction.js";
+import { IApplicationFileSystemInstructionOptions } from "../../FileSystem/IApplicationFileSystemInstructionOptions.js";
+
+const { join } = path;
 
 /**
  * Represents an instruction which provides templates.

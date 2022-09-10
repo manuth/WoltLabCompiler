@@ -1,7 +1,7 @@
 import { basename } from "path";
-import { InstructionTests } from "./Instructions";
-import { PackageCompilerTests } from "./PackageCompiler.test";
-import { PackageFileCompilerTests } from "./PackageFileCompiler.test";
+import { InstructionTests } from "./Instructions/index.js";
+import { PackageCompilerTests } from "./PackageCompiler.test.js";
+import { PackageFileCompilerTests } from "./PackageFileCompiler.test.js";
 
 /**
  * Registers tests for package-system compilers.
@@ -9,7 +9,7 @@ import { PackageFileCompilerTests } from "./PackageFileCompiler.test";
 export function PackageSystemTests(): void
 {
     suite(
-        basename(__dirname),
+        basename(new URL(".", import.meta.url).pathname),
         () =>
         {
             InstructionTests();

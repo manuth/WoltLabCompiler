@@ -1,9 +1,11 @@
 import { TempDirectory } from "@manuth/temp-files";
-import { copy } from "fs-extra";
-import { Package } from "../../PackageSystem/Package";
-import { Compiler } from "../Compiler";
-import { InstructionSetCompiler } from "./InstructionSetCompiler";
-import { PackageFileCompiler } from "./PackageFileCompiler";
+import fs from "fs-extra";
+import { Package } from "../../PackageSystem/Package.js";
+import { Compiler } from "../Compiler.js";
+import { InstructionSetCompiler } from "./InstructionSetCompiler.js";
+import { PackageFileCompiler } from "./PackageFileCompiler.js";
+
+const { copy } = fs;
 
 /**
  * Provides the functionality to compile packages.

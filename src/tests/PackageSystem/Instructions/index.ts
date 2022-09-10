@@ -1,11 +1,11 @@
 import { basename } from "path";
-import { CustomizationTests } from "./Customization";
-import { FileSystemTests } from "./FileSystem";
-import { GlobalizationTests } from "./Globalization";
-import { InstructionTests as InstructionClassTests } from "./Instruction.test";
-import { InstructionSetTests } from "./InstructionSet.test";
-import { NodeSystemTests } from "./NodeSystem";
-import { OptionTests } from "./Options";
+import { CustomizationTests } from "./Customization/index.js";
+import { FileSystemTests } from "./FileSystem/index.js";
+import { GlobalizationTests } from "./Globalization/index.js";
+import { InstructionTests as InstructionClassTests } from "./Instruction.test.js";
+import { InstructionSetTests } from "./InstructionSet.test.js";
+import { NodeSystemTests } from "./NodeSystem/index.js";
+import { OptionTests } from "./Options/index.js";
 
 /**
  * Registers tests for instruction components.
@@ -13,7 +13,7 @@ import { OptionTests } from "./Options";
 export function InstructionTests(): void
 {
     suite(
-        basename(__dirname),
+        basename(new URL(".", import.meta.url).pathname),
         () =>
         {
             InstructionSetTests();

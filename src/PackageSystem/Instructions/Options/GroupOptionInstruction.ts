@@ -1,12 +1,12 @@
-import { GroupOptionInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/GroupOptionInstructionCompiler";
-import { InstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/InstructionCompiler";
-import { Node } from "../../../NodeSystem/Node";
-import { GroupCategory } from "../../../Options/Groups/GroupCategory";
-import { GroupOption } from "../../../Options/Groups/GroupOption";
-import { IGroupOptionOptions } from "../../../Options/Groups/IGroupOptionOptions";
-import { ICategoryOptions } from "../../../Options/ICategoryOptions";
-import { IOptionInstructionOptions } from "./IOptionInstructionOptions";
-import { OptionInstruction } from "./OptionInstruction";
+import { GroupOptionInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/GroupOptionInstructionCompiler.js";
+import { InstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/InstructionCompiler.js";
+import { Node } from "../../../NodeSystem/Node.js";
+import { GroupCategory } from "../../../Options/Groups/GroupCategory.js";
+import { GroupOption } from "../../../Options/Groups/GroupOption.js";
+import { IGroupOptionOptions } from "../../../Options/Groups/IGroupOptionOptions.js";
+import { ICategoryOptions } from "../../../Options/ICategoryOptions.js";
+import { IOptionInstructionOptions } from "./IOptionInstructionOptions.js";
+import { OptionInstruction } from "./OptionInstruction.js";
 
 /**
  * Represents an instruction which provides options for groups.

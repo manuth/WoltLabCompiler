@@ -1,7 +1,7 @@
-import { TemplateListenerInstruction } from "../../../PackageSystem/Instructions/Events/TemplateListenerInstruction";
-import { Compiler } from "../../Compiler";
-import { TemplateListenerFileCompiler } from "../../Events/TemplateListenerFileCompiler";
-import { InstructionFileCompiler } from "./InstructionFileCompiler";
+import { TemplateListenerInstruction } from "../../../PackageSystem/Instructions/Events/TemplateListenerInstruction.js";
+import { Compiler } from "../../Compiler.js";
+import { TemplateListenerFileCompiler } from "../../Events/TemplateListenerFileCompiler.js";
+import { InstructionFileCompiler } from "./InstructionFileCompiler.js";
 
 /**
  * Provides the functionality to compile event-listener instructions.

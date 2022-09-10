@@ -1,11 +1,11 @@
 import { ok } from "assert";
-import { ObjectDeletionFileCompiler } from "../../Compilation/ObjectDeletionFileCompiler";
-import { IDeleteInstruction } from "../../PackageSystem/Instructions/IDeleteInstruction";
-import { Instruction } from "../../PackageSystem/Instructions/Instruction";
-import { XML } from "../../Serialization/XML";
-import { XMLEditor } from "../../Serialization/XMLEditor";
-import { ImportCompilerTester } from "./TestComponents/Testers/ImportCompilerTester";
-import { ImportCompilerTestRunner } from "./TestComponents/TestRunners/ImportCompilerTestRunner";
+import { ObjectDeletionFileCompiler } from "../../Compilation/ObjectDeletionFileCompiler.js";
+import { IDeleteInstruction } from "../../PackageSystem/Instructions/IDeleteInstruction.js";
+import { Instruction } from "../../PackageSystem/Instructions/Instruction.js";
+import { XML } from "../../Serialization/XML.js";
+import { XMLEditor } from "../../Serialization/XMLEditor.js";
+import { ImportCompilerTester } from "./TestComponents/Testers/ImportCompilerTester.js";
+import { ImportCompilerTestRunner } from "./TestComponents/TestRunners/ImportCompilerTestRunner.js";
 
 /**
  * Registers tests for the {@link ObjectDeletionFileCompiler `ObjectDeletionFileCompiler<T, TObject>`} class.

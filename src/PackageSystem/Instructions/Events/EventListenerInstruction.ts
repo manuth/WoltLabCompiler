@@ -1,9 +1,9 @@
-import { EventListenerInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/EventListenerInstructionCompiler";
-import { InstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/InstructionCompiler";
-import { EventListener } from "../../../Events/EventListener";
-import { IEventListenerOptions } from "../../../Events/IEventListenerOptions";
-import { IListenerInstructionOptions } from "./IListenerInstructionOptions";
-import { ListenerInstruction } from "./ListenerInstruction";
+import { EventListenerInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/EventListenerInstructionCompiler.js";
+import { InstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/InstructionCompiler.js";
+import { EventListener } from "../../../Events/EventListener.js";
+import { IEventListenerOptions } from "../../../Events/IEventListenerOptions.js";
+import { IListenerInstructionOptions } from "./IListenerInstructionOptions.js";
+import { ListenerInstruction } from "./ListenerInstruction.js";
 
 /**
  * Represents an instruction which provides event-listeners.

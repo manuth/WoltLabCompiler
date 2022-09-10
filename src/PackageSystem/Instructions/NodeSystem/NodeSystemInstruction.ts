@@ -1,8 +1,8 @@
-import { Node } from "../../../NodeSystem/Node";
-import { NodeItem } from "../../../NodeSystem/NodeItem";
-import { Instruction } from "../Instruction";
-import { INodeSystemInstruction } from "./INodeSystemInstruction";
-import { INodeSystemInstructionOptions } from "./INodeSystemInstructionOptions";
+import { Node } from "../../../NodeSystem/Node.js";
+import { NodeItem } from "../../../NodeSystem/NodeItem.js";
+import { Instruction } from "../Instruction.js";
+import { INodeSystemInstruction } from "./INodeSystemInstruction.js";
+import { INodeSystemInstructionOptions } from "./INodeSystemInstructionOptions.js";
 
 /**
  * Represents an instruction which provides nodes.

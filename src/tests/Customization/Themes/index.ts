@@ -1,8 +1,8 @@
 import { basename } from "path";
-import { ImageDirectoryDescriptorTests } from "./ImageDirectoryDescriptor.test";
-import { SassVariableParserTests } from "./SassVariableParser.test";
-import { ThemeTests as ThemeClassTests } from "./Theme.test";
-import { ThemeLoaderTests } from "./ThemeLoader.test";
+import { ImageDirectoryDescriptorTests } from "./ImageDirectoryDescriptor.test.js";
+import { SassVariableParserTests } from "./SassVariableParser.test.js";
+import { ThemeTests as ThemeClassTests } from "./Theme.test.js";
+import { ThemeLoaderTests } from "./ThemeLoader.test.js";
 
 /**
  * Registers tests for theme components.
@@ -10,7 +10,7 @@ import { ThemeLoaderTests } from "./ThemeLoader.test";
 export function ThemeTests(): void
 {
     suite(
-        basename(__dirname),
+        basename(new URL(".", import.meta.url).pathname),
         () =>
         {
             SassVariableParserTests();

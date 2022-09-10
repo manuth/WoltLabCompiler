@@ -1,6 +1,6 @@
 import { basename } from "path";
-import { CategoryTests } from "./Category.test";
-import { OptionTests as OptionClassTests } from "./Option.test";
+import { CategoryTests } from "./Category.test.js";
+import { OptionTests as OptionClassTests } from "./Option.test.js";
 
 /**
  * Registers tests for option-components.
@@ -8,7 +8,7 @@ import { OptionTests as OptionClassTests } from "./Option.test";
 export function OptionTests(): void
 {
     suite(
-        basename(__dirname),
+        basename(new URL(".", import.meta.url).pathname),
         () =>
         {
             OptionClassTests();

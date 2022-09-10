@@ -1,5 +1,5 @@
 import { basename } from "path";
-import { BidirectionalCollectionTests } from "./BidirectionalCollection.test";
+import { BidirectionalCollectionTests } from "./BidirectionalCollection.test.js";
 
 /**
  * Registers tests for collections.
@@ -7,7 +7,7 @@ import { BidirectionalCollectionTests } from "./BidirectionalCollection.test";
 export function CollectionTests(): void
 {
     suite(
-        basename(__dirname),
+        basename(new URL(".", import.meta.url).pathname),
         () =>
         {
             BidirectionalCollectionTests();

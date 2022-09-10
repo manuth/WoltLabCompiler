@@ -5,6 +5,9 @@
         "rootDir": "./src",
         "outDir": "./lib",
         "paths": {
+            "cheerio": [
+                "./node_modules/cheerio/lib/index.d.ts"
+            ],
             "get-sass-vars": [
                 "./src/get-sass-vars.d.ts"
             ]

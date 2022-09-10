@@ -1,6 +1,6 @@
 import { basename } from "path";
-import { BBCodeInstructionTests } from "./BBCodeInstruction.test";
-import { PresentationTests } from "./Presentation";
+import { BBCodeInstructionTests } from "./BBCodeInstruction.test.js";
+import { PresentationTests } from "./Presentation/index.js";
 
 /**
  * Registers tests for customization-instructions.
@@ -8,7 +8,7 @@ import { PresentationTests } from "./Presentation";
 export function CustomizationTests(): void
 {
     suite(
-        basename(__dirname),
+        basename(new URL(".", import.meta.url).pathname),
         () =>
         {
             BBCodeInstructionTests();

@@ -1,15 +1,18 @@
 import { ok } from "assert";
 import { join } from "path";
 import { TempDirectory } from "@manuth/temp-files";
-import dedent = require("dedent");
-import { writeFile } from "fs-extra";
+import dedent from "dedent";
+import fs from "fs-extra";
 import { extract } from "tar";
-import { parse } from "upath";
-import { ThemeInstructionCompiler } from "../../../../Compilation/PackageSystem/Instructions/ThemeInstructionCompiler";
-import { ThemeInstruction } from "../../../../PackageSystem/Instructions/Customization/Presentation/ThemeInstruction";
-import { Tar } from "../../../Tar";
-import { CompilerTester } from "../../TestComponents/Testers/CompilerTester";
-import { InstructionCompilerTestRunner } from "../../TestComponents/TestRunners/InstructionCompilerTestRunner";
+import path from "upath";
+import { ThemeInstructionCompiler } from "../../../../Compilation/PackageSystem/Instructions/ThemeInstructionCompiler.js";
+import { ThemeInstruction } from "../../../../PackageSystem/Instructions/Customization/Presentation/ThemeInstruction.js";
+import { Tar } from "../../../Tar.js";
+import { CompilerTester } from "../../TestComponents/Testers/CompilerTester.js";
+import { InstructionCompilerTestRunner } from "../../TestComponents/TestRunners/InstructionCompilerTestRunner.js";
+
+const { writeFile } = fs;
+const { parse } = path;
 
 /**
  * Registers tests for the {@link ThemeInstructionCompiler `ThemeInstructionCompiler`} class.

@@ -1,8 +1,8 @@
-import { IOptionOptions } from "../IOptionOptions";
-import { EditPermission } from "./EditPermission";
+import { IOptionOptions } from "../IOptionOptions.js";
+import { EditPermission } from "./EditPermission.js";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { UserOption } from "./UserOption";
-import { ViewPermission } from "./ViewPermission";
+import { UserOption } from "./UserOption.js";
+import { ViewPermission } from "./ViewPermission.js";
 
 /**
  * Provides options for the {@link UserOption `UserOption`} class.

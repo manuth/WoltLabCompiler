@@ -110,7 +110,7 @@ import { ACPOptionInstruction, InvariantCultureName, OptionType, Package, Packag
                 ]
             }));
 
-    compiler.DestinationPath = join(__dirname, "my-package.tar");
+    compiler.DestinationPath = join("my-package.tar");
     await compiler.Execute();
 })();
 ```
@@ -175,7 +175,7 @@ import { ACPOptionFileCompiler, ACPOptionInstruction } from "@manuth/woltlab-com
                 ]
             }));
 
-    compiler.DestinationPath = join(__dirname, compiler.Item.FileName);
+    compiler.DestinationPath = join(compiler.Item.FileName);
     await compiler.Execute();
 })();
 ```
@@ -227,7 +227,7 @@ import { Package, PackageCompiler } from "@manuth/woltlab-compiler";
                 }
             }));
 
-    compiler.DestinationPath = join(__dirname, "my-package.tar");
+    compiler.DestinationPath = join("my-package.tar");
 })();
 ```
 
@@ -326,18 +326,18 @@ new ACPTemplateInstruction(
     {
         FileName: "acpTemplates.tar",
         Application: "wcf",
-        Source: join(__dirname, "..", "assets", "acpTemplates")
+        Source: join("..", "assets", "acpTemplates")
     });
 
 new TemplateInstruction(
     {
         Application: "wcf",
-        Source: join(__dirname, "..", "assets", "templates")
+        Source: join("..", "assets", "templates")
     });
 
 new ApplicationFileSystemInstruction(
     {
-        Source: join(__dirname, "..", "assets", "files")
+        Source: join("..", "assets", "files")
     });
 ```
 
@@ -392,16 +392,16 @@ new ApplicationFileSystemInstruction(
 > >                             }),
 > >                         new TemplateInstruction(
 > >                             {
-> >                                 Source: join(__dirname, "templates")
+> >                                 Source: join("templates")
 > >                             }),
 > >                         new ApplicationFileSystemInstruction(
 > >                             {
-> >                                 Source: join(__dirname, "files")
+> >                                 Source: join("files")
 > >                             })
 > >                     ]
 > >                 }
 > >             }));
-> >     compiler.DestinationPath = join(__dirname, "test.tar");
+> >     compiler.DestinationPath = join("test.tar");
 > >     await compiler.Execute();
 > > })();
 > > ```
@@ -525,17 +525,17 @@ The priorities of the variables are as followed:
 >                                     DisplayName: {
 >                                         [InvariantCultureName]: "My Theme"
 >                                     },
->                                     CoverPhoto: join(__dirname, "cover.jpg"), // Loads the picture from ./cover.jpg
->                                     Thumbnail: join(__dirname, "thumbnail.png"), // Loads the thumbnail from ./thumbnail.png
->                                     HighResThumbnail: join(__dirname, "hq-thumbnail.png"), // Loads the hq thumbnail from ./hq-thumbnail.png
+>                                     CoverPhoto: join("cover.jpg"), // Loads the picture from ./cover.jpg
+>                                     Thumbnail: join("thumbnail.png"), // Loads the thumbnail from ./thumbnail.png
+>                                     HighResThumbnail: join("hq-thumbnail.png"), // Loads the hq thumbnail from ./hq-thumbnail.png
 >                                     Variables: {
 >                                         wcfFontSizeDefault: "1px"
 >                                     },
->                                     CustomScssFileName: join(__dirname, "style.scss"), // Loads the custom scss code from ./style.scss
->                                     ScssOverrideFileName: join(__dirname, "overrides.scss"), // Loads variables from ./overrides.scss
->                                     VariableFileName: join(__dirname, "variables.json"),
+>                                     CustomScssFileName: join("style.scss"), // Loads the custom scss code from ./style.scss
+>                                     ScssOverrideFileName: join("overrides.scss"), // Loads variables from ./overrides.scss
+>                                     VariableFileName: join("variables.json"),
 >                                     Images: {
->                                         Source: join(__dirname, "images") // Loads the images from ./images
+>                                         Source: join("images") // Loads the images from ./images
 >                                     }
 >                                 }
 >                             })

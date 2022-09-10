@@ -1,9 +1,11 @@
 import { DOMParser } from "@xmldom/xmldom";
 import { CheerioAPI, load } from "cheerio";
-import { readFileSync } from "fs-extra";
-import { XMLFileCompiler } from "../../../../Compilation/XMLFileCompiler";
-import { XMLEditor } from "../../../../Serialization/XMLEditor";
-import { CompilerTester } from "./CompilerTester";
+import fs from "fs-extra";
+import { XMLFileCompiler } from "../../../../Compilation/XMLFileCompiler.js";
+import { XMLEditor } from "../../../../Serialization/XMLEditor.js";
+import { CompilerTester } from "./CompilerTester.js";
+
+const { readFileSync } = fs;
 
 /**
  * Provides the functionality to test an xml compiler.

@@ -1,8 +1,8 @@
 import { strictEqual } from "assert";
-import { Theme } from "../../../Customization/Presentation/Themes/Theme";
-import { ThemeInstruction } from "../../../PackageSystem/Instructions/Customization/Presentation/ThemeInstruction";
-import { Package } from "../../../PackageSystem/Package";
-import { Person } from "../../../PackageSystem/Person";
+import { Theme } from "../../../Customization/Presentation/Themes/Theme.js";
+import { ThemeInstruction } from "../../../PackageSystem/Instructions/Customization/Presentation/ThemeInstruction.js";
+import { Package } from "../../../PackageSystem/Package.js";
+import { Person } from "../../../PackageSystem/Person.js";
 
 /**
  * Registers tests for the {@link Theme `Theme`} class.

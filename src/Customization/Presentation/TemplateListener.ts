@@ -1,5 +1,5 @@
-import { Listener } from "../../Events/Listener";
-import { ITemplateListenerOptions } from "./ITemplateListenerOptions";
+import { Listener } from "../../Events/Listener.js";
+import { ITemplateListenerOptions } from "./ITemplateListenerOptions.js";
 
 /**
  * Represents a component which listens to template-events.

@@ -1,5 +1,5 @@
-import { IEventListenerOptions } from "./IEventListenerOptions";
-import { Listener } from "./Listener";
+import { IEventListenerOptions } from "./IEventListenerOptions.js";
+import { Listener } from "./Listener.js";
 
 /**
  * Represents the declaration of a PHP-class that should be executed when a specific event occurs.

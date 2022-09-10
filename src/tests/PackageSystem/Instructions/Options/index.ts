@@ -1,5 +1,5 @@
 import { basename } from "path";
-import { OptionInstructionTests } from "./OptionInstruction.test";
+import { OptionInstructionTests } from "./OptionInstruction.test.js";
 
 /**
  * Registers tests for option instructions.
@@ -7,7 +7,7 @@ import { OptionInstructionTests } from "./OptionInstruction.test";
 export function OptionTests(): void
 {
     suite(
-        basename(__dirname),
+        basename(new URL(".", import.meta.url).pathname),
         () =>
         {
             OptionInstructionTests();

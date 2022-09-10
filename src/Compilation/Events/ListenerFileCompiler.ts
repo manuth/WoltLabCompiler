@@ -1,8 +1,8 @@
-import { Listener } from "../../Events/Listener";
-import { IListenerInstruction } from "../../PackageSystem/Instructions/Events/IListenerInstruction";
-import { XML } from "../../Serialization/XML";
-import { XMLEditor } from "../../Serialization/XMLEditor";
-import { NamedObjectDeletionFileCompiler } from "../NamedObjectDeletionFileCompiler";
+import { Listener } from "../../Events/Listener.js";
+import { IListenerInstruction } from "../../PackageSystem/Instructions/Events/IListenerInstruction.js";
+import { XML } from "../../Serialization/XML.js";
+import { XMLEditor } from "../../Serialization/XMLEditor.js";
+import { NamedObjectDeletionFileCompiler } from "../NamedObjectDeletionFileCompiler.js";
 
 /**
  * Provides the functionality to compile listener-files.

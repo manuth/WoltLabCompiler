@@ -1,11 +1,11 @@
 import { strictEqual } from "assert";
-import { NamedObjectDeletionFileCompiler } from "../../Compilation/NamedObjectDeletionFileCompiler";
-import { INamedObject } from "../../INamedObject";
-import { INamedDeleteInstruction } from "../../PackageSystem/Instructions/INamedDeleteInstruction";
-import { Instruction } from "../../PackageSystem/Instructions/Instruction";
-import { XMLEditor } from "../../Serialization/XMLEditor";
-import { ImportCompilerTester } from "./TestComponents/Testers/ImportCompilerTester";
-import { ImportCompilerTestRunner } from "./TestComponents/TestRunners/ImportCompilerTestRunner";
+import { NamedObjectDeletionFileCompiler } from "../../Compilation/NamedObjectDeletionFileCompiler.js";
+import { INamedObject } from "../../INamedObject.js";
+import { INamedDeleteInstruction } from "../../PackageSystem/Instructions/INamedDeleteInstruction.js";
+import { Instruction } from "../../PackageSystem/Instructions/Instruction.js";
+import { XMLEditor } from "../../Serialization/XMLEditor.js";
+import { ImportCompilerTester } from "./TestComponents/Testers/ImportCompilerTester.js";
+import { ImportCompilerTestRunner } from "./TestComponents/TestRunners/ImportCompilerTestRunner.js";
 
 /**
  * Registers tests for the {@link NamedObjectDeletionFileCompiler `NamedObjectDeletionFileCompiler<T>`} class.

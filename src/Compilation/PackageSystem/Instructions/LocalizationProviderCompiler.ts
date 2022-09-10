@@ -1,7 +1,7 @@
-import { ILocalizationInstruction } from "../../../PackageSystem/Instructions/Globalization/ILocalizationInstruction";
-import { LocalizationProviderInstruction } from "../../../PackageSystem/Instructions/Globalization/LocalizationProviderInstruction";
-import { InstructionCompiler } from "./InstructionCompiler";
-import { LocalizationInstructionCompiler } from "./LocalizationInstructionCompiler";
+import { ILocalizationInstruction } from "../../../PackageSystem/Instructions/Globalization/ILocalizationInstruction.js";
+import { LocalizationProviderInstruction } from "../../../PackageSystem/Instructions/Globalization/LocalizationProviderInstruction.js";
+import { InstructionCompiler } from "./InstructionCompiler.js";
+import { LocalizationInstructionCompiler } from "./LocalizationInstructionCompiler.js";
 
 /**
  * Provides the functionality to compile files which provide localizations.

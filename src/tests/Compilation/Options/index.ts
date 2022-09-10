@@ -1,8 +1,8 @@
 import { basename } from "path";
-import { ACPOptionFileCompilerTests } from "./ACPOptionFileCompiler.test";
-import { GroupOptionFileCompilerTests } from "./GroupOptionFileCompiler.test";
-import { OptionFileCompilerTests } from "./OptionFileCompiler.test";
-import { UserOptionFileCompilerTests } from "./UserOptionFileCompiler.test";
+import { ACPOptionFileCompilerTests } from "./ACPOptionFileCompiler.test.js";
+import { GroupOptionFileCompilerTests } from "./GroupOptionFileCompiler.test.js";
+import { OptionFileCompilerTests } from "./OptionFileCompiler.test.js";
+import { UserOptionFileCompilerTests } from "./UserOptionFileCompiler.test.js";
 
 /**
  * Registers tests for options-compilers.
@@ -10,7 +10,7 @@ import { UserOptionFileCompilerTests } from "./UserOptionFileCompiler.test";
 export function OptionTests(): void
 {
     suite(
-        basename(__dirname),
+        basename(new URL(".", import.meta.url).pathname),
         () =>
         {
             OptionFileCompilerTests();

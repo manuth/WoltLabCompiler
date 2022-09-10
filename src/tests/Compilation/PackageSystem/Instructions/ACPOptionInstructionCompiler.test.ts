@@ -1,8 +1,8 @@
-import { ACPOptionInstructionCompiler } from "../../../../Compilation/PackageSystem/Instructions/ACPOptionInstructionCompiler";
-import { ILocalization } from "../../../../Globalization/ILocalization";
-import { ACPOptionInstruction } from "../../../../PackageSystem/Instructions/Options/ACPOptionInstruction";
-import { CompilerTester } from "../../TestComponents/Testers/CompilerTester";
-import { LocalizationProviderCompilerTestRunner } from "../../TestComponents/TestRunners/LocalizationProviderCompilerTestRunner";
+import { ACPOptionInstructionCompiler } from "../../../../Compilation/PackageSystem/Instructions/ACPOptionInstructionCompiler.js";
+import { ILocalization } from "../../../../Globalization/ILocalization.js";
+import { ACPOptionInstruction } from "../../../../PackageSystem/Instructions/Options/ACPOptionInstruction.js";
+import { CompilerTester } from "../../TestComponents/Testers/CompilerTester.js";
+import { LocalizationProviderCompilerTestRunner } from "../../TestComponents/TestRunners/LocalizationProviderCompilerTestRunner.js";
 
 /**
  * Registers tests for the {@link ACPOptionInstructionCompiler `ACPOptionInstructionCompiler`} class.

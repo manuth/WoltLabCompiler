@@ -1,9 +1,9 @@
-import { IBBCodeOptions } from "../../../Customization/BBCodes/IBBCodeOptions";
-import { INamedObject } from "../../../INamedObject";
-import { ILocalizationInstructionOptions } from "../Globalization/ILocalizationInstructionOptions";
-import { IDeleteInstructionOptions } from "../IDeleteInstructionOptions";
+import { IBBCodeOptions } from "../../../Customization/BBCodes/IBBCodeOptions.js";
+import { INamedObject } from "../../../INamedObject.js";
+import { ILocalizationInstructionOptions } from "../Globalization/ILocalizationInstructionOptions.js";
+import { IDeleteInstructionOptions } from "../IDeleteInstructionOptions.js";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { BBCodeInstruction } from "./BBCodeInstruction";
+import { BBCodeInstruction } from "./BBCodeInstruction.js";
 
 /**
  * Provides options for the {@link BBCodeInstruction `BBCodeInstruction`} class.

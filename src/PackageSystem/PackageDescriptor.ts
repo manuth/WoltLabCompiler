@@ -1,4 +1,4 @@
-import { IPackageDescriptorOptions } from "./IPackageDescriptorOptions";
+import { IPackageDescriptorOptions } from "./IPackageDescriptorOptions.js";
 
 /**
  * Provides an abstraction of a package.

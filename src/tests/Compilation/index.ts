@@ -1,17 +1,17 @@
 import { basename } from "path";
-import { CompilerTests } from "./Compiler.test";
-import { EventTests } from "./Events";
-import { GlobalizationTests } from "./Globalization";
-import { ImportFileCompilerTests } from "./ImportFileCompiler.test";
-import { NamedObjectDeletionFileCompilerTests } from "./NamedObjectDeletionFileCompiler.test";
-import { ObjectDeletionFileCompilerTests } from "./ObjectDeletionFileCompiler.test";
-import { OptionTests } from "./Options";
-import { PackageSystemTests } from "./PackageSystem";
-import { PresentationTests } from "./Presentation";
-import { TaskTests } from "./Tasks";
-import { WoltLabEJSFileCompilerTests } from "./WoltLabEJSFileCompiler.test";
-import { WoltLabXMLCompilerTests } from "./WoltLabXMLCompiler.test";
-import { XMLFileCompilerTests } from "./XMLFileCompiler.test";
+import { CompilerTests } from "./Compiler.test.js";
+import { EventTests } from "./Events/index.js";
+import { GlobalizationTests } from "./Globalization/index.js";
+import { ImportFileCompilerTests } from "./ImportFileCompiler.test.js";
+import { NamedObjectDeletionFileCompilerTests } from "./NamedObjectDeletionFileCompiler.test.js";
+import { ObjectDeletionFileCompilerTests } from "./ObjectDeletionFileCompiler.test.js";
+import { OptionTests } from "./Options/index.js";
+import { PackageSystemTests } from "./PackageSystem/index.js";
+import { PresentationTests } from "./Presentation/index.js";
+import { TaskTests } from "./Tasks/index.js";
+import { WoltLabEJSFileCompilerTests } from "./WoltLabEJSFileCompiler.test.js";
+import { WoltLabXMLCompilerTests } from "./WoltLabXMLCompiler.test.js";
+import { XMLFileCompilerTests } from "./XMLFileCompiler.test.js";
 
 /**
  * Registers tests for compilation components.
@@ -19,7 +19,7 @@ import { XMLFileCompilerTests } from "./XMLFileCompiler.test";
 export function CompilationTests(): void
 {
     suite(
-        basename(__dirname),
+        basename(new URL(".", import.meta.url).pathname),
         () =>
         {
             CompilerTests();

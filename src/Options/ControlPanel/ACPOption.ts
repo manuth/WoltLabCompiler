@@ -1,6 +1,6 @@
-import { ICategory } from "../ICategory";
-import { Option } from "../Option";
-import { IACPOptionOptions } from "./IACPOptionOptions";
+import { ICategory } from "../ICategory.js";
+import { Option } from "../Option.js";
+import { IACPOptionOptions } from "./IACPOptionOptions.js";
 
 /**
  * Represents an option for the control-panel.

@@ -1,6 +1,6 @@
-import { ICategory } from "../ICategory";
-import { Option } from "../Option";
-import { IGroupOptionOptions } from "./IGroupOptionOptions";
+import { ICategory } from "../ICategory.js";
+import { Option } from "../Option.js";
+import { IGroupOptionOptions } from "./IGroupOptionOptions.js";
 
 /**
  * Represents an option which controls the permission of a user-group.

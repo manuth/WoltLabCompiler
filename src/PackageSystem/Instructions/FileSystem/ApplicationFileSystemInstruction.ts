@@ -1,8 +1,10 @@
-import { join } from "upath";
-import { FileInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/FileInstructionCompiler";
-import { InstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/InstructionCompiler";
-import { FileSystemInstruction } from "./FileSystemInstruction";
-import { IApplicationFileSystemInstructionOptions } from "./IApplicationFileSystemInstructionOptions";
+import path from "upath";
+import { FileInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/FileInstructionCompiler.js";
+import { InstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/InstructionCompiler.js";
+import { FileSystemInstruction } from "./FileSystemInstruction.js";
+import { IApplicationFileSystemInstructionOptions } from "./IApplicationFileSystemInstructionOptions.js";
+
+const { join } = path;
 
 /**
  * Represents an instruction which uploads files for a specific application.

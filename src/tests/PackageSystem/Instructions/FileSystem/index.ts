@@ -1,5 +1,5 @@
 import { basename } from "path";
-import { FileSystemInstructionTests } from "./FileSystemInstruction.test";
+import { FileSystemInstructionTests } from "./FileSystemInstruction.test.js";
 
 /**
  * Registers tests for file-system instructions.
@@ -7,7 +7,7 @@ import { FileSystemInstructionTests } from "./FileSystemInstruction.test";
 export function FileSystemTests(): void
 {
     suite(
-        basename(__dirname),
+        basename(new URL(".", import.meta.url).pathname),
         () =>
         {
             FileSystemInstructionTests();

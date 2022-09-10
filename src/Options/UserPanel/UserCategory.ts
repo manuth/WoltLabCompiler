@@ -1,8 +1,8 @@
-import { INode } from "../../NodeSystem/INode";
-import { Category } from "../Category";
-import { ICategoryOptions } from "../ICategoryOptions";
-import { IUserOptionOptions } from "./IUserOptionOptions";
-import { UserOption } from "./UserOption";
+import { INode } from "../../NodeSystem/INode.js";
+import { Category } from "../Category.js";
+import { ICategoryOptions } from "../ICategoryOptions.js";
+import { IUserOptionOptions } from "./IUserOptionOptions.js";
+import { UserOption } from "./UserOption.js";
 
 /**
  * Represents an option-category for users.

@@ -1,7 +1,7 @@
-import { EventListenerInstruction } from "../../../PackageSystem/Instructions/Events/EventListenerInstruction";
-import { Compiler } from "../../Compiler";
-import { EventListenerFileCompiler } from "../../Events/EventListenerFileCompiler";
-import { InstructionCompiler } from "./InstructionCompiler";
+import { EventListenerInstruction } from "../../../PackageSystem/Instructions/Events/EventListenerInstruction.js";
+import { Compiler } from "../../Compiler.js";
+import { EventListenerFileCompiler } from "../../Events/EventListenerFileCompiler.js";
+import { InstructionCompiler } from "./InstructionCompiler.js";
 
 /**
  * Provides the functionality to compile event-listener instructions.

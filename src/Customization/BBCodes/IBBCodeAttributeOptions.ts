@@ -1,5 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { BBCodeAttribute } from "./BBCodeAttribute";
+import { BBCodeAttribute } from "./BBCodeAttribute.js";
 
 /**
  * Provides options for the {@link BBCodeAttribute `BBCodeAttribute`} class.

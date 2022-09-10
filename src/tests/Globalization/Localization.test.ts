@@ -1,5 +1,5 @@
 import { ok } from "assert";
-import { Localization } from "../../Globalization/Localization";
+import { Localization } from "../../Globalization/Localization.js";
 
 /**
  * Registers tests for the {@link Localization `Localization`} class.

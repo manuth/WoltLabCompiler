@@ -1,8 +1,8 @@
 import { ok, strictEqual } from "assert";
-import dedent = require("dedent");
-import { ThemeVariableCompiler } from "../../../Compilation/Presentation/ThemeVariableCompiler";
-import { XMLFileCompilerTester } from "../TestComponents/Testers/XMLFileCompilerTester";
-import { XMLCompilerTestRunner } from "../TestComponents/TestRunners/XMLCompilerTestRunner";
+import dedent from "dedent";
+import { ThemeVariableCompiler } from "../../../Compilation/Presentation/ThemeVariableCompiler.js";
+import { XMLFileCompilerTester } from "../TestComponents/Testers/XMLFileCompilerTester.js";
+import { XMLCompilerTestRunner } from "../TestComponents/TestRunners/XMLCompilerTestRunner.js";
 
 /**
  * Registers tests for the {@link ThemeVariableCompiler `ThemeVariableCompiler`} class.

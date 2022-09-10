@@ -1,8 +1,8 @@
-import { INamedObject } from "../../../INamedObject";
-import { ICronJobOptions } from "../../../Tasks/ICronJobOptions";
-import { IDeleteInstructionOptions } from "../IDeleteInstructionOptions";
+import { INamedObject } from "../../../INamedObject.js";
+import { ICronJobOptions } from "../../../Tasks/ICronJobOptions.js";
+import { IDeleteInstructionOptions } from "../IDeleteInstructionOptions.js";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { CronJobInstruction } from "./CronJobInstruction";
+import { CronJobInstruction } from "./CronJobInstruction.js";
 
 /**
  * Provides options for the {@link CronJobInstruction `CronJobInstruction`} class.

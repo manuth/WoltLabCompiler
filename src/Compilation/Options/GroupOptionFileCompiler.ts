@@ -1,8 +1,8 @@
-import { GroupCategory } from "../../Options/Groups/GroupCategory";
-import { GroupOption } from "../../Options/Groups/GroupOption";
-import { GroupOptionInstruction } from "../../PackageSystem/Instructions/Options/GroupOptionInstruction";
-import { XMLEditor } from "../../Serialization/XMLEditor";
-import { OptionFileCompiler } from "./OptionFileCompiler";
+import { GroupCategory } from "../../Options/Groups/GroupCategory.js";
+import { GroupOption } from "../../Options/Groups/GroupOption.js";
+import { GroupOptionInstruction } from "../../PackageSystem/Instructions/Options/GroupOptionInstruction.js";
+import { XMLEditor } from "../../Serialization/XMLEditor.js";
+import { OptionFileCompiler } from "./OptionFileCompiler.js";
 
 /**
  * Provides the functionality to compile group-option files.

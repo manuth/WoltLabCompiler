@@ -1,9 +1,9 @@
 import { ok, strictEqual } from "assert";
 import { Random } from "random-js";
 import { createSandbox, SinonSandbox } from "sinon";
-import { Localization } from "../../../../Globalization/Localization";
-import { ACPOptionInstruction } from "../../../../PackageSystem/Instructions/Options/ACPOptionInstruction";
-import { OptionInstruction } from "../../../../PackageSystem/Instructions/Options/OptionInstruction";
+import { Localization } from "../../../../Globalization/Localization.js";
+import { ACPOptionInstruction } from "../../../../PackageSystem/Instructions/Options/ACPOptionInstruction.js";
+import { OptionInstruction } from "../../../../PackageSystem/Instructions/Options/OptionInstruction.js";
 
 /**
  * Registers tests for the {@link OptionInstruction `OptionInstruction<TCategory, TCategoryOptions, TOption, TOptionOptions>`} class.

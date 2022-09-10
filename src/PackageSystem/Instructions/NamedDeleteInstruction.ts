@@ -1,7 +1,7 @@
-import { INamedObject } from "../../INamedObject";
-import { IDeleteInstructionOptions } from "./IDeleteInstructionOptions";
-import { INamedDeleteInstruction } from "./INamedDeleteInstruction";
-import { Instruction } from "./Instruction";
+import { INamedObject } from "../../INamedObject.js";
+import { IDeleteInstructionOptions } from "./IDeleteInstructionOptions.js";
+import { INamedDeleteInstruction } from "./INamedDeleteInstruction.js";
+import { Instruction } from "./Instruction.js";
 
 /**
  * Represents an instruction which provides the functionality to delete named objects.

@@ -1,8 +1,8 @@
 import { ok, strictEqual } from "assert";
-import { EmojiFileCompiler } from "../../../Compilation/Presentation/EmojiFileCompiler";
-import { EmojiInstruction } from "../../../PackageSystem/Instructions/Customization/EmojiInstruction";
-import { ImportCompilerTester } from "../TestComponents/Testers/ImportCompilerTester";
-import { ImportCompilerTestRunner } from "../TestComponents/TestRunners/ImportCompilerTestRunner";
+import { EmojiFileCompiler } from "../../../Compilation/Presentation/EmojiFileCompiler.js";
+import { EmojiInstruction } from "../../../PackageSystem/Instructions/Customization/EmojiInstruction.js";
+import { ImportCompilerTester } from "../TestComponents/Testers/ImportCompilerTester.js";
+import { ImportCompilerTestRunner } from "../TestComponents/TestRunners/ImportCompilerTestRunner.js";
 
 /**
  * Registers tests for the {@link EmojiFileCompiler `EmojiFileCompiler`} class.

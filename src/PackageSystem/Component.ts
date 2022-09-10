@@ -1,7 +1,7 @@
-import { Localization } from "../Globalization/Localization";
-import { IComponentOptions } from "./IComponentOptions";
-import { Person } from "./Person";
-import { VersionNumber } from "./VersionNumber";
+import { Localization } from "../Globalization/Localization.js";
+import { IComponentOptions } from "./IComponentOptions.js";
+import { Person } from "./Person.js";
+import { VersionNumber } from "./VersionNumber.js";
 
 /**
  * Represents a component.

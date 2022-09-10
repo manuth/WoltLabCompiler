@@ -1,13 +1,16 @@
 import { ok } from "assert";
 import { TempFile } from "@manuth/temp-files";
-import { pathExists, writeJSON } from "fs-extra";
-import { join } from "upath";
-import { ThemeCompiler } from "../../../Compilation/Presentation/ThemeCompiler";
-import { Theme } from "../../../Customization/Presentation/Themes/Theme";
-import { ThemeInstruction } from "../../../PackageSystem/Instructions/Customization/Presentation/ThemeInstruction";
-import { Package } from "../../../PackageSystem/Package";
-import { CompilerTester } from "../TestComponents/Testers/CompilerTester";
-import { CompilerTestRunner } from "../TestComponents/TestRunners/CompilerTestRunner";
+import fs from "fs-extra";
+import path from "upath";
+import { ThemeCompiler } from "../../../Compilation/Presentation/ThemeCompiler.js";
+import { Theme } from "../../../Customization/Presentation/Themes/Theme.js";
+import { ThemeInstruction } from "../../../PackageSystem/Instructions/Customization/Presentation/ThemeInstruction.js";
+import { Package } from "../../../PackageSystem/Package.js";
+import { CompilerTester } from "../TestComponents/Testers/CompilerTester.js";
+import { CompilerTestRunner } from "../TestComponents/TestRunners/CompilerTestRunner.js";
+
+const { pathExists, writeJSON } = fs;
+const { join } = path;
 
 /**
  * Registers tests for the {@link ThemeCompiler `ThemeCompiler`} class.

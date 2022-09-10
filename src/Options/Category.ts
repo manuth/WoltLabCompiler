@@ -1,9 +1,9 @@
-import { Localization } from "../Globalization/Localization";
-import { INode } from "../NodeSystem/INode";
-import { NodeItem } from "../NodeSystem/NodeItem";
-import { ICategory } from "./Generic/ICategory";
-import { ICategoryOptions } from "./ICategoryOptions";
-import { Option } from "./Option";
+import { Localization } from "../Globalization/Localization.js";
+import { INode } from "../NodeSystem/INode.js";
+import { NodeItem } from "../NodeSystem/NodeItem.js";
+import { ICategory } from "./Generic/ICategory.js";
+import { ICategoryOptions } from "./ICategoryOptions.js";
+import { Option } from "./Option.js";
 
 /**
  * Represents an option-category.

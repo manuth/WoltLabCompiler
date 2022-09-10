@@ -1,7 +1,7 @@
-import { INode } from "./Generic/INode";
-import { INodeOptions } from "./INodeOptions";
-import { NodeCollection } from "./NodeCollection";
-import { NodeItem } from "./NodeItem";
+import { INode } from "./Generic/INode.js";
+import { INodeOptions } from "./INodeOptions.js";
+import { NodeCollection } from "./NodeCollection.js";
+import { NodeItem } from "./NodeItem.js";
 
 /**
  * Represents a node.

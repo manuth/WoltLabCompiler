@@ -1,12 +1,15 @@
 import { ok } from "assert";
-import { pathExists } from "fs-extra";
-import { join } from "upath";
-import { InstructionCompiler } from "../../../../Compilation/PackageSystem/Instructions/InstructionCompiler";
-import { IInstruction } from "../../../../PackageSystem/Instructions/IInstruction";
-import { Instruction } from "../../../../PackageSystem/Instructions/Instruction";
-import { Package } from "../../../../PackageSystem/Package";
-import { CompilerTester } from "../Testers/CompilerTester";
-import { CompilerTestRunner } from "./CompilerTestRunner";
+import fs from "fs-extra";
+import path from "upath";
+import { InstructionCompiler } from "../../../../Compilation/PackageSystem/Instructions/InstructionCompiler.js";
+import { IInstruction } from "../../../../PackageSystem/Instructions/IInstruction.js";
+import { Instruction } from "../../../../PackageSystem/Instructions/Instruction.js";
+import { Package } from "../../../../PackageSystem/Package.js";
+import { CompilerTester } from "../Testers/CompilerTester.js";
+import { CompilerTestRunner } from "./CompilerTestRunner.js";
+
+const { pathExists } = fs;
+const { join } = path;
 
 /**
  * Provides the functionality to register tests for an instruction-compiler.

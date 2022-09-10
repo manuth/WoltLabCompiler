@@ -1,6 +1,6 @@
-import { BBCodeInstruction } from "../../PackageSystem/Instructions/Customization/BBCodeInstruction";
-import { XMLEditor } from "../../Serialization/XMLEditor";
-import { NamedObjectDeletionFileCompiler } from "../NamedObjectDeletionFileCompiler";
+import { BBCodeInstruction } from "../../PackageSystem/Instructions/Customization/BBCodeInstruction.js";
+import { XMLEditor } from "../../Serialization/XMLEditor.js";
+import { NamedObjectDeletionFileCompiler } from "../NamedObjectDeletionFileCompiler.js";
 
 /**
  * Provides the functionality to compile bb-codes.

@@ -1,8 +1,8 @@
-import { BidirectionalCollection } from "../../Collections/BidirectionalCollection";
-import { XML } from "../../Serialization/XML";
-import { XMLEditor } from "../../Serialization/XMLEditor";
-import { Package } from "../Package";
-import { Instruction } from "./Instruction";
+import { BidirectionalCollection } from "../../Collections/BidirectionalCollection.js";
+import { XML } from "../../Serialization/XML.js";
+import { XMLEditor } from "../../Serialization/XMLEditor.js";
+import { Package } from "../Package.js";
+import { Instruction } from "./Instruction.js";
 
 /**
  * Represents a collection of instructions.

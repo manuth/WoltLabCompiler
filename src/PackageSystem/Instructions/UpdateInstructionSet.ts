@@ -1,6 +1,6 @@
-import { XMLEditor } from "../../Serialization/XMLEditor";
-import { Package } from "../Package";
-import { InstructionSet } from "./InstructionSet";
+import { XMLEditor } from "../../Serialization/XMLEditor.js";
+import { Package } from "../Package.js";
+import { InstructionSet } from "./InstructionSet.js";
 
 /**
  * Represents a collection of instructions for updating a package.

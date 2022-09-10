@@ -1,8 +1,8 @@
-import { ILocalization } from "../Globalization/ILocalization";
+import { ILocalization } from "../Globalization/ILocalization.js";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { Component } from "./Component";
-import { IPersonOptions } from "./IPersonOptions";
-import { VersionNumber } from "./VersionNumber";
+import { Component } from "./Component.js";
+import { IPersonOptions } from "./IPersonOptions.js";
+import { VersionNumber } from "./VersionNumber.js";
 
 /**
  * Provides options for the {@link Component `Component`} class.

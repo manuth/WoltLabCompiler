@@ -1,7 +1,7 @@
 import { strictEqual } from "assert";
-import { IOptionOptions } from "../../Options/IOptionOptions";
-import { Option } from "../../Options/Option";
-import { OptionType } from "../../Options/OptionType";
+import { IOptionOptions } from "../../Options/IOptionOptions.js";
+import { Option } from "../../Options/Option.js";
+import { OptionType } from "../../Options/OptionType.js";
 
 /**
  * Registers tests for the {@link Option `Option`} class.

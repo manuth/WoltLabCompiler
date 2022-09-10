@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { ConflictingPackageDescriptor } from "./ConflictingPackageDescriptor";
-import { IPackageDescriptorOptions } from "./IPackageDescriptorOptions";
-import { VersionNumber } from "./VersionNumber";
+import { ConflictingPackageDescriptor } from "./ConflictingPackageDescriptor.js";
+import { IPackageDescriptorOptions } from "./IPackageDescriptorOptions.js";
+import { VersionNumber } from "./VersionNumber.js";
 
 /**
  * Provides options for the {@link ConflictingPackageDescriptor `ConflictingPackageDescriptor`} class.

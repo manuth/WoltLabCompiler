@@ -1,9 +1,9 @@
 import { ok, strictEqual } from "assert";
-import dedent = require("dedent");
-import { LocalizationFileCompiler } from "../../../Compilation/Globalization/LocalizationFileCompiler";
-import { TranslationInstruction } from "../../../PackageSystem/Instructions/Globalization/TranslationInstruction";
-import { XMLFileCompilerTester } from "../TestComponents/Testers/XMLFileCompilerTester";
-import { XMLCompilerTestRunner } from "../TestComponents/TestRunners/XMLCompilerTestRunner";
+import dedent from "dedent";
+import { LocalizationFileCompiler } from "../../../Compilation/Globalization/LocalizationFileCompiler.js";
+import { TranslationInstruction } from "../../../PackageSystem/Instructions/Globalization/TranslationInstruction.js";
+import { XMLFileCompilerTester } from "../TestComponents/Testers/XMLFileCompilerTester.js";
+import { XMLCompilerTestRunner } from "../TestComponents/TestRunners/XMLCompilerTestRunner.js";
 
 /**
  * Registers tests for the {@link LocalizationFileCompiler `LocalizationFileCompiler`} class.

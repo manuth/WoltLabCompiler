@@ -1,5 +1,5 @@
 import { basename } from "path";
-import { ThemeInstructionTests } from "./ThemeInstruction.test";
+import { ThemeInstructionTests } from "./ThemeInstruction.test.js";
 
 /**
  * Registers tests for presentation-instructions.
@@ -7,7 +7,7 @@ import { ThemeInstructionTests } from "./ThemeInstruction.test";
 export function PresentationTests(): void
 {
     suite(
-        basename(__dirname),
+        basename(new URL(".", import.meta.url).pathname),
         () =>
         {
             ThemeInstructionTests();

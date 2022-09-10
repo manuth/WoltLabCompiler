@@ -1,7 +1,9 @@
 import { strictEqual } from "assert";
 import { TempFileSystem } from "@manuth/temp-files";
-import { join } from "upath";
-import { Package } from "../../PackageSystem/Package";
+import path from "upath";
+import { Package } from "../../PackageSystem/Package.js";
+
+const { join } = path;
 
 /**
  * Registers tests for the {@link Package `Package`} class.

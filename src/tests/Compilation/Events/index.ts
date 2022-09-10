@@ -1,7 +1,7 @@
 import { basename } from "path";
-import { EventListenerFileCompilerTests } from "./EventListenerFileCompiler.test";
-import { ListenerFileCompilerTests } from "./ListenerFileCompiler.test";
-import { TemplateListenerFileCompilerTests } from "./TemplateListenerFileCompiler.test";
+import { EventListenerFileCompilerTests } from "./EventListenerFileCompiler.test.js";
+import { ListenerFileCompilerTests } from "./ListenerFileCompiler.test.js";
+import { TemplateListenerFileCompilerTests } from "./TemplateListenerFileCompiler.test.js";
 
 /**
  * Registers tests for events.
@@ -9,7 +9,7 @@ import { TemplateListenerFileCompilerTests } from "./TemplateListenerFileCompile
 export function EventTests(): void
 {
     suite(
-        basename(__dirname),
+        basename(new URL(".", import.meta.url).pathname),
         () =>
         {
             ListenerFileCompilerTests();

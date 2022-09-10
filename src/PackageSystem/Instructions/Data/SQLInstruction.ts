@@ -1,6 +1,8 @@
-import { join } from "upath";
-import { FileSystemInstruction } from "../FileSystem/FileSystemInstruction";
-import { IFileSystemInstructionOptions } from "../FileSystem/IFileSystemInstructionOptions";
+import path from "upath";
+import { FileSystemInstruction } from "../FileSystem/FileSystemInstruction.js";
+import { IFileSystemInstructionOptions } from "../FileSystem/IFileSystemInstructionOptions.js";
+
+const { join } = path;
 
 /**
  * Represents an instruction which executes sql-code.

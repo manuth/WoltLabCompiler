@@ -1,8 +1,8 @@
-import { Localization } from "../Globalization/Localization";
-import { ICategory } from "./ICategory";
-import { IOptionOptions } from "./IOptionOptions";
-import { OptionItem } from "./OptionItem";
-import { OptionType } from "./OptionType";
+import { Localization } from "../Globalization/Localization.js";
+import { ICategory } from "./ICategory.js";
+import { IOptionOptions } from "./IOptionOptions.js";
+import { OptionItem } from "./OptionItem.js";
+import { OptionType } from "./OptionType.js";
 
 /**
  * Represents an option.

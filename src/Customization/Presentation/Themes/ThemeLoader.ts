@@ -1,20 +1,23 @@
 import { EOL } from "os";
 import { get } from "colornames";
-import { readFile, readJSON } from "fs-extra";
-import hexToRgba = require("hex-to-rgba");
-import parseSassValue = require("parse-sass-value");
-import { isAbsolute, join } from "upath";
-import { Component } from "../../../PackageSystem/Component";
-import { FileDescriptor } from "../../../PackageSystem/FileDescriptor";
-import { IFileDescriptorOptions } from "../../../PackageSystem/IFileDescriptorOptions";
-import { ThemeInstruction } from "../../../PackageSystem/Instructions/Customization/Presentation/ThemeInstruction";
-import { Person } from "../../../PackageSystem/Person";
-import { ImageDirectoryDescriptor } from "./ImageDirectoryDescriptor";
-import { IThemeLoaderOptions } from "./IThemeLoaderOptions";
-import { IThemeOptions } from "./IThemeOptions";
-import { SassVariableParser } from "./SassVariableParser";
-import { Theme } from "./Theme";
-import { ThemeVariables } from "./ThemeVariables";
+import fs from "fs-extra";
+import hexToRgba from "hex-to-rgba";
+import parseSassValue from "parse-sass-value";
+import path from "upath";
+import { Component } from "../../../PackageSystem/Component.js";
+import { FileDescriptor } from "../../../PackageSystem/FileDescriptor.js";
+import { IFileDescriptorOptions } from "../../../PackageSystem/IFileDescriptorOptions.js";
+import { ThemeInstruction } from "../../../PackageSystem/Instructions/Customization/Presentation/ThemeInstruction.js";
+import { Person } from "../../../PackageSystem/Person.js";
+import { ImageDirectoryDescriptor } from "./ImageDirectoryDescriptor.js";
+import { IThemeLoaderOptions } from "./IThemeLoaderOptions.js";
+import { IThemeOptions } from "./IThemeOptions.js";
+import { SassVariableParser } from "./SassVariableParser.js";
+import { Theme } from "./Theme.js";
+import { ThemeVariables } from "./ThemeVariables.js";
+
+const { readFile, readJSON } = fs;
+const { isAbsolute, join } = path;
 
 /**
  * Provides the functionality to load themes from files.

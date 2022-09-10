@@ -1,6 +1,6 @@
-import { IDeleteInstruction } from "../PackageSystem/Instructions/IDeleteInstruction";
-import { XMLEditor } from "../Serialization/XMLEditor";
-import { ImportFileCompiler } from "./ImportFileCompiler";
+import { IDeleteInstruction } from "../PackageSystem/Instructions/IDeleteInstruction.js";
+import { XMLEditor } from "../Serialization/XMLEditor.js";
+import { ImportFileCompiler } from "./ImportFileCompiler.js";
 
 /**
  * Provides the functionality to compile files with an import- and a delete-section.

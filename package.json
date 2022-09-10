@@ -1,6 +1,7 @@
 {
   "name": "@manuth/woltlab-compiler",
   "version": "3.0.1",
+  "type": "module",
   "description": "A compiler for generating WoltLab-Package `.tar` Archives and other WoltLab-Package Components",
   "author": "Manuel Thalmann <m@nuth.ch>",
   "license": "MIT",
@@ -35,7 +36,7 @@
     "rebuild": "npm run clean && npm run build",
     "watch": "npm run build -- --watch",
     "clean": "npm run build -- --clean && rimraf ./lib",
-    "lint": "eslint --max-warnings 0 ./src .eslintrc.js",
+    "lint": "eslint --max-warnings 0 ./src .eslintrc.cjs",
     "lint-ide": "npm run lint || exit 0",
     "test": "mocha",
     "prepare": "npm run patch-ts && npm run rebuild",

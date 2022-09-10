@@ -1,6 +1,6 @@
-import { PHPInstruction } from "../../../PackageSystem/Instructions/PHPInstruction";
-import { XMLEditor } from "../../../Serialization/XMLEditor";
-import { InstructionCompiler } from "./InstructionCompiler";
+import { PHPInstruction } from "../../../PackageSystem/Instructions/PHPInstruction.js";
+import { XMLEditor } from "../../../Serialization/XMLEditor.js";
+import { InstructionCompiler } from "./InstructionCompiler.js";
 
 /**
  * Provides the functionality to compile PHP-instructions.

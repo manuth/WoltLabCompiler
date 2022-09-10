@@ -1,5 +1,5 @@
-import { Localization } from "../Globalization/Localization";
-import { INodeItem } from "../NodeSystem/INodeItem";
+import { Localization } from "../Globalization/Localization.js";
+import { INodeItem } from "../NodeSystem/INodeItem.js";
 
 /**
  * Represents an option-category.

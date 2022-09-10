@@ -1,4 +1,4 @@
-import { IPersonOptions } from "./IPersonOptions";
+import { IPersonOptions } from "./IPersonOptions.js";
 
 /**
  * Represents a person.

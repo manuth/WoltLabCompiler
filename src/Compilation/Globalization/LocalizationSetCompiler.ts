@@ -1,5 +1,5 @@
-import { Compiler } from "../Compiler";
-import { LocalizationFileCompiler } from "./LocalizationFileCompiler";
+import { Compiler } from "../Compiler.js";
+import { LocalizationFileCompiler } from "./LocalizationFileCompiler.js";
 
 /**
  * Provides the functionality to compile localization-sets.

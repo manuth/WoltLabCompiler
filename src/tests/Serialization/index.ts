@@ -1,6 +1,6 @@
 import { basename } from "path";
-import { XMLTests } from "./XML.test";
-import { XMLEditorTests } from "./XMLEditor.test";
+import { XMLTests } from "./XML.test.js";
+import { XMLEditorTests } from "./XMLEditor.test.js";
 
 /**
  * Registers tests for serialization components.
@@ -8,7 +8,7 @@ import { XMLEditorTests } from "./XMLEditor.test";
 export function SerializationTests(): void
 {
     suite(
-        basename(__dirname),
+        basename(new URL(".", import.meta.url).pathname),
         () =>
         {
             XMLTests();

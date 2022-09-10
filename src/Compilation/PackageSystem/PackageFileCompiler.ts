@@ -1,7 +1,7 @@
-import { Constants } from "../../Constants";
-import { Package } from "../../PackageSystem/Package";
-import { XMLEditor } from "../../Serialization/XMLEditor";
-import { WoltLabXMLCompiler } from "../WoltLabXMLCompiler";
+import { Constants } from "../../Constants.js";
+import { Package } from "../../PackageSystem/Package.js";
+import { XMLEditor } from "../../Serialization/XMLEditor.js";
+import { WoltLabXMLCompiler } from "../WoltLabXMLCompiler.js";
 
 /**
  * Provides the functionality to compile package-files.

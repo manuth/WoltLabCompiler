@@ -1,8 +1,10 @@
-import { basename, isAbsolute, normalize, sep } from "upath";
-import { FileSystemInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/FileSystemInstructionCompiler";
-import { InstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/InstructionCompiler";
-import { Instruction } from "../Instruction";
-import { IFileSystemInstructionOptions } from "./IFileSystemInstructionOptions";
+import path from "upath";
+import { FileSystemInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/FileSystemInstructionCompiler.js";
+import { InstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/InstructionCompiler.js";
+import { Instruction } from "../Instruction.js";
+import { IFileSystemInstructionOptions } from "./IFileSystemInstructionOptions.js";
+
+const { basename, isAbsolute, normalize, sep } = path;
 
 /**
  * Represents an instruction which is bound to a file-system entry.

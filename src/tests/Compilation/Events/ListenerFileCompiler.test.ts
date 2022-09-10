@@ -1,13 +1,13 @@
 import { strictEqual } from "assert";
-import { ListenerFileCompiler } from "../../../Compilation/Events/ListenerFileCompiler";
-import { IListenerOptions } from "../../../Events/IListenerOptions";
-import { Listener } from "../../../Events/Listener";
-import { ListenerEnvironment } from "../../../Events/ListenerEnvironment";
-import { IListenerInstructionOptions } from "../../../PackageSystem/Instructions/Events/IListenerInstructionOptions";
-import { ListenerInstruction } from "../../../PackageSystem/Instructions/Events/ListenerInstruction";
-import { XMLEditor } from "../../../Serialization/XMLEditor";
-import { ListenerCompilerTester } from "../TestComponents/Testers/ListenerCompilerTester";
-import { ListenerCompilerTestRunner } from "../TestComponents/TestRunners/ListenerCompilerTestRunner";
+import { ListenerFileCompiler } from "../../../Compilation/Events/ListenerFileCompiler.js";
+import { IListenerOptions } from "../../../Events/IListenerOptions.js";
+import { Listener } from "../../../Events/Listener.js";
+import { ListenerEnvironment } from "../../../Events/ListenerEnvironment.js";
+import { IListenerInstructionOptions } from "../../../PackageSystem/Instructions/Events/IListenerInstructionOptions.js";
+import { ListenerInstruction } from "../../../PackageSystem/Instructions/Events/ListenerInstruction.js";
+import { XMLEditor } from "../../../Serialization/XMLEditor.js";
+import { ListenerCompilerTester } from "../TestComponents/Testers/ListenerCompilerTester.js";
+import { ListenerCompilerTestRunner } from "../TestComponents/TestRunners/ListenerCompilerTestRunner.js";
 
 /**
  * Registers tests for the {@link ListenerFileCompiler `ListenerFileCompiler<T, TListener>`} class.

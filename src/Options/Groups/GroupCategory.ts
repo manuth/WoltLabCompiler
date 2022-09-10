@@ -1,8 +1,8 @@
-import { INode } from "../../NodeSystem/INode";
-import { Category } from "../Category";
-import { ICategoryOptions } from "../ICategoryOptions";
-import { GroupOption } from "./GroupOption";
-import { IGroupOptionOptions } from "./IGroupOptionOptions";
+import { INode } from "../../NodeSystem/INode.js";
+import { Category } from "../Category.js";
+import { ICategoryOptions } from "../ICategoryOptions.js";
+import { GroupOption } from "./GroupOption.js";
+import { IGroupOptionOptions } from "./IGroupOptionOptions.js";
 
 /**
  * Represents an option-category for groups.

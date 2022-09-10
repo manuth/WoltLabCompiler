@@ -1,5 +1,5 @@
 import { basename } from "path";
-import { ThemeTests } from "./Themes";
+import { ThemeTests } from "./Themes/index.js";
 
 /**
  * Registers tests for customizations.
@@ -7,7 +7,7 @@ import { ThemeTests } from "./Themes";
 export function CustomizationTests(): void
 {
     suite(
-        basename(__dirname),
+        basename(new URL(".", import.meta.url).pathname),
         () =>
         {
             ThemeTests();

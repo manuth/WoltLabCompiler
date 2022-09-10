@@ -1,9 +1,9 @@
 import { basename } from "path";
-import { BBCodeFileCompilerTests } from "./BBCodeFileCompiler.test";
-import { EmojiFileCompilerTests } from "./EmojiFileCompiler.test";
-import { ThemeCompilerTests } from "./ThemeCompiler.test";
-import { ThemeFileCompilerTests } from "./ThemeFileCompiler.test";
-import { ThemeVariableCompilerTests } from "./ThemeVariableCompiler.test";
+import { BBCodeFileCompilerTests } from "./BBCodeFileCompiler.test.js";
+import { EmojiFileCompilerTests } from "./EmojiFileCompiler.test.js";
+import { ThemeCompilerTests } from "./ThemeCompiler.test.js";
+import { ThemeFileCompilerTests } from "./ThemeFileCompiler.test.js";
+import { ThemeVariableCompilerTests } from "./ThemeVariableCompiler.test.js";
 
 /**
  * Registers tests for presentation-related compilers.
@@ -11,7 +11,7 @@ import { ThemeVariableCompilerTests } from "./ThemeVariableCompiler.test";
 export function PresentationTests(): void
 {
     suite(
-        basename(__dirname),
+        basename(new URL(".", import.meta.url).pathname),
         () =>
         {
             ThemeFileCompilerTests();

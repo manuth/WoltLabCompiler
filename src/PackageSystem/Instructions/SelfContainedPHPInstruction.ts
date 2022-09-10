@@ -1,11 +1,13 @@
-import { join } from "upath";
-import { InstructionCompiler } from "../../Compilation/PackageSystem/Instructions/InstructionCompiler";
-import { SelfContainedPHPInstructionCompiler } from "../../Compilation/PackageSystem/Instructions/SelfContainedPHPInstructionCompiler";
-import { ApplicationFileSystemInstruction } from "./FileSystem/ApplicationFileSystemInstruction";
-import { FileSystemInstruction } from "./FileSystem/FileSystemInstruction";
-import { InstructionSet } from "./InstructionSet";
-import { ISelfContainedPHPInstructionOptions } from "./ISelfContainedPHPInstructionOptions";
-import { PHPInstruction } from "./PHPInstruction";
+import path from "upath";
+import { InstructionCompiler } from "../../Compilation/PackageSystem/Instructions/InstructionCompiler.js";
+import { SelfContainedPHPInstructionCompiler } from "../../Compilation/PackageSystem/Instructions/SelfContainedPHPInstructionCompiler.js";
+import { ApplicationFileSystemInstruction } from "./FileSystem/ApplicationFileSystemInstruction.js";
+import { FileSystemInstruction } from "./FileSystem/FileSystemInstruction.js";
+import { InstructionSet } from "./InstructionSet.js";
+import { ISelfContainedPHPInstructionOptions } from "./ISelfContainedPHPInstructionOptions.js";
+import { PHPInstruction } from "./PHPInstruction.js";
+
+const { join } = path;
 
 /**
  * Represents an instruction which uploads and executes `.php`-code.

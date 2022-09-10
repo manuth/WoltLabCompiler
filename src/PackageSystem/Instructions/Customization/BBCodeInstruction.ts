@@ -1,11 +1,11 @@
-import { BBCodeInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/BBCodeInstructionCompiler";
-import { InstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/InstructionCompiler";
-import { BBCode } from "../../../Customization/BBCodes/BBCode";
-import { LocalizationNode } from "../../../Globalization/LocalizationNode";
-import { ILocalizationInstruction } from "../Globalization/ILocalizationInstruction";
-import { TranslationInstruction } from "../Globalization/TranslationInstruction";
-import { NamedDeleteInstruction } from "../NamedDeleteInstruction";
-import { IBBCodeInstructionOptions } from "./IBBCodeInstructionOptions";
+import { BBCodeInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/BBCodeInstructionCompiler.js";
+import { InstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/InstructionCompiler.js";
+import { BBCode } from "../../../Customization/BBCodes/BBCode.js";
+import { LocalizationNode } from "../../../Globalization/LocalizationNode.js";
+import { ILocalizationInstruction } from "../Globalization/ILocalizationInstruction.js";
+import { TranslationInstruction } from "../Globalization/TranslationInstruction.js";
+import { NamedDeleteInstruction } from "../NamedDeleteInstruction.js";
+import { IBBCodeInstructionOptions } from "./IBBCodeInstructionOptions.js";
 
 /**
  * Represents an instruction which provides bb-codes.

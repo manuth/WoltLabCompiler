@@ -1,5 +1,5 @@
-import { Package } from "../Package";
-import { InstructionSet } from "./InstructionSet";
+import { Package } from "../Package.js";
+import { InstructionSet } from "./InstructionSet.js";
 
 /**
  * Represents a step of a package-installation.

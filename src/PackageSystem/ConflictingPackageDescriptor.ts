@@ -1,6 +1,6 @@
-import { IConflictingPackageDescriptorOptions } from "./IConflictingPackageDescriptorOptions";
-import { PackageDescriptor } from "./PackageDescriptor";
-import { VersionNumber } from "./VersionNumber";
+import { IConflictingPackageDescriptorOptions } from "./IConflictingPackageDescriptorOptions.js";
+import { PackageDescriptor } from "./PackageDescriptor.js";
+import { VersionNumber } from "./VersionNumber.js";
 
 /**
  * Provides the abstraction of a package which causes a conflict.

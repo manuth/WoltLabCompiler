@@ -1,16 +1,19 @@
 import { ok, strictEqual } from "assert";
 import { TempDirectory } from "@manuth/temp-files";
-import { writeFile } from "fs-extra";
+import fs from "fs-extra";
 import { extract } from "tar";
-import { join, parse } from "upath";
-import { FileInstructionCompiler } from "../../../../Compilation/PackageSystem/Instructions/FileInstructionCompiler";
-import { ApplicationFileSystemInstruction } from "../../../../PackageSystem/Instructions/FileSystem/ApplicationFileSystemInstruction";
-import { IApplicationFileSystemInstructionOptions } from "../../../../PackageSystem/Instructions/FileSystem/IApplicationFileSystemInstructionOptions";
-import { Package } from "../../../../PackageSystem/Package";
-import { XMLEditor } from "../../../../Serialization/XMLEditor";
-import { Tar } from "../../../Tar";
-import { CompilerTester } from "../../TestComponents/Testers/CompilerTester";
-import { InstructionCompilerTestRunner } from "../../TestComponents/TestRunners/InstructionCompilerTestRunner";
+import path from "upath";
+import { FileInstructionCompiler } from "../../../../Compilation/PackageSystem/Instructions/FileInstructionCompiler.js";
+import { ApplicationFileSystemInstruction } from "../../../../PackageSystem/Instructions/FileSystem/ApplicationFileSystemInstruction.js";
+import { IApplicationFileSystemInstructionOptions } from "../../../../PackageSystem/Instructions/FileSystem/IApplicationFileSystemInstructionOptions.js";
+import { Package } from "../../../../PackageSystem/Package.js";
+import { XMLEditor } from "../../../../Serialization/XMLEditor.js";
+import { Tar } from "../../../Tar.js";
+import { CompilerTester } from "../../TestComponents/Testers/CompilerTester.js";
+import { InstructionCompilerTestRunner } from "../../TestComponents/TestRunners/InstructionCompilerTestRunner.js";
+
+const { writeFile } = fs;
+const { join, parse } = path;
 
 /**
  * Registers tests for the {@link FileInstructionCompiler `FileInstructionCompiler`} class.

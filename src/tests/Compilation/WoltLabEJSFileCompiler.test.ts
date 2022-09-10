@@ -1,7 +1,7 @@
 import { strictEqual } from "assert";
-import { WoltLabEJSFileCompiler } from "../../Compilation/WoltLabEJSFileCompiler";
-import { XMLFileCompilerTester } from "./TestComponents/Testers/XMLFileCompilerTester";
-import { XMLCompilerTestRunner } from "./TestComponents/TestRunners/XMLCompilerTestRunner";
+import { WoltLabEJSFileCompiler } from "../../Compilation/WoltLabEJSFileCompiler.js";
+import { XMLFileCompilerTester } from "./TestComponents/Testers/XMLFileCompilerTester.js";
+import { XMLCompilerTestRunner } from "./TestComponents/TestRunners/XMLCompilerTestRunner.js";
 
 /**
  * Registers tests for the {@link WoltLabEJSFileCompiler `WoltLabEJSFileCompiler<T>`} class.

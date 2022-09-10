@@ -1,8 +1,8 @@
-import { UserCategory } from "../../../Options/UserPanel/UserCategory";
-import { UserOption } from "../../../Options/UserPanel/UserOption";
-import { UserOptionInstruction } from "../../../PackageSystem/Instructions/Options/UserOptionInstruction";
-import { UserOptionFileCompiler } from "../../Options/UserOptionFileCompiler";
-import { OptionInstructionCompiler } from "./OptionInstructionCompiler";
+import { UserCategory } from "../../../Options/UserPanel/UserCategory.js";
+import { UserOption } from "../../../Options/UserPanel/UserOption.js";
+import { UserOptionInstruction } from "../../../PackageSystem/Instructions/Options/UserOptionInstruction.js";
+import { UserOptionFileCompiler } from "../../Options/UserOptionFileCompiler.js";
+import { OptionInstructionCompiler } from "./OptionInstructionCompiler.js";
 
 /**
  * Provides the functionality to compile {@link UserOptionInstruction `UserOptionInstruction`}s.

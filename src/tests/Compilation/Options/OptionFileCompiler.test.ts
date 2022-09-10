@@ -1,19 +1,19 @@
 import { ok, strictEqual } from "assert";
-import { OptionFileCompiler } from "../../../Compilation/Options/OptionFileCompiler";
-import { INode as IGenericNode } from "../../../NodeSystem/Generic/INode";
-import { INode } from "../../../NodeSystem/INode";
-import { Node } from "../../../NodeSystem/Node";
-import { Category } from "../../../Options/Category";
-import { ICategory } from "../../../Options/ICategory";
-import { ICategoryOptions } from "../../../Options/ICategoryOptions";
-import { IOptionOptions } from "../../../Options/IOptionOptions";
-import { Option } from "../../../Options/Option";
-import { OptionType } from "../../../Options/OptionType";
-import { INodeSystemInstructionOptions } from "../../../PackageSystem/Instructions/NodeSystem/INodeSystemInstructionOptions";
-import { OptionInstruction } from "../../../PackageSystem/Instructions/Options/OptionInstruction";
-import { XMLEditor } from "../../../Serialization/XMLEditor";
-import { OptionCompilerTester } from "../TestComponents/Testers/OptionCompilerTester";
-import { OptionFileCompilerTestRunner } from "../TestComponents/TestRunners/OptionFileCompilerTestRunner";
+import { OptionFileCompiler } from "../../../Compilation/Options/OptionFileCompiler.js";
+import { INode as IGenericNode } from "../../../NodeSystem/Generic/INode.js";
+import { INode } from "../../../NodeSystem/INode.js";
+import { Node } from "../../../NodeSystem/Node.js";
+import { Category } from "../../../Options/Category.js";
+import { ICategory } from "../../../Options/ICategory.js";
+import { ICategoryOptions } from "../../../Options/ICategoryOptions.js";
+import { IOptionOptions } from "../../../Options/IOptionOptions.js";
+import { Option } from "../../../Options/Option.js";
+import { OptionType } from "../../../Options/OptionType.js";
+import { INodeSystemInstructionOptions } from "../../../PackageSystem/Instructions/NodeSystem/INodeSystemInstructionOptions.js";
+import { OptionInstruction } from "../../../PackageSystem/Instructions/Options/OptionInstruction.js";
+import { XMLEditor } from "../../../Serialization/XMLEditor.js";
+import { OptionCompilerTester } from "../TestComponents/Testers/OptionCompilerTester.js";
+import { OptionFileCompilerTestRunner } from "../TestComponents/TestRunners/OptionFileCompilerTestRunner.js";
 
 /**
  * Registers tests for the {@link OptionFileCompiler `OptionFileCompiler<T, TCategory, TOption>`} class.

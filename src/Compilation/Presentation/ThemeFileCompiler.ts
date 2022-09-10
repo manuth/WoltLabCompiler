@@ -1,7 +1,7 @@
-import { Constants } from "../../Constants";
-import { Theme } from "../../Customization/Presentation/Themes/Theme";
-import { XMLEditor } from "../../Serialization/XMLEditor";
-import { WoltLabEJSFileCompiler } from "../WoltLabEJSFileCompiler";
+import { Constants } from "../../Constants.js";
+import { Theme } from "../../Customization/Presentation/Themes/Theme.js";
+import { XMLEditor } from "../../Serialization/XMLEditor.js";
+import { WoltLabEJSFileCompiler } from "../WoltLabEJSFileCompiler.js";
 
 /**
  * Provides the functionality to compile theme-files.

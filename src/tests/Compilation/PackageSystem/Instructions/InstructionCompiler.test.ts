@@ -1,11 +1,14 @@
 import { ok, strictEqual } from "assert";
-import { ensureFile, mkdirp, readFile, writeFile } from "fs-extra";
-import { dirname } from "upath";
-import { InstructionCompiler } from "../../../../Compilation/PackageSystem/Instructions/InstructionCompiler";
-import { Instruction } from "../../../../PackageSystem/Instructions/Instruction";
-import { XMLEditor } from "../../../../Serialization/XMLEditor";
-import { CompilerTester } from "../../TestComponents/Testers/CompilerTester";
-import { InstructionCompilerTestRunner } from "../../TestComponents/TestRunners/InstructionCompilerTestRunner";
+import fs from "fs-extra";
+import path from "upath";
+import { InstructionCompiler } from "../../../../Compilation/PackageSystem/Instructions/InstructionCompiler.js";
+import { Instruction } from "../../../../PackageSystem/Instructions/Instruction.js";
+import { XMLEditor } from "../../../../Serialization/XMLEditor.js";
+import { CompilerTester } from "../../TestComponents/Testers/CompilerTester.js";
+import { InstructionCompilerTestRunner } from "../../TestComponents/TestRunners/InstructionCompilerTestRunner.js";
+
+const { ensureFile, mkdirp, readFile, writeFile } = fs;
+const { dirname } = path;
 
 /**
  * Registers tests for the {@link InstructionCompiler `InstructionCompiler<T>`} class.

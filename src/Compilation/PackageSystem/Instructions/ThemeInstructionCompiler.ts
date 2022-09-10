@@ -1,7 +1,7 @@
 import { TempDirectory } from "@manuth/temp-files";
-import { ThemeInstruction } from "../../../PackageSystem/Instructions/Customization/Presentation/ThemeInstruction";
-import { ThemeCompiler } from "../../Presentation/ThemeCompiler";
-import { InstructionCompiler } from "./InstructionCompiler";
+import { ThemeInstruction } from "../../../PackageSystem/Instructions/Customization/Presentation/ThemeInstruction.js";
+import { ThemeCompiler } from "../../Presentation/ThemeCompiler.js";
+import { InstructionCompiler } from "./InstructionCompiler.js";
 
 /**
  * Provides the functionality to compile themes.

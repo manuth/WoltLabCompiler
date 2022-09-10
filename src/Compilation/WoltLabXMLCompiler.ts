@@ -1,4 +1,4 @@
-import { XMLFileCompiler } from "./XMLFileCompiler";
+import { XMLFileCompiler } from "./XMLFileCompiler.js";
 
 /**
  * Provides the functionality to compile components to `.xml`-files optimized for woltlab.

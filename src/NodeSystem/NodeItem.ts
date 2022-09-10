@@ -1,4 +1,4 @@
-import { INode } from "./INode";
+import { INode } from "./INode.js";
 
 /**
  * Represents an item of a node.

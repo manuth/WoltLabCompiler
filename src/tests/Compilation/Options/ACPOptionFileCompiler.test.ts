@@ -1,11 +1,11 @@
-import { ACPOptionFileCompiler } from "../../../Compilation/Options/ACPOptionFileCompiler";
-import { INode } from "../../../NodeSystem/Generic/INode";
-import { ACPCategory } from "../../../Options/ControlPanel/ACPCategory";
-import { ACPOption } from "../../../Options/ControlPanel/ACPOption";
-import { ACPOptionInstruction } from "../../../PackageSystem/Instructions/Options/ACPOptionInstruction";
-import { XMLEditor } from "../../../Serialization/XMLEditor";
-import { OptionCompilerTester } from "../TestComponents/Testers/OptionCompilerTester";
-import { OptionFileCompilerTestRunner } from "../TestComponents/TestRunners/OptionFileCompilerTestRunner";
+import { ACPOptionFileCompiler } from "../../../Compilation/Options/ACPOptionFileCompiler.js";
+import { INode } from "../../../NodeSystem/Generic/INode.js";
+import { ACPCategory } from "../../../Options/ControlPanel/ACPCategory.js";
+import { ACPOption } from "../../../Options/ControlPanel/ACPOption.js";
+import { ACPOptionInstruction } from "../../../PackageSystem/Instructions/Options/ACPOptionInstruction.js";
+import { XMLEditor } from "../../../Serialization/XMLEditor.js";
+import { OptionCompilerTester } from "../TestComponents/Testers/OptionCompilerTester.js";
+import { OptionFileCompilerTestRunner } from "../TestComponents/TestRunners/OptionFileCompilerTestRunner.js";
 
 /**
  * Registers tests for the {@link ACPOptionFileCompiler `ACPOptionFileCompiler`} class.

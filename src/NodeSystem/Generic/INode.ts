@@ -1,4 +1,4 @@
-import { INode as INodeBase } from "../INode";
+import { INode as INodeBase } from "../INode.js";
 
 /**
  * Represents a node.

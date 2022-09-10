@@ -1,5 +1,5 @@
 import { strictEqual } from "assert";
-import { BidirectionalCollection } from "../../Collections/BidirectionalCollection";
+import { BidirectionalCollection } from "../../Collections/BidirectionalCollection.js";
 
 /**
  * Registers tests for the {@link BidirectionalCollection `BidirectionalCollection<TParent, TChild>`} class.

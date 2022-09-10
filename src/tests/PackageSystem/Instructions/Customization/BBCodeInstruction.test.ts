@@ -1,7 +1,7 @@
 import { ok, strictEqual } from "assert";
 import { Random } from "random-js";
-import { BBCode } from "../../../../Customization/BBCodes/BBCode";
-import { BBCodeInstruction } from "../../../../PackageSystem/Instructions/Customization/BBCodeInstruction";
+import { BBCode } from "../../../../Customization/BBCodes/BBCode.js";
+import { BBCodeInstruction } from "../../../../PackageSystem/Instructions/Customization/BBCodeInstruction.js";
 
 /**
  * Registers tests for the {@link BBCodeInstruction `BBCodeInstruction`} class.

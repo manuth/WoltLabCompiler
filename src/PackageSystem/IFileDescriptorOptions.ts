@@ -1,5 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { FileDescriptor } from "./FileDescriptor";
+import { FileDescriptor } from "./FileDescriptor.js";
 
 /**
  * Provides options for the {@link FileDescriptor `FileDescriptor`} class.

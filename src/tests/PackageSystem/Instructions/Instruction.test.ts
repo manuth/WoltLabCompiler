@@ -1,8 +1,10 @@
 import { strictEqual } from "assert";
-import { join } from "upath";
-import { Instruction } from "../../../PackageSystem/Instructions/Instruction";
-import { InstructionSet } from "../../../PackageSystem/Instructions/InstructionSet";
-import { Package } from "../../../PackageSystem/Package";
+import path from "upath";
+import { Instruction } from "../../../PackageSystem/Instructions/Instruction.js";
+import { InstructionSet } from "../../../PackageSystem/Instructions/InstructionSet.js";
+import { Package } from "../../../PackageSystem/Package.js";
+
+const { join } = path;
 
 /**
  * Registers tests for the {@link Instruction `Instruction`} class.

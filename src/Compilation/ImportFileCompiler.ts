@@ -1,6 +1,6 @@
-import { XML } from "../Serialization/XML";
-import { XMLEditor } from "../Serialization/XMLEditor";
-import { WoltLabXMLCompiler } from "./WoltLabXMLCompiler";
+import { XML } from "../Serialization/XML.js";
+import { XMLEditor } from "../Serialization/XMLEditor.js";
+import { WoltLabXMLCompiler } from "./WoltLabXMLCompiler.js";
 
 /**
  * Provides the functionality to compile files with an import- and a delete-section.

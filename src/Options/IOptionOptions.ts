@@ -1,8 +1,8 @@
-import { ILocalization } from "../Globalization/ILocalization";
-import { IOptionItemOptions } from "./IOptionItemOptions";
+import { ILocalization } from "../Globalization/ILocalization.js";
+import { IOptionItemOptions } from "./IOptionItemOptions.js";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { Option } from "./Option";
-import { OptionType } from "./OptionType";
+import { Option } from "./Option.js";
+import { OptionType } from "./OptionType.js";
 
 /**
  * Provides options for the {@link Option `Option`} class.

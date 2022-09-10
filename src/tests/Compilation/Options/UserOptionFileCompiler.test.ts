@@ -1,13 +1,13 @@
-import { UserOptionFileCompiler } from "../../../Compilation/Options/UserOptionFileCompiler";
-import { INode } from "../../../NodeSystem/Generic/INode";
-import { EditPermission } from "../../../Options/UserPanel/EditPermission";
-import { UserCategory } from "../../../Options/UserPanel/UserCategory";
-import { UserOption } from "../../../Options/UserPanel/UserOption";
-import { ViewPermission } from "../../../Options/UserPanel/ViewPermission";
-import { UserOptionInstruction } from "../../../PackageSystem/Instructions/Options/UserOptionInstruction";
-import { XMLEditor } from "../../../Serialization/XMLEditor";
-import { OptionCompilerTester } from "../TestComponents/Testers/OptionCompilerTester";
-import { OptionFileCompilerTestRunner } from "../TestComponents/TestRunners/OptionFileCompilerTestRunner";
+import { UserOptionFileCompiler } from "../../../Compilation/Options/UserOptionFileCompiler.js";
+import { INode } from "../../../NodeSystem/Generic/INode.js";
+import { EditPermission } from "../../../Options/UserPanel/EditPermission.js";
+import { UserCategory } from "../../../Options/UserPanel/UserCategory.js";
+import { UserOption } from "../../../Options/UserPanel/UserOption.js";
+import { ViewPermission } from "../../../Options/UserPanel/ViewPermission.js";
+import { UserOptionInstruction } from "../../../PackageSystem/Instructions/Options/UserOptionInstruction.js";
+import { XMLEditor } from "../../../Serialization/XMLEditor.js";
+import { OptionCompilerTester } from "../TestComponents/Testers/OptionCompilerTester.js";
+import { OptionFileCompilerTestRunner } from "../TestComponents/TestRunners/OptionFileCompilerTestRunner.js";
 
 /**
  * Registers tests for the {@link UserOptionFileCompiler `UserOptionFileCompiler`} class.

@@ -1,5 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { Node } from "./Node";
+import { Node } from "./Node.js";
 
 /**
  * Provides options for the {@link Node `Node<T, TOptions>`} class.

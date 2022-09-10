@@ -1,14 +1,14 @@
-import { ILocalization } from "../Globalization/ILocalization";
-import { IComponentOptions } from "./IComponentOptions";
-import { IConflictingPackageDescriptorOptions } from "./IConflictingPackageDescriptorOptions";
-import { IFileDescriptorOptions } from "./IFileDescriptorOptions";
-import { IInstructionSetOptions } from "./Instructions/IInstructionSetOptions";
-import { IUpdateInstructionSetOptions } from "./Instructions/IUpdateInstructionSetOptions";
-import { IPackageFileDescriptorOptions } from "./IPackageFileDescriptorOptions";
-import { IRequiredPackageDescriptorOptions } from "./IRequiredPackageDescriptorOptions";
+import { ILocalization } from "../Globalization/ILocalization.js";
+import { IComponentOptions } from "./IComponentOptions.js";
+import { IConflictingPackageDescriptorOptions } from "./IConflictingPackageDescriptorOptions.js";
+import { IFileDescriptorOptions } from "./IFileDescriptorOptions.js";
+import { IInstructionSetOptions } from "./Instructions/IInstructionSetOptions.js";
+import { IUpdateInstructionSetOptions } from "./Instructions/IUpdateInstructionSetOptions.js";
+import { IPackageFileDescriptorOptions } from "./IPackageFileDescriptorOptions.js";
+import { IRequiredPackageDescriptorOptions } from "./IRequiredPackageDescriptorOptions.js";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import type { Package } from "./Package";
-import { VersionNumber } from "./VersionNumber";
+import type { Package } from "./Package.js";
+import { VersionNumber } from "./VersionNumber.js";
 
 /**
  * Provides options for the {@link Package `Package`} class.

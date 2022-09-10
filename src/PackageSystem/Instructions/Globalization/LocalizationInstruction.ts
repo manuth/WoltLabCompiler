@@ -1,10 +1,10 @@
-import { InstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/InstructionCompiler";
-import { LocalizationInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/LocalizationInstructionCompiler";
-import { LocalizationItem } from "../../../Globalization/LocalizationItem";
-import { Node } from "../../../NodeSystem/Node";
-import { INodeSystemInstructionOptions } from "../NodeSystem/INodeSystemInstructionOptions";
-import { NodeSystemInstruction } from "../NodeSystem/NodeSystemInstruction";
-import { ILocalizationInstruction } from "./ILocalizationInstruction";
+import { InstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/InstructionCompiler.js";
+import { LocalizationInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/LocalizationInstructionCompiler.js";
+import { LocalizationItem } from "../../../Globalization/LocalizationItem.js";
+import { Node } from "../../../NodeSystem/Node.js";
+import { INodeSystemInstructionOptions } from "../NodeSystem/INodeSystemInstructionOptions.js";
+import { NodeSystemInstruction } from "../NodeSystem/NodeSystemInstruction.js";
+import { ILocalizationInstruction } from "./ILocalizationInstruction.js";
 
 /**
  * Represents an instruction which provides localizations.

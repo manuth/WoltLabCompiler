@@ -1,5 +1,7 @@
-import { CronExpression, parseExpression } from "cron-parser";
-import { TimePeriod } from "../../Tasks/TimePeriod";
+import cronParser, { CronExpression } from "cron-parser";
+import { TimePeriod } from "../../Tasks/TimePeriod.js";
+
+const { parseExpression } = cronParser;
 
 /**
  * Provides the functionality to test {@link TimePeriod `TimePeriod`}-instances.

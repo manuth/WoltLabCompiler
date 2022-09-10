@@ -1,7 +1,7 @@
 import { doesNotReject, ok } from "assert";
 import { ITempFileSystemOptions, TempFileSystem } from "@manuth/temp-files";
-import { Compiler } from "../../../../Compilation/Compiler";
-import { CompilerTester } from "../Testers/CompilerTester";
+import { Compiler } from "../../../../Compilation/Compiler.js";
+import { CompilerTester } from "../Testers/CompilerTester.js";
 
 /**
  * Provides the functionality to register tests for a compiler.

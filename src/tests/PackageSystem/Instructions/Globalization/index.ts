@@ -1,6 +1,6 @@
 import { basename } from "path";
-import { ErrorMessageInstructionTests } from "./ErrorMessageInstruction.test";
-import { LocalizationInstructionTests } from "./LocalizationInstruction.test";
+import { ErrorMessageInstructionTests } from "./ErrorMessageInstruction.test.js";
+import { LocalizationInstructionTests } from "./LocalizationInstruction.test.js";
 
 /**
  * Registers tests for globalization-instructions.
@@ -8,7 +8,7 @@ import { LocalizationInstructionTests } from "./LocalizationInstruction.test";
 export function GlobalizationTests(): void
 {
     suite(
-        basename(__dirname),
+        basename(new URL(".", import.meta.url).pathname),
         () =>
         {
             LocalizationInstructionTests();
