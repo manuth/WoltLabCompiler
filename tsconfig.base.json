@@ -2,6 +2,14 @@
     "extends": "@manuth/tsconfig/recommended",
     "compilerOptions": {
         "declaration": true,
+        "paths": {
+            "cheerio": [
+                "./node_modules/cheerio/lib/index.d.ts"
+            ],
+            "get-sass-vars": [
+                "./src/get-sass-vars.d.ts"
+            ]
+        },
         "module": "Node16",
         "lib": [
             "ES2020"
