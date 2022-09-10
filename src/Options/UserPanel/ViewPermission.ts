@@ -14,7 +14,7 @@ export enum ViewPermission
     Admin = 1 << 1,
 
     /**
-     * Indicates registeres users.
+     * Indicates registers users.
      */
     RegisteredUser = 1 << 2,
 
