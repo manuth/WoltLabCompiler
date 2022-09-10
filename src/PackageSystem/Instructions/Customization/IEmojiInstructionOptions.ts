@@ -2,7 +2,7 @@ import { IEmojiOptions } from "../../../Customization/Presentation/IEmojiOptions
 import { INamedObject } from "../../../INamedObject.js";
 import { IDeleteInstructionOptions } from "../IDeleteInstructionOptions.js";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { EmojiInstruction } from "./EmojiInstruction.js";
+import type { EmojiInstruction } from "./EmojiInstruction.js";
 
 /**
  * Provides options for the {@link EmojiInstruction `EmojiInstruction`} class.

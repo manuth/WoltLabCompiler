@@ -1,5 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { Person } from "./Person.js";
+import type { Person } from "./Person.js";
 
 /**
  * Provides options for the {@link Person `Person`} class.

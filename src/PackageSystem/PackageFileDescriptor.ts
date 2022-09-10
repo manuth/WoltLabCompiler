@@ -1,6 +1,6 @@
 import { IPackageFileDescriptorOptions } from "./IPackageFileDescriptorOptions.js";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { Package } from "./Package.js";
+import type { Package } from "./Package.js";
 import { PackageDescriptor } from "./PackageDescriptor.js";
 
 /**

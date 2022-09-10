@@ -1,5 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { IDeleteInstruction } from "./IDeleteInstruction.js";
+import type { IDeleteInstruction } from "./IDeleteInstruction.js";
 import { IInstructionOptions } from "./IInstructionOptions.js";
 
 /**

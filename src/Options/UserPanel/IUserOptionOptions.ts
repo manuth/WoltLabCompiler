@@ -1,7 +1,7 @@
 import { IOptionOptions } from "../IOptionOptions.js";
 import { EditPermission } from "./EditPermission.js";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { UserOption } from "./UserOption.js";
+import type { UserOption } from "./UserOption.js";
 import { ViewPermission } from "./ViewPermission.js";
 
 /**

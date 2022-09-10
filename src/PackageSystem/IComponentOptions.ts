@@ -1,6 +1,6 @@
 import { ILocalization } from "../Globalization/ILocalization.js";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { Component } from "./Component.js";
+import type { Component } from "./Component.js";
 import { IPersonOptions } from "./IPersonOptions.js";
 import { VersionNumber } from "./VersionNumber.js";
 

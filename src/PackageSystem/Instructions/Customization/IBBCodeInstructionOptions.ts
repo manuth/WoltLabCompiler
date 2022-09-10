@@ -3,7 +3,7 @@ import { INamedObject } from "../../../INamedObject.js";
 import { ILocalizationInstructionOptions } from "../Globalization/ILocalizationInstructionOptions.js";
 import { IDeleteInstructionOptions } from "../IDeleteInstructionOptions.js";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { BBCodeInstruction } from "./BBCodeInstruction.js";
+import type { BBCodeInstruction } from "./BBCodeInstruction.js";
 
 /**
  * Provides options for the {@link BBCodeInstruction `BBCodeInstruction`} class.

@@ -1,5 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { PackageDescriptor } from "./PackageDescriptor.js";
+import type { PackageDescriptor } from "./PackageDescriptor.js";
 
 /**
  * Provides options for the {@link PackageDescriptor `PackageDescriptor`} class.

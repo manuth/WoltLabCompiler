@@ -3,7 +3,7 @@ import { IComponentOptions } from "../../../PackageSystem/IComponentOptions.js";
 import { IFileDescriptorOptions } from "../../../PackageSystem/IFileDescriptorOptions.js";
 import { IImageDirectoryDescriptorOptions } from "./IImageDirectoryDescriptorOptions.js";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { Theme } from "./Theme.js";
+import type { Theme } from "./Theme.js";
 
 /**
  * Provides base-options for the {@link Theme `Theme`} class.

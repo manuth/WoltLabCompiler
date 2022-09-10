@@ -1,6 +1,6 @@
 import { IInstructionSetOptions } from "./IInstructionSetOptions.js";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { UpdateInstructionSet } from "./UpdateInstructionSet.js";
+import type { UpdateInstructionSet } from "./UpdateInstructionSet.js";
 
 /**
  * Provides options for the {@link UpdateInstructionSet `UpdateInstructionSet`} class.

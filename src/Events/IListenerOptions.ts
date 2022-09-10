@@ -1,5 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { Listener } from "./Listener.js";
+import type { Listener } from "./Listener.js";
 import { ListenerEnvironment } from "./ListenerEnvironment.js";
 
 /**

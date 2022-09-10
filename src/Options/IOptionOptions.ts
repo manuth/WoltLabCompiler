@@ -1,7 +1,7 @@
 import { ILocalization } from "../Globalization/ILocalization.js";
 import { IOptionItemOptions } from "./IOptionItemOptions.js";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { Option } from "./Option.js";
+import type { Option } from "./Option.js";
 import { OptionType } from "./OptionType.js";
 
 /**

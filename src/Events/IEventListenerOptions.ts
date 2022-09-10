@@ -1,5 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { EventListener } from "./EventListener.js";
+import type { EventListener } from "./EventListener.js";
 import { IListenerOptions } from "./IListenerOptions.js";
 
 /**
