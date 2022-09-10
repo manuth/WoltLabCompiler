@@ -1,6 +1,6 @@
 {
   "name": "@manuth/woltlab-compiler",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "A compiler for generating WoltLab-Package `.tar` Archives and other WoltLab-Package Components",
   "author": "Manuel Thalmann <m@nuth.ch>",
   "license": "MIT",
