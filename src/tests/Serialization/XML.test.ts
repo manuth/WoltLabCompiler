@@ -1,4 +1,4 @@
-import { strictEqual } from "assert";
+import { strictEqual } from "node:assert";
 import dedent from "dedent";
 import { XML } from "../../Serialization/XML.js";
 

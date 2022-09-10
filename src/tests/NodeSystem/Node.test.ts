@@ -1,4 +1,4 @@
-import { ok, strictEqual } from "assert";
+import { ok, strictEqual } from "node:assert";
 import { INodeOptions } from "../../NodeSystem/INodeOptions.js";
 import { Node } from "../../NodeSystem/Node.js";
 import { NodeItem } from "../../NodeSystem/NodeItem.js";

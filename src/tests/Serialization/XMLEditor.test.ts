@@ -1,4 +1,4 @@
-import { ok, strictEqual, throws } from "assert";
+import { ok, strictEqual, throws } from "node:assert";
 import { XML } from "../../Serialization/XML.js";
 import { XMLEditor } from "../../Serialization/XMLEditor.js";
 

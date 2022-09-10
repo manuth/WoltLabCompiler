@@ -1,4 +1,4 @@
-import { ok } from "assert";
+import { ok } from "node:assert";
 import { ObjectDeletionFileCompiler } from "../../Compilation/ObjectDeletionFileCompiler.js";
 import { IDeleteInstruction } from "../../PackageSystem/Instructions/IDeleteInstruction.js";
 import { Instruction } from "../../PackageSystem/Instructions/Instruction.js";

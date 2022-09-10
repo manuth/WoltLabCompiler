@@ -1,4 +1,4 @@
-import { ok, strictEqual } from "assert";
+import { ok, strictEqual } from "node:assert";
 import path from "upath";
 import { PackageFileCompiler } from "../../../Compilation/PackageSystem/PackageFileCompiler.js";
 import { Constants } from "../../../Constants.js";

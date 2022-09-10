@@ -1,4 +1,4 @@
-import { ok, strictEqual } from "assert";
+import { ok, strictEqual } from "node:assert";
 import dedent from "dedent";
 import { LocalizationFileCompiler } from "../../../Compilation/Globalization/LocalizationFileCompiler.js";
 import { TranslationInstruction } from "../../../PackageSystem/Instructions/Globalization/TranslationInstruction.js";

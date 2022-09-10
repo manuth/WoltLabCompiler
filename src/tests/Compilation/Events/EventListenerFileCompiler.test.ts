@@ -1,4 +1,4 @@
-import { ok } from "assert";
+import { ok } from "node:assert";
 import { EventListenerFileCompiler } from "../../../Compilation/Events/EventListenerFileCompiler.js";
 import { EventListener } from "../../../Events/EventListener.js";
 import { EventListenerInstruction } from "../../../PackageSystem/Instructions/Events/EventListenerInstruction.js";

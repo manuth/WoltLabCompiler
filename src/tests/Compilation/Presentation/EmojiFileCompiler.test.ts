@@ -1,4 +1,4 @@
-import { ok, strictEqual } from "assert";
+import { ok, strictEqual } from "node:assert";
 import { EmojiFileCompiler } from "../../../Compilation/Presentation/EmojiFileCompiler.js";
 import { EmojiInstruction } from "../../../PackageSystem/Instructions/Customization/EmojiInstruction.js";
 import { ImportCompilerTester } from "../TestComponents/Testers/ImportCompilerTester.js";

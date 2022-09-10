@@ -1,4 +1,4 @@
-import { basename } from "path";
+import { basename } from "node:path";
 import { BBCodeInstructionTests } from "./BBCodeInstruction.test.js";
 import { PresentationTests } from "./Presentation/index.test.js";
 

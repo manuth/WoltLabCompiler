@@ -1,4 +1,4 @@
-import { strictEqual } from "assert";
+import { strictEqual } from "node:assert";
 import fs from "fs-extra";
 import path from "upath";
 import { LocalizationSetCompiler } from "../../../Compilation/Globalization/LocalizationSetCompiler.js";

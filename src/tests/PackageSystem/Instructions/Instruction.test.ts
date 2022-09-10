@@ -1,4 +1,4 @@
-import { strictEqual } from "assert";
+import { strictEqual } from "node:assert";
 import path from "upath";
 import { Instruction } from "../../../PackageSystem/Instructions/Instruction.js";
 import { InstructionSet } from "../../../PackageSystem/Instructions/InstructionSet.js";

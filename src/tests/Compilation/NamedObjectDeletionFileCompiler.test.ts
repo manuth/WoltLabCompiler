@@ -1,4 +1,4 @@
-import { strictEqual } from "assert";
+import { strictEqual } from "node:assert";
 import { NamedObjectDeletionFileCompiler } from "../../Compilation/NamedObjectDeletionFileCompiler.js";
 import { INamedObject } from "../../INamedObject.js";
 import { INamedDeleteInstruction } from "../../PackageSystem/Instructions/INamedDeleteInstruction.js";

@@ -1,4 +1,4 @@
-import { basename } from "path";
+import { basename } from "node:path";
 import { EventListenerFileCompilerTests } from "./EventListenerFileCompiler.test.js";
 import { ListenerFileCompilerTests } from "./ListenerFileCompiler.test.js";
 import { TemplateListenerFileCompilerTests } from "./TemplateListenerFileCompiler.test.js";

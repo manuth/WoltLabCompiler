@@ -1,4 +1,4 @@
-import { strictEqual } from "assert";
+import { strictEqual } from "node:assert";
 import { TempFile } from "@manuth/temp-files";
 import fs from "fs-extra";
 import { ThemeFileCompiler } from "../../../Compilation/Presentation/ThemeFileCompiler.js";

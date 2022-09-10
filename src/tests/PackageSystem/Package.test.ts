@@ -1,4 +1,4 @@
-import { strictEqual } from "assert";
+import { strictEqual } from "node:assert";
 import { TempFileSystem } from "@manuth/temp-files";
 import path from "upath";
 import { Package } from "../../PackageSystem/Package.js";

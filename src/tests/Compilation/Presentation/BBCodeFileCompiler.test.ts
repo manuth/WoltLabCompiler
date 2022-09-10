@@ -1,4 +1,4 @@
-import { ok, strictEqual } from "assert";
+import { ok, strictEqual } from "node:assert";
 import { BBCodeFileCompiler } from "../../../Compilation/Presentation/BBCodeFileCompiler.js";
 import { BBCodeInstruction } from "../../../PackageSystem/Instructions/Customization/BBCodeInstruction.js";
 import { ImportCompilerTester } from "../TestComponents/Testers/ImportCompilerTester.js";

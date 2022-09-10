@@ -1,4 +1,4 @@
-import { basename } from "path";
+import { basename } from "node:path";
 import { ImageDirectoryDescriptorTests } from "./ImageDirectoryDescriptor.test.js";
 import { SassVariableParserTests } from "./SassVariableParser.test.js";
 import { ThemeTests as ThemeClassTests } from "./Theme.test.js";

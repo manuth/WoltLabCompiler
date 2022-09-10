@@ -1,4 +1,4 @@
-import { doesNotReject, ok } from "assert";
+import { doesNotReject, ok } from "node:assert";
 import { ITempFileSystemOptions, TempFileSystem } from "@manuth/temp-files";
 import { Compiler } from "../../../../Compilation/Compiler.js";
 import { CompilerTester } from "../Testers/CompilerTester.js";

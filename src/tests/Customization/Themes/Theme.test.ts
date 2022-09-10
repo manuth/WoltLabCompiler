@@ -1,4 +1,4 @@
-import { strictEqual } from "assert";
+import { strictEqual } from "node:assert";
 import { Theme } from "../../../Customization/Presentation/Themes/Theme.js";
 import { ThemeInstruction } from "../../../PackageSystem/Instructions/Customization/Presentation/ThemeInstruction.js";
 import { Package } from "../../../PackageSystem/Package.js";

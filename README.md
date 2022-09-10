@@ -52,7 +52,7 @@ In order to get your package compiled following steps are necessary:
 Following piece of code creates a small package providing new dummy options for WoltLab's control panel:
 
 ```ts
-import { join } from "path";
+import { join } from "node:path";
 import { ACPOptionInstruction, InvariantCultureName, OptionType, Package, PackageCompiler } from "@manuth/woltlab-compiler";
 
 (async () =>
@@ -156,7 +156,7 @@ The only compiler you might ever be using might be the `PackageCompiler` for gen
 However, you can even generate individual files in case you want to take care of creating the `.tar` file yourself:
 
 ```ts
-import { join } from "path";
+import { join } from "node:path";
 import { ACPOptionFileCompiler, ACPOptionInstruction } from "@manuth/woltlab-compiler";
 
 (async () =>
@@ -209,7 +209,7 @@ Please notice, that providing a fallback value most commonly isn't possible due 
 With the previously mentioned core concept in mind, the first thing you might want to do is creating a piece of code for creating a dummy package:
 
 ```ts
-import { join } from "path";
+import { join } from "node:path";
 import { Package, PackageCompiler } from "@manuth/woltlab-compiler";
 
 (async () =>
@@ -319,7 +319,7 @@ All instructions mentioned before are used in the same manner and thus accept th
 ***Example:***
 
 ```ts
-import { join } from "path";
+import { join } from "node:path";
 import { ACPTemplateInstruction, TemplateInstruction, ApplicationFileSystemInstruction } from "@manuth/woltlab-compiler";
 
 new ACPTemplateInstruction(
@@ -355,7 +355,7 @@ new ApplicationFileSystemInstruction(
 > > <summary>Show Verbose Code</summary>
 > >
 > > ```ts
-> > import { join } from "path";
+> > import { join } from "node:path";
 > > import { ACPOptionInstruction, ApplicationFileSystemInstruction, Package, PackageCompiler, TemplateInstruction } from "@manuth/woltlab-compiler";
 > > (async () =>
 > > {
@@ -503,7 +503,7 @@ The priorities of the variables are as followed:
 >
 > ***index.ts***
 > ```ts
-> import { join } from "path";
+> import { join } from "node:path";
 > import { Package, PackageCompiler } from "@manuth/woltlab-compiler";
 >
 > (async () =>

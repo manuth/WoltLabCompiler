@@ -1,4 +1,4 @@
-import { ok, strictEqual } from "assert";
+import { ok, strictEqual } from "node:assert";
 import { Random } from "random-js";
 import { createSandbox, SinonSandbox } from "sinon";
 import { Localization } from "../../../../Globalization/Localization.js";

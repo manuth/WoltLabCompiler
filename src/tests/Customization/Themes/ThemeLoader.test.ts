@@ -1,5 +1,5 @@
-import { ok, strictEqual } from "assert";
-import { EOL } from "os";
+import { ok, strictEqual } from "node:assert";
+import { EOL } from "node:os";
 import { TempDirectory } from "@manuth/temp-files";
 import dedent from "dedent";
 import fs from "fs-extra";

@@ -1,4 +1,4 @@
-import { basename } from "path";
+import { basename } from "node:path";
 import { ThemeTests } from "./Themes/index.test.js";
 
 /**

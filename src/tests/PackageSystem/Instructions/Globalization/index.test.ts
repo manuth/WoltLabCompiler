@@ -1,4 +1,4 @@
-import { basename } from "path";
+import { basename } from "node:path";
 import { ErrorMessageInstructionTests } from "./ErrorMessageInstruction.test.js";
 import { LocalizationInstructionTests } from "./LocalizationInstruction.test.js";
 

@@ -1,4 +1,4 @@
-import { basename } from "path";
+import { basename } from "node:path";
 import { FileDescriptorTests } from "./FileDescriptor.test.js";
 import { InstructionTests } from "./Instructions/index.test.js";
 import { PackageTests } from "./Package.test.js";

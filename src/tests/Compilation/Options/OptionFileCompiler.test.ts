@@ -1,4 +1,4 @@
-import { ok, strictEqual } from "assert";
+import { ok, strictEqual } from "node:assert";
 import { OptionFileCompiler } from "../../../Compilation/Options/OptionFileCompiler.js";
 import { INode as IGenericNode } from "../../../NodeSystem/Generic/INode.js";
 import { INode } from "../../../NodeSystem/INode.js";

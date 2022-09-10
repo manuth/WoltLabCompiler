@@ -1,6 +1,6 @@
-import { strictEqual } from "assert";
-import { basename, resolve } from "path";
-import { fileURLToPath } from "url";
+import { strictEqual } from "node:assert";
+import { basename, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 import { IImageDirectoryDescriptorOptions } from "../../../Customization/Presentation/Themes/IImageDirectoryDescriptorOptions.js";
 import { ImageDirectoryDescriptor } from "../../../Customization/Presentation/Themes/ImageDirectoryDescriptor.js";
 

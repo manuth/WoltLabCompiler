@@ -1,4 +1,4 @@
-import { strictEqual } from "assert";
+import { strictEqual } from "node:assert";
 import { Node } from "../../NodeSystem/Node.js";
 import { NodeItem } from "../../NodeSystem/NodeItem.js";
 

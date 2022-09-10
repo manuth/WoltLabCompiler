@@ -1,5 +1,5 @@
-import { ok } from "assert";
-import { join } from "path";
+import { ok } from "node:assert";
+import { join } from "node:path";
 import { TempDirectory } from "@manuth/temp-files";
 import dedent from "dedent";
 import fs from "fs-extra";

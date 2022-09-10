@@ -1,4 +1,4 @@
-import { ok } from "assert";
+import { ok } from "node:assert";
 import { Localization } from "../../Globalization/Localization.js";
 
 /**

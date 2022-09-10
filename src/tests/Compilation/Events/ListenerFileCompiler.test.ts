@@ -1,4 +1,4 @@
-import { strictEqual } from "assert";
+import { strictEqual } from "node:assert";
 import { ListenerFileCompiler } from "../../../Compilation/Events/ListenerFileCompiler.js";
 import { IListenerOptions } from "../../../Events/IListenerOptions.js";
 import { Listener } from "../../../Events/Listener.js";

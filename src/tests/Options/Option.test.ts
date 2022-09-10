@@ -1,4 +1,4 @@
-import { strictEqual } from "assert";
+import { strictEqual } from "node:assert";
 import { IOptionOptions } from "../../Options/IOptionOptions.js";
 import { Option } from "../../Options/Option.js";
 import { OptionType } from "../../Options/OptionType.js";

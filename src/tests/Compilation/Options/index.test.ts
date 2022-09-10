@@ -1,4 +1,4 @@
-import { basename } from "path";
+import { basename } from "node:path";
 import { ACPOptionFileCompilerTests } from "./ACPOptionFileCompiler.test.js";
 import { GroupOptionFileCompilerTests } from "./GroupOptionFileCompiler.test.js";
 import { OptionFileCompilerTests } from "./OptionFileCompiler.test.js";

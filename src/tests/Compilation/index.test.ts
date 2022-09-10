@@ -1,4 +1,4 @@
-import { basename } from "path";
+import { basename } from "node:path";
 import { CompilerTests } from "./Compiler.test.js";
 import { EventTests } from "./Events/index.test.js";
 import { GlobalizationTests } from "./Globalization/index.test.js";

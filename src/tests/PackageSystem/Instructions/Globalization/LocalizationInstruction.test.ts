@@ -1,4 +1,4 @@
-import { ok, strictEqual } from "assert";
+import { ok, strictEqual } from "node:assert";
 import { ILocalization } from "../../../../Globalization/ILocalization.js";
 import { ILocalizationItemOptions } from "../../../../Globalization/ILocalizationItemOptions.js";
 import { LocalizationItem } from "../../../../Globalization/LocalizationItem.js";

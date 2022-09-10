@@ -1,4 +1,4 @@
-import { strictEqual } from "assert";
+import { strictEqual } from "node:assert";
 import { TimePeriod } from "../../Tasks/TimePeriod.js";
 import { PeriodTester } from "./PeriodTester.js";
 

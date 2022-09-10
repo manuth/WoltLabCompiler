@@ -1,4 +1,4 @@
-import { AssertionError, ok, strictEqual } from "assert";
+import { AssertionError, ok, strictEqual } from "node:assert";
 import { OptionFileCompiler } from "../../../../Compilation/Options/OptionFileCompiler.js";
 import { INode } from "../../../../NodeSystem/Generic/INode.js";
 import { ICategory } from "../../../../Options/Generic/ICategory.js";

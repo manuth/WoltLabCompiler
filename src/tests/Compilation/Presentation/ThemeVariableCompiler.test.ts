@@ -1,4 +1,4 @@
-import { ok, strictEqual } from "assert";
+import { ok, strictEqual } from "node:assert";
 import dedent from "dedent";
 import { ThemeVariableCompiler } from "../../../Compilation/Presentation/ThemeVariableCompiler.js";
 import { XMLFileCompilerTester } from "../TestComponents/Testers/XMLFileCompilerTester.js";

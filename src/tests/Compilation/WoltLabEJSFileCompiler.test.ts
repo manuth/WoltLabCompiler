@@ -1,4 +1,4 @@
-import { strictEqual } from "assert";
+import { strictEqual } from "node:assert";
 import { WoltLabEJSFileCompiler } from "../../Compilation/WoltLabEJSFileCompiler.js";
 import { XMLFileCompilerTester } from "./TestComponents/Testers/XMLFileCompilerTester.js";
 import { XMLCompilerTestRunner } from "./TestComponents/TestRunners/XMLCompilerTestRunner.js";

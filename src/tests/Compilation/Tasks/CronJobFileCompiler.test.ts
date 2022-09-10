@@ -1,4 +1,4 @@
-import { ok, strictEqual } from "assert";
+import { ok, strictEqual } from "node:assert";
 import { CronJobFileCompiler } from "../../../Compilation/Tasks/CronJobFileCompiler.js";
 import { Constants } from "../../../Constants.js";
 import { ILocalization } from "../../../Globalization/ILocalization.js";

@@ -1,4 +1,4 @@
-import { basename } from "path";
+import { basename } from "node:path";
 import { XMLTests } from "./XML.test.js";
 import { XMLEditorTests } from "./XMLEditor.test.js";
 

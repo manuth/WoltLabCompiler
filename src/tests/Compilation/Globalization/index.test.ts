@@ -1,4 +1,4 @@
-import { basename } from "path";
+import { basename } from "node:path";
 import { LocalizationFileCompilerTests } from "./LocalizationFileCompiler.test.js";
 import { LocalizationSetCompilerTests } from "./LocalizationSetCompiler.test.js";
 

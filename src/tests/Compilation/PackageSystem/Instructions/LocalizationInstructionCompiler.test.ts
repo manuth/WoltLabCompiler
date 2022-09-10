@@ -1,4 +1,4 @@
-import { ok } from "assert";
+import { ok } from "node:assert";
 import { Random } from "random-js";
 import { createSandbox, SinonSandbox } from "sinon";
 import path from "upath";

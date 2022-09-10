@@ -1,4 +1,4 @@
-import { ok } from "assert";
+import { ok } from "node:assert";
 import { TempDirectory, TempFile } from "@manuth/temp-files";
 import { extract } from "tar";
 import path from "upath";

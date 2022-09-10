@@ -1,4 +1,4 @@
-import { ok, strictEqual } from "assert";
+import { ok, strictEqual } from "node:assert";
 import { TempDirectory, TempFile } from "@manuth/temp-files";
 import fs from "fs-extra";
 import { extract } from "tar";

@@ -1,4 +1,4 @@
-import { EOL } from "os";
+import { EOL } from "node:os";
 import { get } from "colornames";
 import fs from "fs-extra";
 import hexToRgba from "hex-to-rgba";

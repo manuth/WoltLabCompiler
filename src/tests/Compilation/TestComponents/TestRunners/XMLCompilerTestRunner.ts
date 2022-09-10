@@ -1,4 +1,4 @@
-import { ok, strictEqual } from "assert";
+import { ok, strictEqual } from "node:assert";
 import { XMLFileCompiler } from "../../../../Compilation/XMLFileCompiler.js";
 import { XMLEditor } from "../../../../Serialization/XMLEditor.js";
 import { XMLFileCompilerTester } from "../Testers/XMLFileCompilerTester.js";

@@ -1,4 +1,4 @@
-import { AssertionError, ok, strictEqual } from "assert";
+import { AssertionError, ok, strictEqual } from "node:assert";
 import { ListenerFileCompiler } from "../../../../Compilation/Events/ListenerFileCompiler.js";
 import { Listener } from "../../../../Events/Listener.js";
 import { IListenerInstruction } from "../../../../PackageSystem/Instructions/Events/IListenerInstruction.js";

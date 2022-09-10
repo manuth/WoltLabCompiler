@@ -1,4 +1,4 @@
-import { ok } from "assert";
+import { ok } from "node:assert";
 import { TempFile } from "@manuth/temp-files";
 import fs from "fs-extra";
 import path from "upath";

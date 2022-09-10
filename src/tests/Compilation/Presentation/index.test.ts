@@ -1,4 +1,4 @@
-import { basename } from "path";
+import { basename } from "node:path";
 import { BBCodeFileCompilerTests } from "./BBCodeFileCompiler.test.js";
 import { EmojiFileCompilerTests } from "./EmojiFileCompiler.test.js";
 import { ThemeCompilerTests } from "./ThemeCompiler.test.js";

@@ -1,4 +1,4 @@
-import { ok, strictEqual } from "assert";
+import { ok, strictEqual } from "node:assert";
 import { Random } from "random-js";
 import { BBCode } from "../../../../Customization/BBCodes/BBCode.js";
 import { BBCodeInstruction } from "../../../../PackageSystem/Instructions/Customization/BBCodeInstruction.js";
