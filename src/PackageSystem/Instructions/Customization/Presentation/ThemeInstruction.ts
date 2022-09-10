@@ -1,9 +1,11 @@
-import { join } from "path";
+import path from "upath";
 import { InstructionCompiler } from "../../../../Compilation/PackageSystem/Instructions/InstructionCompiler.js";
 import { ThemeInstructionCompiler } from "../../../../Compilation/PackageSystem/Instructions/ThemeInstructionCompiler.js";
 import { ThemeLoader } from "../../../../Customization/Presentation/Themes/ThemeLoader.js";
 import { Instruction } from "../../Instruction.js";
 import { IThemeInstructionOptions } from "./IThemeInstructionOptions.js";
+
+const { join } = path;
 
 /**
  * The name of the {@link ThemeInstruction `ThemeInstruction`}-type.
