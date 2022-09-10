@@ -1,5 +1,5 @@
 import fs from "fs-extra";
-import sassVars, { SassAsyncOptions } from "get-sass-vars";
+import main, { SassAsyncOptions } from "get-sass-vars";
 import path from "upath";
 
 const { readFileSync } = fs;
@@ -34,7 +34,7 @@ export class SassVariableParser
      */
     public async Parse(): Promise<Record<string, string>>
     {
-        let variables: Record<string, string> = await sassVars(
+        let variables: Record<string, string> = await main(
             readFileSync(this.fileName).toString(),
             {
                 sassOptions: {
