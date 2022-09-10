@@ -1,11 +1,14 @@
-import { strictEqual } from "assert";
-import { readdir } from "fs-extra";
-import { parse } from "upath";
-import { LocalizationSetCompiler } from "../../../Compilation/Globalization/LocalizationSetCompiler";
-import { ILocalization } from "../../../Globalization/ILocalization";
-import { TranslationInstruction } from "../../../PackageSystem/Instructions/Globalization/TranslationInstruction";
-import { CompilerTester } from "../TestComponents/Testers/CompilerTester";
-import { CompilerTestRunner } from "../TestComponents/TestRunners/CompilerTestRunner";
+import { strictEqual } from "node:assert";
+import fs from "fs-extra";
+import path from "upath";
+import { LocalizationSetCompiler } from "../../../Compilation/Globalization/LocalizationSetCompiler.js";
+import { ILocalization } from "../../../Globalization/ILocalization.js";
+import { TranslationInstruction } from "../../../PackageSystem/Instructions/Globalization/TranslationInstruction.js";
+import { CompilerTester } from "../TestComponents/Testers/CompilerTester.js";
+import { CompilerTestRunner } from "../TestComponents/TestRunners/CompilerTestRunner.js";
+
+const { readdir } = fs;
+const { parse } = path;
 
 /**
  * Registers tests for the {@link LocalizationSetCompiler `LocalizationSetCompiler`} class.

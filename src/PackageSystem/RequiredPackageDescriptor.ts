@@ -1,6 +1,6 @@
-import { IRequiredPackageDescriptorOptions } from "./IRequiredPackageDescriptorOptions";
-import { PackageFileDescriptor } from "./PackageFileDescriptor";
-import { VersionNumber } from "./VersionNumber";
+import { IRequiredPackageDescriptorOptions } from "./IRequiredPackageDescriptorOptions.js";
+import { PackageFileDescriptor } from "./PackageFileDescriptor.js";
+import { VersionNumber } from "./VersionNumber.js";
 
 /**
  * Provides an abstraction of a required package.

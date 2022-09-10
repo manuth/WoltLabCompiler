@@ -1,6 +1,6 @@
-import { BBCodeInstruction } from "../../../PackageSystem/Instructions/Customization/BBCodeInstruction";
-import { BBCodeFileCompiler } from "../../Presentation/BBCodeFileCompiler";
-import { LocalizationProviderCompiler } from "./LocalizationProviderCompiler";
+import { BBCodeInstruction } from "../../../PackageSystem/Instructions/Customization/BBCodeInstruction.js";
+import { BBCodeFileCompiler } from "../../Presentation/BBCodeFileCompiler.js";
+import { LocalizationProviderCompiler } from "./LocalizationProviderCompiler.js";
 
 /**
  * Provides the functionality to compile bb-code instructions.

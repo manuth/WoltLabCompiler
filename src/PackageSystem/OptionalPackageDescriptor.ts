@@ -1,5 +1,5 @@
-import { IPackageFileDescriptorOptions } from "./IPackageFileDescriptorOptions";
-import { PackageFileDescriptor } from "./PackageFileDescriptor";
+import { IPackageFileDescriptorOptions } from "./IPackageFileDescriptorOptions.js";
+import { PackageFileDescriptor } from "./PackageFileDescriptor.js";
 
 /**
  * Provides an abstraction of an optional package.

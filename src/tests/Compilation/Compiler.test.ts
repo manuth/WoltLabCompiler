@@ -1,10 +1,13 @@
-import { ok, strictEqual } from "assert";
+import { ok, strictEqual } from "node:assert";
 import { TempDirectory, TempFile } from "@manuth/temp-files";
-import { readdir, readFile, writeFile } from "fs-extra";
+import fs from "fs-extra";
 import { extract } from "tar";
-import { join } from "upath";
-import { Compiler } from "../../Compilation/Compiler";
-import { TestCompiler } from "./TestCompiler";
+import path from "upath";
+import { Compiler } from "../../Compilation/Compiler.js";
+import { TestCompiler } from "./TestCompiler.js";
+
+const { readdir, readFile, writeFile } = fs;
+const { join } = path;
 
 /**
  * Registers tests for the {@link Compiler `Compiler<T>`} class.

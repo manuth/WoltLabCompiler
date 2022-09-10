@@ -1,6 +1,6 @@
-import { EmojiInstruction } from "../../PackageSystem/Instructions/Customization/EmojiInstruction";
-import { XMLEditor } from "../../Serialization/XMLEditor";
-import { NamedObjectDeletionFileCompiler } from "../NamedObjectDeletionFileCompiler";
+import { EmojiInstruction } from "../../PackageSystem/Instructions/Customization/EmojiInstruction.js";
+import { XMLEditor } from "../../Serialization/XMLEditor.js";
+import { NamedObjectDeletionFileCompiler } from "../NamedObjectDeletionFileCompiler.js";
 
 /**
  * Provides the functionality to compile emoji-files.

@@ -1,6 +1,6 @@
-import { BidirectionalCollection } from "../Collections/BidirectionalCollection";
-import { INode } from "./Generic/INode";
-import { NodeItem } from "./NodeItem";
+import { BidirectionalCollection } from "../Collections/BidirectionalCollection.js";
+import { INode } from "./Generic/INode.js";
+import { NodeItem } from "./NodeItem.js";
 
 /**
  * Represents a collection of items.

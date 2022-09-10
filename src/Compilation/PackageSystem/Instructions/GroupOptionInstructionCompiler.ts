@@ -1,8 +1,8 @@
-import { GroupCategory } from "../../../Options/Groups/GroupCategory";
-import { GroupOption } from "../../../Options/Groups/GroupOption";
-import { GroupOptionInstruction } from "../../../PackageSystem/Instructions/Options/GroupOptionInstruction";
-import { GroupOptionFileCompiler } from "../../Options/GroupOptionFileCompiler";
-import { OptionInstructionCompiler } from "./OptionInstructionCompiler";
+import { GroupCategory } from "../../../Options/Groups/GroupCategory.js";
+import { GroupOption } from "../../../Options/Groups/GroupOption.js";
+import { GroupOptionInstruction } from "../../../PackageSystem/Instructions/Options/GroupOptionInstruction.js";
+import { GroupOptionFileCompiler } from "../../Options/GroupOptionFileCompiler.js";
+import { OptionInstructionCompiler } from "./OptionInstructionCompiler.js";
 
 /**
  * Provides the functionality to compile {@link GroupOptionInstruction `GroupOptionInstruction`}s.

@@ -1,6 +1,6 @@
-import { Localization } from "../../Globalization/Localization";
-import { BBCodeAttribute } from "./BBCodeAttribute";
-import { IBBCodeOptions } from "./IBBCodeOptions";
+import { Localization } from "../../Globalization/Localization.js";
+import { BBCodeAttribute } from "./BBCodeAttribute.js";
+import { IBBCodeOptions } from "./IBBCodeOptions.js";
 
 /**
  * Represents a bb-code.

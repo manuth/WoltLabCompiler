@@ -1,6 +1,6 @@
-import { ImportFileCompiler } from "../../../../Compilation/ImportFileCompiler";
-import { XMLEditor } from "../../../../Serialization/XMLEditor";
-import { XMLFileCompilerTester } from "./XMLFileCompilerTester";
+import { ImportFileCompiler } from "../../../../Compilation/ImportFileCompiler.js";
+import { XMLEditor } from "../../../../Serialization/XMLEditor.js";
+import { XMLFileCompilerTester } from "./XMLFileCompilerTester.js";
 
 /**
  * Provides the functionality to test an import file compiler.

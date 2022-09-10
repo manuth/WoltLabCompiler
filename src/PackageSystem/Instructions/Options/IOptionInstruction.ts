@@ -1,8 +1,8 @@
-import { INamedObject } from "../../../INamedObject";
-import { ICategory } from "../../../Options/Generic/ICategory";
-import { Option } from "../../../Options/Option";
-import { ILocalizationInstruction } from "../Globalization/ILocalizationInstruction";
-import { INodeSystemInstruction } from "../NodeSystem/INodeSystemInstruction";
+import { INamedObject } from "../../../INamedObject.js";
+import { ICategory } from "../../../Options/Generic/ICategory.js";
+import { Option } from "../../../Options/Option.js";
+import { ILocalizationInstruction } from "../Globalization/ILocalizationInstruction.js";
+import { INodeSystemInstruction } from "../NodeSystem/INodeSystemInstruction.js";
 
 /**
  * Represents an instruction which provides options for the control-panel.

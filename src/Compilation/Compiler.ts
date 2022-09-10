@@ -1,8 +1,11 @@
-import { ensureDir, readdir } from "fs-extra";
+import fs from "fs-extra";
 import { create as createFS } from "mem-fs";
 import { create as createEditor } from "mem-fs-editor";
 import { create as createArchive } from "tar";
-import { dirname, join, resolve } from "upath";
+import path from "upath";
+
+const { ensureDir, readdir } = fs;
+const { dirname, join, resolve } = path;
 
 /**
  * Provides the functionality to compile a component.

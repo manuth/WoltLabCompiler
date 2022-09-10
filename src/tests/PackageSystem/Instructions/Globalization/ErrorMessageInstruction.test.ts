@@ -1,6 +1,6 @@
-import { ok, strictEqual } from "assert";
-import { ILocalization } from "../../../../Globalization/ILocalization";
-import { ErrorMessageInstruction } from "../../../../PackageSystem/Instructions/Globalization/ErrorMessageInstruction";
+import { ok, strictEqual } from "node:assert";
+import { ILocalization } from "../../../../Globalization/ILocalization.js";
+import { ErrorMessageInstruction } from "../../../../PackageSystem/Instructions/Globalization/ErrorMessageInstruction.js";
 
 /**
  * Registers tests for the {@link ErrorMessageInstruction `ErrorMessageInstruction`} class.

@@ -1,14 +1,16 @@
-import { ok } from "assert";
+import { ok } from "node:assert";
 import { TempDirectory, TempFile } from "@manuth/temp-files";
 import { extract } from "tar";
-import { join, normalize } from "upath";
-import { PackageCompiler } from "../../../Compilation/PackageSystem/PackageCompiler";
-import { BBCodeInstruction } from "../../../PackageSystem/Instructions/Customization/BBCodeInstruction";
-import { InstructionSet } from "../../../PackageSystem/Instructions/InstructionSet";
-import { Package } from "../../../PackageSystem/Package";
-import { Tar } from "../../Tar";
-import { CompilerTester } from "../TestComponents/Testers/CompilerTester";
-import { CompilerTestRunner } from "../TestComponents/TestRunners/CompilerTestRunner";
+import path from "upath";
+import { PackageCompiler } from "../../../Compilation/PackageSystem/PackageCompiler.js";
+import { BBCodeInstruction } from "../../../PackageSystem/Instructions/Customization/BBCodeInstruction.js";
+import { InstructionSet } from "../../../PackageSystem/Instructions/InstructionSet.js";
+import { Package } from "../../../PackageSystem/Package.js";
+import { Tar } from "../../Tar.js";
+import { CompilerTester } from "../TestComponents/Testers/CompilerTester.js";
+import { CompilerTestRunner } from "../TestComponents/TestRunners/CompilerTestRunner.js";
+
+const { join, normalize } = path;
 
 /**
  * Registers tests for the {@link PackageCompiler `PackageCompiler`} class.

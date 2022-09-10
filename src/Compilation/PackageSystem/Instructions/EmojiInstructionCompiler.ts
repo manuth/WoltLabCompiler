@@ -1,7 +1,7 @@
-import { EmojiInstruction } from "../../../PackageSystem/Instructions/Customization/EmojiInstruction";
-import { Compiler } from "../../Compiler";
-import { EmojiFileCompiler } from "../../Presentation/EmojiFileCompiler";
-import { InstructionFileCompiler } from "./InstructionFileCompiler";
+import { EmojiInstruction } from "../../../PackageSystem/Instructions/Customization/EmojiInstruction.js";
+import { Compiler } from "../../Compiler.js";
+import { EmojiFileCompiler } from "../../Presentation/EmojiFileCompiler.js";
+import { InstructionFileCompiler } from "./InstructionFileCompiler.js";
 
 /**
  * Provides the functionality to compile emoji-instructions.

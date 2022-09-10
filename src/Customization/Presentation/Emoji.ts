@@ -1,4 +1,4 @@
-import { IEmojiOptions } from "./IEmojiOptions";
+import { IEmojiOptions } from "./IEmojiOptions.js";
 
 /**
  * Represents an emoji.

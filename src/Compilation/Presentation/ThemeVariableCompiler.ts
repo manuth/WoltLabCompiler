@@ -1,5 +1,5 @@
-import { XMLEditor } from "../../Serialization/XMLEditor";
-import { WoltLabXMLCompiler } from "../WoltLabXMLCompiler";
+import { XMLEditor } from "../../Serialization/XMLEditor.js";
+import { WoltLabXMLCompiler } from "../WoltLabXMLCompiler.js";
 
 /**
  * Provides the functionality to compile theme-variables.

@@ -1,9 +1,9 @@
-import { ok, strictEqual } from "assert";
-import { ILocalization } from "../../../../Globalization/ILocalization";
-import { ILocalizationItemOptions } from "../../../../Globalization/ILocalizationItemOptions";
-import { LocalizationItem } from "../../../../Globalization/LocalizationItem";
-import { LocalizationInstruction } from "../../../../PackageSystem/Instructions/Globalization/LocalizationInstruction";
-import { TranslationInstruction } from "../../../../PackageSystem/Instructions/Globalization/TranslationInstruction";
+import { ok, strictEqual } from "node:assert";
+import { ILocalization } from "../../../../Globalization/ILocalization.js";
+import { ILocalizationItemOptions } from "../../../../Globalization/ILocalizationItemOptions.js";
+import { LocalizationItem } from "../../../../Globalization/LocalizationItem.js";
+import { LocalizationInstruction } from "../../../../PackageSystem/Instructions/Globalization/LocalizationInstruction.js";
+import { TranslationInstruction } from "../../../../PackageSystem/Instructions/Globalization/TranslationInstruction.js";
 
 /**
  * Registers tests for the {@link LocalizationInstruction `LocalizationInstruction<T, TOptions>`} class.

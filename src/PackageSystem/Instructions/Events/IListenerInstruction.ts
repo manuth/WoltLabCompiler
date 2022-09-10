@@ -1,5 +1,5 @@
-import { Listener } from "../../../Events/Listener";
-import { INamedDeleteInstruction } from "../INamedDeleteInstruction";
+import { Listener } from "../../../Events/Listener.js";
+import { INamedDeleteInstruction } from "../INamedDeleteInstruction.js";
 
 /**
  * Represents an instruction which provides listeners.

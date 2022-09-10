@@ -1,7 +1,7 @@
-import { ListenerFileCompiler } from "../../../../Compilation/Events/ListenerFileCompiler";
-import { Listener } from "../../../../Events/Listener";
-import { IListenerInstruction } from "../../../../PackageSystem/Instructions/Events/IListenerInstruction";
-import { ImportCompilerTester } from "./ImportCompilerTester";
+import { ListenerFileCompiler } from "../../../../Compilation/Events/ListenerFileCompiler.js";
+import { Listener } from "../../../../Events/Listener.js";
+import { IListenerInstruction } from "../../../../PackageSystem/Instructions/Events/IListenerInstruction.js";
+import { ImportCompilerTester } from "./ImportCompilerTester.js";
 
 /**
  * Provides the functionality to test a listener-compiler.

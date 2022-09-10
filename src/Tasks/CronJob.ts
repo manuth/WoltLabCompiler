@@ -1,6 +1,6 @@
-import { Localization } from "../Globalization/Localization";
-import { ICronJobOptions } from "./ICronJobOptions";
-import { TimePeriod } from "./TimePeriod";
+import { Localization } from "../Globalization/Localization.js";
+import { ICronJobOptions } from "./ICronJobOptions.js";
+import { TimePeriod } from "./TimePeriod.js";
 
 /**
  * Represents a cron-job.

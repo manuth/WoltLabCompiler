@@ -1,7 +1,7 @@
-import { Listener } from "../../../Events/Listener";
-import { NamedDeleteInstruction } from "../NamedDeleteInstruction";
-import { IListenerInstruction } from "./IListenerInstruction";
-import { IListenerInstructionOptions } from "./IListenerInstructionOptions";
+import { Listener } from "../../../Events/Listener.js";
+import { NamedDeleteInstruction } from "../NamedDeleteInstruction.js";
+import { IListenerInstruction } from "./IListenerInstruction.js";
+import { IListenerInstructionOptions } from "./IListenerInstructionOptions.js";
 
 /**
  * Represents an instruction which provides listeners.

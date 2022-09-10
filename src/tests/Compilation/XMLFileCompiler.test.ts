@@ -1,7 +1,7 @@
-import { strictEqual } from "assert";
-import { XMLFileCompiler } from "../../Compilation/XMLFileCompiler";
-import { XMLFileCompilerTester } from "./TestComponents/Testers/XMLFileCompilerTester";
-import { XMLCompilerTestRunner } from "./TestComponents/TestRunners/XMLCompilerTestRunner";
+import { strictEqual } from "node:assert";
+import { XMLFileCompiler } from "../../Compilation/XMLFileCompiler.js";
+import { XMLFileCompilerTester } from "./TestComponents/Testers/XMLFileCompilerTester.js";
+import { XMLCompilerTestRunner } from "./TestComponents/TestRunners/XMLCompilerTestRunner.js";
 
 /**
  * Registers tests for the {@link XMLFileCompiler `XMLFileCompiler<T>`} class.

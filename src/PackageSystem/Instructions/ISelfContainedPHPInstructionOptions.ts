@@ -1,6 +1,6 @@
-import { IApplicationFileSystemInstructionOptions } from "./FileSystem/IApplicationFileSystemInstructionOptions";
+import { IApplicationFileSystemInstructionOptions } from "./FileSystem/IApplicationFileSystemInstructionOptions.js";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { SelfContainedPHPInstruction } from "./SelfContainedPHPInstruction";
+import type { SelfContainedPHPInstruction } from "./SelfContainedPHPInstruction.js";
 
 /**
  * Provides options for the {@link SelfContainedPHPInstruction `SelfContainedPHPInstruction`} class.

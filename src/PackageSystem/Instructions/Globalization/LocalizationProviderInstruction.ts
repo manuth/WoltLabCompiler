@@ -1,7 +1,7 @@
-import { Package } from "../../Package";
-import { InstructionSet } from "../InstructionSet";
-import { ILocalizationInstruction } from "./ILocalizationInstruction";
-import { LocalizationInstruction } from "./LocalizationInstruction";
+import { Package } from "../../Package.js";
+import { InstructionSet } from "../InstructionSet.js";
+import { ILocalizationInstruction } from "./ILocalizationInstruction.js";
+import { LocalizationInstruction } from "./LocalizationInstruction.js";
 
 /**
  * Provides the functionality to expose an {@link ILocalizationInstruction `ILocalizationInstruction`}s translations.

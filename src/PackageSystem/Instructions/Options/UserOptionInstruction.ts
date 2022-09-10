@@ -1,12 +1,12 @@
-import { InstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/InstructionCompiler";
-import { UserOptionInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/UserOptionInstructionCompiler";
-import { Node } from "../../../NodeSystem/Node";
-import { ICategoryOptions } from "../../../Options/ICategoryOptions";
-import { IUserOptionOptions } from "../../../Options/UserPanel/IUserOptionOptions";
-import { UserCategory } from "../../../Options/UserPanel/UserCategory";
-import { UserOption } from "../../../Options/UserPanel/UserOption";
-import { IOptionInstructionOptions } from "./IOptionInstructionOptions";
-import { OptionInstruction } from "./OptionInstruction";
+import { InstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/InstructionCompiler.js";
+import { UserOptionInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/UserOptionInstructionCompiler.js";
+import { Node } from "../../../NodeSystem/Node.js";
+import { ICategoryOptions } from "../../../Options/ICategoryOptions.js";
+import { IUserOptionOptions } from "../../../Options/UserPanel/IUserOptionOptions.js";
+import { UserCategory } from "../../../Options/UserPanel/UserCategory.js";
+import { UserOption } from "../../../Options/UserPanel/UserOption.js";
+import { IOptionInstructionOptions } from "./IOptionInstructionOptions.js";
+import { OptionInstruction } from "./OptionInstruction.js";
 
 /**
  * Represents an instruction which provides options for users.

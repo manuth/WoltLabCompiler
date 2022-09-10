@@ -1,7 +1,7 @@
-import { CronJobInstruction } from "../../../PackageSystem/Instructions/Tasks/CronJobInstruction";
-import { Compiler } from "../../Compiler";
-import { CronJobFileCompiler } from "../../Tasks/CronJobFileCompiler";
-import { InstructionFileCompiler } from "./InstructionFileCompiler";
+import { CronJobInstruction } from "../../../PackageSystem/Instructions/Tasks/CronJobInstruction.js";
+import { Compiler } from "../../Compiler.js";
+import { CronJobFileCompiler } from "../../Tasks/CronJobFileCompiler.js";
+import { InstructionFileCompiler } from "./InstructionFileCompiler.js";
 
 /**
  * Provides the functionality to compile cronjob-instructions.

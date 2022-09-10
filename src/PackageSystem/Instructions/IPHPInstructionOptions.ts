@@ -1,6 +1,6 @@
-import { IInstructionOptions } from "./IInstructionOptions";
+import { IInstructionOptions } from "./IInstructionOptions.js";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { PHPInstruction } from "./PHPInstruction";
+import type { PHPInstruction } from "./PHPInstruction.js";
 
  /**
   * Provides options for the {@link PHPInstruction `PHPInstruction`} class.

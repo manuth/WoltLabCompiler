@@ -1,11 +1,11 @@
-import { GroupOptionFileCompiler } from "../../../Compilation/Options/GroupOptionFileCompiler";
-import { INode } from "../../../NodeSystem/Generic/INode";
-import { GroupCategory } from "../../../Options/Groups/GroupCategory";
-import { GroupOption } from "../../../Options/Groups/GroupOption";
-import { GroupOptionInstruction } from "../../../PackageSystem/Instructions/Options/GroupOptionInstruction";
-import { XMLEditor } from "../../../Serialization/XMLEditor";
-import { OptionCompilerTester } from "../TestComponents/Testers/OptionCompilerTester";
-import { OptionFileCompilerTestRunner } from "../TestComponents/TestRunners/OptionFileCompilerTestRunner";
+import { GroupOptionFileCompiler } from "../../../Compilation/Options/GroupOptionFileCompiler.js";
+import { INode } from "../../../NodeSystem/Generic/INode.js";
+import { GroupCategory } from "../../../Options/Groups/GroupCategory.js";
+import { GroupOption } from "../../../Options/Groups/GroupOption.js";
+import { GroupOptionInstruction } from "../../../PackageSystem/Instructions/Options/GroupOptionInstruction.js";
+import { XMLEditor } from "../../../Serialization/XMLEditor.js";
+import { OptionCompilerTester } from "../TestComponents/Testers/OptionCompilerTester.js";
+import { OptionFileCompilerTestRunner } from "../TestComponents/TestRunners/OptionFileCompilerTestRunner.js";
 
 /**
  * Registers tests for the {@link GroupOptionFileCompiler `GroupOptionFileCompiler`} class.

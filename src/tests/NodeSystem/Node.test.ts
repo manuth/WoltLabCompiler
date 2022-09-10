@@ -1,7 +1,7 @@
-import { ok, strictEqual } from "assert";
-import { INodeOptions } from "../../NodeSystem/INodeOptions";
-import { Node } from "../../NodeSystem/Node";
-import { NodeItem } from "../../NodeSystem/NodeItem";
+import { ok, strictEqual } from "node:assert";
+import { INodeOptions } from "../../NodeSystem/INodeOptions.js";
+import { Node } from "../../NodeSystem/Node.js";
+import { NodeItem } from "../../NodeSystem/NodeItem.js";
 
 /**
  * Registers tests for the {@link Node `Node<T, TOptions>`} class.

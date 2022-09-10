@@ -1,4 +1,4 @@
-import { VersionKind } from "./VersionKind";
+import { VersionKind } from "./VersionKind.js";
 
 /**
  * Represents a version number.

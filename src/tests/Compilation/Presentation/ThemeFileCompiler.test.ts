@@ -1,14 +1,16 @@
-import { strictEqual } from "assert";
+import { strictEqual } from "node:assert";
 import { TempFile } from "@manuth/temp-files";
-import { writeJSON } from "fs-extra";
-import { ThemeFileCompiler } from "../../../Compilation/Presentation/ThemeFileCompiler";
-import { Constants } from "../../../Constants";
-import { Theme } from "../../../Customization/Presentation/Themes/Theme";
-import { ILocalization } from "../../../Globalization/ILocalization";
-import { ThemeInstruction } from "../../../PackageSystem/Instructions/Customization/Presentation/ThemeInstruction";
-import { Package } from "../../../PackageSystem/Package";
-import { XMLFileCompilerTester } from "../TestComponents/Testers/XMLFileCompilerTester";
-import { XMLCompilerTestRunner } from "../TestComponents/TestRunners/XMLCompilerTestRunner";
+import fs from "fs-extra";
+import { ThemeFileCompiler } from "../../../Compilation/Presentation/ThemeFileCompiler.js";
+import { Constants } from "../../../Constants.js";
+import { Theme } from "../../../Customization/Presentation/Themes/Theme.js";
+import { ILocalization } from "../../../Globalization/ILocalization.js";
+import { ThemeInstruction } from "../../../PackageSystem/Instructions/Customization/Presentation/ThemeInstruction.js";
+import { Package } from "../../../PackageSystem/Package.js";
+import { XMLFileCompilerTester } from "../TestComponents/Testers/XMLFileCompilerTester.js";
+import { XMLCompilerTestRunner } from "../TestComponents/TestRunners/XMLCompilerTestRunner.js";
+
+const { writeJSON } = fs;
 
 /**
  * Registers tests for the {@link ThemeFileCompiler `ThemeFileCompiler`} class.

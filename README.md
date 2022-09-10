@@ -52,7 +52,7 @@ In order to get your package compiled following steps are necessary:
 Following piece of code creates a small package providing new dummy options for WoltLab's control panel:
 
 ```ts
-import { join } from "path";
+import { join } from "node:path";
 import { ACPOptionInstruction, InvariantCultureName, OptionType, Package, PackageCompiler } from "@manuth/woltlab-compiler";
 
 (async () =>
@@ -110,7 +110,7 @@ import { ACPOptionInstruction, InvariantCultureName, OptionType, Package, Packag
                 ]
             }));
 
-    compiler.DestinationPath = join(__dirname, "my-package.tar");
+    compiler.DestinationPath = join("my-package.tar");
     await compiler.Execute();
 })();
 ```
@@ -156,7 +156,7 @@ The only compiler you might ever be using might be the `PackageCompiler` for gen
 However, you can even generate individual files in case you want to take care of creating the `.tar` file yourself:
 
 ```ts
-import { join } from "path";
+import { join } from "node:path";
 import { ACPOptionFileCompiler, ACPOptionInstruction } from "@manuth/woltlab-compiler";
 
 (async () =>
@@ -175,7 +175,7 @@ import { ACPOptionFileCompiler, ACPOptionInstruction } from "@manuth/woltlab-com
                 ]
             }));
 
-    compiler.DestinationPath = join(__dirname, compiler.Item.FileName);
+    compiler.DestinationPath = join(compiler.Item.FileName);
     await compiler.Execute();
 })();
 ```
@@ -209,7 +209,7 @@ Please notice, that providing a fallback value most commonly isn't possible due 
 With the previously mentioned core concept in mind, the first thing you might want to do is creating a piece of code for creating a dummy package:
 
 ```ts
-import { join } from "path";
+import { join } from "node:path";
 import { Package, PackageCompiler } from "@manuth/woltlab-compiler";
 
 (async () =>
@@ -227,7 +227,7 @@ import { Package, PackageCompiler } from "@manuth/woltlab-compiler";
                 }
             }));
 
-    compiler.DestinationPath = join(__dirname, "my-package.tar");
+    compiler.DestinationPath = join("my-package.tar");
 })();
 ```
 
@@ -319,25 +319,25 @@ All instructions mentioned before are used in the same manner and thus accept th
 ***Example:***
 
 ```ts
-import { join } from "path";
+import { join } from "node:path";
 import { ACPTemplateInstruction, TemplateInstruction, ApplicationFileSystemInstruction } from "@manuth/woltlab-compiler";
 
 new ACPTemplateInstruction(
     {
         FileName: "acpTemplates.tar",
         Application: "wcf",
-        Source: join(__dirname, "..", "assets", "acpTemplates")
+        Source: join("..", "assets", "acpTemplates")
     });
 
 new TemplateInstruction(
     {
         Application: "wcf",
-        Source: join(__dirname, "..", "assets", "templates")
+        Source: join("..", "assets", "templates")
     });
 
 new ApplicationFileSystemInstruction(
     {
-        Source: join(__dirname, "..", "assets", "files")
+        Source: join("..", "assets", "files")
     });
 ```
 
@@ -355,7 +355,7 @@ new ApplicationFileSystemInstruction(
 > > <summary>Show Verbose Code</summary>
 > >
 > > ```ts
-> > import { join } from "path";
+> > import { join } from "node:path";
 > > import { ACPOptionInstruction, ApplicationFileSystemInstruction, Package, PackageCompiler, TemplateInstruction } from "@manuth/woltlab-compiler";
 > > (async () =>
 > > {
@@ -392,16 +392,16 @@ new ApplicationFileSystemInstruction(
 > >                             }),
 > >                         new TemplateInstruction(
 > >                             {
-> >                                 Source: join(__dirname, "templates")
+> >                                 Source: join("templates")
 > >                             }),
 > >                         new ApplicationFileSystemInstruction(
 > >                             {
-> >                                 Source: join(__dirname, "files")
+> >                                 Source: join("files")
 > >                             })
 > >                     ]
 > >                 }
 > >             }));
-> >     compiler.DestinationPath = join(__dirname, "test.tar");
+> >     compiler.DestinationPath = join("test.tar");
 > >     await compiler.Execute();
 > > })();
 > > ```
@@ -503,7 +503,7 @@ The priorities of the variables are as followed:
 >
 > ***index.ts***
 > ```ts
-> import { join } from "path";
+> import { join } from "node:path";
 > import { Package, PackageCompiler } from "@manuth/woltlab-compiler";
 >
 > (async () =>
@@ -525,17 +525,17 @@ The priorities of the variables are as followed:
 >                                     DisplayName: {
 >                                         [InvariantCultureName]: "My Theme"
 >                                     },
->                                     CoverPhoto: join(__dirname, "cover.jpg"), // Loads the picture from ./cover.jpg
->                                     Thumbnail: join(__dirname, "thumbnail.png"), // Loads the thumbnail from ./thumbnail.png
->                                     HighResThumbnail: join(__dirname, "hq-thumbnail.png"), // Loads the hq thumbnail from ./hq-thumbnail.png
+>                                     CoverPhoto: join("cover.jpg"), // Loads the picture from ./cover.jpg
+>                                     Thumbnail: join("thumbnail.png"), // Loads the thumbnail from ./thumbnail.png
+>                                     HighResThumbnail: join("hq-thumbnail.png"), // Loads the hq thumbnail from ./hq-thumbnail.png
 >                                     Variables: {
 >                                         wcfFontSizeDefault: "1px"
 >                                     },
->                                     CustomScssFileName: join(__dirname, "style.scss"), // Loads the custom scss code from ./style.scss
->                                     ScssOverrideFileName: join(__dirname, "overrides.scss"), // Loads variables from ./overrides.scss
->                                     VariableFileName: join(__dirname, "variables.json"),
+>                                     CustomScssFileName: join("style.scss"), // Loads the custom scss code from ./style.scss
+>                                     ScssOverrideFileName: join("overrides.scss"), // Loads variables from ./overrides.scss
+>                                     VariableFileName: join("variables.json"),
 >                                     Images: {
->                                         Source: join(__dirname, "images") // Loads the images from ./images
+>                                         Source: join("images") // Loads the images from ./images
 >                                     }
 >                                 }
 >                             })

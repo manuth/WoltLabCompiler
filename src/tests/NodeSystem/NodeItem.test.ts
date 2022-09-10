@@ -1,6 +1,6 @@
-import { strictEqual } from "assert";
-import { Node } from "../../NodeSystem/Node";
-import { NodeItem } from "../../NodeSystem/NodeItem";
+import { strictEqual } from "node:assert";
+import { Node } from "../../NodeSystem/Node.js";
+import { NodeItem } from "../../NodeSystem/NodeItem.js";
 
 /**
  * Registers tests for the {@link NodeItem `NodeItem`} class.

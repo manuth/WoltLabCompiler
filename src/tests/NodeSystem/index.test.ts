@@ -1,6 +1,6 @@
-import { basename } from "path";
-import { NodeTests } from "./Node.test";
-import { NodeItemTests } from "./NodeItem.test";
+import { basename } from "node:path";
+import { NodeTests } from "./Node.test.js";
+import { NodeItemTests } from "./NodeItem.test.js";
 
 /**
  * Registers tests for node-system components.
@@ -8,7 +8,7 @@ import { NodeItemTests } from "./NodeItem.test";
 export function NodeSystemTests(): void
 {
     suite(
-        basename(__dirname),
+        basename(new URL(".", import.meta.url).pathname),
         () =>
         {
             NodeTests();

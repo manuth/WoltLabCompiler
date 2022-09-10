@@ -1,7 +1,7 @@
-import { TemplateListener } from "../../Customization/Presentation/TemplateListener";
-import { TemplateListenerInstruction } from "../../PackageSystem/Instructions/Events/TemplateListenerInstruction";
-import { XMLEditor } from "../../Serialization/XMLEditor";
-import { ListenerFileCompiler } from "./ListenerFileCompiler";
+import { TemplateListener } from "../../Customization/Presentation/TemplateListener.js";
+import { TemplateListenerInstruction } from "../../PackageSystem/Instructions/Events/TemplateListenerInstruction.js";
+import { XMLEditor } from "../../Serialization/XMLEditor.js";
+import { ListenerFileCompiler } from "./ListenerFileCompiler.js";
 
 /**
  * Provides the functionality to compile template-listener files.

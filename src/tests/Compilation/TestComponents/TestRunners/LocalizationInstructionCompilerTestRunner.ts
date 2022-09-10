@@ -1,10 +1,13 @@
-import { ok, strictEqual } from "assert";
-import { readdir } from "fs-extra";
-import { join, parse } from "upath";
-import { InstructionCompiler } from "../../../../Compilation/PackageSystem/Instructions/InstructionCompiler";
-import { ILocalizationInstruction } from "../../../../PackageSystem/Instructions/Globalization/ILocalizationInstruction";
-import { CompilerTester } from "../Testers/CompilerTester";
-import { InstructionCompilerTestRunner } from "./InstructionCompilerTestRunner";
+import { ok, strictEqual } from "node:assert";
+import fs from "fs-extra";
+import path from "upath";
+import { InstructionCompiler } from "../../../../Compilation/PackageSystem/Instructions/InstructionCompiler.js";
+import { ILocalizationInstruction } from "../../../../PackageSystem/Instructions/Globalization/ILocalizationInstruction.js";
+import { CompilerTester } from "../Testers/CompilerTester.js";
+import { InstructionCompilerTestRunner } from "./InstructionCompilerTestRunner.js";
+
+const { readdir } = fs;
+const { join, parse } = path;
 
 /**
  * Registers tests for localization-instruction compilers.

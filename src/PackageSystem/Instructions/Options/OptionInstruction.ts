@@ -1,13 +1,13 @@
-import { LocalizationNode } from "../../../Globalization/LocalizationNode";
-import { INamedObject } from "../../../INamedObject";
-import { Node } from "../../../NodeSystem/Node";
-import { Category } from "../../../Options/Category";
-import { Option } from "../../../Options/Option";
-import { ILocalizationInstruction } from "../Globalization/ILocalizationInstruction";
-import { TranslationInstruction } from "../Globalization/TranslationInstruction";
-import { NodeSystemInstruction } from "../NodeSystem/NodeSystemInstruction";
-import { IOptionInstruction } from "./IOptionInstruction";
-import { IOptionInstructionOptions } from "./IOptionInstructionOptions";
+import { LocalizationNode } from "../../../Globalization/LocalizationNode.js";
+import { INamedObject } from "../../../INamedObject.js";
+import { Node } from "../../../NodeSystem/Node.js";
+import { Category } from "../../../Options/Category.js";
+import { Option } from "../../../Options/Option.js";
+import { ILocalizationInstruction } from "../Globalization/ILocalizationInstruction.js";
+import { TranslationInstruction } from "../Globalization/TranslationInstruction.js";
+import { NodeSystemInstruction } from "../NodeSystem/NodeSystemInstruction.js";
+import { IOptionInstruction } from "./IOptionInstruction.js";
+import { IOptionInstructionOptions } from "./IOptionInstructionOptions.js";
 
 /**
  * Represents an instruction which provides options.

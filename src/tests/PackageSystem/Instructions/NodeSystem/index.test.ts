@@ -1,5 +1,5 @@
-import { basename } from "path";
-import { NodeSystemInstructionTests } from "./NodeSystemInstruction.test";
+import { basename } from "node:path";
+import { NodeSystemInstructionTests } from "./NodeSystemInstruction.test.js";
 
 /**
  * Registers tests for node-system instructions.
@@ -7,7 +7,7 @@ import { NodeSystemInstructionTests } from "./NodeSystemInstruction.test";
 export function NodeSystemTests(): void
 {
     suite(
-        basename(__dirname),
+        basename(new URL(".", import.meta.url).pathname),
         () =>
         {
             NodeSystemInstructionTests();

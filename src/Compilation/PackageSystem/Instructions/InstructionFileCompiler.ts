@@ -1,6 +1,6 @@
-import { IInstruction } from "../../../PackageSystem/Instructions/IInstruction";
-import { Compiler } from "../../Compiler";
-import { InstructionCompiler } from "./InstructionCompiler";
+import { IInstruction } from "../../../PackageSystem/Instructions/IInstruction.js";
+import { Compiler } from "../../Compiler.js";
+import { InstructionCompiler } from "./InstructionCompiler.js";
 
 /**
  * Provides the functionality to compile instructions which only depend on one file-compiler.

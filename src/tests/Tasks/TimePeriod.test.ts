@@ -1,6 +1,6 @@
-import { strictEqual } from "assert";
-import { TimePeriod } from "../../Tasks/TimePeriod";
-import { PeriodTester } from "./PeriodTester";
+import { strictEqual } from "node:assert";
+import { TimePeriod } from "../../Tasks/TimePeriod.js";
+import { PeriodTester } from "./PeriodTester.js";
 
 /**
  * Registers tests for the {@link TimePeriod `TimePeriod`} class.

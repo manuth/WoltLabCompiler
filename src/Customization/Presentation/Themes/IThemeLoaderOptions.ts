@@ -1,4 +1,4 @@
-import { IThemeOptionBase } from "./IThemeOptionBase";
+import { IThemeOptionBase } from "./IThemeOptionBase.js";
 
 /**
  * Provides options for the {@link ThemeLoader `ThemeLoader`}-class.

@@ -1,8 +1,8 @@
-import { ICategory } from "../../../Options/Generic/ICategory";
-import { Option } from "../../../Options/Option";
-import { IOptionInstruction } from "../../../PackageSystem/Instructions/Options/IOptionInstruction";
-import { Compiler } from "../../Compiler";
-import { LocalizationProviderCompiler } from "./LocalizationProviderCompiler";
+import { ICategory } from "../../../Options/Generic/ICategory.js";
+import { Option } from "../../../Options/Option.js";
+import { IOptionInstruction } from "../../../PackageSystem/Instructions/Options/IOptionInstruction.js";
+import { Compiler } from "../../Compiler.js";
+import { LocalizationProviderCompiler } from "./LocalizationProviderCompiler.js";
 
 /**
  * Provides the functionality to compile instructions which provide options for the control-panel.

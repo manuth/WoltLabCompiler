@@ -1,5 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { ILocalizationInstruction } from "./ILocalizationInstruction";
+import type { ILocalizationInstruction } from "./ILocalizationInstruction.js";
 
 /**
  * Provides options for the {@link ILocalizationInstruction `ILocalizationInstruction`} interface.

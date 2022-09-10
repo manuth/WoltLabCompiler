@@ -1,7 +1,7 @@
-import { IPackageFileDescriptorOptions } from "./IPackageFileDescriptorOptions";
+import { IPackageFileDescriptorOptions } from "./IPackageFileDescriptorOptions.js";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { Package } from "./Package";
-import { PackageDescriptor } from "./PackageDescriptor";
+import type { Package } from "./Package.js";
+import { PackageDescriptor } from "./PackageDescriptor.js";
 
 /**
  * Provides an abstraction of a package stored in a file.

@@ -1,13 +1,15 @@
-import { join } from "upath";
-import { Component } from "./Component";
-import { ConflictingPackageDescriptor } from "./ConflictingPackageDescriptor";
-import { FileDescriptor } from "./FileDescriptor";
-import { InstructionSet } from "./Instructions/InstructionSet";
-import { UpdateInstructionSet } from "./Instructions/UpdateInstructionSet";
-import { IPackageOptions } from "./IPackageOptions";
-import { OptionalPackageDescriptor } from "./OptionalPackageDescriptor";
-import { Person } from "./Person";
-import { RequiredPackageDescriptor } from "./RequiredPackageDescriptor";
+import path from "upath";
+import { Component } from "./Component.js";
+import { ConflictingPackageDescriptor } from "./ConflictingPackageDescriptor.js";
+import { FileDescriptor } from "./FileDescriptor.js";
+import { InstructionSet } from "./Instructions/InstructionSet.js";
+import { UpdateInstructionSet } from "./Instructions/UpdateInstructionSet.js";
+import { IPackageOptions } from "./IPackageOptions.js";
+import { OptionalPackageDescriptor } from "./OptionalPackageDescriptor.js";
+import { Person } from "./Person.js";
+import { RequiredPackageDescriptor } from "./RequiredPackageDescriptor.js";
+
+const { join } = path;
 
 /**
  * Represents an extension-package.

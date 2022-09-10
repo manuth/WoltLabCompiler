@@ -1,7 +1,7 @@
-import { INodeOptions } from "../NodeSystem/INodeOptions";
-import { Node } from "../NodeSystem/Node";
-import { ILocalizationItemOptions } from "./ILocalizationItemOptions";
-import { LocalizationItem } from "./LocalizationItem";
+import { INodeOptions } from "../NodeSystem/INodeOptions.js";
+import { Node } from "../NodeSystem/Node.js";
+import { ILocalizationItemOptions } from "./ILocalizationItemOptions.js";
+import { LocalizationItem } from "./LocalizationItem.js";
 
 /**
  * Represents a node which provides localizations.

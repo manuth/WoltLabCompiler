@@ -1,7 +1,11 @@
-import { strictEqual } from "assert";
+import { strictEqual } from "node:assert";
 import { TempFileSystem } from "@manuth/temp-files";
-import { join } from "upath";
-import { Package } from "../../PackageSystem/Package";
+import RandExp from "randexp";
+import path from "upath";
+import { Package } from "../../PackageSystem/Package.js";
+
+const { join } = path;
+const { randexp } = RandExp;
 
 /**
  * Registers tests for the {@link Package `Package`} class.
@@ -17,8 +21,7 @@ export function PackageTests(): void
             suiteSetup(
                 async () =>
                 {
-                    // ToDo: use randexp
-                    versionNumber = "7.0.0";
+                    versionNumber = randexp(/\d{1,3}(\.\d{1,3}){2}/);
                 });
 
             suite(

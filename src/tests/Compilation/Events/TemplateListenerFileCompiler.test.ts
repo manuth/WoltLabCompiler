@@ -1,9 +1,9 @@
-import { TemplateListenerFileCompiler } from "../../../Compilation/Events/TemplateListenerFileCompiler";
-import { TemplateListener } from "../../../Customization/Presentation/TemplateListener";
-import { TemplateListenerInstruction } from "../../../PackageSystem/Instructions/Events/TemplateListenerInstruction";
-import { XMLEditor } from "../../../Serialization/XMLEditor";
-import { ListenerCompilerTester } from "../TestComponents/Testers/ListenerCompilerTester";
-import { ListenerCompilerTestRunner } from "../TestComponents/TestRunners/ListenerCompilerTestRunner";
+import { TemplateListenerFileCompiler } from "../../../Compilation/Events/TemplateListenerFileCompiler.js";
+import { TemplateListener } from "../../../Customization/Presentation/TemplateListener.js";
+import { TemplateListenerInstruction } from "../../../PackageSystem/Instructions/Events/TemplateListenerInstruction.js";
+import { XMLEditor } from "../../../Serialization/XMLEditor.js";
+import { ListenerCompilerTester } from "../TestComponents/Testers/ListenerCompilerTester.js";
+import { ListenerCompilerTestRunner } from "../TestComponents/TestRunners/ListenerCompilerTestRunner.js";
 
 /**
  * Registers tests for the {@link TemplateListenerFileCompiler `TemplateListenerFileCompiler`} class.

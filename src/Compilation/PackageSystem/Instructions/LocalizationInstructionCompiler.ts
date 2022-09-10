@@ -1,8 +1,10 @@
 import { TempDirectory } from "@manuth/temp-files";
-import { join, normalize } from "upath";
-import { ILocalizationInstruction } from "../../../PackageSystem/Instructions/Globalization/ILocalizationInstruction";
-import { LocalizationSetCompiler } from "../../Globalization/LocalizationSetCompiler";
-import { InstructionCompiler } from "./InstructionCompiler";
+import path from "upath";
+import { ILocalizationInstruction } from "../../../PackageSystem/Instructions/Globalization/ILocalizationInstruction.js";
+import { LocalizationSetCompiler } from "../../Globalization/LocalizationSetCompiler.js";
+import { InstructionCompiler } from "./InstructionCompiler.js";
+
+const { join, normalize } = path;
 
 /**
  * Provides the functionality to compile {@link ILocalizationInstruction `ILocalizationInstruction`}s.

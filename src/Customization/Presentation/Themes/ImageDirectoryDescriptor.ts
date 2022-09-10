@@ -1,6 +1,8 @@
-import { basename, isAbsolute, normalize, sep } from "path";
-import { FileDescriptor } from "../../../PackageSystem/FileDescriptor";
-import { IImageDirectoryDescriptorOptions } from "./IImageDirectoryDescriptorOptions";
+import path from "upath";
+import { FileDescriptor } from "../../../PackageSystem/FileDescriptor.js";
+import { IImageDirectoryDescriptorOptions } from "./IImageDirectoryDescriptorOptions.js";
+
+const { basename, isAbsolute, normalize, sep } = path;
 
 /**
  * Provides a description of a directory which contains images.

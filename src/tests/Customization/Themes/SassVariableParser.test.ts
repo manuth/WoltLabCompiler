@@ -1,9 +1,12 @@
-import { ok, strictEqual } from "assert";
+import { ok, strictEqual } from "node:assert";
 import { TempDirectory } from "@manuth/temp-files";
-import dedent = require("dedent");
-import { writeFile } from "fs-extra";
-import { basename } from "upath";
-import { SassVariableParser } from "../../../Customization/Presentation/Themes/SassVariableParser";
+import dedent from "dedent";
+import fs from "fs-extra";
+import path from "upath";
+import { SassVariableParser } from "../../../Customization/Presentation/Themes/SassVariableParser.js";
+
+const { writeFile } = fs;
+const { basename } = path;
 
 /**
  * Registers tests for the {@link SassVariableParser `SassVariableParser`} class.

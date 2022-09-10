@@ -1,4 +1,4 @@
-import { IBBCodeAttributeOptions } from "./IBBCodeAttributeOptions";
+import { IBBCodeAttributeOptions } from "./IBBCodeAttributeOptions.js";
 
 /**
  * Represents an attribute of a bb-code.

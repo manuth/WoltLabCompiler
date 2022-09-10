@@ -1,11 +1,11 @@
-import { ok, strictEqual } from "assert";
-import { CronJobFileCompiler } from "../../../Compilation/Tasks/CronJobFileCompiler";
-import { Constants } from "../../../Constants";
-import { ILocalization } from "../../../Globalization/ILocalization";
-import { CronJobInstruction } from "../../../PackageSystem/Instructions/Tasks/CronJobInstruction";
-import { TimePeriod } from "../../../Tasks/TimePeriod";
-import { ImportCompilerTester } from "../TestComponents/Testers/ImportCompilerTester";
-import { ImportCompilerTestRunner } from "../TestComponents/TestRunners/ImportCompilerTestRunner";
+import { ok, strictEqual } from "node:assert";
+import { CronJobFileCompiler } from "../../../Compilation/Tasks/CronJobFileCompiler.js";
+import { Constants } from "../../../Constants.js";
+import { ILocalization } from "../../../Globalization/ILocalization.js";
+import { CronJobInstruction } from "../../../PackageSystem/Instructions/Tasks/CronJobInstruction.js";
+import { TimePeriod } from "../../../Tasks/TimePeriod.js";
+import { ImportCompilerTester } from "../TestComponents/Testers/ImportCompilerTester.js";
+import { ImportCompilerTestRunner } from "../TestComponents/TestRunners/ImportCompilerTestRunner.js";
 
 /**
  * Registers tests for the {@link CronJobFileCompiler `CronJobFileCompiler`} class.

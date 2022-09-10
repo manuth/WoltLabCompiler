@@ -1,4 +1,4 @@
-import { IInstruction } from "../IInstruction";
+import { IInstruction } from "../IInstruction.js";
 
 /**
  * Represents a node which provides translations.

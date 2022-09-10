@@ -1,12 +1,12 @@
-import { ACPOptionInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/ACPOptionInstructionCompiler";
-import { InstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/InstructionCompiler";
-import { Node } from "../../../NodeSystem/Node";
-import { ACPCategory } from "../../../Options/ControlPanel/ACPCategory";
-import { ACPOption } from "../../../Options/ControlPanel/ACPOption";
-import { IACPOptionOptions } from "../../../Options/ControlPanel/IACPOptionOptions";
-import { ICategoryOptions } from "../../../Options/ICategoryOptions";
-import { IOptionInstructionOptions } from "./IOptionInstructionOptions";
-import { OptionInstruction } from "./OptionInstruction";
+import { ACPOptionInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/ACPOptionInstructionCompiler.js";
+import { InstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/InstructionCompiler.js";
+import { Node } from "../../../NodeSystem/Node.js";
+import { ACPCategory } from "../../../Options/ControlPanel/ACPCategory.js";
+import { ACPOption } from "../../../Options/ControlPanel/ACPOption.js";
+import { IACPOptionOptions } from "../../../Options/ControlPanel/IACPOptionOptions.js";
+import { ICategoryOptions } from "../../../Options/ICategoryOptions.js";
+import { IOptionInstructionOptions } from "./IOptionInstructionOptions.js";
+import { OptionInstruction } from "./OptionInstruction.js";
 
 /**
  * Represents an instruction which provides options for the control-panel.

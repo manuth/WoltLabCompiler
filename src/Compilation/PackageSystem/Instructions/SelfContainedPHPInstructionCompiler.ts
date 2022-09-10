@@ -1,7 +1,9 @@
 import { TempDirectory } from "@manuth/temp-files";
-import { copy } from "fs-extra";
-import { SelfContainedPHPInstruction } from "../../../PackageSystem/Instructions/SelfContainedPHPInstruction";
-import { InstructionCompiler } from "./InstructionCompiler";
+import fs from "fs-extra";
+import { SelfContainedPHPInstruction } from "../../../PackageSystem/Instructions/SelfContainedPHPInstruction.js";
+import { InstructionCompiler } from "./InstructionCompiler.js";
+
+const { copy } = fs;
 
 /**
  * Provides the functionality to compile self-contained php-instructions.

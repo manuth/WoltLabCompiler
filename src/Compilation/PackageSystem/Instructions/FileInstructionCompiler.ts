@@ -1,7 +1,7 @@
 import { TempDirectory } from "@manuth/temp-files";
-import { ApplicationFileSystemInstruction } from "../../../PackageSystem/Instructions/FileSystem/ApplicationFileSystemInstruction";
-import { XMLEditor } from "../../../Serialization/XMLEditor";
-import { InstructionCompiler } from "./InstructionCompiler";
+import { ApplicationFileSystemInstruction } from "../../../PackageSystem/Instructions/FileSystem/ApplicationFileSystemInstruction.js";
+import { XMLEditor } from "../../../Serialization/XMLEditor.js";
+import { InstructionCompiler } from "./InstructionCompiler.js";
 
 /**
  * Provides the functionality to compile a file-instruction.

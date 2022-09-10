@@ -1,8 +1,8 @@
-import { INode } from "../../NodeSystem/INode";
-import { Category } from "../Category";
-import { ICategoryOptions } from "../ICategoryOptions";
-import { ACPOption } from "./ACPOption";
-import { IACPOptionOptions } from "./IACPOptionOptions";
+import { INode } from "../../NodeSystem/INode.js";
+import { Category } from "../Category.js";
+import { ICategoryOptions } from "../ICategoryOptions.js";
+import { ACPOption } from "./ACPOption.js";
+import { IACPOptionOptions } from "./IACPOptionOptions.js";
 
 /**
  * Represents an option-category for the control-panel.

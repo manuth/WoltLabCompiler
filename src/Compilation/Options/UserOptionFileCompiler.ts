@@ -1,8 +1,8 @@
-import { UserCategory } from "../../Options/UserPanel/UserCategory";
-import { UserOption } from "../../Options/UserPanel/UserOption";
-import { UserOptionInstruction } from "../../PackageSystem/Instructions/Options/UserOptionInstruction";
-import { XMLEditor } from "../../Serialization/XMLEditor";
-import { OptionFileCompiler } from "./OptionFileCompiler";
+import { UserCategory } from "../../Options/UserPanel/UserCategory.js";
+import { UserOption } from "../../Options/UserPanel/UserOption.js";
+import { UserOptionInstruction } from "../../PackageSystem/Instructions/Options/UserOptionInstruction.js";
+import { XMLEditor } from "../../Serialization/XMLEditor.js";
+import { OptionFileCompiler } from "./OptionFileCompiler.js";
 
 /**
  * Provides the functionality to compiler user-option files.

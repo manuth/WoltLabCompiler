@@ -1,5 +1,5 @@
-import { IListenerOptions } from "./IListenerOptions";
-import { ListenerEnvironment } from "./ListenerEnvironment";
+import { IListenerOptions } from "./IListenerOptions.js";
+import { ListenerEnvironment } from "./ListenerEnvironment.js";
 
 /**
  * Represents a component which listens to specific events.

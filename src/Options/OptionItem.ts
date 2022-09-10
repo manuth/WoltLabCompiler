@@ -1,6 +1,6 @@
-import { Localization } from "../Globalization/Localization";
-import { IOptionItemOptions } from "./IOptionItemOptions";
-import { Option } from "./Option";
+import { Localization } from "../Globalization/Localization.js";
+import { IOptionItemOptions } from "./IOptionItemOptions.js";
+import { Option } from "./Option.js";
 
 /**
  * Represents an item of an option.

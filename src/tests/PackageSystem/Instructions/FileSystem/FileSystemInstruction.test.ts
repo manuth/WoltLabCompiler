@@ -1,5 +1,5 @@
-import { strictEqual } from "assert";
-import { FileSystemInstruction } from "../../../../PackageSystem/Instructions/FileSystem/FileSystemInstruction";
+import { strictEqual } from "node:assert";
+import { FileSystemInstruction } from "../../../../PackageSystem/Instructions/FileSystem/FileSystemInstruction.js";
 
 /**
  * Registers tests for the {@link FileSystemInstruction `FileSystemInstruction`} class.

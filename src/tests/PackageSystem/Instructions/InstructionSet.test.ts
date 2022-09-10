@@ -1,7 +1,7 @@
-import { ok, strictEqual } from "assert";
-import { Instruction } from "../../../PackageSystem/Instructions/Instruction";
-import { InstructionSet } from "../../../PackageSystem/Instructions/InstructionSet";
-import { Package } from "../../../PackageSystem/Package";
+import { ok, strictEqual } from "node:assert";
+import { Instruction } from "../../../PackageSystem/Instructions/Instruction.js";
+import { InstructionSet } from "../../../PackageSystem/Instructions/InstructionSet.js";
+import { Package } from "../../../PackageSystem/Package.js";
 
 /**
  * Registers tests for the {@link InstructionSet `InstructionSet`} class.

@@ -1,7 +1,7 @@
-import { Constants } from "../../Constants";
-import { CronJobInstruction } from "../../PackageSystem/Instructions/Tasks/CronJobInstruction";
-import { XMLEditor } from "../../Serialization/XMLEditor";
-import { NamedObjectDeletionFileCompiler } from "../NamedObjectDeletionFileCompiler";
+import { Constants } from "../../Constants.js";
+import { CronJobInstruction } from "../../PackageSystem/Instructions/Tasks/CronJobInstruction.js";
+import { XMLEditor } from "../../Serialization/XMLEditor.js";
+import { NamedObjectDeletionFileCompiler } from "../NamedObjectDeletionFileCompiler.js";
 
 /**
  * Provides the functionality to compile cron-job files.

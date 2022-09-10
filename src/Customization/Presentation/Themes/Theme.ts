@@ -1,9 +1,9 @@
-import { Component } from "../../../PackageSystem/Component";
-import { FileDescriptor } from "../../../PackageSystem/FileDescriptor";
-import { ThemeInstruction } from "../../../PackageSystem/Instructions/Customization/Presentation/ThemeInstruction";
-import { Person } from "../../../PackageSystem/Person";
-import { ImageDirectoryDescriptor } from "./ImageDirectoryDescriptor";
-import { IThemeOptions } from "./IThemeOptions";
+import { Component } from "../../../PackageSystem/Component.js";
+import { FileDescriptor } from "../../../PackageSystem/FileDescriptor.js";
+import { ThemeInstruction } from "../../../PackageSystem/Instructions/Customization/Presentation/ThemeInstruction.js";
+import { Person } from "../../../PackageSystem/Person.js";
+import { ImageDirectoryDescriptor } from "./ImageDirectoryDescriptor.js";
+import { IThemeOptions } from "./IThemeOptions.js";
 
 /**
  * Represents a theme.

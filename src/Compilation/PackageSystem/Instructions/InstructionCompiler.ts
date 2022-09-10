@@ -1,7 +1,9 @@
 import { DOMParser } from "@xmldom/xmldom";
-import { join } from "upath";
-import { IInstruction } from "../../../PackageSystem/Instructions/IInstruction";
-import { Compiler } from "../../Compiler";
+import path from "upath";
+import { IInstruction } from "../../../PackageSystem/Instructions/IInstruction.js";
+import { Compiler } from "../../Compiler.js";
+
+const { join } = path;
 
 /**
  * Provides the functionality to compile an instruction.

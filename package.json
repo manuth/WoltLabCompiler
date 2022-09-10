@@ -1,6 +1,7 @@
 {
   "name": "@manuth/woltlab-compiler",
-  "version": "3.0.1",
+  "version": "4.0.0",
+  "type": "module",
   "description": "A compiler for generating WoltLab-Package `.tar` Archives and other WoltLab-Package Components",
   "author": "Manuel Thalmann <m@nuth.ch>",
   "license": "MIT",
@@ -13,11 +14,20 @@
     "Compiler",
     "TypeScript"
   ],
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./lib/index.d.ts",
+        "default": "./lib/index.js"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
   "directories": {
-    "lib": "lib",
-    "test": "test"
+    "lib": "./lib",
+    "test": "./src/tests"
   },
   "homepage": "https://github.com/manuth/WoltLabCompiler#readme",
   "repository": {
@@ -35,14 +45,14 @@
     "rebuild": "npm run clean && npm run build",
     "watch": "npm run build -- --watch",
     "clean": "npm run build -- --clean && rimraf ./lib",
-    "lint": "eslint --max-warnings 0 ./src .eslintrc.js",
+    "lint": "eslint --max-warnings 0 ./src .eslintrc.cjs",
     "lint-ide": "npm run lint || exit 0",
     "test": "mocha",
     "prepare": "npm run patch-ts && npm run rebuild",
     "patch-ts": "ts-patch install"
   },
   "dependencies": {
-    "@manuth/temp-files": "^2.0.9",
+    "@manuth/temp-files": "^3.0.0",
     "@xmldom/xmldom": "^0.8.2",
     "colornames": "^1.1.1",
     "fs-extra": "^10.1.0",
@@ -73,6 +83,7 @@
     "dedent": "^0.7.0",
     "eslint": "^8.23.0",
     "mocha": "^10.0.0",
+    "randexp": "^0.5.3",
     "random-js": "^2.1.0",
     "rimraf": "^3.0.2",
     "sinon": "^14.0.0",

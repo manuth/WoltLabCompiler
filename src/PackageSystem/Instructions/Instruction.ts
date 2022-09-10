@@ -1,9 +1,11 @@
-import { join } from "upath";
-import { InstructionCompiler } from "../../Compilation/PackageSystem/Instructions/InstructionCompiler";
-import { Package } from "../Package";
-import { IInstruction } from "./IInstruction";
-import { IInstructionOptions } from "./IInstructionOptions";
-import { InstructionSet } from "./InstructionSet";
+import path from "upath";
+import { InstructionCompiler } from "../../Compilation/PackageSystem/Instructions/InstructionCompiler.js";
+import { Package } from "../Package.js";
+import { IInstruction } from "./IInstruction.js";
+import { IInstructionOptions } from "./IInstructionOptions.js";
+import { InstructionSet } from "./InstructionSet.js";
+
+const { join } = path;
 
 /**
  * Represents a step of a package-installation.

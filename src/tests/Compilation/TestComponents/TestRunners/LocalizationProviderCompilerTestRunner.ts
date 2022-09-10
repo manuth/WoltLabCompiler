@@ -1,9 +1,9 @@
-import { strictEqual } from "assert";
-import { InstructionCompiler } from "../../../../Compilation/PackageSystem/Instructions/InstructionCompiler";
-import { ILocalizationInstruction } from "../../../../PackageSystem/Instructions/Globalization/ILocalizationInstruction";
-import { LocalizationInstruction } from "../../../../PackageSystem/Instructions/Globalization/LocalizationInstruction";
-import { CompilerTester } from "../Testers/CompilerTester";
-import { LocalizationInstructionCompilerTestRunner } from "./LocalizationInstructionCompilerTestRunner";
+import { strictEqual } from "node:assert";
+import { InstructionCompiler } from "../../../../Compilation/PackageSystem/Instructions/InstructionCompiler.js";
+import { ILocalizationInstruction } from "../../../../PackageSystem/Instructions/Globalization/ILocalizationInstruction.js";
+import { LocalizationInstruction } from "../../../../PackageSystem/Instructions/Globalization/LocalizationInstruction.js";
+import { CompilerTester } from "../Testers/CompilerTester.js";
+import { LocalizationInstructionCompilerTestRunner } from "./LocalizationInstructionCompilerTestRunner.js";
 
 /**
  * Registers tests for {@link LocalizationProviderCompiler `LocalizationProviderCompiler`}s.

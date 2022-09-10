@@ -1,6 +1,6 @@
-import { strictEqual } from "assert";
-import dedent = require("dedent");
-import { XML } from "../../Serialization/XML";
+import { strictEqual } from "node:assert";
+import dedent from "dedent";
+import { XML } from "../../Serialization/XML.js";
 
 /**
  * Registers tests for the {@link XML `XML`} class.

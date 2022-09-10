@@ -1,8 +1,8 @@
-import { CronJobInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/CronJobInstructionCompiler";
-import { InstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/InstructionCompiler";
-import { CronJob } from "../../../Tasks/CronJob";
-import { NamedDeleteInstruction } from "../NamedDeleteInstruction";
-import { ICronJobInstructionOptions } from "./ICronJobInstructionOptions";
+import { CronJobInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/CronJobInstructionCompiler.js";
+import { InstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/InstructionCompiler.js";
+import { CronJob } from "../../../Tasks/CronJob.js";
+import { NamedDeleteInstruction } from "../NamedDeleteInstruction.js";
+import { ICronJobInstructionOptions } from "./ICronJobInstructionOptions.js";
 
 /**
  * Represents an instruction which install cron-jobs.

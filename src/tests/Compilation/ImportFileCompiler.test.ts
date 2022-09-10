@@ -1,6 +1,6 @@
-import { ImportFileCompiler } from "../../Compilation/ImportFileCompiler";
-import { ImportCompilerTester } from "./TestComponents/Testers/ImportCompilerTester";
-import { ImportCompilerTestRunner } from "./TestComponents/TestRunners/ImportCompilerTestRunner";
+import { ImportFileCompiler } from "../../Compilation/ImportFileCompiler.js";
+import { ImportCompilerTester } from "./TestComponents/Testers/ImportCompilerTester.js";
+import { ImportCompilerTestRunner } from "./TestComponents/TestRunners/ImportCompilerTestRunner.js";
 
 /**
  * Registers tests for the {@link ImportFileCompiler `ImportFileCompiler<T>`} class.

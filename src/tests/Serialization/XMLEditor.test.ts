@@ -1,6 +1,6 @@
-import { ok, strictEqual, throws } from "assert";
-import { XML } from "../../Serialization/XML";
-import { XMLEditor } from "../../Serialization/XMLEditor";
+import { ok, strictEqual, throws } from "node:assert";
+import { XML } from "../../Serialization/XML.js";
+import { XMLEditor } from "../../Serialization/XMLEditor.js";
 
 /**
  * Registers tests for the {@link XMLEditor `XMLEditor`} class.

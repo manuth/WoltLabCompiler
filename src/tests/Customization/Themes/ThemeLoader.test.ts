@@ -1,12 +1,14 @@
-import { ok, strictEqual } from "assert";
-import { EOL } from "os";
+import { ok, strictEqual } from "node:assert";
+import { EOL } from "node:os";
 import { TempDirectory } from "@manuth/temp-files";
-import dedent = require("dedent");
-import { writeFile, writeJSON } from "fs-extra";
-import { Theme } from "../../../Customization/Presentation/Themes/Theme";
-import { ThemeLoader } from "../../../Customization/Presentation/Themes/ThemeLoader";
-import { ThemeInstruction } from "../../../PackageSystem/Instructions/Customization/Presentation/ThemeInstruction";
-import { Package } from "../../../PackageSystem/Package";
+import dedent from "dedent";
+import fs from "fs-extra";
+import { Theme } from "../../../Customization/Presentation/Themes/Theme.js";
+import { ThemeLoader } from "../../../Customization/Presentation/Themes/ThemeLoader.js";
+import { ThemeInstruction } from "../../../PackageSystem/Instructions/Customization/Presentation/ThemeInstruction.js";
+import { Package } from "../../../PackageSystem/Package.js";
+
+const { writeFile, writeJSON } = fs;
 
 /**
  * Registers tests for the theme-loader.

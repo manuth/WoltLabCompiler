@@ -1,7 +1,7 @@
-import { INamedObject } from "../../../INamedObject";
-import { IDeleteInstructionOptions } from "../IDeleteInstructionOptions";
+import { INamedObject } from "../../../INamedObject.js";
+import { IDeleteInstructionOptions } from "../IDeleteInstructionOptions.js";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { ListenerInstruction } from "./ListenerInstruction";
+import type { ListenerInstruction } from "./ListenerInstruction.js";
 
 /**
  * Provides options for the {@link ListenerInstruction `ListenerInstruction<T, TOptions>`} class.

@@ -1,8 +1,8 @@
-import { INamedObject } from "../INamedObject";
-import { INamedDeleteInstruction } from "../PackageSystem/Instructions/INamedDeleteInstruction";
-import { XML } from "../Serialization/XML";
-import { XMLEditor } from "../Serialization/XMLEditor";
-import { ObjectDeletionFileCompiler } from "./ObjectDeletionFileCompiler";
+import { INamedObject } from "../INamedObject.js";
+import { INamedDeleteInstruction } from "../PackageSystem/Instructions/INamedDeleteInstruction.js";
+import { XML } from "../Serialization/XML.js";
+import { XMLEditor } from "../Serialization/XMLEditor.js";
+import { ObjectDeletionFileCompiler } from "./ObjectDeletionFileCompiler.js";
 
 /**
  * Provides the functionality to compile files with a named delete-section.

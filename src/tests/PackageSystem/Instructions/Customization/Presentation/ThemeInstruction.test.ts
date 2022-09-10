@@ -1,6 +1,8 @@
-import { strictEqual } from "assert";
-import { parse } from "upath";
-import { ThemeInstruction } from "../../../../../PackageSystem/Instructions/Customization/Presentation/ThemeInstruction";
+import { strictEqual } from "node:assert";
+import path from "upath";
+import { ThemeInstruction } from "../../../../../PackageSystem/Instructions/Customization/Presentation/ThemeInstruction.js";
+
+const { parse } = path;
 
 /**
  * Registers tests for the {@link ThemeInstruction `ThemeInstruction`} class.

@@ -1,7 +1,7 @@
-import { EventListener } from "../../Events/EventListener";
-import { EventListenerInstruction } from "../../PackageSystem/Instructions/Events/EventListenerInstruction";
-import { XMLEditor } from "../../Serialization/XMLEditor";
-import { ListenerFileCompiler } from "./ListenerFileCompiler";
+import { EventListener } from "../../Events/EventListener.js";
+import { EventListenerInstruction } from "../../PackageSystem/Instructions/Events/EventListenerInstruction.js";
+import { XMLEditor } from "../../Serialization/XMLEditor.js";
+import { ListenerFileCompiler } from "./ListenerFileCompiler.js";
 
 /**
  * Provides the functionality to compile event-listener files.

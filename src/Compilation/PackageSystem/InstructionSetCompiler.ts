@@ -1,7 +1,7 @@
-import { IInstruction } from "../../PackageSystem/Instructions/IInstruction";
-import { InstructionSet } from "../../PackageSystem/Instructions/InstructionSet";
-import { Compiler } from "../Compiler";
-import { InstructionCompiler } from "./Instructions/InstructionCompiler";
+import { IInstruction } from "../../PackageSystem/Instructions/IInstruction.js";
+import { InstructionSet } from "../../PackageSystem/Instructions/InstructionSet.js";
+import { Compiler } from "../Compiler.js";
+import { InstructionCompiler } from "./Instructions/InstructionCompiler.js";
 
 /**
  * Provides the functionality to compile instruction-sets.

@@ -1,6 +1,9 @@
-import { readFileSync } from "fs-extra";
-import sassVars = require("get-sass-vars");
-import { dirname } from "upath";
+import fs from "fs-extra";
+import main, { SassAsyncOptions } from "get-sass-vars";
+import path from "upath";
+
+const { readFileSync } = fs;
+const { dirname } = path;
 
 /**
  * Provides the functionality to parse `sass`-variable files.
@@ -31,15 +34,14 @@ export class SassVariableParser
      */
     public async Parse(): Promise<Record<string, string>>
     {
-        // ToDo: Remove workaround
-        let variables: Record<string, string> = await (sassVars as any)(
+        let variables: Record<string, string> = await main(
             readFileSync(this.fileName).toString(),
             {
                 sassOptions: {
                     includePaths: [
                         dirname(this.fileName)
                     ]
-                }
+                } as Partial<SassAsyncOptions> as any
             }) as Record<string, string>;
 
         return Object.fromEntries(

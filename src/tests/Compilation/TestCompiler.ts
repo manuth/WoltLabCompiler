@@ -1,4 +1,4 @@
-import { Compiler } from "../../Compilation/Compiler";
+import { Compiler } from "../../Compilation/Compiler.js";
 
 /**
  * Provides a test-implementation of the {@link Compiler `Compiler`} class.

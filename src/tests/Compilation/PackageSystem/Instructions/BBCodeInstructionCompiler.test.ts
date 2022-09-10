@@ -1,8 +1,8 @@
-import { BBCodeInstructionCompiler } from "../../../../Compilation/PackageSystem/Instructions/BBCodeInstructionCompiler";
-import { ILocalization } from "../../../../Globalization/ILocalization";
-import { BBCodeInstruction } from "../../../../PackageSystem/Instructions/Customization/BBCodeInstruction";
-import { CompilerTester } from "../../TestComponents/Testers/CompilerTester";
-import { LocalizationProviderCompilerTestRunner } from "../../TestComponents/TestRunners/LocalizationProviderCompilerTestRunner";
+import { BBCodeInstructionCompiler } from "../../../../Compilation/PackageSystem/Instructions/BBCodeInstructionCompiler.js";
+import { ILocalization } from "../../../../Globalization/ILocalization.js";
+import { BBCodeInstruction } from "../../../../PackageSystem/Instructions/Customization/BBCodeInstruction.js";
+import { CompilerTester } from "../../TestComponents/Testers/CompilerTester.js";
+import { LocalizationProviderCompilerTestRunner } from "../../TestComponents/TestRunners/LocalizationProviderCompilerTestRunner.js";
 
 /**
  * Registers tests for the {@link BBCodeInstructionCompiler `BBCodeInstructionCompiler`} class.

@@ -1,6 +1,6 @@
-import { IListenerOptions } from "../../Events/IListenerOptions";
+import { IListenerOptions } from "../../Events/IListenerOptions.js";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { TemplateListener } from "./TemplateListener";
+import type { TemplateListener } from "./TemplateListener.js";
 
 /**
  * Provides options for the {@link TemplateListener `TemplateListener`} class.

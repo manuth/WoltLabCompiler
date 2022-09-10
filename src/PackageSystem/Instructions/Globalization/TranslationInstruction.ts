@@ -1,8 +1,8 @@
-import { ILocalizationItemOptions } from "../../../Globalization/ILocalizationItemOptions";
-import { LocalizationItem } from "../../../Globalization/LocalizationItem";
-import { Node } from "../../../NodeSystem/Node";
-import { INodeSystemInstructionOptions } from "../NodeSystem/INodeSystemInstructionOptions";
-import { LocalizationInstruction } from "./LocalizationInstruction";
+import { ILocalizationItemOptions } from "../../../Globalization/ILocalizationItemOptions.js";
+import { LocalizationItem } from "../../../Globalization/LocalizationItem.js";
+import { Node } from "../../../NodeSystem/Node.js";
+import { INodeSystemInstructionOptions } from "../NodeSystem/INodeSystemInstructionOptions.js";
+import { LocalizationInstruction } from "./LocalizationInstruction.js";
 
 /**
  * Represents an instruction which provides translations.

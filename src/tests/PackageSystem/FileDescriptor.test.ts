@@ -1,8 +1,11 @@
-import { strictEqual } from "assert";
+import { strictEqual } from "node:assert";
 import { TempDirectory, TempFile } from "@manuth/temp-files";
-import { ensureDir, ensureFile, readFile, writeFile } from "fs-extra";
-import { basename, normalize } from "upath";
-import { FileDescriptor } from "../../PackageSystem/FileDescriptor";
+import fs from "fs-extra";
+import path from "upath";
+import { FileDescriptor } from "../../PackageSystem/FileDescriptor.js";
+
+const { ensureDir, ensureFile, readFile, writeFile } = fs;
+const { basename, normalize } = path;
 
 /**
  * Registers tests for the {@link FileDescriptor `FileDescriptor`} class.

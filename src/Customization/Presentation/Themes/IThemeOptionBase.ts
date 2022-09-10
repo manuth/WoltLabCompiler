@@ -1,9 +1,9 @@
-import { ILocalization } from "../../../Globalization/ILocalization";
-import { IComponentOptions } from "../../../PackageSystem/IComponentOptions";
-import { IFileDescriptorOptions } from "../../../PackageSystem/IFileDescriptorOptions";
-import { IImageDirectoryDescriptorOptions } from "./IImageDirectoryDescriptorOptions";
+import { ILocalization } from "../../../Globalization/ILocalization.js";
+import { IComponentOptions } from "../../../PackageSystem/IComponentOptions.js";
+import { IFileDescriptorOptions } from "../../../PackageSystem/IFileDescriptorOptions.js";
+import { IImageDirectoryDescriptorOptions } from "./IImageDirectoryDescriptorOptions.js";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { Theme } from "./Theme";
+import type { Theme } from "./Theme.js";
 
 /**
  * Provides base-options for the {@link Theme `Theme`} class.

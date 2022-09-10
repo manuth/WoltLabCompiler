@@ -1,7 +1,9 @@
 import { XMLSerializer } from "@xmldom/xmldom";
-import { ensureFile, writeFile } from "fs-extra";
-import { XML } from "../Serialization/XML";
-import { Compiler } from "./Compiler";
+import fs from "fs-extra";
+import { XML } from "../Serialization/XML.js";
+import { Compiler } from "./Compiler.js";
+
+const { ensureFile, writeFile } = fs;
 
 /**
  * Provides the functionality to compile components to `.xml`-files.

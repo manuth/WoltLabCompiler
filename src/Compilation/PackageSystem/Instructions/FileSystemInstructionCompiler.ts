@@ -1,5 +1,5 @@
-import { FileSystemInstruction } from "../../../PackageSystem/Instructions/FileSystem/FileSystemInstruction";
-import { InstructionCompiler } from "./InstructionCompiler";
+import { FileSystemInstruction } from "../../../PackageSystem/Instructions/FileSystem/FileSystemInstruction.js";
+import { InstructionCompiler } from "./InstructionCompiler.js";
 
 /**
  * Provides the functionality to compile an sql-instruction.

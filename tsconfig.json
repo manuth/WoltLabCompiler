@@ -3,12 +3,7 @@
     "compilerOptions": {
         "composite": true,
         "rootDir": "./src",
-        "outDir": "./lib",
-        "paths": {
-            "get-sass-vars": [
-                "./src/get-sass-vars.d.ts"
-            ]
-        }
+        "outDir": "./lib"
     },
     "include": [
         "./src/**/*"

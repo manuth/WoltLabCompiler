@@ -1,8 +1,8 @@
-import { EmojiInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/EmojiInstructionCompiler";
-import { InstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/InstructionCompiler";
-import { Emoji } from "../../../Customization/Presentation/Emoji";
-import { NamedDeleteInstruction } from "../NamedDeleteInstruction";
-import { IEmojiInstructionOptions } from "./IEmojiInstructionOptions";
+import { EmojiInstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/EmojiInstructionCompiler.js";
+import { InstructionCompiler } from "../../../Compilation/PackageSystem/Instructions/InstructionCompiler.js";
+import { Emoji } from "../../../Customization/Presentation/Emoji.js";
+import { NamedDeleteInstruction } from "../NamedDeleteInstruction.js";
+import { IEmojiInstructionOptions } from "./IEmojiInstructionOptions.js";
 
 /**
  * Represents an instruction which provides emojis.

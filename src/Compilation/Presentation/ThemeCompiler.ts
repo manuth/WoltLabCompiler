@@ -1,8 +1,10 @@
-import { copy } from "fs-extra";
-import { Theme } from "../../Customization/Presentation/Themes/Theme";
-import { Compiler } from "../Compiler";
-import { ThemeFileCompiler } from "./ThemeFileCompiler";
-import { ThemeVariableCompiler } from "./ThemeVariableCompiler";
+import fs from "fs-extra";
+import { Theme } from "../../Customization/Presentation/Themes/Theme.js";
+import { Compiler } from "../Compiler.js";
+import { ThemeFileCompiler } from "./ThemeFileCompiler.js";
+import { ThemeVariableCompiler } from "./ThemeVariableCompiler.js";
+
+const { copy } = fs;
 
 /**
  * Provides the functionality to compile themes.

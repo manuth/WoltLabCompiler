@@ -1,5 +1,7 @@
-import { basename, isAbsolute, normalize, resolve, sep } from "upath";
-import { IFileDescriptorOptions } from "./IFileDescriptorOptions";
+import path from "upath";
+import { IFileDescriptorOptions } from "./IFileDescriptorOptions.js";
+
+const { basename, isAbsolute, normalize, resolve, sep } = path;
 
 /**
  * Provides a description of a file.

@@ -1,11 +1,11 @@
-import { INode } from "../../NodeSystem/Generic/INode";
-import { ICategory } from "../../Options/Generic/ICategory";
-import { Option } from "../../Options/Option";
-import { OptionItem } from "../../Options/OptionItem";
-import { IOptionInstruction } from "../../PackageSystem/Instructions/Options/IOptionInstruction";
-import { XML } from "../../Serialization/XML";
-import { XMLEditor } from "../../Serialization/XMLEditor";
-import { ImportFileCompiler } from "../ImportFileCompiler";
+import { INode } from "../../NodeSystem/Generic/INode.js";
+import { ICategory } from "../../Options/Generic/ICategory.js";
+import { Option } from "../../Options/Option.js";
+import { OptionItem } from "../../Options/OptionItem.js";
+import { IOptionInstruction } from "../../PackageSystem/Instructions/Options/IOptionInstruction.js";
+import { XML } from "../../Serialization/XML.js";
+import { XMLEditor } from "../../Serialization/XMLEditor.js";
+import { ImportFileCompiler } from "../ImportFileCompiler.js";
 
 /**
  * Provides the functionality to compile option-files.

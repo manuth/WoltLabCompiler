@@ -1,10 +1,10 @@
-import { ok } from "assert";
-import { EventListenerFileCompiler } from "../../../Compilation/Events/EventListenerFileCompiler";
-import { EventListener } from "../../../Events/EventListener";
-import { EventListenerInstruction } from "../../../PackageSystem/Instructions/Events/EventListenerInstruction";
-import { XMLEditor } from "../../../Serialization/XMLEditor";
-import { ListenerCompilerTester } from "../TestComponents/Testers/ListenerCompilerTester";
-import { ListenerCompilerTestRunner } from "../TestComponents/TestRunners/ListenerCompilerTestRunner";
+import { ok } from "node:assert";
+import { EventListenerFileCompiler } from "../../../Compilation/Events/EventListenerFileCompiler.js";
+import { EventListener } from "../../../Events/EventListener.js";
+import { EventListenerInstruction } from "../../../PackageSystem/Instructions/Events/EventListenerInstruction.js";
+import { XMLEditor } from "../../../Serialization/XMLEditor.js";
+import { ListenerCompilerTester } from "../TestComponents/Testers/ListenerCompilerTester.js";
+import { ListenerCompilerTestRunner } from "../TestComponents/TestRunners/ListenerCompilerTestRunner.js";
 
 /**
  * Registers tests for the {@link EventListenerFileCompiler `EventListenerFileCompiler`} class.

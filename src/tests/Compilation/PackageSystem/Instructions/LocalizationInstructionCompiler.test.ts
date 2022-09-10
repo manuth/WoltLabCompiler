@@ -1,15 +1,17 @@
-import { ok } from "assert";
+import { ok } from "node:assert";
 import { Random } from "random-js";
 import { createSandbox, SinonSandbox } from "sinon";
-import { join } from "upath";
-import { InstructionCompiler } from "../../../../Compilation/PackageSystem/Instructions/InstructionCompiler";
-import { LocalizationInstructionCompiler } from "../../../../Compilation/PackageSystem/Instructions/LocalizationInstructionCompiler";
-import { ILocalization } from "../../../../Globalization/ILocalization";
-import { ILocalizationInstruction } from "../../../../PackageSystem/Instructions/Globalization/ILocalizationInstruction";
-import { TranslationInstruction } from "../../../../PackageSystem/Instructions/Globalization/TranslationInstruction";
-import { XMLEditor } from "../../../../Serialization/XMLEditor";
-import { CompilerTester } from "../../TestComponents/Testers/CompilerTester";
-import { LocalizationInstructionCompilerTestRunner } from "../../TestComponents/TestRunners/LocalizationInstructionCompilerTestRunner";
+import path from "upath";
+import { InstructionCompiler } from "../../../../Compilation/PackageSystem/Instructions/InstructionCompiler.js";
+import { LocalizationInstructionCompiler } from "../../../../Compilation/PackageSystem/Instructions/LocalizationInstructionCompiler.js";
+import { ILocalization } from "../../../../Globalization/ILocalization.js";
+import { ILocalizationInstruction } from "../../../../PackageSystem/Instructions/Globalization/ILocalizationInstruction.js";
+import { TranslationInstruction } from "../../../../PackageSystem/Instructions/Globalization/TranslationInstruction.js";
+import { XMLEditor } from "../../../../Serialization/XMLEditor.js";
+import { CompilerTester } from "../../TestComponents/Testers/CompilerTester.js";
+import { LocalizationInstructionCompilerTestRunner } from "../../TestComponents/TestRunners/LocalizationInstructionCompilerTestRunner.js";
+
+const { join } = path;
 
 /**
  * Registers tests for the {@link LocalizationInstructionCompiler `LocalizationInstructionCompiler`} class.

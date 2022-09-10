@@ -1,9 +1,9 @@
-import { ok, strictEqual } from "assert";
-import { INodeOptions } from "../../../../NodeSystem/INodeOptions";
-import { Node } from "../../../../NodeSystem/Node";
-import { NodeItem } from "../../../../NodeSystem/NodeItem";
-import { INodeSystemInstructionOptions } from "../../../../PackageSystem/Instructions/NodeSystem/INodeSystemInstructionOptions";
-import { NodeSystemInstruction } from "../../../../PackageSystem/Instructions/NodeSystem/NodeSystemInstruction";
+import { ok, strictEqual } from "node:assert";
+import { INodeOptions } from "../../../../NodeSystem/INodeOptions.js";
+import { Node } from "../../../../NodeSystem/Node.js";
+import { NodeItem } from "../../../../NodeSystem/NodeItem.js";
+import { INodeSystemInstructionOptions } from "../../../../PackageSystem/Instructions/NodeSystem/INodeSystemInstructionOptions.js";
+import { NodeSystemInstruction } from "../../../../PackageSystem/Instructions/NodeSystem/NodeSystemInstruction.js";
 
 /**
  * Registers tests for the {@link NodeSystemInstruction `NodeSystemInstruction<T, TOptions>`} class.

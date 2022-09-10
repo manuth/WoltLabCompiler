@@ -1,7 +1,7 @@
-import { EmojiInstructionCompiler } from "../../../../Compilation/PackageSystem/Instructions/EmojiInstructionCompiler";
-import { EmojiInstruction } from "../../../../PackageSystem/Instructions/Customization/EmojiInstruction";
-import { CompilerTester } from "../../TestComponents/Testers/CompilerTester";
-import { InstructionCompilerTestRunner } from "../../TestComponents/TestRunners/InstructionCompilerTestRunner";
+import { EmojiInstructionCompiler } from "../../../../Compilation/PackageSystem/Instructions/EmojiInstructionCompiler.js";
+import { EmojiInstruction } from "../../../../PackageSystem/Instructions/Customization/EmojiInstruction.js";
+import { CompilerTester } from "../../TestComponents/Testers/CompilerTester.js";
+import { InstructionCompilerTestRunner } from "../../TestComponents/TestRunners/InstructionCompilerTestRunner.js";
 
 /**
  * Registers tests for the {@link EmojiInstructionCompiler `EmojiInstructionCompiler`} class.

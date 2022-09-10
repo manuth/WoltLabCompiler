@@ -1,11 +1,11 @@
-import { ok, strictEqual } from "assert";
-import { INode } from "../../NodeSystem/INode";
-import { INodeOptions } from "../../NodeSystem/INodeOptions";
-import { Node } from "../../NodeSystem/Node";
-import { Category } from "../../Options/Category";
-import { ICategoryOptions } from "../../Options/ICategoryOptions";
-import { IOptionOptions } from "../../Options/IOptionOptions";
-import { Option } from "../../Options/Option";
+import { ok, strictEqual } from "node:assert";
+import { INode } from "../../NodeSystem/INode.js";
+import { INodeOptions } from "../../NodeSystem/INodeOptions.js";
+import { Node } from "../../NodeSystem/Node.js";
+import { Category } from "../../Options/Category.js";
+import { ICategoryOptions } from "../../Options/ICategoryOptions.js";
+import { IOptionOptions } from "../../Options/IOptionOptions.js";
+import { Option } from "../../Options/Option.js";
 
 /**
  * Registers tests for the {@link Category `Category<TOption, TOptionOptions>`} class.

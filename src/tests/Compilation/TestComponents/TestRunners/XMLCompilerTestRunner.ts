@@ -1,8 +1,8 @@
-import { ok, strictEqual } from "assert";
-import { XMLFileCompiler } from "../../../../Compilation/XMLFileCompiler";
-import { XMLEditor } from "../../../../Serialization/XMLEditor";
-import { XMLFileCompilerTester } from "../Testers/XMLFileCompilerTester";
-import { CompilerTestRunner } from "./CompilerTestRunner";
+import { ok, strictEqual } from "node:assert";
+import { XMLFileCompiler } from "../../../../Compilation/XMLFileCompiler.js";
+import { XMLEditor } from "../../../../Serialization/XMLEditor.js";
+import { XMLFileCompilerTester } from "../Testers/XMLFileCompilerTester.js";
+import { CompilerTestRunner } from "./CompilerTestRunner.js";
 
 /**
  * Provides the functionality to register tests for the {@link XMLFileCompiler `XMLFileCompiler<T>`}.

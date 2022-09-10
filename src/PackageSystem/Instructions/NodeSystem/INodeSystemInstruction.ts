@@ -1,5 +1,5 @@
-import { INode } from "../../../NodeSystem/Generic/INode";
-import { IInstruction } from "../IInstruction";
+import { INode } from "../../../NodeSystem/Generic/INode.js";
+import { IInstruction } from "../IInstruction.js";
 
 /**
  * Represents an instruction which provides nodes.
