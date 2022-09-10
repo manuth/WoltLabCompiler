@@ -1,5 +1,5 @@
 # WoltLabCompiler
-A compiler for generating WoltLab Package `.tar` Archives and other WoltLab-Package Components
+A compiler for generating WoltLab-Package `.tar` Archives and other WoltLab-Package Components
 
 ## Table of Contents
 - [WoltLabCompiler](#woltlabcompiler)

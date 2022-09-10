@@ -1,6 +1,6 @@
 import { EOL } from "os";
 import { get } from "colornames";
-import { readFile } from "fs-extra";
+import { readFile, readJSON } from "fs-extra";
 import hexToRgba = require("hex-to-rgba");
 import parseSassValue = require("parse-sass-value");
 import { isAbsolute, join } from "upath";
@@ -336,7 +336,7 @@ export class ThemeLoader extends Component
         if (this.VariableFileName)
         {
             let fileName = join(...(isAbsolute(this.VariableFileName) ? [this.VariableFileName] : [process.cwd(), this.VariableFileName]));
-            Object.assign(variables, await import(fileName));
+            Object.assign(variables, await readJSON(fileName));
         }
 
         for (let name in variables)
