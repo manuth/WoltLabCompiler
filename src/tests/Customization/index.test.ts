@@ -1,5 +1,5 @@
 import { basename } from "path";
-import { ThemeTests } from "./Themes/index.js";
+import { ThemeTests } from "./Themes/index.test.js";
 
 /**
  * Registers tests for customizations.

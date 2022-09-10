@@ -1,12 +1,12 @@
-import { CollectionTests } from "./Collections/index.js";
-import { CompilationTests } from "./Compilation/index.js";
-import { CustomizationTests } from "./Customization/index.js";
-import { GlobalizationTests } from "./Globalization/index.js";
-import { NodeSystemTests } from "./NodeSystem/index.js";
-import { OptionTests } from "./Options/index.js";
-import { PackageSystemTests } from "./PackageSystem/index.js";
-import { SerializationTests } from "./Serialization/index.js";
-import { TaskTests } from "./Tasks/index.js";
+import { CollectionTests } from "./Collections/index.test.js";
+import { CompilationTests } from "./Compilation/index.test.js";
+import { CustomizationTests } from "./Customization/index.test.js";
+import { GlobalizationTests } from "./Globalization/index.test.js";
+import { NodeSystemTests } from "./NodeSystem/index.test.js";
+import { OptionTests } from "./Options/index.test.js";
+import { PackageSystemTests } from "./PackageSystem/index.test.js";
+import { SerializationTests } from "./Serialization/index.test.js";
+import { TaskTests } from "./Tasks/index.test.js";
 
 suite(
     "WoltLabCompiler",

@@ -1,6 +1,6 @@
 import { basename } from "path";
 import { FileDescriptorTests } from "./FileDescriptor.test.js";
-import { InstructionTests } from "./Instructions/index.js";
+import { InstructionTests } from "./Instructions/index.test.js";
 import { PackageTests } from "./Package.test.js";
 
 /**

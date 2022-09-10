@@ -1,6 +1,6 @@
 import { basename } from "path";
 import { BBCodeInstructionTests } from "./BBCodeInstruction.test.js";
-import { PresentationTests } from "./Presentation/index.js";
+import { PresentationTests } from "./Presentation/index.test.js";
 
 /**
  * Registers tests for customization-instructions.

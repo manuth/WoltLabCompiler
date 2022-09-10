@@ -1,5 +1,5 @@
 import { basename } from "path";
-import { InstructionTests } from "./Instructions/index.js";
+import { InstructionTests } from "./Instructions/index.test.js";
 import { PackageCompilerTests } from "./PackageCompiler.test.js";
 import { PackageFileCompilerTests } from "./PackageFileCompiler.test.js";
 
