@@ -6,7 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## WoltLabCompiler [Unreleased]
 
-[Show differences](https://github.com/manuth/WoltLabCompiler/compare/v4.0.1...dev)
+[Show differences](https://github.com/manuth/WoltLabCompiler/compare/v4.0.2...dev)
+
+## WoltLabCompiler v4.0.2
+### Fixed
+  - Broken `EventListenerInstructionCompiler` causing that no event-listener files are being created
+
+[Show differences](https://github.com/manuth/WoltLabCompiler/compare/v4.0.1...v4.0.2)
 
 ## WoltLabCompiler v4.0.1
 ### Updated
