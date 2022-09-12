@@ -1,8 +1,10 @@
 import { strictEqual } from "node:assert";
+import { IThemeOptions } from "../../../Customization/Presentation/Themes/IThemeOptions.js";
 import { Theme } from "../../../Customization/Presentation/Themes/Theme.js";
 import { ThemeInstruction } from "../../../PackageSystem/Instructions/Customization/Presentation/ThemeInstruction.js";
 import { Package } from "../../../PackageSystem/Package.js";
 import { Person } from "../../../PackageSystem/Person.js";
+import { VersionNumber } from "../../../PackageSystem/VersionNumber.js";
 
 /**
  * Registers tests for the {@link Theme `Theme`} class.
@@ -13,14 +15,20 @@ export function ThemeTests(): void
         nameof(Theme),
         () =>
         {
+            let themeOptions: IThemeOptions;
             let theme: Theme;
             let themeWithAuthor: Theme;
+            let version: VersionNumber;
+            let customVersion: VersionNumber;
             let author: Person;
             let customAuthor: Person;
 
             suiteSetup(
                 async () =>
                 {
+                    version = "1.0.0 Alpha 7";
+                    customVersion = "1.3.3 dev 7";
+
                     author = new Person(
                         {
                             Name: "John Doe",
@@ -38,7 +46,7 @@ export function ThemeTests(): void
                             DisplayName: {},
                             Author: author,
                             Identifier: "test",
-                            Version: "0.0.0",
+                            Version: version,
                             InstallSet: {
                                 Instructions: []
                             }
@@ -54,22 +62,34 @@ export function ThemeTests(): void
 
                     $package.InstallSet.push(instruction);
 
-                    theme = new Theme(
-                        instruction,
-                        {
-                            Name: "test",
-                            DisplayName: {}
-                        });
+                    themeOptions = {
+                        Name: "test",
+                        DisplayName: {},
+                        Version: customVersion
+                    };
+
+                    theme = new Theme(instruction, themeOptions);
 
                     themeWithAuthor = new Theme(
                         instruction,
                         {
-                            Name: "test",
-                            DisplayName: {},
+                            ...themeOptions,
                             Author: customAuthor
                         });
+                });
 
-                    theme = await instruction.ThemeLoader.Load();
+            suite(
+                nameof<Theme>((theme) => theme.Version),
+                () =>
+                {
+                    test(
+                        `Checking whether the \`${nameof<Theme>((t) => t.Version)}\`-property equals the version of the package if no version is specified…`,
+                        () =>
+                        {
+                            strictEqual(theme.Version, customVersion);
+                            theme.Version = undefined;
+                            strictEqual(theme.Version, version);
+                        });
                 });
 
             suite(
