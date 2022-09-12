@@ -72,7 +72,10 @@ export class ThemeFileCompiler extends WoltLabEJSFileCompiler<Theme>
             }
         }
 
-        generalNode.Add(generalNode.CreateTextElement("version", this.Item.Version));
+        if (this.Item.Version)
+        {
+            generalNode.Add(generalNode.CreateTextElement("version", this.Item.Version));
+        }
 
         generalNode.Add(
             generalNode.CreateTextElement(
