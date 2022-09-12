@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Updated
   - The `Theme` class to fall back to the `Package`s version if no version has been specified
   - The `ThemeFileCompiler` to not include the `version`-tag in the resulting `.xml`-code if neither a `Theme`- nor a `Package`-version is specified
+  - All dependencies
 
 [Show differences](https://github.com/manuth/WoltLabCompiler/compare/v4.0.0...dev)
 
