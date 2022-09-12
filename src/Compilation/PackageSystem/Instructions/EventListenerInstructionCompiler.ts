@@ -1,12 +1,12 @@
 import { EventListenerInstruction } from "../../../PackageSystem/Instructions/Events/EventListenerInstruction";
 import { Compiler } from "../../Compiler";
 import { EventListenerFileCompiler } from "../../Events/EventListenerFileCompiler";
-import { InstructionCompiler } from "./InstructionCompiler";
+import { InstructionFileCompiler } from "./InstructionFileCompiler";
 
 /**
  * Provides the functionality to compile event-listener instructions.
  */
-export class EventListenerInstructionCompiler extends InstructionCompiler<EventListenerInstruction>
+export class EventListenerInstructionCompiler extends InstructionFileCompiler<EventListenerInstruction>
 {
     /**
      * Initializes a new instance of the {@link EventListenerInstructionCompiler `EventListenerInstructionCompiler`} class.
