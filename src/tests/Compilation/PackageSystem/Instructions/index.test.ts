@@ -1,9 +1,9 @@
 import { basename } from "node:path";
-import { EventListenerFileCompilerTests } from "../../Events/EventListenerFileCompiler.test.js";
 import { ACPOptionInstructionCompilerTests } from "./ACPOptionInstructionCompiler.test.js";
 import { BBCodeInstructionCompilerTests } from "./BBCodeInstructionCompiler.test.js";
 import { CronJobInstructionCompilerTests } from "./CronJobInstructionCompiler.test.js";
 import { EmojiInstructionCompilerTests } from "./EmojiInstructionCompiler.test.js";
+import { EventListenerInstructionCompilerTests } from "./EventListenerInstructionCompiler.test.js";
 import { FileInstructionCompilerTests } from "./FileInstructionCompiler.test.js";
 import { GroupOptionInstructionCompilerTests } from "./GroupOptionInstructionCompiler.test.js";
 import { InstructionCompilerTests } from "./InstructionCompiler.test.js";
@@ -30,7 +30,7 @@ export function InstructionTests(): void
             CronJobInstructionCompilerTests();
             ThemeInstructionCompilerTests();
             EmojiInstructionCompilerTests();
-            EventListenerFileCompilerTests();
+            EventListenerInstructionCompilerTests();
             TemplateListenerInstructionCompilerTests();
             BBCodeInstructionCompilerTests();
         });
