@@ -2,6 +2,7 @@ import { Component } from "../../../PackageSystem/Component";
 import { FileDescriptor } from "../../../PackageSystem/FileDescriptor";
 import { ThemeInstruction } from "../../../PackageSystem/Instructions/Customization/Presentation/ThemeInstruction";
 import { Person } from "../../../PackageSystem/Person";
+import { VersionNumber } from "../../../PackageSystem/VersionNumber";
 import { ImageDirectoryDescriptor } from "./ImageDirectoryDescriptor";
 import { IThemeOptions } from "./IThemeOptions";
 
@@ -146,6 +147,22 @@ export class Theme extends Component
     public set Name(value: string)
     {
         this.name = value;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public override get Version(): VersionNumber
+    {
+        return super.Version ?? this.Instruction.Package.Version;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public override set Version(value: VersionNumber)
+    {
+        super.Version = value;
     }
 
     /**
