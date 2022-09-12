@@ -151,6 +151,17 @@ export function ThemeFileCompilerTests(): void
                     strictEqual(imageNode.GetAttribute("path"), this.Compiler.Item.Images.DestinationRoot);
                     strictEqual(imageNode.TextContent, this.Compiler.Item.Images.FileName);
                 });
+
+            test(
+                `Checking whether the version tag is added only if the version of the \`${nameof(Theme)}\` can be determined…`,
+                async () =>
+                {
+                    this.Compiler.Item.Version = undefined;
+                    this.Compiler.Item.Instruction.Package.Version = undefined;
+                    await this.Compiler.Execute();
+                    let generalNode = this.GetElement(this.Tester.XMLEditor, "general");
+                    strictEqual(generalNode.GetChildrenByTag("version").length, 0);
+                });
         }
     }(nameof(ThemeFileCompiler)).Register();
 }
