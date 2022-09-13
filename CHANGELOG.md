@@ -6,7 +6,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## WoltLabCompiler [Unreleased]
 
-[Show differences](https://github.com/manuth/WoltLabCompiler/compare/v3.0.1...dev)
+[Show differences](https://github.com/manuth/WoltLabCompiler/compare/v3.0.2...dev)
+
+## WoltLabCompiler v3.0.2
+### Fixed
+  - Broken `EventListenerInstructionCompiler` causing no event listener `.xml` files to be emitted
+
+### Updated
+  - All dependencies
+  - The `Theme` class to fall back to the version of the `Package`
+
+[Show differences](https://github.com/manuth/WoltLabCompiler/compare/v3.0.1...v3.0.2)
 
 ## WoltLabCompiler v3.0.1
 ### Updated
