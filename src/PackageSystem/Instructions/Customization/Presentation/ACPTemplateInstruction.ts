@@ -1,8 +1,5 @@
-import path from "upath";
 import { ApplicationFileSystemInstruction } from "../../FileSystem/ApplicationFileSystemInstruction.js";
 import { IApplicationFileSystemInstructionOptions } from "../../FileSystem/IApplicationFileSystemInstructionOptions.js";
-
-const { join } = path;
 
 /**
  * Represents an instruction which provides templates for the control panel.
@@ -30,15 +27,9 @@ export class ACPTemplateInstruction extends ApplicationFileSystemInstruction
 
     /**
      * @inheritdoc
-     *
-     * @param source
-     * The source of the instruction.
-     *
-     * @returns
-     * The default filename.
      */
-    public override MakeDefaultFileName(source: string): string
+    protected override get AssetDirectoryName(): string
     {
-        return join("acpTemplates", super.MakeDefaultFileName(source));
+        return "acpTemplates";
     }
 }

@@ -127,15 +127,9 @@ export class SelfContainedPHPInstruction extends ApplicationFileSystemInstructio
 
     /**
      * @inheritdoc
-     *
-     * @param source
-     * The source of the instruction.
-     *
-     * @returns
-     * The default filename.
      */
-    protected override MakeDefaultFileName(source: string): string
+    protected override get AssetDirectoryName(): string
     {
-        return join("scripts", "php", super.MakeDefaultFileName(source));
+        return join("scripts", "php");
     }
 }

@@ -71,6 +71,14 @@ export class ApplicationFileSystemInstruction extends FileSystemInstruction
     }
 
     /**
+     * Gets the name of the directory to save the assets archive to.
+     */
+    protected get AssetDirectoryName(): string
+    {
+        return "files";
+    }
+
+    /**
      * @inheritdoc
      *
      * @param source
@@ -81,6 +89,6 @@ export class ApplicationFileSystemInstruction extends FileSystemInstruction
      */
     protected override MakeDefaultFileName(source: string): string
     {
-        return join(...(this.Application ? [this.Application] : []), `${super.MakeDefaultFileName(source)}.tar`);
+        return join(this.AssetDirectoryName, ...(this.Application ? [this.Application] : []), `${super.MakeDefaultFileName(source)}.tar`);
     }
 }
