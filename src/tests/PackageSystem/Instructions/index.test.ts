@@ -6,6 +6,7 @@ import { InstructionTests as InstructionClassTests } from "./Instruction.test.js
 import { InstructionSetTests } from "./InstructionSet.test.js";
 import { NodeSystemTests } from "./NodeSystem/index.test.js";
 import { OptionTests } from "./Options/index.test.js";
+import { SelfContainedPHPInstructionTests } from "./SelfContainedPHPInstruction.test.js";
 
 /**
  * Registers tests for instruction components.
@@ -19,6 +20,7 @@ export function InstructionTests(): void
             InstructionSetTests();
             InstructionClassTests();
             FileSystemTests();
+            SelfContainedPHPInstructionTests();
             NodeSystemTests();
             OptionTests();
             GlobalizationTests();
