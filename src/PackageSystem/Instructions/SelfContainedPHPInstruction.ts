@@ -7,7 +7,7 @@ import { InstructionSet } from "./InstructionSet.js";
 import { ISelfContainedPHPInstructionOptions } from "./ISelfContainedPHPInstructionOptions.js";
 import { PHPInstruction } from "./PHPInstruction.js";
 
-const { join } = path;
+const { dirname, join } = path;
 
 /**
  * Represents an instruction which uploads and executes `.php`-code.
@@ -127,15 +127,23 @@ export class SelfContainedPHPInstruction extends ApplicationFileSystemInstructio
 
     /**
      * @inheritdoc
+     */
+    protected override get AssetDirectoryName(): string
+    {
+        return join("scripts", "php");
+    }
+
+    /**
+     * @inheritdoc
      *
      * @param source
      * The source of the instruction.
      *
      * @returns
-     * The default filename.
+     * The default name of the asset file.
      */
-    protected override MakeDefaultFileName(source: string): string
+    protected override GetAssetFileName(source: string): string
     {
-        return join("scripts", "php", this.Application, super.MakeDefaultFileName(source));
+        return super.GetAssetFileName(dirname(source));
     }
 }

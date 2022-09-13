@@ -1,6 +1,6 @@
 {
   "name": "@manuth/woltlab-compiler",
-  "version": "4.0.3",
+  "version": "4.0.4",
   "type": "module",
   "description": "A compiler for generating WoltLab-Package `.tar` Archives and other WoltLab-Package Components",
   "author": "Manuel Thalmann <m@nuth.ch>",
@@ -73,7 +73,7 @@
     "@types/mem-fs": "^1.1.2",
     "@types/mem-fs-editor": "^7.0.2",
     "@types/mocha": "^9.1.1",
-    "@types/node": "^18.7.16",
+    "@types/node": "^18.7.17",
     "@types/sass": "^1.43.1",
     "@types/sinon": "^10.0.13",
     "@types/tar": "^6.1.2",

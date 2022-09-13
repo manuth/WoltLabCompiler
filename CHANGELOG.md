@@ -6,7 +6,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## WoltLabCompiler [Unreleased]
 
-[Show differences](https://github.com/manuth/WoltLabCompiler/compare/v4.0.3...dev)
+[Show differences](https://github.com/manuth/WoltLabCompiler/compare/v4.0.4...dev)
+
+## WoltLabCompiler v4.0.4
+### Updated
+  - The naming of files created using `ApplicationFileSystemInstruction` classes
+  - The naming of files created using the `SelfContainedPHPInstruction`
+  - All dependencies
+
+[Show differences](https://github.com/manuth/WoltLabCompiler/compare/v4.0.3...v4.0.4)
 
 ## WoltLabCompiler v4.0.3
 ### Removed

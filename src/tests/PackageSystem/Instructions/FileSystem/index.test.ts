@@ -1,4 +1,5 @@
 import { basename } from "node:path";
+import { ApplicationFileSystemInstructionTests } from "./ApplicationFileSystemInstruction.test.js";
 import { FileSystemInstructionTests } from "./FileSystemInstruction.test.js";
 
 /**
@@ -11,5 +12,6 @@ export function FileSystemTests(): void
         () =>
         {
             FileSystemInstructionTests();
+            ApplicationFileSystemInstructionTests();
         });
 }
