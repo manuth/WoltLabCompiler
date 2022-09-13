@@ -89,6 +89,20 @@ export class ApplicationFileSystemInstruction extends FileSystemInstruction
      */
     protected override MakeDefaultFileName(source: string): string
     {
-        return join(this.AssetDirectoryName, ...(this.Application ? [this.Application] : []), `${super.MakeDefaultFileName(source)}.tar`);
+        return join(this.AssetDirectoryName, ...(this.Application ? [this.Application] : []), `${this.GetAssetFileName(source)}.tar`);
+    }
+
+    /**
+     * Gets the default name of the asset file.
+     *
+     * @param source
+     * The source of the instruction.
+     *
+     * @returns
+     * The default name of the asset file.
+     */
+    protected GetAssetFileName(source: string): string
+    {
+        return super.MakeDefaultFileName(source);
     }
 }
