@@ -136,6 +136,6 @@ export class SelfContainedPHPInstruction extends ApplicationFileSystemInstructio
      */
     protected override MakeDefaultFileName(source: string): string
     {
-        return join("scripts", "php", this.Application, super.MakeDefaultFileName(source));
+        return join("scripts", "php", super.MakeDefaultFileName(source));
     }
 }
