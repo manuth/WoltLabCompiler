@@ -154,7 +154,7 @@ export class Theme extends Component
      */
     public override get Version(): VersionNumber
     {
-        return super.Version ?? this.Instruction.Package.Version;
+        return super.Version;
     }
 
     /**
