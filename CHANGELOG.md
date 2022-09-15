@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `VersionNumber` and `VersionKind` for representing package versions properly
   - `WoltLabEJSFileCompiler` for creating `Compiler` classes which preserve EJS-tags in `.xml` files
 
+### Updated
+  - All dependencies
+
 [Show differences](https://github.com/manuth/WoltLabCompiler/compare/v4.0.4...dev)
 
 ## WoltLabCompiler v4.0.4
